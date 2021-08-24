@@ -7,8 +7,6 @@ robo/packages/
 
 *.xlsx
 
-robo/robo.csproj
-
 robo/bin/
 /.vs/ProjectSettings.json
 /.vs
