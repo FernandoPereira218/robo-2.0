@@ -125,7 +125,7 @@ namespace robo.pgm
             System.Threading.Thread.Sleep(1000);
             Util.ClickButtonsByXpath(Driver, "//a[contains(text(),'Validação pela CPSA Fies')]");
 
-            Util.ClickDropDown(Driver, "id", "co_situacao_inscricao", situacao);
+            
 
             for (int i = 0; i < alunos.Count - 1; i++)
             {
@@ -135,6 +135,7 @@ namespace robo.pgm
                 }
 
                 Util.ClickAndWriteById(Driver, "nu_cpf", alunos[i].Cpf);
+                Util.ClickDropDown(Driver, "id", "co_situacao_inscricao", situacao);
                 Util.ClickButtonsById(Driver, "consulta");
                 WaitinLoading();
 
