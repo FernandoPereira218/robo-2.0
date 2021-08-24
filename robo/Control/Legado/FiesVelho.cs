@@ -6,14 +6,8 @@ using System.Linq;
 using System.Media;
 using Keys = OpenQA.Selenium.Keys;
 using System.IO.Compression;
-using iTextSharp.text.pdf;
 using System.Text;
-using iTextSharp.text.pdf.parser;
-using System.Windows.Forms;
-using System.Diagnostics.Eventing.Reader;
 using System.Diagnostics;
-using Org.BouncyCastle.Crypto.Engines;
-using OpenQA.Selenium.Support.UI;
 
 namespace Robo
 {

@@ -3,6 +3,8 @@ robo/obj/
 
 robo/.vs/
 
+robo/packages/
+
 *.xlsx
 
 robo/robo.csproj
@@ -17,38 +19,4 @@ robo/bin/
 
 *.application
 
-bdbot com erro.db
-
 bdbot.db
-
-Cópia de Base aditamento Ritter 06.04.xlsb
-
-Modelo importação Uniritter.csv
-
-robo/data/bdbot.db.old
-
-Erros de DRI não Encontrados.csv
-
-Erros de Página aditamento não encontrado.csv
-
-~$Copia Base aditamento Fadergs.xlsb
-
-~$Cópia de Base aditamento Ritter 06.04.xlsb
-
-exportador Fadergs 17-04-20 somente com erros.csv
-
-exportador Fadergs 17-04-20.csv
-
-exportados fdergs 16-04-20.csv
-
-exportados Uniritter 17-04-20.csv
-
-Fadergs Novos.csv
-
-Faltam Uniritter FIES Novo.csv
-
-Manual_Aditamento_Cpsa.pdf
-
-Manual_Mantenedora_Fies.pdf
-
-pesquisa-inscricoes.xls
