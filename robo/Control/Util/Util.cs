@@ -436,7 +436,7 @@ namespace Robo
                 string caminho = downloadFolder + "\\Relatório Exportacao\\" + tipoRelatorio + " " + nomeArquivo;
                 File.Copy(item, caminho, true);
                 File.Delete(item);
-                Process.Start(caminho);
+                //Process.Start(caminho);
             }
         }
 
