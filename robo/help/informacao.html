@@ -32,7 +32,7 @@
 
 <!-- Corpo da Página -->
 
-<body onload="">
+<body onload="validar()">
     <!-- Transição entre o codigo do Pacote Buscar Card e Informação Card -->
     <!-- Search -->
     <div class="container">
@@ -77,7 +77,7 @@
                     <a id="aditamento" href="informacao.html#aditamento">Aditamentos</a>
                 </div>
                 <div class="col-md-4">
-                    <a href="#">Extrair informações da DRI</a>
+                    <a onclick="validar()" href="informacao.html#sla">SLA</a>
                 </div>
                 <div class="col-md-4">
                     <a href="#">Extrair informações da DRM</a>
@@ -104,7 +104,6 @@
     </footer>
     <!-- Fecha Footer -->
     <script>
-        validar();
     </script>
 
 </body>
