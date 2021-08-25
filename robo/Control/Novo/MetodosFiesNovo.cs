@@ -18,12 +18,12 @@ namespace robo.Control.Novo
     {
         private static IWebDriver Driver;
         static string CampusAditado;
-        static List<Aluno> alunos;
+        static List<TOAluno> alunos;
         private static string semestreAtual = string.Empty;
         static int qtdWindows = 1;
         static bool emLote = false;
         private static string IES;
-        public static void OpenFiesNovo(List<TOLogin> logins, List<Aluno> alunosParametros, string tipoExecucao, string Semestre, bool buscarStatus, string parametroIES = "")
+        public static void OpenFiesNovo(List<TOLogin> logins, List<TOAluno> alunosParametros, string tipoExecucao, string Semestre, bool buscarStatus, string parametroIES = "")
         {
             IES = parametroIES;
             semestreAtual = Semestre;
@@ -519,7 +519,7 @@ namespace robo.Control.Novo
             }
         }
 
-        private static void BuscarEAbrirDRM(Aluno aluno)
+        private static void BuscarEAbrirDRM(TOAluno aluno)
         {
             ConsultarAluno(aluno);
             if (VerificarNenhumaInformacaoDisponivel() == true)
@@ -603,7 +603,7 @@ namespace robo.Control.Novo
 
                 if (aluno.Conclusao.ToUpper() != "NÃO FEITO")
                 {
-                    Dados.UpdateAluno((Aluno)aluno);
+                    Dados.UpdateAluno(aluno, "ALUNOINF");
                     continue;
                 }
 
@@ -619,21 +619,21 @@ namespace robo.Control.Novo
 
 
                 aluno.HorarioConclusao = string.Format("{0:dd/MM/yyyy HH:mm}", DateTime.Now);
-                Dados.UpdateAluno((Aluno)aluno);
+                Dados.UpdateAluno(aluno);
             }
         }
 
         private static void MetodoExtrairInfsDRM()
         {
             ClicarBotaoMenuPaginaInicial("btnAdmnstrcManutenccedilatildeoAditamentoRenovaccedilatildeo");
-            foreach (TOAlunoInf aluno in alunos)
+            foreach (TOAluno aluno in alunos)
             {
                 string janelaInicial = Driver.CurrentWindowHandle;
                 BuscarEAbrirDRM(aluno);
 
                 if (aluno.Conclusao.ToUpper() != "NÃO FEITO")
                 {
-                    Dados.UpdateAluno((Aluno)aluno);
+                    Dados.UpdateAluno(aluno, "ALUNOINF");
                     continue;
                 }
 
@@ -643,7 +643,7 @@ namespace robo.Control.Novo
                 ProcessarInfsFiesNovo(informacao, aluno);
 
                 aluno.HorarioConclusao = string.Format("{0:dd/MM/yyyy HH:mm}", DateTime.Now);
-                Dados.UpdateAluno(aluno);
+                Dados.UpdateAluno(aluno, "ALUNOINF");
             }
         }
 
@@ -732,7 +732,7 @@ namespace robo.Control.Novo
             }
         }
 
-        static void ConsultarAluno(Aluno aluno)
+        static void ConsultarAluno(TOAluno aluno)
         {
             WaitForLoading();
             WaitPageLoading("input-medium cpf", false);
@@ -767,7 +767,7 @@ namespace robo.Control.Novo
             WaitPageLoading("modal-backdrop fade", true);
         }
 
-        public static void ProcessarInfsFiesNovo(string inf, TOAlunoInf aluno)
+        public static void ProcessarInfsFiesNovo(string inf, TOAluno aluno)
         {
             try
             {
@@ -857,9 +857,9 @@ namespace robo.Control.Novo
 
         private static void FazerLogin(TOLogin login)
         {
-            Util.ClickAndWriteById(Driver, "username", login.User);
+            Util.ClickAndWriteById(Driver, "username", login.Usuario);
             Util.ClickButtonsById(Driver, "button-submit");
-            Util.ClickAndWriteById(Driver, "password", login.Password);
+            Util.ClickAndWriteById(Driver, "password", login.Senha);
             Util.ClickButtonsByCss(Driver, "button:nth-child(1)");
         }
 
@@ -876,8 +876,8 @@ namespace robo.Control.Novo
                 {
                     continue;
                 }
-                login.Password = loginAdminItem.Senha;
-                login.User = loginAdminItem.Usuario;
+                login.Senha = loginAdminItem.Senha;
+                login.Usuario = loginAdminItem.Usuario;
             }
             FazerLogin(login);
 

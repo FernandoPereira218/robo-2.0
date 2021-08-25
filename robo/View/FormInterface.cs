@@ -60,7 +60,7 @@ namespace Robo
             {
                 TOSemestre semestre = new TOSemestre();
                 semestre.Semestre = verificarSemestre;
-                Dados.insertsemestre(semestre);
+                Dados.InsertSemestre(semestre);
             }
 
             InitializeComponent();
@@ -202,8 +202,7 @@ namespace Robo
         private void btnSelectPath_Click(object sender, EventArgs e)
         {
             int countAlunoTO = Dados.CountAluno(typeof(TOAluno));
-            int countAlunoInf = Dados.CountAluno(typeof(TOAlunoInf));
-            if (countAlunoTO > 0 || countAlunoInf > 0)
+            if (countAlunoTO > 0)
             {
                 string mensagem = "Tem certeza que deseja excluir o banco de dados?";
                 mensagem += "\n\nCertifique-se de já ter exportado antes para que nenhuma informação seja perdida!";
@@ -212,7 +211,6 @@ namespace Robo
                 {
                     Dados.DeleteTodosAlunos();
                     AtualizarListViewAlunos();
-                    Dados.DeleteTodosAlunosInf();
                 }
                 else
                 {
@@ -566,8 +564,8 @@ namespace Robo
 
                         if (cbExecucao.SelectedItem.ToString().Contains("EXTRAIR") == true)
                         {
-                            List<TOAlunoInf> alunoInf = new List<TOAlunoInf>();
-                            alunoInf = Database.Acess.SelectAll<TOAlunoInf>("ALUNOINF");
+                            List<TOAluno> alunoInf = new List<TOAluno>();
+                            alunoInf = Database.Acess.SelectAll<TOAluno>("ALUNO");
                             FiesVelhoInf.OpenFiesVelho(listaLoginFacul, alunoInf, cbCampus.Text, cbSemestre.Text, cbExecucao.Text, cbSituacao.Text);
                         }
                         else
@@ -581,15 +579,15 @@ namespace Robo
                         listaLoginPlat = SelecionarLoginsPorPlataforma(listLogins, tipoFinanciamento);
                         listaLoginFacul = SelecionarLoginsPorFaculdade(listaLoginPlat);
                         //listaAlunos = SelecionarAlunosPorPlataforma(alunos, tipoFinanciamento);
-                        List<Aluno> teste = new List<Aluno>();
-                        if (cbExecucao.Text == "EXTRAIR INFORMAÇÕES DRM")
-                        {
-                            teste = SelecionarAlunosPorPlataforma(teste, tipoFinanciamento, typeof(TOAlunoInf));
-                        }
-                        else
-                        {
-                            teste = SelecionarAlunosPorPlataforma(teste, tipoFinanciamento, typeof(TOAluno));
-                        }
+                        List<TOAluno> teste = new List<TOAluno>();
+                        //if (cbExecucao.Text == "EXTRAIR INFORMAÇÕES DRM")
+                        //{
+                        //    teste = SelecionarAlunosPorPlataforma(teste, tipoFinanciamento);
+                        //}
+                        //else
+                        //{
+                        //}
+                        teste = SelecionarAlunosPorPlataforma(teste, tipoFinanciamento);
 
                         //FiesNovo.OpenFiesNovo(listaLoginFacul, listaAlunos, cbExecucao.Text, cbSemestre.Text, radioBuscarStatus.Checked, cbFaculdade.Text);
                         //List<Aluno> teste = listaAlunos.ConvertAll(x => (Aluno)x);
@@ -654,9 +652,10 @@ namespace Robo
         private List<TOAluno> SelecionarAlunosPorPlataforma(List<TOAluno> alunos, String plataforma, string cpfUnico = "")
         {
             List<TOAluno> alunosFies = new List<TOAluno>();
-
+            alunosFies = Dados.SelectAlunos();
             foreach (TOAluno aluno in alunos)
             {
+                Dados.TratarCpf(aluno);
                 Dados.TratarTextoReceitas(aluno);
                 Dados.TratarPorcentagemReceita(aluno);
                 Dados.TratarCampusAluno(aluno);
@@ -675,54 +674,6 @@ namespace Robo
                         {
                             alunosFies.Add(aluno);
                         }
-                    }
-                }
-            }
-
-            if (alunosFies.Count == 0)
-            {
-                throw new Exception(String.Format("Nenhum aluno encontrado na plataforma escolhida ({0}). Cheque se o banco de dados contém alunos da plataforma que deseja realizar os aditamentos.", plataforma));
-            }
-            return alunosFies;
-        }
-
-        private List<Aluno> SelecionarAlunosPorPlataforma(List<Aluno> alunos, String plataforma, Type tipoAluno, string cpfUnico = "")
-        {
-            List<Aluno> alunosFies = new List<Aluno>();
-            if (tipoAluno == typeof(TOAluno))
-            {
-                alunosFies = Dados.SelectAlunos(typeof(TOAluno));
-
-                for (int i = alunosFies.Count() - 1; i >= 0; i--)
-                {
-
-                    Dados.TratarTextoReceitas((TOAluno)alunosFies[i]);
-                    Dados.TratarPorcentagemReceita((TOAluno)alunosFies[i]);
-                    Dados.TratarCampusAluno((TOAluno)alunosFies[i]);
-                    Dados.TratarTipoFIES((TOAluno)alunosFies[i]);
-
-                    if (plataforma.Equals(alunosFies[i].Tipo))
-                    {
-                        //if (aluno.AproveitamentoAtual.Contains("TRANCADO") == true)
-                        //{
-                        //    aluno.Conclusao = "Trancado";
-                        //    Dados.UpdateAluno(aluno);
-                        //}
-                        if (alunosFies[i].Conclusao.ToUpper() != "NÃO FEITO")
-                        {
-                            alunosFies.RemoveAt(i);
-                        }
-                    }
-                }
-            }
-            else if (tipoAluno == typeof(TOAlunoInf))
-            {
-                alunosFies = Dados.SelectAlunos(typeof(TOAlunoInf));
-                for (int i = alunosFies.Count() - 1; i >= 0; i--)
-                {
-                    if (alunosFies[i].Conclusao.ToUpper() != "NÃO FEITO")
-                    {
-                        alunosFies.RemoveAt(i);
                     }
                 }
             }
@@ -865,7 +816,6 @@ namespace Robo
             dic.Add("ReceitaLiquida", "ReceitaLiquida");
             dic.Add("ReceitaFies", "ReceitaFies");
             dic.Add("CampusAditado", "CampusAditado");
-            dic.Add("NumCampusAtual", "NumCampusAtual");
             dic.Add("ValorAditado", "ValorAditado");
             dic.Add("ValorAditadoComDesconto", "ValorAditadoComDesconto");
             dic.Add("ValorAditadoFinanciamento", "ValorAditadoFinanciamento");

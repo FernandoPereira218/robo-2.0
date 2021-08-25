@@ -37,7 +37,6 @@ namespace Robo
             {"Conclusao", "Conclusao"},
             {"CampusAditado", "CampusAditado"},
             {"ValorAditado", "ValorAditado"},
-            {"NumCampusAtual", "NumCampusAtual"},
             {"ValorAditadoFinanciamento", "ValorAditadoFinanciamento"},
             {"ValorPagoRecursoEstudante", "ValorPagoRecursoEstudante"},
             {"HorarioConclusao", "HorarioConclusao"},
@@ -86,29 +85,6 @@ namespace Robo
             {"Conclusao", "Conclusao" }
         };
         //SELECTS
-        public static List<Aluno> SelectAlunos(Type tipoAluno)
-        {
-            List<Aluno> alunos = new List<Aluno>();
-            if (tipoAluno == typeof(TOAluno))
-            {
-                List<TOAluno> alunosTO = new List<TOAluno>();
-                alunosTO = Database.Acess.SelectAll<TOAluno>("ALUNO");
-                alunos = alunosTO.ConvertAll(x => (Aluno)x);
-            }
-            if (tipoAluno == typeof(AlunoConsultaNovoTO))
-            {
-                List<AlunoConsultaNovoTO> alunoConsultaNovo = new List<AlunoConsultaNovoTO>();
-                alunoConsultaNovo = Database.Acess.SelectAll<AlunoConsultaNovoTO>("ALUNOCONSULTANOVO");
-                alunos = alunoConsultaNovo.ConvertAll(x => (Aluno)x);
-            }
-            if (tipoAluno == typeof(TOAlunoInf))
-            {
-                List<TOAlunoInf> alunoInf = new List<TOAlunoInf>();
-                alunoInf = Database.Acess.SelectAll<TOAlunoInf>("ALUNOINF");
-                alunos = alunoInf.ConvertAll(x => (Aluno)x);
-            }
-            return alunos;
-        }
         public static List<TOSemestre> SelectSemestre()
         {
             return Database.Acess.SelectAll<TOSemestre>("SEMESTRES");
@@ -116,11 +92,6 @@ namespace Robo
         public static List<TOLogin> SelectLogins()
         {
             return Database.Acess.SelectAll<TOLogin>("LOGIN", "Numero", true);
-            //using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
-            //{
-            //    var output = cnn.Query<TOLogin>("select * from LOGIN ORDER BY Numero ASC", new DynamicParameters());
-            //    return output.ToList();
-            //}
         }
         public static List<TOUsuario> SelectUsuarios()
         {
@@ -129,23 +100,10 @@ namespace Robo
         public static List<TOAluno> SelectAlunos()
         {
             return Database.Acess.SelectAll<TOAluno>("ALUNO");
-            //using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
-            //{
-            //    var output = cnn.Query<TOAluno>("select * from ALUNO", new DynamicParameters());
-            //    return output.ToList();
-            //}
-        }
-        public static List<TOAlunoInf> SelectAlunosInf()
-        {
-            return Database.Acess.SelectAll<TOAlunoInf>("ALUNOINF");
         }
         public static List<TOLoginAdmin> SelectLoginAdmin()
         {
             return Database.Acess.SelectAll<TOLoginAdmin>("LOGINADMIN");
-        }
-        public static List<AlunoConsultaNovoTO> SelectAlunoConsultaNovoTO()
-        {
-            return Database.Acess.SelectAll<AlunoConsultaNovoTO>("ALUNOCONSULTANOVO");
         }
 
         //DELETES
@@ -165,32 +123,9 @@ namespace Robo
             dic.Add("Usuario", "Usuario");
             Database.Acess.Delete<TOUsuario>("USUARIO", usuarioList, dic);
         }
-        public static void DeleteTodosAlunosConsultaNovo()
-        {
-            Database.Acess.DeleteAll("ALUNOCONSULTANOVO");
-        }
         public static void DeleteTodosAlunos()
         {
             Database.Acess.DeleteAll("ALUNO");
-        }
-        public static void DeleteTodosAlunosInf()
-        {
-            Database.Acess.DeleteAll("ALUNOINF");
-        }
-        public static void DeleteTodosAlunos(Type tipoAluno)
-        {
-            if (tipoAluno == typeof(TOAluno))
-            {
-                Database.Acess.DeleteAll("ALUNO");
-            }
-            if (tipoAluno == typeof(TOAlunoInf))
-            {
-                Database.Acess.DeleteAll("ALUNOINF");
-            }
-            if (tipoAluno == typeof(AlunoConsultaNovoTO))
-            {
-                Database.Acess.DeleteAll("ALUNOCONSULTANOVO");
-            }
         }
 
         //UPDATES
@@ -216,37 +151,6 @@ namespace Robo
             columnAndProperty.Add("HorarioConclusao", "HorarioConclusao");
             columnAndProperty.Add("Extraido", "Extraido");
             Database.Acess.Update<TOAluno>("ALUNO", columnAndProperty, aluno, "Cpf", "Cpf");
-
-            //using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
-            //{
-            //    cnn.Execute("update ALUNO set Cpf = @Cpf, Nome = @Nome, Curso = @Curso, AproveitamentoAtual = @AproveitamentoAtual, HistoricoAproveitamento = @HistoricoAproveitamento, ReceitaLiquida = @ReceitaLiquida, ReceitaBruta = @ReceitaBruta, Tipo = @Tipo, Conclusao = @Conclusao, CampusAditado = @CampusAditado, ValorAditado = @ValorAditado, NumCampusAtual = @NumCampusAtual, HorarioConclusao = @HorarioConclusao where Cpf = @Cpf", aluno);
-            //}
-        }
-        public static void UpdateAluno(TOAlunoInf aluno)
-        {
-
-            Dictionary<string, string> columnAndProperty = new Dictionary<string, string>();
-            columnAndProperty.Add("Cpf", "Cpf");
-            columnAndProperty.Add("Curso", "Curso");
-            columnAndProperty.Add("HorarioConclusao", "HorarioConclusao");
-            columnAndProperty.Add("SemestreAditar", "SemestreAditar");
-            columnAndProperty.Add("DuracaoRegular", "DuracaoRegular");
-            columnAndProperty.Add("TotalDeSemestresSuspensos", "TotalDeSemestresSuspensos");
-            columnAndProperty.Add("TotalDeSemestresDilatados", "TotalDeSemestresDilatados");
-            columnAndProperty.Add("TotalDeSemestresConcluidos", "TotalDeSemestresConcluidos");
-            columnAndProperty.Add("SemestreSerCursadoPeloEstudante", "SemestreSerCursadoPeloEstudante");
-            columnAndProperty.Add("TotalDeSemestresJaFinanciados", "TotalDeSemestresJaFinanciados");
-            columnAndProperty.Add("PercentualDeFinanciamentoSolicitado", "PercentualDeFinanciamentoSolicitado");
-            columnAndProperty.Add("GradeAtualComDesconto", "GradeAtualComDesconto");
-            columnAndProperty.Add("GradeAtualFinanciadoFIES", "GradeAtualFinanciadoFIES");
-            columnAndProperty.Add("GradeAtualCoparticipacao", "GradeAtualCoparticipacao");
-            columnAndProperty.Add("Conclusao", "Conclusao");
-            Database.Acess.Update<TOAlunoInf>("ALUNOINF", columnAndProperty, aluno, "Cpf", "Cpf");
-
-            //using (IDbConnection cnn = new SQLiteConnection(LoadConnectionString()))
-            //{
-            //    cnn.Execute("update ALUNO set Cpf = @Cpf, Nome = @Nome, Curso = @Curso, AproveitamentoAtual = @AproveitamentoAtual, HistoricoAproveitamento = @HistoricoAproveitamento, ReceitaLiquida = @ReceitaLiquida, ReceitaBruta = @ReceitaBruta, Tipo = @Tipo, Conclusao = @Conclusao, CampusAditado = @CampusAditado, ValorAditado = @ValorAditado, NumCampusAtual = @NumCampusAtual, HorarioConclusao = @HorarioConclusao where Cpf = @Cpf", aluno);
-            //}
         }
         public static void UpdateLogin(TOLogin login)
         {
@@ -267,20 +171,20 @@ namespace Robo
             dic.Add("IES", "IES");
             Database.Acess.Update("USUARIO", dic, usuario, "Usuario", "Usuario");
         }
-        public static void UpdateAluno(Aluno aluno)
+        public static void UpdateAluno(TOAluno aluno, string tipoAluno)
         {
-            if (aluno is TOAluno)
+            if (tipoAluno == "ALUNO")
             {
                 Database.Acess.Update<TOAluno>("ALUNO", insertTOAluno, (TOAluno)aluno, "Cpf", "Cpf");
             }
-            if (aluno is TOAlunoInf)
+            if (tipoAluno =="ALUNOINF")
             {
-                Database.Acess.Update<TOAlunoInf>("ALUNOINF", updateAlunoInf, (TOAlunoInf)aluno, "Cpf", "Cpf");
+                Database.Acess.Update<TOAluno>("ALUNO", updateAlunoInf, (TOAluno)aluno, "Cpf", "Cpf");
             }
         }
 
         //INSERTS
-        public static void InsertAluno(Aluno aluno)
+        public static void InsertAluno(TOAluno aluno)
         {
             if (aluno is TOAluno)
             {
@@ -288,19 +192,6 @@ namespace Robo
                 alunos.Add(aluno as TOAluno);
 
                 Database.Acess.InsertClassInBd("ALUNO", insertTOAluno, alunos);
-            }
-            if (aluno is TOAlunoInf)
-            {
-                List<TOAlunoInf> alunos = new List<TOAlunoInf>();
-                alunos.Add(aluno as TOAlunoInf);
-
-                Database.Acess.InsertClassInBd("ALUNOINF", insertTOAlunoInf, alunos);
-            }
-            if (aluno is AlunoConsultaNovoTO)
-            {
-                List<AlunoConsultaNovoTO> alunos = new List<AlunoConsultaNovoTO>();
-                alunos.Add(aluno as AlunoConsultaNovoTO);
-                Database.Acess.InsertClassInBd("ALUNOCONSULTANOVO", insertAlunoConsultaNovoTO, alunos);
             }
         }
         public static void InsertLogin(TOLogin login)
@@ -323,7 +214,7 @@ namespace Robo
 
             Database.Acess.InsertClassInBd<TODRI>("DRI", listTODRI);
         }
-        public static void insertsemestre(TOSemestre semestre)
+        public static void InsertSemestre(TOSemestre semestre)
         {
             Dictionary<string, string> dicSemestre = new Dictionary<string, string>();
             dicSemestre.Add("Semestre", "Semestre");
@@ -335,7 +226,7 @@ namespace Robo
         //COUNTS
         public static int CountLogin(TOLogin login)
         {
-            return Database.Acess.SelectWhere<TOLogin>("LOGIN", "User", login.User).Count;
+            return Database.Acess.SelectWhere<TOLogin>("LOGIN", "User", login.Usuario).Count;
         }
         public static int CountAluno(TOAluno aluno)
         {
@@ -344,21 +235,11 @@ namespace Robo
             return Database.Acess.SelectWhere<TOAluno>("ALUNO", dic).Count;
 
         }
-        public static int CountAluno(TOAlunoInf aluno)
-        {
-            Dictionary<string, string> dic = new Dictionary<string, string>();
-            dic.Add("Cpf", "Cpf");
-            return Database.Acess.SelectWhere<TOAlunoInf>("ALUNOINF", dic).Count;
-        }
         public static int CountAluno(Type tipoAluno)
         {
             if (tipoAluno == typeof(TOAluno))
             {
                 return Database.Acess.SelectCount("ALUNO");
-            }
-            if (tipoAluno == typeof(TOAlunoInf))
-            {
-                return Database.Acess.SelectCount("ALUNOINF");
             }
             return 0;
         }
@@ -414,24 +295,6 @@ namespace Robo
                 throw new Exception(e.Message);
             }
         }
-        public static List<TOAlunoInf> ImportAlunos(string diretory)
-        {
-            Dictionary<string, string> dictionary = new Dictionary<string, string>();
-            dictionary.Add("CPF", "Cpf");
-            dictionary.Add("NOME", "Nome");
-            dictionary.Add("CAMPUS", "Campus");
-            dictionary.Add("MODALIDADE FIES", "Tipo");
-
-            List<TOAlunoInf> alunos = CSVManager.CSVManager.ImportCSV<TOAlunoInf>(diretory, dictionary);
-            for (int i = alunos.Count() - 1; i >= 0; i--)
-            {
-                if (alunos[i].Cpf == string.Empty)
-                {
-                    alunos.RemoveAt(i);
-                }
-            }
-            return alunos;
-        }
         public static void Exportar_CSV(string fileName)
         {
             if (fileName.Contains(".csv") == false)
@@ -453,17 +316,17 @@ namespace Robo
             dic.Add("Grade Atual Semestralidade (R$) Financiado FIES", "GradeAtualFinanciadoFIES");
             dic.Add("Grade Atual Semestralidade (R$) Coparticipação", "GradeAtualCoparticipacao");
 
-            List<TOAlunoInf> alunoParaExportar = Database.Acess.SelectAll<TOAlunoInf>("ALUNOINF");
+            List<TOAluno> alunoParaExportar = Database.Acess.SelectAll<TOAluno>("ALUNO");
 
             string[] arquivoSalvar = fileName.Split('\\');
             string[] diretorio = fileName.Split('\\');
             string nomeTemp = diretorio[diretorio.Length - 1];
             fileName = fileName.Replace(nomeTemp, string.Empty);
-            CSVManager.CSVManager.ExportCSV<TOAlunoInf>(fileName, nomeTemp, dic, alunoParaExportar);
+            CSVManager.CSVManager.ExportCSV<TOAluno>(fileName, nomeTemp, dic, alunoParaExportar);
         }
 
         //Tratamentos de valores
-        public static void TratarCpf(Aluno aluno)
+        public static void TratarCpf(TOAluno aluno)
         {
             aluno.Cpf = aluno.Cpf.Replace(".", "");
             aluno.Cpf = aluno.Cpf.Replace("-", "");
@@ -549,36 +412,6 @@ namespace Robo
                     break;
             }
         }
-        public static void TratarCampusAluno(List<TOAlunoInf> alunos)
-        {
-            foreach (var aluno in alunos)
-            {
-                switch (aluno.Campus)
-                {
-                    case "ZS":
-                        aluno.Campus = "ZONA SUL";
-                        break;
-                    case "Fapa_Fapa":
-                        aluno.Campus = "FAPA-FAPA";
-                        break;
-                    case "GL":
-                        aluno.Campus = "GALERIA LUSA";
-                        break;
-                    case "GV":
-                        aluno.Campus = "GENERAL VITORINO";
-                        break;
-                    case "Andradas":
-                        aluno.Campus = "URUGUAI";
-                        break;
-                    case "LF":
-                        aluno.Campus = "LUIS AFONSO";
-                        break;
-                    default:
-                        aluno.Campus = aluno.Campus.ToUpper();
-                        break;
-                }
-            }
-        }
         public static void TratarTipoFIES(TOAluno aluno)
         {
             if (aluno.Tipo.ToUpper().Contains("NOVO") == true)
@@ -642,42 +475,6 @@ namespace Robo
                 //{
                 //}
                 InsertAluno(aluno);
-            }
-        }
-        public static void AtualizarAlunosBD(List<TOAlunoInf> alunos)
-        {
-
-            //TratarCpf(alunos);
-            foreach (TOAlunoInf aluno in alunos)
-            {
-                TratarCpf(aluno);
-                if (CountAluno(aluno) > 0)
-                {
-                    UpdateAluno(aluno);
-                }
-                else
-                {
-                    InsertAluno(aluno);
-                }
-            }
-        }
-        public static void AtualizarAlunosBD(List<Aluno> alunos, Type tipoAluno)
-        {
-            if (tipoAluno == typeof(TOAluno))
-            {
-                foreach (TOAluno aluno in alunos)
-                {
-                    TratarCpf(aluno);
-                    InsertAluno((TOAluno)aluno);
-                }
-            }
-            if (tipoAluno == typeof(TOAlunoInf))
-            {
-                foreach (TOAlunoInf aluno in alunos)
-                {
-                    TratarCpf(aluno);
-                    InsertAluno((TOAlunoInf)aluno);
-                }
             }
         }
 
