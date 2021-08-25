@@ -1,6 +1,5 @@
 ﻿using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
-using robo.Model.TO;
 using robo.pgm;
 using Robo;
 using System;
@@ -9,7 +8,6 @@ using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace robo.Control.Novo
@@ -40,16 +38,8 @@ namespace robo.Control.Novo
             try
             {
                 Driver = Util.StartBrowser("http://sifesweb.caixa.gov.br");
-                if (tipoExecucao.ToUpper().Equals("INADIMPLÊNCIA") || tipoExecucao.ToUpper().Equals("REPASSE") ||
-                        tipoExecucao.ToUpper().Equals("COPARTICIPAÇÃO") || tipoExecucao.ToUpper().Equals("HISTÓRICO COPARTICIPAÇÃO") ||
-                        tipoExecucao.ToUpper().Equals("VALIDAR REPARCELAMENTO"))
-                {
-                    OpenLogin(logins[0], true);
-                }
-                else
-                {
-                    OpenLogin(logins[0]);
-                }
+
+                OpenLogin(logins[0]);
 
                 if (buscarStatus == true)
                 {
@@ -187,7 +177,7 @@ namespace robo.Control.Novo
                 var elements = Driver.FindElements(By.TagName("tr"));
                 for (int i = 0; i < elements.Count(); i++)
                 {
-                    
+
                 }
                 var find = element.FindElement(By.TagName("td"));
             }
@@ -817,7 +807,7 @@ namespace robo.Control.Novo
                 infs.Add(depoisTitulo.Split('\n')[0]);
                 aluno.PercentualDeFinanciamentoSolicitado = infs[infs.Count() - 1];
 
-                if (inf.Contains("Grade Atual") == true) 
+                if (inf.Contains("Grade Atual") == true)
                 {
                     depoisTitulo = inf.Split(new string[] { "Grade Atual" }, StringSplitOptions.None)[1];
                 }
@@ -863,22 +853,8 @@ namespace robo.Control.Novo
             Util.ClickButtonsByCss(Driver, "button:nth-child(1)");
         }
 
-        public static void OpenLogin(TOLogin login, bool loginAdmin = false)
+        public static void OpenLogin(TOLogin login)
         {
-            List<TOLoginAdmin> temp = new List<TOLoginAdmin>();
-            if (loginAdmin == true)
-            {
-                temp = Dados.SelectLoginAdmin();
-            }
-            foreach (var loginAdminItem in temp)
-            {
-                if (loginAdminItem.IES.ToUpper() != IES.ToUpper())
-                {
-                    continue;
-                }
-                login.Senha = loginAdminItem.Senha;
-                login.Usuario = loginAdminItem.Usuario;
-            }
             FazerLogin(login);
 
         }

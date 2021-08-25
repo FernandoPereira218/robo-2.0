@@ -4,16 +4,13 @@ using System.IO;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
 using System.Media;
-using System.Text;
 using robo.pgm;
 using System.Data;
 using System.Linq;
 using System.Drawing;
 using robo;
-using System.Threading;
 using System.ComponentModel;
 using robo.Control.Novo;
-using robo.Model.TO;
 
 namespace Robo
 {
@@ -485,15 +482,18 @@ namespace Robo
             string inicial = dtpDataInicial.Value.ToString("dd/MM/yyyy");
             string final = dtpDataFinal.Value.ToString("dd/MM/yyyy");
 
-            List<TOLogin> login = SelecionaLogins(cbPlataforma.Text, cbFaculdade.Text);
+            List<TOLogin> login = Dados.SelectLogins();
+            List<TOLogin> listaLoginPlat = SelecionarLoginsPorPlataforma(login, cbPlataforma.Text);
+            List<TOLogin> listaLoginFacul = SelecionarLoginsPorFaculdade(listaLoginPlat, true);
 
             if (cbPlataforma.Text.ToUpper() == "FIES LEGADO")
             {
+                login = SelecionaLogins(cbPlataforma.Text, cbFaculdade.Text);
                 FiesVelhoExp.OpenFiesVelho(login, cbExecucao.Text, cbCampus.Text, cbSemestre.Text, cbSituacao.Text, cbAno.Text, cbMes.Text);
             }
             else
             {
-                FiesNovoExp.OpenFiesNovo(login, cbExecucao.Text, cbSemestre.Text, cbFaculdade.Text, cbAno.Text, cbMes.Text, inicial, final, cbIESRepasse.Text);
+                FiesNovoExp.OpenFiesNovo(listaLoginFacul, cbExecucao.Text, cbSemestre.Text, cbFaculdade.Text, cbAno.Text, cbMes.Text, inicial, final, cbIESRepasse.Text);
             }
 
 
@@ -552,7 +552,7 @@ namespace Robo
                         //tipoFinanciamento = TipoFinanciamento.Antigo.ToString();
                         tipoFinanciamento = "FIES Legado";
                         listaLoginPlat = SelecionarLoginsPorPlataforma(listLogins, tipoFinanciamento);
-                        listaLoginFacul = SelecionarLoginsPorFaculdade(listaLoginPlat);
+                        listaLoginFacul = SelecionarLoginsPorFaculdade(listaLoginPlat, false);
                         if (CPFUnico == true && versaoRobo == "operacoesFinanceiras")
                         {
                             listaAlunos = SelecionarAlunosPorPlataforma(alunos, tipoFinanciamento, txtCPF.Text);
@@ -577,7 +577,18 @@ namespace Robo
                         //tipoFinanciamento = TipoFinanciamento.Novo.ToString();
                         tipoFinanciamento = "FIES Novo";
                         listaLoginPlat = SelecionarLoginsPorPlataforma(listLogins, tipoFinanciamento);
-                        listaLoginFacul = SelecionarLoginsPorFaculdade(listaLoginPlat);
+                        string execucao = cbExecucao.Text.ToUpper();
+                        if (execucao.Equals("EXPORTAR INADIMPLÊNCIA") || execucao.Equals("EXPORTAR REPASSE")
+                            || execucao.Equals("EXPORTAR COPARTICIPAÇÃO") || execucao.Equals("VALIDAR REPARCELAMENTO"))
+                        {
+                            listaLoginFacul = SelecionarLoginsPorFaculdade(listaLoginPlat, true);
+                        }
+                        else
+                        {
+
+                            listaLoginFacul = SelecionarLoginsPorFaculdade(listaLoginPlat, false);
+                        }
+
                         //listaAlunos = SelecionarAlunosPorPlataforma(alunos, tipoFinanciamento);
                         List<TOAluno> teste = new List<TOAluno>();
                         //if (cbExecucao.Text == "EXTRAIR INFORMAÇÕES DRM")
@@ -685,7 +696,7 @@ namespace Robo
             return alunosFies;
         }
 
-        private List<TOLogin> SelecionarLoginsPorFaculdade(List<TOLogin> logins)
+        private List<TOLogin> SelecionarLoginsPorFaculdade(List<TOLogin> logins, bool admin)
         {
             List<TOLogin> loginUsado = new List<TOLogin>();
 
@@ -696,7 +707,20 @@ namespace Robo
                 {
                     if (login.Faculdade == instituicao)
                     {
-                        loginUsado.Add(login);
+                        if (admin == true)
+                        {
+                            if (login.Admin.ToUpper() == "SIM")
+                            {
+                                loginUsado.Add(login);
+                            }
+                        }
+                        else
+                        {
+                            if (login.Admin.ToUpper() == "NÃO")
+                            {
+                                loginUsado.Add(login);
+                            }
+                        }
                     }
                 }
 
