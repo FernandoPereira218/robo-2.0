@@ -48,16 +48,8 @@ namespace Robo
 
                 foreach (TOLogin login in logins)
                 {
-                    if (tipoExecucao.ToUpper().Equals("INADIMPLÊNCIA") || tipoExecucao.ToUpper().Equals("REPASSE") ||
-                        tipoExecucao.ToUpper().Equals("COPARTICIPAÇÃO") || tipoExecucao.ToUpper().Equals("HISTÓRICO COPARTICIPAÇÃO") ||
-                        tipoExecucao.ToUpper().Equals("VALIDAR REPARCELAMENTO"))
-                    {
-                        OpenLogin(login, true);
-                    }
-                    else
-                    {
-                        OpenLogin(login);
-                    }
+                    OpenLogin(login);
+
                     if (buscarStatus == true)
                     {
 
@@ -204,7 +196,7 @@ namespace Robo
 
                     alunos[i].Conclusao = "Status Atualizado";
                     alunos[i].HorarioConclusao = string.Format("{0:dd/MM/yyyy HH:mm}", DateTime.Now);
-                   // Dados.UpdateAluno(alunos[i]);
+                    // Dados.UpdateAluno(alunos[i]);
                 }
                 else
                 {
@@ -219,7 +211,7 @@ namespace Robo
                     Dados.InsertAluno(aluno);
                     alunos[i].Conclusao = "Semestre não encontrado";
                     alunos[i].HorarioConclusao = string.Format("{0:dd/MM/yyyy HH:mm}", DateTime.Now);
-                   // Dados.UpdateAluno(alunos[i]);
+                    // Dados.UpdateAluno(alunos[i]);
                 }
 
 
@@ -298,13 +290,13 @@ namespace Robo
             ClicarBotaoMenu("btnAdmnstrcManutenccedilatildeoAditamentoRenovaccedilatildeo");
             for (int i = alunos.Count - 1; i >= 0; i--)
             {
-               // if (BaixarDRM(alunos[i]))
+                // if (BaixarDRM(alunos[i]))
                 //{
-                    bool teste = BaixarDRM(alunos[i]);
-                    alunos[i].CampusAditado = login.Campus;
-                    alunos[i].HorarioConclusao = string.Format("{0:dd/MM/yyyy HH:mm}", DateTime.Now);
-                   // Dados.UpdateAluno(alunos[i]);
-                    alunos.RemoveAt(i);
+                bool teste = BaixarDRM(alunos[i]);
+                alunos[i].CampusAditado = login.Campus;
+                alunos[i].HorarioConclusao = string.Format("{0:dd/MM/yyyy HH:mm}", DateTime.Now);
+                // Dados.UpdateAluno(alunos[i]);
+                alunos.RemoveAt(i);
                 //}
             }
         }
@@ -533,7 +525,7 @@ namespace Robo
                 string error = errorMsg.Text;
                 error = error.Replace("x\r\n", "");
                 aluno.Conclusao = error;
-              //  Dados.UpdateAluno(aluno);
+                //  Dados.UpdateAluno(aluno);
                 Util.ClickButtonsByXpath(Driver, "/html/body/div[1]/div/button");
                 var cpf = Driver.FindElement(By.Id("cpf"));
                 ((IJavaScriptExecutor)Driver).ExecuteScript(string.Format("window.scrollTo({0}, {1})", cpf.Location.X, cpf.Location.Y - 100));
@@ -573,7 +565,7 @@ namespace Robo
                     //aluno.ValorAditadoFinanciamento = valorPagoRecursosFIES;
                     //aluno.ValorPagoRecursoEstudante = valorPagoRecursosEstudante;
                     aluno.HorarioConclusao = DateTime.Now.ToString();
-                   // Dados.UpdateAluno(aluno);
+                    // Dados.UpdateAluno(aluno);
                     return;
                 }
                 if (Driver.PageSource.Contains("inferior ao Percentual mínimo de semestralidade atual") == false)
@@ -672,7 +664,7 @@ namespace Robo
             aluno.ValorAditadoFinanciamento = valorPagoRecursosFIES;
             aluno.ValorPagoRecursoEstudante = valorPagoRecursosEstudante;
             aluno.HorarioConclusao = DateTime.Now.ToString();
-           // Dados.UpdateAluno(aluno);
+            // Dados.UpdateAluno(aluno);
             //wait.Until(ExpectedConditions.VisibilityOfAllElementsLocatedBy(By.Id("container-fluid msg-fixed-top")));
             //wait.Until(ExpectedConditions.VisibilityOfAllElementsLocatedBy(By.Id("alert alert-error")));
             //bool errorMessage = Convert.ToBoolean(executor.ExecuteScript($@"document.getElementsByClassName(""alert.alert-error"");"));
@@ -689,7 +681,7 @@ namespace Robo
             aluno.Conclusao = conclusao;
             aluno.HorarioConclusao = string.Format("{0:dd/MM/yyyy HH:mm}", DateTime.Now);
 
-           // Dados.UpdateAluno(aluno);
+            // Dados.UpdateAluno(aluno);
         }
 
         private static IWebElement AproveitamentoMaiorDe75(TOAluno aluno, IJavaScriptExecutor executor, string possuiProuni)
@@ -826,20 +818,6 @@ namespace Robo
 
         public static void OpenLogin(TOLogin login, bool loginAdmin = false)
         {
-            List<TOLoginAdmin> temp = new List<TOLoginAdmin>();
-            if (loginAdmin == true)
-            {
-                temp = Dados.SelectLoginAdmin();
-            }
-            foreach (var loginAdminItem in temp)
-            {
-                if (loginAdminItem.IES.ToUpper() != IES.ToUpper())
-                {
-                    continue;
-                }
-                login.Senha = loginAdminItem.Senha;
-                login.Usuario = loginAdminItem.Usuario;
-            }
             FazerLogin(login);
 
         }
@@ -922,7 +900,7 @@ namespace Robo
                 {
                     alunos[i].CampusAditado = CampusAditado;
                     alunos[i].HorarioConclusao = string.Format("{0:dd/MM/yyyy HH:mm}", DateTime.Now);
-                  //  Dados.UpdateAluno(alunos[i]);
+                    //  Dados.UpdateAluno(alunos[i]);
                     alunos.RemoveAt(i);
                 }
             }
@@ -1161,7 +1139,7 @@ namespace Robo
             //}
             //else
             //{
-                Driver.FindElement(By.Id("semestralidadeAtualComDescGradeASerCursada")).SendKeys(aluno.ReceitaLiquida);
+            Driver.FindElement(By.Id("semestralidadeAtualComDescGradeASerCursada")).SendKeys(aluno.ReceitaLiquida);
             //}
 
             //click no body para limpar 
@@ -1312,7 +1290,7 @@ namespace Robo
             {
                 //linha = GetLinhaIndexMaior();
                 aluno.Conclusao = "Nenhuma informação disponível";
-               // Dados.UpdateAluno(aluno);
+                // Dados.UpdateAluno(aluno);
                 return false;
             }
             //IWebElement elementoLinha = Driver.FindElement(By.XPath(String.Format("//table[@id='gridResult']/tbody/tr[{0}]", linha)));

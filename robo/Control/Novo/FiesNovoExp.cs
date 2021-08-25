@@ -25,16 +25,9 @@ namespace robo.pgm
                 foreach (TOLogin login in logins)
                 {
                     //OpenLogin(login, "btnAdmnstrcProcessodeFinanciamentoConsultarContratoEstudante");
-                    if (tipoExecucao.ToUpper().Equals("INADIMPLÊNCIA") || tipoExecucao.ToUpper().Equals("REPASSE") ||
-                        tipoExecucao.ToUpper().Equals("COPARTICIPAÇÃO") || tipoExecucao.ToUpper().Equals("HISTÓRICO COPARTICIPAÇÃO") ||
-                        tipoExecucao.ToUpper().Equals("VALIDAR REPARCELAMENTO"))
-                    {
-                        OpenLogin(login, true);
-                    }
-                    else
-                    {
-                        OpenLogin(login);
-                    }
+
+                    OpenLogin(login);
+
 
                     switch (tipoExecucao.ToUpper())
                     {
@@ -298,20 +291,6 @@ namespace robo.pgm
 
         public static void OpenLogin(TOLogin login, bool loginAdmin = false)
         {
-            List<TOLoginAdmin> temp = new List<TOLoginAdmin>();
-            if (loginAdmin == true)
-            {
-                temp = Dados.SelectLoginAdmin();
-            }
-            foreach (var loginAdminItem in temp)
-            {
-                if (loginAdminItem.IES.ToUpper() != IES.ToUpper())
-                {
-                    continue;
-                }
-                login.Senha = loginAdminItem.Senha;
-                login.Usuario = loginAdminItem.Usuario;
-            }
             FazerLogin(login);
 
         }

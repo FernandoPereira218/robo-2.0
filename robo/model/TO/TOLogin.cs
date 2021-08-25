@@ -75,6 +75,6 @@ namespace Robo
             set;
         }
 
-        public string IES { get; set; }
+        public string Admin { get; set; }
     }
 }

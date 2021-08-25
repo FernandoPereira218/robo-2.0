@@ -1,22 +1,8 @@
 using System;
-using System.Runtime.InteropServices;
-using OpenQA.Selenium;
-using OpenQA.Selenium.Chrome;
-using OpenQA.Selenium.Firefox;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Excel = Microsoft.Office.Interop.Excel;
-using System.IO;
-using System.Web.Script.Serialization;
-using System.Data.SqlClient;
-using System.Data;
-using System.Configuration;
-using Dapper;
 using robo.pgm;
 using robo;
-using robo.Model.TO;
 //using ExcelManager;
 
 namespace Robo
@@ -100,10 +86,6 @@ namespace Robo
         public static List<TOAluno> SelectAlunos()
         {
             return Database.Acess.SelectAll<TOAluno>("ALUNO");
-        }
-        public static List<TOLoginAdmin> SelectLoginAdmin()
-        {
-            return Database.Acess.SelectAll<TOLoginAdmin>("LOGINADMIN");
         }
 
         //DELETES
