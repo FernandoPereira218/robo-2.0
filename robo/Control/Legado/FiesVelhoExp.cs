@@ -171,8 +171,8 @@ namespace robo.pgm
             {
                 System.Threading.Thread.Sleep(100);
             }
-            Util.ClickAndWriteById(Driver, "id", login.User);
-            Util.ClickAndWriteById(Driver, "pw", login.Password);
+            Util.ClickAndWriteById(Driver, "id", login.Usuario);
+            Util.ClickAndWriteById(Driver, "pw", login.Senha);
 
             Util.ClickButtonsById(Driver, "botoes");
             if (!Driver.PageSource.Contains("A senha informada não confere. Número de tentativas restAes:"))//Ocorreu uma falha na execução da aplicação. A caixa de erro ao lado mostra o motivo da falha. Provavelmente alguma informação incorreta foi processada.

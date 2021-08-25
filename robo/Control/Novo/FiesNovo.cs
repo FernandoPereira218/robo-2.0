@@ -179,7 +179,7 @@ namespace Robo
                 WaitForLoading();
                 IWebElement elementoTabela = Driver.FindElement(By.Id("gridAditamento"));
                 List<IWebElement> dados = elementoTabela.FindElements(By.TagName("td")).ToList();
-                AlunoConsultaNovoTO aluno = new AlunoConsultaNovoTO();
+                TOAluno aluno = new TOAluno();
 
                 aluno.Cpf = alunos[i].Cpf;
                 for (int j = 0; j < dados.Count(); j++)
@@ -204,7 +204,7 @@ namespace Robo
 
                     alunos[i].Conclusao = "Status Atualizado";
                     alunos[i].HorarioConclusao = string.Format("{0:dd/MM/yyyy HH:mm}", DateTime.Now);
-                    Dados.UpdateAluno(alunos[i]);
+                   // Dados.UpdateAluno(alunos[i]);
                 }
                 else
                 {
@@ -219,7 +219,7 @@ namespace Robo
                     Dados.InsertAluno(aluno);
                     alunos[i].Conclusao = "Semestre não encontrado";
                     alunos[i].HorarioConclusao = string.Format("{0:dd/MM/yyyy HH:mm}", DateTime.Now);
-                    Dados.UpdateAluno(alunos[i]);
+                   // Dados.UpdateAluno(alunos[i]);
                 }
 
 
@@ -229,7 +229,7 @@ namespace Robo
                 WaitForLoading();
             }
             ExportarAlunosConsultaNovo();
-            Dados.DeleteTodosAlunosConsultaNovo();
+            //Dados.DeleteTodosAlunosConsultaNovo();
         }
 
         private static string CorrigirSemestreAlunoConsultaNovo(string semestre)
@@ -242,8 +242,8 @@ namespace Robo
 
         private static void ExportarAlunosConsultaNovo()
         {
-            List<AlunoConsultaNovoTO> list = new List<AlunoConsultaNovoTO>();
-            list = Dados.SelectAlunoConsultaNovoTO();
+            List<TOAluno> list = new List<TOAluno>();
+            list = Dados.SelectAlunos();
             String userRoot = System.Environment.GetEnvironmentVariable("USERPROFILE");
             string downloadFolder = System.IO.Path.Combine(userRoot, "Downloads");
             string arquivo = downloadFolder + "\\Consulta_FIES_Novo.csv";
@@ -303,7 +303,7 @@ namespace Robo
                     bool teste = BaixarDRM(alunos[i]);
                     alunos[i].CampusAditado = login.Campus;
                     alunos[i].HorarioConclusao = string.Format("{0:dd/MM/yyyy HH:mm}", DateTime.Now);
-                    Dados.UpdateAluno(alunos[i]);
+                   // Dados.UpdateAluno(alunos[i]);
                     alunos.RemoveAt(i);
                 //}
             }
@@ -533,7 +533,7 @@ namespace Robo
                 string error = errorMsg.Text;
                 error = error.Replace("x\r\n", "");
                 aluno.Conclusao = error;
-                Dados.UpdateAluno(aluno);
+              //  Dados.UpdateAluno(aluno);
                 Util.ClickButtonsByXpath(Driver, "/html/body/div[1]/div/button");
                 var cpf = Driver.FindElement(By.Id("cpf"));
                 ((IJavaScriptExecutor)Driver).ExecuteScript(string.Format("window.scrollTo({0}, {1})", cpf.Location.X, cpf.Location.Y - 100));
@@ -573,7 +573,7 @@ namespace Robo
                     //aluno.ValorAditadoFinanciamento = valorPagoRecursosFIES;
                     //aluno.ValorPagoRecursoEstudante = valorPagoRecursosEstudante;
                     aluno.HorarioConclusao = DateTime.Now.ToString();
-                    Dados.UpdateAluno(aluno);
+                   // Dados.UpdateAluno(aluno);
                     return;
                 }
                 if (Driver.PageSource.Contains("inferior ao Percentual mínimo de semestralidade atual") == false)
@@ -672,7 +672,7 @@ namespace Robo
             aluno.ValorAditadoFinanciamento = valorPagoRecursosFIES;
             aluno.ValorPagoRecursoEstudante = valorPagoRecursosEstudante;
             aluno.HorarioConclusao = DateTime.Now.ToString();
-            Dados.UpdateAluno(aluno);
+           // Dados.UpdateAluno(aluno);
             //wait.Until(ExpectedConditions.VisibilityOfAllElementsLocatedBy(By.Id("container-fluid msg-fixed-top")));
             //wait.Until(ExpectedConditions.VisibilityOfAllElementsLocatedBy(By.Id("alert alert-error")));
             //bool errorMessage = Convert.ToBoolean(executor.ExecuteScript($@"document.getElementsByClassName(""alert.alert-error"");"));
@@ -689,7 +689,7 @@ namespace Robo
             aluno.Conclusao = conclusao;
             aluno.HorarioConclusao = string.Format("{0:dd/MM/yyyy HH:mm}", DateTime.Now);
 
-            Dados.UpdateAluno(aluno);
+           // Dados.UpdateAluno(aluno);
         }
 
         private static IWebElement AproveitamentoMaiorDe75(TOAluno aluno, IJavaScriptExecutor executor, string possuiProuni)
@@ -837,8 +837,8 @@ namespace Robo
                 {
                     continue;
                 }
-                login.Password = loginAdminItem.Senha;
-                login.User = loginAdminItem.Usuario;
+                login.Senha = loginAdminItem.Senha;
+                login.Usuario = loginAdminItem.Usuario;
             }
             FazerLogin(login);
 
@@ -894,9 +894,9 @@ namespace Robo
 
         private static void FazerLogin(TOLogin login)
         {
-            Util.ClickAndWriteById(Driver, "username", login.User);
+            Util.ClickAndWriteById(Driver, "username", login.Usuario);
             Util.ClickButtonsById(Driver, "button-submit");
-            Util.ClickAndWriteById(Driver, "password", login.Password);
+            Util.ClickAndWriteById(Driver, "password", login.Senha);
             Util.ClickButtonsByCss(Driver, "button:nth-child(1)");
         }
 
@@ -922,7 +922,7 @@ namespace Robo
                 {
                     alunos[i].CampusAditado = CampusAditado;
                     alunos[i].HorarioConclusao = string.Format("{0:dd/MM/yyyy HH:mm}", DateTime.Now);
-                    Dados.UpdateAluno(alunos[i]);
+                  //  Dados.UpdateAluno(alunos[i]);
                     alunos.RemoveAt(i);
                 }
             }
@@ -1312,7 +1312,7 @@ namespace Robo
             {
                 //linha = GetLinhaIndexMaior();
                 aluno.Conclusao = "Nenhuma informação disponível";
-                Dados.UpdateAluno(aluno);
+               // Dados.UpdateAluno(aluno);
                 return false;
             }
             //IWebElement elementoLinha = Driver.FindElement(By.XPath(String.Format("//table[@id='gridResult']/tbody/tr[{0}]", linha)));
@@ -1346,7 +1346,7 @@ namespace Robo
                 {
                     aluno.Conclusao = Driver.FindElement(By.XPath("/html/body/div[7]/div[2]/p")).Text;
                     Util.ClickButtonsById(Driver, "btnConfirmar");
-                    Dados.UpdateAluno(aluno);
+                    //Dados.UpdateAluno(aluno);
                     return false;
                 }
 

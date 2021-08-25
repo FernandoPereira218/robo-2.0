@@ -16,7 +16,7 @@ namespace Robo
         /// <summary>
         /// Usuário para log in.
         /// </summary>
-        public String User
+        public String Usuario
         {
             get;
             set;
@@ -25,7 +25,7 @@ namespace Robo
         /// <summary>
         /// Senha para Log in.
         /// </summary>       
-        public String Password
+        public String Senha
         {
             get;
             set;
@@ -74,5 +74,7 @@ namespace Robo
             get;
             set;
         }
+
+        public string IES { get; set; }
     }
 }

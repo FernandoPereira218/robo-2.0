@@ -309,17 +309,17 @@ namespace robo.pgm
                 {
                     continue;
                 }
-                login.Password = loginAdminItem.Senha;
-                login.User = loginAdminItem.Usuario;
+                login.Senha = loginAdminItem.Senha;
+                login.Usuario = loginAdminItem.Usuario;
             }
             FazerLogin(login);
 
         }
         private static void FazerLogin(TOLogin login)
         {
-            Util.ClickAndWriteById(Driver, "username", login.User);
+            Util.ClickAndWriteById(Driver, "username", login.Usuario);
             Util.ClickButtonsById(Driver, "button-submit");
-            Util.ClickAndWriteById(Driver, "password", login.Password);
+            Util.ClickAndWriteById(Driver, "password", login.Senha);
             Util.ClickButtonsByCss(Driver, "button:nth-child(1)");
         }
         private static void ClicarBotaoMenu(string idMenu, bool inadimplencia = false)

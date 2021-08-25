@@ -222,7 +222,7 @@ namespace Robo
             }
         }
 
-        public static void AcertaBarraR(TOAlunoInf infs)
+        public static void AcertaBarraR(TOAluno infs)
         {
             infs.SemestreAditar = infs.SemestreAditar.Replace("\r", "");
             infs.Campus = infs.Campus.Replace("\r", "");

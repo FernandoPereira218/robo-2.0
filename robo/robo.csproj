@@ -241,7 +241,6 @@
     <Compile Include="Control\Novo\MetodosFiesNovo.cs" />
     <Compile Include="Control\Update\UpdateChromedriver.cs" />
     <Compile Include="Model\TO\Aluno.cs" />
-    <Compile Include="Model\TO\AlunoConsultaNovoTO.cs" />
     <Compile Include="Login.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -249,10 +248,8 @@
       <DependentUpon>Login.cs</DependentUpon>
     </Compile>
     <Compile Include="Control\Novo\FiesNovoExp.cs" />
-    <Compile Include="Control\Novo\FiesNovoInf.cs" />
     <Compile Include="Control\Legado\FiesVelhoExp.cs" />
     <Compile Include="Control\Legado\FiesVelhoInf.cs" />
-    <Compile Include="Model\TO\TOAlunoInf.cs" />
     <Compile Include="Model\TO\TOLoginAdmin.cs" />
     <Compile Include="View\UsuarioForm .cs">
       <SubType>Form</SubType>

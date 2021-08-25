@@ -16,7 +16,7 @@ namespace robo.pgm
     public static class FiesVelhoInf
     {
         private static IWebDriver Driver;
-        public static void OpenFiesVelho(List<TOLogin> logins, List<TOAlunoInf> alunos, string campusSelecionado, string semestre, string tipoExecucao, string situacao)
+        public static void OpenFiesVelho(List<TOLogin> logins, List<TOAluno> alunos, string campusSelecionado, string semestre, string tipoExecucao, string situacao)
         {
             if (campusSelecionado != "")
             {
@@ -74,7 +74,7 @@ namespace robo.pgm
                 }
                 if (alunos.Count > 0)
                 {
-                    foreach (TOAlunoInf aluno in alunos)
+                    foreach (TOAluno aluno in alunos)
                     {
                         //EditarConclusaoAluno(aluno, "Aluno não encontrado em nenhuma conta");
                     }
@@ -107,8 +107,8 @@ namespace robo.pgm
             {
                 System.Threading.Thread.Sleep(100);
             }
-            Util.ClickAndWriteById(Driver, "id", login.User);
-            Util.ClickAndWriteById(Driver, "pw", login.Password);
+            Util.ClickAndWriteById(Driver, "id", login.Usuario);
+            Util.ClickAndWriteById(Driver, "pw", login.Senha);
 
             Util.ClickButtonsById(Driver, "botoes");
             if (!Driver.PageSource.Contains("A senha informada não confere. Número de tentativas restAes:"))//Ocorreu uma falha na execução da aplicação. A caixa de erro ao lado mostra o motivo da falha. Provavelmente alguma informação incorreta foi processada.
@@ -120,7 +120,7 @@ namespace robo.pgm
                 throw new Exception("A senha informada não confere. Por favor, cheque se todos logins foram inseridos corretamente.");
             }
         }
-        public static void MetodoDRI(List<TOAlunoInf> alunos, string campusAtual, string semestreAtual, string situacao)
+        public static void MetodoDRI(List<TOAluno> alunos, string campusAtual, string semestreAtual, string situacao)
         {
             System.Threading.Thread.Sleep(1000);
             Util.ClickButtonsByXpath(Driver, "//a[contains(text(),'Validação pela CPSA Fies')]");
@@ -220,7 +220,7 @@ namespace robo.pgm
                 }
             }
         }
-        public static void MetodoDRM(List<TOAlunoInf> alunos, string campusAtual, string semestreAtual)
+        public static void MetodoDRM(List<TOAluno> alunos, string campusAtual, string semestreAtual)
         {
             Util.ClickButtonsByCss(Driver, "div:nth-child(3) > ul > .menu-button:nth-child(3) > a");
             WaitinLoading();
@@ -268,14 +268,15 @@ namespace robo.pgm
             dic.Add("Grade Atual Semestralidade (R$) Financiado FIES", "GradeAtualFinanciadoFIES");
             dic.Add("Grade Atual Semestralidade (R$) Coparticipação", "GradeAtualCoparticipacao");
 
-            List<TOAlunoInf> alunoParaExportar = Database.Acess.SelectAll<TOAlunoInf>("ALUNOINF");
+            List<TOAluno> alunoParaExportar = Database.Acess.SelectAll<TOAluno>("ALUNO");
+            //List<TOAluno> alunoParaExportar = Database.Acess.SelectAll<TOAluno>("ALUNOINF");
 
             foreach (var item in alunoParaExportar)
             {
                 Util.AcertaBarraR(item);
             }
 
-            CSVManager.CSVManager.ExportCSV<TOAlunoInf>(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile) + "\\Downloads", "InformacoesAlunos_Parcial.csv", dic, alunoParaExportar);
+            CSVManager.CSVManager.ExportCSV<TOAluno>(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile) + "\\Downloads", "InformacoesAlunos_Parcial.csv", dic, alunoParaExportar);
         }
         public static void WaitinLoading()
         {
@@ -289,7 +290,7 @@ namespace robo.pgm
             }
         }
 
-        public static void DRMAlunoSucesso(TOAlunoInf aluno, string campusAtual, string semestre)
+        public static void DRMAlunoSucesso(TOAluno aluno, string campusAtual, string semestre)
         {
             WaitinLoading();
             Util.ClickAndWriteById(Driver, "cpf", aluno.Cpf);
@@ -337,15 +338,15 @@ namespace robo.pgm
             }
         }
 
-        static void EditarConclusaoAluno(TOAlunoInf aluno, string conclusao, string campusAditado = null)
+        static void EditarConclusaoAluno(TOAluno aluno, string conclusao, string campusAditado = null)
         {
             aluno.Conclusao = conclusao;
             aluno.HorarioConclusao = string.Format("{0:dd/MM/yyyy HH:mm}", DateTime.Now);
 
-            Dados.UpdateAluno(aluno);
+            Dados.UpdateAluno(aluno, "ALUNOINF");
         }
 
-        public static string BaixarDRM(ref TOAlunoInf aluno)
+        public static string BaixarDRM(ref TOAluno aluno)
         {
             Util.ClickButtonsById(Driver, "imprimirDrm");
             String userRoot = System.Environment.GetEnvironmentVariable("USERPROFILE");
@@ -397,12 +398,12 @@ namespace robo.pgm
             return conclusao;
         }
 
-        public static void ProcessarInfsFiesVelho(string inf, ref TOAlunoInf aluno, string percentualFinanciamento)
+        public static void ProcessarInfsFiesVelho(string inf, ref TOAluno aluno, string percentualFinanciamento)
         {
             try
             {
                 string depoisTitulo;
-                TOAlunoInf infs = new TOAlunoInf();
+                TOAluno infs = new TOAluno();
                 infs.Cpf = aluno.Cpf;
                 if (inf.Contains("TERMO ADITIVO AO CONTRATO") == true)
                 {

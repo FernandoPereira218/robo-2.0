@@ -18,8 +18,8 @@ namespace Robo
             this.Location = location;
             if (login != null)
             {
-                txtUser.Text = login.User;
-                txtSenhaLogin.Text = login.Password;
+                txtUser.Text = login.Usuario;
+                txtSenhaLogin.Text = login.Senha;
                 txtFaculdadeLogin.Text = login.Faculdade;
                 txtCampusLogin.Text = login.Campus;
                 txtPlataformaLogin.Text = login.Plataforma;
@@ -90,8 +90,8 @@ namespace Robo
         private TOLogin LoginPreenchido()
         {
             TOLogin login = new TOLogin();
-            login.User = txtUser.Text;
-            login.Password = txtSenhaLogin.Text;
+            login.Usuario = txtUser.Text;
+            login.Senha = txtSenhaLogin.Text;
             login.Faculdade = txtFaculdadeLogin.Text;
             login.Campus = txtCampusLogin.Text;
             login.Plataforma = txtPlataformaLogin.Text;
