@@ -9,6 +9,7 @@
     <OutputType>WinExe</OutputType>
     <RootNamespace>robo</RootNamespace>
     <AssemblyName>Robo Financiamentos</AssemblyName>
+    <LangVersion>8.0</LangVersion>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -238,6 +239,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Control\Implementacoes\IContratos.cs" />
+    <Compile Include="Control\Implementacoes\ImplementacaoPresenter.cs" />
     <Compile Include="Control\Novo\MetodosFiesNovo.cs" />
     <Compile Include="Control\Update\UpdateChromedriver.cs" />
     <Compile Include="Login.cs">
