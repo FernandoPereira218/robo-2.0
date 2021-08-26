@@ -127,7 +127,6 @@ namespace Robo
             columnAndProperty.Add("Conclusao", "Conclusao");
             columnAndProperty.Add("CampusAditado", "CampusAditado");
             columnAndProperty.Add("ValorAditado", "ValorAditado");
-            columnAndProperty.Add("NumCampusAtual", "NumCampusAtual");
             columnAndProperty.Add("ValorAditadoFinanciamento", "ValorAditadoFinanciamento");
             columnAndProperty.Add("ValorPagoRecursoEstudante", "ValorPagoRecursoEstudante");
             columnAndProperty.Add("HorarioConclusao", "HorarioConclusao");
@@ -206,17 +205,6 @@ namespace Robo
         }
 
         //COUNTS
-        public static int CountLogin(TOLogin login)
-        {
-            return Database.Acess.SelectWhere<TOLogin>("LOGIN", "User", login.Usuario).Count;
-        }
-        public static int CountAluno(TOAluno aluno)
-        {
-            Dictionary<string, string> dic = new Dictionary<string, string>();
-            dic.Add("Cpf", "Cpf");
-            return Database.Acess.SelectWhere<TOAluno>("ALUNO", dic).Count;
-
-        }
         public static int CountAluno(Type tipoAluno)
         {
             if (tipoAluno == typeof(TOAluno))
