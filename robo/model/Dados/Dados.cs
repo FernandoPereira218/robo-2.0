@@ -497,5 +497,16 @@ namespace Robo
             throw new Exception("Existem dados repetidos na tabela das DRIs.");
 
         }
+        public static void VerificaSemestre()
+        {
+            string verificarSemestre = Util.VerificaSemestreAtual();
+
+            if (verficarSemestre(verificarSemestre) == 0)
+            {
+                TOSemestre semestre = new TOSemestre();
+                semestre.Semestre = verificarSemestre;
+                InsertSemestre(semestre);
+            }
+        }
     }
 }

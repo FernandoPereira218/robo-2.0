@@ -11,10 +11,11 @@ using System.Drawing;
 using robo;
 using System.ComponentModel;
 using robo.Control.Novo;
+using robo.Control.Implementacoes;
 
 namespace Robo
 {
-    public partial class RoboForm : Form
+    public partial class RoboForm : Form, IContratos.IMainForms
     {
         public static string versaoRobo;
         //        public static string versaoRobo = "operacoesFinanceiras";
@@ -32,33 +33,19 @@ namespace Robo
         private Point objetoPonto2 = new Point(145, 25);
         private Point objetoPonto3 = new Point(2, 72);
 
+        private static ImplementacaoPresenter presenter;
+
         [DllImportAttribute("user32.dll")]
         public static extern int SendMessage(IntPtr hWnd,
         int Msg, int wParam, int lParam);
         [DllImportAttribute("user32.dll")]
         public static extern bool ReleaseCapture();
-        private List<TOSemestre> semestre = new List<TOSemestre>();
         private List<string> cbListModosExecucao = new List<string>();
         public RoboForm()
         {
-            // List<Aluno> list = Dados.SelectAlunos(typeof(TOAluno));
-            // MetodosFiesNovo.OpenFiesNovo(null, list, "", "", false, typeof(TOAluno));
-            string ano = DateTime.Now.ToString("yyyy");
-            List<string> anos = new List<string>();
-            for (int i = 2010; i <= Convert.ToInt32(ano); i++)
-            {
-                anos.Add(i.ToString());
-            }
-
             versaoRobo = Program.login.Permissao;
-            string verificarSemestre = Util.VerificaSemestreAtual();
-
-            if (Dados.verficarSemestre(verificarSemestre) == 0)
-            {
-                TOSemestre semestre = new TOSemestre();
-                semestre.Semestre = verificarSemestre;
-                Dados.InsertSemestre(semestre);
-            }
+            presenter = new ImplementacaoPresenter(this);
+            Dados.VerificaSemestre();
 
             InitializeComponent();
             InitializeBackgroundWorker();
@@ -73,16 +60,14 @@ namespace Robo
             metroTextBox1.BackColor = Color.White;
             metroTextBox1.Visible = false;
 
+
             if (versaoRobo == "CAE")
             {
-                //metroTabControl1.TabPages.Remove(metroTabPage3);
-                //metroTabControl1.TabPages.Remove(metroTabPage4);
                 panelMenu.BringToFront();
                 btnAlunos.Visible = false;
                 btnLogins.Visible = false;
                 btUsuarios.Visible = false;
                 btLogout.Visible = true;
-                //btnCadastrar.Text = "CONSULTAR";
                 btLogout.Location = new Point(0, 40);
 
                 // Panel
@@ -103,27 +88,17 @@ namespace Robo
                 btnLogins.Visible = true;
                 cbExecucao.SelectedIndex = cbExecucao.FindStringExact("ADITAMENTO");
                 cbExecucao.Enabled = true;
-
-                //Tirado por não sabermos se será usado sem ser na versão CAE
                 txtCPF.Visible = false;
                 labelCPF.Visible = false;
                 labelCPFCaracteres.Visible = false;
-                //txtCPF.Enabled = false;
             }
             radioBaixarDocumento.Checked = true;
             radioBaixarDocumento.Visible = false;
             radioBuscarStatus.Visible = false;
             labelModoOperacao.Visible = false;
-            //this.cbExecucao.Items.RemoveAt(0);
-            semestre = Dados.SelectSemestre();
-            List<String> nomeSemestre = new List<string>();
 
-            foreach (var item in semestre)
-            {
-                nomeSemestre.Add(item.Semestre);
-            }
+            this.cbSemestre.DataSource = presenter.PreencherListaSemestre();
 
-            this.cbSemestre.DataSource = nomeSemestre;
             //this.cbExecucao.DataSource = Enum.GetValues(typeof(TipoExecucao));
             //this.cbExecucao.SelectedIndex = (int)TipoExecucao.DRM;
 
@@ -138,7 +113,7 @@ namespace Robo
             this.cbFaculdade.SelectedIndex = 0;
             this.cbFaculdade.SelectedIndex = cbFaculdade.FindStringExact(Program.login.IES.ToUpper());
             this.cbFaculdade.Enabled = true;
-            this.cbSemestre.SelectedItem = verificarSemestre;
+            this.cbSemestre.SelectedIndex = cbSemestre.Items.Count - 1;
             //cbFaculdade.SelectedIndex = cbFaculdade.FindStringExact("TODOS");
             //this.cbExecucao.SelectedIndex = 0;
 
@@ -146,6 +121,8 @@ namespace Robo
             AtualizarListViewLogins();
             AtualizarListViewUsuarios();
         }
+
+
         private void InitializeBackgroundWorker()
         {
             backgroundWorker1.DoWork +=
@@ -388,18 +365,6 @@ namespace Robo
             }
         }
 
-        private void btnCadastrar_Click(object sender, EventArgs e)
-        {
-            //TabPage tabPage = metroTabPage1;
-            //metroTabControl1.SelectTab(tabPage);
-            panelMenu.Visible = false;
-            panelCadastrarContent.Visible = true;
-            //panelAlunosContent.Visible = false;
-            panelLogins.Visible = false;
-            panelCadastrarContent.BringToFront();
-            panelSubMenu.Visible = true;
-        }
-
         private void btnAlunos_Click(object sender, EventArgs e)
         {
             panelMenu.Visible = false;
@@ -531,17 +496,10 @@ namespace Robo
                     MessageBox.Show("Banco de Logins vazio. Por favor adicione os Logins necessários.", "Nenhum login encontrado", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
-                string numSemestre = string.Empty;
+                string numSemestre = presenter.BuscarNunSemestre(cbSemestre.Text);
                 List<TOLogin> listaLoginPlat;
                 List<TOLogin> listaLoginFacul;
                 List<TOAluno> listaAlunos;
-                foreach (var item in semestre)
-                {
-                    if (cbSemestre.Text == item.Semestre)
-                    {
-                        numSemestre = item.numSemestre;
-                    }
-                }
 
                 String tipoFinanciamento;
                 TipoExecucao tipoExecucao;
