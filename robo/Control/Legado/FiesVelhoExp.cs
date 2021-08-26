@@ -42,10 +42,6 @@ namespace robo.pgm
                         }
                         switch (tipoExecucao.ToUpper())
                         {
-                            case "EXPORTAR ADITAMENTO":
-                                MetodoAditamento(semestre, login.Campus);
-                                break;
-
                             case "EXPORTAR DRM":
                                 ExportarDocumento(semestre, "DRM", login.Campus);
                                 break;
@@ -62,7 +58,7 @@ namespace robo.pgm
                                 ExportarDocumento(semestre, "Suspensao", login.Campus);
                                 break;
                             case "EXPORTAR DRI":
-                                MetodoDRIExp(situacaoDRI);
+                                MetodoDRIExp(situacaoDRI, login.Campus);
                                 break;
                             case "EXPORTAR EXTRATO MENSAL DE REPASSE":
                                 ExtratoMensalRepasse(ano, mes);
@@ -132,30 +128,6 @@ namespace robo.pgm
             }
             Driver.FindElement(By.Id("btn_excel")).Click();
             Util.SalvarArquivos(Driver, "Extrato_Mensal_Repasse");
-        }
-
-        private static void MetodoAditamento(string numSemestre, string campus)
-        {
-            System.Threading.Thread.Sleep(1000);
-            Util.ClickButtonsByCss(Driver, "div:nth-child(3) > ul > .menu-button:nth-child(2) > a");
-            Driver.Url = "http://sisfies.mec.gov.br/cpsa/aditamento";
-
-            var frameCaptcha = Driver.FindElement(By.TagName("iframe"));
-            Driver.SwitchTo().Frame(frameCaptcha);
-            string frameText = Driver.PageSource;
-            bool temp = false;
-            var executor = (IJavaScriptExecutor)Driver;
-            while (temp == false)
-            {
-                IWebElement t = Driver.FindElement(By.Id("recaptcha-anchor"));
-                string i = t.GetAttribute("aria-checked");
-                temp = Convert.ToBoolean(i);
-                System.Threading.Thread.Sleep(500);
-            }
-            Driver.SwitchTo().ParentFrame();
-            Driver.FindElement(By.Id("excel")).Click();
-            Util.SalvarArquivos(Driver, "Aditamento", campus);
-            FazerLogout();
         }
 
         static Boolean RealizarLoginSucesso(TOLogin login)
@@ -244,7 +216,7 @@ namespace robo.pgm
                     break;
             }
         }
-        public static void MetodoDRIExp(string SituacaoDRI)
+        public static void MetodoDRIExp(string SituacaoDRI, string campus)
         {
             System.Threading.Thread.Sleep(1000);
             Util.ClickButtonsByXpath(Driver, "//a[contains(text(),'Validação pela CPSA Fies')]");
@@ -253,7 +225,9 @@ namespace robo.pgm
 
             Util.ClickButtonsById(Driver, "excel");
 
-            Util.SalvarArquivos(Driver, "DRI_" + SituacaoDRI);
+            Util.SalvarArquivos(Driver, "DRI_" + SituacaoDRI, campus);
+
+            FazerLogout();
         }
     }
 }
