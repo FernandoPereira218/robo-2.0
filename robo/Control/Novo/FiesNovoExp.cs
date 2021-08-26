@@ -28,7 +28,10 @@ namespace robo.pgm
 
                     OpenLogin(login);
 
-
+                    while(Util.VerificarElementoExiste(Driver, "CLASSNAME", "dropdown-toggle") == null)
+                    {
+                        System.Threading.Thread.Sleep(500);
+                    }
                     switch (tipoExecucao.ToUpper())
                     {
                         case "EXPORTAR ADITAMENTO":

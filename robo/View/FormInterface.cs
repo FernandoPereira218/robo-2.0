@@ -642,7 +642,7 @@ namespace Robo
 
             if (loginFies.Count == 0)
             {
-                throw new Exception(String.Format("Nenhum login encontrado na plataforma escolhida ({0}). Cheque se o banco de dados contém logins da plataforma que deseja realizar os aditamentos.", plataforma));
+                //throw new Exception(String.Format("Nenhum login encontrado na plataforma escolhida ({0}). Cheque se o banco de dados contém logins da plataforma que deseja realizar os aditamentos.", plataforma));
             }
             return loginFies;
         }
@@ -726,25 +726,13 @@ namespace Robo
 
                 if (loginUsado.Count == 0)
                 {
-                    throw new Exception(String.Format("Nenhum login encontrado da faculdade escolhida ({0}). Cheque se o banco de dados contém logins da faculdade que deseja realizar os aditamentos.", instituicao));
+                    //throw new Exception(String.Format("Nenhum login encontrado da faculdade escolhida ({0}). Cheque se o banco de dados contém logins da faculdade que deseja realizar os aditamentos.", instituicao));
                 }
                 return loginUsado;
             }
             return logins;
         }
-        /*
-                private void btnLimpar_Click(object sender, EventArgs e)
-                {
-                    string mensagem = "Tem certeza que deseja excluir o banco de dados?";
-                    mensagem += "\n\nCertifique-se de já ter exportado antes para que nenhuma informação seja perdida!";
 
-                    if (MessageBox.Show(mensagem, "Limpar Banco de Dados", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK)
-                    {
-                        Dados.DeleteTodosAlunos();
-                        AtualizarListViewAlunos();
-                    }
-                }
-        */
         private void btnAdicionarLogin_Click(object sender, EventArgs e)
         {
             LoginForm loginForm = new LoginForm(this.Location);
@@ -1172,17 +1160,6 @@ namespace Robo
             }
         }
 
-        private void btCadastro_Click(object sender, EventArgs e)
-        {
-            panelCadastro.Visible = false;
-            panelPlanilha.Visible = false;
-        }
-
-        private void btPlanilha_Click(object sender, EventArgs e)
-        {
-            panelCadastro.Visible = false;
-            panelPlanilha.Visible = false;
-        }
 
         private void btExportar_Click(object sender, EventArgs e)
         {

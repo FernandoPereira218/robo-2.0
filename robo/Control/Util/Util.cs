@@ -484,7 +484,8 @@ namespace Robo
                 case "ID":
                     return (IWebElement)executor.ExecuteScript($@"return document.getElementById(""{identificador}"");");
                 case "CLASSNAME":
-                    return (IWebElement)executor.ExecuteScript($@"return document.getElementByClassName(""{identificador}"");");
+                    var element = (IWebElement)executor.ExecuteScript($@"return document.getElementsByClassName(""{identificador}"")[0];");
+                    return element;
                 case "NAME":
                     return (IWebElement)executor.ExecuteScript($@"return document.getElementByName(""{identificador}"");");
                 default:
