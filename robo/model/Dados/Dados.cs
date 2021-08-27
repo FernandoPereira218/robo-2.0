@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using robo.pgm;
 using robo;
+
 //using ExcelManager;
 
 namespace Robo
@@ -86,6 +87,10 @@ namespace Robo
         public static List<TOAluno> SelectAlunos()
         {
             return Database.Acess.SelectAll<TOAluno>("ALUNO");
+        }
+        public static List<TOMenus> SelectMenus()
+        {
+            return Database.Acess.SelectAll<TOMenus>("MENUS");
         }
 
         //DELETES
