@@ -100,7 +100,7 @@ namespace Robo
             List<TOLogin> loginList = new List<TOLogin>();
             loginList.Add(login);
             Dictionary<string, string> dic = new Dictionary<string, string>();
-            dic.Add("User", "User");
+            dic.Add("Usuario", "Usuario");
             Database.Acess.Delete<TOLogin>("LOGIN", loginList, dic);
         }
         public static void DeleteUsuario(TOUsuario usuario)
