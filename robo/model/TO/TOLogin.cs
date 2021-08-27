@@ -14,6 +14,14 @@ namespace Robo
     public class TOLogin
     {
         /// <summary>
+        /// Faculdade do Login.
+        /// </summary>
+        public String ID
+        {
+            get;
+            set;
+        }
+        /// <summary>
         /// Usuário para log in.
         /// </summary>
         public String Usuario
@@ -58,14 +66,6 @@ namespace Robo
             set;
         }
 
-        /// <summary>
-        /// Faculdade do Login.
-        /// </summary>
-        public String Numero
-        {
-            get;
-            set;
-        }
         /// <summary>
         /// Faculdade do Regional.
         /// </summary>

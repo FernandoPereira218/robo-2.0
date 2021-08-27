@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using robo.pgm;
 using robo;
+using System.Windows.Forms;
 
 //using ExcelManager;
 
@@ -78,7 +79,7 @@ namespace Robo
         }
         public static List<TOLogin> SelectLogins()
         {
-            return Database.Acess.SelectAll<TOLogin>("LOGIN", "Numero", true);
+            return Database.Acess.SelectAll<TOLogin>("LOGIN", "ID", true);
         }
         public static List<TOUsuario> SelectUsuarios()
         {
@@ -141,12 +142,13 @@ namespace Robo
         public static void UpdateLogin(TOLogin login)
         {
             Dictionary<string, string> dic = new Dictionary<string, string>();
-            dic.Add("User", "User");
-            dic.Add("Password", "Password");
+            dic.Add("Usuario", "Usuario");
+            dic.Add("Senha", "Senha");
             dic.Add("Campus", "Campus");
             dic.Add("Plataforma", "Plataforma");
             dic.Add("Faculdade", "Faculdade");
-            Database.Acess.Update("LOGIN", dic, login, "Numero", "Numero");
+            dic.Add("ID", "ID");
+            Database.Acess.Update("LOGIN", dic, login, "ID", "ID");
         }
         public static void UpdateUsuario(TOUsuario usuario)
         {
@@ -208,15 +210,21 @@ namespace Robo
             listTOSemestre.Add(semestre);
             Database.Acess.InsertClassInBd("SEMESTRES", dicSemestre, listTOSemestre);
         }
+        public static void ImportaAlunos(string filePath)
+        {
+            List<TOAluno> alunos = BuscarListaAlunos(filePath);
+            AtualizarAlunosBD(alunos);
+        }
+
 
         //COUNTS
-        public static int CountAluno(Type tipoAluno)
+        public static int CountAluno()
         {
-            if (tipoAluno == typeof(TOAluno))
-            {
-                return Database.Acess.SelectCount("ALUNO");
-            }
-            return 0;
+            return Database.Acess.SelectCount("ALUNO");
+        }
+        public static int CountLogins()
+        {
+            return Database.Acess.SelectCount("LOGIN");
         }
 
 
@@ -512,6 +520,27 @@ namespace Robo
                 semestre.Semestre = verificarSemestre;
                 InsertSemestre(semestre);
             }
+        }
+
+        public static bool VerificaQtdAlunos()
+        {
+            int countAlunoTO = CountAluno();
+            if (countAlunoTO > 0)
+            {
+                string mensagem = "Tem certeza que deseja excluir o banco de dados?";
+                mensagem += "\n\nCertifique-se de já ter exportado antes para que nenhuma informação seja perdida!";
+
+                if (MessageBox.Show(mensagem, "Limpar Banco de Dados", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK)
+                {
+                    DeleteTodosAlunos();
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            return true;
         }
     }
 }

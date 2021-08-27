@@ -18,6 +18,7 @@ namespace Robo
             this.Location = location;
             if (login != null)
             {
+                txtID.Text = login.ID;
                 txtUser.Text = login.Usuario;
                 txtSenhaLogin.Text = login.Senha;
                 txtFaculdadeLogin.Text = login.Faculdade;
@@ -26,7 +27,7 @@ namespace Robo
                 txtRegionalLogin.Text = login.Regional;
 
                 this.btnOKLogin.Text = "Atualizar";
-                this.txtUser.Enabled = false;
+                this.txtID.Enabled = false;
                 this.btnOKLogin.Click -= new System.EventHandler(this.btnOKLogin_Click);
                 this.btnOKLogin.Click += new System.EventHandler(this.btnAtualizarLogin_Click);
             }
@@ -90,6 +91,7 @@ namespace Robo
         private TOLogin LoginPreenchido()
         {
             TOLogin login = new TOLogin();
+            login.ID = txtID.Text;
             login.Usuario = txtUser.Text;
             login.Senha = txtSenhaLogin.Text;
             login.Faculdade = txtFaculdadeLogin.Text;
