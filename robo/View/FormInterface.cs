@@ -17,6 +17,16 @@ namespace Robo
 {
     public partial class RoboForm : Form, IContratos.IMainForms
     {
+
+        // Permite movimentação do formulario via mouse no "Painel do Menu"
+        public const int WM_NCLBUTTONDOWN = 0xA1;
+        public const int HT_CAPTION = 0x2;
+        [DllImportAttribute("user32.dll")]
+        public static extern int SendMessage(IntPtr hWnd, int Msg, int wParam, int lParam);
+        [DllImportAttribute("user32.dll")]
+        public static extern bool ReleaseCapture();
+
+
         public static string versaoRobo;
         private bool logout = false;
         private Point labelPonto1 = new Point(2, 3);
@@ -973,6 +983,16 @@ namespace Robo
             panelLogins.Visible = false;
             panelExcel.Visible = false;
             panelPlanilha.Visible = false;
+        }
+
+        // Metodo que realiza a captura segurando o mouse no "Painel do menu"
+        private void panelMenuBar_MouseDown(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Left)
+            {
+                ReleaseCapture();
+                SendMessage(Handle, WM_NCLBUTTONDOWN, HT_CAPTION, 0);
+            }
         }
     }
 }

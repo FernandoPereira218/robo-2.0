@@ -155,10 +155,11 @@
             this.panelMenuBar.Controls.Add(this.label6);
             this.panelMenuBar.Controls.Add(this.btnClose);
             this.panelMenuBar.Location = new System.Drawing.Point(0, 0);
-            this.panelMenuBar.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.panelMenuBar.Margin = new System.Windows.Forms.Padding(2);
             this.panelMenuBar.Name = "panelMenuBar";
             this.panelMenuBar.Size = new System.Drawing.Size(1366, 40);
             this.panelMenuBar.TabIndex = 1;
+            this.panelMenuBar.MouseDown += new System.Windows.Forms.MouseEventHandler(this.panelMenuBar_MouseDown);
             // 
             // btnMinimize
             // 
@@ -168,7 +169,7 @@
             this.btnMinimize.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnMinimize.ForeColor = System.Drawing.Color.White;
             this.btnMinimize.Location = new System.Drawing.Point(1322, 0);
-            this.btnMinimize.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnMinimize.Margin = new System.Windows.Forms.Padding(2);
             this.btnMinimize.Name = "btnMinimize";
             this.btnMinimize.Size = new System.Drawing.Size(22, 25);
             this.btnMinimize.TabIndex = 2;
@@ -223,7 +224,7 @@
             this.btnClose.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnClose.ForeColor = System.Drawing.Color.White;
             this.btnClose.Location = new System.Drawing.Point(1343, -1);
-            this.btnClose.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnClose.Margin = new System.Windows.Forms.Padding(2);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(27, 26);
             this.btnClose.TabIndex = 0;
@@ -256,10 +257,10 @@
             // 
             // 
             this.tbBarraStatus.CustomButton.Image = null;
-            this.tbBarraStatus.CustomButton.Location = new System.Drawing.Point(240, 2);
-            this.tbBarraStatus.CustomButton.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tbBarraStatus.CustomButton.Location = new System.Drawing.Point(320, 2);
+            this.tbBarraStatus.CustomButton.Margin = new System.Windows.Forms.Padding(2);
             this.tbBarraStatus.CustomButton.Name = "";
-            this.tbBarraStatus.CustomButton.Size = new System.Drawing.Size(14, 15);
+            this.tbBarraStatus.CustomButton.Size = new System.Drawing.Size(19, 19);
             this.tbBarraStatus.CustomButton.Style = MetroFramework.MetroColorStyle.Blue;
             this.tbBarraStatus.CustomButton.TabIndex = 1;
             this.tbBarraStatus.CustomButton.Theme = MetroFramework.MetroThemeStyle.Light;
@@ -270,7 +271,7 @@
             this.tbBarraStatus.Lines = new string[] {
         "metroTextBox1"};
             this.tbBarraStatus.Location = new System.Drawing.Point(391, 18);
-            this.tbBarraStatus.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tbBarraStatus.Margin = new System.Windows.Forms.Padding(2);
             this.tbBarraStatus.MaxLength = 32767;
             this.tbBarraStatus.Name = "tbBarraStatus";
             this.tbBarraStatus.PasswordChar = '\0';
@@ -306,7 +307,7 @@
             // barraProgressoImportacao
             // 
             this.barraProgressoImportacao.Location = new System.Drawing.Point(390, 18);
-            this.barraProgressoImportacao.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.barraProgressoImportacao.Margin = new System.Windows.Forms.Padding(2);
             this.barraProgressoImportacao.Name = "barraProgressoImportacao";
             this.barraProgressoImportacao.ProgressBarStyle = System.Windows.Forms.ProgressBarStyle.Marquee;
             this.barraProgressoImportacao.Size = new System.Drawing.Size(343, 23);
@@ -991,7 +992,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtCPF.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtCPF.Location = new System.Drawing.Point(6, 91);
-            this.txtCPF.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtCPF.Margin = new System.Windows.Forms.Padding(2);
             this.txtCPF.Name = "txtCPF";
             this.txtCPF.Size = new System.Drawing.Size(456, 22);
             this.txtCPF.TabIndex = 11;
@@ -1056,7 +1057,7 @@
             // button1
             // 
             this.button1.Location = new System.Drawing.Point(500, 1);
-            this.button1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.button1.Margin = new System.Windows.Forms.Padding(2);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 19);
             this.button1.TabIndex = 13;
@@ -1132,7 +1133,7 @@
             this.dgvLogins.DefaultCellStyle = dataGridViewCellStyle17;
             this.dgvLogins.GridColor = System.Drawing.Color.Black;
             this.dgvLogins.Location = new System.Drawing.Point(-5, 57);
-            this.dgvLogins.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.dgvLogins.Margin = new System.Windows.Forms.Padding(2);
             this.dgvLogins.Name = "dgvLogins";
             this.dgvLogins.ReadOnly = true;
             this.dgvLogins.RowHeadersWidth = 51;
@@ -1231,7 +1232,7 @@
             this.btLogout.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btLogout.ForeColor = System.Drawing.Color.White;
             this.btLogout.Location = new System.Drawing.Point(0, -1);
-            this.btLogout.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btLogout.Margin = new System.Windows.Forms.Padding(2);
             this.btLogout.Name = "btLogout";
             this.btLogout.Size = new System.Drawing.Size(166, 41);
             this.btLogout.TabIndex = 4;
@@ -1295,7 +1296,7 @@
             this.dgvUsuarios.DefaultCellStyle = dataGridViewCellStyle20;
             this.dgvUsuarios.GridColor = System.Drawing.Color.Black;
             this.dgvUsuarios.Location = new System.Drawing.Point(0, 58);
-            this.dgvUsuarios.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.dgvUsuarios.Margin = new System.Windows.Forms.Padding(2);
             this.dgvUsuarios.Name = "dgvUsuarios";
             this.dgvUsuarios.ReadOnly = true;
             this.dgvUsuarios.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
@@ -1429,7 +1430,7 @@
             this.btUsuarios.ForeColor = System.Drawing.Color.Silver;
             this.btUsuarios.Image = global::robo.Properties.Resources.user;
             this.btUsuarios.Location = new System.Drawing.Point(0, 449);
-            this.btUsuarios.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btUsuarios.Margin = new System.Windows.Forms.Padding(2);
             this.btUsuarios.Name = "btUsuarios";
             this.btUsuarios.Size = new System.Drawing.Size(64, 76);
             this.btUsuarios.TabIndex = 5;
@@ -1516,16 +1517,16 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.ClientSize = new System.Drawing.Size(1366, 768);
+            this.Controls.Add(this.panelMenuBar);
             this.Controls.Add(this.panelCadastrarContent);
             this.Controls.Add(this.painelUsuarios);
             this.Controls.Add(this.panelExcel);
             this.Controls.Add(this.panelLogins);
             this.Controls.Add(this.panelSubMenu);
-            this.Controls.Add(this.panelMenuBar);
             this.Controls.Add(this.panelMenu);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "RoboForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.RoboForm_FormClosing);
