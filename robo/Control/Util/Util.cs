@@ -507,5 +507,78 @@ namespace Robo
             }
 
         }
+
+        public static void ExportarCSV(int countDataGrid)
+        {
+            if (countDataGrid > 0)
+            {
+                SaveFileDialog sfd = new SaveFileDialog();
+                sfd.Filter = "CSV (*.csv)|*.csv";
+                sfd.FileName = "Exportado_Robo.csv";
+                bool fileError = false;
+                if (sfd.ShowDialog() == DialogResult.OK)
+                {
+                    if (File.Exists(sfd.FileName))
+                    {
+                        try
+                        {
+                            File.Delete(sfd.FileName);
+                        }
+                        catch (IOException ex)
+                        {
+                            fileError = true;
+                            MessageBox.Show("Arquivo já existe, e está aberto em outro aplicativo" + ex.Message);
+                        }
+                    }
+                    if (!fileError)
+                    {
+                        try
+                        {
+                            ExportarAlunosParaCSV(sfd.FileName);
+                            MessageBox.Show("Dados Exportados com Sucesso!!!", "Info");
+                        }
+
+                        catch (Exception ex)
+                        {
+                            MessageBox.Show("Error :" + ex.Message);
+                        }
+
+
+                    }
+                }
+            }
+            else
+            {
+                MessageBox.Show("Sem Registro para Exportar!!!", "Info");
+            }
+
+        }
+        public static void ExportarAlunosParaCSV(string fileName)
+        {
+            Dictionary<string, string> dic = new Dictionary<string, string>();
+            dic.Add("Cpf", "Cpf");
+            dic.Add("Nome", "Nome");
+            dic.Add("Tipo", "Tipo");
+            dic.Add("Conclusao", "Conclusao");
+            dic.Add("HorarioConclusao", "HorarioConclusao");
+            dic.Add("Campus", "Campus");
+            dic.Add("AproveitamentoAtual", "AproveitamentoAtual");
+            dic.Add("HistoricoAproveitamento", "HistoricoAproveitamento");
+            dic.Add("ReceitaBruta", "ReceitaBruta");
+            dic.Add("ReceitaLiquida", "ReceitaLiquida");
+            dic.Add("ReceitaFies", "ReceitaFies");
+            dic.Add("CampusAditado", "CampusAditado");
+            dic.Add("ValorAditado", "ValorAditado");
+            dic.Add("ValorAditadoComDesconto", "ValorAditadoComDesconto");
+            dic.Add("ValorAditadoFinanciamento", "ValorAditadoFinanciamento");
+            dic.Add("ValorPagoRecursoEstudante", "ValorPagoRecursoEstudante");
+            dic.Add("DescontoLiberalidade", "DescontoLiberalidade");
+            dic.Add("Extraido", "Extraido");
+            dic.Add("Justificativa", "Justificativa");
+
+
+            List<TOAluno> alunos = Database.Acess.SelectAll<TOAluno>("ALUNO");
+            CSVManager.CSVManager.ExportCSV<TOAluno>(fileName, dic, alunos);
+        }
     }
 }

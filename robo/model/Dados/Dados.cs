@@ -93,6 +93,26 @@ namespace Robo
         {
             return Database.Acess.SelectAll<TOMenus>("MENUS");
         }
+        public static List<string> SelectLoginTOIES(string IES, string plataforma)
+        {
+            List<TOLogin> listlogin;
+            if (IES == "TODOS")
+            {
+                listlogin = Database.Acess.SelectWhere<TOLogin>("LOGIN", "Plataforma", plataforma);
+            }
+            else
+            {
+                listlogin = Database.Acess.SelectWhere<TOLogin>("LOGIN", "Faculdade", "Plataforma", IES, plataforma);
+                
+            }
+            List<string> listCampus = new List<string>();
+            listCampus.Add("");
+            foreach (var item in listlogin)
+            {
+                listCampus.Add(item.Campus); 
+            }
+            return listCampus;
+        }
 
         //DELETES
         public static void DeleteLogin(TOLogin login)
@@ -165,7 +185,7 @@ namespace Robo
             {
                 Database.Acess.Update<TOAluno>("ALUNO", insertTOAluno, (TOAluno)aluno, "Cpf", "Cpf");
             }
-            if (tipoAluno =="ALUNOINF")
+            if (tipoAluno == "ALUNOINF")
             {
                 Database.Acess.Update<TOAluno>("ALUNO", updateAlunoInf, (TOAluno)aluno, "Cpf", "Cpf");
             }
@@ -521,7 +541,6 @@ namespace Robo
                 InsertSemestre(semestre);
             }
         }
-
         public static bool VerificaQtdAlunos()
         {
             int countAlunoTO = CountAluno();

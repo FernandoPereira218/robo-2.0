@@ -655,77 +655,8 @@ namespace Robo
         //Alterardo da ExportãExecel para .CSV diretamente do DataGridView, ao invés de ExportCSV (Implementado para exportar do DB)
         private void btnExportarExcel_Click(object sender, EventArgs e)
         {
-            if (dgvAlunos.Rows.Count > 0)
-            {
-                SaveFileDialog sfd = new SaveFileDialog();
-                sfd.Filter = "CSV (*.csv)|*.csv";
-                sfd.FileName = "Exportado_Robo.csv";
-                bool fileError = false;
-                if (sfd.ShowDialog() == DialogResult.OK)
-                {
-                    if (File.Exists(sfd.FileName))
-                    {
-                        try
-                        {
-                            File.Delete(sfd.FileName);
-                        }
-                        catch (IOException ex)
-                        {
-                            fileError = true;
-                            MessageBox.Show("Arquivo já existe, e está aberto em outro aplicativo" + ex.Message);
-                        }
-                    }
-                    if (!fileError)
-                    {
-                        try
-                        {
-                            ExportarAlunosParaCSV(sfd.FileName);
-                            MessageBox.Show("Dados Exportados com Sucesso!!!", "Info");
-                        }
-
-                        catch (Exception ex)
-                        {
-                            MessageBox.Show("Error :" + ex.Message);
-                        }
-
-
-                    }
-                }
-            }
-            else
-            {
-                MessageBox.Show("Sem Registro para Exportar!!!", "Info");
-            }
+            Util.ExportarCSV(dgvAlunos.Rows.Count);   
         }
-
-        private void ExportarAlunosParaCSV(string fileName)
-        {
-            Dictionary<string, string> dic = new Dictionary<string, string>();
-            dic.Add("Cpf", "Cpf");
-            dic.Add("Nome", "Nome");
-            dic.Add("Tipo", "Tipo");
-            dic.Add("Conclusao", "Conclusao");
-            dic.Add("HorarioConclusao", "HorarioConclusao");
-            dic.Add("Campus", "Campus");
-            dic.Add("AproveitamentoAtual", "AproveitamentoAtual");
-            dic.Add("HistoricoAproveitamento", "HistoricoAproveitamento");
-            dic.Add("ReceitaBruta", "ReceitaBruta");
-            dic.Add("ReceitaLiquida", "ReceitaLiquida");
-            dic.Add("ReceitaFies", "ReceitaFies");
-            dic.Add("CampusAditado", "CampusAditado");
-            dic.Add("ValorAditado", "ValorAditado");
-            dic.Add("ValorAditadoComDesconto", "ValorAditadoComDesconto");
-            dic.Add("ValorAditadoFinanciamento", "ValorAditadoFinanciamento");
-            dic.Add("ValorPagoRecursoEstudante", "ValorPagoRecursoEstudante");
-            dic.Add("DescontoLiberalidade", "DescontoLiberalidade");
-            dic.Add("Extraido", "Extraido");
-            dic.Add("Justificativa", "Justificativa");
-
-
-            List<TOAluno> alunos = Database.Acess.SelectAll<TOAluno>("ALUNO");
-            CSVManager.CSVManager.ExportCSV<TOAluno>(fileName, dic, alunos);
-        }
-
         private void btMenu_Click(object sender, EventArgs e)
         {
             if (panelMenu.Visible == false)
@@ -742,11 +673,14 @@ namespace Robo
             }
         }
 
+
+        // Depois tirar // Botao do Joao KK
         private void button1_Click_1(object sender, EventArgs e)
         {
             Util.gravaSenha();
         }
 
+        // Verifica se o CPF possui letra | Capa os valores que não sejam inteiros
         private void txtCPF_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
@@ -758,34 +692,10 @@ namespace Robo
                 e.Handled = true;
             }
         }
-
+        // Mudar isso
         private void cbFaculdade_SelectedIndexChanged(object sender, EventArgs e)
         {
-            ComboBox cb = (ComboBox)sender;
-            List<TOLogin> temp = Dados.SelectLogins();
-            ComboBox campusTemp;
-            if (cb.Name == "cbFaculdade")
-            {
-                cbCampus.Items.Clear();
-                cbCampus.Items.Add("");
-            }
-            campusTemp = cbCampus;
-            foreach (var login in temp)
-            {
-                if (login.Plataforma == cbPlataforma.Text)
-                {
-                    if (cb.Text == "TODOS")
-                    {
-                        campusTemp.Items.Add(login.Campus);
-                        continue;
-                    }
-
-                    if (login.Faculdade.ToUpper() == cb.Text.ToUpper())
-                    {
-                        campusTemp.Items.Add(login.Campus);
-                    }
-                }
-            }
+            cbCampus.DataSource = Dados.SelectLoginTOIES(cbFaculdade.Text, cbPlataforma.Text);
         }
 
         private void cbExecucao_SelectedIndexChanged(object sender, EventArgs e)
@@ -793,6 +703,7 @@ namespace Robo
             ClearPanel();
             ComboBox cb = (ComboBox)sender;
 
+            // Refatorar
             if (cb.SelectedItem.ToString() == "EXPORTAR COPARTICIPAÇÃO")
             {
                 labelDataInicio.Location = labelPonto1;
@@ -911,10 +822,7 @@ namespace Robo
                 }
 
             }
-
             rows.RemoveAt(0);
-
-
             rows.ForEach(x => { dataTable.Rows.Add(x); });
 
             dataGridView1.DataSource = dataTable;
