@@ -44,6 +44,8 @@
             this.panelButtonsLogin = new System.Windows.Forms.Panel();
             this.btnCancelLogin = new System.Windows.Forms.Button();
             this.btnOKLogin = new System.Windows.Forms.Button();
+            this.txtID = new System.Windows.Forms.TextBox();
+            this.labelID = new System.Windows.Forms.Label();
             this.panelFormLogin.SuspendLayout();
             this.panelButtonsLogin.SuspendLayout();
             this.SuspendLayout();
@@ -51,6 +53,8 @@
             // panelFormLogin
             // 
             this.panelFormLogin.BackColor = System.Drawing.Color.White;
+            this.panelFormLogin.Controls.Add(this.txtID);
+            this.panelFormLogin.Controls.Add(this.labelID);
             this.panelFormLogin.Controls.Add(this.txtRegionalLogin);
             this.panelFormLogin.Controls.Add(this.label1);
             this.panelFormLogin.Controls.Add(this.txtPlataformaLogin);
@@ -65,7 +69,7 @@
             this.panelFormLogin.Controls.Add(this.lblUser);
             this.panelFormLogin.Location = new System.Drawing.Point(13, 13);
             this.panelFormLogin.Name = "panelFormLogin";
-            this.panelFormLogin.Size = new System.Drawing.Size(253, 188);
+            this.panelFormLogin.Size = new System.Drawing.Size(253, 211);
             this.panelFormLogin.TabIndex = 0;
             // 
             // txtRegionalLogin
@@ -73,17 +77,17 @@
             this.txtRegionalLogin.BackColor = System.Drawing.SystemColors.Control;
             this.txtRegionalLogin.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtRegionalLogin.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtRegionalLogin.Location = new System.Drawing.Point(64, 153);
+            this.txtRegionalLogin.Location = new System.Drawing.Point(64, 181);
             this.txtRegionalLogin.Name = "txtRegionalLogin";
-            this.txtRegionalLogin.Size = new System.Drawing.Size(177, 26);
+            this.txtRegionalLogin.Size = new System.Drawing.Size(177, 22);
             this.txtRegionalLogin.TabIndex = 12;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(0, 157);
+            this.label1.Location = new System.Drawing.Point(0, 185);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(64, 19);
+            this.label1.Size = new System.Drawing.Size(56, 13);
             this.label1.TabIndex = 11;
             this.label1.Text = "Regional:";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -93,17 +97,17 @@
             this.txtPlataformaLogin.BackColor = System.Drawing.SystemColors.Control;
             this.txtPlataformaLogin.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtPlataformaLogin.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtPlataformaLogin.Location = new System.Drawing.Point(64, 124);
+            this.txtPlataformaLogin.Location = new System.Drawing.Point(64, 152);
             this.txtPlataformaLogin.Name = "txtPlataformaLogin";
-            this.txtPlataformaLogin.Size = new System.Drawing.Size(177, 26);
+            this.txtPlataformaLogin.Size = new System.Drawing.Size(177, 22);
             this.txtPlataformaLogin.TabIndex = 10;
             // 
             // lblPlataformaLogin
             // 
             this.lblPlataformaLogin.AutoSize = true;
-            this.lblPlataformaLogin.Location = new System.Drawing.Point(0, 128);
+            this.lblPlataformaLogin.Location = new System.Drawing.Point(0, 156);
             this.lblPlataformaLogin.Name = "lblPlataformaLogin";
-            this.lblPlataformaLogin.Size = new System.Drawing.Size(78, 19);
+            this.lblPlataformaLogin.Size = new System.Drawing.Size(65, 13);
             this.lblPlataformaLogin.TabIndex = 9;
             this.lblPlataformaLogin.Text = "Plataforma:";
             this.lblPlataformaLogin.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -113,17 +117,17 @@
             this.txtCampusLogin.BackColor = System.Drawing.SystemColors.Control;
             this.txtCampusLogin.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtCampusLogin.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtCampusLogin.Location = new System.Drawing.Point(64, 96);
+            this.txtCampusLogin.Location = new System.Drawing.Point(64, 124);
             this.txtCampusLogin.Name = "txtCampusLogin";
-            this.txtCampusLogin.Size = new System.Drawing.Size(177, 26);
+            this.txtCampusLogin.Size = new System.Drawing.Size(177, 22);
             this.txtCampusLogin.TabIndex = 6;
             // 
             // lvlCampusLogin
             // 
             this.lvlCampusLogin.AutoSize = true;
-            this.lvlCampusLogin.Location = new System.Drawing.Point(14, 101);
+            this.lvlCampusLogin.Location = new System.Drawing.Point(14, 129);
             this.lvlCampusLogin.Name = "lvlCampusLogin";
-            this.lvlCampusLogin.Size = new System.Drawing.Size(62, 19);
+            this.lvlCampusLogin.Size = new System.Drawing.Size(51, 13);
             this.lvlCampusLogin.TabIndex = 5;
             this.lvlCampusLogin.Text = "Campus:";
             this.lvlCampusLogin.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -133,17 +137,17 @@
             this.txtFaculdadeLogin.BackColor = System.Drawing.SystemColors.Control;
             this.txtFaculdadeLogin.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtFaculdadeLogin.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtFaculdadeLogin.Location = new System.Drawing.Point(64, 68);
+            this.txtFaculdadeLogin.Location = new System.Drawing.Point(64, 96);
             this.txtFaculdadeLogin.Name = "txtFaculdadeLogin";
-            this.txtFaculdadeLogin.Size = new System.Drawing.Size(177, 26);
+            this.txtFaculdadeLogin.Size = new System.Drawing.Size(177, 22);
             this.txtFaculdadeLogin.TabIndex = 8;
             // 
             // lblFaculdade
             // 
             this.lblFaculdade.AutoSize = true;
-            this.lblFaculdade.Location = new System.Drawing.Point(2, 72);
+            this.lblFaculdade.Location = new System.Drawing.Point(2, 100);
             this.lblFaculdade.Name = "lblFaculdade";
-            this.lblFaculdade.Size = new System.Drawing.Size(73, 19);
+            this.lblFaculdade.Size = new System.Drawing.Size(63, 13);
             this.lblFaculdade.TabIndex = 7;
             this.lblFaculdade.Text = "Faculdade:";
             this.lblFaculdade.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -153,17 +157,17 @@
             this.txtSenhaLogin.BackColor = System.Drawing.SystemColors.Control;
             this.txtSenhaLogin.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtSenhaLogin.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtSenhaLogin.Location = new System.Drawing.Point(64, 40);
+            this.txtSenhaLogin.Location = new System.Drawing.Point(64, 68);
             this.txtSenhaLogin.Name = "txtSenhaLogin";
-            this.txtSenhaLogin.Size = new System.Drawing.Size(177, 26);
+            this.txtSenhaLogin.Size = new System.Drawing.Size(177, 22);
             this.txtSenhaLogin.TabIndex = 4;
             // 
             // lblSenhaLogin
             // 
             this.lblSenhaLogin.AutoSize = true;
-            this.lblSenhaLogin.Location = new System.Drawing.Point(23, 44);
+            this.lblSenhaLogin.Location = new System.Drawing.Point(23, 72);
             this.lblSenhaLogin.Name = "lblSenhaLogin";
-            this.lblSenhaLogin.Size = new System.Drawing.Size(49, 19);
+            this.lblSenhaLogin.Size = new System.Drawing.Size(42, 13);
             this.lblSenhaLogin.TabIndex = 3;
             this.lblSenhaLogin.Text = "Senha:";
             this.lblSenhaLogin.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -173,17 +177,17 @@
             this.txtUser.BackColor = System.Drawing.SystemColors.Control;
             this.txtUser.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtUser.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtUser.Location = new System.Drawing.Point(64, 12);
+            this.txtUser.Location = new System.Drawing.Point(64, 40);
             this.txtUser.Name = "txtUser";
-            this.txtUser.Size = new System.Drawing.Size(177, 26);
+            this.txtUser.Size = new System.Drawing.Size(177, 22);
             this.txtUser.TabIndex = 2;
             // 
             // lblUser
             // 
             this.lblUser.AutoSize = true;
-            this.lblUser.Location = new System.Drawing.Point(15, 16);
+            this.lblUser.Location = new System.Drawing.Point(15, 44);
             this.lblUser.Name = "lblUser";
-            this.lblUser.Size = new System.Drawing.Size(59, 19);
+            this.lblUser.Size = new System.Drawing.Size(50, 13);
             this.lblUser.TabIndex = 0;
             this.lblUser.Text = "Usuário:";
             this.lblUser.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -192,7 +196,7 @@
             // 
             this.panelButtonsLogin.Controls.Add(this.btnCancelLogin);
             this.panelButtonsLogin.Controls.Add(this.btnOKLogin);
-            this.panelButtonsLogin.Location = new System.Drawing.Point(13, 207);
+            this.panelButtonsLogin.Location = new System.Drawing.Point(13, 236);
             this.panelButtonsLogin.Name = "panelButtonsLogin";
             this.panelButtonsLogin.Size = new System.Drawing.Size(253, 28);
             this.panelButtonsLogin.TabIndex = 1;
@@ -224,12 +228,32 @@
             this.btnOKLogin.Text = "Aceitar";
             this.btnOKLogin.UseVisualStyleBackColor = true;
             // 
+            // txtID
+            // 
+            this.txtID.BackColor = System.Drawing.SystemColors.Control;
+            this.txtID.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtID.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtID.Location = new System.Drawing.Point(64, 9);
+            this.txtID.Name = "txtID";
+            this.txtID.Size = new System.Drawing.Size(177, 22);
+            this.txtID.TabIndex = 14;
+            // 
+            // labelID
+            // 
+            this.labelID.AutoSize = true;
+            this.labelID.Location = new System.Drawing.Point(13, 13);
+            this.labelID.Name = "labelID";
+            this.labelID.Size = new System.Drawing.Size(21, 13);
+            this.labelID.TabIndex = 13;
+            this.labelID.Text = "ID:";
+            this.labelID.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
             // LoginForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 19F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(37)))), ((int)(((byte)(34)))));
-            this.ClientSize = new System.Drawing.Size(278, 248);
+            this.ClientSize = new System.Drawing.Size(278, 283);
             this.Controls.Add(this.panelFormLogin);
             this.Controls.Add(this.panelButtonsLogin);
             this.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -241,6 +265,7 @@
             this.panelFormLogin.PerformLayout();
             this.panelButtonsLogin.ResumeLayout(false);
             this.ResumeLayout(false);
+
         }
 
         #endregion
@@ -261,5 +286,7 @@
         private System.Windows.Forms.Label lblPlataformaLogin;
         private System.Windows.Forms.TextBox txtRegionalLogin;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.TextBox txtID;
+        private System.Windows.Forms.Label labelID;
     }
 }

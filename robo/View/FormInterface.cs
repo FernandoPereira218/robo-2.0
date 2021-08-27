@@ -18,29 +18,17 @@ namespace Robo
     public partial class RoboForm : Form, IContratos.IMainForms
     {
         public static string versaoRobo;
-        //        public static string versaoRobo = "operacoesFinanceiras";
-        public const int WM_NCLBUTTONDOWN = 0xA1;
-        public const int HT_CAPTION = 0x2;
-
-        //public const bool finish = false;
         private bool logout = false;
-
         private Point labelPonto1 = new Point(2, 3);
         private Point labelPonto2 = new Point(147, 3);
         private Point labelPonto3 = new Point(2, 50);
-
         private Point objetoPonto1 = new Point(2, 25);
         private Point objetoPonto2 = new Point(145, 25);
         private Point objetoPonto3 = new Point(2, 72);
-
         private static ImplementacaoPresenter presenter;
 
-        [DllImportAttribute("user32.dll")]
-        public static extern int SendMessage(IntPtr hWnd,
-        int Msg, int wParam, int lParam);
-        [DllImportAttribute("user32.dll")]
-        public static extern bool ReleaseCapture();
         private List<string> cbListModosExecucao = new List<string>();
+
         public RoboForm()
         {
             versaoRobo = Program.login.Permissao;
@@ -55,10 +43,10 @@ namespace Robo
             radioBaixarDocumento.Visible = true;
             radioBuscarStatus.Visible = true;
             radioBuscarStatus.Checked = true;
-            metroProgressBar1.Visible = false;
-            metroLabelProcessando.Visible = false;
-            metroTextBox1.BackColor = Color.White;
-            metroTextBox1.Visible = false;
+            barraProgressoImportacao.Visible = false;
+            lbProcessando.Visible = false;
+            tbBarraStatus.BackColor = Color.White;
+            tbBarraStatus.Visible = false;
 
             if (versaoRobo == "CAE")
             {
@@ -98,9 +86,6 @@ namespace Robo
 
             this.cbSemestre.DataSource = presenter.PreencherListaSemestre();
 
-            //this.cbExecucao.DataSource = Enum.GetValues(typeof(TipoExecucao));
-            //this.cbExecucao.SelectedIndex = (int)TipoExecucao.DRM;
-
             //Preenchimento tipo de execução pelo banco de dados memus
 
 
@@ -112,10 +97,6 @@ namespace Robo
             {
                 cbListModosExecucao.Add(item.ToString());
             }
-            //this.cbExecucao.AllowDrop = false;
-            //this.cbPlataforma.DataSource = Enum.GetValues(typeof(TipoFinanciamento));
-            
-
 
             this.cbPlataforma.SelectedIndex = 0;
             this.cbFaculdade.SelectedIndex = 0;
@@ -132,12 +113,10 @@ namespace Robo
 
         private void InitializeBackgroundWorker()
         {
-            backgroundWorker1.DoWork +=
-                new DoWorkEventHandler(backgroundWorker1_DoWork);
-            backgroundWorker1.RunWorkerCompleted +=
-                new RunWorkerCompletedEventHandler(backgroundWorker1_RunWorkerCompleted);
-            //backgroundWorker1.ProgressChanged +=
-            //    new ProgressChangedEventHandler(backgroundWorker1_ProgressChanged);
+            bwBarraProgresso.DoWork +=
+                new DoWorkEventHandler(bwBarraProgresso_DoWork);
+            bwBarraProgresso.RunWorkerCompleted +=
+                new RunWorkerCompletedEventHandler(bwBarraProgresso_RunWorkerCompleted);
         }
 
         private void CreateData()
@@ -146,7 +125,6 @@ namespace Robo
             atualizarTransparente(label1, pictureBox1);
             atualizarTransparente(labelDay, pictureBox1);
             atualizarTransparente(dateLabel, pictureBox1);
-
             atualizarDate(labelDay, dateLabel);
 
         }
@@ -172,126 +150,80 @@ namespace Robo
         {
             this.WindowState = FormWindowState.Minimized;
         }
-        private void Form1_MouseDown(object sender, MouseEventArgs e)
-        {
-            if (e.Button == MouseButtons.Left)
-            {
-                ReleaseCapture();
-                SendMessage(Handle, WM_NCLBUTTONDOWN, HT_CAPTION, 0);
-            }
-        }
 
         private void btnSelectPath_Click(object sender, EventArgs e)
         {
-            int countAlunoTO = Dados.CountAluno(typeof(TOAluno));
-            if (countAlunoTO > 0)
+            if (!Dados.VerificaQtdAlunos())
             {
-                string mensagem = "Tem certeza que deseja excluir o banco de dados?";
-                mensagem += "\n\nCertifique-se de já ter exportado antes para que nenhuma informação seja perdida!";
-
-                if (MessageBox.Show(mensagem, "Limpar Banco de Dados", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK)
-                {
-                    Dados.DeleteTodosAlunos();
-                    AtualizarListViewAlunos();
-                }
-                else
-                {
-                    return;
-                }
+                return;
             }
-            metroTextBox1.Visible = false;
+
+            AtualizarListViewAlunos();
+
+            tbBarraStatus.Visible = false;
+            
+            ofdSelectExcel.Filter = "CSV (*.csv)|*.csv";
             if (ofdSelectExcel.ShowDialog() == DialogResult.OK)
             {
                 txtExcel.Text = ofdSelectExcel.FileName;
-                metroLabelProcessando.Visible = true;
-                metroProgressBar1.ProgressBarStyle = ProgressBarStyle.Marquee;
-                metroProgressBar1.Visible = true;
-                metroProgressBar1.MarqueeAnimationSpeed = 5;
-                metroProgressBar1.Enabled = true;
+                lbProcessando.Visible = true;
+                barraProgressoImportacao.ProgressBarStyle = ProgressBarStyle.Marquee;
+                barraProgressoImportacao.Visible = true;
+                barraProgressoImportacao.MarqueeAnimationSpeed = 5;
+                barraProgressoImportacao.Enabled = true;
                 btnSelectPath.Enabled = false;
                 btMenu.Enabled = false;
-                backgroundWorker1.RunWorkerAsync();
+                bwBarraProgresso.RunWorkerAsync();
             }
         }
-        private void backgroundWorker1_DoWork(object sender, DoWorkEventArgs e)
+        private void bwBarraProgresso_DoWork(object sender, DoWorkEventArgs e)
         {
             Cursor.Current = Cursors.WaitCursor;
-            //            try
-            //            {
-            if (AreRnsOk())
+            if (VerificaDiretorio())
             {
                 string filePath = txtExcel.Text;
-                ImportaAlunos(filePath);
-                //Importa Alunos INF (Feito pela Trigger no DB)
-                //ImportaAlunosInf(filePath);
+                Dados.ImportaAlunos(filePath);
             }
-            //            }
-            //            catch (Exception exception)
-            //            {
-            //                MessageBox.Show(exception.Message, "Erro!", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            //            }
-            //            finally
-            //            {
             Cursor.Current = Cursors.Default;
-            //            }
         }
-        private void backgroundWorker1_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        private void bwBarraProgresso_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
             if (e.Error != null)
             {
-                metroLabelProcessando.Visible = false;
-                metroProgressBar1.Visible = false;
+                lbProcessando.Visible = false;
+                barraProgressoImportacao.Visible = false;
                 btMenu.Enabled = true;
                 btnSelectPath.Enabled = true;
                 SystemSounds.Exclamation.Play();
-                metroTextBox1.Visible = true;
-                metroTextBox1.BackColor = Color.Red;
-                metroTextBox1.BeginInvoke(
+                tbBarraStatus.Visible = true;
+                tbBarraStatus.BackColor = Color.Red;
+                tbBarraStatus.BeginInvoke(
                    new Action(() =>
                    {
-                       metroTextBox1.Text = Convert.ToString(e.Error);
+                       tbBarraStatus.Text = Convert.ToString(e.Error);
                    }
                 ));
             }
             else
             {
-                metroLabelProcessando.Visible = false;
-                metroProgressBar1.Visible = false;
+                lbProcessando.Visible = false;
+                barraProgressoImportacao.Visible = false;
                 btMenu.Enabled = true;
                 btnSelectPath.Enabled = true;
                 AtualizarListViewAlunos();
                 SystemSounds.Beep.Play();
-                metroTextBox1.Visible = true;
-                int qtdAlunosProcessados = Dados.CountAluno(typeof(TOAluno));
-                metroTextBox1.BeginInvoke(
+                tbBarraStatus.Visible = true;
+                int qtdAlunosProcessados = Dados.CountAluno();
+                tbBarraStatus.BeginInvoke(
                    new Action(() =>
                    {
-                       metroTextBox1.Text = "Importação de " + qtdAlunosProcessados + " alunos finalizada com sucesso!";
+                       tbBarraStatus.Text = "Importação de " + qtdAlunosProcessados + " alunos finalizada com sucesso!";
                    }
                 ));
             }
         }
 
-        private void ImportaAlunos(string filePath)
-        {
-            metroLabelProcessando.BeginInvoke(
-                new Action(() =>
-                {
-                    metroLabelProcessando.Text = "Importando .CSV...";
-                }
-             ));
-            List<TOAluno> alunos = new List<TOAluno>();
-            alunos = Dados.BuscarListaAlunos(filePath);
-            metroLabelProcessando.BeginInvoke(
-                new Action(() =>
-                {
-                    metroLabelProcessando.Text = "Atualizando BD...";
-                }
-             ));
-            Dados.AtualizarAlunosBD(alunos);
-        }
-
-        private bool AreRnsOk()
+        private bool VerificaDiretorio()
         {
             if (!File.Exists(txtExcel.Text))
             {
@@ -304,21 +236,14 @@ namespace Robo
         private void AtualizarListViewAlunos()
         {
             var source = new BindingSource();
-            List<TOAluno> alunos = Dados.SelectAlunos();
-            if (alunos.Count == 0)
+            if (Dados.CountAluno()==0)
             {
                 dgvAlunos.Visible = false;
-                //panelNenhumAluno.Visible = true;
-                //tlpAlunos.RowStyles[1].SizeType = SizeType.Absolute;
-                //tlpAlunos.RowStyles[1].Height = 30;
             }
             else
             {
                 dgvAlunos.Visible = true;
-                //panelNenhumAluno.Visible = false;Z
-                //tlpAlunos.RowStyles[1].SizeType = SizeType.Absolute;
-                //tlpAlunos.RowStyles[1].Height = 0;
-                source.DataSource = alunos;
+                source.DataSource = Dados.SelectAlunos();
                 dgvAlunos.AutoGenerateColumns = true;
                 dgvAlunos.DataSource = source;
                 dgvAlunos.Columns["Cpf"].DisplayIndex = 0;
@@ -326,28 +251,28 @@ namespace Robo
                 dgvAlunos.Columns["Tipo"].DisplayIndex = 2;
                 dgvAlunos.Columns["Conclusao"].DisplayIndex = 3;
                 dgvAlunos.Columns["HorarioConclusao"].DisplayIndex = 4;
-
             }
         }
 
         public void AtualizarListViewLogins()
         {
             var source = new BindingSource();
-            List<TOLogin> logins = Dados.SelectLogins();
-            if (logins.Count == 0)
+
+            if (Dados.CountLogins() == 0)
             {
                 dgvLogins.Visible = false;
             }
             else
             {
                 dgvLogins.Visible = true;
-                source.DataSource = logins;
+                source.DataSource = Dados.SelectLogins();
                 dgvLogins.AutoGenerateColumns = true;
                 dgvLogins.DataSource = source;
                 dgvLogins.Columns[dgvLogins.ColumnCount - 1].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
             }
         }
 
+        //Alterar para "Select Where" após implementação dos Menus via DB
         public void AtualizarListViewUsuarios()
         {
             var source = new BindingSource();
@@ -390,11 +315,10 @@ namespace Robo
             panelLogins.Visible = true;
             panelCadastrarContent.Visible = false;
             panelPlanilha.Visible = false;
-
-
             panelLogins.BringToFront();
         }
 
+        //Refatorar após acertos das classes dos FIES´s
         private void btnIniciar_Click(object sender, EventArgs e)
         {
             if (cbExecucao.Text.Contains("EXPORTAR") || cbExecucao.Text.Contains("VALIDAR REPARCELAMENTO"))
@@ -417,7 +341,7 @@ namespace Robo
                 txtCPF.Text = txtCPF.Text.Replace("-", "");
                 txtCPF.Text = txtCPF.Text.Replace(" ", "");
 
-                if (Util.IsCpf(txtCPF.Text) == true)
+                if (Util.VerificaCPFValido(txtCPF.Text) == true)
                 {
                     ExecutaPrograma(true);
                 }
@@ -438,7 +362,7 @@ namespace Robo
 
                     ExecutaPrograma();
                 }
-                else if (Util.IsCpf(txtCPF.Text) == true)
+                else if (Util.VerificaCPFValido(txtCPF.Text) == true)
                 {
                     ExecutaPrograma(true);
                 }
@@ -450,6 +374,7 @@ namespace Robo
             this.Cursor = Cursors.Default;
         }
 
+        //Refatorar após revisão dos métodos dos FIES´s
         private void ExecutarExportacoes()
         {
             string inicial = dtpDataInicial.Value.ToString("dd/MM/yyyy");
@@ -540,7 +465,6 @@ namespace Robo
                         }
                         break;
                     case (int)TipoFinanciamento.Novo:
-                        //tipoFinanciamento = TipoFinanciamento.Novo.ToString();
                         tipoFinanciamento = "FIES Novo";
                         listaLoginPlat = SelecionarLoginsPorPlataforma(listLogins, tipoFinanciamento);
                         string execucao = cbExecucao.Text.ToUpper();
@@ -554,20 +478,9 @@ namespace Robo
 
                             listaLoginFacul = SelecionarLoginsPorFaculdade(listaLoginPlat, false);
                         }
-
-                        //listaAlunos = SelecionarAlunosPorPlataforma(alunos, tipoFinanciamento);
                         List<TOAluno> teste = new List<TOAluno>();
-                        //if (cbExecucao.Text == "EXTRAIR INFORMAÇÕES DRM")
-                        //{
-                        //    teste = SelecionarAlunosPorPlataforma(teste, tipoFinanciamento);
-                        //}
-                        //else
-                        //{
-                        //}
                         teste = SelecionarAlunosPorPlataforma(teste, tipoFinanciamento);
 
-                        //FiesNovo.OpenFiesNovo(listaLoginFacul, listaAlunos, cbExecucao.Text, cbSemestre.Text, radioBuscarStatus.Checked, cbFaculdade.Text);
-                        //List<Aluno> teste = listaAlunos.ConvertAll(x => (Aluno)x);
                         MetodosFiesNovo.OpenFiesNovo(listaLoginFacul, teste, cbExecucao.Text, cbSemestre.Text, radioBuscarStatus.Checked);
                         break;
                     default:
@@ -582,7 +495,7 @@ namespace Robo
                 }
                 else
                 {
-                    MessageBox.Show("Todos alunos executados com sucesso!", "Sucesso!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show("Processamento executado com sucesso!", "Sucesso!", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
                 //this.Close();
 
@@ -594,6 +507,7 @@ namespace Robo
             }
         }
 
+        //Após refatoração dos FIES´s trazer dados já filtrados
         private List<TOLogin> SelecionarLoginsPorPlataforma(List<TOLogin> listLogins, String plataforma)
         {
             List<TOLogin> loginFies = new List<TOLogin>();
@@ -613,7 +527,7 @@ namespace Robo
             return loginFies;
         }
 
-
+        //Após refatoração dos FIES´s trazer dados já filtrados
         private static List<TOLogin> SelecionaLogins(string tipoFies, string IES)
         {
             List<TOLogin> logins = Dados.SelectLogins();
@@ -626,6 +540,8 @@ namespace Robo
             }
             return logins;
         }
+
+        //Após refatoração dos FIES´s trazer dados já filtrados
         private List<TOAluno> SelecionarAlunosPorPlataforma(List<TOAluno> alunos, String plataforma, string cpfUnico = "")
         {
             List<TOAluno> alunosFies = new List<TOAluno>();
@@ -662,6 +578,7 @@ namespace Robo
             return alunosFies;
         }
 
+        //Após refatoração dos FIES´s trazer dados já filtrados
         private List<TOLogin> SelecionarLoginsPorFaculdade(List<TOLogin> logins, bool admin)
         {
             List<TOLogin> loginUsado = new List<TOLogin>();
@@ -704,6 +621,8 @@ namespace Robo
             LoginForm loginForm = new LoginForm(this.Location);
             loginForm.ShowDialog();
             AtualizarListViewLogins();
+
+
         }
 
         private void btnModificarLogin_Click(object sender, EventArgs e)
