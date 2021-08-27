@@ -119,7 +119,7 @@ namespace Robo
         /// <summary>
         /// Inicia nova sessão do browser.
         /// </summary>
-        static public IWebDriver StartBrowser(string url, string downloadFldr = "", bool firefox = true, bool headless = false)
+        public static IWebDriver StartBrowser(string url, string downloadFldr = "", bool firefox = true, bool headless = false)
         {
             IWebDriver driver;
 
@@ -209,7 +209,7 @@ namespace Robo
             return driver;
         }
 
-        static public void EndBrowser(IWebDriver driver)
+        public static void EndBrowser(IWebDriver driver)
         {
             driver.Quit();
         }
@@ -493,6 +493,5 @@ namespace Robo
             }
 
         }
-
     }
 }

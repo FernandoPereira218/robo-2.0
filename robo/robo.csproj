@@ -252,6 +252,7 @@
     <Compile Include="Control\Novo\FiesNovoExp.cs" />
     <Compile Include="Control\Legado\FiesVelhoExp.cs" />
     <Compile Include="Control\Legado\FiesVelhoInf.cs" />
+    <Compile Include="Model\TO\TOMenus.cs" />
     <Compile Include="View\UsuarioForm .cs">
       <SubType>Form</SubType>
     </Compile>

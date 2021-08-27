@@ -60,7 +60,6 @@ namespace Robo
             metroTextBox1.BackColor = Color.White;
             metroTextBox1.Visible = false;
 
-
             if (versaoRobo == "CAE")
             {
                 panelMenu.BringToFront();
@@ -102,12 +101,21 @@ namespace Robo
             //this.cbExecucao.DataSource = Enum.GetValues(typeof(TipoExecucao));
             //this.cbExecucao.SelectedIndex = (int)TipoExecucao.DRM;
 
+            //Preenchimento tipo de execução pelo banco de dados memus
+
+
+
+
+
+            
             foreach (var item in cbExecucao.Items)
             {
                 cbListModosExecucao.Add(item.ToString());
             }
             //this.cbExecucao.AllowDrop = false;
             //this.cbPlataforma.DataSource = Enum.GetValues(typeof(TipoFinanciamento));
+            
+
 
             this.cbPlataforma.SelectedIndex = 0;
             this.cbFaculdade.SelectedIndex = 0;
@@ -121,7 +129,6 @@ namespace Robo
             AtualizarListViewLogins();
             AtualizarListViewUsuarios();
         }
-
 
         private void InitializeBackgroundWorker()
         {
@@ -143,6 +150,7 @@ namespace Robo
             atualizarDate(labelDay, dateLabel);
 
         }
+
         private void atualizarTransparente(Label label, PictureBox pictureBox)
         {
             label.BackColor = System.Drawing.Color.Transparent;
