@@ -298,7 +298,7 @@ namespace Robo
                 throw new Exception(e.Message);
             }
         }
-        public static void Exportar_CSV(string fileName)
+        public static void ExportarInformacoes_CSV(string fileName)
         {
             if (fileName.Contains(".csv") == false)
             {
