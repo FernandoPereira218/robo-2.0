@@ -48,7 +48,6 @@ namespace Robo
             InitializeComponent();
             InitializeBackgroundWorker();
             Program.formInterface = this;
-            timer1.Start();
             CreateData();
             radioBaixarDocumento.Visible = true;
             radioBuscarStatus.Visible = true;
@@ -102,7 +101,7 @@ namespace Robo
 
 
 
-            
+
             foreach (var item in cbExecucao.Items)
             {
                 cbListModosExecucao.Add(item.ToString());
@@ -131,11 +130,8 @@ namespace Robo
 
         private void CreateData()
         {
-            // Chamando 
-            atualizarTransparente(label1, pictureBox1);
             atualizarTransparente(labelDay, pictureBox1);
-            atualizarTransparente(dateLabel, pictureBox1);
-            atualizarDate(labelDay, dateLabel);
+            atualizarDate(labelDay);
 
         }
 
@@ -145,15 +141,9 @@ namespace Robo
             label.Parent = pictureBox;
         }
 
-        private void atualizarDate(Label horaMinutosSegundos, Label diaMesAno)
+        private void atualizarDate(Label diaMesAno)
         {
-            horaMinutosSegundos.Text = DateTime.Now.ToString("HH.mm.ss");
             diaMesAno.Text = DateTime.Now.ToLongDateString();
-        }
-
-        private void btnClose_Click(object sender, EventArgs e)
-        {
-            timerTransition.Start();
         }
 
         private void btnMinimize_Click(object sender, EventArgs e)
@@ -171,7 +161,7 @@ namespace Robo
             AtualizarListViewAlunos();
 
             tbBarraStatus.Visible = false;
-            
+
             ofdSelectExcel.Filter = "CSV (*.csv)|*.csv";
             if (ofdSelectExcel.ShowDialog() == DialogResult.OK)
             {
@@ -246,7 +236,7 @@ namespace Robo
         private void AtualizarListViewAlunos()
         {
             var source = new BindingSource();
-            if (Dados.CountAluno()==0)
+            if (Dados.CountAluno() == 0)
             {
                 dgvAlunos.Visible = false;
             }
@@ -640,6 +630,7 @@ namespace Robo
             ModificarLogin();
         }
 
+
         private void ModificarLogin()
         {
             LoginForm loginForm = new LoginForm(this.Location, dgvLogins.CurrentRow.DataBoundItem as TOLogin);
@@ -665,7 +656,7 @@ namespace Robo
         //Alterardo da ExportãExecel para .CSV diretamente do DataGridView, ao invés de ExportCSV (Implementado para exportar do DB)
         private void btnExportarExcel_Click(object sender, EventArgs e)
         {
-            Util.ExportarCSV(dgvAlunos.Rows.Count);   
+            Util.ExportarCSV(dgvAlunos.Rows.Count);
         }
         private void btMenu_Click(object sender, EventArgs e)
         {
@@ -708,6 +699,7 @@ namespace Robo
             cbCampus.DataSource = Dados.SelectLoginTOIES(cbFaculdade.Text, cbPlataforma.Text);
         }
 
+        // Não mudar
         private void cbExecucao_SelectedIndexChanged(object sender, EventArgs e)
         {
             ClearPanel();
@@ -752,6 +744,7 @@ namespace Robo
             }
         }
 
+        // Mudar
         private void cbPlataforma_SelectedIndexChanged(object sender, EventArgs e)
         {
             cbExecucao.Items.Clear();
@@ -785,6 +778,7 @@ namespace Robo
             }
         }
 
+        // Verificar se isso vai ser usado
         public void UpdateDataGridView(string tipoFIES, string tipoExecucao)
         {
             if (File.Exists("Tabela.csv") == false)
@@ -844,12 +838,7 @@ namespace Robo
             }
         }
 
-        private void timer1_Tick(object sender, EventArgs e)
-        {
-            dateLabel.Text = DateTime.Now.ToString("HH:mm:ss");
-            labelDay.Text = DateTime.Now.ToLongDateString();
-        }
-
+        // Não mudar
         private void btLogout_Click(object sender, EventArgs e)
         {
             logout = true;
@@ -862,6 +851,7 @@ namespace Robo
             }
         }
 
+        // Não mudar
         private void RoboForm_FormClosing(object sender, FormClosingEventArgs e)
         {
             if (logout == false)
@@ -878,16 +868,16 @@ namespace Robo
             panelCadastrarContent.Visible = false;
             panelPlanilha.Visible = false;
             panelExcel.Visible = false;
-            //panelAlunosContent.Visible = false;
         }
 
+        // Mudar
         private void btAddUsuario_Click(object sender, EventArgs e)
         {
             UsuarioForm usuarioForm = new UsuarioForm(this.Location);
             usuarioForm.ShowDialog();
             AtualizarListViewUsuarios();
         }
-
+        // Mudar
         private void btModUsuario_Click(object sender, EventArgs e)
         {
             UsuarioForm usuarioForm = new UsuarioForm(this.Location, dgvUsuarios.CurrentRow.DataBoundItem as TOUsuario);
@@ -896,6 +886,7 @@ namespace Robo
 
         }
 
+        // Mudar
         private void btExcUsuario_Click(object sender, EventArgs e)
         {
             if (MessageBox.Show("Deseja excluir este usuário?", "Excluir usuário", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK)
@@ -906,20 +897,7 @@ namespace Robo
             }
         }
 
-        private void timerTransition_Tick(object sender, EventArgs e)
-        {
-            if (Opacity > 0.0)
-            {
-                this.Opacity -= 0.5;
-            }
-            else
-            {
-                timerTransition.Stop();
-                this.Close();
-            }
-
-        }
-
+        // Não Mudar
         private void ClearPanel()
         {
             foreach (Control item in panelDadosDeSituacao.Controls)
@@ -928,7 +906,8 @@ namespace Robo
             }
         }
 
-        private void btnExportar_Click(object sender, EventArgs e)
+        // Não mudar
+        private void btnExportarInformacoes_Click(object sender, EventArgs e)
         {
             SaveFileDialog sfd = new SaveFileDialog();
             sfd.Filter = "CSV (*.csv)|*.csv";
@@ -952,7 +931,7 @@ namespace Robo
                 {
                     try
                     {
-                        Dados.Exportar_CSV(sfd.FileName);
+                        Dados.ExportarInformacoes_CSV(sfd.FileName);
                         MessageBox.Show("Dados Exportados com Sucesso!!!", "Info");
                     }
                     catch (Exception ex)
@@ -963,10 +942,9 @@ namespace Robo
             }
         }
 
-
+        // Não mudar
         private void btExportar_Click(object sender, EventArgs e)
         {
-            /*panelCadastro.Visible = false;*/
             panelMenu.Visible = false;
             panelCadastrarContent.Visible = false;
             painelUsuarios.Visible = false;
@@ -975,6 +953,7 @@ namespace Robo
             panelPlanilha.Visible = true;
         }
 
+        // Não mudar
         private void btExtrairInformacoes_Click(object sender, EventArgs e)
         {
             panelMenu.Visible = false;
