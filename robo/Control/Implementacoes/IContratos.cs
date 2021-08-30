@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Robo;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,6 +21,7 @@ namespace robo.Control.Implementacoes
             string BuscarNunSemestre(string semestreAno);
             List<string> PreencherListaExecucao();
             List<string> PreencherListaExecucaoPorPlataforma(string plataforma);
+            void TratarDadosAluno(TOAluno aluno);
         }
     }
 }

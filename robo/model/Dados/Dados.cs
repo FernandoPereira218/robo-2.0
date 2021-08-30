@@ -85,9 +85,20 @@ namespace Robo
         {
             return Database.Acess.SelectAll<TOUsuario>("USUARIO");
         }
+        public static List<TOUsuario> SelectUsuarioWhereIES(string IES)
+        {
+            return Database.Acess.SelectWhere<TOUsuario>("USUARIO", "IES", IES);
+        }
         public static List<TOAluno> SelectAlunos()
         {
             return Database.Acess.SelectAll<TOAluno>("ALUNO");
+        }
+        public static List<TOAluno> SelectAlunoWhere(string plataforma)
+        {
+            Dictionary<string, string> dic = new Dictionary<string, string>();
+            dic.Add("Tipo", plataforma);
+            dic.Add("Conclusao", "Não Feito");
+            return Database.Acess.SelectWhere<TOAluno>("ALUNO", dic, "and");
         }
         public static List<TOMenus> SelectMenus()
         {
@@ -113,15 +124,40 @@ namespace Robo
             else
             {
                 listlogin = Database.Acess.SelectWhere<TOLogin>("LOGIN", "Faculdade", "Plataforma", IES, plataforma);
-                
             }
             List<string> listCampus = new List<string>();
             listCampus.Add("");
             foreach (var item in listlogin)
             {
-                listCampus.Add(item.Campus); 
+                listCampus.Add(item.Campus);
             }
             return listCampus;
+        }
+        public static List<TOLogin> SelectLoginPorIESePlataforma(string IES, string plataforma, string campus, bool admin)
+        {
+            List<TOLogin> listlogin;
+
+            if (IES == "TODOS")
+            {
+                listlogin = Database.Acess.SelectWhere<TOLogin>("LOGIN", "Plataforma", plataforma);
+            }
+            else
+            {
+                Dictionary<string, string> dic = new Dictionary<string, string>();
+                dic.Add("Faculdade", IES);
+                dic.Add("Plataforma", plataforma);
+                dic.Add("Admin", "Não");
+                if (plataforma == "FIES Legado" && campus != string.Empty)
+                {
+                    dic.Add("Campus", campus);
+                }
+                listlogin = Database.Acess.SelectWhere<TOLogin>("LOGIN", dic, "and");
+            }
+            if (admin == true)
+            {
+                listlogin = Database.Acess.SelectWhere<TOLogin>("LOGIN", "Faculdade", "Admin", IES, "Sim");
+            }
+            return listlogin;
         }
 
         //DELETES
@@ -355,19 +391,8 @@ namespace Robo
         /// </summary>
         /// <param name="aluno"></param>
         /// <param name="chamadaInicial">se foi chamado no util (true) ou pelo tratamento de erro no formulario (false)</param>
-        public static void TratarPorcentagemReceita(TOAluno aluno, bool chamadaInicial = true, float valorNovo = 0)
+        public static void TratarVirgulaReceitas(TOAluno aluno, bool chamadaInicial = true, float valorNovo = 0)
         {
-            if ("Antigo".Equals(aluno.Tipo))
-            {
-                if (chamadaInicial == false)
-                {
-                    //Trata o erro dos 95% - NÃO ESTÁ EM USO
-                    Double receitaLiquida = Double.Parse(aluno.ReceitaLiquida);
-                    Double porcentagemLiquida = Math.Truncate((receitaLiquida * 0.95f) * 100) / 100;
-                    aluno.ValorAditado = FormatarReceitas(porcentagemLiquida.ToString());
-                }
-            }
-
             aluno.ReceitaBruta = FormatarReceitas(aluno.ReceitaBruta);
             aluno.ReceitaLiquida = FormatarReceitas(aluno.ReceitaLiquida);
             aluno.ReceitaFies = FormatarReceitas(aluno.ReceitaFies);
@@ -401,23 +426,8 @@ namespace Robo
                 case "Fadergs_Fapa":
                     aluno.Campus = "MANOEL ELIAS";
                     break;
-                case "Mossoró":
-                    aluno.Campus = "MOSSORÓ";
-                    break;
-                case "João Medeiros ":
-                    aluno.Campus = "JOÃO MEDEIROS";
-                    break;
-                case "Nascimento de Castro ":
-                    aluno.Campus = "NASCIMENTO DE CASTRO";
-                    break;
-                case "Salgado Filho ":
-                    aluno.Campus = "SALGADO FILHO";
-                    break;
                 case "Salgado Fillho":
                     aluno.Campus = "SALGADO FILHO";
-                    break;
-                case "Faculdade Internacional ":
-                    aluno.Campus = "Faculdade Internacional";
                     break;
                 default:
                     aluno.Campus = aluno.Campus.Trim();
