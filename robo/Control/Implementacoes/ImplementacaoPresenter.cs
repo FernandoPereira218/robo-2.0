@@ -66,5 +66,14 @@ namespace robo.Control.Implementacoes
         {
             this.forms = forms;
         }
+
+        public void TratarDadosAluno(TOAluno aluno)
+        {
+            Dados.TratarCpf(aluno);
+            Dados.TratarTextoReceitas(aluno);
+            Dados.TratarVirgulaReceitas(aluno);
+            Dados.TratarCampusAluno(aluno);
+            Dados.TratarTipoFIES(aluno);
+        }
     }
 }

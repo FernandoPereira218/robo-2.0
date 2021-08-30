@@ -191,11 +191,17 @@ namespace Robo
             diaMesAno.Text = DateTime.Now.ToLongDateString();
         }
 
+        //Botões Janela Windows
         private void btnMinimize_Click(object sender, EventArgs e)
         {
             this.WindowState = FormWindowState.Minimized;
         }
+        private void btnClose_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
 
+        //Selecionar CSV
         private void btnSelectPath_Click(object sender, EventArgs e)
         {
             if (!Dados.VerificaQtdAlunos())
@@ -222,7 +228,7 @@ namespace Robo
             }
         }
 
-
+        //Mudar de arquivo?
         private bool VerificaDiretorio()
         {
             if (!File.Exists(txtExcel.Text))
@@ -271,19 +277,11 @@ namespace Robo
                 dgvLogins.Columns[dgvLogins.ColumnCount - 1].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
             }
         }
-
-        //Alterar para "Select Where" após implementação dos Menus via DB
         public void AtualizarListViewUsuarios()
         {
             var source = new BindingSource();
-            List<TOUsuario> Usuarios = Dados.SelectUsuarios();
-            for (int i = Usuarios.Count - 1; i >= 0; i--)
-            {
-                if (Usuarios[i].IES.ToUpper() != Program.login.IES.ToUpper())
-                {
-                    Usuarios.RemoveAt(i);
-                }
-            }
+            List<TOUsuario> Usuarios = Dados.SelectUsuarioWhereIES(Program.login.IES.ToUpper());
+
             if (Usuarios.Count == 0)
             {
                 dgvUsuarios.Visible = false;
@@ -317,6 +315,33 @@ namespace Robo
             panelCadastrarContent.Visible = false;
             panelPlanilha.Visible = false;
             panelLogins.BringToFront();
+        }
+        private void btUsuarios_Click(object sender, EventArgs e)
+        {
+            panelMenu.Visible = false;
+            panelLogins.Visible = false;
+            painelUsuarios.Visible = true;
+            panelCadastrarContent.Visible = false;
+            panelPlanilha.Visible = false;
+            panelExcel.Visible = false;
+        }
+        private void btExtrairInformacoes_Click(object sender, EventArgs e)
+        {
+            panelMenu.Visible = false;
+            panelCadastrarContent.Visible = true;
+            painelUsuarios.Visible = false;
+            panelLogins.Visible = false;
+            panelExcel.Visible = false;
+            panelPlanilha.Visible = false;
+        }
+        private void btExportar_Click(object sender, EventArgs e)
+        {
+            panelMenu.Visible = false;
+            panelCadastrarContent.Visible = false;
+            painelUsuarios.Visible = false;
+            panelLogins.Visible = false;
+            panelExcel.Visible = false;
+            panelPlanilha.Visible = true;
         }
 
         //Refatorar após acertos das classes dos FIES´s
@@ -374,8 +399,6 @@ namespace Robo
             }
             this.Cursor = Cursors.Default;
         }
-
-        //Refatorar após revisão dos métodos dos FIES´s
         private void ExecutarExportacoes()
         {
             string inicial = dtpDataInicial.Value.ToString("dd/MM/yyyy");
@@ -397,15 +420,13 @@ namespace Robo
 
 
         }
-
         private void ExecutaPrograma(bool CPFUnico = false)
         {
             try
             {
-                List<TOLogin> listLogins = Dados.SelectLogins();
-                List<TOAluno> alunos = new List<TOAluno>();
-                if (CPFUnico == true)
+                if (CPFUnico == true) //Versão CAE, buscar apenas um aluno
                 {
+                    List<TOAluno> alunos = new List<TOAluno>();
                     TOAluno alunoUnico = new TOAluno();
                     alunoUnico.Cpf = txtCPF.Text;
                     alunoUnico.Tipo = cbPlataforma.Text;
@@ -416,76 +437,50 @@ namespace Robo
                     }
                     Dados.InsertAluno(alunoUnico);
                 }
-                else
-                {
-                    alunos = Dados.SelectAlunos();
-                }
-                if (alunos.Count == 0)
+                if (Dados.CountAluno() == 0)
                 {
                     MessageBox.Show("Banco de Alunos vazio. Por favor importe uma tabela.", "Nenhum aluno encontrado", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
-                if (listLogins.Count == 0)
+                if (Dados.CountLogins() == 0)
                 {
                     MessageBox.Show("Banco de Logins vazio. Por favor adicione os Logins necessários.", "Nenhum login encontrado", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
                 string numSemestre = presenter.BuscarNunSemestre(cbSemestre.Text);
-                List<TOLogin> listaLoginPlat;
-                List<TOLogin> listaLoginFacul;
-                List<TOAluno> listaAlunos;
+                List<TOAluno> listaAlunos = new List<TOAluno>();
+                List<TOLogin> logins;
 
-                String tipoFinanciamento;
-                TipoExecucao tipoExecucao;
-                Enum.TryParse<TipoExecucao>(cbExecucao.SelectedIndex.ToString(), out tipoExecucao);
-                switch (cbPlataforma.SelectedIndex)
+                string execucao = cbExecucao.Text.ToUpper();
+                if (execucao.Equals("EXPORTAR INADIMPLÊNCIA") || execucao.Equals("EXPORTAR REPASSE")
+                    || execucao.Equals("EXPORTAR COPARTICIPAÇÃO") || execucao.Equals("VALIDAR REPARCELAMENTO"))
                 {
-                    case (int)TipoFinanciamento.Antigo:
-                        //tipoFinanciamento = TipoFinanciamento.Antigo.ToString();
-                        tipoFinanciamento = "FIES Legado";
-                        listaLoginPlat = SelecionarLoginsPorPlataforma(listLogins, tipoFinanciamento);
-                        listaLoginFacul = SelecionarLoginsPorFaculdade(listaLoginPlat, false);
-                        if (CPFUnico == true && versaoRobo == "operacoesFinanceiras")
-                        {
-                            listaAlunos = SelecionarAlunosPorPlataforma(alunos, tipoFinanciamento, txtCPF.Text);
-                        }
-                        else
-                        {
-                            listaAlunos = SelecionarAlunosPorPlataforma(alunos, tipoFinanciamento);
-                        }
+                    logins = Dados.SelectLoginPorIESePlataforma(cbFaculdade.Text, cbPlataforma.Text, cbCampus.Text, true);
+                }
+                else
+                {
+                    logins = Dados.SelectLoginPorIESePlataforma(cbFaculdade.Text, cbPlataforma.Text, cbCampus.Text, false);
+                }
 
+                listaAlunos = SelecionarAlunosPorPlataforma(listaAlunos, cbPlataforma.Text);
+                switch (cbPlataforma.Text.ToUpper().Trim())
+                {
+                    case "FIES LEGADO":
                         if (cbExecucao.SelectedItem.ToString().Contains("EXTRAIR") == true)
                         {
-                            List<TOAluno> alunoInf = new List<TOAluno>();
-                            alunoInf = Database.Acess.SelectAll<TOAluno>("ALUNO");
-                            FiesVelhoInf.OpenFiesVelho(listaLoginFacul, alunoInf, cbCampus.Text, cbSemestre.Text, cbExecucao.Text, cbSituacao.Text);
+                            FiesVelhoInf.OpenFiesVelho(logins, listaAlunos, cbCampus.Text, cbSemestre.Text, cbExecucao.Text, cbSituacao.Text);
                         }
                         else
                         {
-                            FiesVelho.OpenFiesVelho(listaLoginFacul, listaAlunos, cbExecucao.Text, cbCampus.Text, numSemestre, cbSemestre.Text, radioBuscarStatus.Checked, cbSituacao.Text);
+                            FiesVelho.OpenFiesVelho(logins, listaAlunos, cbExecucao.Text, cbCampus.Text, numSemestre, cbSemestre.Text, radioBuscarStatus.Checked, cbSituacao.Text);
                         }
                         break;
-                    case (int)TipoFinanciamento.Novo:
-                        tipoFinanciamento = "FIES Novo";
-                        listaLoginPlat = SelecionarLoginsPorPlataforma(listLogins, tipoFinanciamento);
-                        string execucao = cbExecucao.Text.ToUpper();
-                        if (execucao.Equals("EXPORTAR INADIMPLÊNCIA") || execucao.Equals("EXPORTAR REPASSE")
-                            || execucao.Equals("EXPORTAR COPARTICIPAÇÃO") || execucao.Equals("VALIDAR REPARCELAMENTO"))
-                        {
-                            listaLoginFacul = SelecionarLoginsPorFaculdade(listaLoginPlat, true);
-                        }
-                        else
-                        {
 
-                            listaLoginFacul = SelecionarLoginsPorFaculdade(listaLoginPlat, false);
-                        }
-                        List<TOAluno> teste = new List<TOAluno>();
-                        teste = SelecionarAlunosPorPlataforma(teste, tipoFinanciamento);
-
-                        MetodosFiesNovo.OpenFiesNovo(listaLoginFacul, teste, cbExecucao.Text, cbSemestre.Text, radioBuscarStatus.Checked);
+                    case "FIES NOVO":
+                        MetodosFiesNovo.OpenFiesNovo(logins, listaAlunos, cbExecucao.Text, cbSemestre.Text, radioBuscarStatus.Checked);
                         break;
                     default:
-                        MessageBox.Show("Plataforma não esperada. Por favor escolha uma plataforma que já tenha sido desenvolvida.", "Plataforma não reconhecida", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        MessageBox.Show("Plataforma inválida.");
                         break;
                 }
 
@@ -498,13 +493,11 @@ namespace Robo
                 {
                     MessageBox.Show("Processamento executado com sucesso!", "Sucesso!", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
-                //this.Close();
 
             }
             catch (Exception exception)
             {
                 MessageBox.Show(exception.Message, "Erro!", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                //throw exception;
             }
         }
 
@@ -541,43 +534,6 @@ namespace Robo
                 }
             }
             return logins;
-        }
-
-        //Após refatoração dos FIES´s trazer dados já filtrados
-        private List<TOAluno> SelecionarAlunosPorPlataforma(List<TOAluno> alunos, String plataforma, string cpfUnico = "")
-        {
-            List<TOAluno> alunosFies = new List<TOAluno>();
-            alunosFies = Dados.SelectAlunos();
-            foreach (TOAluno aluno in alunos)
-            {
-                Dados.TratarCpf(aluno);
-                Dados.TratarTextoReceitas(aluno);
-                Dados.TratarPorcentagemReceita(aluno);
-                Dados.TratarCampusAluno(aluno);
-                Dados.TratarTipoFIES(aluno);
-
-                if (plataforma.Equals(aluno.Tipo))
-                {
-                    if (aluno.AproveitamentoAtual.Contains("TRANCADO") == true)
-                    {
-                        aluno.Conclusao = "Trancado";
-                        Dados.UpdateAluno(aluno);
-                    }
-                    else if ("NÃO FEITO".Equals(aluno.Conclusao.ToUpper()) || "Pendente".Equals(aluno.Conclusao) || "DRI não encontrada".Equals(aluno.Conclusao))
-                    {
-                        if (cpfUnico == "" || cpfUnico == aluno.Cpf)
-                        {
-                            alunosFies.Add(aluno);
-                        }
-                    }
-                }
-            }
-
-            if (alunosFies.Count == 0)
-            {
-                throw new Exception(String.Format("Nenhum aluno encontrado na plataforma escolhida ({0}). Cheque se o banco de dados contém alunos da plataforma que deseja realizar os aditamentos.", plataforma));
-            }
-            return alunosFies;
         }
 
         //Após refatoração dos FIES´s trazer dados já filtrados
@@ -618,6 +574,31 @@ namespace Robo
             return logins;
         }
 
+        //Após refatoração dos FIES´s trazer dados já filtrados
+        private List<TOAluno> SelecionarAlunosPorPlataforma(List<TOAluno> alunos, string plataforma, string cpfUnico = "")
+        {
+            List<TOAluno> alunosFies = new List<TOAluno>();
+            alunosFies = Dados.SelectAlunoWhere(plataforma);
+            foreach (TOAluno aluno in alunos)
+            {
+                presenter.TratarDadosAluno(aluno);
+
+                if (aluno.AproveitamentoAtual.Contains("TRANCADO") == true)
+                {
+                    aluno.Conclusao = "Trancado";
+                    Dados.UpdateAluno(aluno);
+                }
+
+            }
+
+            if (alunosFies.Count == 0)
+            {
+                throw new Exception(String.Format("Nenhum aluno encontrado na plataforma escolhida ({0}). Cheque se o banco de dados contém alunos da plataforma que deseja realizar os aditamentos.", plataforma));
+            }
+            return alunosFies;
+        }
+
+        //Modificar Logins
         private void btnAdicionarLogin_Click(object sender, EventArgs e)
         {
             LoginForm loginForm = new LoginForm(this.Location);
@@ -647,6 +628,8 @@ namespace Robo
         {
             Util.ExportarCSV(dgvAlunos.Rows.Count);
         }
+
+        //Mostrar painel menu (botão logout)
         private void btMenu_Click(object sender, EventArgs e)
         {
             if (panelMenu.Visible == false)
@@ -662,7 +645,6 @@ namespace Robo
                 panelMenu.Visible = false;
             }
         }
-
 
         // Depois tirar // Botao de adicionar/remover senha do banco de dados
         private void btnSenhaBanco_Click(object sender, EventArgs e)
@@ -689,7 +671,7 @@ namespace Robo
             cbCampus.DataSource = Dados.SelectLoginTOIES(cbFaculdade.Text, cbPlataforma.Text);
         }
 
-        // Não mudar
+        //Abrir painéis extras necessários
         private void cbExecucao_SelectedIndexChanged(object sender, EventArgs e)
         {
             ClearPanel();
@@ -734,13 +716,22 @@ namespace Robo
             }
         }
 
-        // Mudar
+        //Selecionar modos de execução por plataforma
         private void cbPlataforma_SelectedIndexChanged(object sender, EventArgs e)
         {
             cbExecucao.DataSource = presenter.PreencherListaExecucaoPorPlataforma(cbPlataforma.Text);
+            cbCampus.SelectedIndex = 0;
+            if (cbPlataforma.Text == "FIES Novo")
+            {
+                cbCampus.Enabled = false;
+            }
+            else
+            {
+                cbCampus.Enabled = true;
+            }
         }
 
-        // Verificar se isso vai ser usado
+        // Verificar se isso vai ser usado - Buscar Status
         public void UpdateDataGridView(string tipoFIES, string tipoExecucao)
         {
             if (File.Exists("Tabela.csv") == false)
@@ -822,24 +813,15 @@ namespace Robo
             }
         }
 
-        private void btUsuarios_Click(object sender, EventArgs e)
-        {
-            panelMenu.Visible = false;
-            panelLogins.Visible = false;
-            painelUsuarios.Visible = true;
-            panelCadastrarContent.Visible = false;
-            panelPlanilha.Visible = false;
-            panelExcel.Visible = false;
-        }
 
-        // Mudar
+
+        // Mudar? - Modificações Usuarios
         private void btAddUsuario_Click(object sender, EventArgs e)
         {
             UsuarioForm usuarioForm = new UsuarioForm(this.Location);
             usuarioForm.ShowDialog();
             AtualizarListViewUsuarios();
         }
-        // Mudar
         private void btModUsuario_Click(object sender, EventArgs e)
         {
             UsuarioForm usuarioForm = new UsuarioForm(this.Location, dgvUsuarios.CurrentRow.DataBoundItem as TOUsuario);
@@ -847,8 +829,6 @@ namespace Robo
             AtualizarListViewUsuarios();
 
         }
-
-        // Mudar
         private void btExcUsuario_Click(object sender, EventArgs e)
         {
             if (MessageBox.Show("Deseja excluir este usuário?", "Excluir usuário", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK)
@@ -859,7 +839,7 @@ namespace Robo
             }
         }
 
-        // Não Mudar
+        //Limpar painel de dados extras
         private void ClearPanel()
         {
             foreach (Control item in panelDadosDeSituacao.Controls)
@@ -868,7 +848,7 @@ namespace Robo
             }
         }
 
-        // Não mudar
+        //Exportar Infs
         private void btnExportarInformacoes_Click(object sender, EventArgs e)
         {
             SaveFileDialog sfd = new SaveFileDialog();
@@ -904,28 +884,6 @@ namespace Robo
             }
         }
 
-        // Não mudar
-        private void btExportar_Click(object sender, EventArgs e)
-        {
-            panelMenu.Visible = false;
-            panelCadastrarContent.Visible = false;
-            painelUsuarios.Visible = false;
-            panelLogins.Visible = false;
-            panelExcel.Visible = false;
-            panelPlanilha.Visible = true;
-        }
-
-        // Não mudar
-        private void btExtrairInformacoes_Click(object sender, EventArgs e)
-        {
-            panelMenu.Visible = false;
-            panelCadastrarContent.Visible = true;
-            painelUsuarios.Visible = false;
-            panelLogins.Visible = false;
-            panelExcel.Visible = false;
-            panelPlanilha.Visible = false;
-        }
-
         // Metodo que realiza a captura segurando o mouse no "Painel do menu"
         private void panelMenuBar_MouseDown(object sender, MouseEventArgs e)
         {
@@ -934,11 +892,6 @@ namespace Robo
                 ReleaseCapture();
                 SendMessage(Handle, WM_NCLBUTTONDOWN, HT_CAPTION, 0);
             }
-        }
-
-        private void btnClose_Click(object sender, EventArgs e)
-        {
-            Application.Exit();
         }
     }
 }
