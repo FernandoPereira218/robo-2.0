@@ -37,8 +37,6 @@ namespace Robo
         private Point objetoPonto3 = new Point(2, 72);
         private static ImplementacaoPresenter presenter;
 
-        private List<string> cbListModosExecucao = new List<string>();
-
         public RoboForm()
         {
             versaoRobo = Program.login.Permissao;
@@ -97,17 +95,6 @@ namespace Robo
             this.cbSemestre.DataSource = presenter.PreencherListaSemestre();
 
             //Preenchimento tipo de execução pelo banco de dados memus
-
-
-
-
-
-
-            foreach (var item in cbExecucao.Items)
-            {
-                cbListModosExecucao.Add(item.ToString());
-            }
-
             this.cbPlataforma.SelectedIndex = 0;
             this.cbFaculdade.SelectedIndex = 0;
             this.cbFaculdade.SelectedIndex = cbFaculdade.FindStringExact(Program.login.IES.ToUpper());
