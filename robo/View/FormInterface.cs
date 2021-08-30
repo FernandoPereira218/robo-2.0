@@ -25,16 +25,10 @@ namespace Robo
         public static extern int SendMessage(IntPtr hWnd, int Msg, int wParam, int lParam);
         [DllImportAttribute("user32.dll")]
         public static extern bool ReleaseCapture();
-
-
         public static string versaoRobo;
         private bool logout = false;
-        private Point labelPonto1 = new Point(2, 3);
-        private Point labelPonto2 = new Point(147, 3);
-        private Point labelPonto3 = new Point(2, 50);
-        private Point objetoPonto1 = new Point(2, 25);
-        private Point objetoPonto2 = new Point(145, 25);
-        private Point objetoPonto3 = new Point(2, 72);
+
+
         private static ImplementacaoPresenter presenter;
 
         public RoboForm()
@@ -663,6 +657,13 @@ namespace Robo
         {
             ClearPanel();
             ComboBox cb = (ComboBox)sender;
+
+            Point labelPonto1 = new Point(2, 3);
+            Point labelPonto2 = new Point(147, 3);
+            Point labelPonto3 = new Point(2, 50);
+            Point objetoPonto1 = new Point(2, 25);
+            Point objetoPonto2 = new Point(145, 25);
+            Point objetoPonto3 = new Point(2, 72);
 
             // Refatorar?
             if (cb.SelectedItem.ToString() == "EXPORTAR COPARTICIPAÇÃO")
