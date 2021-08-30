@@ -18,6 +18,8 @@ namespace robo.Control.Implementacoes
             List<string> PreencherListaSemestre();
             void SetForm(IContratos.IMainForms forms);
             string BuscarNunSemestre(string semestreAno);
+            List<string> PreencherListaExecucao();
+            List<string> PreencherListaExecucaoPorPlataforma(string plataforma);
         }
     }
 }

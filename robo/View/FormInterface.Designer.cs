@@ -97,7 +97,7 @@
             this.cbFaculdade = new System.Windows.Forms.ComboBox();
             this.cbPlataforma = new System.Windows.Forms.ComboBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.button1 = new System.Windows.Forms.Button();
+            this.btnSenhaBanco = new System.Windows.Forms.Button();
             this.panelPlanilha = new System.Windows.Forms.Panel();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.panelLogins = new System.Windows.Forms.Panel();
@@ -226,6 +226,7 @@
             this.btnClose.TabIndex = 0;
             this.btnClose.Text = "X";
             this.btnClose.UseVisualStyleBackColor = true;
+            this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
             // 
             // panelExcel
             // 
@@ -471,7 +472,7 @@
             this.panelCadastro.Controls.Add(this.cbFaculdade);
             this.panelCadastro.Controls.Add(this.cbPlataforma);
             this.panelCadastro.Controls.Add(this.pictureBox1);
-            this.panelCadastro.Controls.Add(this.button1);
+            this.panelCadastro.Controls.Add(this.btnSenhaBanco);
             this.panelCadastro.Location = new System.Drawing.Point(0, 0);
             this.panelCadastro.Name = "panelCadastro";
             this.panelCadastro.Size = new System.Drawing.Size(1363, 731);
@@ -1025,17 +1026,17 @@
             this.pictureBox1.TabIndex = 29;
             this.pictureBox1.TabStop = false;
             // 
-            // button1
+            // btnSenhaBanco
             // 
-            this.button1.Location = new System.Drawing.Point(500, 1);
-            this.button1.Margin = new System.Windows.Forms.Padding(2);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 19);
-            this.button1.TabIndex = 13;
-            this.button1.Text = "button1";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Visible = false;
-            this.button1.Click += new System.EventHandler(this.button1_Click_1);
+            this.btnSenhaBanco.Location = new System.Drawing.Point(500, 1);
+            this.btnSenhaBanco.Margin = new System.Windows.Forms.Padding(2);
+            this.btnSenhaBanco.Name = "btnSenhaBanco";
+            this.btnSenhaBanco.Size = new System.Drawing.Size(75, 19);
+            this.btnSenhaBanco.TabIndex = 13;
+            this.btnSenhaBanco.Text = "button1";
+            this.btnSenhaBanco.UseVisualStyleBackColor = true;
+            this.btnSenhaBanco.Visible = false;
+            this.btnSenhaBanco.Click += new System.EventHandler(this.btnSenhaBanco_Click);
             // 
             // panelPlanilha
             // 
@@ -1547,7 +1548,7 @@
         private System.Windows.Forms.Button btnLogins;
         private System.Windows.Forms.ImageList imageList1;
         private System.Windows.Forms.Panel panelMenu;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnSenhaBanco;
         private System.Windows.Forms.DataGridView dataGridView1;
         private MetroFramework.Controls.MetroLabel labelModoOperacao;
         private MetroFramework.Controls.MetroRadioButton radioBaixarDocumento;

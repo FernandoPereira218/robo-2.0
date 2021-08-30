@@ -29,6 +29,28 @@ namespace robo.Control.Implementacoes
             return null;
         }
 
+        public List<string> PreencherListaExecucao()
+        {
+            List<TOMenus> menus = Dados.SelectMenus();
+            List<string> nomeMenu = new List<string>();
+            foreach (var item in menus)
+            {
+                nomeMenu.Add(item.Item);
+            }
+            return nomeMenu;
+        }
+
+        public List<string> PreencherListaExecucaoPorPlataforma(string plataforma)
+        {
+            List<TOMenus> menus = Dados.SelectMenuWhere(plataforma);
+            List<string> nomeMenu = new List<string>();
+            foreach (var item in menus)
+            {
+                nomeMenu.Add(item.Item);
+            }
+            return nomeMenu;
+        }
+
         public List<string> PreencherListaSemestre()
         {
             List<TOSemestre> semestre = Dados.SelectSemestre();
