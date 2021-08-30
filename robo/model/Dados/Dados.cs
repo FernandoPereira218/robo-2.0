@@ -93,6 +93,16 @@ namespace Robo
         {
             return Database.Acess.SelectAll<TOMenus>("MENUS");
         }
+        public static List<TOMenus> SelectMenuWhere(string plataforma)
+        {
+            //Duas keys iguais do dictionary dá erro, por isso o espaço
+            Dictionary<string, string> dic = new Dictionary<string, string>();
+            dic.Add("Modalidade", plataforma);
+            dic.Add("Modalidade ", "");
+            List<TOMenus> menusGeral = Database.Acess.SelectWhere<TOMenus>("MENUS", dic, "or ");
+            return menusGeral;
+
+        }
         public static List<string> SelectLoginTOIES(string IES, string plataforma)
         {
             List<TOLogin> listlogin;

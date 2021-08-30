@@ -82,6 +82,7 @@ namespace Robo
             {
                 btnAlunos.Visible = true;
                 btnLogins.Visible = true;
+                cbExecucao.DataSource = presenter.PreencherListaExecucao();
                 cbExecucao.SelectedIndex = cbExecucao.FindStringExact("ADITAMENTO");
                 cbExecucao.Enabled = true;
                 txtCPF.Visible = false;
@@ -120,61 +121,11 @@ namespace Robo
             AtualizarListViewUsuarios();
         }
 
+        //Background worker - Importar alunos
         private void InitializeBackgroundWorker()
         {
-            bwBarraProgresso.DoWork +=
-                new DoWorkEventHandler(bwBarraProgresso_DoWork);
-            bwBarraProgresso.RunWorkerCompleted +=
-                new RunWorkerCompletedEventHandler(bwBarraProgresso_RunWorkerCompleted);
-        }
-
-        private void CreateData()
-        {
-            atualizarTransparente(labelDay, pictureBox1);
-            atualizarDate(labelDay);
-
-        }
-
-        private void atualizarTransparente(Label label, PictureBox pictureBox)
-        {
-            label.BackColor = System.Drawing.Color.Transparent;
-            label.Parent = pictureBox;
-        }
-
-        private void atualizarDate(Label diaMesAno)
-        {
-            diaMesAno.Text = DateTime.Now.ToLongDateString();
-        }
-
-        private void btnMinimize_Click(object sender, EventArgs e)
-        {
-            this.WindowState = FormWindowState.Minimized;
-        }
-
-        private void btnSelectPath_Click(object sender, EventArgs e)
-        {
-            if (!Dados.VerificaQtdAlunos())
-            {
-                return;
-            }
-
-            AtualizarListViewAlunos();
-
-            tbBarraStatus.Visible = false;
-
-            ofdSelectExcel.Filter = "CSV (*.csv)|*.csv";
-            if (ofdSelectExcel.ShowDialog() == DialogResult.OK)
-            {
-                txtExcel.Text = ofdSelectExcel.FileName;
-                lbProcessando.Visible = true;
-                barraProgressoImportacao.ProgressBarStyle = ProgressBarStyle.Marquee;
-                barraProgressoImportacao.Visible = true;
-                barraProgressoImportacao.MarqueeAnimationSpeed = 5;
-                barraProgressoImportacao.Enabled = true;
-                btnSelectPath.Enabled = false;
-                btMenu.Enabled = false;
-                bwBarraProgresso.RunWorkerAsync();
-            }
+            bwBarraProgresso.DoWork += new DoWorkEventHandler(bwBarraProgresso_DoWork);
+            bwBarraProgresso.RunWorkerCompleted += new RunWorkerCompletedEventHandler(bwBarraProgresso_RunWorkerCompleted);
         }
         private void bwBarraProgresso_DoWork(object sender, DoWorkEventArgs e)
         {
@@ -223,6 +174,55 @@ namespace Robo
             }
         }
 
+        //Mostrar Data
+        private void CreateData()
+        {
+            atualizarTransparente(labelDay, pictureBox1);
+            atualizarDate(labelDay);
+
+        }
+        private void atualizarTransparente(Label label, PictureBox pictureBox)
+        {
+            label.BackColor = System.Drawing.Color.Transparent;
+            label.Parent = pictureBox;
+        }
+        private void atualizarDate(Label diaMesAno)
+        {
+            diaMesAno.Text = DateTime.Now.ToLongDateString();
+        }
+
+        private void btnMinimize_Click(object sender, EventArgs e)
+        {
+            this.WindowState = FormWindowState.Minimized;
+        }
+
+        private void btnSelectPath_Click(object sender, EventArgs e)
+        {
+            if (!Dados.VerificaQtdAlunos())
+            {
+                return;
+            }
+
+            AtualizarListViewAlunos();
+
+            tbBarraStatus.Visible = false;
+
+            ofdSelectExcel.Filter = "CSV (*.csv)|*.csv";
+            if (ofdSelectExcel.ShowDialog() == DialogResult.OK)
+            {
+                txtExcel.Text = ofdSelectExcel.FileName;
+                lbProcessando.Visible = true;
+                barraProgressoImportacao.ProgressBarStyle = ProgressBarStyle.Marquee;
+                barraProgressoImportacao.Visible = true;
+                barraProgressoImportacao.MarqueeAnimationSpeed = 5;
+                barraProgressoImportacao.Enabled = true;
+                btnSelectPath.Enabled = false;
+                btMenu.Enabled = false;
+                bwBarraProgresso.RunWorkerAsync();
+            }
+        }
+
+
         private bool VerificaDiretorio()
         {
             if (!File.Exists(txtExcel.Text))
@@ -233,6 +233,7 @@ namespace Robo
             return true;
         }
 
+        //Atualizar datagrid
         private void AtualizarListViewAlunos()
         {
             var source = new BindingSource();
@@ -253,7 +254,6 @@ namespace Robo
                 dgvAlunos.Columns["HorarioConclusao"].DisplayIndex = 4;
             }
         }
-
         public void AtualizarListViewLogins()
         {
             var source = new BindingSource();
@@ -298,6 +298,7 @@ namespace Robo
             }
         }
 
+        //Mudanças de painel
         private void btnAlunos_Click(object sender, EventArgs e)
         {
             panelMenu.Visible = false;
@@ -507,6 +508,7 @@ namespace Robo
             }
         }
 
+
         //Após refatoração dos FIES´s trazer dados já filtrados
         private List<TOLogin> SelecionarLoginsPorPlataforma(List<TOLogin> listLogins, String plataforma)
         {
@@ -624,26 +626,13 @@ namespace Robo
 
 
         }
-
         private void btnModificarLogin_Click(object sender, EventArgs e)
-        {
-            ModificarLogin();
-        }
-
-
-        private void ModificarLogin()
         {
             LoginForm loginForm = new LoginForm(this.Location, dgvLogins.CurrentRow.DataBoundItem as TOLogin);
             loginForm.ShowDialog();
             AtualizarListViewLogins();
         }
-
         private void btnExcluirLogin_Click(object sender, EventArgs e)
-        {
-            ExcluirLogin();
-        }
-
-        private void ExcluirLogin()
         {
             if (MessageBox.Show("Deseja excluir este usuário?", "Excluir usuário", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK)
             {
@@ -675,13 +664,13 @@ namespace Robo
         }
 
 
-        // Depois tirar // Botao do Joao KK
-        private void button1_Click_1(object sender, EventArgs e)
+        // Depois tirar // Botao de adicionar/remover senha do banco de dados
+        private void btnSenhaBanco_Click(object sender, EventArgs e)
         {
             Util.gravaSenha();
         }
 
-        // Verifica se o CPF possui letra | Capa os valores que não sejam inteiros
+        // Verifica se o CPF possui letra | Capa os valores que não sejam inteiros - versão CAE
         private void txtCPF_KeyPress(object sender, KeyPressEventArgs e)
         {
             if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
@@ -693,7 +682,8 @@ namespace Robo
                 e.Handled = true;
             }
         }
-        // Mudar isso
+
+        //Seleciona Campus disponíveis dependendo da IES selecionada
         private void cbFaculdade_SelectedIndexChanged(object sender, EventArgs e)
         {
             cbCampus.DataSource = Dados.SelectLoginTOIES(cbFaculdade.Text, cbPlataforma.Text);
@@ -705,7 +695,7 @@ namespace Robo
             ClearPanel();
             ComboBox cb = (ComboBox)sender;
 
-            // Refatorar
+            // Refatorar?
             if (cb.SelectedItem.ToString() == "EXPORTAR COPARTICIPAÇÃO")
             {
                 labelDataInicio.Location = labelPonto1;
@@ -747,35 +737,7 @@ namespace Robo
         // Mudar
         private void cbPlataforma_SelectedIndexChanged(object sender, EventArgs e)
         {
-            cbExecucao.Items.Clear();
-            if (cbPlataforma.Text == "FIES Legado")
-            {
-                //cbExecucao.Items = cbListModosExecucao;
-                foreach (var item in cbListModosExecucao)
-                {
-                    if (item != "HISTÓRICO COPARTICIPAÇÃO" && item != "STATUS ALUNO")
-                    {
-                        cbExecucao.Items.Add(item);
-                    }
-                }
-                cbCampus.Enabled = true;
-            }
-            else
-            {
-                foreach (var item in cbListModosExecucao)
-                {
-                    if (item != "DRI" && item != "DRD")
-                    {
-                        cbExecucao.Items.Add(item);
-                    }
-                }
-                cbCampus.SelectedItem = "";
-                cbCampus.Enabled = false;
-            }
-            if (versaoRobo == "operacoesFinanceiras")
-            {
-                cbExecucao.SelectedIndex = cbExecucao.FindStringExact("DRM");
-            }
+            cbExecucao.DataSource = presenter.PreencherListaExecucaoPorPlataforma(cbPlataforma.Text);
         }
 
         // Verificar se isso vai ser usado
@@ -972,6 +934,11 @@ namespace Robo
                 ReleaseCapture();
                 SendMessage(Handle, WM_NCLBUTTONDOWN, HT_CAPTION, 0);
             }
+        }
+
+        private void btnClose_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
         }
     }
 }
