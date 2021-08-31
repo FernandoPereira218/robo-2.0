@@ -128,6 +128,7 @@ namespace robo.pgm
             }
             Driver.FindElement(By.Id("btn_excel")).Click();
             Util.SalvarArquivos(Driver, "Extrato_Mensal_Repasse");
+            FazerLogout();
         }
 
         static Boolean RealizarLoginSucesso(TOLogin login)
