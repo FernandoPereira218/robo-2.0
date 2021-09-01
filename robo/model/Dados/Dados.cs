@@ -473,7 +473,7 @@ namespace Robo
 
             if (aluno.ReceitaBruta != string.Empty)
             {
-                aluno.ReceitaBruta = Math.Round(Convert.ToDouble(aluno.ReceitaLiquida), 2).ToString();
+                aluno.ReceitaBruta = Math.Round(Convert.ToDouble(aluno.ReceitaBruta), 2).ToString();
             }
             if (aluno.ReceitaLiquida != string.Empty)
             {
