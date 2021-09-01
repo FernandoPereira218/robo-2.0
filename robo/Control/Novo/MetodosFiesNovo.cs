@@ -311,10 +311,11 @@ namespace robo.Control.Novo
 
                     //Click para atualizar a página
                     Driver.FindElement(By.Id("semestralidadeAtualComDescGradeASerCursadaLabel")).Click();
-
-                    alerta = VerificarAlertaAditamento();
-                    if (alerta != string.Empty)
+                    WaitForLoading();
+                    
+                    if (Driver.PageSource.Contains("inferior ao valor mínimo"))
                     {
+                        alerta = VerificarAlertaAditamento();
                         aluno.Conclusao = alerta;
                         aluno.HorarioConclusao = string.Format("{0:dd/MM/yyyy HH:mm}", DateTime.Now);
                         Dados.UpdateAluno(aluno);
@@ -749,6 +750,10 @@ namespace robo.Control.Novo
             var executor = (IJavaScriptExecutor)Driver;
             executor.ExecuteScript($@"document.getElementById(""cpf"").value = ""{aluno.Cpf}"";");
 
+            while(Driver.PageSource.Contains("Selecione") == false)
+            {
+                System.Threading.Thread.Sleep(500);
+            }
             Util.ClickButtonsById(Driver, "btnConsultar");
 
             WaitForLoading();
