@@ -179,6 +179,13 @@ namespace Robo
                         Driver.Url = url;
 
                         System.Threading.Thread.Sleep(1000);
+
+                        if(Driver.PageSource.Contains("Voltar para a página principal")){
+                            EditarConclusaoAluno(alunos[i], "Página não encontrada");
+                            Driver.Url = "http://sisfies.mec.gov.br/cpsa/aditamento";
+                            continue;
+                        }
+
                         IWebElement element = Driver.FindElement(By.Id("lista-mensageiro-erros"));
                         if (element.Displayed == false)
                         {
