@@ -312,6 +312,17 @@ namespace robo.Control.Novo
                     //Click para atualizar a página
                     Driver.FindElement(By.Id("semestralidadeAtualComDescGradeASerCursadaLabel")).Click();
 
+                    alerta = VerificarAlertaAditamento();
+                    if (alerta != string.Empty)
+                    {
+                        aluno.Conclusao = alerta;
+                        aluno.HorarioConclusao = string.Format("{0:dd/MM/yyyy HH:mm}", DateTime.Now);
+                        Dados.UpdateAluno(aluno);
+                        Util.ScrollToElementByID(Driver, "btnVoltar");
+                        Util.ClickButtonsById(Driver, "btnVoltar");
+                        continue;
+                    }
+
                     WaitForLoading();
                     string alertMessage = string.Empty;
                     //Verificação alerta percentual estudante
@@ -869,6 +880,14 @@ namespace robo.Control.Novo
                 Driver.FindElement(By.ClassName("close")).Click();
                 alertMessage = alertMessage.Replace("x\r\n", "");
             }
+            if (Driver.PageSource.Contains("modal-body"))
+            {
+                IWebElement temp = Driver.FindElement(By.ClassName("modal-body"));
+                alertMessage = temp.Text;
+                Driver.FindElement(By.ClassName("close")).Click();
+                alertMessage = alertMessage.Replace("x\r\n", "");
+            }
+            
             return alertMessage;
 
         }
