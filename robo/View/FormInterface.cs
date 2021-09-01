@@ -560,7 +560,7 @@ namespace Robo
         {
             List<TOAluno> alunosFies = new List<TOAluno>();
             alunosFies = Dados.SelectAlunoWhere(plataforma);
-            foreach (TOAluno aluno in alunos)
+            foreach (TOAluno aluno in alunosFies)
             {
                 presenter.TratarDadosAluno(aluno);
 
