@@ -458,7 +458,7 @@ namespace Robo
                         break;
 
                     case "FIES NOVO":
-                        MetodosFiesNovo.OpenFiesNovo(logins, listaAlunos, cbExecucao.Text, cbSemestre.Text, radioBuscarStatus.Checked);
+                        MetodosFiesNovo.OpenFiesNovo(logins, listaAlunos, cbExecucao.Text, cbSemestre.Text, radioBuscarStatus.Checked, cbFaculdade.Text);
                         break;
                     default:
                         MessageBox.Show("Plataforma inválida.");
