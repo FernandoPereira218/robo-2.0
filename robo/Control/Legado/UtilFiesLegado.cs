@@ -51,6 +51,16 @@ namespace robo.Control.Legado
                 Util.WaitPageToLoad(Driver);
             }
         }
-
+        public void WaitinLoading(IWebDriver Driver)
+        {
+            IWebElement Carregando = Driver.FindElement(By.ClassName("background-grey"));
+            bool carr = Carregando.Displayed;
+            while (carr == true)
+            {
+                System.Threading.Thread.Sleep(1000);
+                Carregando = Driver.FindElement(By.ClassName("background-grey"));
+                carr = Carregando.Displayed;
+            }
+        }
     }
 }

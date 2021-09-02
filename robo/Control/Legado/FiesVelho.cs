@@ -180,7 +180,8 @@ namespace Robo
 
                         System.Threading.Thread.Sleep(1000);
 
-                        if(Driver.PageSource.Contains("Voltar para a página principal")){
+                        if(Driver.PageSource.Contains("Voltar para a página principal"))
+                        {
                             EditarConclusaoAluno(alunos[i], "Página não encontrada");
                             Driver.Url = "http://sisfies.mec.gov.br/cpsa/aditamento";
                             continue;
@@ -226,17 +227,13 @@ namespace Robo
         {
             if (!Driver.PageSource.Contains("Voltar para a página principal") && Driver.Url == url)
             {
+                //Mensagem que não aparece somente quando o aluno já foi aditado anteriomente
                 if (Driver.PageSource.Contains("igual ou superior a 75% no semestre"))
                 {
                     VerificarEPreencherFormulario(aluno, login.Campus);
-                    //alunos[i].CampusAditado = login.Campus;
-                    //alunos[i].HorarioConclusao = string.Format("{0:dd/MM/yyyy HH:mm}", DateTime.Now);
                 }
                 else
                 {
-                    //alunos[i].Conclusao = "Acadêmico aditado anteriormente";
-                    //alunos[i].CampusAditado = login.Campus;
-                    //alunos[i].HorarioConclusao = string.Format("{0:dd/MM/yyyy HH:mm}", DateTime.Now);
                     EditarConclusaoAluno(aluno, "Acadêmico aditado anteriormente", login.Campus);
                 }
             }
@@ -406,24 +403,6 @@ namespace Robo
             else
             {
                 Util.ClickButtonsByCss(Driver, "#divAproveitamentoAcademico input:nth-of-type(1)"); //O estudante teve aproveitamento acadêmico igual ou superior a 75% no semestre ? NAO
-
-                //switch (aluno.HistoricoAproveitamento)
-                //{
-                //
-                //    case "1º Reconsideração": // Vai passar
-                //    case "2º Reconsideração": // Vai passar
-                //    case "Reprovação em semestre anterior":
-                //        //aluno.Conclusao = CasoSemAproveitamento(aluno);
-                //        EditarConclusaoAluno(aluno, CasoSemAproveitamento(aluno));
-                //        break;
-                //    case "Excesso de reprovação":
-                //        //aluno.Conclusao = CasoExcessoReprovacao();
-                //        EditarConclusaoAluno(aluno, CasoExcessoReprovacao());
-                //        break;
-                //
-                //    default:
-                //        throw new Exception("Jeny escreveu errado.");
-                //}
                 if (aluno.HistoricoAproveitamento.Contains("Excesso de reprovação") == true)
                 {
                     EditarConclusaoAluno(aluno, CasoExcessoReprovacao(aluno.Justificativa));
@@ -636,7 +615,7 @@ namespace Robo
             //checa se existe e escreve a justificativa
             Justificativa(justificativaAluno);
 
-            return "Rejeitou execesso de reprovação";
+            return "Rejeitou excesso de reprovação";
         }
 
         /// <summary>
@@ -675,7 +654,6 @@ namespace Robo
             return false;
         }
         #endregion
-
 
         public static void BuscarDocumento(List<TOAluno> alunos, string campusAtual, string semestre, string tipoRelatorio)
         {
