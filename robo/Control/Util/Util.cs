@@ -575,5 +575,23 @@ namespace Robo
             List<TOAluno> alunos = Database.Acess.SelectAll<TOAluno>("ALUNO");
             CSVManager.CSVManager.ExportCSV<TOAluno>(fileName, dic, alunos);
         }
+
+        public static void EditarConclusaoAluno(TOAluno aluno, string conclusao)
+        {
+            aluno.Conclusao = conclusao;
+            aluno.HorarioConclusao = string.Format("{0:dd/MM/yyyy HH:mm}", DateTime.Now);
+
+            Dados.UpdateAluno(aluno);
+        }
+        public static void WaitPageToLoad(IWebDriver Driver)
+        {
+            string result = (string)((IJavaScriptExecutor)Driver).ExecuteScript("return document.readyState");
+            while (result != "complete")
+            {
+                System.Threading.Thread.Sleep(100);
+                result = (string)((IJavaScriptExecutor)Driver).ExecuteScript("return document.readyState");
+            }
+        }
+
     }
 }

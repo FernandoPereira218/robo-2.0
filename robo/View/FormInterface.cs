@@ -36,11 +36,12 @@ namespace Robo
             versaoRobo = Program.login.Permissao;
             presenter = new ImplementacaoPresenter(this);
             Dados.VerificaSemestre();
-
             InitializeComponent();
             InitializeBackgroundWorker();
             Program.formInterface = this;
-            CreateData();
+            labelDay.BackColor = System.Drawing.Color.Transparent;
+            labelDay.Parent = pictureBox1;
+            labelDay.Text = DateTime.Now.ToLongDateString();
             radioBaixarDocumento.Visible = true;
             radioBuscarStatus.Visible = true;
             radioBuscarStatus.Checked = true;
@@ -94,15 +95,13 @@ namespace Robo
             this.cbFaculdade.SelectedIndex = cbFaculdade.FindStringExact(Program.login.IES.ToUpper());
             this.cbFaculdade.Enabled = true;
             this.cbSemestre.SelectedIndex = cbSemestre.Items.Count - 1;
-            //cbFaculdade.SelectedIndex = cbFaculdade.FindStringExact("TODOS");
-            //this.cbExecucao.SelectedIndex = 0;
 
             AtualizarListViewAlunos();
             AtualizarListViewLogins();
             AtualizarListViewUsuarios();
         }
 
-        //Background worker - Importar alunos
+        //Barra de progresso da importação dos Alunos
         private void InitializeBackgroundWorker()
         {
             bwBarraProgresso.DoWork += new DoWorkEventHandler(bwBarraProgresso_DoWork);
@@ -111,21 +110,18 @@ namespace Robo
         private void bwBarraProgresso_DoWork(object sender, DoWorkEventArgs e)
         {
             Cursor.Current = Cursors.WaitCursor;
-            if (VerificaDiretorio())
-            {
-                string filePath = txtExcel.Text;
-                Dados.ImportaAlunos(filePath);
-            }
+            string filePath = txtExcel.Text;
+            Dados.ImportaAlunos(filePath);
             Cursor.Current = Cursors.Default;
         }
         private void bwBarraProgresso_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
+            lbProcessando.Visible = false;
+            barraProgressoImportacao.Visible = false;
+            btMenu.Enabled = true;
+            btnSelectPath.Enabled = true;
             if (e.Error != null)
             {
-                lbProcessando.Visible = false;
-                barraProgressoImportacao.Visible = false;
-                btMenu.Enabled = true;
-                btnSelectPath.Enabled = true;
                 SystemSounds.Exclamation.Play();
                 tbBarraStatus.Visible = true;
                 tbBarraStatus.BackColor = Color.Red;
@@ -138,10 +134,6 @@ namespace Robo
             }
             else
             {
-                lbProcessando.Visible = false;
-                barraProgressoImportacao.Visible = false;
-                btMenu.Enabled = true;
-                btnSelectPath.Enabled = true;
                 AtualizarListViewAlunos();
                 SystemSounds.Beep.Play();
                 tbBarraStatus.Visible = true;
@@ -153,23 +145,6 @@ namespace Robo
                    }
                 ));
             }
-        }
-
-        //Mostrar Data
-        private void CreateData()
-        {
-            atualizarTransparente(labelDay, pictureBox1);
-            atualizarDate(labelDay);
-
-        }
-        private void atualizarTransparente(Label label, PictureBox pictureBox)
-        {
-            label.BackColor = System.Drawing.Color.Transparent;
-            label.Parent = pictureBox;
-        }
-        private void atualizarDate(Label diaMesAno)
-        {
-            diaMesAno.Text = DateTime.Now.ToLongDateString();
         }
 
         //Botões Janela Windows
@@ -207,17 +182,6 @@ namespace Robo
                 btMenu.Enabled = false;
                 bwBarraProgresso.RunWorkerAsync();
             }
-        }
-
-        //Mudar de arquivo?
-        private bool VerificaDiretorio()
-        {
-            if (!File.Exists(txtExcel.Text))
-            {
-                MessageBox.Show("O diretório do Excel informado não existe.", "Erro de Diretório", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return false;
-            }
-            return true;
         }
 
         //Atualizar datagrid
@@ -398,8 +362,6 @@ namespace Robo
             {
                 FiesNovoExp.OpenFiesNovo(listaLoginFacul, cbExecucao.Text, cbSemestre.Text, cbFaculdade.Text, cbAno.Text, cbMes.Text, inicial, final, cbIESRepasse.Text);
             }
-
-
         }
         private void ExecutaPrograma(bool CPFUnico = false)
         {
