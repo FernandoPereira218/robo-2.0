@@ -66,5 +66,9 @@ namespace robo.Control.Legado
         {
             Util.ClickButtonsByXpath(Driver, "//a[contains(text(),'Sair')]");
         }
+        public void SelecionarMenuDRI(IWebDriver Driver)
+        {
+            Util.ClickButtonsByXpath(Driver, "//a[contains(text(),'Validação pela CPSA Fies')]");
+        }
     }
 }

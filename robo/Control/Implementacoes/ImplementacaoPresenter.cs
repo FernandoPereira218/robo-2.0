@@ -1,5 +1,6 @@
 ﻿using OpenQA.Selenium;
 using robo.Control.Legado;
+using robo.Control.Relatorios;
 using robo.pgm;
 using Robo;
 using System;
@@ -13,34 +14,36 @@ namespace robo.Control.Implementacoes
     public class ImplementacaoPresenter : IContratos.IPresenter
     {
         private IContratos.IMainForms forms;
+        private List<TOAluno> listaAlunos;
+        private List<TOLogin> listaLogins;
         public ImplementacaoPresenter(IContratos.IMainForms forms)
         {
             SetForm(forms);
         }
 
-        public string BuscarNunSemestre(string semestreAno)
+        private void BuscarLoginsEAlunos(string faculdade, string tipoFies, string campus, ref List<TOAluno> alunos, ref List<TOLogin> logins, bool admin)
         {
-            List<TOSemestre> semestre = Dados.SelectSemestre();
-            foreach (var item in semestre)
+            alunos = SelecionarAlunosPorPlataforma(tipoFies);
+            if (admin == true)
             {
-                if (semestreAno == item.Semestre)
-                {
-                    return item.numSemestre;
-                }
+                logins = Dados.SelectLoginPorIESePlataforma(faculdade, tipoFies, campus, true);
             }
-            return null;
+            else
+            {
+                logins = Dados.SelectLoginPorIESePlataforma(faculdade, tipoFies, campus, false);
+            }
         }
 
-        public void ExecutarAditamento(string semestreAtual, string faculdade, string tipoFies, string campus)
+        //Processamentos
+        public void ExecutarAditamentoLegado(string semestreAtual, string faculdade, string tipoFies, string campus)
         {
             string numSemestre = BuscarNunSemestre(semestreAtual);
-            List<TOAluno> listaAlunos = SelecionarAlunosPorPlataforma(tipoFies);
-            List<TOLogin> logins = Dados.SelectLoginPorIESePlataforma(faculdade, tipoFies, campus, false);
+            BuscarLoginsEAlunos(faculdade, tipoFies, campus, ref listaAlunos, ref listaLogins, false);
             UtilFiesLegado fiesLegadoutil = new UtilFiesLegado();
-            Aditamento aditamento = new Aditamento();
+            AditamentoLegado aditamento = new AditamentoLegado();
 
             IWebDriver Driver = Util.StartBrowser("http://sisfies.mec.gov.br/");
-            foreach (TOLogin login in logins)
+            foreach (TOLogin login in listaLogins)
             {
                 fiesLegadoutil.RealizarLoginSucesso(login, Driver);
                 fiesLegadoutil.SelecionarPerfilPresidencia(Driver);
@@ -56,7 +59,52 @@ namespace robo.Control.Implementacoes
             Driver.Close();
             Driver.Dispose();
         }
+        public void ExecutarAditamentoNovo(string faculdade, string tipoFies)
+        {
+            BuscarLoginsEAlunos(faculdade, tipoFies, "", ref listaAlunos, ref listaLogins, false);
 
+            //Iniciar navegador
+            foreach (TOAluno aluno in listaAlunos)
+            {
+                //Aditamento
+            }
+            //Fechar navegador
+        }
+        public void ExecutarDRI(string faculdade, string tipoFies, string campus, string situacaoDRI, bool baixarDRI)
+        {
+            BuscarLoginsEAlunos(faculdade, tipoFies, campus, ref listaAlunos, ref listaLogins, false);
+            UtilFiesLegado fiesLegadoUtil = new UtilFiesLegado();
+            
+            IWebDriver Driver = Util.StartBrowser("http://sisfies.mec.gov.br/");
+            DRI dri = new DRI();
+            foreach (TOLogin login in listaLogins)
+            {
+                fiesLegadoUtil.RealizarLoginSucesso(login, Driver);
+                fiesLegadoUtil.SelecionarPerfilPresidencia(Driver);
+                fiesLegadoUtil.SelecionarMenuDRI(Driver);
+                foreach (TOAluno aluno in listaAlunos)
+                {
+                    dri.DRIFiesLegado(Driver, aluno, login, baixarDRI, situacaoDRI);
+                }
+
+                fiesLegadoUtil.FazerLogout(Driver);
+            }
+            Driver.Close();
+            Driver.Dispose();
+        }
+
+        public string BuscarNunSemestre(string semestreAno)
+        {
+            List<TOSemestre> semestre = Dados.SelectSemestre();
+            foreach (var item in semestre)
+            {
+                if (semestreAno == item.Semestre)
+                {
+                    return item.numSemestre;
+                }
+            }
+            return null;
+        }
         private List<TOAluno> SelecionarAlunosPorPlataforma(string plataforma)
         {
             List<TOAluno> alunosFies = new List<TOAluno>();
@@ -79,7 +127,6 @@ namespace robo.Control.Implementacoes
             }
             return alunosFies;
         }
-
         public List<string> PreencherListaExecucao()
         {
             List<TOMenus> menus = Dados.SelectMenus();
@@ -126,5 +173,7 @@ namespace robo.Control.Implementacoes
             Dados.TratarCampusAluno(aluno);
             Dados.TratarTipoFIES(aluno);
         }
+
+
     }
 }

@@ -214,11 +214,13 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Control\Aditamento.cs" />
+    <Compile Include="Control\Aditamento\AditamentoLegado.cs" />
+    <Compile Include="Control\Aditamento\AditamentoNovo.cs" />
     <Compile Include="Control\Implementacoes\IContratos.cs" />
     <Compile Include="Control\Implementacoes\ImplementacaoPresenter.cs" />
     <Compile Include="Control\Legado\UtilFiesLegado.cs" />
     <Compile Include="Control\Novo\MetodosFiesNovo.cs" />
+    <Compile Include="Control\Relatorios\DRI.cs" />
     <Compile Include="Control\Update\UpdateChromedriver.cs" />
     <Compile Include="Login.cs">
       <SubType>Form</SubType>
