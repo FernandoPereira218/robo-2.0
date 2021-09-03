@@ -19,7 +19,7 @@ namespace robo.pgm
         public static void OpenFiesNovo(List<TOLogin> logins, string tipoExecucao, string Semestre, string parametroIES, string ano, string mes, string dataInicial, string dataFinal, string IESCoparticipacao)
         {
             IES = parametroIES;
-            Driver = Util.StartBrowser("http://sifesweb.caixa.gov.br", "temp", false);
+            Driver = Util.StartBrowser("http://sifesweb.caixa.gov.br", downloadFldr:true, false);
             try
             {
                 foreach (TOLogin login in logins)

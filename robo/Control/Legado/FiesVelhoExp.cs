@@ -29,7 +29,7 @@ namespace robo.pgm
             }
             try
             {
-                Driver = Util.StartBrowser("http://sisfies.mec.gov.br/", "temp");
+                Driver = Util.StartBrowser("http://sisfies.mec.gov.br/", downloadFldr:true);
 
                 foreach (TOLogin login in logins)
                 {

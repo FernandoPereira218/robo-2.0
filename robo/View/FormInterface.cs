@@ -292,6 +292,8 @@ namespace Robo
         //Refatorar após acertos das classes dos FIES´s
         private void btnIniciar_Click(object sender, EventArgs e)
         {
+            //RodarPrograma();
+            //return;
             if (cbExecucao.Text.Contains("EXPORTAR") || cbExecucao.Text.Contains("VALIDAR REPARCELAMENTO"))
             {
                 ExecutarExportacoes();
@@ -365,8 +367,6 @@ namespace Robo
         }
         private void ExecutaPrograma(bool CPFUnico = false)
         {
-            //RodarPrograma();
-            //return;
             try
             {
                 if (CPFUnico == true) //Versão CAE, buscar apenas um aluno
@@ -468,7 +468,7 @@ namespace Robo
                 case "BAIXAR DRM":
                     if (cbPlataforma.Text.ToUpper() == "FIES LEGADO")
                     {
-                        presenter.ExecutarBaixarDocumento(cbFaculdade.Text, cbPlataforma.Text, cbCampus.Text, cbSemestre.Text, "DRM");
+                        presenter.ExecutarBaixarDocumentoLegado(cbFaculdade.Text, cbPlataforma.Text, cbCampus.Text, cbSemestre.Text, "DRM");
                     }
                     else
                     {
@@ -478,7 +478,7 @@ namespace Robo
                 case "BAIXAR DRT":
                     if (cbPlataforma.Text.ToUpper() == "FIES LEGADO")
                     {
-                        presenter.ExecutarBaixarDocumento(cbFaculdade.Text, cbPlataforma.Text, cbCampus.Text, cbSemestre.Text, "DRT");
+                        presenter.ExecutarBaixarDocumentoLegado(cbFaculdade.Text, cbPlataforma.Text, cbCampus.Text, cbSemestre.Text, "DRT");
                     }
                     else
                     {
@@ -488,7 +488,7 @@ namespace Robo
                 case "BAIXAR DRD":
                     if (cbPlataforma.Text.ToUpper() == "FIES LEGADO")
                     {
-                        presenter.ExecutarBaixarDocumento(cbFaculdade.Text, cbPlataforma.Text, cbCampus.Text, cbSemestre.Text, "DRD");
+                        presenter.ExecutarBaixarDocumentoLegado(cbFaculdade.Text, cbPlataforma.Text, cbCampus.Text, cbSemestre.Text, "DRD");
                     }
                     else
                     {
@@ -498,12 +498,54 @@ namespace Robo
                 case "SUSPENSÃO":
                     if (cbPlataforma.Text.ToUpper() == "FIES LEGADO")
                     {
-                        presenter.ExecutarBaixarDocumento(cbFaculdade.Text, cbPlataforma.Text, cbCampus.Text, cbSemestre.Text, "Suspensao");
+                        presenter.ExecutarBaixarDocumentoLegado(cbFaculdade.Text, cbPlataforma.Text, cbCampus.Text, cbSemestre.Text, "Suspensao");
                     }
                     else
                     {
 
                     }
+                    break;
+                case "EXPORTAR DRM":
+                    if (cbPlataforma.Text.ToUpper() == "FIES LEGADO")
+                    {
+                        presenter.ExecutarExportarRelatoriosLegado(cbFaculdade.Text, cbPlataforma.Text, cbCampus.Text, cbSemestre.Text, "DRM");
+                    }
+                    else
+                    {
+
+                    }
+                    break;
+                case "EXPORTAR DRD":
+                    if (cbPlataforma.Text.ToUpper() == "FIES LEGADO")
+                    {
+                        presenter.ExecutarExportarRelatoriosLegado(cbFaculdade.Text, cbPlataforma.Text, cbCampus.Text, cbSemestre.Text, "DRD");
+                    }
+                    else
+                    {
+
+                    }
+                    break;
+                case "EXPORTAR DRT":
+                    if (cbPlataforma.Text.ToUpper() == "FIES LEGADO")
+                    {
+                        presenter.ExecutarExportarRelatoriosLegado(cbFaculdade.Text, cbPlataforma.Text, cbCampus.Text, cbSemestre.Text, "DRT");
+                    }
+                    else
+                    {
+
+                    }
+                    break;
+                case "EXPORTAR SUSPENSÃO":
+                    if (cbPlataforma.Text.ToUpper() == "FIES LEGADO")
+                    {
+                        presenter.ExecutarExportarRelatoriosLegado(cbFaculdade.Text, cbPlataforma.Text, cbCampus.Text, cbSemestre.Text, "SUSPENSÃO");
+                    }
+                    else
+                    {
+
+                    }
+                    break;
+                case "EXPORTAR DRI":
                     break;
                 default:
                     break;

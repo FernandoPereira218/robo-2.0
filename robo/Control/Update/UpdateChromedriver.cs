@@ -11,7 +11,7 @@ namespace robo.Control.Update
         private static IWebDriver Driver;
         public static void DownloadChromedriver()
         {
-            Driver = Robo.Util.StartBrowser("https://chromedriver.chromium.org/downloads", "/driver/", headless:true);
+            Driver = Robo.Util.StartBrowser("https://chromedriver.chromium.org/downloads", downloadFldr:true, headless:true);
             var downloadLinks = Driver.FindElements(By.ClassName("XqQF9c"));
             IWebElement element = downloadLinks[1];
             string versao = element.Text;

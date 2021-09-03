@@ -114,12 +114,12 @@ namespace Robo
         /// <summary>
         /// Inicia nova sessão do browser.
         /// </summary>
-        public static IWebDriver StartBrowser(string url, string downloadFldr = "", bool firefox = true, bool headless = false)
+        public static IWebDriver StartBrowser(string url, bool downloadFldr = false, bool firefox = true, bool headless = false)
         {
             IWebDriver driver;
 
             string downloadFolder = "";
-            if (downloadFldr != "")
+            if (downloadFldr == true)
             {
                 CreateDirectory("RelatorioExportacao\\");
                 downloadFolder = Directory.GetCurrentDirectory() + "\\RelatorioExportacao\\";
@@ -415,7 +415,7 @@ namespace Robo
             return cpf.EndsWith(digito);
         }
 
-        public static void SalvarArquivos(IWebDriver Driver, string tipoRelatorio, string campus = "")
+        public static void SalvarArquivos(IWebDriver Driver, string tipoRelatorio, string campus = "", string semestre = "")
         {
             if (Driver.PageSource.Contains("Nenhuma informação disponível") == true)
             {
@@ -440,7 +440,7 @@ namespace Robo
             {
                 String userRoot = System.Environment.GetEnvironmentVariable("USERPROFILE");
                 String downloadFolder = System.IO.Path.Combine(userRoot, "Downloads");
-                string nomeArquivo = DateTime.Now.ToString("dd-MM-yy") + campus + ".xls";
+                string nomeArquivo = DateTime.Now.ToString("dd-MM-yy") + campus + "_" + semestre + ".xls";
                 CreateDirectory(downloadFolder + "\\Relatório Exportacao");
                 string caminho = downloadFolder + "\\Relatório Exportacao\\" + tipoRelatorio + " " + nomeArquivo;
                 File.Copy(item, caminho, true);

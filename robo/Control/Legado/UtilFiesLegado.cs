@@ -85,5 +85,25 @@ namespace robo.Control.Legado
             }
             return false;
         }
+        public string SelecionarTipoRelatorio(IWebDriver Driver, string tipoRelatorio)
+        {
+            switch (tipoRelatorio)
+            {
+                case "DRM":
+                    Util.ClickDropDown(Driver, "id", "co_finalidade_aditamento", "Aditamento de Renovação");
+                    return "Aditamento de Renovação";
+                case "DRT":
+                    Util.ClickDropDown(Driver, "id", "co_finalidade_aditamento", "Aditamento de Transferência");
+                    return "Aditamento de Transferência";
+                case "DRD":
+                    Util.ClickDropDown(Driver, "id", "co_finalidade_aditamento", "Aditamento de Dilatação");
+                    return "Aditamento de Dilatação";
+                case "Suspensao":
+                    Util.ClickDropDown(Driver, "id", "co_finalidade_aditamento", "Suspensão");
+                    return "Suspensão";
+                default:
+                    return string.Empty;
+            }
+        }
     }
 }
