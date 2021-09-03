@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace robo.Control
 {
-    public class Aditamento
+    public class AditamentoLegado
     {
         static IWebDriver Driver;
         private UtilFiesLegado fiesLegadoutil = new UtilFiesLegado();

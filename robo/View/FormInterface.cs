@@ -452,12 +452,18 @@ namespace Robo
                 case "ADITAMENTO":
                     if (cbPlataforma.Text.ToUpper() == "FIES LEGADO")
                     {
-                        presenter.ExecutarAditamento(cbSemestre.Text, cbFaculdade.Text, cbPlataforma.Text, cbCampus.Text);
+                        presenter.ExecutarAditamentoLegado(cbSemestre.Text, cbFaculdade.Text, cbPlataforma.Text, cbCampus.Text);
                     }
                     else
                     {
 
                     }
+                    break;
+                case "IMPORTAR DRI PARA BANCO DE DADOS":
+                    presenter.ExecutarDRI(cbFaculdade.Text, cbPlataforma.Text, cbCampus.Text, cbSituacao.Text, baixarDRI: false);
+                    break;
+                case "BAIXAR DRI":
+                    presenter.ExecutarDRI(cbFaculdade.Text, cbPlataforma.Text, cbCampus.Text, cbSituacao.Text, baixarDRI: true);
                     break;
                 default:
                     break;
