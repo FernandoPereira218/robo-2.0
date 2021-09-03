@@ -16,10 +16,10 @@ namespace robo.Control.Relatorios
         private IWebDriver Driver;
         private UtilFiesLegado fiesLegadoutil = new UtilFiesLegado();
 
-        public void BaixarDocumentoFiesLegado(IWebDriver driver, TOAluno aluno, string campusAtual, string semestre, string tipoRelatorio)
+        public void BaixarDocumentoFiesLegado(IWebDriver driver, TOAluno aluno, string semestre, string tipoRelatorio)
         {
             Driver = driver;
-            string selRelatorio = SelecionarTipoRelatorio(tipoRelatorio);
+            string selRelatorio = fiesLegadoutil.SelecionarTipoRelatorio(Driver, tipoRelatorio);
             fiesLegadoutil.WaitinLoading(Driver);
             Util.ClickAndWriteById(Driver, "cpf", aluno.Cpf);
             Util.ClickDropDown(Driver, "id", "coSemestreAditamento", semestre);
@@ -149,25 +149,6 @@ namespace robo.Control.Relatorios
             aluno.Extraido = complemento;
             Util.EditarConclusaoAluno(aluno, conclusao);
         }
-        private string SelecionarTipoRelatorio(string tipoRelatorio)
-        {
-            switch (tipoRelatorio)
-            {
-                case "DRM":
-                    Util.ClickDropDown(Driver, "id", "co_finalidade_aditamento", "Aditamento de Renovação");
-                    return "Aditamento de Renovação";
-                case "DRT":
-                    Util.ClickDropDown(Driver, "id", "co_finalidade_aditamento", "Aditamento de Transferência");
-                    return "Aditamento de Transferência";
-                case "DRD":
-                    Util.ClickDropDown(Driver, "id", "co_finalidade_aditamento", "Aditamento de Dilatação");
-                    return "Aditamento de Dilatação";
-                case "Suspensao":
-                    Util.ClickDropDown(Driver, "id", "co_finalidade_aditamento", "Suspensão");
-                    return "Suspensão";
-                default:
-                    return string.Empty;
-            }
-        }
+        
     }
 }

@@ -222,6 +222,7 @@
     <Compile Include="Control\Novo\MetodosFiesNovo.cs" />
     <Compile Include="Control\Relatorios\BaixarDocumentos.cs" />
     <Compile Include="Control\Relatorios\DRI.cs" />
+    <Compile Include="Control\Relatorios\ExportarRelatorios.cs" />
     <Compile Include="Control\Update\UpdateChromedriver.cs" />
     <Compile Include="Login.cs">
       <SubType>Form</SubType>
