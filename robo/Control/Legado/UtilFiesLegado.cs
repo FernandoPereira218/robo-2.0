@@ -62,5 +62,9 @@ namespace robo.Control.Legado
                 carr = Carregando.Displayed;
             }
         }
+        public void FazerLogout(IWebDriver Driver)
+        {
+            Util.ClickButtonsByXpath(Driver, "//a[contains(text(),'Sair')]");
+        }
     }
 }

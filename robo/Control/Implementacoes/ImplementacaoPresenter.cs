@@ -1,4 +1,6 @@
-﻿using robo.pgm;
+﻿using OpenQA.Selenium;
+using robo.Control.Legado;
+using robo.pgm;
 using Robo;
 using System;
 using System.Collections.Generic;
@@ -15,7 +17,7 @@ namespace robo.Control.Implementacoes
         {
             SetForm(forms);
         }
-            
+
         public string BuscarNunSemestre(string semestreAno)
         {
             List<TOSemestre> semestre = Dados.SelectSemestre();
@@ -27,6 +29,55 @@ namespace robo.Control.Implementacoes
                 }
             }
             return null;
+        }
+
+        public void ExecutarAditamento(string semestreAtual, string faculdade, string tipoFies, string campus)
+        {
+            string numSemestre = BuscarNunSemestre(semestreAtual);
+            List<TOAluno> listaAlunos = SelecionarAlunosPorPlataforma(tipoFies);
+            List<TOLogin> logins = Dados.SelectLoginPorIESePlataforma(faculdade, tipoFies, campus, false);
+            UtilFiesLegado fiesLegadoutil = new UtilFiesLegado();
+            Aditamento aditamento = new Aditamento();
+
+            IWebDriver Driver = Util.StartBrowser("http://sisfies.mec.gov.br/");
+            foreach (TOLogin login in logins)
+            {
+                fiesLegadoutil.RealizarLoginSucesso(login, Driver);
+                fiesLegadoutil.SelecionarPerfilPresidencia(Driver);
+                foreach (TOAluno aluno in listaAlunos)
+                {
+                    if (aluno.Campus.ToUpper() == login.Campus.ToUpper())
+                    {
+                        aditamento.AditamentoFiesLegado(Driver, login, aluno, numSemestre);
+                    }
+                }
+                fiesLegadoutil.FazerLogout(Driver);
+            }
+            Driver.Close();
+            Driver.Dispose();
+        }
+
+        private List<TOAluno> SelecionarAlunosPorPlataforma(string plataforma)
+        {
+            List<TOAluno> alunosFies = new List<TOAluno>();
+            alunosFies = Dados.SelectAlunoWhere(plataforma);
+            foreach (TOAluno aluno in alunosFies)
+            {
+                TratarDadosAluno(aluno);
+
+                if (aluno.AproveitamentoAtual.Contains("TRANCADO") == true)
+                {
+                    aluno.Conclusao = "Trancado";
+                    Dados.UpdateAluno(aluno);
+                }
+
+            }
+
+            if (alunosFies.Count == 0)
+            {
+                throw new Exception(String.Format("Nenhum aluno encontrado na plataforma escolhida ({0}). Cheque se o banco de dados contém alunos da plataforma que deseja realizar os aditamentos.", plataforma));
+            }
+            return alunosFies;
         }
 
         public List<string> PreencherListaExecucao()

@@ -12,53 +12,65 @@ namespace robo.Control
 {
     public class Aditamento
     {
-
         static IWebDriver Driver;
         private UtilFiesLegado fiesLegadoutil = new UtilFiesLegado();
-        private void AditamentoFiesLegado(TOLogin login, TOAluno aluno, string numSemestre)
+        public void AditamentoFiesLegado(IWebDriver driver, TOLogin login, TOAluno aluno, string numSemestre)
         {
-            Driver = Util.StartBrowser("http://sisfies.mec.gov.br/");
-
-            fiesLegadoutil.RealizarLoginSucesso(login, Driver);
-
-            fiesLegadoutil.SelecionarPerfilPresidencia(Driver);
-
-            //Aqui começa o aditamento
-            //            MetodoAditamento(login, alunos, numSemestre);
-
-            Util.ClickButtonsByCss(Driver, "div:nth-child(3) > ul > .menu-button:nth-child(2) > a");
-            if (Dados.DRIExists(aluno.Cpf))
+            Driver = driver;
+            try
             {
-                TODRI driAtual = Dados.GetDRI(aluno.Cpf);
-                string url = string.Format("http://sisfies.mec.gov.br/cpsa/aditamento/formulario/co_inscricao/{0}/sem/{1}", driAtual.DRI, numSemestre);
-                Driver.Url = url;
+                //Aqui começa o aditamento
+                //            MetodoAditamento(login, alunos, numSemestre);
 
-                if (Driver.PageSource.Contains("Voltar para a página principal"))
+                Util.ClickButtonsByCss(Driver, "div:nth-child(3) > ul > .menu-button:nth-child(2) > a");
+                if (Dados.DRIExists(aluno.Cpf))
                 {
-                    Util.EditarConclusaoAluno(aluno, "Página não encontrada");
-                    Driver.Url = "http://sisfies.mec.gov.br/cpsa/aditamento";
-                    return;
-                }
+                    TODRI driAtual = Dados.GetDRI(aluno.Cpf);
+                    string url = string.Format("http://sisfies.mec.gov.br/cpsa/aditamento/formulario/co_inscricao/{0}/sem/{1}", driAtual.DRI, numSemestre);
+                    Driver.Url = url;
 
-                fiesLegadoutil.WaitinLoading(Driver);
-
-                if (VerificaErro(aluno) == false)
-                {
-                    //Mensagem que não aparece somente quando o aluno já foi aditado anteriomente
-                    if (Driver.PageSource.Contains("igual ou superior a 75% no semestre"))
+                    if (Driver.PageSource.Contains("Voltar para a página principal"))
                     {
-                        PreencherFormulario(aluno);
+                        Util.EditarConclusaoAluno(aluno, "Página não encontrada");
+                        Driver.Url = "http://sisfies.mec.gov.br/cpsa/aditamento";
+                        return;
+                    }
+
+                    fiesLegadoutil.WaitinLoading(Driver);
+
+                    if (VerificaErro(aluno) == false)
+                    {
+                        //Mensagem que não aparece somente quando o aluno já foi aditado anteriomente
+                        if (Driver.PageSource.Contains("igual ou superior a 75% no semestre"))
+                        {
+                            PreencherFormulario(aluno);
+                        }
+                        else
+                        {
+                            Util.EditarConclusaoAluno(aluno, "Acadêmico aditado anteriormente");
+                        }
                     }
                     else
                     {
-                        Util.EditarConclusaoAluno(aluno, "Acadêmico aditado anteriormente");
+                        return;
                     }
                 }
                 else
                 {
-                    return;
+                    Util.EditarConclusaoAluno(aluno, "DRI não encontrada");
                 }
 
+            }
+            catch (Exception e)
+            {
+                Driver.Quit();
+                Driver.Dispose();
+                throw e;
+            }
+            finally
+            {
+                //Driver.Quit();
+                //Driver.Dispose();
             }
 
         }
@@ -73,7 +85,6 @@ namespace robo.Control
             }
             return false;
         }
-
         private void PreencherFormulario(TOAluno aluno)
         {
             /*Clica no Turno, casos seja um dropdown
@@ -108,8 +119,15 @@ namespace robo.Control
             }
             SystemSounds.Beep.Play();
 
+            while (Driver.Url.StartsWith("http://sisfies.mec.gov.br/cpsa/aditamento/formulario/") == true)
+            {
+                System.Threading.Thread.Sleep(100);
+            }
+
+            //Marca resultado aditamento
+            VerificaErro(aluno);
         }
-        static void PreencheReceitas(TOAluno aluno)
+        private void PreencheReceitas(TOAluno aluno)
         {
             //Clica e Digita no Valor da Semestralidade SEM desconto – Grade Curricular Regular
             Util.ClickAndWriteById(Driver, "vl_semestre_sem_desconto", aluno.ReceitaBruta);
@@ -129,7 +147,7 @@ namespace robo.Control
             //Pegar Valor a ser pago no semestre ATUAL com recursos do estudante - 
             aluno.ValorPagoRecursoEstudante = Driver.FindElement(By.Id("vlMesSemestreEstudante")).Text;
         }
-        static void CasoComAproveitamento(string justificativaAluno)
+        private void CasoComAproveitamento(string justificativaAluno)
         {
             //O estudante teve aproveitamento acadêmico igual ou superior a 75% no semestre ? SIM
             Util.ClickButtonsByCss(Driver, "#divAproveitamentoAcademico input:nth-child(3)");
@@ -164,7 +182,7 @@ namespace robo.Control
                 }
             }
         }
-        static void Justificativa(string justificativaAluno)
+        private void Justificativa(string justificativaAluno)
         {
             IWebElement justificativa = Driver.FindElement(By.Id("divVariacao"));
             if (justificativa.Displayed)
@@ -184,7 +202,7 @@ namespace robo.Control
                 }
             }
         }
-        static void CasoSemAproveitamento(TOAluno aluno)
+        private void CasoSemAproveitamento(TOAluno aluno)
         {
             //tratamento do erro de caso a pessoa estiver na 3º reconsideração na realidade
             if (!Driver.FindElement(By.Id("divRejeicaoAutomatica")).Displayed)
@@ -226,6 +244,7 @@ namespace robo.Control
                 }
             }
             Util.EditarConclusaoAluno(aluno, "Rejeitou excesso de reprovação");
+            Driver.Url = "http://sisfies.mec.gov.br/cpsa/aditamento";
         }
     }
 }

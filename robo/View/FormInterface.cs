@@ -365,6 +365,8 @@ namespace Robo
         }
         private void ExecutaPrograma(bool CPFUnico = false)
         {
+            //RodarPrograma();
+            //return;
             try
             {
                 if (CPFUnico == true) //Versão CAE, buscar apenas um aluno
@@ -405,7 +407,7 @@ namespace Robo
                     logins = Dados.SelectLoginPorIESePlataforma(cbFaculdade.Text, cbPlataforma.Text, cbCampus.Text, false);
                 }
 
-                listaAlunos = SelecionarAlunosPorPlataforma(listaAlunos, cbPlataforma.Text);
+                listaAlunos = SelecionarAlunosPorPlataforma(cbPlataforma.Text);
                 switch (cbPlataforma.Text.ToUpper().Trim())
                 {
                     case "FIES LEGADO":
@@ -441,6 +443,24 @@ namespace Robo
             catch (Exception exception)
             {
                 MessageBox.Show(exception.Message, "Erro!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+        private void RodarPrograma()
+        {
+            switch (cbExecucao.Text.ToUpper())
+            {
+                case "ADITAMENTO":
+                    if (cbPlataforma.Text.ToUpper() == "FIES LEGADO")
+                    {
+                        presenter.ExecutarAditamento(cbSemestre.Text, cbFaculdade.Text, cbPlataforma.Text, cbCampus.Text);
+                    }
+                    else
+                    {
+
+                    }
+                    break;
+                default:
+                    break;
             }
         }
 
@@ -518,7 +538,7 @@ namespace Robo
         }
 
         //Após refatoração dos FIES´s trazer dados já filtrados
-        private List<TOAluno> SelecionarAlunosPorPlataforma(List<TOAluno> alunos, string plataforma, string cpfUnico = "")
+        private List<TOAluno> SelecionarAlunosPorPlataforma(string plataforma, string cpfUnico = "")
         {
             List<TOAluno> alunosFies = new List<TOAluno>();
             alunosFies = Dados.SelectAlunoWhere(plataforma);
