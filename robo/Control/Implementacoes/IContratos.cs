@@ -22,6 +22,7 @@ namespace robo.Control.Implementacoes
             List<string> PreencherListaExecucao();
             List<string> PreencherListaExecucaoPorPlataforma(string plataforma);
             void TratarDadosAluno(TOAluno aluno);
+            void ExecutarAditamento(string semestreAtual, string faculdade, string tipoFies, string campus);
         }
     }
 }
