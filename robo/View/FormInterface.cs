@@ -465,6 +465,46 @@ namespace Robo
                 case "BAIXAR DRI":
                     presenter.ExecutarDRI(cbFaculdade.Text, cbPlataforma.Text, cbCampus.Text, cbSituacao.Text, baixarDRI: true);
                     break;
+                case "BAIXAR DRM":
+                    if (cbPlataforma.Text.ToUpper() == "FIES LEGADO")
+                    {
+                        presenter.ExecutarBaixarDocumento(cbFaculdade.Text, cbPlataforma.Text, cbCampus.Text, cbSemestre.Text, "DRM");
+                    }
+                    else
+                    {
+
+                    }
+                    break;
+                case "BAIXAR DRT":
+                    if (cbPlataforma.Text.ToUpper() == "FIES LEGADO")
+                    {
+                        presenter.ExecutarBaixarDocumento(cbFaculdade.Text, cbPlataforma.Text, cbCampus.Text, cbSemestre.Text, "DRT");
+                    }
+                    else
+                    {
+
+                    }
+                    break;
+                case "BAIXAR DRD":
+                    if (cbPlataforma.Text.ToUpper() == "FIES LEGADO")
+                    {
+                        presenter.ExecutarBaixarDocumento(cbFaculdade.Text, cbPlataforma.Text, cbCampus.Text, cbSemestre.Text, "DRD");
+                    }
+                    else
+                    {
+
+                    }
+                    break;
+                case "SUSPENSÃO":
+                    if (cbPlataforma.Text.ToUpper() == "FIES LEGADO")
+                    {
+                        presenter.ExecutarBaixarDocumento(cbFaculdade.Text, cbPlataforma.Text, cbCampus.Text, cbSemestre.Text, "Suspensao");
+                    }
+                    else
+                    {
+
+                    }
+                    break;
                 default:
                     break;
             }

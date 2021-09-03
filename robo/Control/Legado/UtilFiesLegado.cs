@@ -70,5 +70,20 @@ namespace robo.Control.Legado
         {
             Util.ClickButtonsByXpath(Driver, "//a[contains(text(),'Validação pela CPSA Fies')]");
         }
+        public void SelecionarMenuBaixarDocumentos(IWebDriver Driver)
+        {
+            Util.ClickButtonsByCss(Driver, "div:nth-child(3) > ul > .menu-button:nth-child(3) > a");
+        }
+        public bool VerificaErro(IWebDriver Driver, TOAluno aluno)
+        {
+            IWebElement listaME = Driver.FindElement(By.Id("lista-mensageiro-erros"));
+            if (listaME.Displayed)
+            {
+                IWebElement listaF = listaME.FindElement(By.XPath(".//li"));
+                Util.EditarConclusaoAluno(aluno, listaF.Text);
+                return true;
+            }
+            return false;
+        }
     }
 }

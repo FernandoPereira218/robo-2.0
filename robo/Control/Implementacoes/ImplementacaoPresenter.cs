@@ -92,6 +92,31 @@ namespace robo.Control.Implementacoes
             Driver.Close();
             Driver.Dispose();
         }
+        public void ExecutarBaixarDocumento(string faculdade, string tipoFies, string campus, string semestre, string tipoDocumento)
+        {
+            BuscarLoginsEAlunos(faculdade, tipoFies, campus, ref listaAlunos, ref listaLogins, false);
+            UtilFiesLegado fiesLegadoUtil = new UtilFiesLegado();
+
+            semestre = semestre.Replace("1/", "1º/");
+            semestre = semestre.Replace("2/", "2º/");
+            BaixarDocumentos baixarDocumentos = new BaixarDocumentos();
+            IWebDriver Driver = Util.StartBrowser("http://sisfies.mec.gov.br/");
+            
+            foreach (TOLogin login in listaLogins)
+            {
+                fiesLegadoUtil.RealizarLoginSucesso(login, Driver);
+                fiesLegadoUtil.SelecionarPerfilPresidencia(Driver);
+                fiesLegadoUtil.SelecionarMenuBaixarDocumentos(Driver);
+                foreach (TOAluno aluno in listaAlunos)
+                {
+                    baixarDocumentos.BaixarDocumentoFiesLegado(Driver, aluno, campus, semestre, tipoDocumento);
+                }
+
+                fiesLegadoUtil.FazerLogout(Driver);
+            }
+            Driver.Close();
+            Driver.Dispose();
+        }
 
         public string BuscarNunSemestre(string semestreAno)
         {
@@ -174,6 +199,6 @@ namespace robo.Control.Implementacoes
             Dados.TratarTipoFIES(aluno);
         }
 
-
+       
     }
 }

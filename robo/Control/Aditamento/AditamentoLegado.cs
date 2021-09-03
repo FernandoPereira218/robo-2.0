@@ -38,7 +38,7 @@ namespace robo.Control
 
                     fiesLegadoutil.WaitinLoading(Driver);
 
-                    if (VerificaErro(aluno) == false)
+                    if (fiesLegadoutil.VerificaErro(Driver, aluno) == false)
                     {
                         //Mensagem que não aparece somente quando o aluno já foi aditado anteriomente
                         if (Driver.PageSource.Contains("igual ou superior a 75% no semestre"))
@@ -74,17 +74,7 @@ namespace robo.Control
             }
 
         }
-        private bool VerificaErro(TOAluno aluno)
-        {
-            IWebElement listaME = Driver.FindElement(By.Id("lista-mensageiro-erros"));
-            if (listaME.Displayed)
-            {
-                IWebElement listaF = listaME.FindElement(By.XPath(".//li"));
-                Util.EditarConclusaoAluno(aluno, listaF.Text);
-                return true;
-            }
-            return false;
-        }
+        
         private void PreencherFormulario(TOAluno aluno)
         {
             /*Clica no Turno, casos seja um dropdown
@@ -125,7 +115,7 @@ namespace robo.Control
             }
 
             //Marca resultado aditamento
-            VerificaErro(aluno);
+            fiesLegadoutil.VerificaErro(Driver, aluno);
         }
         private void PreencheReceitas(TOAluno aluno)
         {
