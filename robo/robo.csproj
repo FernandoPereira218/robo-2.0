@@ -220,6 +220,7 @@
     <Compile Include="Control\Implementacoes\ImplementacaoPresenter.cs" />
     <Compile Include="Control\Legado\UtilFiesLegado.cs" />
     <Compile Include="Control\Novo\MetodosFiesNovo.cs" />
+    <Compile Include="Control\Relatorios\BaixarDocumentos.cs" />
     <Compile Include="Control\Relatorios\DRI.cs" />
     <Compile Include="Control\Update\UpdateChromedriver.cs" />
     <Compile Include="Login.cs">

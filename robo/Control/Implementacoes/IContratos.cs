@@ -25,6 +25,7 @@ namespace robo.Control.Implementacoes
             void ExecutarAditamentoLegado(string semestreAtual, string faculdade, string tipoFies, string campus);
             void ExecutarAditamentoNovo(string faculdade, string tipoFies);
             void ExecutarDRI(string faculdade, string tipoFies, string campus, string situacaoDRI, bool baixarDRI);
+            void ExecutarBaixarDocumento(string faculdade, string tipoFies, string campus, string semestre, string tipoDocumento);
         }
     }
 }
