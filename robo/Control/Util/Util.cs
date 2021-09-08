@@ -476,7 +476,7 @@ namespace Robo
         public static void ScrollToElementByID(IWebDriver Driver, string button)
         {
             var element = Driver.FindElement(By.Id(button));
-            ((IJavaScriptExecutor)Driver).ExecuteScript(string.Format("window.scrollTo({0}, {1})", element.Location.X, element.Location.Y - 100));
+            ((IJavaScriptExecutor)Driver).ExecuteScript(string.Format("window.scrollTo({0}, {1})", element.Location.X, element.Location.Y - 150));
         }
 
         public static void ScrollToElementByXpath(IWebDriver Driver, string button)
@@ -576,12 +576,12 @@ namespace Robo
             CSVManager.CSVManager.ExportCSV<TOAluno>(fileName, dic, alunos);
         }
 
-        public static void EditarConclusaoAluno(TOAluno aluno, string conclusao)
+        public static void EditarConclusaoAluno(TOAluno aluno, string conclusao, string tipoAluno = "ALUNO")
         {
             aluno.Conclusao = conclusao;
             aluno.HorarioConclusao = string.Format("{0:dd/MM/yyyy HH:mm}", DateTime.Now);
 
-            Dados.UpdateAluno(aluno);
+            Dados.UpdateAluno(aluno, tipoAluno);
         }
         public static void WaitPageToLoad(IWebDriver Driver)
         {
@@ -590,6 +590,14 @@ namespace Robo
             {
                 System.Threading.Thread.Sleep(100);
                 result = (string)((IJavaScriptExecutor)Driver).ExecuteScript("return document.readyState");
+            }
+        }
+        public static void ApagaArquivos(string path)
+        {
+            string[] arquivos = Directory.GetFiles(path);
+            for (int i = 0; i < arquivos.Length; i++)
+            {
+                File.Delete(arquivos[i]);
             }
         }
 

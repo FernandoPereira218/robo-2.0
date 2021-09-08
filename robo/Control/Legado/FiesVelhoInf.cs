@@ -349,18 +349,12 @@ namespace robo.pgm
         public static string BaixarDRM(ref TOAluno aluno)
         {
             Util.ClickButtonsById(Driver, "imprimirDrm");
-            String userRoot = System.Environment.GetEnvironmentVariable("USERPROFILE");
-            String downloadFolder = Path.Combine(userRoot, "Downloads");
+            string userRoot = System.Environment.GetEnvironmentVariable("USERPROFILE");
+            string downloadFolder = Path.Combine(userRoot, "Downloads");
             DirectoryInfo directory = new DirectoryInfo(downloadFolder);
             string sourcecode = Driver.PageSource;
             FileInfo myFile = directory.GetFiles().OrderByDescending(f => f.LastWriteTime).First();
             bool downloading = true;
-            //while (downloading)
-            //{
-            //    System.Threading.Thread.Sleep(1000);
-            //    myFile = directory.GetFiles().OrderByDescending(f => f.LastWriteTime).First();
-            //    downloading = myFile.Name.EndsWith(".crdownload");
-            //}
             while (myFile.Name.EndsWith(".zip") == false)
             {
                 System.Threading.Thread.Sleep(1000);
@@ -368,7 +362,7 @@ namespace robo.pgm
                 downloading = myFile.Name.EndsWith(".crdownload");
             }
 
-            String diretorioDRM = "DRM_Informações";
+            string diretorioDRM = "DRM_Informações";
             Util.CreateDirectory(diretorioDRM);
             ApagaArquivos(diretorioDRM);
 

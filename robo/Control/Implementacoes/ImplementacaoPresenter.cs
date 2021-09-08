@@ -1,6 +1,7 @@
 ﻿using OpenQA.Selenium;
 using robo.Control.Legado;
 using robo.Control.Relatorios;
+using robo.Control.Relatorios.FIES_Legado;
 using robo.pgm;
 using Robo;
 using System;
@@ -143,6 +144,31 @@ namespace robo.Control.Implementacoes
             Driver.Close();
             Driver.Dispose();
         }
+        public void ExtrairInformacoesDRMLegado(string faculdade, string tipoFies, string campus, string semestre)
+        {
+            BuscarLoginsEAlunos(faculdade, tipoFies, campus, ref listaAlunos, ref listaLogins, admin: false, exportar: false);
+            UtilFiesLegado fiesLegadoUtil = new UtilFiesLegado();
+            ExtrairInformacoesDRM extrairInformacoesDRM = new ExtrairInformacoesDRM();
+            semestre = semestre.Replace("1/", "1º/");
+            semestre = semestre.Replace("2/", "2º/");
+
+            IWebDriver Driver = Util.StartBrowser("http://sisfies.mec.gov.br/");
+
+            foreach (TOLogin login in listaLogins)
+            {
+                fiesLegadoUtil.RealizarLoginSucesso(login, Driver);
+                fiesLegadoUtil.SelecionarPerfilPresidencia(Driver);
+                fiesLegadoUtil.SelecionarMenuBaixarDocumentos(Driver);
+                foreach (TOAluno aluno in listaAlunos)
+                {
+                    extrairInformacoesDRM.ExtrairDRM(Driver, aluno, campus, semestre);
+                }
+
+                fiesLegadoUtil.FazerLogout(Driver);
+            }
+            Driver.Close();
+            Driver.Dispose();
+        }
 
         public string BuscarNunSemestre(string semestreAno)
         {
@@ -224,7 +250,6 @@ namespace robo.Control.Implementacoes
             Dados.TratarCampusAluno(aluno);
             Dados.TratarTipoFIES(aluno);
         }
-
 
     }
 }
