@@ -545,9 +545,20 @@ namespace Robo
 
                     }
                     break;
+                case "EXTRAIR INFORMAÇÕES DRM":
+                    if (cbPlataforma.Text.ToUpper() == "FIES LEGADO")
+                    {
+                        presenter.ExtrairInformacoesDRMLegado(cbFaculdade.Text, cbPlataforma.Text, cbCampus.Text, cbSemestre.Text);
+                    }
+                    else
+                    {
+
+                    }
+                    break;
                 case "EXPORTAR DRI":
                     break;
                 default:
+                    MessageBox.Show("Favor criar o CASE antes de rodar!!!!!");
                     break;
             }
         }

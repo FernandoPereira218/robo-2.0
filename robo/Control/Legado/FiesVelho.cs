@@ -712,23 +712,17 @@ namespace Robo
                 case "DRM":
                     Util.ClickDropDown(Driver, "id", "co_finalidade_aditamento", "Aditamento de Renovação");
                     return "Aditamento de Renovação";
-                    break;
                 case "DRT":
                     Util.ClickDropDown(Driver, "id", "co_finalidade_aditamento", "Aditamento de Transferência");
                     return "Aditamento de Transferência";
-                    break;
                 case "DRD":
                     Util.ClickDropDown(Driver, "id", "co_finalidade_aditamento", "Aditamento de Dilatação");
                     return "Aditamento de Dilatação";
-                    break;
                 case "Suspensao":
                     Util.ClickDropDown(Driver, "id", "co_finalidade_aditamento", "Suspensão");
                     return "Suspensão";
-                    break;
-
                 default:
                     return string.Empty;
-                    break;
             }
         }
 
