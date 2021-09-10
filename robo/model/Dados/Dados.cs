@@ -146,7 +146,7 @@ namespace Robo
                 Dictionary<string, string> dic = new Dictionary<string, string>();
                 dic.Add("Faculdade", IES);
                 dic.Add("Plataforma", plataforma);
-                dic.Add("Admin", "Não");
+                dic.Add("Admin", "Sim");
                 if (plataforma == "FIES Legado" && campus != string.Empty)
                 {
                     dic.Add("Campus", campus);

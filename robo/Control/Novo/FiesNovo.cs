@@ -554,20 +554,8 @@ namespace Robo
             WaitPageLoading("modal-backdrop fade", true);
             if (Driver.PageSource.Contains("MDLalerta_"))
             {
+
                 //((IJavaScriptExecutor)Driver).ExecuteScript("document.querySelector('btn btn-primary btn-ok').click();");
-                if (Driver.PageSource.Contains("Estudante transferido no semestre.") == true)
-                {
-                    aluno.Conclusao = "Estudante transferido no semestre.";
-                    Driver.FindElement(By.ClassName("btn-ok")).Click();
-                    element = Driver.FindElement(By.Id("btnVoltar"));
-                    ((IJavaScriptExecutor)Driver).ExecuteScript(string.Format("window.scrollTo({0}, {1})", element.Location.X, element.Location.Y - 100));
-                    Driver.FindElement(By.Id("btnVoltar")).Click();
-                    //aluno.ValorAditadoFinanciamento = valorPagoRecursosFIES;
-                    //aluno.ValorPagoRecursoEstudante = valorPagoRecursosEstudante;
-                    aluno.HorarioConclusao = DateTime.Now.ToString();
-                    // Dados.UpdateAluno(aluno);
-                    return;
-                }
                 if (Driver.PageSource.Contains("inferior ao Percentual mínimo de semestralidade atual") == false)
                 {
                     Driver.FindElement(By.ClassName("btn-ok")).Click();
@@ -589,9 +577,16 @@ namespace Robo
                 }
                 else
                 {
-                    IWebElement alertElement = Driver.FindElement(By.XPath("//div[@class='modal hide fade in']/div[2]"));
-                    alertMessage = alertElement.Text;
-                    Driver.FindElement(By.ClassName("btn-ok")).Click();
+                    if (Driver.PageSource.Contains("Estudante transferido no semestre.") == true)
+                    {
+                        Driver.FindElement(By.ClassName("btn-ok")).Click();
+                    }
+                    else
+                    {
+                        IWebElement alertElement = Driver.FindElement(By.XPath("//div[@class='modal hide fade in']/div[2]"));
+                        alertMessage = alertElement.Text;
+                        Driver.FindElement(By.ClassName("btn-ok")).Click();
+                    }
                 }
             }
 
