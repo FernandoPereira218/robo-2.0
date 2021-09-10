@@ -251,31 +251,22 @@ namespace robo.Control.Novo
 
                 if (Driver.PageSource.Contains("Não iniciado pela CPSA") == true)
                 {
-                    if (aluno.HistoricoAproveitamento.Contains("Encerrado"))
-                    {
-                        string temp = "aawdawdawd";
-                    }
                     Util.ScrollToElementByID(Driver, "btnAditarEstudante");
                     Util.ClickButtonsById(Driver, "btnAditarEstudante");
 
-                    WaitForLoading();
+                    IWebElement ajax = Driver.FindElement(By.Id("ajaxStatus"));
+
+                    while (ajax.Displayed == true)
+                    {
+                        System.Threading.Thread.Sleep(1000);
+                    }
                     var executor = (IJavaScriptExecutor)Driver;
 
                     if (Driver.PageSource.ToUpper().Contains("ESTUDANTE TRANSFERIDO NO SEMESTRE") == true)
                     {
-                        aluno.Conclusao = "Estudante transferido no semestre.";
                         Driver.FindElement(By.ClassName("btn-ok")).Click();
-
-                        Util.ScrollToElementByID(Driver, "btnVoltar");
-                        Driver.FindElement(By.Id("btnVoltar")).Click();
-
-                        aluno.HorarioConclusao = DateTime.Now.ToString();
-                        Dados.UpdateAluno(aluno);
-                        Util.ScrollToElementByID(Driver, "btnVoltar");
-                        Util.ClickButtonsById(Driver, "btnVoltar");
-                        continue;
                     }
-
+                    WaitForLoading();
                     string erro = VerificarErroAditamento();
                     if (erro != string.Empty)
                     {
