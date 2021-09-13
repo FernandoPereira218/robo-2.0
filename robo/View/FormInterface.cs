@@ -552,7 +552,7 @@ namespace Robo
                     }
                     else
                     {
-
+                        presenter.ExtrairInformacoesDRMFiesNovo(cbFaculdade.Text, cbPlataforma.Text, cbSemestre.Text);
                     }
                     break;
                 case "EXTRAIR INFORMAÇÕES DRI":

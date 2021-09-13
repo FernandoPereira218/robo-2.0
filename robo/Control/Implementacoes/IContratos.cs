@@ -33,6 +33,7 @@ namespace robo.Control.Implementacoes
             void ExportarExtratoMensalDeRepasseLegado(string faculdade, string tipoFies, string campus, string ano, string mes);
 
             void ExecutarBaixarDRMFiesNovo(string faculdade, string tipoFies, string semestre);
+            void ExtrairInformacoesDRMFiesNovo(string faculdade, string tipoFies, string semestre);
         }
     }
 }
