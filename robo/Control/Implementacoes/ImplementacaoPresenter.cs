@@ -138,7 +138,7 @@ namespace robo.Control.Implementacoes
                 fiesLegadoUtil.SelecionarPerfilPresidencia(Driver);
                 fiesLegadoUtil.SelecionarMenuBaixarDocumentos(Driver);
 
-                exportarRelatorios.ExportarDocumentosFiesLegado(Driver, semestre, tipoRelatorio, campus);
+                exportarRelatorios.ExportarDocumentosFiesLegado(Driver, semestre, tipoRelatorio, login.Campus);
 
                 fiesLegadoUtil.FazerLogout(Driver);
             }
@@ -162,7 +162,7 @@ namespace robo.Control.Implementacoes
                 fiesLegadoUtil.SelecionarMenuBaixarDocumentos(Driver);
                 foreach (TOAluno aluno in listaAlunos)
                 {
-                    extrairInformacoesDRM.ExtrairDRM(Driver, aluno, campus, semestre);
+                    extrairInformacoesDRM.ExtrairDRM(Driver, aluno, login.Campus, semestre);
                 }
 
                 fiesLegadoUtil.FazerLogout(Driver);
@@ -186,6 +186,46 @@ namespace robo.Control.Implementacoes
                 {
                     extrairInformacoesDRI.ExecutarExtrairInformacoesDRI(Driver, aluno, situacaoDRI);
                 }
+
+                fiesLegadoUtil.FazerLogout(Driver);
+            }
+            Driver.Close();
+            Driver.Dispose();
+        }
+        public void ExecutarExportarDRILegado(string faculdade, string tipoFies, string campus, string situacaoDRI)
+        {
+            BuscarLoginsEAlunos(faculdade, tipoFies, campus, ref listaAlunos, ref listaLogins, admin: false, exportar: true);
+            UtilFiesLegado fiesLegadoUtil = new UtilFiesLegado();
+
+            IWebDriver Driver = Util.StartBrowser("http://sisfies.mec.gov.br/", downloadFldr:true);
+            ExportarDRI exportarDRI = new ExportarDRI();
+            foreach (TOLogin login in listaLogins)
+            {
+                fiesLegadoUtil.RealizarLoginSucesso(login, Driver);
+                fiesLegadoUtil.SelecionarPerfilPresidencia(Driver);
+                fiesLegadoUtil.SelecionarMenuDRI(Driver);
+
+                exportarDRI.ExportarDRILegado(Driver, login.Campus, situacaoDRI);
+
+                fiesLegadoUtil.FazerLogout(Driver);
+            }
+            Driver.Close();
+            Driver.Dispose();
+        }
+        public void ExportarExtratoMensalDeRepasseLegado(string faculdade, string tipoFies, string campus, string ano, string mes)
+        {
+            BuscarLoginsEAlunos(faculdade, tipoFies, campus, ref listaAlunos, ref listaLogins, admin: false, exportar: true);
+            UtilFiesLegado fiesLegadoUtil = new UtilFiesLegado();
+
+            IWebDriver Driver = Util.StartBrowser("http://sisfies.mec.gov.br/", downloadFldr: true);
+            ExportarExtratoMensalDeRepasse exportarExtratoMensalDeRepasse = new ExportarExtratoMensalDeRepasse();
+            foreach (TOLogin login in listaLogins)
+            {
+                fiesLegadoUtil.RealizarLoginSucesso(login, Driver);
+                fiesLegadoUtil.SelecionarPerfilPresidencia(Driver);
+                fiesLegadoUtil.SelecionarMenuExtratoMensalDeRepasse(Driver);
+
+                exportarExtratoMensalDeRepasse.ExtratoMensalDeRepasseLegado(Driver, login.Campus, ano, mes);
 
                 fiesLegadoUtil.FazerLogout(Driver);
             }

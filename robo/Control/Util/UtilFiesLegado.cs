@@ -74,6 +74,10 @@ namespace robo.Control.Legado
         {
             Util.ClickButtonsByCss(Driver, "div:nth-child(3) > ul > .menu-button:nth-child(3) > a");
         }
+        public void SelecionarMenuExtratoMensalDeRepasse(IWebDriver Driver)
+        {
+            Util.ClickButtonsByXpath(Driver, "/html/body/div[3]/div[4]/div[1]/div[4]/ul/li[1]/a");
+        }
         public bool VerificaErro(IWebDriver Driver, TOAluno aluno)
         {
             IWebElement listaME = Driver.FindElement(By.Id("lista-mensageiro-erros"));
@@ -85,6 +89,7 @@ namespace robo.Control.Legado
             }
             return false;
         }
+       
         public string SelecionarTipoRelatorio(IWebDriver Driver, string tipoRelatorio)
         {
             switch (tipoRelatorio)
