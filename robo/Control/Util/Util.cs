@@ -160,7 +160,8 @@ namespace Robo
                 firefoxProfile.SetPreference("browser.download.manager.closeWhenDone", true);
                 firefoxProfile.SetPreference("security.tls.version.min", 1);
                 firefoxProfile.SetPreference("security.tls.version.max", 4);
-                firefoxProfile.SetPreference("print.tab_modal.enabled", false);
+                firefoxProfile.SetPreference("dom.enable_window_print", false);
+                //firefoxProfile.SetPreference("print.tab_modal.enabled", true);
                 firefoxOptions.Profile = firefoxProfile;
                 driver = new FirefoxDriver(firefoxDriverService, firefoxOptions);
             }
