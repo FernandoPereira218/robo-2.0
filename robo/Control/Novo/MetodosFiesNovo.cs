@@ -255,7 +255,6 @@ namespace robo.Control.Novo
                     Util.ClickButtonsById(Driver, "btnAditarEstudante");
 
                     IWebElement ajax = Driver.FindElement(By.Id("ajaxStatus"));
-
                     while (ajax.Displayed == true)
                     {
                         System.Threading.Thread.Sleep(1000);
@@ -283,12 +282,15 @@ namespace robo.Control.Novo
                     string alerta = VerificarAlertaAditamento();
                     if (alerta != string.Empty)
                     {
-                        aluno.Conclusao = alerta;
-                        aluno.HorarioConclusao = string.Format("{0:dd/MM/yyyy HH:mm}", DateTime.Now);
-                        Dados.UpdateAluno(aluno);
-                        Util.ScrollToElementByID(Driver, "btnVoltar");
-                        Util.ClickButtonsById(Driver, "btnVoltar");
-                        continue;
+                        if (alerta.ToUpper().Contains("TRANSFERIDO NO SEMESTRE") == false)
+                        {
+                            aluno.Conclusao = alerta;
+                            aluno.HorarioConclusao = string.Format("{0:dd/MM/yyyy HH:mm}", DateTime.Now);
+                            Dados.UpdateAluno(aluno);
+                            Util.ScrollToElementByID(Driver, "btnVoltar");
+                            Util.ClickButtonsById(Driver, "btnVoltar");
+                            continue;
+                        }
                     }
 
                     //Definição semestre atual
@@ -303,7 +305,7 @@ namespace robo.Control.Novo
                     //Click para atualizar a página
                     Driver.FindElement(By.Id("semestralidadeAtualComDescGradeASerCursadaLabel")).Click();
                     WaitForLoading();
-                    
+
                     if (Driver.PageSource.Contains("inferior ao valor mínimo"))
                     {
                         alerta = VerificarAlertaAditamento();
@@ -741,7 +743,7 @@ namespace robo.Control.Novo
             var executor = (IJavaScriptExecutor)Driver;
             executor.ExecuteScript($@"document.getElementById(""cpf"").value = ""{aluno.Cpf}"";");
 
-            while(Driver.PageSource.Contains("Selecione") == false)
+            while (Driver.PageSource.Contains("Selecione") == false)
             {
                 System.Threading.Thread.Sleep(500);
             }
@@ -883,7 +885,7 @@ namespace robo.Control.Novo
                 Driver.FindElement(By.ClassName("close")).Click();
                 alertMessage = alertMessage.Replace("x\r\n", "");
             }
-            
+
             return alertMessage;
 
         }

@@ -16,7 +16,7 @@ namespace robo.Control.Relatorios
         private UtilFiesLegado fiesLegadoutil = new UtilFiesLegado();
         public void DRIFiesLegado(IWebDriver driver, TOAluno aluno, TOLogin login, bool baixar, string situacaoDRI)
         {
-            Driver = driver;
+            //Driver = driver;
 
             Util.ClickDropDown(Driver, "id", "co_situacao_inscricao", situacaoDRI);
 
@@ -101,6 +101,10 @@ namespace robo.Control.Relatorios
                 Util.EditarConclusaoAluno(aluno, "DRI Baixada");
                 Util.ClickButtonsById(Driver, "voltar");
             }
+        }
+        public void SetDriver(IWebDriver driver)
+        {
+            Driver = driver;
         }
     }
 }
