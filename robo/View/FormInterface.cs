@@ -292,8 +292,8 @@ namespace Robo
         //Refatorar após acertos das classes dos FIES´s
         private void btnIniciar_Click(object sender, EventArgs e)
         {
-            //RodarPrograma();
-            //return;
+           // RodarPrograma();
+           // return;
             if (cbExecucao.Text.Contains("EXPORTAR") || cbExecucao.Text.Contains("VALIDAR REPARCELAMENTO"))
             {
                 ExecutarExportacoes();
@@ -559,7 +559,10 @@ namespace Robo
                     presenter.ExtrairInformacoesDRILegado(cbFaculdade.Text, cbPlataforma.Text, cbCampus.Text, cbSituacao.Text);
                     break;
                 case "EXPORTAR DRI":
-
+                    presenter.ExecutarExportarDRILegado(cbFaculdade.Text, cbPlataforma.Text, cbCampus.Text, cbSituacao.Text);
+                    break;
+                case "EXPORTAR EXTRATO MENSAL DE REPASSE":
+                    presenter.ExportarExtratoMensalDeRepasseLegado(cbFaculdade.Text, cbPlataforma.Text, cbCampus.Text, cbAno.Text, cbMes.Text);
                     break;
                 default:
                     MessageBox.Show("Favor criar o CASE antes de rodar!!!!!");
