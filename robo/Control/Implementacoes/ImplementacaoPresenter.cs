@@ -236,7 +236,7 @@ namespace robo.Control.Implementacoes
 
         public void ExecutarBaixarDRMFiesNovo(string faculdade, string tipoFies, string semestre)
         {
-            BuscarLoginsEAlunos(faculdade, tipoFies, campus:"", ref listaAlunos, ref listaLogins, admin: false, exportar: false);
+            BuscarLoginsEAlunos(faculdade, tipoFies, campus: "", ref listaAlunos, ref listaLogins, admin: false, exportar: false);
             UtilFiesNovo utilFiesNovo = new UtilFiesNovo();
             IWebDriver Driver = Util.StartBrowser("http://sifesweb.caixa.gov.br");
             BaixarDRM drm = new BaixarDRM();
@@ -255,6 +255,28 @@ namespace robo.Control.Implementacoes
             Driver.Close();
             Driver.Dispose();
         }
+        public void ExtrairInformacoesDRMFiesNovo(string faculdade, string tipoFies, string semestre)
+        {
+            BuscarLoginsEAlunos(faculdade, tipoFies, campus: "", ref listaAlunos, ref listaLogins, admin: false, exportar: false);
+            UtilFiesNovo utilFiesNovo = new UtilFiesNovo();
+            IWebDriver Driver = Util.StartBrowser("http://sifesweb.caixa.gov.br");
+            ExtrairInformacoesDRMFiesNovo extrairInformacoesDRM = new ExtrairInformacoesDRMFiesNovo();
+            extrairInformacoesDRM.SetDriver(Driver);
+            foreach (TOLogin login in listaLogins)
+            {
+                utilFiesNovo.FazerLogin(Driver, login);
+                utilFiesNovo.WaitForLoading(Driver);
+                utilFiesNovo.ClicarMenuAditamento(Driver);
+                foreach (TOAluno aluno in listaAlunos)
+                {
+                    extrairInformacoesDRM.ExtrairInformacoesDRM(aluno, semestre);
+                }
+
+            }
+            Driver.Close();
+            Driver.Dispose();
+        }
+
 
         public string BuscarNunSemestre(string semestreAno)
         {
