@@ -218,6 +218,7 @@
     <Compile Include="Control\Aditamento\AditamentoNovo.cs" />
     <Compile Include="Control\Implementacoes\IContratos.cs" />
     <Compile Include="Control\Implementacoes\ImplementacaoPresenter.cs" />
+    <Compile Include="Control\Relatorios\FIES Legado\ExtrairInformacoesDRI.cs" />
     <Compile Include="Control\Relatorios\FIES Legado\ExtrairInformacoesDRM.cs" />
     <Compile Include="Control\Util\UtilFiesLegado.cs" />
     <Compile Include="Control\Novo\MetodosFiesNovo.cs" />

@@ -15,7 +15,7 @@ namespace robo.Control.Relatorios.FIES_Legado
     class ExtrairInformacoesDRM
     {
         private UtilFiesLegado utilFiesLegado = new UtilFiesLegado();
-        IWebDriver Driver;
+        private IWebDriver Driver;
         public void ExtrairDRM(IWebDriver driver, TOAluno aluno, string campus, string semestre)
         {
             Driver = driver;

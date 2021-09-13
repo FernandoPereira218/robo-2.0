@@ -555,7 +555,11 @@ namespace Robo
 
                     }
                     break;
+                case "EXTRAIR INFORMAÇÕES DRI":
+                    presenter.ExtrairInformacoesDRILegado(cbFaculdade.Text, cbPlataforma.Text, cbCampus.Text, cbSituacao.Text);
+                    break;
                 case "EXPORTAR DRI":
+
                     break;
                 default:
                     MessageBox.Show("Favor criar o CASE antes de rodar!!!!!");

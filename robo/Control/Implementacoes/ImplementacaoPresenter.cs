@@ -81,6 +81,7 @@ namespace robo.Control.Implementacoes
 
             IWebDriver Driver = Util.StartBrowser("http://sisfies.mec.gov.br/");
             DRI dri = new DRI();
+            dri.SetDriver(Driver);
             foreach (TOLogin login in listaLogins)
             {
                 fiesLegadoUtil.RealizarLoginSucesso(login, Driver);
@@ -162,6 +163,28 @@ namespace robo.Control.Implementacoes
                 foreach (TOAluno aluno in listaAlunos)
                 {
                     extrairInformacoesDRM.ExtrairDRM(Driver, aluno, campus, semestre);
+                }
+
+                fiesLegadoUtil.FazerLogout(Driver);
+            }
+            Driver.Close();
+            Driver.Dispose();
+        }
+        public void ExtrairInformacoesDRILegado(string faculdade, string tipoFies, string campus, string situacaoDRI)
+        {
+            BuscarLoginsEAlunos(faculdade, tipoFies, campus, ref listaAlunos, ref listaLogins, admin: false, exportar: false);
+            UtilFiesLegado fiesLegadoUtil = new UtilFiesLegado();
+
+            IWebDriver Driver = Util.StartBrowser("http://sisfies.mec.gov.br/");
+            ExtrairInformacoesDRI extrairInformacoesDRI = new ExtrairInformacoesDRI();
+            foreach (TOLogin login in listaLogins)
+            {
+                fiesLegadoUtil.RealizarLoginSucesso(login, Driver);
+                fiesLegadoUtil.SelecionarPerfilPresidencia(Driver);
+                fiesLegadoUtil.SelecionarMenuDRI(Driver);
+                foreach (TOAluno aluno in listaAlunos)
+                {
+                    extrairInformacoesDRI.ExecutarExtrairInformacoesDRI(Driver, aluno, situacaoDRI);
                 }
 
                 fiesLegadoUtil.FazerLogout(Driver);

@@ -18,3 +18,4 @@ robo/bin/
 *.application
 
 bdbot.db
+*.msi

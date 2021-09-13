@@ -146,12 +146,25 @@ namespace Robo
                 Dictionary<string, string> dic = new Dictionary<string, string>();
                 dic.Add("Faculdade", IES);
                 dic.Add("Plataforma", plataforma);
-                dic.Add("Admin", "Sim");
+                dic.Add("Admin", "Não");
                 if (plataforma == "FIES Legado" && campus != string.Empty)
                 {
                     dic.Add("Campus", campus);
                 }
                 listlogin = Database.Acess.SelectWhere<TOLogin>("LOGIN", dic, "and");
+
+                //Verificação se deve ser buscado login admin
+                if (listlogin.Count == 0)
+                {
+                    dic["Admin"] = "Sim";
+                    listlogin = Database.Acess.SelectWhere<TOLogin>("LOGIN", dic, "and");
+
+                    //Caso ainda não tenha nenhum login mostra exception
+                    if (listlogin.Count == 0)
+                    {
+                        throw new Exception("Login não encontrado!");
+                    }
+                }
             }
             if (admin == true)
             {

@@ -28,6 +28,7 @@ namespace robo.Control.Implementacoes
             void ExecutarBaixarDocumentoLegado(string faculdade, string tipoFies, string campus, string semestre, string tipoDocumento);
             void ExecutarExportarRelatoriosLegado(string faculdade, string tipoFies, string campus, string semestre, string tipoDocumento);
             void ExtrairInformacoesDRMLegado(string faculdade, string tipoFies, string campus, string semestre);
+            void ExtrairInformacoesDRILegado(string faculdade, string tipoFies, string campus, string situacaoDRI);
         }
     }
 }
