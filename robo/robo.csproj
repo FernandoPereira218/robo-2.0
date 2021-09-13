@@ -222,6 +222,8 @@
     <Compile Include="Control\Relatorios\FIES Legado\ExportarExtratoMensalDeRepasse.cs" />
     <Compile Include="Control\Relatorios\FIES Legado\ExtrairInformacoesDRI.cs" />
     <Compile Include="Control\Relatorios\FIES Legado\ExtrairInformacoesDRM.cs" />
+    <Compile Include="Control\Relatorios\FIES Novo\BaixarDRM.cs" />
+    <Compile Include="Control\Util\UtilFiesNovo.cs" />
     <Compile Include="Control\Util\UtilFiesLegado.cs" />
     <Compile Include="Control\Novo\MetodosFiesNovo.cs" />
     <Compile Include="Control\Relatorios\FIES Legado\BaixarDocumentos.cs" />

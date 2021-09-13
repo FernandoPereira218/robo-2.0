@@ -292,8 +292,8 @@ namespace Robo
         //Refatorar após acertos das classes dos FIES´s
         private void btnIniciar_Click(object sender, EventArgs e)
         {
-           // RodarPrograma();
-           // return;
+            //RodarPrograma();
+            //return;
             if (cbExecucao.Text.Contains("EXPORTAR") || cbExecucao.Text.Contains("VALIDAR REPARCELAMENTO"))
             {
                 ExecutarExportacoes();
@@ -472,7 +472,7 @@ namespace Robo
                     }
                     else
                     {
-
+                        presenter.ExecutarBaixarDRMFiesNovo(cbFaculdade.Text, cbPlataforma.Text, cbSemestre.Text);
                     }
                     break;
                 case "BAIXAR DRT":
