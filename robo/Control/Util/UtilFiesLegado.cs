@@ -89,7 +89,6 @@ namespace robo.Control.Legado
             }
             return false;
         }
-       
         public string SelecionarTipoRelatorio(IWebDriver Driver, string tipoRelatorio)
         {
             switch (tipoRelatorio)
