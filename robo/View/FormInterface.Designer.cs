@@ -123,7 +123,6 @@
             this.btnAlunos = new System.Windows.Forms.Button();
             this.btExtrairInformacoes = new System.Windows.Forms.Button();
             this.btStatus = new System.Windows.Forms.Button();
-            this.btnAbrirSite = new System.Windows.Forms.Button();
             this.panelMenuBar.SuspendLayout();
             this.panelExcel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvAlunos)).BeginInit();
@@ -449,7 +448,6 @@
             // 
             // panelCadastro
             // 
-            this.panelCadastro.Controls.Add(this.btnAbrirSite);
             this.panelCadastro.Controls.Add(this.panelDadosDeSituacao);
             this.panelCadastro.Controls.Add(this.metroLabel20);
             this.panelCadastro.Controls.Add(this.metroLabel19);
@@ -1485,16 +1483,6 @@
             this.btStatus.UseVisualStyleBackColor = true;
             this.btStatus.Click += new System.EventHandler(this.btExportar_Click);
             // 
-            // btnAbrirSite
-            // 
-            this.btnAbrirSite.Location = new System.Drawing.Point(855, 89);
-            this.btnAbrirSite.Name = "btnAbrirSite";
-            this.btnAbrirSite.Size = new System.Drawing.Size(75, 23);
-            this.btnAbrirSite.TabIndex = 61;
-            this.btnAbrirSite.Text = "button1";
-            this.btnAbrirSite.UseVisualStyleBackColor = true;
-            this.btnAbrirSite.Click += new System.EventHandler(this.btnAbrirSite_Click);
-            // 
             // RoboForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1623,7 +1611,6 @@
         private MetroFramework.Controls.MetroLabel labelDataFim;
         private MetroFramework.Controls.MetroLabel labelAno;
         private MetroFramework.Controls.MetroLabel labelMes;
-        private System.Windows.Forms.Button btnAbrirSite;
     }
 }
 

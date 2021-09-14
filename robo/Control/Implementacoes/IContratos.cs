@@ -35,6 +35,7 @@ namespace robo.Control.Implementacoes
 
             void ExecutarBaixarDRMFiesNovo(string faculdade, string tipoFies, string semestre);
             void ExtrairInformacoesDRMFiesNovo(string faculdade, string tipoFies, string semestre);
+            void ExecutarBuscarStatusAditamentoNovo(string faculdade, string tipoFies, string semestre);
         }
     }
 }
