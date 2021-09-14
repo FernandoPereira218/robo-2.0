@@ -567,6 +567,9 @@ namespace Robo
                 case "ABRIR SITE":
                     presenter.ExecutarAbrirSite(cbFaculdade.Text, cbCampus.Text, cbPlataforma.Text);
                     break;
+                case "BUSCAR STATUS ADITAMENTO":
+                    presenter.ExecutarBuscarStatusAditamentoNovo(cbFaculdade.Text, cbPlataforma.Text, cbSemestre.Text);
+                    break;
                 default:
                     MessageBox.Show("Favor criar o CASE antes de rodar!!!!!");
                     break;
@@ -971,12 +974,6 @@ namespace Robo
                 ReleaseCapture();
                 SendMessage(Handle, WM_NCLBUTTONDOWN, HT_CAPTION, 0);
             }
-        }
-
-        private void btnAbrirSite_Click(object sender, EventArgs e)
-        {
-            List<TOLogin> logins = Dados.SelectLoginPorIESePlataforma(cbFaculdade.Text, cbPlataforma.Text, cbCampus.Text, true);
-            MetodosFiesNovo.OpenSite(logins[0]);
         }
     }
 }

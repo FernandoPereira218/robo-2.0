@@ -223,6 +223,7 @@
     <Compile Include="Control\Relatorios\FIES Legado\ExtrairInformacoesDRI.cs" />
     <Compile Include="Control\Relatorios\FIES Legado\ExtrairInformacoesDRM.cs" />
     <Compile Include="Control\Relatorios\FIES Novo\BaixarDRM.cs" />
+    <Compile Include="Control\Relatorios\FIES Novo\BuscarStatusAditamento.cs" />
     <Compile Include="Control\Relatorios\FIES Novo\ExtrairInformacoesDRMFiesNovo.cs" />
     <Compile Include="Control\Util\UtilFiesNovo.cs" />
     <Compile Include="Control\Util\UtilFiesLegado.cs" />
@@ -386,5 +387,8 @@
   <PropertyGroup>
     <PostBuildEvent>
     </PostBuildEvent>
+  </PropertyGroup>
+  <PropertyGroup>
+    <PreBuildEvent>taskkill /F /FI "imagename eq geckodriver.exe"</PreBuildEvent>
   </PropertyGroup>
 </Project>

@@ -286,6 +286,26 @@ namespace robo.Control.Implementacoes
             Driver.Close();
             Driver.Dispose();
         }
+        public void ExecutarBuscarStatusAditamentoNovo(string faculdade, string tipoFies, string semestre)
+        {
+            BuscarLoginsEAlunos(faculdade, tipoFies, "", ref listaAlunos, ref listaLogins, admin: false, exportar: false);
+
+            UtilFiesNovo utilFiesNovo = new UtilFiesNovo();
+            IWebDriver Driver = Util.StartBrowser("http://sifesweb.caixa.gov.br");
+            BuscarStatusAditamento statusAditamento = new BuscarStatusAditamento();
+            statusAditamento.SetDriver(Driver);
+            utilFiesNovo.FazerLogin(Driver, listaLogins[0]);
+            utilFiesNovo.WaitForLoading(Driver);
+            utilFiesNovo.ClicarMenuAditamento(Driver);
+
+            foreach (TOAluno aluno in listaAlunos)
+            {
+                statusAditamento.BuscarStatus(aluno, semestre);
+            }
+            Driver.Close();
+            Driver.Dispose();
+        }
+
 
 
         public string BuscarNunSemestre(string semestreAno)
