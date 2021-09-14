@@ -452,11 +452,11 @@ namespace Robo
         {
             if (aluno.Tipo.ToUpper().Contains("NOVO") == true)
             {
-                aluno.Tipo = "FIES Novo";
+                aluno.Tipo = "FIES Novo".ToUpper();
             }
             else
             {
-                aluno.Tipo = "FIES Legado";
+                aluno.Tipo = "FIES Legado".ToUpper();
             }
         }
         static string FormatarReceitas(string valor)
