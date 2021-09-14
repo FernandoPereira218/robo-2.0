@@ -1,4 +1,5 @@
 ﻿using OpenQA.Selenium;
+using robo.Control.Aditamento;
 using robo.Control.Legado;
 using robo.Control.Relatorios;
 using robo.Control.Relatorios.FIES_Legado;
@@ -64,16 +65,25 @@ namespace robo.Control.Implementacoes
             Driver.Close();
             Driver.Dispose();
         }
-        public void ExecutarAditamentoNovo(string faculdade, string tipoFies)
+        public void ExecutarAditamentoNovo(string faculdade, string tipoFies, string semestreAtual)
         {
             BuscarLoginsEAlunos(faculdade, tipoFies, "", ref listaAlunos, ref listaLogins, admin: false, exportar: false);
 
-            //Iniciar navegador
+            UtilFiesNovo utilFiesNovo = new UtilFiesNovo();
+            IWebDriver Driver = Util.StartBrowser("http://sifesweb.caixa.gov.br");
+            AditamentoNovo aditamento = new AditamentoNovo();
+            aditamento.SetDriver(Driver);
+
+            utilFiesNovo.FazerLogin(Driver, listaLogins[0]);
+            utilFiesNovo.WaitForLoading(Driver);
+            utilFiesNovo.ClicarMenuAditamento(Driver);
+
             foreach (TOAluno aluno in listaAlunos)
             {
-                //Aditamento
+                aditamento.AditamentoFiesNovo(aluno, listaLogins[0].Faculdade, semestreAtual);
             }
-            //Fechar navegador
+            Driver.Close();
+            Driver.Dispose();
         }
         public void ExecutarDRI(string faculdade, string tipoFies, string campus, string situacaoDRI, bool baixarDRI)
         {
@@ -377,9 +387,9 @@ namespace robo.Control.Implementacoes
                 IWebDriver Driver = Util.StartBrowser("http://sifesweb.caixa.gov.br");
                 fiesNovoUtil.FazerLogin(Driver, listaLogins[0]);
             }
-            
 
-            }
- 
+
+        }
+
     }
 }
