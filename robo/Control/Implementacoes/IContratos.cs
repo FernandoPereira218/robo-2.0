@@ -24,7 +24,7 @@ namespace robo.Control.Implementacoes
             List<string> PreencherListaExecucaoPorPlataforma(string plataforma);
             void TratarDadosAluno(TOAluno aluno);
             void ExecutarAditamentoLegado(string semestreAtual, string faculdade, string tipoFies, string campus);
-            void ExecutarAditamentoNovo(string faculdade, string tipoFies);
+            void ExecutarAditamentoNovo(string faculdade, string tipoFies, string semestreAtual);
             void ExecutarDRI(string faculdade, string tipoFies, string campus, string situacaoDRI, bool baixarDRI);
             void ExecutarBaixarDocumentoLegado(string faculdade, string tipoFies, string campus, string semestre, string tipoDocumento);
             void ExecutarExportarRelatoriosLegado(string faculdade, string tipoFies, string campus, string semestre, string tipoDocumento);

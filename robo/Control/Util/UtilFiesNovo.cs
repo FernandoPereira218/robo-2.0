@@ -170,7 +170,7 @@ namespace robo.Control
             }
         }
 
-        private bool VerificarNenhumaInformacaoDisponivel(IWebDriver Driver)
+        public bool VerificarNenhumaInformacaoDisponivel(IWebDriver Driver)
         {
             if (Driver.PageSource.Contains("Nenhuma informação disponível") == true)
             {
@@ -206,7 +206,7 @@ namespace robo.Control
         /// Retorna situacao do semestre especificado do aluno no datagrid do site
         /// </summary>
         /// <returns></returns>
-        private static string BuscarSituacaoAluno(IWebDriver Driver, string semestreAtual)
+        public string BuscarSituacaoAluno(IWebDriver Driver, string semestreAtual)
         {
             string situacaoAluno = string.Empty;
             situacaoAluno = Driver.PageSource.Split(new string[] { semestreAtual }, StringSplitOptions.None)[3];
