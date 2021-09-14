@@ -359,5 +359,27 @@ namespace robo.Control.Implementacoes
             Dados.TratarTipoFIES(aluno);
         }
 
+        public void ExecutarAbrirSite(string faculdade, string campus, string plataforma)
+        {
+
+            BuscarLoginsEAlunos(faculdade, plataforma, campus, ref listaAlunos, ref listaLogins, admin: false, exportar: true);
+
+            if (plataforma.ToUpper() == "FIES LEGADO")
+            {
+                UtilFiesLegado fiesLegadoUtil = new UtilFiesLegado();
+                IWebDriver Driver = Util.StartBrowser("http://sisfies.mec.gov.br/");
+                fiesLegadoUtil.RealizarLoginSucesso(listaLogins[0], Driver);
+                fiesLegadoUtil.SelecionarPerfilPresidencia(Driver);
+            }
+            else
+            {
+                UtilFiesNovo fiesNovoUtil = new UtilFiesNovo();
+                IWebDriver Driver = Util.StartBrowser("http://sifesweb.caixa.gov.br");
+                fiesNovoUtil.FazerLogin(Driver, listaLogins[0]);
+            }
+            
+
+            }
+ 
     }
 }

@@ -101,6 +101,12 @@ namespace robo.Control.Novo
             Driver.Dispose();
         }
 
+        public static void OpenSite(TOLogin logins)
+        {
+            Driver = Util.StartBrowser("http://sifesweb.caixa.gov.br");
+            OpenLogin(logins);
+        }
+
         private static void MetodoDRT()
         {
             ClicarBotaoMenuPaginaInicial("btnAdmnstrcManutenccedilatildeoAprovarTransferecircncia");
