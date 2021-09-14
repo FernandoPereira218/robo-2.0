@@ -292,8 +292,8 @@ namespace Robo
         //Refatorar após acertos das classes dos FIES´s
         private void btnIniciar_Click(object sender, EventArgs e)
         {
-            //RodarPrograma();
-            //return;
+            RodarPrograma();
+            return;
             if (cbExecucao.Text.Contains("EXPORTAR") || cbExecucao.Text.Contains("VALIDAR REPARCELAMENTO"))
             {
                 ExecutarExportacoes();
@@ -563,6 +563,9 @@ namespace Robo
                     break;
                 case "EXPORTAR EXTRATO MENSAL DE REPASSE":
                     presenter.ExportarExtratoMensalDeRepasseLegado(cbFaculdade.Text, cbPlataforma.Text, cbCampus.Text, cbAno.Text, cbMes.Text);
+                    break;
+                case "ABRIR SITE":
+                    presenter.ExecutarAbrirSite(cbFaculdade.Text, cbCampus.Text, cbPlataforma.Text);
                     break;
                 default:
                     MessageBox.Show("Favor criar o CASE antes de rodar!!!!!");
@@ -968,6 +971,12 @@ namespace Robo
                 ReleaseCapture();
                 SendMessage(Handle, WM_NCLBUTTONDOWN, HT_CAPTION, 0);
             }
+        }
+
+        private void btnAbrirSite_Click(object sender, EventArgs e)
+        {
+            List<TOLogin> logins = Dados.SelectLoginPorIESePlataforma(cbFaculdade.Text, cbPlataforma.Text, cbCampus.Text, true);
+            MetodosFiesNovo.OpenSite(logins[0]);
         }
     }
 }
