@@ -331,8 +331,8 @@ namespace Robo
                 propriedades.Add("RECEITA FIES", "ReceitaFies");
                 propriedades.Add("MODALIDADE FIES", "Tipo");
                 propriedades.Add("TIPO", "Tipo");
-                propriedades.Add("Desconto Liberalidade", "DescontoLiberalidade");
-                propriedades.Add("Justificativa", "Justificativa");
+                propriedades.Add("DESCONTO LIBERALIDADE", "DescontoLiberalidade");
+                propriedades.Add("JUSTIFICATIVA", "Justificativa");
 
                 List<TOAluno> alunos = CSVManager.CSVManager.ImportCSV<TOAluno>(directory, propriedades);
 
