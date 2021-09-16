@@ -1,0 +1,94 @@
+﻿using OpenQA.Selenium;
+using Robo;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace robo.Control.Relatorios.FIES_Novo
+{
+    class StatusAluno
+    {
+        private IWebDriver Driver;
+        private UtilFiesNovo utilFiesNovo = new UtilFiesNovo();
+
+        public void BuscarStatusAluno(TOAluno aluno, string semestre)
+        {
+            while(Driver.PageSource.Contains("Consultar Contrato Estudante") == false)
+            {
+                System.Threading.Thread.Sleep(100);
+            }
+            ((IJavaScriptExecutor)Driver).ExecuteScript($@"document.getElementById(""cpf"").value = ""{aluno.Cpf}"";");
+            Util.ClickButtonsById(Driver, "btnConfirmar");
+            utilFiesNovo.WaitForLoading(Driver);
+            Util.ClickButtonsById(Driver, "lnkTipoProcesso");
+            utilFiesNovo.WaitForLoading(Driver);
+
+            utilFiesNovo.ClickButtonByIdWithJavaScript(Driver, "tab-Aditamento");
+            utilFiesNovo.WaitForLoading(Driver);
+
+            IWebElement elementoTabela = Driver.FindElement(By.Id("gridAditamento"));
+            List<IWebElement> dados = elementoTabela.FindElements(By.TagName("td")).ToList();
+            for (int j = 0; j < dados.Count(); j++)
+            {
+                if (dados[j].Text == semestre)
+                {
+                    aluno.SemestreAno = dados[j].Text;
+                    aluno.Finalidade = dados[j + 1].Text;
+                    aluno.Situacao = dados[j + 2].Text;
+                    aluno.Tipo = dados[j + 3].Text;
+                    aluno.ProUni = dados[j + 4].Text;
+                    aluno.DataInclusao = dados[j + 5].Text;
+                    aluno.DataConclusao = dados[j + 6].Text;
+                    aluno.HorarioConclusao = string.Format("{0:dd/MM/yyyy HH:mm}", DateTime.Now);
+                    break;
+                }
+            }
+            if (aluno.SemestreAno != string.Empty)
+            {
+                aluno.SemestreAno = CorrigirSemestreAlunoConsultaNovo(aluno.SemestreAno);
+                //Dados.InsertAluno(aluno);
+
+                //alunos[i].Conclusao = "Status Atualizado";
+                //alunos[i].HorarioConclusao = string.Format("{0:dd/MM/yyyy HH:mm}", DateTime.Now);
+                // Dados.UpdateAluno(alunos[i]);
+                Util.EditarConclusaoAluno(aluno, "Status Atualizado");
+            }
+            else
+            {
+                aluno.SemestreAno = "N/A";
+                aluno.Finalidade = "N/A";
+                aluno.Situacao = "Semestre não encontrado";
+                aluno.Tipo = "N/A";
+                aluno.ProUni = "N/A";
+                aluno.DataInclusao = "N/A";
+                aluno.DataConclusao = "N/A";
+               // aluno.HorarioConclusao = string.Format("{0:dd/MM/yyyy HH:mm}", DateTime.Now);
+               // Dados.InsertAluno(aluno);
+               // aluno.Conclusao = "Semestre não encontrado";
+               // aluno.HorarioConclusao = string.Format("{0:dd/MM/yyyy HH:mm}", DateTime.Now);
+                Util.EditarConclusaoAluno(aluno, "Semestre não encontrado");
+                // Dados.UpdateAluno(alunos[i]);
+            }
+
+
+            var element = Driver.FindElement(By.Id("btn-voltar"));
+            ((IJavaScriptExecutor)Driver).ExecuteScript(string.Format("window.scrollTo({0}, {1})", element.Location.X, element.Location.Y - 100));
+            Util.ClickButtonsById(Driver, "btn-voltar");
+            utilFiesNovo.WaitForLoading(Driver);
+        }
+        public void SetDriver(IWebDriver driver)
+        {
+            Driver = driver;
+        }
+
+        private string CorrigirSemestreAlunoConsultaNovo(string semestre)
+        {
+            semestre = semestre.Replace("1/", "1º/");
+            semestre = semestre.Replace("2/", "2º/");
+
+            return semestre;
+        }
+    }
+}
