@@ -573,6 +573,9 @@ namespace Robo
                 case "STATUS ALUNO":
                     presenter.ExecutarStatusAluno(cbFaculdade.Text, cbPlataforma.Text, cbSemestre.Text);
                     break;
+                case "EXPORTAR INADIMPLÊNCIA":
+                    presenter.ExportarInadimplencia(cbFaculdade.Text, cbMes.Text, cbAno.Text);
+                    break;
                 default:
                     MessageBox.Show("Favor criar o CASE antes de rodar!!!!!");
                     break;
@@ -779,7 +782,8 @@ namespace Robo
                 labelIESRepasse.Visible = true;
                 cbIESRepasse.Visible = true;
             }
-            else if (cb.SelectedItem.ToString() == "EXPORTAR REPASSE" || cb.SelectedItem.ToString() == "EXPORTAR EXTRATO MENSAL DE REPASSE")
+            else if (cb.SelectedItem.ToString() == "EXPORTAR REPASSE" || cb.SelectedItem.ToString() == "EXPORTAR EXTRATO MENSAL DE REPASSE"
+                    ||cb.SelectedItem.ToString() == "EXPORTAR INADIMPLÊNCIA")
             {
                 labelMes.Location = labelPonto1;
                 labelAno.Location = labelPonto2;

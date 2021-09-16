@@ -350,11 +350,35 @@ namespace robo.Control.Implementacoes
                 default:
                     throw new Exception("Como?");
             }
+            utilFiesNovo.WaitForLoading(Driver);
             exportarRelatorio.ExportarRelatorioFiesNovo(Driver, tipoRelatorio);
 
             Driver.Close();
             Driver.Dispose();
 
+        }
+        public void ExportarInadimplencia(string faculdade, string mes, string ano)
+        {
+            BuscarLoginsEAlunos(faculdade, "FIES Novo", "", ref listaAlunos, ref listaLogins, admin: true, exportar: true);
+            UtilFiesNovo utilFiesNovo = new UtilFiesNovo();
+            ExportarInadimplencia exportarInadimplencia = new ExportarInadimplencia();
+            IWebDriver Driver = Util.StartBrowser("http://sifesweb.caixa.gov.br", firefox:false);
+            utilFiesNovo.FazerLogin(Driver, listaLogins[0]);
+            utilFiesNovo.WaitForLoading(Driver);
+            utilFiesNovo.ClicarMenuInadimplencia(Driver);
+            utilFiesNovo.WaitForLoading(Driver);
+
+            //IMPLEMENTAR PASTA DE DOWLOAD
+
+            //string userRoot = System.Environment.GetEnvironmentVariable("USERPROFILE");
+            //string downloadFolder = System.IO.Path.Combine(userRoot, "Downloads");
+            //Util.CreateDirectory(downloadFolder + "\\Relatório Inadimplência");
+
+            exportarInadimplencia.Inadimplencia(Driver, mes, ano);
+            //exportarInadimplencia.Inadimplencia(Driver);
+
+            Driver.Close();
+            Driver.Dispose();
         }
 
 
@@ -374,7 +398,7 @@ namespace robo.Control.Implementacoes
         private List<TOAluno> SelecionarAlunosPorPlataforma(string plataforma)
         {
             List<TOAluno> alunosFies = new List<TOAluno>();
-            alunosFies = Dados.SelectAlunoWhere(plataforma);
+            alunosFies = Dados.SelectAlunoWhere(plataforma.ToUpper());
             foreach (TOAluno aluno in alunosFies)
             {
                 TratarDadosAluno(aluno);

@@ -16,7 +16,6 @@ namespace robo.Control.Relatorios.FIES_Novo
         public void ExportarRelatorioFiesNovo(IWebDriver driver, string tipoRelatorio)
         {
             Driver = driver;
-            utilFiesNovo.WaitForLoading(Driver);
             Util.ClickButtonsById(Driver, "btnConsultar");
             utilFiesNovo.WaitForLoading(Driver);
 
