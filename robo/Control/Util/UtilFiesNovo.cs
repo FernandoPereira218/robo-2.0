@@ -75,6 +75,18 @@ namespace robo.Control
         {
             ClicarBotaoMenuPaginaInicial(Driver, "btnAdmnstrcProcessodeFinanciamentoConsultarContratoEstudante");
         }
+        public void ClicarMenuDilatacao(IWebDriver Driver)
+        {
+            ClicarBotaoMenuPaginaInicial(Driver, "btnAdmnstrcManutenccedilatildeoAprovarDilataccedilatildeo");
+        }
+        public void ClicarMenuSuspensao(IWebDriver Driver)
+        {
+            ClicarBotaoMenuPaginaInicial(Driver, "btnAdmnstrcManutenccedilatildeoAprovarSuspensatildeo");
+        }
+        public void ClicarMenuTransferencia(IWebDriver Driver)
+        {
+            ClicarBotaoMenuPaginaInicial(Driver, "btnAdmnstrcManutenccedilatildeoAprovarTransferecircncia");
+        }
 
         public void ConsultarAluno(IWebDriver Driver, TOAluno aluno)
         {

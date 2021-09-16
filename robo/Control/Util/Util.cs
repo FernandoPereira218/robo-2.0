@@ -81,7 +81,7 @@ namespace Robo
         /// <param name="id">Id do elemento.</param>
         public static void ClickButtonsById(IWebDriver driver, string id)
         {
-            WaitLogoLoading(driver);
+            //WaitLogoLoading(driver);
             driver.FindElement(By.Id(id)).Click();
 
             Util.Sleep();

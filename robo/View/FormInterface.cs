@@ -292,8 +292,8 @@ namespace Robo
         //Refatorar após acertos das classes dos FIES´s
         private void btnIniciar_Click(object sender, EventArgs e)
         {
-            //RodarPrograma();
-            //return;
+            RodarPrograma();
+            return;
             if (cbExecucao.Text.Contains("EXPORTAR") || cbExecucao.Text.Contains("VALIDAR REPARCELAMENTO"))
             {
                 ExecutarExportacoes();
@@ -512,7 +512,7 @@ namespace Robo
                     }
                     else
                     {
-
+                        presenter.ExportarRelatorioFiesNovo(cbFaculdade.Text, cbPlataforma.Text, "DRM");
                     }
                     break;
                 case "EXPORTAR DRD":
@@ -522,7 +522,7 @@ namespace Robo
                     }
                     else
                     {
-
+                        presenter.ExportarRelatorioFiesNovo(cbFaculdade.Text, cbPlataforma.Text, "DRD");
                     }
                     break;
                 case "EXPORTAR DRT":
@@ -532,7 +532,7 @@ namespace Robo
                     }
                     else
                     {
-
+                        presenter.ExportarRelatorioFiesNovo(cbFaculdade.Text, cbPlataforma.Text, "DRT");
                     }
                     break;
                 case "EXPORTAR SUSPENSÃO":
@@ -542,7 +542,7 @@ namespace Robo
                     }
                     else
                     {
-
+                        presenter.ExportarRelatorioFiesNovo(cbFaculdade.Text, cbPlataforma.Text, "SUSPENSÃO");
                     }
                     break;
                 case "EXTRAIR INFORMAÇÕES DRM":
