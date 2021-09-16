@@ -380,6 +380,22 @@ namespace robo.Control.Implementacoes
             Driver.Close();
             Driver.Dispose();
         }
+        public void ExportarRepasseFiesNovo(string faculdade, string mes, string ano)
+        {
+            BuscarLoginsEAlunos(faculdade, "FIES Novo", "", ref listaAlunos, ref listaLogins, admin: true, exportar: true);
+            UtilFiesNovo utilFiesNovo = new UtilFiesNovo();
+            ExportarRepasse exportarRepasse = new ExportarRepasse();
+            IWebDriver Driver = Util.StartBrowser("http://sifesweb.caixa.gov.br", firefox: false);
+            utilFiesNovo.FazerLogin(Driver, listaLogins[0]);
+            utilFiesNovo.WaitForLoading(Driver);
+            utilFiesNovo.ClicarMenuRepasse(Driver);
+            utilFiesNovo.WaitForLoading(Driver);
+
+            exportarRepasse.ExportarRepasseFiesNovo(Driver, ano, mes);
+
+            Driver.Close();
+            Driver.Dispose();
+        }
 
 
 

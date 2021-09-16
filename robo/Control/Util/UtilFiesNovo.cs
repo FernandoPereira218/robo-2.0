@@ -91,6 +91,10 @@ namespace robo.Control
         {
             ClicarBotaoMenuPaginaInicial(Driver, "btnAdmnstrcRelatoacuteriosAgenteFinanceiroInadimplecircnciaAgecircnciaEstudante");
         }
+        public void ClicarMenuRepasse(IWebDriver Driver)
+        {
+            ClicarBotaoMenuPaginaInicial(Driver, "btnAdmnstrcRelatrioRelatriodeContrataoAnaltico");
+        }
 
         public void ConsultarAluno(IWebDriver Driver, TOAluno aluno)
         {
