@@ -324,6 +324,38 @@ namespace robo.Control.Implementacoes
             Driver.Close();
             Driver.Dispose();
         }
+        public void ExportarRelatorioFiesNovo(string faculdade, string tipoFies, string tipoRelatorio)
+        {
+            BuscarLoginsEAlunos(faculdade, tipoFies, "", ref listaAlunos, ref listaLogins, admin: false, exportar: true);
+            UtilFiesNovo utilFiesNovo = new UtilFiesNovo();
+            ExportarRelatorio exportarRelatorio = new ExportarRelatorio();
+            IWebDriver Driver = Util.StartBrowser("http://sifesweb.caixa.gov.br");
+            utilFiesNovo.FazerLogin(Driver, listaLogins[0]);
+            utilFiesNovo.WaitForLoading(Driver);
+
+            switch (tipoRelatorio)
+            {
+                case "DRM":
+                    utilFiesNovo.ClicarMenuAditamento(Driver);
+                    break;
+                case "DRT":
+                    utilFiesNovo.ClicarMenuTransferencia(Driver);
+                    break;
+                case "DRD":
+                    utilFiesNovo.ClicarMenuDilatacao(Driver);
+                    break;
+                case "SUSPENSÃO":
+                    utilFiesNovo.ClicarMenuSuspensao(Driver);
+                    break;
+                default:
+                    throw new Exception("Como?");
+            }
+            exportarRelatorio.ExportarRelatorioFiesNovo(Driver, tipoRelatorio);
+
+            Driver.Close();
+            Driver.Dispose();
+
+        }
 
 
 
