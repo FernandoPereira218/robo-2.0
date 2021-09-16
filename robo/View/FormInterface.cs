@@ -561,8 +561,15 @@ namespace Robo
                 case "EXPORTAR DRI":
                     presenter.ExecutarExportarDRILegado(cbFaculdade.Text, cbPlataforma.Text, cbCampus.Text, cbSituacao.Text);
                     break;
-                case "EXPORTAR EXTRATO MENSAL DE REPASSE":
-                    presenter.ExportarExtratoMensalDeRepasseLegado(cbFaculdade.Text, cbPlataforma.Text, cbCampus.Text, cbAno.Text, cbMes.Text);
+                case "EXPORTAR REPASSE":
+                    if (cbPlataforma.Text.ToUpper() == "FIES LEGADO")
+                    {
+                        presenter.ExportarExtratoMensalDeRepasseLegado(cbFaculdade.Text, cbPlataforma.Text, cbCampus.Text, cbAno.Text, cbMes.Text);
+                    }
+                    else
+                    {
+                        presenter.ExportarRepasseFiesNovo(cbFaculdade.Text, cbMes.Text, cbAno.Text);
+                    }
                     break;
                 case "ABRIR SITE":
                     presenter.ExecutarAbrirSite(cbFaculdade.Text, cbCampus.Text, cbPlataforma.Text);
@@ -783,7 +790,7 @@ namespace Robo
                 cbIESRepasse.Visible = true;
             }
             else if (cb.SelectedItem.ToString() == "EXPORTAR REPASSE" || cb.SelectedItem.ToString() == "EXPORTAR EXTRATO MENSAL DE REPASSE"
-                    ||cb.SelectedItem.ToString() == "EXPORTAR INADIMPLÊNCIA")
+                    || cb.SelectedItem.ToString() == "EXPORTAR INADIMPLÊNCIA")
             {
                 labelMes.Location = labelPonto1;
                 labelAno.Location = labelPonto2;
