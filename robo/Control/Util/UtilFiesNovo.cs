@@ -71,6 +71,10 @@ namespace robo.Control
         {
             ClicarBotaoMenuPaginaInicial(Driver, "btnAdmnstrcManutenccedilatildeoAditamentoRenovaccedilatildeo");
         }
+        public void ClicarMenuConsultaContrato(IWebDriver Driver)
+        {
+            ClicarBotaoMenuPaginaInicial(Driver, "btnAdmnstrcProcessodeFinanciamentoConsultarContratoEstudante");
+        }
 
         public void ConsultarAluno(IWebDriver Driver, TOAluno aluno)
         {
@@ -95,6 +99,12 @@ namespace robo.Control
             Util.ClickButtonsById(Driver, "btnConsultar");
 
             WaitForLoading(Driver);
+        }
+
+        public void ClickButtonByIdWithJavaScript(IWebDriver Driver, string id)
+        {
+            IWebElement element = Driver.FindElement(By.XPath(string.Format("//*[@id=\"{0}\"]", id)));
+            ((IJavaScriptExecutor)Driver).ExecuteScript("arguments[0].click();", element);
         }
 
         public void BuscarEAbrirDRM(IWebDriver Driver, TOAluno aluno, string semestreAtual)

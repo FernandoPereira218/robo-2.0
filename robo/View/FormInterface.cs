@@ -570,6 +570,9 @@ namespace Robo
                 case "BUSCAR STATUS ADITAMENTO":
                     presenter.ExecutarBuscarStatusAditamentoNovo(cbFaculdade.Text, cbPlataforma.Text, cbSemestre.Text);
                     break;
+                case "STATUS ALUNO":
+                    presenter.ExecutarStatusAluno(cbFaculdade.Text, cbPlataforma.Text, cbSemestre.Text);
+                    break;
                 default:
                     MessageBox.Show("Favor criar o CASE antes de rodar!!!!!");
                     break;
