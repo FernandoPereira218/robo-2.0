@@ -233,6 +233,7 @@
     <Compile Include="Control\Relatorios\FIES Legado\ExtrairInformacoesDRM.cs" />
     <Compile Include="Control\Relatorios\FIES Novo\BaixarDRM.cs" />
     <Compile Include="Control\Relatorios\FIES Novo\BuscarStatusAditamento.cs" />
+    <Compile Include="Control\Relatorios\FIES Novo\ExportarInadimplencia.cs" />
     <Compile Include="Control\Relatorios\FIES Novo\ExportarRelatorio.cs" />
     <Compile Include="Control\Relatorios\FIES Novo\ExtrairInformacoesDRMFiesNovo.cs" />
     <Compile Include="Control\Relatorios\FIES Novo\StatusAluno.cs" />

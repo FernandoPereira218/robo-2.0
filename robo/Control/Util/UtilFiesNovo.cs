@@ -87,6 +87,10 @@ namespace robo.Control
         {
             ClicarBotaoMenuPaginaInicial(Driver, "btnAdmnstrcManutenccedilatildeoAprovarTransferecircncia");
         }
+        public void ClicarMenuInadimplencia(IWebDriver Driver)
+        {
+            ClicarBotaoMenuPaginaInicial(Driver, "btnAdmnstrcRelatoacuteriosAgenteFinanceiroInadimplecircnciaAgecircnciaEstudante");
+        }
 
         public void ConsultarAluno(IWebDriver Driver, TOAluno aluno)
         {

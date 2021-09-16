@@ -398,6 +398,7 @@ namespace Robo
                 aluno.Cpf = "0" + aluno.Cpf;
             }
 
+            aluno.Tipo = aluno.Tipo.ToUpper();
         }
         /// <summary>
         /// Arredonda para duas casas decimais e remove caracteres desnecessários
