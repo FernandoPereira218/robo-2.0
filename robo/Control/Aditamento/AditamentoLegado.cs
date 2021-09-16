@@ -1,11 +1,16 @@
-﻿using OpenQA.Selenium;
+﻿using AForge.Imaging.Filters;
+using OpenQA.Selenium;
 using robo.Control.Legado;
 using Robo;
 using System;
 using System.Collections.Generic;
+using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Media;
+using System.Net.Http;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace robo.Control
@@ -108,6 +113,16 @@ namespace robo.Control
 
             }
             SystemSounds.Beep.Play();
+
+
+            //var element = Driver.FindElement(By.Id("captcha-imagem"));
+            //Screenshot scr = ((ITakesScreenshot)element).GetScreenshot();
+            //scr.SaveAsFile("img\\teste.png");
+            //LimparCaptcha();
+            //
+            //Thread thread = new Thread(LerCaptcha);
+            //thread.Start();
+            //thread.Join();
 
             while (Driver.Url.StartsWith("http://sisfies.mec.gov.br/cpsa/aditamento/formulario/") == true)
             {
@@ -235,6 +250,59 @@ namespace robo.Control
             }
             Util.EditarConclusaoAluno(aluno, "Rejeitou excesso de reprovação");
             Driver.Url = "http://sisfies.mec.gov.br/cpsa/aditamento";
+        }
+        private void LimparCaptcha()
+        {
+            Bitmap imagem = new Bitmap("img\\teste.png");
+            imagem = imagem.Clone(new Rectangle(0, 0, imagem.Width, imagem.Height), System.Drawing.Imaging.PixelFormat.Format24bppRgb);
+
+            Invert inverter = new Invert();
+            Opening open = new Opening();
+            BlobsFiltering bc = new BlobsFiltering();
+            GaussianSharpen gs = new GaussianSharpen();
+            ContrastCorrection cc = new ContrastCorrection();
+            bc.MinHeight = 10;
+            FiltersSequence seq = new FiltersSequence(gs, inverter, open, inverter, bc, inverter, cc, bc, inverter);
+            seq.Apply(imagem).Save("img\\captchaLimpo.png");
+        }
+
+        private async void LerCaptcha()
+        {
+
+            try
+            {
+                HttpClient httpClient = new HttpClient();
+                httpClient.Timeout = new TimeSpan(1, 1, 1);
+
+
+                MultipartFormDataContent form = new MultipartFormDataContent();
+                form.Add(new StringContent("991ab1ca4c88957"), "apikey"); //Added api key in form data
+                form.Add(new StringContent("eng"), "language");
+
+                form.Add(new StringContent("2"), "ocrengine");
+                form.Add(new StringContent("true"), "scale");
+                form.Add(new StringContent("true"), "istable");
+
+
+                byte[] imageData = File.ReadAllBytes("img\\captchaLimpo.png");
+                form.Add(new ByteArrayContent(imageData, 0, imageData.Length), "image", "captchaLimpo.png");
+                HttpResponseMessage response = await httpClient.PostAsync("https://api.ocr.space/Parse/Image", form);
+
+                string strContent = await response.Content.ReadAsStringAsync();
+                string resultado = strContent.Split(new string[] { "WordText" }, StringSplitOptions.None)[1];
+                resultado = resultado.Split(',')[0];
+                resultado = resultado.Replace("\"", "");
+                resultado = resultado.Replace(":", "");
+                Util.ScrollToElementByID(Driver, "captcha");
+                Util.ClickAndWriteById(Driver, "captcha", resultado);
+
+
+
+            }
+            catch (Exception exception)
+            {
+                throw exception;
+            }
         }
     }
 }
