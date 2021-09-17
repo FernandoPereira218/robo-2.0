@@ -243,7 +243,6 @@ namespace robo.Control.Implementacoes
             Driver.Close();
             Driver.Dispose();
         }
-
         public void ExecutarBaixarDRMFiesNovo(string faculdade, string tipoFies, string semestre)
         {
             BuscarLoginsEAlunos(faculdade, tipoFies, campus: "", ref listaAlunos, ref listaLogins, admin: false, exportar: false);
@@ -396,7 +395,20 @@ namespace robo.Control.Implementacoes
             Driver.Close();
             Driver.Dispose();
         }
-
+        public void ExportarCoparticipacaoFiesNovo(string faculdade, string dataInicial, string dataFinal)
+        {
+            BuscarLoginsEAlunos(faculdade, "FIES Novo", "", ref listaAlunos, ref listaLogins, admin: true, exportar: true);
+            UtilFiesNovo utilFiesNovo = new UtilFiesNovo();
+            IWebDriver Driver = Util.StartBrowser("http://sifesweb.caixa.gov.br", firefox: false);
+            utilFiesNovo.FazerLogin(Driver, listaLogins[0]);
+            utilFiesNovo.WaitForLoading(Driver);
+            utilFiesNovo.ClicarMenuCoparticipacao(Driver);
+            utilFiesNovo.WaitForLoading(Driver);
+            ExportarCoparticipacao exportarCoparticipacao = new ExportarCoparticipacao();
+            exportarCoparticipacao.ExportarRelatórioCoparticipacao(Driver, faculdade, dataInicial, dataFinal);
+            Driver.Close();
+            Driver.Dispose();
+        }
 
 
         public string BuscarNunSemestre(string semestreAno)
@@ -443,7 +455,6 @@ namespace robo.Control.Implementacoes
             }
             return nomeMenu;
         }
-
         public List<string> PreencherListaExecucaoPorPlataforma(string plataforma)
         {
             List<TOMenus> menus = Dados.SelectMenuWhere(plataforma);
@@ -498,8 +509,6 @@ namespace robo.Control.Implementacoes
                 IWebDriver Driver = Util.StartBrowser("http://sifesweb.caixa.gov.br");
                 fiesNovoUtil.FazerLogin(Driver, listaLogins[0]);
             }
-
-
         }
 
     }

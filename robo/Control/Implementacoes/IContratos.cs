@@ -39,6 +39,7 @@ namespace robo.Control.Implementacoes
             void ExportarRelatorioFiesNovo(string faculdade, string tipoFies, string tipoRelatorio);
             void ExportarInadimplencia(string faculdade, string mes, string ano);
             void ExportarRepasseFiesNovo(string faculdade, string mes, string ano);
+            void ExportarCoparticipacaoFiesNovo(string faculdade, string dataInicial, string dataFinal);
         }
     }
 }
