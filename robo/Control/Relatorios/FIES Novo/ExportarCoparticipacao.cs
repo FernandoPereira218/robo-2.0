@@ -19,7 +19,7 @@ namespace robo.Control.Relatorios.FIES_Novo
             {
                 IWebElement dropDownIES = Driver.FindElement(By.Id("ies_chosen"));
                 dropDownIES.Click();
-                ((IJavaScriptExecutor)Driver).ExecuteScript("alert(\"Por favor selecione uma data\")");
+                ((IJavaScriptExecutor)Driver).ExecuteScript("alert(\"Por favor selecione uma IES\")");
                 while (isAlertPresent(Driver))
                 {
                     System.Threading.Thread.Sleep(100);
