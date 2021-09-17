@@ -12,7 +12,7 @@ using robo.Control.Update;
 
 namespace Robo
 {
-    static class Util
+    class Util
     {
         /// <summary>
         /// Clica e manda dados ao TextBox.

@@ -9,16 +9,15 @@ using System.Windows.Forms;
 
 namespace robo.Control.Aditamento
 {
-    public class AditamentoNovo
+    public class AditamentoNovo : UtilFiesNovo
     {
         private IWebDriver Driver;
-        UtilFiesNovo utilFiesNovo = new UtilFiesNovo();
         public void AditamentoFiesNovo(TOAluno aluno, string IES, string semestreAtual)
         {
-            utilFiesNovo.ConsultarAluno(Driver, aluno);
-            utilFiesNovo.WaitForLoading(Driver);
+            ConsultarAluno(Driver, aluno);
+            WaitForLoading(Driver);
 
-            if (utilFiesNovo.VerificarNenhumaInformacaoDisponivel(Driver) == true)
+            if (VerificarNenhumaInformacaoDisponivel(Driver) == true)
             {
                 Util.EditarConclusaoAluno(aluno, "Nenhuma informação disponível");
             }
@@ -39,7 +38,7 @@ namespace robo.Control.Aditamento
                 {
                     Driver.FindElement(By.ClassName("btn-ok")).Click();
                 }
-                utilFiesNovo.WaitForLoading(Driver);
+                WaitForLoading(Driver);
 
                 string erro = VerificarErroAditamento();
                 if (erro != string.Empty)
@@ -47,8 +46,8 @@ namespace robo.Control.Aditamento
                     Util.EditarConclusaoAluno(aluno, erro);
                     Util.ScrollToElementByID(Driver, "btnVoltar");
                     Util.ClickButtonsById(Driver, "btnVoltar");
-                    utilFiesNovo.WaitForLoading(Driver);
-                    utilFiesNovo.ClicarMenuAditamento(Driver);
+                    WaitForLoading(Driver);
+                    ClicarMenuAditamento(Driver);
                     return;
                 }
 
@@ -77,7 +76,7 @@ namespace robo.Control.Aditamento
 
                 //Click para atualizar a página
                 Driver.FindElement(By.Id("semestralidadeAtualComDescGradeASerCursadaLabel")).Click();
-                utilFiesNovo.WaitForLoading(Driver);
+                WaitForLoading(Driver);
 
                 if (Driver.PageSource.Contains("inferior ao valor mínimo"))
                 {
@@ -88,7 +87,7 @@ namespace robo.Control.Aditamento
                     return;
                 }
 
-                utilFiesNovo.WaitForLoading(Driver);
+                WaitForLoading(Driver);
 
                 string alertMessage = string.Empty;
                 if (Driver.PageSource.Contains("MDLalerta_"))
@@ -151,7 +150,7 @@ namespace robo.Control.Aditamento
                     {
                         Util.ScrollToElementByID(Driver, "btnConfirmar");
                         Util.ClickButtonsById(Driver, "btnConfirmar");
-                        utilFiesNovo.WaitForLoading(Driver);
+                        WaitForLoading(Driver);
 
                         if (Driver.PageSource.Contains("alert alert-error"))
                         {
@@ -183,7 +182,7 @@ namespace robo.Control.Aditamento
                 IWebElement grid = Driver.FindElement(By.Id("gridResult"));
                 if (grid.Text.Contains(semestreAtual) == true)
                 {
-                    situacaoAluno = utilFiesNovo.BuscarSituacaoAluno(Driver, semestreAtual);
+                    situacaoAluno = BuscarSituacaoAluno(Driver, semestreAtual);
                 }
                 else
                 {
@@ -279,7 +278,7 @@ namespace robo.Control.Aditamento
 
                 if (error.Contains("Contrato possui parcela(s) vencida(s) e não paga(s).") == false)
                 {
-                    utilFiesNovo.ClicarMenuAditamento(Driver);
+                    ClicarMenuAditamento(Driver);
                 }
             }
             return error;

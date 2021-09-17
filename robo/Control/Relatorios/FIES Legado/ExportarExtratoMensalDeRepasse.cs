@@ -6,17 +6,18 @@ using System.Text;
 using System.Threading.Tasks;
 using Robo;
 using OpenQA.Selenium.Support.UI;
+using robo.Control.Legado;
 
 namespace robo.Control.Relatorios.FIES_Legado
 {
-    class ExportarExtratoMensalDeRepasse
+    class ExportarExtratoMensalDeRepasse : UtilFiesLegado
     {
         private IWebDriver Driver;
         public void ExtratoMensalDeRepasseLegado(IWebDriver driver, string campus, string ano, string mes)
         {
             Driver = driver;
-            Util.ClickDropDown(Driver, "id", "nu_ano", ano);
-            Util.ClickDropDown(Driver, "id", "nu_mes", mes);
+            ClickDropDown(Driver, "id", "nu_ano", ano);
+            ClickDropDown(Driver, "id", "nu_mes", mes);
             SelectElement select = new SelectElement(Driver.FindElement(By.Id("dt_repasse")));
             if (select.Options.Count > 2)
             {

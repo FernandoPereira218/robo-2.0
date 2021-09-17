@@ -9,17 +9,16 @@ using System.Threading.Tasks;
 
 namespace robo.Control.Relatorios
 {
-    public class ExportarRelatorios
+    public class ExportarRelatorios : UtilFiesLegado
     {
         private IWebDriver Driver;
-        private UtilFiesLegado fiesLegadoutil = new UtilFiesLegado();
         public void ExportarDocumentosFiesLegado(IWebDriver driver, string semestre, string tipoRelatorio, string campus)
         {
             Driver = driver;
-            string selRelatorio = fiesLegadoutil.SelecionarTipoRelatorio(Driver, tipoRelatorio);
-            Util.ClickDropDown(Driver, "id", "co_finalidade_aditamento", selRelatorio);
-            fiesLegadoutil.WaitinLoading(Driver);
-            Util.ClickDropDown(Driver, "id", "coSemestreAditamento", semestre);
+            string selRelatorio = SelecionarTipoRelatorio(Driver, tipoRelatorio);
+            ClickDropDown(Driver, "id", "co_finalidade_aditamento", selRelatorio);
+            WaitinLoading(Driver);
+            ClickDropDown(Driver, "id", "coSemestreAditamento", semestre);
 
             semestre = semestre.Replace('/', '-');
             Driver.FindElement(By.Name("export-excel")).Click();

@@ -11,48 +11,47 @@ using System.Threading.Tasks;
 
 namespace robo.Control.Relatorios
 {
-    public class BaixarDocumentos
+    public class BaixarDocumentos: UtilFiesLegado
     {
         private IWebDriver Driver;
-        private UtilFiesLegado fiesLegadoutil = new UtilFiesLegado();
 
         public void BaixarDocumentoFiesLegado(IWebDriver driver, TOAluno aluno, string semestre, string tipoRelatorio)
         {
             Driver = driver;
-            string selRelatorio = fiesLegadoutil.SelecionarTipoRelatorio(Driver, tipoRelatorio);
-            fiesLegadoutil.WaitinLoading(Driver);
-            Util.ClickAndWriteById(Driver, "cpf", aluno.Cpf);
-            Util.ClickDropDown(Driver, "id", "coSemestreAditamento", semestre);
-            Util.ClickDropDown(Driver, "id", "co_finalidade_aditamento", selRelatorio);
-            fiesLegadoutil.WaitinLoading(Driver);
-            Util.ClickButtonsById(Driver, "consultar");
+            string selRelatorio = SelecionarTipoRelatorio(Driver, tipoRelatorio);
+            WaitinLoading(Driver);
+            ClickAndWriteById(Driver, "cpf", aluno.Cpf);
+            ClickDropDown(Driver, "id", "coSemestreAditamento", semestre);
+            ClickDropDown(Driver, "id", "co_finalidade_aditamento", selRelatorio);
+            WaitinLoading(Driver);
+            ClickButtonsById(Driver, "consultar");
             string situacaoAluno;
             if (Driver.PageSource.Contains("Lista de Aditamentos"))
             {
                 situacaoAluno = Driver.FindElement(By.XPath("/html/body/div[3]/div[4]/div[2]/div[2]/div[4]/table/tbody/tr/td[6]")).Text;
-                Util.ClickButtonsByCss(Driver, "td > a > img");
+                ClickButtonsByCss(Driver, "td > a > img");
                 IWebElement botaoImprimir;
                 if (tipoRelatorio == "DRM")
                 {
-                    botaoImprimir = Util.VerificarElementoExiste(Driver, "ID", "imprimirDrm");
+                    botaoImprimir = VerificarElementoExiste(Driver, "ID", "imprimirDrm");
                 }
                 else
                 {
-                    botaoImprimir = Util.VerificarElementoExiste(Driver, "ID", "imprimir");
+                    botaoImprimir = VerificarElementoExiste(Driver, "ID", "imprimir");
                 }
                 if (botaoImprimir != null)
                 {
-                    fiesLegadoutil.WaitinLoading(Driver);
+                    WaitinLoading(Driver);
 
-                    if (fiesLegadoutil.VerificaErro(Driver, aluno) == false)
+                    if (VerificaErro(Driver, aluno) == false)
                     {
                         BaixarDocumento(aluno, semestre, tipoRelatorio);
                     }
                 }
                 else
                 {
-                    Util.ScrollToElementByID(Driver, "voltar");
-                    Util.ClickButtonsById(Driver, "voltar");
+                    ScrollToElementByID(Driver, "voltar");
+                    ClickButtonsById(Driver, "voltar");
                     Util.EditarConclusaoAluno(aluno, situacaoAluno);
                 }
             }
@@ -76,11 +75,11 @@ namespace robo.Control.Relatorios
             aluno.Nome = nome;
             if (tipoRelatorio == "DRM")
             {
-                Util.ClickButtonsById(Driver, "imprimirDrm");
+                ClickButtonsById(Driver, "imprimirDrm");
             }
             else
             {
-                Util.ClickButtonsById(Driver, "imprimir");
+                ClickButtonsById(Driver, "imprimir");
             }
 
             string userRoot = System.Environment.GetEnvironmentVariable("USERPROFILE");
@@ -143,7 +142,7 @@ namespace robo.Control.Relatorios
             File.Copy(myFile.FullName, diretorioDestino + "\\" + aluno.Nome + "_" + aluno.Cpf + "_" + tempSemestre + "_" + tipoRelatorio + ".zip", true);
             File.Delete(myFile.FullName);
 
-            Util.ClickButtonsById(Driver, "voltar");
+            ClickButtonsById(Driver, "voltar");
 
             string conclusao = string.Format("{0} - {1}", tipoRelatorio + " Baixado", complemento);
             aluno.Extraido = complemento;

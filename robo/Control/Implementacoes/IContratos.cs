@@ -32,7 +32,6 @@ namespace robo.Control.Implementacoes
             void ExtrairInformacoesDRILegado(string faculdade, string tipoFies, string campus, string situacaoDRI);
             void ExecutarExportarDRILegado(string faculdade, string tipoFies, string campus, string situacaoDRI);
             void ExportarExtratoMensalDeRepasseLegado(string faculdade, string tipoFies, string campus, string ano, string mes);
-
             void ExecutarBaixarDRMFiesNovo(string faculdade, string tipoFies, string semestre);
             void ExtrairInformacoesDRMFiesNovo(string faculdade, string tipoFies, string semestre);
             void ExecutarBuscarStatusAditamentoNovo(string faculdade, string tipoFies, string semestre);
