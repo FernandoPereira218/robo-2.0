@@ -8,25 +8,24 @@ using System.Threading.Tasks;
 
 namespace robo.Control.Relatorios.FIES_Novo
 {
-    class StatusAluno
+    class StatusAluno : UtilFiesNovo
     {
         private IWebDriver Driver;
-        private UtilFiesNovo utilFiesNovo = new UtilFiesNovo();
 
         public void BuscarStatusAluno(TOAluno aluno, string semestre)
         {
-            while(Driver.PageSource.Contains("Consultar Contrato Estudante") == false)
+            while (Driver.PageSource.Contains("Consultar Contrato Estudante") == false)
             {
                 System.Threading.Thread.Sleep(100);
             }
             ((IJavaScriptExecutor)Driver).ExecuteScript($@"document.getElementById(""cpf"").value = ""{aluno.Cpf}"";");
-            Util.ClickButtonsById(Driver, "btnConfirmar");
-            utilFiesNovo.WaitForLoading(Driver);
-            Util.ClickButtonsById(Driver, "lnkTipoProcesso");
-            utilFiesNovo.WaitForLoading(Driver);
+            ClickButtonsById(Driver, "btnConfirmar");
+            WaitForLoading(Driver);
+            ClickButtonsById(Driver, "lnkTipoProcesso");
+            WaitForLoading(Driver);
 
-            utilFiesNovo.ClickButtonByIdWithJavaScript(Driver, "tab-Aditamento");
-            utilFiesNovo.WaitForLoading(Driver);
+            ClickButtonByIdWithJavaScript(Driver, "tab-Aditamento");
+            WaitForLoading(Driver);
 
             IWebElement elementoTabela = Driver.FindElement(By.Id("gridAditamento"));
             List<IWebElement> dados = elementoTabela.FindElements(By.TagName("td")).ToList();
@@ -64,10 +63,10 @@ namespace robo.Control.Relatorios.FIES_Novo
                 aluno.ProUni = "N/A";
                 aluno.DataInclusao = "N/A";
                 aluno.DataConclusao = "N/A";
-               // aluno.HorarioConclusao = string.Format("{0:dd/MM/yyyy HH:mm}", DateTime.Now);
-               // Dados.InsertAluno(aluno);
-               // aluno.Conclusao = "Semestre não encontrado";
-               // aluno.HorarioConclusao = string.Format("{0:dd/MM/yyyy HH:mm}", DateTime.Now);
+                // aluno.HorarioConclusao = string.Format("{0:dd/MM/yyyy HH:mm}", DateTime.Now);
+                // Dados.InsertAluno(aluno);
+                // aluno.Conclusao = "Semestre não encontrado";
+                // aluno.HorarioConclusao = string.Format("{0:dd/MM/yyyy HH:mm}", DateTime.Now);
                 Util.EditarConclusaoAluno(aluno, "Semestre não encontrado");
                 // Dados.UpdateAluno(alunos[i]);
             }
@@ -75,8 +74,8 @@ namespace robo.Control.Relatorios.FIES_Novo
 
             var element = Driver.FindElement(By.Id("btn-voltar"));
             ((IJavaScriptExecutor)Driver).ExecuteScript(string.Format("window.scrollTo({0}, {1})", element.Location.X, element.Location.Y - 100));
-            Util.ClickButtonsById(Driver, "btn-voltar");
-            utilFiesNovo.WaitForLoading(Driver);
+            ClickButtonsById(Driver, "btn-voltar");
+            WaitForLoading(Driver);
         }
         public void SetDriver(IWebDriver driver)
         {

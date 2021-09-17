@@ -8,21 +8,20 @@ using System.Threading.Tasks;
 
 namespace robo.Control.Relatorios.FIES_Novo
 {
-    public class ExportarRepasse
+    public class ExportarRepasse : UtilFiesNovo
     {
         private IWebDriver Driver;
-        UtilFiesNovo utilFiesNovo = new UtilFiesNovo();
         public void ExportarRepasseFiesNovo(IWebDriver driver, string ano, string mes)
         {
             Driver = driver;
-            Util.ClickDropDown(Driver, "id", "selectMes", mes);
-            Util.ClickDropDown(Driver, "id", "selectAno", ano);
+            ClickDropDown(Driver, "id", "selectMes", mes);
+            ClickDropDown(Driver, "id", "selectAno", ano);
 
-            Util.ClickButtonsById(Driver, "btnConsultar");
-            utilFiesNovo.WaitForLoading(Driver);
+            ClickButtonsById(Driver, "btnConsultar");
+            WaitForLoading(Driver);
 
-            Util.ClickButtonsById(Driver, "btnExportar");
-            utilFiesNovo.WaitForLoading(Driver);
+            ClickButtonsById(Driver, "btnExportar");
+            WaitForLoading(Driver);
         }
     }
 }

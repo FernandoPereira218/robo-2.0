@@ -8,17 +8,16 @@ using Robo;
 
 namespace robo.Control.Relatorios.FIES_Novo
 {
-    public class BuscarStatusAditamento
+    public class BuscarStatusAditamento : UtilFiesNovo
     {
         private IWebDriver Driver;
-        private UtilFiesNovo utilFiesNovo = new UtilFiesNovo();
 
         public void BuscarStatus(TOAluno aluno, string semestreAtual)
         {
-            utilFiesNovo.ConsultarAluno(Driver, aluno);
-           utilFiesNovo.WaitForLoading(Driver);
+            ConsultarAluno(Driver, aluno);
+            WaitForLoading(Driver);
 
-            if (utilFiesNovo.VerificarNenhumaInformacaoDisponivel(Driver) == true)
+            if (VerificarNenhumaInformacaoDisponivel(Driver) == true)
             {
                 Util.EditarConclusaoAluno(aluno, "Nenhuma informação disponível");
                 return;
@@ -29,7 +28,7 @@ namespace robo.Control.Relatorios.FIES_Novo
                 IWebElement grid = Driver.FindElement(By.Id("gridResult"));
                 if (grid.Text.Contains(semestreAtual) == true)
                 {
-                    situacaoAluno = utilFiesNovo.BuscarSituacaoAluno(Driver, semestreAtual);
+                    situacaoAluno = BuscarSituacaoAluno(Driver, semestreAtual);
                 }
                 else
                 {
