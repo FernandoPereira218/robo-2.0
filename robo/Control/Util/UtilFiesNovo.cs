@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace robo.Control
 {
-    public class UtilFiesNovo
+    public class UtilFiesNovo : UtilSelenium
     {
         /// <summary>
         /// Faz login na página da Caixa
@@ -17,10 +17,10 @@ namespace robo.Control
         /// <param name="login"></param>
         public void FazerLogin(IWebDriver Driver, TOLogin login)
         {
-            Util.ClickAndWriteById(Driver, "username", login.Usuario);
-            Util.ClickButtonsById(Driver, "button-submit");
-            Util.ClickAndWriteById(Driver, "password", login.Senha);
-            Util.ClickButtonsByCss(Driver, "button:nth-child(1)");
+            ClickAndWriteById(Driver, "username", login.Usuario);
+            ClickButtonsById(Driver, "button-submit");
+            ClickAndWriteById(Driver, "password", login.Senha);
+            ClickButtonsByCss(Driver, "button:nth-child(1)");
         }
 
         public void FazerLogout(IWebDriver Driver)
@@ -103,11 +103,11 @@ namespace robo.Control
 
             ((IJavaScriptExecutor)Driver).ExecuteScript("window.scrollTo(0, 0)");
 
-            Util.ClickButtonsByCss(Driver, "body");
+            ClickButtonsByCss(Driver, "body");
 
-            Util.ClickButtonsById(Driver, "btnLimpar");
+            ClickButtonsById(Driver, "btnLimpar");
 
-            Util.ClickButtonsById(Driver, "cpf");
+            ClickButtonsById(Driver, "cpf");
 
             var executor = (IJavaScriptExecutor)Driver;
             executor.ExecuteScript($@"document.getElementById(""cpf"").value = ""{aluno.Cpf}"";");
@@ -116,7 +116,7 @@ namespace robo.Control
             {
                 System.Threading.Thread.Sleep(500);
             }
-            Util.ClickButtonsById(Driver, "btnConsultar");
+            ClickButtonsById(Driver, "btnConsultar");
 
             WaitForLoading(Driver);
         }
@@ -152,17 +152,17 @@ namespace robo.Control
                 //Verificacao de erro ao clicar no botao
                 while (msgErro == true)
                 {
-                    Util.ScrollToElementByID(Driver, botaoImprimirTermo.GetAttribute("id"));
+                    ScrollToElementByID(Driver, botaoImprimirTermo.GetAttribute("id"));
                     botaoImprimirTermo.Click();
 
                     System.Threading.Thread.Sleep(1000);
 
-                    Util.ClickButtonsById(Driver, "btnConfirmar");
+                    ClickButtonsById(Driver, "btnConfirmar");
 
                     msgErro = (bool)executor.ExecuteScript("return $('.alert.alert-error').is(':visible');");
                     if (msgErro == true)
                     {
-                        Util.ClickButtonsById(Driver, "btnConsultar");
+                        ClickButtonsById(Driver, "btnConsultar");
                         WaitForLoading(Driver);
                     }
                 }
@@ -171,7 +171,7 @@ namespace robo.Control
                 if (Driver.PageSource.Contains("MDLalerta_") == true)
                 {
                     aluno.Conclusao = Driver.FindElement(By.XPath("/html/body/div[7]/div[2]/p")).Text;
-                    Util.ClickButtonsById(Driver, "btnConfirmar");
+                    ClickButtonsById(Driver, "btnConfirmar");
                     return;
                 }
 

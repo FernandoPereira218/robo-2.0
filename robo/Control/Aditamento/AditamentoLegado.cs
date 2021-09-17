@@ -15,10 +15,9 @@ using System.Threading.Tasks;
 
 namespace robo.Control
 {
-    public class AditamentoLegado
+    public class AditamentoLegado : UtilFiesLegado
     {
         static IWebDriver Driver;
-        private UtilFiesLegado fiesLegadoutil = new UtilFiesLegado();
         public void AditamentoFiesLegado(IWebDriver driver, TOLogin login, TOAluno aluno, string numSemestre)
         {
             Driver = driver;
@@ -41,9 +40,9 @@ namespace robo.Control
                         return;
                     }
 
-                    fiesLegadoutil.WaitinLoading(Driver);
+                    WaitinLoading(Driver);
 
-                    if (fiesLegadoutil.VerificaErro(Driver, aluno) == false)
+                    if (VerificaErro(Driver, aluno) == false)
                     {
                         //Mensagem que não aparece somente quando o aluno já foi aditado anteriomente
                         if (Driver.PageSource.Contains("igual ou superior a 75% no semestre"))
@@ -91,7 +90,7 @@ namespace robo.Control
                 dd.SendKeys(Keys.Enter);
             }*/
 
-            fiesLegadoutil.WaitinLoading(Driver);
+            WaitinLoading(Driver);
 
             PreencheReceitas(aluno);
 
@@ -130,7 +129,7 @@ namespace robo.Control
             }
 
             //Marca resultado aditamento
-            fiesLegadoutil.VerificaErro(Driver, aluno);
+            VerificaErro(Driver, aluno);
         }
         private void PreencheReceitas(TOAluno aluno)
         {

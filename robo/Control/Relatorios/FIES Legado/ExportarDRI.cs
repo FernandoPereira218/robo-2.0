@@ -4,20 +4,21 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using OpenQA.Selenium;
+using robo.Control.Legado;
 using Robo;
 
 namespace robo.Control.Relatorios.FIES_Legado
 {
-    public class ExportarDRI
+    public class ExportarDRI : UtilFiesLegado
     {
         private IWebDriver Driver;
         public void ExportarDRILegado(IWebDriver driver, string campus, string situacaoDRI)
         {
             Driver = driver;
 
-            Util.ClickDropDown(Driver, "id", "co_situacao_inscricao", situacaoDRI);
+            ClickDropDown(Driver, "id", "co_situacao_inscricao", situacaoDRI);
 
-            Util.ClickButtonsById(Driver, "excel");
+            ClickButtonsById(Driver, "excel");
 
             Util.SalvarArquivos(Driver, "DRI_" + situacaoDRI, campus);
         }

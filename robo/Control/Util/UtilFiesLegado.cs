@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace robo.Control.Legado
 {
-    public class UtilFiesLegado
+    public class UtilFiesLegado : UtilSelenium
     {
         public UtilFiesLegado()
         {
@@ -22,17 +22,17 @@ namespace robo.Control.Legado
             {
                 System.Threading.Thread.Sleep(500);
             }
-            Util.ClickButtonsByCss(Driver, "#link-instituicao img:nth-child(1)");
+            ClickButtonsByCss(Driver, "#link-instituicao img:nth-child(1)");
 
-            Util.ClickButtonsByCss(Driver, "center:nth-child(10) td:nth-child(2) .guest-box:nth-child(1) span:nth-child(2)");
+            ClickButtonsByCss(Driver, "center:nth-child(10) td:nth-child(2) .guest-box:nth-child(1) span:nth-child(2)");
             while (Driver.Url.Contains("InitAuthenticationByIdentifierAndPassword") == false)
             {
                 System.Threading.Thread.Sleep(100);
             }
-            Util.ClickAndWriteById(Driver, "id", login.Usuario);
-            Util.ClickAndWriteById(Driver, "pw", login.Senha);
+            ClickAndWriteById(Driver, "id", login.Usuario);
+            ClickAndWriteById(Driver, "pw", login.Senha);
 
-            Util.ClickButtonsById(Driver, "botoes");
+            ClickButtonsById(Driver, "botoes");
             if (!Driver.PageSource.Contains("A senha informada não confere. Número de tentativas restAes:"))//Ocorreu uma falha na execução da aplicação. A caixa de erro ao lado mostra o motivo da falha. Provavelmente alguma informação incorreta foi processada.
             {
                 return true;
@@ -48,7 +48,7 @@ namespace robo.Control.Legado
             while (Driver.PageSource.Contains("Aditamentos FIES") == false)
             {
                 Driver.FindElement(By.XPath("//select[@name='co_perfil']/option[contains(.,'CPSA Presidência')]")).Click();
-                Util.WaitPageToLoad(Driver);
+                WaitPageToLoad(Driver);
             }
         }
         public void WaitinLoading(IWebDriver Driver)
@@ -64,19 +64,19 @@ namespace robo.Control.Legado
         }
         public void FazerLogout(IWebDriver Driver)
         {
-            Util.ClickButtonsByXpath(Driver, "//a[contains(text(),'Sair')]");
+            ClickButtonsByXpath(Driver, "//a[contains(text(),'Sair')]");
         }
         public void SelecionarMenuDRI(IWebDriver Driver)
         {
-            Util.ClickButtonsByXpath(Driver, "//a[contains(text(),'Validação pela CPSA Fies')]");
+            ClickButtonsByXpath(Driver, "//a[contains(text(),'Validação pela CPSA Fies')]");
         }
         public void SelecionarMenuBaixarDocumentos(IWebDriver Driver)
         {
-            Util.ClickButtonsByCss(Driver, "div:nth-child(3) > ul > .menu-button:nth-child(3) > a");
+            ClickButtonsByCss(Driver, "div:nth-child(3) > ul > .menu-button:nth-child(3) > a");
         }
         public void SelecionarMenuExtratoMensalDeRepasse(IWebDriver Driver)
         {
-            Util.ClickButtonsByXpath(Driver, "/html/body/div[3]/div[4]/div[1]/div[4]/ul/li[1]/a");
+            ClickButtonsByXpath(Driver, "/html/body/div[3]/div[4]/div[1]/div[4]/ul/li[1]/a");
         }
         public bool VerificaErro(IWebDriver Driver, TOAluno aluno)
         {
@@ -94,16 +94,16 @@ namespace robo.Control.Legado
             switch (tipoRelatorio)
             {
                 case "DRM":
-                    Util.ClickDropDown(Driver, "id", "co_finalidade_aditamento", "Aditamento de Renovação");
+                    ClickDropDown(Driver, "id", "co_finalidade_aditamento", "Aditamento de Renovação");
                     return "Aditamento de Renovação";
                 case "DRT":
-                    Util.ClickDropDown(Driver, "id", "co_finalidade_aditamento", "Aditamento de Transferência");
+                    ClickDropDown(Driver, "id", "co_finalidade_aditamento", "Aditamento de Transferência");
                     return "Aditamento de Transferência";
                 case "DRD":
-                    Util.ClickDropDown(Driver, "id", "co_finalidade_aditamento", "Aditamento de Dilatação");
+                    ClickDropDown(Driver, "id", "co_finalidade_aditamento", "Aditamento de Dilatação");
                     return "Aditamento de Dilatação";
                 case "Suspensao":
-                    Util.ClickDropDown(Driver, "id", "co_finalidade_aditamento", "Suspensão");
+                    ClickDropDown(Driver, "id", "co_finalidade_aditamento", "Suspensão");
                     return "Suspensão";
                 default:
                     return string.Empty;
