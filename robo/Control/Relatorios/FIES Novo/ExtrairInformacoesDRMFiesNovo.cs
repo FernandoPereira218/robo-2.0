@@ -8,15 +8,14 @@ using System.Threading.Tasks;
 
 namespace robo.Control.Relatorios.FIES_Novo
 {
-    public class ExtrairInformacoesDRMFiesNovo
+    public class ExtrairInformacoesDRMFiesNovo : UtilFiesNovo
     {
         private IWebDriver Driver;
-        private UtilFiesNovo utilFiesNovo = new UtilFiesNovo();
 
         public void ExtrairInformacoesDRM(TOAluno aluno, string semestre)
         {
             string janelaInicial = Driver.CurrentWindowHandle;
-            utilFiesNovo.BuscarEAbrirDRM(Driver, aluno, semestre);
+            BuscarEAbrirDRM(Driver, aluno, semestre);
 
             string informacao = SalvarTextoPagina();
             Driver.Close();

@@ -10,15 +10,14 @@ using System.Threading.Tasks;
 
 namespace robo.Control.Relatorios.FIES_Novo
 {
-    public class BaixarDRM
+    public class BaixarDRM : UtilFiesNovo
     {
         private IWebDriver Driver;
-        UtilFiesNovo utilFiesNovo = new UtilFiesNovo();
 
         public void BaixarDRMFiesNovo(TOAluno aluno, string semestre)
         {
             string janelaInicial = Driver.CurrentWindowHandle;
-            utilFiesNovo.BuscarEAbrirDRM(Driver, aluno, semestre);
+            BuscarEAbrirDRM(Driver, aluno, semestre);
 
             string simplificado = BuscarDRMSimplificado();
 
@@ -79,7 +78,7 @@ namespace robo.Control.Relatorios.FIES_Novo
             //Caso seja da versão CAE, copia para uma pasta local e abre automaticamente o pdf
             //if (emLote == false)
             //{
-            //    Util.CreateDirectory("Temp");
+            //    CreateDirectory("Temp");
             //    DirectoryInfo di = new DirectoryInfo("Temp");
             //    foreach (var item in di.GetFiles())
             //    {

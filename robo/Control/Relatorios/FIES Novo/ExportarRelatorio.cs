@@ -9,17 +9,16 @@ using System.IO;
 
 namespace robo.Control.Relatorios.FIES_Novo
 {
-    public class ExportarRelatorio
+    public class ExportarRelatorio : UtilFiesNovo
     {
         private IWebDriver Driver;
-        private UtilFiesNovo utilFiesNovo = new UtilFiesNovo();
         public void ExportarRelatorioFiesNovo(IWebDriver driver, string tipoRelatorio)
         {
             Driver = driver;
-            Util.ClickButtonsById(Driver, "btnConsultar");
-            utilFiesNovo.WaitForLoading(Driver);
+            ClickButtonsById(Driver, "btnConsultar");
+            WaitForLoading(Driver);
 
-            Util.ClickDropDown(Driver, "name", "gridResult_length", "100");
+            ClickDropDown(Driver, "name", "gridResult_length", "100");
             string source = Driver.PageSource.Split(new string[] { "Mostrando" }, StringSplitOptions.None)[1];
             source = source.Split(new string[] { "registros" }, StringSplitOptions.None)[0];
             string quantidade = source.Split(new string[] { "de " }, StringSplitOptions.None)[1];
@@ -45,7 +44,7 @@ namespace robo.Control.Relatorios.FIES_Novo
                 
             }
 
-            String userRoot = System.Environment.GetEnvironmentVariable("USERPROFILE");
+            string userRoot = System.Environment.GetEnvironmentVariable("USERPROFILE");
             string downloadFolder = System.IO.Path.Combine(userRoot, "Downloads");
             string arquivo = downloadFolder + "\\Relatório_" + tipoRelatorio + ".csv";
             using (StreamWriter sw = new StreamWriter(arquivo, false, UTF8Encoding.UTF8))

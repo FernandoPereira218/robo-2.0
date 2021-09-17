@@ -9,21 +9,20 @@ using System.Threading.Tasks;
 
 namespace robo.Control.Relatorios.FIES_Novo
 {
-    class ExportarInadimplencia
+    class ExportarInadimplencia : UtilFiesNovo
     {
         private IWebDriver Driver;
-        UtilFiesNovo utilFiesNovo = new UtilFiesNovo();
         public void Inadimplencia(IWebDriver driver, string mes, string ano)
         {
             Driver = driver;
-            Util.ClickDropDown(Driver, "id", "selectMesMovimento", mes);
-            Util.ClickDropDown(Driver, "id", "selectAnoMovimento", ano);
+            ClickDropDown(Driver, "id", "selectMesMovimento", mes);
+            ClickDropDown(Driver, "id", "selectAnoMovimento", ano);
 
-            Util.ClickButtonsById(Driver, "btnConsultar");
-            utilFiesNovo.WaitForLoading(Driver);
+            ClickButtonsById(Driver, "btnConsultar");
+            WaitForLoading(Driver);
 
-            Util.ClickButtonsById(Driver, "btnExportar");
-            utilFiesNovo.WaitForLoading(Driver);
+            ClickButtonsById(Driver, "btnExportar");
+            WaitForLoading(Driver);
         }
 
         public void Inadimplencia(IWebDriver driver)
@@ -38,7 +37,7 @@ namespace robo.Control.Relatorios.FIES_Novo
                 {
                     break;
                 }
-                Util.ClickDropDown(Driver, "id", "selectAnoMovimento", anoSelecionado.ToString());
+                ClickDropDown(Driver, "id", "selectAnoMovimento", anoSelecionado.ToString());
                 int contador = 12;
                 foreach (var mes in selectMes.Options)
                 {
@@ -46,13 +45,13 @@ namespace robo.Control.Relatorios.FIES_Novo
                     {
                         break;
                     }
-                    Util.ClickDropDown(Driver, "id", "selectMesMovimento", selectMes.Options[contador].Text);
+                    ClickDropDown(Driver, "id", "selectMesMovimento", selectMes.Options[contador].Text);
 
-                    Util.ClickButtonsById(Driver, "btnConsultar");
-                    utilFiesNovo.WaitForLoading(Driver);
+                    ClickButtonsById(Driver, "btnConsultar");
+                    WaitForLoading(Driver);
 
-                    Util.ClickButtonsById(Driver, "btnExportar");
-                    utilFiesNovo.WaitForLoading(Driver);
+                    ClickButtonsById(Driver, "btnExportar");
+                    WaitForLoading(Driver);
 
                     contador--;
                 }
