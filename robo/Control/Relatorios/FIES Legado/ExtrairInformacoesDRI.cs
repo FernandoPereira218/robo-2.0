@@ -10,23 +10,22 @@ using OpenQA.Selenium.Support.UI;
 
 namespace robo.Control.Relatorios.FIES_Legado
 {
-    public class ExtrairInformacoesDRI
+    public class ExtrairInformacoesDRI : UtilFiesLegado
     {
         private IWebDriver Driver;
-        private UtilFiesLegado utilFiesLegado = new UtilFiesLegado();
 
         public void ExecutarExtrairInformacoesDRI(IWebDriver driver, TOAluno aluno, string situacao)
         {
             Driver = driver;
 
-            Util.ClickAndWriteById(Driver, "nu_cpf", aluno.Cpf);
-            Util.ClickDropDown(Driver, "id", "co_situacao_inscricao", situacao);
-            Util.ClickButtonsById(Driver, "consulta");
-            utilFiesLegado.WaitinLoading(Driver);
+            ClickAndWriteById(Driver, "nu_cpf", aluno.Cpf);
+            ClickDropDown(Driver, "id", "co_situacao_inscricao", situacao);
+            ClickButtonsById(Driver, "consulta");
+            WaitinLoading(Driver);
 
             if (Driver.PageSource.Contains("sorterdocuments"))
             {
-                Util.ClickButtonsByCss(Driver, ".even:nth-child(1) img");
+                ClickButtonsByCss(Driver, ".even:nth-child(1) img");
 
                 if (!Driver.PageSource.Contains("Voltar para a página principal"))
                 {
@@ -61,7 +60,7 @@ namespace robo.Control.Relatorios.FIES_Legado
                         string percentual = Driver.FindElement(By.Id("nuPercentualFinanciamento")).Text;
                         string gradeAtualComDesconto;
 
-                        if (Util.VerificarElementoExiste(Driver, "id", "vl_semestre_atual") == null)
+                        if (VerificarElementoExiste(Driver, "id", "vl_semestre_atual") == null)
                         {
                             gradeAtualComDesconto = CodigoFonte.Split(new string[] { "Valor da semestralidade a ser cursado com desconto - Grade Curricular a ser Cursada:*" }, StringSplitOptions.None)[1];
                             gradeAtualComDesconto = gradeAtualComDesconto.Split(new string[] { "\r\n" }, StringSplitOptions.None)[0];
@@ -72,7 +71,7 @@ namespace robo.Control.Relatorios.FIES_Legado
                             gradeAtualComDesconto = InputSemestreAtual.GetAttribute("value");
                         }
 
-                        if (Util.VerificarElementoExiste(Driver, "id", "vl_financiado_semestre") == null)
+                        if (VerificarElementoExiste(Driver, "id", "vl_financiado_semestre") == null)
                         {
                             selectFinanciadoSemestre = CodigoFonte.Split(new string[] { "Valor a ser financiado no semestre a ser cursado com recursos do FIES:*" }, StringSplitOptions.None)[1];
                             selectFinanciadoSemestre = selectFinanciadoSemestre.Split(new string[] { "\r\n" }, StringSplitOptions.None)[0];
@@ -96,8 +95,8 @@ namespace robo.Control.Relatorios.FIES_Legado
 
                         Util.EditarConclusaoAluno(aluno, "DRI Baixado", "ALUNOINF");
 
-                        Util.ScrollToElementByID(Driver, "voltar");
-                        Util.ClickButtonsById(Driver, "voltar");
+                        ScrollToElementByID(Driver, "voltar");
+                        ClickButtonsById(Driver, "voltar");
 
                     }
                 }

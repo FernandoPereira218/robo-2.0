@@ -10,28 +10,27 @@ using System.Threading.Tasks;
 
 namespace robo.Control.Relatorios
 {
-    public class DRI
+    public class DRI : UtilFiesLegado
     {
         private IWebDriver Driver;
-        private UtilFiesLegado fiesLegadoutil = new UtilFiesLegado();
         public void DRIFiesLegado(IWebDriver driver, TOAluno aluno, TOLogin login, bool baixar, string situacaoDRI)
         {
             //Driver = driver;
 
-            Util.ClickDropDown(Driver, "id", "co_situacao_inscricao", situacaoDRI);
+            ClickDropDown(Driver, "id", "co_situacao_inscricao", situacaoDRI);
 
             if (!Dados.DRIExists(aluno.Cpf) || baixar == true)
             {
-                fiesLegadoutil.WaitinLoading(Driver);
+                WaitinLoading(Driver);
 
-                Util.ClickAndWriteById(Driver, "nu_cpf", aluno.Cpf);
-                Util.ClickButtonsById(Driver, "consulta");
+                ClickAndWriteById(Driver, "nu_cpf", aluno.Cpf);
+                ClickButtonsById(Driver, "consulta");
 
-                fiesLegadoutil.WaitinLoading(Driver);
+                WaitinLoading(Driver);
 
                 if (Driver.PageSource.Contains("sorterdocuments"))
                 {
-                    Util.ClickButtonsByCss(Driver, ".even:nth-child(1) img");
+                    ClickButtonsByCss(Driver, ".even:nth-child(1) img");
 
                     if (!Driver.PageSource.Contains("Voltar para a página principal"))
                     {
@@ -55,8 +54,8 @@ namespace robo.Control.Relatorios
         }
         private void BaixarDRI(TOAluno aluno)
         {
-            Util.ScrollToElementByID(Driver, "imprimir_dri");
-            Util.ClickButtonsById(Driver, "imprimir_dri");
+            ScrollToElementByID(Driver, "imprimir_dri");
+            ClickButtonsById(Driver, "imprimir_dri");
             if (!Driver.PageSource.Contains("Voltar para a página principal"))
             {
                 string userRoot = System.Environment.GetEnvironmentVariable("USERPROFILE");
@@ -78,7 +77,7 @@ namespace robo.Control.Relatorios
 
                 File.Move(myFile.FullName, diretorioDRI + "\\" + aluno.Cpf + "DRI.zip");
                 Util.EditarConclusaoAluno(aluno, "DRI Baixada");
-                Util.ClickButtonsById(Driver, "voltar");
+                ClickButtonsById(Driver, "voltar");
             }
 
         }
@@ -99,7 +98,7 @@ namespace robo.Control.Relatorios
                     Dados.InsertDRI(dri);
                 }
                 Util.EditarConclusaoAluno(aluno, "DRI Baixada");
-                Util.ClickButtonsById(Driver, "voltar");
+                ClickButtonsById(Driver, "voltar");
             }
         }
         public void SetDriver(IWebDriver driver)

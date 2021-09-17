@@ -12,31 +12,31 @@ using TikaOnDotNet.TextExtraction;
 
 namespace robo.Control.Relatorios.FIES_Legado
 {
-    class ExtrairInformacoesDRM
+    class ExtrairInformacoesDRM : UtilFiesLegado
     {
         private UtilFiesLegado utilFiesLegado = new UtilFiesLegado();
         private IWebDriver Driver;
         public void ExtrairDRM(IWebDriver driver, TOAluno aluno, string campus, string semestre)
         {
             Driver = driver;
-            Util.ClickDropDown(Driver, "id", "co_finalidade_aditamento", "Aditamento de Renovação");
-            utilFiesLegado.WaitinLoading(Driver);
-            Util.ClickDropDown(Driver, "id", "coSemestreAditamento", semestre);
-            Util.ClickAndWriteById(Driver, "cpf", aluno.Cpf);
-            Util.ClickDropDown(Driver, "id", "coSemestreAditamento", semestre);
-            Util.ClickButtonsById(Driver, "consultar");
+            ClickDropDown(Driver, "id", "co_finalidade_aditamento", "Aditamento de Renovação");
+            WaitinLoading(Driver);
+            ClickDropDown(Driver, "id", "coSemestreAditamento", semestre);
+            ClickAndWriteById(Driver, "cpf", aluno.Cpf);
+            ClickDropDown(Driver, "id", "coSemestreAditamento", semestre);
+            ClickButtonsById(Driver, "consultar");
             string situacaoAluno;
             if (Driver.PageSource.Contains("Lista de Aditamentos"))
             {
                 situacaoAluno = Driver.FindElement(By.XPath("/html/body/div[3]/div[4]/div[2]/div[2]/div[4]/table/tbody/tr/td[6]")).Text;
-                Util.ClickButtonsByCss(Driver, "td > a > img");
+                ClickButtonsByCss(Driver, "td > a > img");
                 IWebElement botaoImprimir;
-                botaoImprimir = Util.VerificarElementoExiste(Driver, "ID", "imprimirDrm");
+                botaoImprimir = VerificarElementoExiste(Driver, "ID", "imprimirDrm");
                 if (botaoImprimir != null)
                 {
-                    utilFiesLegado.WaitinLoading(Driver);
+                    WaitinLoading(Driver);
 
-                    if (utilFiesLegado.VerificaErro(Driver, aluno) == false)
+                    if (VerificaErro(Driver, aluno) == false)
                     {
                         BaixarDRM(ref aluno);
                         Util.EditarConclusaoAluno(aluno, "DRM Baixado", "ALUNOINF");
@@ -44,8 +44,8 @@ namespace robo.Control.Relatorios.FIES_Legado
                 }
                 else
                 {
-                    Util.ScrollToElementByID(Driver, "voltar");
-                    Util.ClickButtonsById(Driver, "voltar");
+                    ScrollToElementByID(Driver, "voltar");
+                    ClickButtonsById(Driver, "voltar");
                     Util.EditarConclusaoAluno(aluno, situacaoAluno);
                 }
             }
@@ -56,7 +56,7 @@ namespace robo.Control.Relatorios.FIES_Legado
         }
         private void BaixarDRM(ref TOAluno aluno)
         {
-            Util.ClickButtonsById(Driver, "imprimirDrm");
+            ClickButtonsById(Driver, "imprimirDrm");
             string userRoot = System.Environment.GetEnvironmentVariable("USERPROFILE");
             string downloadFolder = Path.Combine(userRoot, "Downloads");
             DirectoryInfo directory = new DirectoryInfo(downloadFolder);
@@ -76,7 +76,7 @@ namespace robo.Control.Relatorios.FIES_Legado
 
             File.Move(myFile.FullName, diretorioDRM + "\\DRM_ALUNO.zip");
 
-            Util.ClickButtonsById(Driver, "voltar");
+            ClickButtonsById(Driver, "voltar");
 
             ZipFile.ExtractToDirectory(diretorioDRM + "\\DRM_ALUNO.zip", diretorioDRM);
             string[] arquivoZIP = Directory.GetFiles(diretorioDRM);
