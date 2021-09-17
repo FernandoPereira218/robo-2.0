@@ -22,7 +22,7 @@ namespace robo.Control.Relatorios.FIES_Legado
             if (select.Options.Count > 2)
             {
                 ((IJavaScriptExecutor)Driver).ExecuteScript("alert(\"Por favor selecione uma data\")");
-                while (isAlertPresent())
+                while (isAlertPresent(Driver))
                 {
                     System.Threading.Thread.Sleep(100);
                 }
@@ -41,19 +41,6 @@ namespace robo.Control.Relatorios.FIES_Legado
             }
             Driver.FindElement(By.Id("btn_excel")).Click();
             Util.SalvarArquivos(Driver, "Extrato_Mensal_Repasse_", campus);
-        }
-
-        private bool isAlertPresent()
-        {
-            try
-            {
-                Driver.SwitchTo().Alert();
-                return true;
-            }
-            catch (NoAlertPresentException Ex)
-            {
-                return false;
-            }
         }
     }
 }

@@ -583,6 +583,10 @@ namespace Robo
                 case "EXPORTAR INADIMPLÊNCIA":
                     presenter.ExportarInadimplencia(cbFaculdade.Text, cbMes.Text, cbAno.Text);
                     break;
+                case "EXPORTAR COPARTICIPAÇÃO":
+                    presenter.ExportarCoparticipacaoFiesNovo(cbFaculdade.Text, dtpDataInicial.Text, dtpDataFinal.Text);
+                    break;
+
                 default:
                     MessageBox.Show("Favor criar o CASE antes de rodar!!!!!");
                     break;

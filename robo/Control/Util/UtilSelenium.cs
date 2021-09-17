@@ -316,6 +316,19 @@ namespace robo
         {
             System.Threading.Thread.Sleep(250);
         }
+        protected bool isAlertPresent(IWebDriver Driver)
+        {
+            try
+            {
+                Driver.SwitchTo().Alert();
+                return true;
+            }
+            catch (NoAlertPresentException Ex)
+            {
+                return false;
+            }
+        }
+
 
     }
 }
