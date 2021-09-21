@@ -587,6 +587,9 @@ namespace Robo
                     presenter.ExportarCoparticipacaoFiesNovo(cbFaculdade.Text, dtpDataInicial.Text, dtpDataFinal.Text);
                     break;
 
+                case "ABRIR SIGA":
+                    presenter.ExecutarAbrirSite();
+                    break;
                 default:
                     MessageBox.Show("Favor criar o CASE antes de rodar!!!!!");
                     break;

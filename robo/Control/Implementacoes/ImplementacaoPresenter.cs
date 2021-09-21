@@ -1,4 +1,5 @@
 ﻿using OpenQA.Selenium;
+using OpenQA.Selenium.Firefox;
 using robo.Control.Aditamento;
 using robo.Control.Legado;
 using robo.Control.Relatorios;
@@ -11,6 +12,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace robo.Control.Implementacoes
 {
@@ -511,5 +513,34 @@ namespace robo.Control.Implementacoes
             }
         }
 
+        public void ExecutarAbrirSite()
+        {
+            IWebDriver Driver;
+
+            /// esse vai apitar
+            var firefoxDriverService = FirefoxDriverService.CreateDefaultService(Environment.CurrentDirectory + @"\driver");
+            firefoxDriverService.HideCommandPromptWindow = true;
+            Driver = new FirefoxDriver(firefoxDriverService);
+            // Driver.Manage().Window.Maximize();
+
+
+
+            ((IJavaScriptExecutor)Driver).ExecuteScript("alert('https://siga.uniritter.edu.br/financeiro/fichaFinanceira.php')");
+            MessageBox.Show("Copie o alerta e Faça Login na barra de procurar do Firefox e clique no OK");
+
+            Util.ClickAndWriteByName(Driver, "login", "bruno.soares");
+            Util.ClickAndWriteById(Driver, "senha_ls", "Gremio*2016");
+            Util.ClickButtonsByXpath(Driver, "/html/body/table/tbody/tr/td/table/tbody/tr[6]/td/div/form/div/table/tbody/tr[2]/td/table/tbody/tr/td[2]/table/tbody/tr[6]/td/input");
+
+            System.Threading.Thread.Sleep(2500);
+            // Ajeitar o cpf
+            Util.ClickAndWriteById(Driver, "pess_cpf", "12345678912");
+            Util.ClickButtonsById(Driver, "btn_filtrar");
+
+
+
+
+
+        }
     }
 }
