@@ -123,6 +123,8 @@
             this.btnAlunos = new System.Windows.Forms.Button();
             this.btExtrairInformacoes = new System.Windows.Forms.Button();
             this.btStatus = new System.Windows.Forms.Button();
+            this.labelFiesSiga = new MetroFramework.Controls.MetroLabel();
+            this.cbFiesSiga = new System.Windows.Forms.ComboBox();
             this.panelMenuBar.SuspendLayout();
             this.panelExcel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvAlunos)).BeginInit();
@@ -481,6 +483,8 @@
             // panelDadosDeSituacao
             // 
             this.panelDadosDeSituacao.BackColor = System.Drawing.Color.White;
+            this.panelDadosDeSituacao.Controls.Add(this.labelFiesSiga);
+            this.panelDadosDeSituacao.Controls.Add(this.cbFiesSiga);
             this.panelDadosDeSituacao.Controls.Add(this.labelDataInicio);
             this.panelDadosDeSituacao.Controls.Add(this.cbSituacao);
             this.panelDadosDeSituacao.Controls.Add(this.cbAno);
@@ -495,7 +499,7 @@
             this.panelDadosDeSituacao.Controls.Add(this.labelMes);
             this.panelDadosDeSituacao.Location = new System.Drawing.Point(523, 366);
             this.panelDadosDeSituacao.Name = "panelDadosDeSituacao";
-            this.panelDadosDeSituacao.Size = new System.Drawing.Size(298, 236);
+            this.panelDadosDeSituacao.Size = new System.Drawing.Size(294, 289);
             this.panelDadosDeSituacao.TabIndex = 60;
             // 
             // labelDataInicio
@@ -761,7 +765,7 @@
             this.btnIniciar.FontSize = MetroFramework.MetroButtonSize.Medium;
             this.btnIniciar.FontWeight = MetroFramework.MetroButtonWeight.Light;
             this.btnIniciar.ForeColor = System.Drawing.SystemColors.Control;
-            this.btnIniciar.Location = new System.Drawing.Point(522, 609);
+            this.btnIniciar.Location = new System.Drawing.Point(520, 661);
             this.btnIniciar.Name = "btnIniciar";
             this.btnIniciar.Size = new System.Drawing.Size(248, 44);
             this.btnIniciar.TabIndex = 27;
@@ -1484,6 +1488,29 @@
             this.btStatus.UseVisualStyleBackColor = true;
             this.btStatus.Click += new System.EventHandler(this.btExportar_Click);
             // 
+            // labelFiesSiga
+            // 
+            this.labelFiesSiga.AutoSize = true;
+            this.labelFiesSiga.Location = new System.Drawing.Point(4, 239);
+            this.labelFiesSiga.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.labelFiesSiga.Name = "labelFiesSiga";
+            this.labelFiesSiga.Size = new System.Drawing.Size(65, 19);
+            this.labelFiesSiga.TabIndex = 60;
+            this.labelFiesSiga.Text = "FIES SIGA";
+            // 
+            // cbFiesSiga
+            // 
+            this.cbFiesSiga.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbFiesSiga.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbFiesSiga.FormattingEnabled = true;
+            this.cbFiesSiga.Items.AddRange(new object[] {
+            "FIES",
+            "FIES CONTRATADO"});
+            this.cbFiesSiga.Location = new System.Drawing.Point(4, 261);
+            this.cbFiesSiga.Name = "cbFiesSiga";
+            this.cbFiesSiga.Size = new System.Drawing.Size(271, 25);
+            this.cbFiesSiga.TabIndex = 59;
+            // 
             // RoboForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1612,6 +1639,8 @@
         private MetroFramework.Controls.MetroLabel labelDataFim;
         private MetroFramework.Controls.MetroLabel labelAno;
         private MetroFramework.Controls.MetroLabel labelMes;
+        private MetroFramework.Controls.MetroLabel labelFiesSiga;
+        private System.Windows.Forms.ComboBox cbFiesSiga;
     }
 }
 

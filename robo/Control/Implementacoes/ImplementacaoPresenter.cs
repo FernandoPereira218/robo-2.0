@@ -514,7 +514,7 @@ namespace robo.Control.Implementacoes
             }
         }
 
-        public void ExecutarAbrirSite()
+        public void ExecutarAbrirSite(string semestre, string tipoFies)
         {
             listaAlunos = Dados.SelectAlunos();
             foreach (TOAluno aluno in listaAlunos)
@@ -542,7 +542,10 @@ namespace robo.Control.Implementacoes
             CadastrarParcelas cadastrarParcelas = new CadastrarParcelas();
             foreach (TOAluno aluno in listaAlunos)
             {
-                cadastrarParcelas.CadastrarParcelasSiga(aluno, Driver);
+                if (aluno.Conclusao == "Não Feito")
+                {
+                    cadastrarParcelas.CadastrarParcelasSiga(aluno, Driver, semestre, tipoFies);
+                }
             }
 
 

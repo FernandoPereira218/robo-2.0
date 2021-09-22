@@ -588,7 +588,7 @@ namespace Robo
                     break;
 
                 case "ABRIR SIGA":
-                    presenter.ExecutarAbrirSite();
+                    presenter.ExecutarAbrirSite(cbSemestre.Text, cbFiesSiga.Text);
                     break;
                 default:
                     MessageBox.Show("Favor criar o CASE antes de rodar!!!!!");
@@ -816,6 +816,14 @@ namespace Robo
 
                 labelSituacao.Visible = true;
                 cbSituacao.Visible = true;
+            }
+            else if (cb.SelectedItem.ToString().Contains("SIGA"))
+            {
+                labelFiesSiga.Location = labelPonto1;
+                cbFiesSiga.Location = objetoPonto1;
+
+                labelFiesSiga.Visible = true;
+                cbFiesSiga.Visible = true;
             }
         }
 

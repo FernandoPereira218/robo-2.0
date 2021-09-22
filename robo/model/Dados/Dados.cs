@@ -467,7 +467,7 @@ namespace Robo
                 aluno.Tipo = "FIES Legado".ToUpper();
             }
         }
-        static string FormatarReceitas(string valor)
+        public static string FormatarReceitas(string valor)
         {
             if (valor.Contains(","))
             {
