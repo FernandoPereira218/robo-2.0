@@ -223,6 +223,12 @@ namespace robo
 
             Sleep();
         }
+        protected void ClickDropDownExact(IWebDriver driver, string metodo, string valorMetodo, string valorEscolha)
+        {
+            driver.FindElement(By.XPath("//select[@" + metodo + "='" + valorMetodo + "']/option[@" + "value ='" + valorEscolha + "']")).Click();
+
+            Util.Sleep();
+        }
         protected void WaitLogoLoading(IWebDriver driver)
         {
             if (IsFormFillingFiesVelho(driver))

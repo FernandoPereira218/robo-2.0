@@ -239,6 +239,7 @@
     <Compile Include="Control\Relatorios\FIES Novo\ExportarRepasse.cs" />
     <Compile Include="Control\Relatorios\FIES Novo\ExtrairInformacoesDRMFiesNovo.cs" />
     <Compile Include="Control\Relatorios\FIES Novo\StatusAluno.cs" />
+    <Compile Include="Control\Relatorios\SIGA\CadastrarParcelas.cs" />
     <Compile Include="Control\Util\UtilFiesNovo.cs" />
     <Compile Include="Control\Util\UtilFiesLegado.cs" />
     <Compile Include="Control\Novo\MetodosFiesNovo.cs" />
@@ -257,6 +258,7 @@
     <Compile Include="Control\Legado\FiesVelhoInf.cs" />
     <Compile Include="Model\TO\TOMenus.cs" />
     <Compile Include="Control\Util\UtilSelenium.cs" />
+    <Compile Include="Control\Util\UtilSiga.cs" />
     <Compile Include="View\UsuarioForm .cs">
       <SubType>Form</SubType>
     </Compile>

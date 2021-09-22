@@ -18,7 +18,7 @@ namespace Robo
 
         /// <summary>FIES Legado ou Novo</summary>
         public string Tipo { get; set; }
-        
+
         /// <summary>Campus no qual o aluno estuda.</summary>  
         public string Campus { get; set; }
 
@@ -83,6 +83,10 @@ namespace Robo
         public string DataInclusao { get; set; }
         public string DataConclusao { get; set; }
 
+        public string CursoSiga { get; set; }
+
+        public string ValorDeRepasse { get; set; }
+
         /// <summary>
         /// Contrutor da classe TOAluno que garante que não exista propriedade nula.
         /// </summary>
@@ -130,6 +134,10 @@ namespace Robo
             this.ProUni = string.Empty;
             this.DataInclusao = string.Empty;
             this.DataConclusao = string.Empty;
+
+            //Dados SIGA
+            this.CursoSiga = string.Empty;
+            this.ValorDeRepasse = string.Empty;
         }
     }
 }
