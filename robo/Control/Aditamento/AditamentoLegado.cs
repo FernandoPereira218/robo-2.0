@@ -78,17 +78,10 @@ namespace robo.Control
             }
 
         }
-        
+
         private void PreencherFormulario(TOAluno aluno)
         {
-            /*Clica no Turno, casos seja um dropdown
-            if (Driver.FindElement(By.Name("co_turno")).Displayed)
-            {
-                Driver.FindElement(By.Name("co_turno")).Click();
-                IWebElement dd = Driver.FindElement(By.Name("co_turno"));
-                dd.SendKeys(Keys.Down);
-                dd.SendKeys(Keys.Enter);
-            }*/
+
 
             WaitinLoading(Driver);
 
@@ -114,22 +107,25 @@ namespace robo.Control
             SystemSounds.Beep.Play();
 
 
-            //var element = Driver.FindElement(By.Id("captcha-imagem"));
-            //Screenshot scr = ((ITakesScreenshot)element).GetScreenshot();
-            //scr.SaveAsFile("img\\teste.png");
-            //LimparCaptcha();
-            //
-            //Thread thread = new Thread(LerCaptcha);
-            //thread.Start();
-            //thread.Join();
+            var element = Driver.FindElement(By.Id("captcha-imagem"));
+            Screenshot scr = ((ITakesScreenshot)element).GetScreenshot();
+            scr.SaveAsFile("img\\teste.png");
+            LimparCaptcha();
 
-            while (Driver.Url.StartsWith("http://sisfies.mec.gov.br/cpsa/aditamento/formulario/") == true)
+            Thread thread = new Thread(LerCaptcha);
+            thread.Start();
+            thread.Join();
+
+            bool possuiErros = false;
+            while (Driver.Url.StartsWith("http://sisfies.mec.gov.br/cpsa/aditamento/formulario/") == true && possuiErros == false)
             {
+                possuiErros = PossuiErros(Driver.PageSource);
                 System.Threading.Thread.Sleep(100);
             }
-
+            ChecarSePossuiErros(possuiErros, aluno);
             //Marca resultado aditamento
             VerificaErro(Driver, aluno);
+
         }
         private void PreencheReceitas(TOAluno aluno)
         {
@@ -292,8 +288,12 @@ namespace robo.Control
                 resultado = resultado.Split(',')[0];
                 resultado = resultado.Replace("\"", "");
                 resultado = resultado.Replace(":", "");
+                resultado = resultado.Replace("0", "o");
                 Util.ScrollToElementByID(Driver, "captcha");
                 Util.ClickAndWriteById(Driver, "captcha", resultado);
+                Util.ClickButtonsById(Driver, "validar");
+                Util.ClickButtonsByXpath(Driver, "/html/body/div[8]/div[3]/div/button[2]/span");
+
 
 
 
@@ -302,6 +302,38 @@ namespace robo.Control
             {
                 throw exception;
             }
+        }
+        private Boolean PossuiErros(String pageSource)
+        {
+            if (pageSource.Contains("lista-mensageiro-erros"))
+            {
+
+                return pageSource.Contains("(E0336) Código de verificação inválido.") ||
+                       pageSource.Contains("(E0019) - O valor da semestralidade com desconto não pode ser superior a") ||
+                       pageSource.Contains(" O valor do campo “Valor da semestralidade para o FIES” não pode ultrapassar 95% do campo “Valor da Semestralidade COM desconto”.");
+
+            }
+            return false;
+        }
+
+        private void ChecarSePossuiErros(bool possuiErros, TOAluno aluno)
+        {
+            if (possuiErros)
+            {
+                if (Driver.PageSource.Contains("(E0336) Código de verificação inválido."))
+                {
+                    Driver.Navigate().Refresh();
+                    PreencherFormulario(aluno);
+                }
+                else
+                {
+                    IWebElement listaMensageirosErros = Driver.FindElement(By.Id("lista-mensageiro-erros"));
+                    IWebElement lista = listaMensageirosErros.FindElement(By.XPath(".//li"));
+                    Util.EditarConclusaoAluno(aluno, lista.Text);
+                }
+               
+            }
+
         }
     }
 }
