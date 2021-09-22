@@ -5,6 +5,7 @@ using robo.Control.Legado;
 using robo.Control.Relatorios;
 using robo.Control.Relatorios.FIES_Legado;
 using robo.Control.Relatorios.FIES_Novo;
+using robo.Control.Relatorios.SIGA;
 using robo.pgm;
 using Robo;
 using System;
@@ -363,7 +364,7 @@ namespace robo.Control.Implementacoes
             BuscarLoginsEAlunos(faculdade, "FIES Novo", "", ref listaAlunos, ref listaLogins, admin: true, exportar: true);
             UtilFiesNovo utilFiesNovo = new UtilFiesNovo();
             ExportarInadimplencia exportarInadimplencia = new ExportarInadimplencia();
-            IWebDriver Driver = Util.StartBrowser("http://sifesweb.caixa.gov.br", firefox:false);
+            IWebDriver Driver = Util.StartBrowser("http://sifesweb.caixa.gov.br", firefox: false);
             utilFiesNovo.FazerLogin(Driver, listaLogins[0]);
             utilFiesNovo.WaitForLoading(Driver);
             utilFiesNovo.ClicarMenuInadimplencia(Driver);
@@ -515,15 +516,17 @@ namespace robo.Control.Implementacoes
 
         public void ExecutarAbrirSite()
         {
+            listaAlunos = Dados.SelectAlunos();
+            foreach (TOAluno aluno in listaAlunos)
+            {
+                Dados.TratarTextoReceitas(aluno);
+                Dados.TratarVirgulaReceitas(aluno);
+            }
             IWebDriver Driver;
 
-            /// esse vai apitar
             var firefoxDriverService = FirefoxDriverService.CreateDefaultService(Environment.CurrentDirectory + @"\driver");
             firefoxDriverService.HideCommandPromptWindow = true;
             Driver = new FirefoxDriver(firefoxDriverService);
-            // Driver.Manage().Window.Maximize();
-
-
 
             ((IJavaScriptExecutor)Driver).ExecuteScript("alert('https://siga.uniritter.edu.br/financeiro/fichaFinanceira.php')");
             MessageBox.Show("Copie o alerta e Faça Login na barra de procurar do Firefox e clique no OK");
@@ -531,13 +534,16 @@ namespace robo.Control.Implementacoes
             Util.ClickAndWriteByName(Driver, "login", "bruno.soares");
             Util.ClickAndWriteById(Driver, "senha_ls", "Gremio*2016");
             Util.ClickButtonsByXpath(Driver, "/html/body/table/tbody/tr/td/table/tbody/tr[6]/td/div/form/div/table/tbody/tr[2]/td/table/tbody/tr/td[2]/table/tbody/tr[6]/td/input");
+            while (Driver.PageSource.ToUpper().Contains("FILTRO POR DADOS DE ALUNO") == false)
+            {
+                System.Threading.Thread.Sleep(250);
+            }
 
-            System.Threading.Thread.Sleep(2500);
-            // Ajeitar o cpf
-            Util.ClickAndWriteById(Driver, "pess_cpf", "12345678912");
-            Util.ClickButtonsById(Driver, "btn_filtrar");
-
-
+            CadastrarParcelas cadastrarParcelas = new CadastrarParcelas();
+            foreach (TOAluno aluno in listaAlunos)
+            {
+                cadastrarParcelas.CadastrarParcelasSiga(aluno, Driver);
+            }
 
 
 

@@ -30,7 +30,9 @@ namespace Robo
             {"HorarioConclusao", "HorarioConclusao"},
             {"DescontoLiberalidade", "DescontoLiberalidade"},
             {"Extraido", "Extraido"},
-            {"Justificativa", "Justificativa"}
+            {"Justificativa", "Justificativa"},
+            {"CursoSiga", "CursoSiga"},
+            {"ValorDeRepasse", "ValorDeRepasse"}
         };
 
         private static readonly Dictionary<string, string> insertTOAlunoInf = new Dictionary<string, string>()
@@ -321,6 +323,7 @@ namespace Robo
                 List<String> headers = new List<String>();
                 Dictionary<String, String> propriedades = new Dictionary<String, String>();
 
+                //Adicionar sempre o primeiro valor em maiúsculo
                 propriedades.Add("CPF", "Cpf");
                 propriedades.Add("NOME", "Nome");
                 propriedades.Add("CAMPUS ADITADO", "Campus");
@@ -333,6 +336,8 @@ namespace Robo
                 propriedades.Add("TIPO", "Tipo");
                 propriedades.Add("DESCONTO LIBERALIDADE", "DescontoLiberalidade");
                 propriedades.Add("JUSTIFICATIVA", "Justificativa");
+                propriedades.Add("CURSO SIGA", "CursoSiga");
+                propriedades.Add("VALOR DE REPASSE", "ValorDeRepasse");
 
                 List<TOAluno> alunos = CSVManager.CSVManager.ImportCSV<TOAluno>(directory, propriedades);
 
@@ -411,6 +416,8 @@ namespace Robo
             aluno.ReceitaLiquida = FormatarReceitas(aluno.ReceitaLiquida);
             aluno.ReceitaFies = FormatarReceitas(aluno.ReceitaFies);
             aluno.ValorAditado = FormatarReceitas(aluno.ValorAditado);
+
+            aluno.ValorDeRepasse = FormatarReceitas(aluno.ValorDeRepasse);
         }
         public static void TratarCampusAluno(TOAluno aluno)
         {
@@ -485,6 +492,10 @@ namespace Robo
             aluno.ReceitaFies = aluno.ReceitaFies.Replace("R$", "");
             aluno.ReceitaFies = aluno.ReceitaFies.Replace(" ", "");
 
+            //Receita para o SIGA
+            aluno.ValorDeRepasse = aluno.ValorDeRepasse.Replace("R$", "");
+            aluno.ValorDeRepasse = aluno.ValorDeRepasse.Replace(" ", "");
+
             if (aluno.ReceitaBruta != string.Empty)
             {
                 aluno.ReceitaBruta = Math.Round(Convert.ToDouble(aluno.ReceitaBruta), 2).ToString();
@@ -496,6 +507,10 @@ namespace Robo
             if (aluno.ReceitaFies != string.Empty)
             {
                 aluno.ReceitaFies = Math.Round(Convert.ToDouble(aluno.ReceitaFies), 2).ToString();
+            }
+            if (aluno.ValorDeRepasse != string.Empty)
+            {
+                aluno.ValorDeRepasse = Math.Round(Convert.ToDouble(aluno.ValorDeRepasse), 2).ToString();
             }
         }
 

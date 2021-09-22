@@ -265,11 +265,13 @@ namespace Robo
         /// <param name="valorEscolha">qual a opção a ser escolhida</param>
         public static void ClickDropDown(IWebDriver driver, string metodo, string valorMetodo, string valorEscolha)
         {
-            WaitLogoLoading(driver);
+            //WaitLogoLoading(driver);
             driver.FindElement(By.XPath("//select[@" + metodo + "='" + valorMetodo + "']/option[contains(.,'" + valorEscolha + "')]")).Click();
 
             Util.Sleep();
         }
+
+        
         public static void CreateDirectory(params String[] directories)
         {
             foreach (String directory in directories)
