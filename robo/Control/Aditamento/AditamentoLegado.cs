@@ -106,7 +106,7 @@ namespace robo.Control
             }
             SystemSounds.Beep.Play();
 
-
+            ScrollToElementByID(Driver, "captcha-imagem");
             var element = Driver.FindElement(By.Id("captcha-imagem"));
             Screenshot scr = ((ITakesScreenshot)element).GetScreenshot();
             scr.SaveAsFile("img\\teste.png");
@@ -243,9 +243,14 @@ namespace robo.Control
                     }
                 }
             }
-            Util.EditarConclusaoAluno(aluno, "Rejeitou excesso de reprovação");
-            Driver.Url = "http://sisfies.mec.gov.br/cpsa/aditamento";
+            else
+            {
+                Util.EditarConclusaoAluno(aluno, "Rejeitou excesso de reprovação");
+                Driver.Url = "http://sisfies.mec.gov.br/cpsa/aditamento";
+            }
         }
+            
+           
         private void LimparCaptcha()
         {
             Bitmap imagem = new Bitmap("img\\teste.png");
@@ -289,6 +294,9 @@ namespace robo.Control
                 resultado = resultado.Replace("\"", "");
                 resultado = resultado.Replace(":", "");
                 resultado = resultado.Replace("0", "o");
+                resultado = resultado.Replace("$", "5");
+                resultado = resultado.Replace(")", "j");
+                resultado = resultado.ToLower();
                 Util.ScrollToElementByID(Driver, "captcha");
                 Util.ClickAndWriteById(Driver, "captcha", resultado);
                 Util.ClickButtonsById(Driver, "validar");
