@@ -514,7 +514,7 @@ namespace robo.Control.Implementacoes
             }
         }
 
-        public void ExecutarAbrirSite(string semestre, string tipoFies)
+        public void ExecutarLancamentoFiesSiga(string semestre, string tipoFies)
         {
             listaAlunos = Dados.SelectAlunos();
             foreach (TOAluno aluno in listaAlunos)
@@ -529,7 +529,11 @@ namespace robo.Control.Implementacoes
             Driver = new FirefoxDriver(firefoxDriverService);
 
             ((IJavaScriptExecutor)Driver).ExecuteScript("alert('https://siga.uniritter.edu.br/financeiro/fichaFinanceira.php')");
-            MessageBox.Show("Copie o alerta e Faça Login na barra de procurar do Firefox e clique no OK");
+            DialogResult resultado = MessageBox.Show("Abra o site na mensagem de alerta do navegador e clique no captcha.\nApós isso, volte para esta mensagem e clique em 'Ok'.", "Clique no captcha!", MessageBoxButtons.OKCancel);
+            if (resultado == DialogResult.Cancel)
+            {
+                return;
+            }
 
             Util.ClickAndWriteByName(Driver, "login", "bruno.soares");
             Util.ClickAndWriteById(Driver, "senha_ls", "Gremio*2016");
@@ -539,12 +543,12 @@ namespace robo.Control.Implementacoes
                 System.Threading.Thread.Sleep(250);
             }
 
-            CadastrarParcelas cadastrarParcelas = new CadastrarParcelas();
+            LancamentoFiesSiga lancamentoFiesSiga = new LancamentoFiesSiga();
             foreach (TOAluno aluno in listaAlunos)
             {
                 if (aluno.Conclusao == "Não Feito")
                 {
-                    cadastrarParcelas.CadastrarParcelasSiga(aluno, Driver, semestre, tipoFies);
+                    lancamentoFiesSiga.ExecutarLancamentoFiesSiga(aluno, Driver, semestre, tipoFies);
                 }
             }
 
