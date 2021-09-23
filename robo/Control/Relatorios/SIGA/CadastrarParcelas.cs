@@ -15,6 +15,8 @@ namespace robo.Control.Relatorios.SIGA
         public void CadastrarParcelasSiga(TOAluno aluno, IWebDriver driver, string semestreAno, string tipoFies)
         {
             Driver = driver;
+            Sleep();
+
             ClickAndWriteById(Driver, "pess_cpf", aluno.Cpf);
             ClickButtonsById(Driver, "btn_filtrar");
 
@@ -27,8 +29,16 @@ namespace robo.Control.Relatorios.SIGA
                 //Filtrar pelo semestre escolhido
                 string semestreSiga = BuscarSemestreSiga(semestreAno);
                 ClickDropDownExact(driver, "id", "peri_id", semestreSiga);
+                string lancamentoPrimeiraLinha = "";
+                var elemento = VerificarElementoExiste(Driver, "xpath", "/html/body/table/tbody/tr/td/table/tbody/tr[6]/td/div/form/table[2]/tbody/tr[3]/td[3]/span");
+                if (elemento == null)
+                {
 
-                string lancamentoPrimeiraLinha = Driver.FindElement(By.XPath("/html/body/table/tbody/tr/td/table/tbody/tr[6]/td/div/form/table[2]/tbody/tr[3]/td[3]/span")).Text;
+                }
+                else
+                {
+                    lancamentoPrimeiraLinha = Driver.FindElement(By.XPath("/html/body/table/tbody/tr/td/table/tbody/tr[6]/td/div/form/table[2]/tbody/tr[3]/td[3]/span")).Text;
+                }
 
                 if (lancamentoPrimeiraLinha != "FIES" && lancamentoPrimeiraLinha != "FIES CONTRATADO")
                 {
@@ -45,7 +55,7 @@ namespace robo.Control.Relatorios.SIGA
                     {
                         ClickDropDownExact(Driver, "id", "lanc_id", "19");
                     }
-                    else if(tipoFies == "FIES CONTRATADO")
+                    else if (tipoFies == "FIES CONTRATADO")
                     {
                         ClickDropDownExact(Driver, "id", "lanc_id", "1133");
                     }

@@ -20,6 +20,7 @@ namespace robo.Control.Aditamento
             if (VerificarNenhumaInformacaoDisponivel(Driver) == true)
             {
                 Util.EditarConclusaoAluno(aluno, "Nenhuma informação disponível");
+                return;
             }
 
             if (Driver.PageSource.Contains("Não iniciado pela CPSA") == true)
@@ -34,12 +35,8 @@ namespace robo.Control.Aditamento
                 }
                 var executor = (IJavaScriptExecutor)Driver;
 
-                if (Driver.PageSource.ToUpper().Contains("ESTUDANTE TRANSFERIDO NO SEMESTRE") == true)
-                {
-                    Driver.FindElement(By.ClassName("btn-ok")).Click();
-                }
+                
                 WaitForLoading(Driver);
-
                 string erro = VerificarErroAditamento();
                 if (erro != string.Empty)
                 {
@@ -49,6 +46,11 @@ namespace robo.Control.Aditamento
                     WaitForLoading(Driver);
                     ClicarMenuAditamento(Driver);
                     return;
+                }
+
+                if (Driver.PageSource.ToUpper().Contains("ESTUDANTE TRANSFERIDO NO SEMESTRE") == true)
+                {
+                    Driver.FindElement(By.ClassName("btn-ok")).Click();
                 }
 
                 string alerta = VerificarAlertaAditamento();
@@ -92,30 +94,40 @@ namespace robo.Control.Aditamento
                 string alertMessage = string.Empty;
                 if (Driver.PageSource.Contains("MDLalerta_"))
                 {
-                    if (Driver.PageSource.ToUpper().Contains("INFERIOR AO PERCENTUAL MÍNIMO DE SEMESTRALIDADE ATUAL") == false)
+                    //driver.FindElement(By.XPath("//select[@" + metodo + "='" + valorMetodo + "']/option[contains(.,'" + valorEscolha + "')]")).Click();
+                    var elementosAlerta = Driver.FindElements(By.XPath("//div[contains(@id,\"MDLalerta_\")]"));
+                    if (elementosAlerta.Count == 1)
                     {
-                        Driver.FindElement(By.ClassName("btn-ok")).Click();
-                        if (IES.ToUpper() == "UNIRITTER" || IES.ToUpper() == "FADERGS")
+                        if (elementosAlerta[0].Displayed == true)
                         {
-                            if (aluno.Justificativa == string.Empty)
+
+                            if (Driver.PageSource.ToUpper().Contains("INFERIOR AO PERCENTUAL MÍNIMO DE SEMESTRALIDADE ATUAL") == false)
                             {
-                                Util.ClickAndWriteById(Driver, "justificativaAcimaLimite", "Valores conforme o número de créditos financeiros matriculados no semestre");
+
+                                Driver.FindElement(By.ClassName("btn-ok")).Click();
+                                if (IES.ToUpper() == "UNIRITTER" || IES.ToUpper() == "FADERGS")
+                                {
+                                    if (aluno.Justificativa == string.Empty)
+                                    {
+                                        Util.ClickAndWriteById(Driver, "justificativaAcimaLimite", "Valores conforme o número de créditos financeiros matriculados no semestre");
+                                    }
+                                    else
+                                    {
+                                        Util.ClickAndWriteById(Driver, "justificativaAcimaLimite", aluno.Justificativa);
+                                    }
+                                }
+                                else
+                                {
+                                    Util.ClickAndWriteById(Driver, "justificativaAcimaLimite", "Alteração na grade curricular em relação ao semestre anterior");
+                                }
                             }
                             else
                             {
-                                Util.ClickAndWriteById(Driver, "justificativaAcimaLimite", aluno.Justificativa);
+                                IWebElement alertElement = Driver.FindElement(By.XPath("//div[@class='modal hide fade in']/div[2]"));
+                                alertMessage = alertElement.Text;
+                                Driver.FindElement(By.ClassName("btn-ok")).Click();
                             }
                         }
-                        else
-                        {
-                            Util.ClickAndWriteById(Driver, "justificativaAcimaLimite", "Alteração na grade curricular em relação ao semestre anterior");
-                        }
-                    }
-                    else
-                    {
-                        IWebElement alertElement = Driver.FindElement(By.XPath("//div[@class='modal hide fade in']/div[2]"));
-                        alertMessage = alertElement.Text;
-                        Driver.FindElement(By.ClassName("btn-ok")).Click();
                     }
                 }
 
@@ -159,7 +171,7 @@ namespace robo.Control.Aditamento
                             alertMessage = alertMessage.Replace("x\r\n", "");
 
                             break;
-                            
+
                         }
                         break;
                     }
