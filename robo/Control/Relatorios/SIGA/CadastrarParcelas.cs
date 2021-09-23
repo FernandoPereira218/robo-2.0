@@ -15,6 +15,8 @@ namespace robo.Control.Relatorios.SIGA
         public void CadastrarParcelasSiga(TOAluno aluno, IWebDriver driver, string semestreAno, string tipoFies)
         {
             Driver = driver;
+            Sleep();
+
             ClickAndWriteById(Driver, "pess_cpf", aluno.Cpf);
             ClickButtonsById(Driver, "btn_filtrar");
 
