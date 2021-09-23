@@ -39,7 +39,6 @@ namespace robo.Control.Aditamento
                     Driver.FindElement(By.ClassName("btn-ok")).Click();
                 }
                 WaitForLoading(Driver);
-
                 string erro = VerificarErroAditamento();
                 if (erro != string.Empty)
                 {
@@ -92,8 +91,11 @@ namespace robo.Control.Aditamento
                 string alertMessage = string.Empty;
                 if (Driver.PageSource.Contains("MDLalerta_"))
                 {
+                    //driver.FindElement(By.XPath("//select[@" + metodo + "='" + valorMetodo + "']/option[contains(.,'" + valorEscolha + "')]")).Click();
+                    var elementosAlerta = Driver.FindElements(By.XPath("//div[contains(@id,\"MDLalerta_\")]"));
                     if (Driver.PageSource.ToUpper().Contains("INFERIOR AO PERCENTUAL MÍNIMO DE SEMESTRALIDADE ATUAL") == false)
                     {
+
                         Driver.FindElement(By.ClassName("btn-ok")).Click();
                         if (IES.ToUpper() == "UNIRITTER" || IES.ToUpper() == "FADERGS")
                         {
