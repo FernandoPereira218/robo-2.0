@@ -17,7 +17,7 @@ namespace robo.Control.Relatorios.SIGA
             Driver = driver;
             Sleep();
 
-            ClickAndWriteById(Driver, "pess_cpf", aluno.Cpf);
+              ClickAndWriteById(Driver, "pess_cpf", aluno.Cpf);
             ClickButtonsById(Driver, "btn_filtrar");
 
             if (Driver.PageSource.Contains("btn_editar") == true)
@@ -62,6 +62,9 @@ namespace robo.Control.Relatorios.SIGA
 
                     //Sempre o mesmo
                     ClickDropDownExact(Driver, "id", "tipo_valor", "moeda");
+
+                    // Sempre o mesmo na observação
+                    ClickAndWriteById(Driver, "clmt_observacao", "Lançamento Automatizado");
 
                     //Arredondar valor para duas casas decimais
                     ClickAndWriteById(Driver, "moeda", aluno.ValorDeRepasse);
