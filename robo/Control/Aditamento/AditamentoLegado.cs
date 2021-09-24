@@ -109,6 +109,7 @@ namespace robo.Control
             ScrollToElementByID(Driver, "captcha-imagem");
             var element = Driver.FindElement(By.Id("captcha-imagem"));
             Screenshot scr = ((ITakesScreenshot)element).GetScreenshot();
+            Util.CreateDirectory("img");            
             scr.SaveAsFile("img\\teste.png");
             LimparCaptcha();
 

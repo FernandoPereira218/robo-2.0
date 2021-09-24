@@ -9,10 +9,10 @@ using System.Threading.Tasks;
 
 namespace robo.Control.Relatorios.SIGA
 {
-    class CadastrarParcelas : UtilSiga
+    class LancamentoFiesSiga : UtilSiga
     {
         private IWebDriver Driver;
-        public void CadastrarParcelasSiga(TOAluno aluno, IWebDriver driver, string semestreAno, string tipoFies)
+        public void ExecutarLancamentoFiesSiga(TOAluno aluno, IWebDriver driver, string semestreAno, string tipoFies)
         {
             Driver = driver;
             Sleep();

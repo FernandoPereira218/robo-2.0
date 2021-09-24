@@ -293,6 +293,7 @@ namespace Robo
         private void btnIniciar_Click(object sender, EventArgs e)
         {
             RodarPrograma();
+            MessageBox.Show("Processamentos concluídos com sucesso!");
             return;
             if (cbExecucao.Text.Contains("EXPORTAR") || cbExecucao.Text.Contains("VALIDAR REPARCELAMENTO"))
             {
@@ -587,8 +588,8 @@ namespace Robo
                     presenter.ExportarCoparticipacaoFiesNovo(cbFaculdade.Text, dtpDataInicial.Text, dtpDataFinal.Text);
                     break;
 
-                case "ABRIR SIGA":
-                    presenter.ExecutarAbrirSite(cbSemestre.Text, cbFiesSiga.Text);
+                case "LANÇAMENTO FIES SIGA":
+                    presenter.ExecutarLancamentoFiesSiga(cbSemestre.Text, cbFiesSiga.Text);
                     break;
                 default:
                     MessageBox.Show("Favor criar o CASE antes de rodar!!!!!");
