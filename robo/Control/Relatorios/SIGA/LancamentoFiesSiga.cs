@@ -17,7 +17,7 @@ namespace robo.Control.Relatorios.SIGA
             Driver = driver;
             Sleep();
 
-              ClickAndWriteById(Driver, "pess_cpf", aluno.Cpf);
+            ClickAndWriteById(Driver, "pess_cpf", aluno.Cpf);
             ClickButtonsById(Driver, "btn_filtrar");
 
             if (Driver.PageSource.Contains("btn_editar") == true)
