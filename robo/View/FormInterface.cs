@@ -589,7 +589,7 @@ namespace Robo
                     break;
 
                 case "LANÇAMENTO FIES SIGA":
-                    presenter.ExecutarLancamentoFiesSiga(cbSemestre.Text, cbFiesSiga.Text);
+                    presenter.ExecutarLancamentoFiesSiga(cbSemestre.Text, cbFiesSiga.Text); 
                     break;
                 default:
                     MessageBox.Show("Favor criar o CASE antes de rodar!!!!!");
