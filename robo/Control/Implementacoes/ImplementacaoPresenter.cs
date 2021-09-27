@@ -517,6 +517,7 @@ namespace robo.Control.Implementacoes
         public void ExecutarLancamentoFiesSiga(string semestre, string tipoFies)
         {
             listaAlunos = Dados.SelectAlunos();
+            listaLogins = Dados.SelectLoginPorIESePlataforma("", "SIGA", "", admin:false);
             foreach (TOAluno aluno in listaAlunos)
             {
                 Dados.TratarTextoReceitas(aluno);
@@ -535,8 +536,8 @@ namespace robo.Control.Implementacoes
                 return;
             }
 
-            Util.ClickAndWriteByName(Driver, "login", "bruno.soares");
-            Util.ClickAndWriteById(Driver, "senha_ls", "Gremio*2016");
+            Util.ClickAndWriteByName(Driver, "login", listaLogins[0].Usuario);
+            Util.ClickAndWriteById(Driver, "senha_ls", listaLogins[0].Senha);
             Util.ClickButtonsByXpath(Driver, "/html/body/table/tbody/tr/td/table/tbody/tr[6]/td/div/form/div/table/tbody/tr[2]/td/table/tbody/tr/td[2]/table/tbody/tr[6]/td/input");
             while (Driver.PageSource.ToUpper().Contains("FILTRO POR DADOS DE ALUNO") == false)
             {
