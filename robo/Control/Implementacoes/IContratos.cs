@@ -17,7 +17,6 @@ namespace robo.Control.Implementacoes
         interface IPresenter
         {
             void ExecutarAbrirSite(string faculdade, string campus, string plataforma);
-            void ExecutarLancamentoFiesSiga(string semestre, string tipoFies);
             List<string> PreencherListaSemestre();
             void SetForm(IContratos.IMainForms forms);
             string BuscarNunSemestre(string semestreAno);
@@ -41,6 +40,8 @@ namespace robo.Control.Implementacoes
             void ExportarInadimplencia(string faculdade, string mes, string ano);
             void ExportarRepasseFiesNovo(string faculdade, string mes, string ano);
             void ExportarCoparticipacaoFiesNovo(string faculdade, string dataInicial, string dataFinal);
+            void ExecutarLancamentoFiesSiga(string semestre, string tipoFies);
+            void GeracaoParcelasFies(string semestre);
         }
     }
 }

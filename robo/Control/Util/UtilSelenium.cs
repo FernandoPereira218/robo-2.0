@@ -31,7 +31,7 @@ namespace robo
             //jse.ExecuteScript(string.Format("document.getElementById('{0}').click();", id));
 
             WaitLogoLoading(driver);
-
+            elementoAtual.Clear();
             elementoAtual.SendKeys(valor);
             //jse.ExecuteScript(string.Format("document.getElementById('{0}').value = '{1}';", id, valor));
 
@@ -334,8 +334,10 @@ namespace robo
                 return false;
             }
         }
-
-
+        protected void ClickElementByXPath(IWebDriver Driver, string elemento, string atributte, string value)
+        {
+            Driver.FindElement(By.XPath("//" + elemento + "[@" + atributte + "='" + value + "']")).Click();
+        }
     }
 }
 

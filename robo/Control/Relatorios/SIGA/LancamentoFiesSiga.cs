@@ -15,10 +15,7 @@ namespace robo.Control.Relatorios.SIGA
         public void ExecutarLancamentoFiesSiga(TOAluno aluno, IWebDriver driver, string semestreAno, string tipoFies)
         {
             Driver = driver;
-            Sleep();
-
-            ClickAndWriteById(Driver, "pess_cpf", aluno.Cpf);
-            ClickButtonsById(Driver, "btn_filtrar");
+            FiltraAluno(driver, aluno);
 
             if (Driver.PageSource.Contains("btn_editar") == true)
             {
@@ -119,17 +116,6 @@ namespace robo.Control.Relatorios.SIGA
                 //Sim, está certo
                 Driver.Url = Driver.Url;
             }
-        }
-
-        private string BuscarSemestreSiga(string semestreAno)
-        {
-            // 2/2021 -> 2021210
-            string semestre = semestreAno.Split('/')[0];
-            string ano = semestreAno.Split('/')[1];
-
-            string final = ano + semestre + "10";
-
-            return final;
         }
     }
 }

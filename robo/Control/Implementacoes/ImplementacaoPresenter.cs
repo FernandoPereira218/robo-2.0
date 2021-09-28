@@ -523,22 +523,13 @@ namespace robo.Control.Implementacoes
                 Dados.TratarTextoReceitas(aluno);
                 Dados.TratarVirgulaReceitas(aluno);
             }
-            IWebDriver Driver;
-
-            var firefoxDriverService = FirefoxDriverService.CreateDefaultService(Environment.CurrentDirectory + @"\driver");
-            firefoxDriverService.HideCommandPromptWindow = true;
-            Driver = new FirefoxDriver(firefoxDriverService);
-
-            ((IJavaScriptExecutor)Driver).ExecuteScript("alert('https://siga.uniritter.edu.br/financeiro/fichaFinanceira.php')");
-            DialogResult resultado = MessageBox.Show("Abra o site na mensagem de alerta do navegador e clique no captcha.\nApós isso, volte para esta mensagem e clique em 'Ok'.", "Clique no captcha!", MessageBoxButtons.OKCancel);
-            if (resultado == DialogResult.Cancel)
+            
+            UtilSiga utilsiga = new UtilSiga();
+            IWebDriver Driver = utilsiga.FazerLogin("https://siga.uniritter.edu.br/financeiro/fichaFinanceira.php", listaLogins[0]);
+            if (Driver == null)
             {
                 return;
             }
-
-            Util.ClickAndWriteByName(Driver, "login", listaLogins[0].Usuario);
-            Util.ClickAndWriteById(Driver, "senha_ls", listaLogins[0].Senha);
-            Util.ClickButtonsByXpath(Driver, "/html/body/table/tbody/tr/td/table/tbody/tr[6]/td/div/form/div/table/tbody/tr[2]/td/table/tbody/tr/td[2]/table/tbody/tr[6]/td/input");
             while (Driver.PageSource.ToUpper().Contains("FILTRO POR DADOS DE ALUNO") == false)
             {
                 System.Threading.Thread.Sleep(250);
@@ -552,9 +543,29 @@ namespace robo.Control.Implementacoes
                     lancamentoFiesSiga.ExecutarLancamentoFiesSiga(aluno, Driver, semestre, tipoFies);
                 }
             }
+        }
 
+        public void GeracaoParcelasFies(string semestre)
+        {
+            listaAlunos = Dados.SelectAlunos();
+            listaLogins = Dados.SelectLoginPorIESePlataforma("", "SIGA", "", admin: false);
+            UtilSiga utilsiga = new UtilSiga();
+            IWebDriver Driver = utilsiga.FazerLogin("https://siga.uniritter.edu.br/financeiro/geracaoIndividualParcela.php", listaLogins[0]);
+           
+            if (Driver == null)
+            {
+                return;
+            }
+            
+            GeracaoParcelasFies GeracaoParcelasFies = new GeracaoParcelasFies();
 
-
+            foreach (TOAluno aluno in listaAlunos)
+            {
+                if (aluno.Conclusao == "Não Feito")
+                {
+                    GeracaoParcelasFies.GeraParcelaFies(Driver, aluno, semestre);
+                }
+            }
         }
     }
 }
