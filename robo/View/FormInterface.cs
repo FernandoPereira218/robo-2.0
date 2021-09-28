@@ -591,6 +591,10 @@ namespace Robo
                 case "LANÇAMENTO FIES SIGA":
                     presenter.ExecutarLancamentoFiesSiga(cbSemestre.Text, cbFiesSiga.Text); 
                     break;
+                case "GERAÇÃO PARCELAS FIES SIGA":
+                    presenter.GeracaoParcelasFies(cbSemestre.Text);
+                    break;
+
                 default:
                     MessageBox.Show("Favor criar o CASE antes de rodar!!!!!");
                     break;
