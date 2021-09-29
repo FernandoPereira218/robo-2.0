@@ -251,6 +251,12 @@ namespace Robo
                 Database.Acess.Update<TOAluno>("ALUNO", updateAlunoInf, (TOAluno)aluno, "Cpf", "Cpf");
             }
         }
+        public static void UpdateConclusaoAluno(string conclusao)
+        {
+            Dictionary<string, string> dic = new Dictionary<string, string>();
+            dic.Add("Conclusao", conclusao);
+            Database.Acess.UpdateALL("ALUNO", dic);
+        }
 
         //INSERTS
         public static void InsertAluno(TOAluno aluno)

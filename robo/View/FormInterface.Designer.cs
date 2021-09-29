@@ -62,6 +62,8 @@
             this.panelCadastrarContent = new System.Windows.Forms.Panel();
             this.panelCadastro = new System.Windows.Forms.Panel();
             this.panelDadosDeSituacao = new System.Windows.Forms.Panel();
+            this.labelFiesSiga = new MetroFramework.Controls.MetroLabel();
+            this.cbFiesSiga = new System.Windows.Forms.ComboBox();
             this.labelDataInicio = new MetroFramework.Controls.MetroLabel();
             this.cbSituacao = new System.Windows.Forms.ComboBox();
             this.cbAno = new System.Windows.Forms.ComboBox();
@@ -123,8 +125,7 @@
             this.btnAlunos = new System.Windows.Forms.Button();
             this.btExtrairInformacoes = new System.Windows.Forms.Button();
             this.btStatus = new System.Windows.Forms.Button();
-            this.labelFiesSiga = new MetroFramework.Controls.MetroLabel();
-            this.cbFiesSiga = new System.Windows.Forms.ComboBox();
+            this.btnMarcarNaoFeito = new System.Windows.Forms.Button();
             this.panelMenuBar.SuspendLayout();
             this.panelExcel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvAlunos)).BeginInit();
@@ -234,6 +235,7 @@
             // 
             this.panelExcel.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.panelExcel.BackColor = System.Drawing.Color.White;
+            this.panelExcel.Controls.Add(this.btnMarcarNaoFeito);
             this.panelExcel.Controls.Add(this.tbBarraStatus);
             this.panelExcel.Controls.Add(this.lbProcessando);
             this.panelExcel.Controls.Add(this.barraProgressoImportacao);
@@ -294,7 +296,7 @@
             this.lbProcessando.FontSize = MetroFramework.MetroLabelSize.Small;
             this.lbProcessando.FontWeight = MetroFramework.MetroLabelWeight.Bold;
             this.lbProcessando.ForeColor = System.Drawing.Color.Red;
-            this.lbProcessando.Location = new System.Drawing.Point(779, 24);
+            this.lbProcessando.Location = new System.Drawing.Point(97, 44);
             this.lbProcessando.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lbProcessando.Name = "lbProcessando";
             this.lbProcessando.Size = new System.Drawing.Size(126, 15);
@@ -501,6 +503,29 @@
             this.panelDadosDeSituacao.Name = "panelDadosDeSituacao";
             this.panelDadosDeSituacao.Size = new System.Drawing.Size(294, 289);
             this.panelDadosDeSituacao.TabIndex = 60;
+            // 
+            // labelFiesSiga
+            // 
+            this.labelFiesSiga.AutoSize = true;
+            this.labelFiesSiga.Location = new System.Drawing.Point(4, 239);
+            this.labelFiesSiga.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.labelFiesSiga.Name = "labelFiesSiga";
+            this.labelFiesSiga.Size = new System.Drawing.Size(65, 19);
+            this.labelFiesSiga.TabIndex = 60;
+            this.labelFiesSiga.Text = "FIES SIGA";
+            // 
+            // cbFiesSiga
+            // 
+            this.cbFiesSiga.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbFiesSiga.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbFiesSiga.FormattingEnabled = true;
+            this.cbFiesSiga.Items.AddRange(new object[] {
+            "FIES",
+            "FIES CONTRATADO"});
+            this.cbFiesSiga.Location = new System.Drawing.Point(4, 261);
+            this.cbFiesSiga.Name = "cbFiesSiga";
+            this.cbFiesSiga.Size = new System.Drawing.Size(271, 25);
+            this.cbFiesSiga.TabIndex = 59;
             // 
             // labelDataInicio
             // 
@@ -1488,28 +1513,22 @@
             this.btStatus.UseVisualStyleBackColor = true;
             this.btStatus.Click += new System.EventHandler(this.btExportar_Click);
             // 
-            // labelFiesSiga
+            // btnMarcarNaoFeito
             // 
-            this.labelFiesSiga.AutoSize = true;
-            this.labelFiesSiga.Location = new System.Drawing.Point(4, 239);
-            this.labelFiesSiga.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.labelFiesSiga.Name = "labelFiesSiga";
-            this.labelFiesSiga.Size = new System.Drawing.Size(65, 19);
-            this.labelFiesSiga.TabIndex = 60;
-            this.labelFiesSiga.Text = "FIES SIGA";
-            // 
-            // cbFiesSiga
-            // 
-            this.cbFiesSiga.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbFiesSiga.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cbFiesSiga.FormattingEnabled = true;
-            this.cbFiesSiga.Items.AddRange(new object[] {
-            "FIES",
-            "FIES CONTRATADO"});
-            this.cbFiesSiga.Location = new System.Drawing.Point(4, 261);
-            this.cbFiesSiga.Name = "cbFiesSiga";
-            this.cbFiesSiga.Size = new System.Drawing.Size(271, 25);
-            this.cbFiesSiga.TabIndex = 59;
+            this.btnMarcarNaoFeito.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.btnMarcarNaoFeito.BackColor = System.Drawing.Color.White;
+            this.btnMarcarNaoFeito.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnMarcarNaoFeito.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
+            this.btnMarcarNaoFeito.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnMarcarNaoFeito.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnMarcarNaoFeito.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(33)))), ((int)(((byte)(33)))));
+            this.btnMarcarNaoFeito.Location = new System.Drawing.Point(842, 20);
+            this.btnMarcarNaoFeito.Name = "btnMarcarNaoFeito";
+            this.btnMarcarNaoFeito.Size = new System.Drawing.Size(148, 22);
+            this.btnMarcarNaoFeito.TabIndex = 10;
+            this.btnMarcarNaoFeito.Text = "Marcar não feito";
+            this.btnMarcarNaoFeito.UseVisualStyleBackColor = false;
+            this.btnMarcarNaoFeito.Click += new System.EventHandler(this.btnMarcarNaoFeito_Click);
             // 
             // RoboForm
             // 
@@ -1518,9 +1537,9 @@
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.ClientSize = new System.Drawing.Size(1366, 768);
             this.Controls.Add(this.panelMenuBar);
-            this.Controls.Add(this.panelCadastrarContent);
-            this.Controls.Add(this.painelUsuarios);
             this.Controls.Add(this.panelExcel);
+            this.Controls.Add(this.painelUsuarios);
+            this.Controls.Add(this.panelCadastrarContent);
             this.Controls.Add(this.panelLogins);
             this.Controls.Add(this.panelSubMenu);
             this.Controls.Add(this.panelMenu);
@@ -1641,6 +1660,7 @@
         private MetroFramework.Controls.MetroLabel labelMes;
         private MetroFramework.Controls.MetroLabel labelFiesSiga;
         private System.Windows.Forms.ComboBox cbFiesSiga;
+        private System.Windows.Forms.Button btnMarcarNaoFeito;
     }
 }
 

@@ -517,16 +517,16 @@ namespace robo.Control.Implementacoes
         public void ExecutarLancamentoFiesSiga(string semestre, string tipoFies)
         {
             listaAlunos = Dados.SelectAlunos();
-            listaLogins = Dados.SelectLoginPorIESePlataforma("", "SIGA", "", admin:false);
+            listaLogins = Dados.SelectLoginPorIESePlataforma("", "SIGA", "", admin: false);
             foreach (TOAluno aluno in listaAlunos)
             {
                 Dados.TratarTextoReceitas(aluno);
                 Dados.TratarVirgulaReceitas(aluno);
             }
-            
+
             UtilSiga utilsiga = new UtilSiga();
             IWebDriver Driver = utilsiga.FazerLogin("https://siga.uniritter.edu.br/financeiro/fichaFinanceira.php", listaLogins[0]);
-            if (Driver == null)
+            if (Driver == null || Driver.PageSource.Contains("Você precisa realizar a validação \"Não sou um robô\".Tente novamente marcando esta opção!"))
             {
                 return;
             }
@@ -534,7 +534,6 @@ namespace robo.Control.Implementacoes
             {
                 System.Threading.Thread.Sleep(250);
             }
-
             LancamentoFiesSiga lancamentoFiesSiga = new LancamentoFiesSiga();
             foreach (TOAluno aluno in listaAlunos)
             {
@@ -551,18 +550,25 @@ namespace robo.Control.Implementacoes
             listaLogins = Dados.SelectLoginPorIESePlataforma("", "SIGA", "", admin: false);
             UtilSiga utilsiga = new UtilSiga();
             IWebDriver Driver = utilsiga.FazerLogin("https://siga.uniritter.edu.br/financeiro/geracaoIndividualParcela.php", listaLogins[0]);
-           
-            if (Driver == null)
+
+            if (Driver == null || Driver.PageSource.Contains("Você precisa realizar a validação \"Não sou um robô\"."))
             {
                 return;
             }
-            
+
 
             GeracaoParcelasFies GeracaoParcelasFies = new GeracaoParcelasFies();
             GeracaoParcelasFies.ExecutarCookieGuiche(Driver);
             foreach (TOAluno aluno in listaAlunos)
             {
-                if (aluno.Conclusao == "Não Feito")
+                int resultado = 7;
+                // Pode dar problema futuro
+                if (aluno.Conclusao.Contains("PARCELA"))
+                {
+                    resultado = aluno.Conclusao.Split(new string[] { "PARCELA" }, StringSplitOptions.None).Length;
+                    var teste = aluno.Conclusao.Split(new string[] { "PARCELA" }, StringSplitOptions.None);
+                }
+                if (aluno.Conclusao == "Não Feito" || resultado < 6)
                 {
                     GeracaoParcelasFies.GeraParcelaFies(Driver, aluno, semestre);
                 }
