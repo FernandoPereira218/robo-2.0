@@ -96,12 +96,22 @@ namespace robo.Control.Relatorios.SIGA
                         }
                         else
                         {
-                            Util.EditarConclusaoAluno(aluno, "Geração de mensalidade efetuada com sucesso!");
+                            if(aluno.Conclusao == "Não Feito")
+                            {
+                                aluno.Conclusao = "";
+                            }
+                            aluno.Conclusao = aluno.Conclusao + ParcelaSelecionada + " " + "Ok".ToUpper() + " ";
+                            Util.EditarConclusaoAluno(aluno, aluno.Conclusao);
                         }
                     }
                 }
                 Driver.Url = Driver.Url;
             }
+        }
+        public void ExecutarCookieGuiche(IWebDriver driver)
+        {
+            var executor = (IJavaScriptExecutor)driver;
+            executor.ExecuteScript("var exdate = new Date(); exdate.setDate(exdate.getDate() + 365); document.cookie = encodeURIComponent(\"GUICHE\") + \"=\" + encodeURIComponent(\"GUICHE_GENERICO\") + \"; expires=\" + exdate.toUTCString() + \";path=/;\"");
         }
     }
 }

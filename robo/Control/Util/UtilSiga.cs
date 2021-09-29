@@ -26,6 +26,12 @@ namespace robo
                 ClickAndWriteById(Driver, "pess_cpf", aluno.Cpf);
                 ClickButtonsById(Driver, "btn_filtrar");
             }
+            catch (ElementClickInterceptedException)
+            {
+                Sleep();
+                ClickAndWriteById(Driver, "pess_cpf", aluno.Cpf);
+                ClickButtonsById(Driver, "btn_filtrar");
+            }
             catch(Exception e)
             {
                 throw e;
