@@ -16,23 +16,23 @@ namespace robo
         {
             try
             {
-                Sleep();
+                WaitLoading(Driver);
                 ClickAndWriteById(Driver, "pess_cpf", aluno.Cpf);
                 ClickButtonsById(Driver, "btn_filtrar");
             }
             catch (NoSuchElementException)
             {
-                Sleep();
+                WaitLoading(Driver);
                 ClickAndWriteById(Driver, "pess_cpf", aluno.Cpf);
                 ClickButtonsById(Driver, "btn_filtrar");
             }
             catch (ElementClickInterceptedException)
             {
-                Sleep();
+                WaitLoading(Driver);
                 ClickAndWriteById(Driver, "pess_cpf", aluno.Cpf);
                 ClickButtonsById(Driver, "btn_filtrar");
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 throw e;
             }
@@ -64,9 +64,27 @@ namespace robo
 
             Util.ClickAndWriteByName(Driver, "login", login.Usuario);
             Util.ClickAndWriteById(Driver, "senha_ls", login.Senha);
+
             Util.ClickButtonsByXpath(Driver, "/html/body/table/tbody/tr/td/table/tbody/tr[6]/td/div/form/div/table/tbody/tr[2]/td/table/tbody/tr/td[2]/table/tbody/tr[6]/td/input");
 
             return Driver;
+        }
+        protected void WaitLoading(IWebDriver driver)
+        {
+            IWebElement carregando;
+            try
+            {
+                carregando = driver.FindElement(By.Id("divCarregando"));
+            }
+            catch (NoSuchElementException)
+            {
+                carregando = driver.FindElement(By.Id("divCarregando"));
+
+            }
+            while (carregando.Displayed == true)
+            {
+                Sleep();
+            }
         }
     }
 }

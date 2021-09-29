@@ -1009,5 +1009,16 @@ namespace Robo
                 SendMessage(Handle, WM_NCLBUTTONDOWN, HT_CAPTION, 0);
             }
         }
+
+        private void btnMarcarNaoFeito_Click(object sender, EventArgs e)
+        {
+            DialogResult resultado = MessageBox.Show("Você realmente deseja marcar todas as conclusões como não feito", "Confirmação", MessageBoxButtons.YesNo);
+            if (resultado == DialogResult.No)
+            {
+                return;
+            }
+            Dados.UpdateConclusaoAluno("Não Feito");
+            AtualizarListViewAlunos();
+        }
     }
 }

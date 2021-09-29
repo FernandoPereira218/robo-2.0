@@ -20,6 +20,7 @@ namespace robo.Control.Relatorios.SIGA
             //document.cookie = encodeURIComponent("GUICHE") + "=" + encodeURIComponent("GUICHE_GENERICO") + ";expires=" + exdate.toUTCString() + ";path=/;"
             FiltraAluno(driver, aluno);
             string parcelas = driver.FindElement(By.XPath("/html/body/table/tbody/tr/td/table/tbody/tr[6]/td/div/form[2]/table/tbody/tr[3]/td[7]")).Text;
+            
             if (parcelas == string.Empty)
             {
                 Util.EditarConclusaoAluno(aluno, "Sem parcelas disponiveis!");
@@ -43,7 +44,16 @@ namespace robo.Control.Relatorios.SIGA
                 }
                 for (int i = 2; i < num_parcelas; i++)
                 {
-                    select = new SelectElement(Driver.FindElement(By.Id("num_parcela")));
+                    WaitLoading(driver);
+                    try
+                    {
+                        select = new SelectElement(Driver.FindElement(By.Id("num_parcela")));
+                    }
+                    catch (UnexpectedTagNameException)
+                    {
+                        WaitLoading(driver);
+                        select = new SelectElement(Driver.FindElement(By.Id("num_parcela")));
+                    }
                     if (select.Options[2].Text.ToUpper().Contains("PARCELA"))
                     {
                         ClickDropDownExact(driver, "id", "peri_id", semetreSiga);
@@ -84,6 +94,7 @@ namespace robo.Control.Relatorios.SIGA
 
                         ClickAndWriteById(driver, "id_dt_vencimento", dataCalculo.ToString("dd/MM/yyyy"));
                         ClickElementByXPath(driver, "input", "value", "Gerar Mensalidade");
+                        WaitLoading(driver);
                         IWebElement Mensagem = driver.FindElement(By.Id("msg_1"));
                         if (Mensagem.Text.Contains("Esta parcela já foi faturada. Deseja gerar a parcela como um ajuste?"))
                         {
@@ -93,6 +104,8 @@ namespace robo.Control.Relatorios.SIGA
                         if (Erro.Text.Contains("Houve um erro ao efetuar a operação!"))
                         {
                             Util.EditarConclusaoAluno(aluno, "Houve um erro ao efetuar a operação!");
+                            Driver.Url = Driver.Url;
+                            return;
                         }
                         else
                         {
@@ -100,13 +113,18 @@ namespace robo.Control.Relatorios.SIGA
                             {
                                 aluno.Conclusao = "";
                             }
-                            aluno.Conclusao = aluno.Conclusao + ParcelaSelecionada + " " + "Ok".ToUpper() + " ";
+                            aluno.Conclusao = aluno.Conclusao + ParcelaSelecionada + " OK" + ", ";
                             Util.EditarConclusaoAluno(aluno, aluno.Conclusao);
                         }
+
                     }
+
                 }
+                aluno.Conclusao = aluno.Conclusao.Substring(0, aluno.Conclusao.Length - 2);
+                Util.EditarConclusaoAluno(aluno, aluno.Conclusao);
                 Driver.Url = Driver.Url;
             }
+
         }
         public void ExecutarCookieGuiche(IWebDriver driver)
         {

@@ -338,6 +338,11 @@ namespace robo
         {
             Driver.FindElement(By.XPath("//" + elemento + "[@" + atributte + "='" + value + "']")).Click();
         }
+        protected string TakeTextByXPath(IWebDriver Driver, string elemento, string atributte, string value)
+        {
+            return Driver.FindElement(By.XPath("//" + elemento + "[@" + atributte + "='" + value + "']")).Text;
+        }
+
     }
 }
 
