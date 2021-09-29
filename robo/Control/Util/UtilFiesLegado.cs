@@ -47,9 +47,16 @@ namespace robo.Control.Legado
         {
             while (Driver.PageSource.Contains("Aditamentos FIES") == false)
             {
-                Driver.FindElement(By.XPath("//select[@name='co_perfil']/option[contains(.,'CPSA Presidência')]")).Click();
-                WaitPageToLoad(Driver);
+                try
+                {
+                    Driver.FindElement(By.XPath("//select[@name='co_perfil']/option[contains(.,'CPSA Presidência')]")).Click();
+                }
+                catch (NoSuchElementException)
+                {
+                    break;
+                }
             }
+            WaitPageToLoad(Driver);
         }
         public void WaitinLoading(IWebDriver Driver)
         {
