@@ -343,6 +343,7 @@ namespace Robo
 
                 for (int i = alunos.Count() - 1; i >= 0; i--)
                 {
+                    alunos[i].Tipo = alunos[i].Tipo.Trim();
                     if (alunos[i].Cpf == string.Empty)
                     {
                         alunos.RemoveAt(i);
