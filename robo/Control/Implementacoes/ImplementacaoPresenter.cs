@@ -557,8 +557,9 @@ namespace robo.Control.Implementacoes
                 return;
             }
             
-            GeracaoParcelasFies GeracaoParcelasFies = new GeracaoParcelasFies();
 
+            GeracaoParcelasFies GeracaoParcelasFies = new GeracaoParcelasFies();
+            GeracaoParcelasFies.ExecutarCookieGuiche(Driver);
             foreach (TOAluno aluno in listaAlunos)
             {
                 if (aluno.Conclusao == "Não Feito")
