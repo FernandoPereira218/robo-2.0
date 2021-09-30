@@ -78,6 +78,10 @@ namespace robo
             }
             catch (NoSuchElementException)
             {
+                while (driver.PageSource.Contains("divCarregando") == false)
+                {
+                    Sleep();
+                }
                 carregando = driver.FindElement(By.Id("divCarregando"));
 
             }

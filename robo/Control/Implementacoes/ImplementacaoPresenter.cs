@@ -554,6 +554,8 @@ namespace robo.Control.Implementacoes
 
             if (Driver == null || Driver.PageSource.Contains("Você precisa realizar a validação \"Não sou um robô\"."))
             {
+                Driver.Close();
+                Driver.Dispose();
                 return;
             }
 
