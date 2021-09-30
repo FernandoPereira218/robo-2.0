@@ -19,8 +19,20 @@ namespace robo.Control.Relatorios.SIGA
             //exdate.setDate(exdate.getDate() + 365);
             //document.cookie = encodeURIComponent("GUICHE") + "=" + encodeURIComponent("GUICHE_GENERICO") + ";expires=" + exdate.toUTCString() + ";path=/;"
             FiltraAluno(driver, aluno);
-            string parcelas = driver.FindElement(By.XPath("/html/body/table/tbody/tr/td/table/tbody/tr[6]/td/div/form[2]/table/tbody/tr[3]/td[7]")).Text;
-            
+            string parcelas;
+            try
+            {
+                 parcelas = driver.FindElement(By.XPath("/html/body/table/tbody/tr/td/table/tbody/tr[6]/td/div/form[2]/table/tbody/tr[3]/td[7]")).Text;
+
+            }
+            catch (NoSuchElementException)
+            {
+                Sleep();
+                while (driver.FindElement(By.XPath("/html/body/table/tbody/tr/td/table/tbody/tr[6]/td/div/form[2]/table/tbody/tr[3]/td[7]")) == null)
+                {
+                }
+                parcelas = driver.FindElement(By.XPath("/html/body/table/tbody/tr/td/table/tbody/tr[6]/td/div/form[2]/table/tbody/tr[3]/td[7]")).Text;
+            }
             if (parcelas == string.Empty)
             {
                 Util.EditarConclusaoAluno(aluno, "Sem parcelas disponiveis!");
@@ -58,7 +70,7 @@ namespace robo.Control.Relatorios.SIGA
                     {
                         ClickDropDownExact(driver, "id", "peri_id", semetreSiga);
                         select = new SelectElement(Driver.FindElement(By.Id("num_parcela")));
-                        string ParcelaSelecionada = select.Options[2].Text; 
+                        string ParcelaSelecionada = select.Options[2].Text;
                         ClickDropDown(driver, "id", "num_parcela", select.Options[2].Text);
                         SelectElement nomeOrigem = new SelectElement(Driver.FindElement(By.Id("doc_id_origem")));
                         if (nomeOrigem.Options.Count > 1)
@@ -95,7 +107,15 @@ namespace robo.Control.Relatorios.SIGA
                         ClickAndWriteById(driver, "id_dt_vencimento", dataCalculo.ToString("dd/MM/yyyy"));
                         ClickElementByXPath(driver, "input", "value", "Gerar Mensalidade");
                         WaitLoading(driver);
-                        IWebElement Mensagem = driver.FindElement(By.Id("msg_1"));
+                        IWebElement Mensagem;
+                        try
+                        {
+                            Mensagem = driver.FindElement(By.Id("msg_1"));
+                        }
+                        catch (NoSuchElementException)
+                        {
+                            Mensagem = driver.FindElement(By.Id("msg_1"));
+                        }
                         if (Mensagem.Text.Contains("Esta parcela já foi faturada. Deseja gerar a parcela como um ajuste?"))
                         {
                             ClickElementByXPath(driver, "input", "value", "Sim");
@@ -109,7 +129,7 @@ namespace robo.Control.Relatorios.SIGA
                         }
                         else
                         {
-                            if(aluno.Conclusao == "Não Feito")
+                            if (aluno.Conclusao == "Não Feito")
                             {
                                 aluno.Conclusao = "";
                             }

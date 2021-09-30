@@ -20,7 +20,7 @@ namespace robo
                 ClickAndWriteById(Driver, "pess_cpf", aluno.Cpf);
                 ClickButtonsById(Driver, "btn_filtrar");
             }
-            catch (NoSuchElementException)
+            catch (NoSuchElementException)  
             {
                 WaitLoading(Driver);
                 ClickAndWriteById(Driver, "pess_cpf", aluno.Cpf);
