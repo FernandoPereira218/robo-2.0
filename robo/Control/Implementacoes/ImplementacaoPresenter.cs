@@ -526,6 +526,7 @@ namespace robo.Control.Implementacoes
 
             UtilSiga utilsiga = new UtilSiga();
             IWebDriver Driver = utilsiga.FazerLogin("https://siga.uniritter.edu.br/financeiro/fichaFinanceira.php", listaLogins[0]);
+            // Não caiu
             if (Driver == null || Driver.PageSource.Contains("Você precisa realizar a validação \"Não sou um robô\".Tente novamente marcando esta opção!"))
             {
                 return;
@@ -561,6 +562,7 @@ namespace robo.Control.Implementacoes
             GeracaoParcelasFies.ExecutarCookieGuiche(Driver);
             foreach (TOAluno aluno in listaAlunos)
             {
+                // Isso deu pau
                 int resultado = 7;
                 // Pode dar problema futuro
                 if (aluno.Conclusao.Contains("PARCELA"))
