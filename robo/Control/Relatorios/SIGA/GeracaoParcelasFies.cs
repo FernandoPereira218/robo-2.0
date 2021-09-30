@@ -12,45 +12,75 @@ namespace robo.Control.Relatorios.SIGA
     class GeracaoParcelasFies : UtilSiga
     {
         private IWebDriver Driver;
-        public void GeraParcelaFies(IWebDriver driver, TOAluno aluno, string Semestre)
+        public void GeraParcelaFies(IWebDriver driver, TOAluno aluno, string semestre)
         {
             Driver = driver;
-            //var exdate = new Date();
-            //exdate.setDate(exdate.getDate() + 365);
-            //document.cookie = encodeURIComponent("GUICHE") + "=" + encodeURIComponent("GUICHE_GENERICO") + ";expires=" + exdate.toUTCString() + ";path=/;"
+            while (VerificarElementoExiste(driver, "id", "pess_cpf") == null)
+            {
+                Sleep();
+            }
             FiltraAluno(driver, aluno);
+            var tdAtivos = Driver.FindElements(By.XPath("//span[text()='Ativo']/.."));
+            IWebElement tdParcelas;
+            string curso, botaoId;
+            string semestreCorreto = FormatarSemestreSiga(semestre);
+            if (tdAtivos.Count > 1)
+            {
+                int ativoCorreto = 0;
+                for (int i = 0; i < tdAtivos.Count(); i++)
+                {
+                    var tdCurso = tdAtivos[i].FindElements(By.XPath("//span[text()='Ativo']/preceding::span[4]"))[i];
+                    curso = tdCurso.Text;
+                    if (aluno.CursoSiga.ToUpper() == curso)
+                    {
+                        ativoCorreto = i;
+                        break;
+                    }
+                }
+                tdParcelas = Driver.FindElements(By.XPath("//span[text()='Ativo']/preceding::span[1]"))[ativoCorreto];
+                var tdBotao = Driver.FindElements(By.XPath("//span[text()='Ativo']/following::input"))[ativoCorreto];
+                botaoId = tdBotao.GetAttribute("id");
+
+            }
+            else
+            {
+
+                tdParcelas = Driver.FindElement(By.XPath("//span[text()='Ativo']/preceding::span[1]"));
+                var tdBotao = Driver.FindElement(By.XPath("//span[text()='Ativo']/following::input"));
+                botaoId = tdBotao.GetAttribute("id");
+            }
+
             string parcelas;
             try
             {
-                 parcelas = driver.FindElement(By.XPath("/html/body/table/tbody/tr/td/table/tbody/tr[6]/td/div/form[2]/table/tbody/tr[3]/td[7]")).Text;
-
+                
+                parcelas = tdParcelas.Text;
+                if (parcelas.Contains(semestreCorreto) == false && parcelas != "")
+                {
+                    parcelas = string.Empty;
+                }
             }
             catch (NoSuchElementException)
             {
-                Sleep();
-                while (driver.FindElement(By.XPath("/html/body/table/tbody/tr/td/table/tbody/tr[6]/td/div/form[2]/table/tbody/tr[3]/td[7]")) == null)
-                {
-                }
-                parcelas = driver.FindElement(By.XPath("/html/body/table/tbody/tr/td/table/tbody/tr[6]/td/div/form[2]/table/tbody/tr[3]/td[7]")).Text;
+                parcelas = tdParcelas.Text;
             }
             if (parcelas == string.Empty)
             {
-                Util.EditarConclusaoAluno(aluno, "Sem parcelas disponiveis!");
-                Driver.Url = Driver.Url;
+                Util.EditarConclusaoAluno(aluno, "Todas as parcelas geradas anteriormente.");
                 return;
             }
 
             if (Driver.PageSource.Contains("btn_editar") == true)
             {
-                ClickButtonsById(Driver, "btn_editar#0");
+                ClickButtonsById(Driver, botaoId);
 
                 SelectElement select = new SelectElement(Driver.FindElement(By.Id("num_parcela")));
                 int num_parcelas = select.Options.Count();
-                string semetreSiga = BuscarSemestreSiga(Semestre);
+                string semetreSiga = BuscarSemestreSiga(semestre);
                 DateTime dataAtual = DateTime.Now;
                 if (num_parcelas <= 2)
                 {
-                    Util.EditarConclusaoAluno(aluno, "Sem parcela disponíveis!");
+                    Util.EditarConclusaoAluno(aluno, "Sem parcelas disponíveis!");
                     Driver.Url = Driver.Url;
                     return;
                 }
@@ -107,27 +137,36 @@ namespace robo.Control.Relatorios.SIGA
                         ClickAndWriteById(driver, "id_dt_vencimento", dataCalculo.ToString("dd/MM/yyyy"));
                         ClickElementByXPath(driver, "input", "value", "Gerar Mensalidade");
                         WaitLoading(driver);
-                        IWebElement Mensagem;
+                        IWebElement mensagem;
+                        string textoMensagem;
                         try
                         {
-                            Mensagem = driver.FindElement(By.Id("msg_1"));
+                            mensagem = driver.FindElement(By.Id("msg_1"));
+                            textoMensagem = mensagem.Text;
                         }
                         catch (NoSuchElementException)
                         {
-                            Mensagem = driver.FindElement(By.Id("msg_1"));
+                            while (VerificarElementoExiste(driver, "id", "msg_1") == null)
+                            {
+                                Sleep();
+                            }
+                            mensagem = driver.FindElement(By.Id("msg_1"));
+                            textoMensagem = mensagem.Text;
                         }
-                        if (Mensagem.Text.Contains("Esta parcela já foi faturada. Deseja gerar a parcela como um ajuste?"))
+                        if (mensagem.Text.Contains("Esta parcela já foi faturada. Deseja gerar a parcela como um ajuste?"))
                         {
                             ClickElementByXPath(driver, "input", "value", "Sim");
                         }
-                        IWebElement Erro = driver.FindElement(By.Id("msg_1"));
-                        if (Erro.Text.Contains("Houve um erro ao efetuar a operação!"))
+
+
+
+                        IWebElement msgSistema = driver.FindElement(By.Id("msg_1"));
+                        while (Driver.PageSource.Contains(textoMensagem) == true)
                         {
-                            Util.EditarConclusaoAluno(aluno, "Houve um erro ao efetuar a operação!");
-                            Driver.Url = Driver.Url;
-                            return;
+                            Sleep();
                         }
-                        else
+
+                        if (msgSistema.Text.Contains("Geração de mensalidade efetuada com sucesso!"))
                         {
                             if (aluno.Conclusao == "Não Feito")
                             {
@@ -135,6 +174,15 @@ namespace robo.Control.Relatorios.SIGA
                             }
                             aluno.Conclusao = aluno.Conclusao + ParcelaSelecionada + " OK" + ", ";
                             Util.EditarConclusaoAluno(aluno, aluno.Conclusao);
+                        }
+                        else
+                        {
+                            string mensagemSistema = msgSistema.Text.Replace("\n", "");
+                            mensagemSistema = msgSistema.Text.Replace("\r", "");
+                            mensagemSistema = mensagemSistema.Replace("\n", "");
+                            Util.EditarConclusaoAluno(aluno, mensagemSistema);
+                            Driver.Url = Driver.Url;
+                            return;
                         }
 
                     }
@@ -146,6 +194,16 @@ namespace robo.Control.Relatorios.SIGA
             }
 
         }
+
+        private string FormatarSemestreSiga(string anoSemestre)
+        {
+            string[] semestreAno = anoSemestre.Split('/');
+            string semestre = semestreAno[0];
+            string ano = semestreAno[1];
+
+            return ano + "-" + semestre;
+        }
+
         public void ExecutarCookieGuiche(IWebDriver driver)
         {
             var executor = (IJavaScriptExecutor)driver;
