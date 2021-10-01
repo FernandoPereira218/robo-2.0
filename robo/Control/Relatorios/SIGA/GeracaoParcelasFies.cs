@@ -12,13 +12,11 @@ namespace robo.Control.Relatorios.SIGA
     class GeracaoParcelasFies : UtilSiga
     {
         private IWebDriver Driver;
+
         public void GeraParcelaFies(IWebDriver driver, TOAluno aluno, string semestre)
         {
             Driver = driver;
-            while (VerificarElementoExiste(driver, "id", "pess_cpf") == null)
-            {
-                Sleep();
-            }
+            WaitElementIsVisible(driver, By.Id("pess_cpf"));
             FiltraAluno(driver, aluno);
             var tdAtivos = Driver.FindElements(By.XPath("//span[text()='Ativo']/.."));
             IWebElement tdParcelas;
@@ -53,7 +51,7 @@ namespace robo.Control.Relatorios.SIGA
             string parcelas;
             try
             {
-                
+
                 parcelas = tdParcelas.Text;
                 if (parcelas.Contains(semestreCorreto) == false && parcelas != "")
                 {

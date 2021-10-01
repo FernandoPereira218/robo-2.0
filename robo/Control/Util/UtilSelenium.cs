@@ -10,11 +10,19 @@ using OpenQA.Selenium.Firefox;
 using OpenQA.Selenium.Chrome;
 using System.Windows.Forms;
 using robo.Control.Update;
+using OpenQA.Selenium.Support.UI;
 
 namespace robo
 {
     public class UtilSelenium
     {
+        private WebDriverWait wait;
+
+        protected void WaitElementIsVisible(IWebDriver driver, By tipo)
+        {
+            wait = new WebDriverWait(driver, TimeSpan.FromMinutes(180));
+            wait.Until(ExpectedConditions.ElementIsVisible(tipo));
+        }
         /// <summary>
         /// Clica e manda dados ao TextBox.
         /// </summary>
