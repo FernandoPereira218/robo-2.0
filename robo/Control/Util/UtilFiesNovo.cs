@@ -21,6 +21,8 @@ namespace robo.Control
             ClickButtonsById(Driver, "button-submit");
             ClickAndWriteById(Driver, "password", login.Senha);
             ClickButtonsByCss(Driver, "button:nth-child(1)");
+
+            WaitElementIsVisible(Driver, By.XPath("//p[text()='Quadro de Avisos']"));
         }
 
         public void FazerLogout(IWebDriver Driver)
