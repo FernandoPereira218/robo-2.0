@@ -12,7 +12,7 @@ namespace robo.Control.Relatorios.SIGA
     class GeracaoParcelasFies : UtilSiga
     {
         private IWebDriver Driver;
-
+        private int opcaoParcela = 2;
         public void GeraParcelaFies(IWebDriver driver, TOAluno aluno, string semestre)
         {
             Driver = driver;
@@ -58,16 +58,16 @@ namespace robo.Control.Relatorios.SIGA
                         select = new SelectElement(Driver.FindElement(By.Id("num_parcela")));
                     }
 
-                    if (select.Options[2].Text.ToUpper().Contains("PARCELA"))
+                    if (select.Options[opcaoParcela].Text.ToUpper().Contains("PARCELA"))
                     {
                         //Clica no semestre correto
                         ClickDropDownExact(driver, "id", "peri_id", semetreSiga);
 
                         select = new SelectElement(Driver.FindElement(By.Id("num_parcela")));
-                        string ParcelaSelecionada = select.Options[2].Text;
+                        string ParcelaSelecionada = select.Options[opcaoParcela].Text;
 
                         //Clicar na parcela
-                        ClickDropDown(driver, "id", "num_parcela", select.Options[2].Text);
+                        ClickDropDown(driver, "id", "num_parcela", select.Options[opcaoParcela].Text);
 
                         //Clicar em número do documento
                         SelecionarNumeroDocumento();
@@ -88,9 +88,7 @@ namespace robo.Control.Relatorios.SIGA
                     }
 
                 }
-                //Remover ", " do final da conclusao
-                aluno.Conclusao = aluno.Conclusao.Substring(0, aluno.Conclusao.Length - 2);
-                Util.EditarConclusaoAluno(aluno, aluno.Conclusao);
+                Util.EditarConclusaoAluno(aluno, "Processo finalizado.");
                 Driver.Url = Driver.Url;
             }
 
@@ -106,18 +104,73 @@ namespace robo.Control.Relatorios.SIGA
 
             if (msgSistema.Text.Contains("Geração de mensalidade efetuada com sucesso!"))
             {
-                if (aluno.Conclusao == "Não Feito")
+                //if (aluno.Conclusao == "Não Feito")
+                //{
+                //    aluno.Conclusao = "";
+                //}
+                //aluno.Conclusao = aluno.Conclusao + ParcelaSelecionada + " OK" + ", ";
+                //Util.EditarConclusaoAluno(aluno, aluno.Conclusao);
+                string conclusao = "Parcela gerada com sucesso.";
+
+                switch (ParcelaSelecionada.ToUpper())
                 {
-                    aluno.Conclusao = "";
+                    case "PARCELA 1":
+                        aluno.ParcelaSiga1 = conclusao;
+                        break;
+                    case "PARCELA 2":
+                        aluno.ParcelaSiga2 = conclusao;
+                        break;
+                    case "PARCELA 3":
+                        aluno.ParcelaSiga3 = conclusao;
+                        break;
+                    case "PARCELA 4":
+                        aluno.ParcelaSiga4 = conclusao;
+                        break;
+                    case "PARCELA 5":
+                        aluno.ParcelaSiga5 = conclusao;
+                        break;
+                    case "PARCELA 6":
+                        aluno.ParcelaSiga6 = conclusao;
+                        break;
+                    default:
+                        //Util.EditarConclusaoAluno(aluno, "Número de parcelas não previsto");
+                        throw new Exception("Número de parcelas não previsto");
                 }
-                aluno.Conclusao = aluno.Conclusao + ParcelaSelecionada + " OK" + ", ";
                 Util.EditarConclusaoAluno(aluno, aluno.Conclusao);
             }
             else
             {
                 string mensagemSistema = msgSistema.Text.Replace("\n", "");
                 mensagemSistema = mensagemSistema.Replace("\r", "");
-                Util.EditarConclusaoAluno(aluno, mensagemSistema);
+                mensagemSistema = mensagemSistema.Replace("ocultar", "");
+                mensagemSistema = mensagemSistema.Replace("Mensagem do Sistema", "");
+                switch (ParcelaSelecionada.ToUpper())
+                {
+                    case "PARCELA 1":
+                        aluno.ParcelaSiga1 = mensagemSistema;
+                        break;
+                    case "PARCELA 2":
+                        aluno.ParcelaSiga2 = mensagemSistema;
+                        break;
+                    case "PARCELA 3":
+                        aluno.ParcelaSiga3 = mensagemSistema;
+                        break;
+                    case "PARCELA 4":
+                        aluno.ParcelaSiga4 = mensagemSistema;
+                        break;
+                    case "PARCELA 5":
+                        aluno.ParcelaSiga5 = mensagemSistema;
+                        break;
+                    case "PARCELA 6":
+                        aluno.ParcelaSiga6 = mensagemSistema;
+                        break;
+                    default:
+                        //Util.EditarConclusaoAluno(aluno, "Número de parcelas não previsto");
+                        throw new Exception("Número de parcelas não previsto");
+                }
+                opcaoParcela++;
+                //Util.EditarConclusaoAluno(aluno, mensagemSistema);
+                Util.EditarConclusaoAluno(aluno, aluno.Conclusao);
             }
         }
 
@@ -176,7 +229,7 @@ namespace robo.Control.Relatorios.SIGA
             }
         }
 
-        private static string BuscarQuantidadeParcelas(string semestreCorreto, IWebElement tdParcelas)
+        private string BuscarQuantidadeParcelas(string semestreCorreto, IWebElement tdParcelas)
         {
             string parcelas;
             try

@@ -205,17 +205,17 @@ namespace Robo
                 dgvAlunos.Columns["HorarioConclusao"].DisplayIndex = 4;
 
 
-                //foreach (DataGridViewColumn item in dgvAlunos.Columns)
-                //{
-                //    if ((string)dgvAlunos.Rows[0].Cells[item.Name].Value == "")
-                //    {
-                //        dgvAlunos.Columns[item.Name].Visible = false;
-                //    }
-                //    else
-                //    {
-                //        dgvAlunos.Columns[item.Name].Visible = true;
-                //    }
-                //}
+                foreach (DataGridViewColumn item in dgvAlunos.Columns)
+                {
+                    if ((string)dgvAlunos.Rows[0].Cells[item.Name].Value == "")
+                    {
+                        dgvAlunos.Columns[item.Name].Visible = false;
+                    }
+                    else
+                    {
+                        dgvAlunos.Columns[item.Name].Visible = true;
+                    }
+                }
 
 
             }
