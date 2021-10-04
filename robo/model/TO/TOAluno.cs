@@ -92,40 +92,40 @@ namespace Robo
         /// </summary>
         public TOAluno()
         {
-            this.Cpf = String.Empty;
-            this.Campus = String.Empty;
-            this.Nome = String.Empty;
-            this.HistoricoAproveitamento = String.Empty;
-            this.ReceitaBruta = String.Empty;
-            this.ReceitaLiquida = String.Empty;
-            this.ReceitaFies = String.Empty;
-            this.ValorAditado = String.Empty;
-            this.CampusAditado = String.Empty;
-            this.Tipo = String.Empty;
+            this.Cpf = string.Empty;
+            this.Campus = string.Empty;
+            this.Nome = string.Empty;
+            this.HistoricoAproveitamento = string.Empty;
+            this.ReceitaBruta = string.Empty;
+            this.ReceitaLiquida = string.Empty;
+            this.ReceitaFies = string.Empty;
+            this.ValorAditado = string.Empty;
+            this.CampusAditado = string.Empty;
+            this.Tipo = string.Empty;
             this.Conclusao = "Não Feito";
-            this.AproveitamentoAtual = String.Empty;
-            this.ValorAditadoComDesconto = String.Empty;
-            this.ValorAditadoFinanciamento = String.Empty;
-            this.ValorPagoRecursoEstudante = String.Empty;
-            this.HorarioConclusao = String.Empty;
-            this.DescontoLiberalidade = String.Empty;
+            this.AproveitamentoAtual = string.Empty;
+            this.ValorAditadoComDesconto = string.Empty;
+            this.ValorAditadoFinanciamento = string.Empty;
+            this.ValorPagoRecursoEstudante = string.Empty;
+            this.HorarioConclusao = string.Empty;
+            this.DescontoLiberalidade = string.Empty;
             this.Extraido = "Não";
-            this.Justificativa = String.Empty;
+            this.Justificativa = string.Empty;
 
             //Dados Extrair Informações DRM/DRI
-            this.SemestreAditar = String.Empty;
-            this.Curso = String.Empty;
-            this.DuracaoRegular = String.Empty;
-            this.TotalDeSemestresSuspensos = String.Empty;
-            this.TotalDeSemestresDilatados = String.Empty;
-            this.TotalDeSemestresConcluidos = String.Empty;
-            this.SemestreSerCursadoPeloEstudante = String.Empty;
-            this.TotalDeSemestresJaFinanciados = String.Empty;
-            this.PercentualDeFinanciamentoSolicitado = String.Empty;
-            this.GradeAtualComDesconto = String.Empty;
-            this.GradeAtualFinanciadoFIES = String.Empty;
-            this.GradeAtualCoparticipacao = String.Empty;
-            this.Tipo = String.Empty;
+            this.SemestreAditar = string.Empty;
+            this.Curso = string.Empty;
+            this.DuracaoRegular = string.Empty;
+            this.TotalDeSemestresSuspensos = string.Empty;
+            this.TotalDeSemestresDilatados = string.Empty;
+            this.TotalDeSemestresConcluidos = string.Empty;
+            this.SemestreSerCursadoPeloEstudante = string.Empty;
+            this.TotalDeSemestresJaFinanciados = string.Empty;
+            this.PercentualDeFinanciamentoSolicitado = string.Empty;
+            this.GradeAtualComDesconto = string.Empty;
+            this.GradeAtualFinanciadoFIES = string.Empty;
+            this.GradeAtualCoparticipacao = string.Empty;
+            this.Tipo = string.Empty;
 
             //Dados Consultar Status Aditamento Aluno FIES Novo
             this.SemestreAno = string.Empty;
