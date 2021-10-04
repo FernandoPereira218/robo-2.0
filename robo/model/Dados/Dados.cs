@@ -32,7 +32,13 @@ namespace Robo
             {"Extraido", "Extraido"},
             {"Justificativa", "Justificativa"},
             {"CursoSiga", "CursoSiga"},
-            {"ValorDeRepasse", "ValorDeRepasse"}
+            {"ValorDeRepasse", "ValorDeRepasse"},
+            {"ParcelaSiga1", "ParcelaSiga1"},
+            {"ParcelaSiga2", "ParcelaSiga2"},
+            {"ParcelaSiga3", "ParcelaSiga3"},
+            {"ParcelaSiga4", "ParcelaSiga4"},
+            {"ParcelaSiga5", "ParcelaSiga5"},
+            {"ParcelaSiga6", "ParcelaSiga6"}
         };
 
         private static readonly Dictionary<string, string> insertTOAlunoInf = new Dictionary<string, string>()

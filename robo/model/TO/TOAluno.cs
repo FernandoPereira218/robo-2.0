@@ -86,6 +86,14 @@ namespace Robo
         public string CursoSiga { get; set; }
 
         public string ValorDeRepasse { get; set; }
+        public string ParcelaSiga1 { get; set; }
+        public string ParcelaSiga2 { get; set; }
+        public string ParcelaSiga3 { get; set; }
+        public string ParcelaSiga4 { get; set; }
+        public string ParcelaSiga5 { get; set; }
+        public string ParcelaSiga6 { get; set; }
+
+
 
         /// <summary>
         /// Contrutor da classe TOAluno que garante que não exista propriedade nula.
@@ -138,6 +146,12 @@ namespace Robo
             //Dados SIGA
             this.CursoSiga = string.Empty;
             this.ValorDeRepasse = string.Empty;
+            this.ParcelaSiga1 = string.Empty;
+            this.ParcelaSiga2 = string.Empty;
+            this.ParcelaSiga3 = string.Empty;
+            this.ParcelaSiga4 = string.Empty;
+            this.ParcelaSiga5 = string.Empty;
+            this.ParcelaSiga6 = string.Empty;
         }
     }
 }
