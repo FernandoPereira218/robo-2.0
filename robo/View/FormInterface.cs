@@ -203,6 +203,21 @@ namespace Robo
                 dgvAlunos.Columns["Tipo"].DisplayIndex = 2;
                 dgvAlunos.Columns["Conclusao"].DisplayIndex = 3;
                 dgvAlunos.Columns["HorarioConclusao"].DisplayIndex = 4;
+
+
+                //foreach (DataGridViewColumn item in dgvAlunos.Columns)
+                //{
+                //    if ((string)dgvAlunos.Rows[0].Cells[item.Name].Value == "")
+                //    {
+                //        dgvAlunos.Columns[item.Name].Visible = false;
+                //    }
+                //    else
+                //    {
+                //        dgvAlunos.Columns[item.Name].Visible = true;
+                //    }
+                //}
+
+
             }
         }
         public void AtualizarListViewLogins()
@@ -589,7 +604,7 @@ namespace Robo
                     break;
 
                 case "LANÇAMENTO FIES SIGA":
-                    presenter.ExecutarLancamentoFiesSiga(cbSemestre.Text, cbFiesSiga.Text); 
+                    presenter.ExecutarLancamentoFiesSiga(cbSemestre.Text, cbFiesSiga.Text);
                     break;
                 case "GERAÇÃO PARCELAS FIES SIGA":
                     presenter.GeracaoParcelasFies(cbSemestre.Text);

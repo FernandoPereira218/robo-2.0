@@ -18,9 +18,16 @@ namespace robo
     {
         private WebDriverWait wait;
 
-        protected void WaitElementIsVisible(IWebDriver driver, By tipo)
+        /// <summary>
+        /// Espera até um elemento específico ser visível
+        /// </summary>
+        /// <param name="driver"></param>
+        /// <param name="tipo"></param>
+        /// <param name="segundos">Tempo limite de espera em segundos</param>
+        protected void WaitElementIsVisible(IWebDriver driver, By tipo, int segundos = 30)
         {
-            wait = new WebDriverWait(driver, TimeSpan.FromMinutes(180));
+            TimeSpan span = TimeSpan.FromSeconds(segundos);
+            wait = new WebDriverWait(driver, span);
             wait.Until(ExpectedConditions.ElementIsVisible(tipo));
         }
         /// <summary>
