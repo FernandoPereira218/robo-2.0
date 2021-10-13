@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CsvHelper.Configuration.Attributes;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -13,10 +14,13 @@ namespace Robo
     /// </summary>
     public class TOLogin
     {
+        [Ignore]
+        public int Id { get; set; }
         /// <summary>
         /// Faculdade do Login.
         /// </summary>
-        public String ID
+        [Name("ID")]
+        public String ID_Legado
         {
             get;
             set;

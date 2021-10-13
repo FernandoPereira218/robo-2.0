@@ -12,6 +12,9 @@ using robo;
 using System.ComponentModel;
 using robo.Control.Novo;
 using robo.Control.Implementacoes;
+using CsvHelper;
+using System.Globalization;
+using System.Text;
 
 namespace Robo
 {
@@ -188,14 +191,14 @@ namespace Robo
         private void AtualizarListViewAlunos()
         {
             var source = new BindingSource();
-            if (Dados.CountAluno() == 0)
+            if (Dados.Count<TOAluno>() == 0)
             {
                 dgvAlunos.Visible = false;
             }
             else
             {
                 dgvAlunos.Visible = true;
-                source.DataSource = Dados.SelectAlunos();
+                source.DataSource = Dados.SelectAll<TOAluno>();
                 dgvAlunos.AutoGenerateColumns = true;
                 dgvAlunos.DataSource = source;
                 dgvAlunos.Columns["Cpf"].DisplayIndex = 0;
@@ -207,7 +210,7 @@ namespace Robo
 
                 foreach (DataGridViewColumn item in dgvAlunos.Columns)
                 {
-                    if ((string)dgvAlunos.Rows[0].Cells[item.Name].Value == "")
+                    if (Convert.ToString(dgvAlunos.Rows[0].Cells[item.Name].Value) == "")
                     {
                         dgvAlunos.Columns[item.Name].Visible = false;
                     }
@@ -224,14 +227,14 @@ namespace Robo
         {
             var source = new BindingSource();
 
-            if (Dados.CountLogins() == 0)
+            if (Dados.Count<TOLogin>() == 0)
             {
                 dgvLogins.Visible = false;
             }
             else
             {
                 dgvLogins.Visible = true;
-                source.DataSource = Dados.SelectLogins();
+                source.DataSource = Dados.SelectAll<TOLogin>();
                 dgvLogins.AutoGenerateColumns = true;
                 dgvLogins.DataSource = source;
                 dgvLogins.Columns[dgvLogins.ColumnCount - 1].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
@@ -367,7 +370,7 @@ namespace Robo
             string inicial = dtpDataInicial.Value.ToString("dd/MM/yyyy");
             string final = dtpDataFinal.Value.ToString("dd/MM/yyyy");
 
-            List<TOLogin> login = Dados.SelectLogins();
+            List<TOLogin> login = Dados.SelectAll<TOLogin>();
             List<TOLogin> listaLoginPlat = SelecionarLoginsPorPlataforma(login, cbPlataforma.Text);
             List<TOLogin> listaLoginFacul = SelecionarLoginsPorFaculdade(listaLoginPlat, true);
 
@@ -394,7 +397,7 @@ namespace Robo
                     alunos.Add(alunoUnico);
                     if (versaoRobo == "CAE")
                     {
-                        Dados.DeleteTodosAlunos();
+                        Dados.DeleteAllLite<TOAluno>();
                     }
                     Dados.InsertAluno(alunoUnico);
                 }
@@ -640,7 +643,7 @@ namespace Robo
         //Após refatoração dos FIES´s trazer dados já filtrados
         private static List<TOLogin> SelecionaLogins(string tipoFies, string IES)
         {
-            List<TOLogin> logins = Dados.SelectLogins();
+            List<TOLogin> logins = Dados.SelectAll<TOLogin>();
             for (int i = logins.Count - 1; i >= 0; i--)
             {
                 if (logins[i].Faculdade.ToUpper() != IES.ToUpper() || logins[i].Plataforma.ToUpper() != tipoFies.ToUpper())
@@ -701,7 +704,7 @@ namespace Robo
                 if (aluno.AproveitamentoAtual.Contains("TRANCADO") == true)
                 {
                     aluno.Conclusao = "Trancado";
-                    Dados.UpdateAluno(aluno);
+                    Dados.UpdateDocumento<TOAluno>(aluno);
                 }
 
             }
@@ -732,7 +735,7 @@ namespace Robo
         {
             if (MessageBox.Show("Deseja excluir este usuário?", "Excluir usuário", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK)
             {
-                Dados.DeleteLogin(dgvLogins.CurrentRow.DataBoundItem as TOLogin);
+                Dados.DeleteLite<TOLogin>(dgvLogins.CurrentRow.DataBoundItem as TOLogin);
                 MessageBox.Show("Login excluido com sucesso!", "Sucesso!", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 AtualizarListViewLogins();
             }
@@ -964,7 +967,7 @@ namespace Robo
         {
             if (MessageBox.Show("Deseja excluir este usuário?", "Excluir usuário", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK)
             {
-                Dados.DeleteUsuario(dgvUsuarios.CurrentRow.DataBoundItem as TOUsuario);
+                Dados.DeleteLite<TOUsuario>(dgvUsuarios.CurrentRow.DataBoundItem as TOUsuario);
                 MessageBox.Show("Login excluido com sucesso!", "Sucesso!", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 AtualizarListViewUsuarios();
             }
