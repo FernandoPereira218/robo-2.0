@@ -19,7 +19,7 @@ namespace robo.Control
         {
             ClickAndWriteById(Driver, "username", login.Usuario);
             ClickButtonsById(Driver, "button-submit");
-            ClickAndWriteById(Driver, "password", login.Senha);
+            ClickAndWriteById(Driver, "password-front", login.Senha);
             ClickButtonsByCss(Driver, "button:nth-child(1)");
 
             WaitElementIsVisible(Driver, By.XPath("//p[text()='Quadro de Avisos']"));
