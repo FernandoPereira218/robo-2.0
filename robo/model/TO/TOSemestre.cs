@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CsvHelper.Configuration.Attributes;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -11,10 +12,15 @@ namespace robo.pgm
     /// </summary>
     public class TOSemestre
     {
+
         public TOSemestre()
         {
   
         }
+
+        /// <summary>Id para LiteDB</summary>
+        [Ignore]
+        public int Id { get; set; }
         /// <summary>
         /// Semestres para extração Docs.
         /// </summary>

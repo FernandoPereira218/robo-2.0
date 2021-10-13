@@ -4,6 +4,8 @@ namespace Robo
 {
     public class TOAluno
     {
+        /// <summary>Id para LiteDB</summary>
+        public int Id { get; set; }
         /// <summary>CPF do aluno.</summary>  
         public string Cpf { get; set; }
 
@@ -104,9 +106,9 @@ namespace Robo
             this.Campus = string.Empty;
             this.Nome = string.Empty;
             this.HistoricoAproveitamento = string.Empty;
-            this.ReceitaBruta = string.Empty;
-            this.ReceitaLiquida = string.Empty;
-            this.ReceitaFies = string.Empty;
+            this.ReceitaBruta = "-";
+            this.ReceitaLiquida = "-";
+            this.ReceitaFies = "-";
             this.ValorAditado = string.Empty;
             this.CampusAditado = string.Empty;
             this.Tipo = string.Empty;
@@ -145,7 +147,7 @@ namespace Robo
 
             //Dados SIGA
             this.CursoSiga = string.Empty;
-            this.ValorDeRepasse = string.Empty;
+            this.ValorDeRepasse = "-";
             this.ParcelaSiga1 = string.Empty;
             this.ParcelaSiga2 = string.Empty;
             this.ParcelaSiga3 = string.Empty;

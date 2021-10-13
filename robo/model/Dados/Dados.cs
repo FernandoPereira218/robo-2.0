@@ -4,6 +4,9 @@ using System.Linq;
 using robo.pgm;
 using robo;
 using System.Windows.Forms;
+using LiteDB;
+using System.Reflection;
+using System.Linq.Expressions;
 
 //using ExcelManager;
 
@@ -11,6 +14,7 @@ namespace Robo
 {
     public static class Dados
     {
+        private const string CAMINHO_BANCO = "data/bdbot1.db";
         private static readonly Dictionary<string, string> insertTOAluno = new Dictionary<string, string>()
         {
             {"Cpf", "Cpf" },
@@ -80,128 +84,6 @@ namespace Robo
             {"GradeAtualCoparticipacao", "GradeAtualCoparticipacao" },
             {"Conclusao", "Conclusao" }
         };
-        //SELECTS
-        public static List<TOSemestre> SelectSemestre()
-        {
-            return Database.Acess.SelectAll<TOSemestre>("SEMESTRES");
-        }
-        public static List<TOLogin> SelectLogins()
-        {
-            return Database.Acess.SelectAll<TOLogin>("LOGIN", "ID", true);
-        }
-        public static List<TOUsuario> SelectUsuarios()
-        {
-            return Database.Acess.SelectAll<TOUsuario>("USUARIO");
-        }
-        public static List<TOUsuario> SelectUsuarioWhereIES(string IES)
-        {
-            return Database.Acess.SelectWhere<TOUsuario>("USUARIO", "IES", IES);
-        }
-        public static List<TOAluno> SelectAlunos()
-        {
-            return Database.Acess.SelectAll<TOAluno>("ALUNO");
-        }
-        public static List<TOAluno> SelectAlunoWhere(string plataforma)
-        {
-            Dictionary<string, string> dic = new Dictionary<string, string>();
-            dic.Add("Tipo", plataforma);
-            dic.Add("Conclusao", "Não Feito");
-            return Database.Acess.SelectWhere<TOAluno>("ALUNO", dic, "and");
-        }
-        public static List<TOMenus> SelectMenus()
-        {
-            return Database.Acess.SelectAll<TOMenus>("MENUS");
-        }
-        public static List<TOMenus> SelectMenuWhere(string plataforma)
-        {
-            //Duas keys iguais do dictionary dá erro, por isso o espaço
-            Dictionary<string, string> dic = new Dictionary<string, string>();
-            dic.Add("Modalidade", plataforma);
-            dic.Add("Modalidade ", "");
-            List<TOMenus> menusGeral = Database.Acess.SelectWhere<TOMenus>("MENUS", dic, "or ");
-            return menusGeral;
-
-        }
-        public static List<string> SelectLoginTOIES(string IES, string plataforma)
-        {
-            List<TOLogin> listlogin;
-            if (IES == "TODOS")
-            {
-                listlogin = Database.Acess.SelectWhere<TOLogin>("LOGIN", "Plataforma", plataforma);
-            }
-            else
-            {
-                listlogin = Database.Acess.SelectWhere<TOLogin>("LOGIN", "Faculdade", "Plataforma", IES, plataforma);
-            }
-            List<string> listCampus = new List<string>();
-            listCampus.Add("");
-            foreach (var item in listlogin)
-            {
-                listCampus.Add(item.Campus);
-            }
-            return listCampus;
-        }
-        public static List<TOLogin> SelectLoginPorIESePlataforma(string IES, string plataforma, string campus, bool admin)
-        {
-            List<TOLogin> listlogin;
-
-            if (IES == "TODOS")
-            {
-                listlogin = Database.Acess.SelectWhere<TOLogin>("LOGIN", "Plataforma", plataforma);
-            }
-            else
-            {
-                Dictionary<string, string> dic = new Dictionary<string, string>();
-                dic.Add("Faculdade", IES);
-                dic.Add("Plataforma", plataforma);
-                dic.Add("Admin", "Não");
-                if (plataforma == "FIES Legado" && campus != string.Empty)
-                {
-                    dic.Add("Campus", campus);
-                }
-                listlogin = Database.Acess.SelectWhere<TOLogin>("LOGIN", dic, "and");
-
-                //Verificação se deve ser buscado login admin
-                if (listlogin.Count == 0)
-                {
-                    dic["Admin"] = "Sim";
-                    listlogin = Database.Acess.SelectWhere<TOLogin>("LOGIN", dic, "and");
-
-                    //Caso ainda não tenha nenhum login mostra exception
-                    if (listlogin.Count == 0)
-                    {
-                        throw new Exception("Login não encontrado!");
-                    }
-                }
-            }
-            if (admin == true)
-            {
-                listlogin = Database.Acess.SelectWhere<TOLogin>("LOGIN", "Faculdade", "Admin", IES, "Sim");
-            }
-            return listlogin;
-        }
-
-        //DELETES
-        public static void DeleteLogin(TOLogin login)
-        {
-            List<TOLogin> loginList = new List<TOLogin>();
-            loginList.Add(login);
-            Dictionary<string, string> dic = new Dictionary<string, string>();
-            dic.Add("Usuario", "Usuario");
-            Database.Acess.Delete<TOLogin>("LOGIN", loginList, dic);
-        }
-        public static void DeleteUsuario(TOUsuario usuario)
-        {
-            List<TOUsuario> usuarioList = new List<TOUsuario>();
-            usuarioList.Add(usuario);
-            Dictionary<string, string> dic = new Dictionary<string, string>();
-            dic.Add("Usuario", "Usuario");
-            Database.Acess.Delete<TOUsuario>("USUARIO", usuarioList, dic);
-        }
-        public static void DeleteTodosAlunos()
-        {
-            Database.Acess.DeleteAll("ALUNO");
-        }
 
         //UPDATES
         public static void UpdateAluno(TOAluno aluno)
@@ -226,26 +108,6 @@ namespace Robo
             columnAndProperty.Add("Extraido", "Extraido");
             Database.Acess.Update<TOAluno>("ALUNO", columnAndProperty, aluno, "Cpf", "Cpf");
         }
-        public static void UpdateLogin(TOLogin login)
-        {
-            Dictionary<string, string> dic = new Dictionary<string, string>();
-            dic.Add("Usuario", "Usuario");
-            dic.Add("Senha", "Senha");
-            dic.Add("Campus", "Campus");
-            dic.Add("Plataforma", "Plataforma");
-            dic.Add("Faculdade", "Faculdade");
-            dic.Add("ID", "ID");
-            Database.Acess.Update("LOGIN", dic, login, "ID", "ID");
-        }
-        public static void UpdateUsuario(TOUsuario usuario)
-        {
-            Dictionary<string, string> dic = new Dictionary<string, string>();
-            dic.Add("Usuario", "Usuario");
-            dic.Add("Senha", "Senha");
-            dic.Add("Permissao", "Permissao");
-            dic.Add("IES", "IES");
-            Database.Acess.Update("USUARIO", dic, usuario, "Usuario", "Usuario");
-        }
         public static void UpdateAluno(TOAluno aluno, string tipoAluno)
         {
             if (tipoAluno == "ALUNO")
@@ -256,12 +118,6 @@ namespace Robo
             {
                 Database.Acess.Update<TOAluno>("ALUNO", updateAlunoInf, (TOAluno)aluno, "Cpf", "Cpf");
             }
-        }
-        public static void UpdateConclusaoAluno(string conclusao)
-        {
-            Dictionary<string, string> dic = new Dictionary<string, string>();
-            dic.Add("Conclusao", conclusao);
-            Database.Acess.UpdateALL("ALUNO", dic);
         }
 
         //INSERTS
@@ -315,6 +171,7 @@ namespace Robo
         {
             return Database.Acess.SelectCount("ALUNO");
         }
+
         public static int CountLogins()
         {
             return Database.Acess.SelectCount("LOGIN");
@@ -482,6 +339,10 @@ namespace Robo
         }
         public static string FormatarReceitas(string valor)
         {
+            if (valor == null)
+            {
+                return string.Empty;
+            }
             if (valor.Contains(","))
             {
                 string[] split = valor.Split(new Char[] { ',' });
@@ -509,19 +370,19 @@ namespace Robo
             aluno.ValorDeRepasse = aluno.ValorDeRepasse.Replace("R$", "");
             aluno.ValorDeRepasse = aluno.ValorDeRepasse.Replace(" ", "");
 
-            if (aluno.ReceitaBruta != string.Empty)
+            if (aluno.ReceitaBruta != "-")
             {
                 aluno.ReceitaBruta = Math.Round(Convert.ToDouble(aluno.ReceitaBruta), 2).ToString();
             }
-            if (aluno.ReceitaLiquida != string.Empty)
+            if (aluno.ReceitaLiquida != "-")
             {
                 aluno.ReceitaLiquida = Math.Round(Convert.ToDouble(aluno.ReceitaLiquida), 2).ToString();
             }
-            if (aluno.ReceitaFies != string.Empty)
+            if (aluno.ReceitaFies != "-")
             {
                 aluno.ReceitaFies = Math.Round(Convert.ToDouble(aluno.ReceitaFies), 2).ToString();
             }
-            if (aluno.ValorDeRepasse != string.Empty)
+            if (aluno.ValorDeRepasse != "-")
             {
                 aluno.ValorDeRepasse = Math.Round(Convert.ToDouble(aluno.ValorDeRepasse), 2).ToString();
             }
@@ -530,17 +391,7 @@ namespace Robo
         //Atualizar BD
         public static void AtualizarAlunosBD(List<TOAluno> alunos)
         {
-            foreach (TOAluno aluno in alunos)
-            {
-                //if (CountAluno(aluno) > 0)
-                //{
-                //    UpdateAluno(aluno);
-                //}
-                //else
-                //{
-                //}
-                InsertAluno(aluno);
-            }
+            InsertListLite(alunos);
         }
 
         //Validar Login
@@ -605,15 +456,15 @@ namespace Robo
         }
         public static bool VerificaQtdAlunos()
         {
-            int countAlunoTO = CountAluno();
+            int countAlunoTO = Count<TOAluno>();
             if (countAlunoTO > 0)
             {
-                string mensagem = "Tem certeza que deseja excluir o banco de dados?";
-                mensagem += "\n\nCertifique-se de já ter exportado antes para que nenhuma informação seja perdida!";
+                string mensagem = "Tem certeza que deseja excluir o banco de dados?" +
+                    "\n\nCertifique-se de já ter exportado antes para que nenhuma informação seja perdida!";
 
                 if (MessageBox.Show(mensagem, "Limpar Banco de Dados", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK)
                 {
-                    DeleteTodosAlunos();
+                    DeleteAllLite<TOAluno>();
                     return true;
                 }
                 else
@@ -622,6 +473,190 @@ namespace Robo
                 }
             }
             return true;
+        }
+
+
+        //LITE
+
+        //Selects
+        /// <summary>
+        /// Select All de qualquer coleção, basta especificar a classe
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <returns></returns>
+        public static List<T> SelectAll<T>()
+        {
+            using (var db = new LiteDatabase(CAMINHO_BANCO))
+            {
+                var colecao = db.GetCollection<T>();
+                return colecao.Query().ToList();
+            }
+        }
+
+        public static List<TOUsuario> SelectUsuarioWhereIES(string IES)
+        {
+            using (var db = new LiteDatabase(CAMINHO_BANCO))
+            {
+                var colecao = db.GetCollection<TOUsuario>();
+                return colecao.Query().Where(x => x.IES == IES).ToList();
+            }
+        }
+
+        public static List<TOAluno> SelectAlunoWhere(string tipoFies)
+        {
+            using (var db = new LiteDatabase(CAMINHO_BANCO))
+            {
+                var colecao = db.GetCollection<TOAluno>();
+                return colecao.Query().Where(x => x.Tipo == tipoFies && x.Conclusao == "Não Feito").ToList();
+            }
+        }
+
+        public static List<TOLogin> SelectLoginWhere(string plataforma)
+        {
+            using (var db = new LiteDatabase(CAMINHO_BANCO))
+            {
+                var colecao = db.GetCollection<TOLogin>();
+                return colecao.Query().Where(x => x.Plataforma == plataforma).ToList();
+            }
+        }
+
+        public static List<T> SelectWhere<T>(Expression<Func<T, bool>> expression)
+        {
+            using (var db = new LiteDatabase(CAMINHO_BANCO))
+            {
+                var colecao = db.GetCollection<T>();
+                return colecao.Query().Where(expression).ToList();
+            }
+        }
+
+        public static List<TOMenus> SelectMenuWhereLite(string plataforma)
+        {
+            var lista = new List<TOMenus>();
+            using (var db = new LiteDatabase(CAMINHO_BANCO))
+            {
+                var colecao = db.GetCollection<TOMenus>();
+                return colecao.Query().Where(x => x.Modalidade == plataforma || x.Modalidade == null || x.Modalidade == "").ToList();
+            }
+        }
+
+        public static List<string> SelectLoginTOIES(string IES, string plataforma)
+        {
+            List<TOLogin> listlogin;
+            if (IES == "TODOS")
+            {
+                listlogin = SelectWhere<TOLogin>(x => x.Plataforma == plataforma);
+            }
+            else
+            {
+                listlogin = SelectWhere<TOLogin>(x => x.Plataforma == plataforma && x.Faculdade == IES);
+            }
+
+            List<string> listCampus = new List<string>();
+            listCampus.Add("");
+            foreach (var item in listlogin)
+            {
+                listCampus.Add(item.Campus);
+            }
+            return listCampus;
+
+        }
+        public static List<TOLogin> SelectLoginPorIESePlataforma(string IES, string plataforma, string campus, bool admin)
+        {
+            List<TOLogin> listlogin;
+
+            if (IES == "TODOS")
+            {
+                listlogin = Database.Acess.SelectWhere<TOLogin>("LOGIN", "Plataforma", plataforma);
+                listlogin = SelectWhere<TOLogin>(x => x.Plataforma == plataforma);
+            }
+            else
+            {
+                if (plataforma == "FIES Legado" && campus != string.Empty)
+                {
+                    listlogin = SelectWhere<TOLogin>(x => x.Faculdade == IES && x.Plataforma == plataforma && x.Campus == campus && x.Admin == "Não");
+                }
+                else
+                {
+                    listlogin = SelectWhere<TOLogin>(x => x.Faculdade == IES && x.Plataforma == plataforma && x.Admin == "Não");
+                }
+
+                if (listlogin.Count == 0)
+                {
+                    listlogin = SelectWhere<TOLogin>(x => x.Faculdade == IES && x.Plataforma == plataforma && x.Admin == "Sim");
+
+                    //Caso ainda não tenha nenhum login mostra exception
+                    if (listlogin.Count == 0)
+                    {
+                        throw new Exception("Login não encontrado!");
+                    }
+                }
+            }
+            return listlogin;
+        }
+        //DELETE
+        public static void DeleteAllLite<T>()
+        {
+            using (var db = new LiteDatabase(CAMINHO_BANCO))
+            {
+                var colecao = db.GetCollection<T>();
+                colecao.DeleteAll();
+            }
+        }
+        public static void DeleteLite<T>(T objeto)
+        {
+            using (var db = new LiteDatabase(CAMINHO_BANCO))
+            {
+                var colecao = db.GetCollection<T>();
+                colecao.Delete(Convert.ToInt32(objeto.GetType().GetProperty("Id").GetValue(objeto)));
+            }
+        }
+
+        //UPDATES
+        public static void UpdateDocumento<T>(T objeto)
+        {
+            using (var db = new LiteDatabase(CAMINHO_BANCO))
+            {
+                var colecao = db.GetCollection<T>();
+                colecao.Update(objeto);
+            }
+        }
+
+        public static void UpdateConclusaoAluno(string conclusao)
+        {
+            using (var db = new LiteDatabase(CAMINHO_BANCO))
+            {
+                var colecao = db.GetCollection<TOAluno>();
+                colecao.UpdateMany(x => new TOAluno { Conclusao = conclusao }, x=> x.Conclusao != "Não Feito");
+            }
+            //Database.Acess.UpdateALL("ALUNO", dic);
+        }
+
+        //Insert
+        public static void InsertListLite<T>(List<T> lista) where T : class, new()
+        {
+            using (var db = new LiteDatabase(CAMINHO_BANCO))
+            {
+                var colecao = db.GetCollection<T>();
+                colecao.InsertBulk(lista);
+            }
+        }
+        public static void InsertDocumento<T>(T objeto)
+        {
+            using (var db = new LiteDatabase(CAMINHO_BANCO))
+            {
+                var colecao = db.GetCollection<T>();
+                colecao.Insert(objeto);
+            }
+        }
+
+        //Count
+        public static int Count<T>()
+        {
+            using (var db = new LiteDatabase(CAMINHO_BANCO))
+            {
+                var colecao = db.GetCollection<T>();
+                return colecao.Count();
+            }
         }
     }
 }

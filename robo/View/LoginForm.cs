@@ -18,7 +18,7 @@ namespace Robo
             this.Location = location;
             if (login != null)
             {
-                txtID.Text = login.ID;
+                txtID.Text = login.Id.ToString();
                 txtUser.Text = login.Usuario;
                 txtSenhaLogin.Text = login.Senha;
                 txtFaculdadeLogin.Text = login.Faculdade;
@@ -58,7 +58,8 @@ namespace Robo
         {
             try
             {                
-                Dados.InsertLogin(LoginPreenchido());
+                //Dados.InsertLogin(LoginPreenchido());
+                Dados.InsertDocumento<TOLogin>(LoginPreenchido());
                 MessageBox.Show("Login adicionado com sucesso.");
             }
             catch (Exception exception)
@@ -75,7 +76,7 @@ namespace Robo
         {
             try
             {
-                Dados.UpdateLogin(LoginPreenchido());
+                Dados.UpdateDocumento<TOLogin>(LoginPreenchido());
                 MessageBox.Show("Login atualizado com sucesso.");
             }
             catch (Exception exception)
@@ -91,7 +92,8 @@ namespace Robo
         private TOLogin LoginPreenchido()
         {
             TOLogin login = new TOLogin();
-            login.ID = txtID.Text;
+            // login.Id = 
+            login.Id = Convert.ToInt32(txtID.Text);
             login.Usuario = txtUser.Text;
             login.Senha = txtSenhaLogin.Text;
             login.Faculdade = txtFaculdadeLogin.Text;

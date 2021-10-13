@@ -60,7 +60,7 @@ namespace robo.Control.Aditamento
                     {
                         aluno.Conclusao = alerta;
                         aluno.HorarioConclusao = string.Format("{0:dd/MM/yyyy HH:mm}", DateTime.Now);
-                        Dados.UpdateAluno(aluno);
+                        Dados.UpdateDocumento<TOAluno>(aluno);
                         Util.ScrollToElementByID(Driver, "btnVoltar");
                         Util.ClickButtonsById(Driver, "btnVoltar");
                         return;

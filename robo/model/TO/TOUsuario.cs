@@ -1,4 +1,6 @@
-﻿using System;
+﻿using CsvHelper.Configuration.Attributes;
+using LiteDB;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,7 +10,9 @@ namespace robo
 {
     public class TOUsuario
     {
-
+        /// <summary>Id para LiteDB</summary>
+        [Ignore]
+        public int Id { get; set; }
         public string Usuario
         {
             get;
@@ -29,6 +33,7 @@ namespace robo
             get;
             set;
         }
+        [Ignore]
         public string Regional
         {
             get;

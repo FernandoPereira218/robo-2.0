@@ -235,7 +235,7 @@ namespace Robo
         private static void ExportarAlunosConsultaNovo()
         {
             List<TOAluno> list = new List<TOAluno>();
-            list = Dados.SelectAlunos();
+            list = Dados.SelectAll<TOAluno>();
             String userRoot = System.Environment.GetEnvironmentVariable("USERPROFILE");
             string downloadFolder = System.IO.Path.Combine(userRoot, "Downloads");
             string arquivo = downloadFolder + "\\Consulta_FIES_Novo.csv";

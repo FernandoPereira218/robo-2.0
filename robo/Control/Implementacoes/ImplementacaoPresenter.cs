@@ -416,7 +416,7 @@ namespace robo.Control.Implementacoes
 
         public string BuscarNunSemestre(string semestreAno)
         {
-            List<TOSemestre> semestre = Dados.SelectSemestre();
+            List<TOSemestre> semestre = Dados.SelectAll<TOSemestre>();
             foreach (var item in semestre)
             {
                 if (semestreAno == item.Semestre)
@@ -437,7 +437,7 @@ namespace robo.Control.Implementacoes
                 if (aluno.AproveitamentoAtual.Contains("TRANCADO") == true)
                 {
                     aluno.Conclusao = "Trancado";
-                    Dados.UpdateAluno(aluno);
+                    Dados.UpdateDocumento<TOAluno>(aluno);
                 }
 
             }
@@ -450,7 +450,7 @@ namespace robo.Control.Implementacoes
         }
         public List<string> PreencherListaExecucao()
         {
-            List<TOMenus> menus = Dados.SelectMenus();
+            List<TOMenus> menus = Dados.SelectAll<TOMenus>();
             List<string> nomeMenu = new List<string>();
             foreach (var item in menus)
             {
@@ -460,7 +460,7 @@ namespace robo.Control.Implementacoes
         }
         public List<string> PreencherListaExecucaoPorPlataforma(string plataforma)
         {
-            List<TOMenus> menus = Dados.SelectMenuWhere(plataforma);
+            List<TOMenus> menus = Dados.SelectMenuWhereLite(plataforma);
             List<string> nomeMenu = new List<string>();
             foreach (var item in menus)
             {
@@ -471,7 +471,7 @@ namespace robo.Control.Implementacoes
 
         public List<string> PreencherListaSemestre()
         {
-            List<TOSemestre> semestre = Dados.SelectSemestre();
+            List<TOSemestre> semestre = Dados.SelectAll<TOSemestre>();
             List<string> nomeSemestre = new List<string>();
             foreach (var item in semestre)
             {
@@ -516,7 +516,7 @@ namespace robo.Control.Implementacoes
 
         public void ExecutarLancamentoFiesSiga(string semestre, string tipoFies)
         {
-            listaAlunos = Dados.SelectAlunos();
+            listaAlunos = Dados.SelectAll<TOAluno>();
             listaLogins = Dados.SelectLoginPorIESePlataforma("", "SIGA", "", admin: false);
             foreach (TOAluno aluno in listaAlunos)
             {
@@ -547,7 +547,7 @@ namespace robo.Control.Implementacoes
 
         public void GeracaoParcelasFies(string semestre)
         {
-            listaAlunos = Dados.SelectAlunos();
+            listaAlunos = Dados.SelectAll<TOAluno>();
             listaLogins = Dados.SelectLoginPorIESePlataforma("", "SIGA", "", admin: false);
             UtilSiga utilsiga = new UtilSiga();
             IWebDriver Driver = utilsiga.FazerLogin("https://siga.uniritter.edu.br/financeiro/geracaoIndividualParcela.php", listaLogins[0]);
