@@ -10,7 +10,6 @@ using System.Linq;
 using System.Drawing;
 using robo;
 using System.ComponentModel;
-using robo.Control.Novo;
 using robo.Control.Implementacoes;
 using CsvHelper;
 using System.Globalization;
@@ -140,7 +139,7 @@ namespace Robo
                 AtualizarListViewAlunos();
                 SystemSounds.Beep.Play();
                 tbBarraStatus.Visible = true;
-                int qtdAlunosProcessados = Dados.CountAluno();
+                int qtdAlunosProcessados = Dados.Count<TOAluno>();
                 tbBarraStatus.BeginInvoke(
                    new Action(() =>
                    {
@@ -313,156 +312,6 @@ namespace Robo
             RodarPrograma();
             MessageBox.Show("Processamentos concluídos com sucesso!");
             return;
-            if (cbExecucao.Text.Contains("EXPORTAR") || cbExecucao.Text.Contains("VALIDAR REPARCELAMENTO"))
-            {
-                ExecutarExportacoes();
-                return;
-            }
-
-            if (radioBuscarStatus.Checked == true)
-            {
-                if (File.Exists("Tabela.csv") == true)
-                {
-                    File.Delete("Tabela.csv");
-                }
-            }
-            Cursor.Current = Cursors.WaitCursor;
-            if (versaoRobo == "CAE")
-            {
-                txtCPF.Text = txtCPF.Text.Replace(".", "");
-                txtCPF.Text = txtCPF.Text.Replace("-", "");
-                txtCPF.Text = txtCPF.Text.Replace(" ", "");
-
-                if (Util.VerificaCPFValido(txtCPF.Text) == true)
-                {
-                    ExecutaPrograma(true);
-                }
-                else
-                {
-                    MessageBox.Show("CPF incorreto, digite novamente!");
-                }
-            }
-            else
-            {
-                if (txtCPF.Text == "")
-                {
-                    if (radioBuscarStatus.Checked == true)
-                    {
-                        MessageBox.Show("Busca por status deve ser feita somente com um CPF único.");
-                        return;
-                    }
-
-                    ExecutaPrograma();
-                }
-                else if (Util.VerificaCPFValido(txtCPF.Text) == true)
-                {
-                    ExecutaPrograma(true);
-                }
-                else
-                {
-                    MessageBox.Show("CPF incorreto, digite novamente!");
-                }
-            }
-            this.Cursor = Cursors.Default;
-        }
-        private void ExecutarExportacoes()
-        {
-            string inicial = dtpDataInicial.Value.ToString("dd/MM/yyyy");
-            string final = dtpDataFinal.Value.ToString("dd/MM/yyyy");
-
-            List<TOLogin> login = Dados.SelectAll<TOLogin>();
-            List<TOLogin> listaLoginPlat = SelecionarLoginsPorPlataforma(login, cbPlataforma.Text);
-            List<TOLogin> listaLoginFacul = SelecionarLoginsPorFaculdade(listaLoginPlat, true);
-
-            if (cbPlataforma.Text.ToUpper() == "FIES LEGADO")
-            {
-                login = SelecionaLogins(cbPlataforma.Text, cbFaculdade.Text);
-                FiesVelhoExp.OpenFiesVelho(login, cbExecucao.Text, cbCampus.Text, cbSemestre.Text, cbSituacao.Text, cbAno.Text, cbMes.Text);
-            }
-            else
-            {
-                FiesNovoExp.OpenFiesNovo(listaLoginFacul, cbExecucao.Text, cbSemestre.Text, cbFaculdade.Text, cbAno.Text, cbMes.Text, inicial, final, cbIESRepasse.Text);
-            }
-        }
-        private void ExecutaPrograma(bool CPFUnico = false)
-        {
-            try
-            {
-                if (CPFUnico == true) //Versão CAE, buscar apenas um aluno
-                {
-                    List<TOAluno> alunos = new List<TOAluno>();
-                    TOAluno alunoUnico = new TOAluno();
-                    alunoUnico.Cpf = txtCPF.Text;
-                    alunoUnico.Tipo = cbPlataforma.Text;
-                    alunos.Add(alunoUnico);
-                    if (versaoRobo == "CAE")
-                    {
-                        Dados.DeleteAllLite<TOAluno>();
-                    }
-                    Dados.InsertAluno(alunoUnico);
-                }
-                if (Dados.CountAluno() == 0)
-                {
-                    MessageBox.Show("Banco de Alunos vazio. Por favor importe uma tabela.", "Nenhum aluno encontrado", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
-                }
-                if (Dados.CountLogins() == 0)
-                {
-                    MessageBox.Show("Banco de Logins vazio. Por favor adicione os Logins necessários.", "Nenhum login encontrado", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
-                }
-                string numSemestre = presenter.BuscarNunSemestre(cbSemestre.Text);
-                List<TOAluno> listaAlunos = new List<TOAluno>();
-                List<TOLogin> logins;
-
-                string execucao = cbExecucao.Text.ToUpper();
-                if (execucao.Equals("EXPORTAR INADIMPLÊNCIA") || execucao.Equals("EXPORTAR REPASSE")
-                    || execucao.Equals("EXPORTAR COPARTICIPAÇÃO") || execucao.Equals("VALIDAR REPARCELAMENTO"))
-                {
-                    logins = Dados.SelectLoginPorIESePlataforma(cbFaculdade.Text, cbPlataforma.Text, cbCampus.Text, true);
-                }
-                else
-                {
-                    logins = Dados.SelectLoginPorIESePlataforma(cbFaculdade.Text, cbPlataforma.Text, cbCampus.Text, false);
-                }
-
-                listaAlunos = SelecionarAlunosPorPlataforma(cbPlataforma.Text);
-                switch (cbPlataforma.Text.ToUpper().Trim())
-                {
-                    case "FIES LEGADO":
-                        if (cbExecucao.SelectedItem.ToString().Contains("EXTRAIR") == true)
-                        {
-                            FiesVelhoInf.OpenFiesVelho(logins, listaAlunos, cbCampus.Text, cbSemestre.Text, cbExecucao.Text, cbSituacao.Text);
-                        }
-                        else
-                        {
-                            FiesVelho.OpenFiesVelho(logins, listaAlunos, cbExecucao.Text, cbCampus.Text, numSemestre, cbSemestre.Text, radioBuscarStatus.Checked, cbSituacao.Text);
-                        }
-                        break;
-
-                    case "FIES NOVO":
-                        MetodosFiesNovo.OpenFiesNovo(logins, listaAlunos, cbExecucao.Text, cbSemestre.Text, radioBuscarStatus.Checked, cbFaculdade.Text);
-                        break;
-                    default:
-                        MessageBox.Show("Plataforma inválida.");
-                        break;
-                }
-
-                if (radioBuscarStatus.Checked == true)
-                {
-                    UpdateDataGridView(cbPlataforma.Text, cbExecucao.Text);
-                    MessageBox.Show("Status do aluno atualizado!", "Sucesso!", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                }
-                else
-                {
-                    MessageBox.Show("Processamento executado com sucesso!", "Sucesso!", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                }
-
-            }
-            catch (Exception exception)
-            {
-                MessageBox.Show(exception.Message, "Erro!", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
         }
         private void RodarPrograma()
         {
