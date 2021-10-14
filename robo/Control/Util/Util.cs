@@ -584,7 +584,7 @@ namespace Robo
             aluno.Conclusao = conclusao;
             aluno.HorarioConclusao = string.Format("{0:dd/MM/yyyy HH:mm}", DateTime.Now);
 
-            Dados.UpdateAluno(aluno, tipoAluno);
+            Dados.UpdateDocumento<TOAluno>(aluno);
         }
         public static void WaitPageToLoad(IWebDriver Driver)
         {

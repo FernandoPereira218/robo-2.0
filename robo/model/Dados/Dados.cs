@@ -19,145 +19,12 @@ namespace Robo
     public static class Dados
     {
         private const string CAMINHO_BANCO = "data/bdbot1.db";
-        private static readonly Dictionary<string, string> insertTOAluno = new Dictionary<string, string>()
-        {
-            {"Cpf", "Cpf" },
-            {"Nome", "Nome"},
-            {"Campus", "Campus"},
-            {"AproveitamentoAtual", "AproveitamentoAtual"},
-            {"HistoricoAproveitamento", "HistoricoAproveitamento"},
-            {"ReceitaLiquida", "ReceitaLiquida"},
-            {"ReceitaBruta", "ReceitaBruta"},
-            {"ReceitaFies", "ReceitaFies"},
-            {"Tipo", "Tipo"},
-            {"Conclusao", "Conclusao"},
-            {"CampusAditado", "CampusAditado"},
-            {"ValorAditado", "ValorAditado"},
-            {"ValorAditadoFinanciamento", "ValorAditadoFinanciamento"},
-            {"ValorPagoRecursoEstudante", "ValorPagoRecursoEstudante"},
-            {"HorarioConclusao", "HorarioConclusao"},
-            {"DescontoLiberalidade", "DescontoLiberalidade"},
-            {"Extraido", "Extraido"},
-            {"Justificativa", "Justificativa"},
-            {"CursoSiga", "CursoSiga"},
-            {"ValorDeRepasse", "ValorDeRepasse"},
-            {"ParcelaSiga1", "ParcelaSiga1"},
-            {"ParcelaSiga2", "ParcelaSiga2"},
-            {"ParcelaSiga3", "ParcelaSiga3"},
-            {"ParcelaSiga4", "ParcelaSiga4"},
-            {"ParcelaSiga5", "ParcelaSiga5"},
-            {"ParcelaSiga6", "ParcelaSiga6"}
-        };
-
-        private static readonly Dictionary<string, string> insertTOAlunoInf = new Dictionary<string, string>()
-        {
-            {"Cpf", "Cpf"},
-            {"Nome", "Nome"},
-            {"Campus", "Campus"},
-            {"Conclusao", "Conclusao"}
-        };
-
-        private static readonly Dictionary<string, string> insertAlunoConsultaNovoTO = new Dictionary<string, string>()
-        {
-            {"Cpf", "Cpf"},
-            {"SemestreAno", "SemestreAno"},
-            {"Finalidade", "Finalidade"},
-            {"Situacao", "Situacao"},
-            {"Tipo", "Tipo"},
-            {"ProUni", "ProUni"},
-            {"DataInclusao", "DataInclusao"},
-            {"DataConclusao", "DataConclusao"},
-            {"HorarioConclusao", "HorarioConclusao"}
-        };
-
-        private static readonly Dictionary<string, string> updateAlunoInf = new Dictionary<string, string>()
-        {
-            {"Cpf", "Cpf" },
-            {"Curso", "Curso" },
-            {"HorarioConclusao", "HorarioConclusao" },
-            {"SemestreAditar", "SemestreAditar" },
-            {"DuracaoRegular", "DuracaoRegular" },
-            {"TotalDeSemestresSuspensos", "TotalDeSemestresSuspensos"},
-            {"TotalDeSemestresDilatados", "TotalDeSemestresDilatados"},
-            {"TotalDeSemestresConcluidos", "TotalDeSemestresConcluidos"},
-            {"SemestreSerCursadoPeloEstudante", "SemestreSerCursadoPeloEstudante" },
-            {"TotalDeSemestresJaFinanciados", "TotalDeSemestresJaFinanciados"},
-            {"PercentualDeFinanciamentoSolicitado", "PercentualDeFinanciamentoSolicitado" },
-            {"GradeAtualComDesconto", "GradeAtualComDesconto" },
-            {"GradeAtualFinanciadoFIES", "GradeAtualFinanciadoFIES" },
-            {"GradeAtualCoparticipacao", "GradeAtualCoparticipacao" },
-            {"Conclusao", "Conclusao" }
-        };
-
-        //UPDATES
-
-        public static void UpdateAluno(TOAluno aluno, string tipoAluno)
-        {
-            if (tipoAluno == "ALUNO")
-            {
-                Database.Acess.Update<TOAluno>("ALUNO", insertTOAluno, (TOAluno)aluno, "Cpf", "Cpf");
-            }
-            if (tipoAluno == "ALUNOINF")
-            {
-                Database.Acess.Update<TOAluno>("ALUNO", updateAlunoInf, (TOAluno)aluno, "Cpf", "Cpf");
-            }
-        }
 
         //INSERTS
-        public static void InsertAluno(TOAluno aluno)
-        {
-            if (aluno is TOAluno)
-            {
-                List<TOAluno> alunos = new List<TOAluno>();
-                alunos.Add(aluno as TOAluno);
-
-                Database.Acess.InsertClassInBd("ALUNO", insertTOAluno, alunos);
-            }
-        }
-        public static void InsertLogin(TOLogin login)
-        {
-            List<TOLogin> listLogin = new List<TOLogin>();
-            listLogin.Add(login);
-
-            Database.Acess.InsertClassInBd<TOLogin>("LOGIN", listLogin);
-        }
-        public static void InsertUsuario(TOUsuario usuario)
-        {
-            List<TOUsuario> listUsuario = new List<TOUsuario>();
-            listUsuario.Add(usuario);
-            Database.Acess.InsertClassInBd<TOUsuario>("USUARIO", listUsuario);
-        }
-        public static void InsertDRI(TODRI dri)
-        {
-            List<TODRI> listTODRI = new List<TODRI>();
-            listTODRI.Add(dri);
-
-            Database.Acess.InsertClassInBd<TODRI>("DRI", listTODRI);
-        }
-        public static void InsertSemestre(TOSemestre semestre)
-        {
-            Dictionary<string, string> dicSemestre = new Dictionary<string, string>();
-            dicSemestre.Add("Semestre", "Semestre");
-            List<TOSemestre> listTOSemestre = new List<TOSemestre>();
-            listTOSemestre.Add(semestre);
-            Database.Acess.InsertClassInBd("SEMESTRES", dicSemestre, listTOSemestre);
-        }
         public static void ImportaAlunos(string filePath)
         {
             List<TOAluno> alunos = BuscarListaAlunos(filePath);
             AtualizarAlunosBD(alunos);
-        }
-
-
-        //COUNTS
-        public static int CountAluno()
-        {
-            return Database.Acess.SelectCount("ALUNO");
-        }
-
-        public static int CountLogins()
-        {
-            return Database.Acess.SelectCount("LOGIN");
         }
 
         //CSV
@@ -226,7 +93,7 @@ namespace Robo
             dic.Add("Grade Atual Semestralidade (R$) Financiado FIES", "GradeAtualFinanciadoFIES");
             dic.Add("Grade Atual Semestralidade (R$) Coparticipação", "GradeAtualCoparticipacao");
 
-            List<TOAluno> alunoParaExportar = Database.Acess.SelectAll<TOAluno>("ALUNO");
+            List<TOAluno> alunoParaExportar = Dados.SelectAll<TOAluno>();
 
             string[] arquivoSalvar = fileName.Split('\\');
             string[] diretorio = fileName.Split('\\');
@@ -390,7 +257,7 @@ namespace Robo
         public static TOUsuario ValidateLogin(string user, string password)
         {
             string hashedPassword = Util.GetMD5(password);
-            List<TOUsuario> temp = Database.Acess.SelectWhere<TOUsuario>("USUARIO", "Usuario", "Senha", user, hashedPassword);
+            List<TOUsuario> temp = Dados.SelectWhere<TOUsuario>(x=> x.Usuario==user && x.Senha == hashedPassword);
             if (temp.Count != 0)
             {
                 return temp[0];
@@ -443,7 +310,7 @@ namespace Robo
             {
                 TOSemestre semestre = new TOSemestre();
                 semestre.Semestre = verificarSemestre;
-                InsertSemestre(semestre);
+                InsertDocumento<TOSemestre>(semestre);
             }
         }
         public static bool VerificaQtdAlunos()
