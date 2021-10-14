@@ -7,6 +7,10 @@ using System.Windows.Forms;
 using LiteDB;
 using System.Reflection;
 using System.Linq.Expressions;
+using System.IO;
+using System.Text;
+using CsvHelper;
+using System.Globalization;
 
 //using ExcelManager;
 
@@ -184,31 +188,22 @@ namespace Robo
         /// </summary>
         /// <param name="directory">Diretório da planilha excel.</param>
         /// <returns>Lista de alunos.</returns>
-        public static List<TOAluno> BuscarListaAlunos(String directory)
+        public static List<TOAluno> BuscarListaAlunos(string directory)
         {
             try
             {
-                TOAluno aluno = new TOAluno();
-                List<String> headers = new List<String>();
-                Dictionary<String, String> propriedades = new Dictionary<String, String>();
 
-                //Adicionar sempre o primeiro valor em maiúsculo
-                propriedades.Add("CPF", "Cpf");
-                propriedades.Add("NOME", "Nome");
-                propriedades.Add("CAMPUS ADITADO", "Campus");
-                propriedades.Add("APROVEITAMENTO ATUAL", "AproveitamentoAtual");
-                propriedades.Add("HISTÓRICO DE APROVEITAMENTO", "HistoricoAproveitamento");
-                propriedades.Add("RECEITA BRUTA", "ReceitaBruta");
-                propriedades.Add("RECEITA LIQUIDA", "ReceitaLiquida");
-                propriedades.Add("RECEITA FIES", "ReceitaFies");
-                propriedades.Add("MODALIDADE FIES", "Tipo");
-                propriedades.Add("TIPO", "Tipo");
-                propriedades.Add("DESCONTO LIBERALIDADE", "DescontoLiberalidade");
-                propriedades.Add("JUSTIFICATIVA", "Justificativa");
-                propriedades.Add("CURSO SIGA", "CursoSiga");
-                propriedades.Add("VALOR DE REPASSE", "ValorDeRepasse");
+                List<TOAluno> alunos;
+                using (var sr = new StreamReader(directory, Encoding.UTF7))
+                {
+                    using (var csv = new CsvReader(sr, CultureInfo.CurrentCulture))
+                    {
+                        var registros = csv.GetRecords<TOAluno>().ToList();
+                        alunos = registros;
+                    }
+                }
 
-                List<TOAluno> alunos = CSVManager.CSVManager.ImportCSV<TOAluno>(directory, propriedades);
+
 
                 for (int i = alunos.Count() - 1; i >= 0; i--)
                 {
@@ -392,6 +387,25 @@ namespace Robo
         public static void AtualizarAlunosBD(List<TOAluno> alunos)
         {
             InsertListLite(alunos);
+
+            //Deixar aqui por enquanto
+            VerificarCpfDuplicado(alunos);
+        }
+
+        public static void VerificarCpfDuplicado(List<TOAluno> alunos)
+        {
+            //Verificar se existem CPFs duplicados e marca as conclusões
+            var duplicado = alunos.GroupBy(x => new { x.Cpf }).Where(x => x.Skip(1).Any()).ToList();
+            string mensagem = "CPF(s) duplicados: ";
+            foreach (var item in duplicado)
+            {
+                UpdateConclusao(item.Key.Cpf);
+                mensagem += item.Key.Cpf + "\n";
+            }
+            if (duplicado.Count() > 0)
+            {
+                MessageBox.Show(mensagem);
+            }
         }
 
         //Validar Login
@@ -621,14 +635,22 @@ namespace Robo
             }
         }
 
+        public static void UpdateConclusao(string Cpf)
+        {
+            using (var db = new LiteDatabase(CAMINHO_BANCO))
+            {
+                var colecao = db.GetCollection<TOAluno>();
+                colecao.UpdateMany(x => new TOAluno { Conclusao = "Duplicado" }, x => x.Cpf == Cpf);
+            }
+        }
+
         public static void UpdateConclusaoAluno(string conclusao)
         {
             using (var db = new LiteDatabase(CAMINHO_BANCO))
             {
                 var colecao = db.GetCollection<TOAluno>();
-                colecao.UpdateMany(x => new TOAluno { Conclusao = conclusao }, x=> x.Conclusao != "Não Feito");
+                colecao.UpdateMany(x => new TOAluno { Conclusao = conclusao }, x => x.Conclusao != "Não Feito" && x.Conclusao != "Duplicado");
             }
-            //Database.Acess.UpdateALL("ALUNO", dic);
         }
 
         //Insert
