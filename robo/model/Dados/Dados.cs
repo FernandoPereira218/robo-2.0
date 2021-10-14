@@ -72,35 +72,6 @@ namespace Robo
                 throw new Exception(e.Message);
             }
         }
-        public static void ExportarInformacoes_CSV(string fileName)
-        {
-            if (fileName.Contains(".csv") == false)
-            {
-                fileName += ".csv";
-            }
-            Dictionary<string, string> dic = new Dictionary<string, string>();
-            dic.Add("CPF", "Cpf");
-            dic.Add("Semestre a Aditar", "SemestreAditar");
-            dic.Add("Curso", "Curso");
-            dic.Add("Duração regular", "DuracaoRegular");
-            dic.Add("Total de semestres suspensos", "TotalDeSemestresSuspensos");
-            dic.Add("Total de semestres dilatados", "TotalDeSemestresDilatados");
-            dic.Add("Total de semestres já concluidos e/ou aproveitadosnesta IES/curso", "TotalDeSemestresConcluidos");
-            dic.Add("Semestre a ser cursado pelo estudante", "SemestreSerCursadoPeloEstudante");
-            dic.Add("Total de semestres já financiados", "TotalDeSemestresJaFinanciados");
-            dic.Add("Percentual de financiamento solicitado", "PercentualDeFinanciamentoSolicitado");
-            dic.Add("Grade Atual Semestralidade (R$) com desconto", "GradeAtualComDesconto");
-            dic.Add("Grade Atual Semestralidade (R$) Financiado FIES", "GradeAtualFinanciadoFIES");
-            dic.Add("Grade Atual Semestralidade (R$) Coparticipação", "GradeAtualCoparticipacao");
-
-            List<TOAluno> alunoParaExportar = Dados.SelectAll<TOAluno>();
-
-            string[] arquivoSalvar = fileName.Split('\\');
-            string[] diretorio = fileName.Split('\\');
-            string nomeTemp = diretorio[diretorio.Length - 1];
-            fileName = fileName.Replace(nomeTemp, string.Empty);
-            CSVManager.CSVManager.ExportCSV<TOAluno>(fileName, nomeTemp, dic, alunoParaExportar);
-        }
 
         //Tratamentos de valores
         public static void TratarCpf(TOAluno aluno)
@@ -266,7 +237,7 @@ namespace Robo
         }
         public static TOUsuario ValidateSession(string user, string password)
         {
-            List<TOUsuario> temp = Database.Acess.SelectWhere<TOUsuario>("USUARIO", "Usuario", "Senha", user, password);
+            List<TOUsuario> temp = Dados.SelectWhere<TOUsuario>(x => x.Usuario == user && x.Senha == password);
             if (temp.Count != 0)
             {
                 return temp[0];
@@ -277,11 +248,11 @@ namespace Robo
         //Verificações
         public static int verficarSemestre(string semestre)
         {
-            return Database.Acess.SelectWhere<TOLogin>("SEMESTRES", "Semestre", semestre).Count;
+            return SelectWhere<TOSemestre>(x=> x.Semestre == semestre).Count;
         }
         public static bool DRIExists(string cpf)
         {
-            List<TODRI> list = Database.Acess.SelectWhere<TODRI>("DRI", "Cpf", cpf);
+            List<TODRI> list = SelectWhere<TODRI>(x=> x.Cpf == cpf);
             if (list.Count == 1)
             {
                 return true;
@@ -294,7 +265,7 @@ namespace Robo
         }
         public static TODRI GetDRI(string cpf)
         {
-            List<TODRI> list = Database.Acess.SelectWhere<TODRI>("DRI", "Cpf", cpf);
+            List<TODRI> list = SelectWhere<TODRI>(x=> x.Cpf == cpf);
             if (list.Count == 1)
             {
                 return list[0];

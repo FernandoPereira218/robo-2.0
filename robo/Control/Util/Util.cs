@@ -9,6 +9,8 @@ using System.IO;
 using System.Windows.Forms;
 using System.Security.Cryptography;
 using robo.Control.Update;
+using CsvHelper;
+using System.Globalization;
 
 namespace Robo
 {
@@ -532,7 +534,7 @@ namespace Robo
                     {
                         try
                         {
-                            ExportarAlunosParaCSV(sfd.FileName);
+                            ExportarAlunosParaCSV(sfd.FileName,"Alunos");
                             MessageBox.Show("Dados Exportados com Sucesso!!!", "Info");
                         }
 
@@ -551,32 +553,22 @@ namespace Robo
             }
 
         }
-        public static void ExportarAlunosParaCSV(string fileName)
+        public static void ExportarAlunosParaCSV(string fileName, string tipo)
         {
-            Dictionary<string, string> dic = new Dictionary<string, string>();
-            dic.Add("Cpf", "Cpf");
-            dic.Add("Nome", "Nome");
-            dic.Add("Tipo", "Tipo");
-            dic.Add("Conclusao", "Conclusao");
-            dic.Add("HorarioConclusao", "HorarioConclusao");
-            dic.Add("Campus", "Campus");
-            dic.Add("AproveitamentoAtual", "AproveitamentoAtual");
-            dic.Add("HistoricoAproveitamento", "HistoricoAproveitamento");
-            dic.Add("ReceitaBruta", "ReceitaBruta");
-            dic.Add("ReceitaLiquida", "ReceitaLiquida");
-            dic.Add("ReceitaFies", "ReceitaFies");
-            dic.Add("CampusAditado", "CampusAditado");
-            dic.Add("ValorAditado", "ValorAditado");
-            dic.Add("ValorAditadoComDesconto", "ValorAditadoComDesconto");
-            dic.Add("ValorAditadoFinanciamento", "ValorAditadoFinanciamento");
-            dic.Add("ValorPagoRecursoEstudante", "ValorPagoRecursoEstudante");
-            dic.Add("DescontoLiberalidade", "DescontoLiberalidade");
-            dic.Add("Extraido", "Extraido");
-            dic.Add("Justificativa", "Justificativa");
-
-
-            List<TOAluno> alunos = Database.Acess.SelectAll<TOAluno>("ALUNO");
-            CSVManager.CSVManager.ExportCSV<TOAluno>(fileName, dic, alunos);
+            if (fileName.Contains(".csv") == false)
+            {
+                fileName += ".csv";
+            }
+            List<TOAluno> alunoParaExportar = Dados.SelectAll<TOAluno>();
+            using (StreamWriter exportaInf = new StreamWriter(fileName, false, Encoding.UTF8))
+            {
+                using (CsvWriter csv = new CsvWriter(exportaInf, CultureInfo.CurrentCulture))
+                {
+                    var mapa = new TOAlunoMap("Qualquer coisa");
+                    csv.Context.RegisterClassMap(mapa);
+                    csv.WriteRecords(alunoParaExportar);
+                }
+            }
         }
 
         public static void EditarConclusaoAluno(TOAluno aluno, string conclusao, string tipoAluno = "ALUNO")
