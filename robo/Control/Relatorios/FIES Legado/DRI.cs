@@ -95,7 +95,7 @@ namespace robo.Control.Relatorios
 
                 if (RoboForm.versaoRobo == "operacoesFinanceiras")
                 {
-                    Dados.InsertDRI(dri);
+                    Dados.InsertDocumento<TODRI>(dri);
                 }
                 Util.EditarConclusaoAluno(aluno, "DRI Baixada");
                 ClickButtonsById(Driver, "voltar");
