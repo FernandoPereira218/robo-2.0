@@ -856,7 +856,7 @@ namespace Robo
                 {
                     try
                     {
-                        Dados.ExportarInformacoes_CSV(sfd.FileName);
+                        Util.ExportarAlunosParaCSV(sfd.FileName, "Informações");
                         MessageBox.Show("Dados Exportados com Sucesso!!!", "Info");
                     }
                     catch (Exception ex)
