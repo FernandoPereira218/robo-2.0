@@ -276,7 +276,6 @@
     <Compile Include="Control\Relatorios\SIGA\LancamentoFiesSiga.cs" />
     <Compile Include="Control\Util\UtilFiesNovo.cs" />
     <Compile Include="Control\Util\UtilFiesLegado.cs" />
-    <Compile Include="Control\Novo\MetodosFiesNovo.cs" />
     <Compile Include="Control\Relatorios\FIES Legado\BaixarDocumentos.cs" />
     <Compile Include="Control\Relatorios\FIES Legado\DRI.cs" />
     <Compile Include="Control\Relatorios\FIES Legado\ExportarRelatorios.cs" />
@@ -287,9 +286,6 @@
     <Compile Include="Login.Designer.cs">
       <DependentUpon>Login.cs</DependentUpon>
     </Compile>
-    <Compile Include="Control\Novo\FiesNovoExp.cs" />
-    <Compile Include="Control\Legado\FiesVelhoExp.cs" />
-    <Compile Include="Control\Legado\FiesVelhoInf.cs" />
     <Compile Include="Model\TO\TOMenus.cs" />
     <Compile Include="Control\Util\UtilSelenium.cs" />
     <Compile Include="Control\Util\UtilSiga.cs" />
@@ -300,9 +296,6 @@
       <DependentUpon>UsuarioForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Model\TO\TODRI.cs" />
-    <Compile Include="Model\Enum.cs" />
-    <Compile Include="Control\Novo\FiesNovo.cs" />
-    <Compile Include="Control\Legado\FiesVelho.cs" />
     <Compile Include="View\FormInterface.cs">
       <SubType>Form</SubType>
     </Compile>

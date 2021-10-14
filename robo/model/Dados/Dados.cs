@@ -90,28 +90,7 @@ namespace Robo
         };
 
         //UPDATES
-        public static void UpdateAluno(TOAluno aluno)
-        {
-            Dictionary<string, string> columnAndProperty = new Dictionary<string, string>();
-            columnAndProperty.Add("Cpf", "Cpf");
-            columnAndProperty.Add("Nome", "Nome");
-            //columnAndProperty.Add("Curso", "Curso");
-            columnAndProperty.Add("Campus", "Campus");
-            columnAndProperty.Add("AproveitamentoAtual", "AproveitamentoAtual");
-            columnAndProperty.Add("HistoricoAproveitamento", "HistoricoAproveitamento");
-            columnAndProperty.Add("ReceitaLiquida", "ReceitaLiquida");
-            columnAndProperty.Add("ReceitaBruta", "ReceitaBruta");
-            columnAndProperty.Add("ReceitaFies", "ReceitaFies");
-            columnAndProperty.Add("Tipo", "Tipo");
-            columnAndProperty.Add("Conclusao", "Conclusao");
-            columnAndProperty.Add("CampusAditado", "CampusAditado");
-            columnAndProperty.Add("ValorAditado", "ValorAditado");
-            columnAndProperty.Add("ValorAditadoFinanciamento", "ValorAditadoFinanciamento");
-            columnAndProperty.Add("ValorPagoRecursoEstudante", "ValorPagoRecursoEstudante");
-            columnAndProperty.Add("HorarioConclusao", "HorarioConclusao");
-            columnAndProperty.Add("Extraido", "Extraido");
-            Database.Acess.Update<TOAluno>("ALUNO", columnAndProperty, aluno, "Cpf", "Cpf");
-        }
+
         public static void UpdateAluno(TOAluno aluno, string tipoAluno)
         {
             if (tipoAluno == "ALUNO")
@@ -180,7 +159,6 @@ namespace Robo
         {
             return Database.Acess.SelectCount("LOGIN");
         }
-
 
         //CSV
         /// <summary>
