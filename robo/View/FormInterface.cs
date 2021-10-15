@@ -461,7 +461,12 @@ namespace Robo
                 case "GERAÇÃO PARCELAS FIES SIGA":
                     presenter.GeracaoParcelasFies(cbSemestre.Text);
                     break;
-
+                case "HISTÓRICO DE REPARCELAMENTO DA COPARTICIPAÇÃO":
+                    presenter.ExecutarHistoricoReparcelamentoCoparticipacao(cbFaculdade.Text, cbPlataforma.Text);
+                    break;
+                case "VALIDAR REPARCELAMENTO":
+                    presenter.ValidarReparcelamento(cbFaculdade.Text, cbPlataforma.Text);
+                    break;
                 default:
                     MessageBox.Show("Favor criar o CASE antes de rodar!!!!!");
                     break;
