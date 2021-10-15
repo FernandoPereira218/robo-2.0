@@ -407,7 +407,14 @@ namespace Robo
                 }
                 else
                 {
-                    listlogin = SelectWhere<TOLogin>(x => x.Faculdade == IES && x.Plataforma == plataforma && x.Admin == "Não");
+                    if (admin == true)
+                    {
+                        listlogin = SelectWhere<TOLogin>(x => x.Faculdade == IES && x.Plataforma == plataforma && x.Admin == "Sim");
+                    }
+                    else
+                    {
+                        listlogin = SelectWhere<TOLogin>(x => x.Faculdade == IES && x.Plataforma == plataforma && x.Admin == "Não");
+                    }   
                 }
 
                 if (listlogin.Count == 0)

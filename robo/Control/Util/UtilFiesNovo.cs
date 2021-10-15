@@ -73,9 +73,17 @@ namespace robo.Control
         {
             ClicarBotaoMenuPaginaInicial(Driver, "btnAdmnstrcManutenccedilatildeoAditamentoRenovaccedilatildeo");
         }
+        public void ClicarMenuHistoricoReparcelamentoCopartipacao(IWebDriver Driver)
+        {
+            ClicarBotaoMenuPaginaInicial(Driver, "btnAdmnstrcReparcelamentodaCoparticipaccedilatildeoHistoacutericodoReparcelamentodaCoparticipaccedilatildeo");
+        }
         public void ClicarMenuConsultaContrato(IWebDriver Driver)
         {
             ClicarBotaoMenuPaginaInicial(Driver, "btnAdmnstrcProcessodeFinanciamentoConsultarContratoEstudante");
+        }
+        public void ClicarMenuValidarReparcelamento(IWebDriver Driver)
+        {
+            ClicarBotaoMenuPaginaInicial(Driver, "btnAdmnstrcReparcelamentodaCoparticipaccedilatildeoValidarReparcelamentodaCoparticipaccedilatildeo");
         }
         public void ClicarMenuDilatacao(IWebDriver Driver)
         {

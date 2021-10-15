@@ -271,7 +271,9 @@
     <Compile Include="Control\Relatorios\FIES Novo\ExportarRelatorio.cs" />
     <Compile Include="Control\Relatorios\FIES Novo\ExportarRepasse.cs" />
     <Compile Include="Control\Relatorios\FIES Novo\ExtrairInformacoesDRMFiesNovo.cs" />
+    <Compile Include="Control\Relatorios\FIES Novo\HistoricoReparcelamentoCoparticipacao.cs" />
     <Compile Include="Control\Relatorios\FIES Novo\StatusAluno.cs" />
+    <Compile Include="Control\Relatorios\FIES Novo\ValidarReparcelamento.cs" />
     <Compile Include="Control\Relatorios\SIGA\GeracaoParcelasFies.cs" />
     <Compile Include="Control\Relatorios\SIGA\LancamentoFiesSiga.cs" />
     <Compile Include="Control\Util\UtilFiesNovo.cs" />

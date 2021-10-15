@@ -578,5 +578,55 @@ namespace robo.Control.Implementacoes
                 }
             }
         }
+
+        public void ExecutarHistoricoReparcelamentoCoparticipacao(string faculdade, string tipoFIES)
+        {
+
+            HistoricoReparcelamentoCoparticipacao historico = new HistoricoReparcelamentoCoparticipacao();
+
+            BuscarLoginsEAlunos(faculdade, tipoFIES, "", ref listaAlunos, ref listaLogins, admin: false, exportar: false);
+
+            UtilFiesNovo utilFiesNovo = new UtilFiesNovo();
+            IWebDriver Driver = Util.StartBrowser("http://sifesweb.caixa.gov.br");
+
+            utilFiesNovo.FazerLogin(Driver, listaLogins[0]);
+            utilFiesNovo.WaitForLoading(Driver);
+            utilFiesNovo.ClicarMenuHistoricoReparcelamentoCopartipacao(Driver);
+
+            foreach (TOAluno aluno in listaAlunos)
+            {
+                if (aluno.Conclusao == "Não Feito")
+                {
+                    historico.ExecutarHistoricoReparcelamentoCoparticipacao(Driver, aluno);
+                }
+            }
+            Driver.Close();
+            Driver.Dispose();
+        }
+
+        public void ValidarReparcelamento(string faculdade, string tipoFIES)
+        {
+            ValidarReparcelamento validar = new ValidarReparcelamento();
+
+
+            BuscarLoginsEAlunos(faculdade, tipoFIES, "", ref listaAlunos, ref listaLogins, admin: true, exportar: false);
+
+            UtilFiesNovo utilFiesNovo = new UtilFiesNovo();
+            IWebDriver Driver = Util.StartBrowser("http://sifesweb.caixa.gov.br");
+
+            utilFiesNovo.FazerLogin(Driver, listaLogins[0]);
+            utilFiesNovo.WaitForLoading(Driver);
+            utilFiesNovo.ClicarMenuValidarReparcelamento(Driver);
+
+            foreach (TOAluno aluno in listaAlunos)
+            {
+                if (aluno.Conclusao == "Não Feito")
+                {
+                    validar.ExecutarValidarReparcelamento();
+                }
+            }
+            Driver.Close();
+            Driver.Dispose();
+        }
     }
 }
