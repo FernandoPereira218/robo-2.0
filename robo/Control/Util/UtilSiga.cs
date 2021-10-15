@@ -62,10 +62,10 @@ namespace robo
                 return null;
             }
 
-            Util.ClickAndWriteByName(Driver, "login", login.Usuario);
-            Util.ClickAndWriteById(Driver, "senha_ls", login.Senha);
+            ClickAndWriteByName(Driver, "login", login.Usuario);
+            ClickAndWriteById(Driver, "senha_ls", login.Senha);
 
-            Util.ClickButtonsByXpath(Driver, "/html/body/table/tbody/tr/td/table/tbody/tr[6]/td/div/form/div/table/tbody/tr[2]/td/table/tbody/tr/td[2]/table/tbody/tr[6]/td/input");
+            ClickButtonsByXpath(Driver, "/html/body/table/tbody/tr/td/table/tbody/tr[6]/td/div/form/div/table/tbody/tr[2]/td/table/tbody/tr/td[2]/table/tbody/tr[6]/td/input");
 
             return Driver;
         }

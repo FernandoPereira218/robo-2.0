@@ -22,7 +22,7 @@ namespace robo.Control.Relatorios
 
             semestre = semestre.Replace('/', '-');
             Driver.FindElement(By.Name("export-excel")).Click();
-            Util.SalvarArquivos(Driver, tipoRelatorio, campus, semestre);
+            SalvarArquivos(Driver, tipoRelatorio, campus, semestre);
         }
     }
 }

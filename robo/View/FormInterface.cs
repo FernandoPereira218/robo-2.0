@@ -612,13 +612,6 @@ namespace Robo
                 panelMenu.Visible = false;
             }
         }
-
-        // Depois tirar // Botao de adicionar/remover senha do banco de dados
-        private void btnSenhaBanco_Click(object sender, EventArgs e)
-        {
-            Util.gravaSenha();
-        }
-
         // Verifica se o CPF possui letra | Capa os valores que não sejam inteiros - versão CAE
         private void txtCPF_KeyPress(object sender, KeyPressEventArgs e)
         {

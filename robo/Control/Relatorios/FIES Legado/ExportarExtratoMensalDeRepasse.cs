@@ -40,7 +40,7 @@ namespace robo.Control.Relatorios.FIES_Legado
                 select.SelectByIndex(1);
             }
             Driver.FindElement(By.Id("btn_excel")).Click();
-            Util.SalvarArquivos(Driver, "Extrato_Mensal_Repasse_", campus);
+            SalvarArquivos(Driver, "Extrato_Mensal_Repasse_", campus);
         }
     }
 }

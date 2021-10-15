@@ -26,7 +26,7 @@ namespace robo.Control
                 //Aqui começa o aditamento
                 //            MetodoAditamento(login, alunos, numSemestre);
 
-                Util.ClickButtonsByCss(Driver, "div:nth-child(3) > ul > .menu-button:nth-child(2) > a");
+                ClickButtonsByCss(Driver, "div:nth-child(3) > ul > .menu-button:nth-child(2) > a");
                 if (Dados.DRIExists(aluno.Cpf))
                 {
                     TODRI driAtual = Dados.GetDRI(aluno.Cpf);
@@ -93,7 +93,7 @@ namespace robo.Control
             }
             else
             {
-                Util.ClickButtonsByCss(Driver, "#divAproveitamentoAcademico input:nth-of-type(1)"); //O estudante teve aproveitamento acadêmico igual ou superior a 75% no semestre ? NAO
+                ClickButtonsByCss(Driver, "#divAproveitamentoAcademico input:nth-of-type(1)"); //O estudante teve aproveitamento acadêmico igual ou superior a 75% no semestre ? NAO
                 if (aluno.HistoricoAproveitamento.Contains("Excesso de reprovação") == true)
                 {
                     Util.EditarConclusaoAluno(aluno, "Rejeitou excesso de reprovação");
@@ -131,16 +131,16 @@ namespace robo.Control
         private void PreencheReceitas(TOAluno aluno)
         {
             //Clica e Digita no Valor da Semestralidade SEM desconto – Grade Curricular Regular
-            Util.ClickAndWriteById(Driver, "vl_semestre_sem_desconto", aluno.ReceitaBruta);
+            ClickAndWriteById(Driver, "vl_semestre_sem_desconto", aluno.ReceitaBruta);
 
             //Clica e Digita no Valor da Semestralidade COM desconto – Grade Curricular Regular
-            Util.ClickAndWriteById(Driver, "vl_semestre_com_desconto", aluno.ReceitaLiquida);
+            ClickAndWriteById(Driver, "vl_semestre_com_desconto", aluno.ReceitaLiquida);
 
             //Clica e Digita no Valor da semestralidade para o FIES R$
-            Util.ClickAndWriteById(Driver, "vl_semestralidade_para_fies", aluno.ReceitaFies);
+            ClickAndWriteById(Driver, "vl_semestralidade_para_fies", aluno.ReceitaFies);
 
             //Clica e Digita no Valor da Semestralidade ATUAL COM desconto - Grade Curricular a ser Cursada
-            Util.ClickAndWriteById(Driver, "vl_semestre_atual", aluno.ReceitaFies);
+            ClickAndWriteById(Driver, "vl_semestre_atual", aluno.ReceitaFies);
 
             //Pegar Valor a ser financiado no semestre ATUAL com recursos do FIES - Valor drm financiamento
             aluno.ValorAditadoFinanciamento = Driver.FindElement(By.Id("vl_financiado_semestre")).Text;
@@ -151,24 +151,24 @@ namespace robo.Control
         private void CasoComAproveitamento(string justificativaAluno)
         {
             //O estudante teve aproveitamento acadêmico igual ou superior a 75% no semestre ? SIM
-            Util.ClickButtonsByCss(Driver, "#divAproveitamentoAcademico input:nth-child(3)");
+            ClickButtonsByCss(Driver, "#divAproveitamentoAcademico input:nth-child(3)");
 
             //O estudante está regularmente matriculado? SIM
-            Util.ClickButtonsByCss(Driver, "#divRegularidadeMatricula input:nth-child(3)");
+            ClickButtonsByCss(Driver, "#divRegularidadeMatricula input:nth-child(3)");
 
             //O estudante possui benefício simultâneo de FIES e de bolsa ProUni em local de oferta ou curso distinto? NAO
-            Util.ClickButtonsByXpath(Driver, "(//input[@name=\'beneficio\'])[1]");
+            ClickButtonsByXpath(Driver, "(//input[@name=\'beneficio\'])[1]");
 
             //O prazo de duração regular do curso encontra-se vigente? SIM
-            Util.ClickButtonsByCss(Driver, "#divPrazoCurso input:nth-child(3)");
+            ClickButtonsByCss(Driver, "#divPrazoCurso input:nth-child(3)");
 
             //O estudante transferiu de curso mais de uma vez nessa IES? NAO
-            Util.ClickButtonsByCss(Driver, "#divMudancaCurso input:nth-child(2)");
+            ClickButtonsByCss(Driver, "#divMudancaCurso input:nth-child(2)");
 
             //Duração regular do curso MARCAR A CHECKBOX (SE APARECER)
             if (Driver.FindElement(By.Name("checkNaoAlteraCurso[]")).Displayed)
             {
-                Util.ClickButtonsByName(Driver, "checkNaoAlteraCurso[]");
+                ClickButtonsByName(Driver, "checkNaoAlteraCurso[]");
             }
 
             //checa se existe e escreve a justificativa
@@ -179,7 +179,7 @@ namespace robo.Control
             {
                 if (!Driver.FindElement(By.Name("checkNaoAlteraCurso[]")).Selected)
                 {
-                    Util.ClickButtonsByName(Driver, "checkNaoAlteraCurso[]");
+                    ClickButtonsByName(Driver, "checkNaoAlteraCurso[]");
                 }
             }
         }
@@ -194,11 +194,11 @@ namespace robo.Control
                     //Util.ClickAndWriteById(Driver, "ds_justificativa", "                                                                                    "); // Sim, é pra ser assim
                     if (justificativaAluno == string.Empty)
                     {
-                        Util.ClickAndWriteById(Driver, "ds_justificativa", "Alteração na grade curricular em relação ao semestre anterior"); // Sim, é pra ser assim
+                        ClickAndWriteById(Driver, "ds_justificativa", "Alteração na grade curricular em relação ao semestre anterior"); // Sim, é pra ser assim
                     }
                     else
                     {
-                        Util.ClickAndWriteById(Driver, "ds_justificativa", justificativaAluno);
+                        ClickAndWriteById(Driver, "ds_justificativa", justificativaAluno);
                     }
                 }
             }
@@ -209,27 +209,27 @@ namespace robo.Control
             if (!Driver.FindElement(By.Id("divRejeicaoAutomatica")).Displayed)
             {
                 //A CPSA irá liberar o aditamento nesta situação? SIM
-                Util.ClickButtonsByCss(Driver, "span:nth-child(4) > input:nth-child(2)");
+                ClickButtonsByCss(Driver, "span:nth-child(4) > input:nth-child(2)");
 
                 //Justificativa: ESCREVER "Nrº reconsideração" OU ALGO DO TIPO
-                Util.ClickAndWriteByName(Driver, "justificativa", aluno.HistoricoAproveitamento);
+                ClickAndWriteByName(Driver, "justificativa", aluno.HistoricoAproveitamento);
 
                 //O estudante está regularmente matriculado? SIM
-                Util.ClickButtonsByCss(Driver, "#divRegularidadeMatricula input:nth-child(3)");
+                ClickButtonsByCss(Driver, "#divRegularidadeMatricula input:nth-child(3)");
 
                 //O estudante possui benefício simultâneo de FIES e de bolsa ProUni em local de oferta ou curso distinto? NAO
-                Util.ClickButtonsByXpath(Driver, "(//input[@name=\'beneficio\'])[1]");
+                ClickButtonsByXpath(Driver, "(//input[@name=\'beneficio\'])[1]");
 
                 //O prazo de duração regular do curso encontra-se vigente? SIM
-                Util.ClickButtonsByCss(Driver, "#divPrazoCurso input:nth-child(3)");
+                ClickButtonsByCss(Driver, "#divPrazoCurso input:nth-child(3)");
 
                 //O estudante transferiu de curso mais de uma vez nessa IES? NAO
-                Util.ClickButtonsByCss(Driver, "#divMudancaCurso input:nth-child(2)");
+                ClickButtonsByCss(Driver, "#divMudancaCurso input:nth-child(2)");
 
                 //Duração regular do curso MARCAR A CHECKBOX SE APARECER
                 if (Driver.FindElement(By.Name("checkNaoAlteraCurso[]")).Displayed)
                 {
-                    Util.ClickButtonsByName(Driver, "checkNaoAlteraCurso[]");
+                    ClickButtonsByName(Driver, "checkNaoAlteraCurso[]");
                 }
 
                 //checa se existe e escreve a justificativa
@@ -240,7 +240,7 @@ namespace robo.Control
                 {
                     if (!Driver.FindElement(By.Name("checkNaoAlteraCurso[]")).Selected)
                     {
-                        Util.ClickButtonsByName(Driver, "checkNaoAlteraCurso[]");
+                        ClickButtonsByName(Driver, "checkNaoAlteraCurso[]");
                     }
                 }
             }
@@ -298,10 +298,10 @@ namespace robo.Control
                 resultado = resultado.Replace("$", "5");
                 resultado = resultado.Replace(")", "j");
                 resultado = resultado.ToLower();
-                Util.ScrollToElementByID(Driver, "captcha");
-                Util.ClickAndWriteById(Driver, "captcha", resultado);
-                Util.ClickButtonsById(Driver, "validar");
-                Util.ClickButtonsByXpath(Driver, "/html/body/div[8]/div[3]/div/button[2]/span");
+                ScrollToElementByID(Driver, "captcha");
+                ClickAndWriteById(Driver, "captcha", resultado);
+                ClickButtonsById(Driver, "validar");
+                ClickButtonsByXpath(Driver, "/html/body/div[8]/div[3]/div/button[2]/span");
 
 
 

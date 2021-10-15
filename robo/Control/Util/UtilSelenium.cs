@@ -141,8 +141,7 @@ namespace robo
             }
             else
             {
-                String userRoot = System.Environment.GetEnvironmentVariable("USERPROFILE");
-                downloadFolder = System.IO.Path.Combine(userRoot, "Downloads");
+                downloadFolder = Util.GetDownloadsFolderPath();
             }
 
             if (firefox == true)
@@ -242,7 +241,7 @@ namespace robo
         {
             driver.FindElement(By.XPath("//select[@" + metodo + "='" + valorMetodo + "']/option[@" + "value ='" + valorEscolha + "']")).Click();
 
-            Util.Sleep();
+            Sleep();
         }
         protected void WaitLogoLoading(IWebDriver driver)
         {
@@ -357,7 +356,38 @@ namespace robo
         {
             return Driver.FindElement(By.XPath("//" + elemento + "[@" + atributte + "='" + value + "']")).Text;
         }
+        protected static void SalvarArquivos(IWebDriver Driver, string tipoRelatorio, string campus = "", string semestre = "")
+        {
+            if (Driver.PageSource.Contains("Nenhuma informação disponível") == true)
+            {
+                throw new Exception("Nenhuma informação disponível");
+            }
+            while (Directory.GetFiles("RelatorioExportacao\\").Count() == 0)
+            {
+                System.Threading.Thread.Sleep(100);
+            }
 
+            DirectoryInfo directory = new DirectoryInfo("RelatorioExportacao\\");
+            FileInfo myFile = directory.GetFiles().OrderByDescending(f => f.LastWriteTime).First();
+            bool downloading = true;
+            while (downloading)
+            {
+                System.Threading.Thread.Sleep(1000);
+                myFile = directory.GetFiles().OrderByDescending(f => f.LastWriteTime).First();
+                downloading = myFile.Name.EndsWith(".crdownload");
+            }
+
+            foreach (var item in Directory.GetFiles("RelatorioExportacao\\"))
+            {
+                string downloadFolder = Util.GetDownloadsFolderPath();
+                string nomeArquivo = DateTime.Now.ToString("dd-MM-yy") + campus + "_" + semestre + ".xls";
+                Util.CreateDirectory(downloadFolder + "\\Relatório Exportacao");
+                string caminho = downloadFolder + "\\Relatório Exportacao\\" + tipoRelatorio + " " + nomeArquivo;
+                File.Copy(item, caminho, true);
+                File.Delete(item);
+                //Process.Start(caminho);
+            }
+        }
     }
 }
 
