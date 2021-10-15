@@ -43,9 +43,7 @@ namespace robo.Control.Relatorios.FIES_Novo
                 }
                 
             }
-
-            string userRoot = System.Environment.GetEnvironmentVariable("USERPROFILE");
-            string downloadFolder = System.IO.Path.Combine(userRoot, "Downloads");
+            string downloadFolder = Util.GetDownloadsFolderPath();
             string arquivo = downloadFolder + "\\Relatório_" + tipoRelatorio + ".csv";
             using (StreamWriter sw = new StreamWriter(arquivo, false, UTF8Encoding.UTF8))
             {

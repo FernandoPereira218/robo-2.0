@@ -20,7 +20,7 @@ namespace robo.Control.Relatorios.FIES_Legado
 
             ClickButtonsById(Driver, "excel");
 
-            Util.SalvarArquivos(Driver, "DRI_" + situacaoDRI, campus);
+            SalvarArquivos(Driver, "DRI_" + situacaoDRI, campus);
         }
     }
 }

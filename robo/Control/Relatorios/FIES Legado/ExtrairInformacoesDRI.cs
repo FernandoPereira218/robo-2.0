@@ -43,7 +43,7 @@ namespace robo.Control.Relatorios.FIES_Legado
                         string selectFinanciadoSemestre;
 
 
-                        if (Util.VerificarElementoExiste(Driver, "id", "qt_semestre_concluido") == null)
+                        if (VerificarElementoExiste(Driver, "id", "qt_semestre_concluido") == null)
                         {
                             select = CodigoFonte.Split(new string[] { "Total de semestres já concluídos:*" }, StringSplitOptions.None)[1];
                             select = select.Split(new string[] { "\r\n" }, StringSplitOptions.None)[0];
@@ -97,7 +97,6 @@ namespace robo.Control.Relatorios.FIES_Legado
 
                         ScrollToElementByID(Driver, "voltar");
                         ClickButtonsById(Driver, "voltar");
-
                     }
                 }
             }

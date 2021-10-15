@@ -57,8 +57,7 @@ namespace robo.Control.Relatorios.FIES_Legado
         private void BaixarDRM(ref TOAluno aluno)
         {
             ClickButtonsById(Driver, "imprimirDrm");
-            string userRoot = System.Environment.GetEnvironmentVariable("USERPROFILE");
-            string downloadFolder = Path.Combine(userRoot, "Downloads");
+            string downloadFolder = Util.GetDownloadsFolderPath();
             DirectoryInfo directory = new DirectoryInfo(downloadFolder);
             string sourcecode = Driver.PageSource;
             FileInfo myFile = directory.GetFiles().OrderByDescending(f => f.LastWriteTime).First();

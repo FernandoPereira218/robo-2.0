@@ -32,10 +32,10 @@ namespace robo.Control.Relatorios.FIES_Novo
                 //Driver.FindElement(By.XPath("/html/body/div[2]/div/form/div[1]/div/div[1]/div/div/ul/li[2]")).Click();
                 //Driver.FindElement(By.XPath("/html/body/div[2]/div/form/div[1]/div/div[1]/div/div/ul/li[3]")).Click();
             }
-            Util.ClickAndWriteById(Driver, "dataInicio", dataInicial);
-            Util.ClickAndWriteById(Driver, "dataFim", dataFinal);
-            Util.ClickButtonsById(Driver, "btnExportarRelatorio");
-            Util.SalvarArquivos(Driver, "COPARTICIPAÇÃO");
+            ClickAndWriteById(Driver, "dataInicio", dataInicial);
+            ClickAndWriteById(Driver, "dataFim", dataFinal);
+            ClickButtonsById(Driver, "btnExportarRelatorio");
+            SalvarArquivos(Driver, "COPARTICIPAÇÃO");
         }
     }
 }

@@ -81,9 +81,7 @@ namespace robo.Control.Relatorios
             {
                 ClickButtonsById(Driver, "imprimir");
             }
-
-            string userRoot = System.Environment.GetEnvironmentVariable("USERPROFILE");
-            string downloadFolder = System.IO.Path.Combine(userRoot, "Downloads");
+            string downloadFolder = Util.GetDownloadsFolderPath();
             DirectoryInfo directory = new DirectoryInfo(downloadFolder);
 
             FileInfo myFile = directory.GetFiles().OrderByDescending(f => f.LastWriteTime).First();
