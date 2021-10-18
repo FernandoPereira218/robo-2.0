@@ -22,6 +22,8 @@ namespace robo.Control.Implementacoes
         private IContratos.IMainForms forms;
         private List<TOAluno> listaAlunos;
         private List<TOLogin> listaLogins;
+        private const string FIES_NOVO = "NOVO";
+        private const string FIES_LEGADO = "LEGADO";
         public ImplementacaoPresenter(IContratos.IMainForms forms)
         {
             SetForm(forms);
@@ -47,7 +49,7 @@ namespace robo.Control.Implementacoes
         public void ExecutarAditamentoLegado(string semestreAtual, string faculdade, string tipoFies, string campus)
         {
             string numSemestre = BuscarNunSemestre(semestreAtual);
-            BuscarLoginsEAlunos(faculdade, tipoFies, campus, ref listaAlunos, ref listaLogins, admin: false, exportar: false);
+            BuscarLoginsEAlunos(faculdade, FIES_LEGADO, campus, ref listaAlunos, ref listaLogins, admin: false, exportar: false);
             UtilFiesLegado fiesLegadoutil = new UtilFiesLegado();
             AditamentoLegado aditamento = new AditamentoLegado();
 
@@ -70,7 +72,7 @@ namespace robo.Control.Implementacoes
         }
         public void ExecutarAditamentoNovo(string faculdade, string tipoFies, string semestreAtual)
         {
-            BuscarLoginsEAlunos(faculdade, tipoFies, "", ref listaAlunos, ref listaLogins, admin: false, exportar: false);
+            BuscarLoginsEAlunos(faculdade, FIES_NOVO, "", ref listaAlunos, ref listaLogins, admin: false, exportar: false);
 
             UtilFiesNovo utilFiesNovo = new UtilFiesNovo();
             IWebDriver Driver = Util.StartBrowser("http://sifesweb.caixa.gov.br");
@@ -90,7 +92,7 @@ namespace robo.Control.Implementacoes
         }
         public void ExecutarDRI(string faculdade, string tipoFies, string campus, string situacaoDRI, bool baixarDRI)
         {
-            BuscarLoginsEAlunos(faculdade, tipoFies, campus, ref listaAlunos, ref listaLogins, admin: false, exportar: false);
+            BuscarLoginsEAlunos(faculdade, FIES_LEGADO, campus, ref listaAlunos, ref listaLogins, admin: false, exportar: false);
             UtilFiesLegado fiesLegadoUtil = new UtilFiesLegado();
 
             IWebDriver Driver = Util.StartBrowser("http://sisfies.mec.gov.br/");
@@ -113,7 +115,7 @@ namespace robo.Control.Implementacoes
         }
         public void ExecutarBaixarDocumentoLegado(string faculdade, string tipoFies, string campus, string semestre, string tipoDocumento)
         {
-            BuscarLoginsEAlunos(faculdade, tipoFies, campus, ref listaAlunos, ref listaLogins, admin: false, exportar: false);
+            BuscarLoginsEAlunos(faculdade, FIES_LEGADO, campus, ref listaAlunos, ref listaLogins, admin: false, exportar: false);
             UtilFiesLegado fiesLegadoUtil = new UtilFiesLegado();
 
             semestre = semestre.Replace("1/", "1º/");
@@ -138,7 +140,7 @@ namespace robo.Control.Implementacoes
         }
         public void ExecutarExportarRelatoriosLegado(string faculdade, string tipoFies, string campus, string semestre, string tipoRelatorio)
         {
-            BuscarLoginsEAlunos(faculdade, tipoFies, campus, ref listaAlunos, ref listaLogins, admin: false, exportar: true);
+            BuscarLoginsEAlunos(faculdade, FIES_LEGADO, campus, ref listaAlunos, ref listaLogins, admin: false, exportar: true);
             UtilFiesLegado fiesLegadoUtil = new UtilFiesLegado();
             ExportarRelatorios exportarRelatorios = new ExportarRelatorios();
             semestre = semestre.Replace("1/", "1º/");
@@ -161,7 +163,7 @@ namespace robo.Control.Implementacoes
         }
         public void ExtrairInformacoesDRMLegado(string faculdade, string tipoFies, string campus, string semestre)
         {
-            BuscarLoginsEAlunos(faculdade, tipoFies, campus, ref listaAlunos, ref listaLogins, admin: false, exportar: false);
+            BuscarLoginsEAlunos(faculdade, FIES_LEGADO, campus, ref listaAlunos, ref listaLogins, admin: false, exportar: false);
             UtilFiesLegado fiesLegadoUtil = new UtilFiesLegado();
             ExtrairInformacoesDRM extrairInformacoesDRM = new ExtrairInformacoesDRM();
             semestre = semestre.Replace("1/", "1º/");
@@ -186,7 +188,7 @@ namespace robo.Control.Implementacoes
         }
         public void ExtrairInformacoesDRILegado(string faculdade, string tipoFies, string campus, string situacaoDRI)
         {
-            BuscarLoginsEAlunos(faculdade, tipoFies, campus, ref listaAlunos, ref listaLogins, admin: false, exportar: false);
+            BuscarLoginsEAlunos(faculdade, FIES_LEGADO, campus, ref listaAlunos, ref listaLogins, admin: false, exportar: false);
             UtilFiesLegado fiesLegadoUtil = new UtilFiesLegado();
 
             IWebDriver Driver = Util.StartBrowser("http://sisfies.mec.gov.br/");
@@ -208,7 +210,7 @@ namespace robo.Control.Implementacoes
         }
         public void ExecutarExportarDRILegado(string faculdade, string tipoFies, string campus, string situacaoDRI)
         {
-            BuscarLoginsEAlunos(faculdade, tipoFies, campus, ref listaAlunos, ref listaLogins, admin: false, exportar: true);
+            BuscarLoginsEAlunos(faculdade, FIES_LEGADO, campus, ref listaAlunos, ref listaLogins, admin: false, exportar: true);
             UtilFiesLegado fiesLegadoUtil = new UtilFiesLegado();
 
             IWebDriver Driver = Util.StartBrowser("http://sisfies.mec.gov.br/", downloadFldr: true);
@@ -228,7 +230,7 @@ namespace robo.Control.Implementacoes
         }
         public void ExportarExtratoMensalDeRepasseLegado(string faculdade, string tipoFies, string campus, string ano, string mes)
         {
-            BuscarLoginsEAlunos(faculdade, tipoFies, campus, ref listaAlunos, ref listaLogins, admin: false, exportar: true);
+            BuscarLoginsEAlunos(faculdade, FIES_LEGADO, campus, ref listaAlunos, ref listaLogins, admin: false, exportar: true);
             UtilFiesLegado fiesLegadoUtil = new UtilFiesLegado();
 
             IWebDriver Driver = Util.StartBrowser("http://sisfies.mec.gov.br/", downloadFldr: true);
@@ -248,7 +250,7 @@ namespace robo.Control.Implementacoes
         }
         public void ExecutarBaixarDRMFiesNovo(string faculdade, string tipoFies, string semestre)
         {
-            BuscarLoginsEAlunos(faculdade, tipoFies, campus: "", ref listaAlunos, ref listaLogins, admin: false, exportar: false);
+            BuscarLoginsEAlunos(faculdade, FIES_NOVO, campus: "", ref listaAlunos, ref listaLogins, admin: false, exportar: false);
             UtilFiesNovo utilFiesNovo = new UtilFiesNovo();
             IWebDriver Driver = Util.StartBrowser("http://sifesweb.caixa.gov.br");
             BaixarDRM drm = new BaixarDRM();
@@ -269,7 +271,7 @@ namespace robo.Control.Implementacoes
         }
         public void ExtrairInformacoesDRMFiesNovo(string faculdade, string tipoFies, string semestre)
         {
-            BuscarLoginsEAlunos(faculdade, tipoFies, campus: "", ref listaAlunos, ref listaLogins, admin: false, exportar: false);
+            BuscarLoginsEAlunos(faculdade, FIES_NOVO, campus: "", ref listaAlunos, ref listaLogins, admin: false, exportar: false);
             UtilFiesNovo utilFiesNovo = new UtilFiesNovo();
             IWebDriver Driver = Util.StartBrowser("http://sifesweb.caixa.gov.br");
             ExtrairInformacoesDRMFiesNovo extrairInformacoesDRM = new ExtrairInformacoesDRMFiesNovo();
@@ -290,7 +292,7 @@ namespace robo.Control.Implementacoes
         }
         public void ExecutarBuscarStatusAditamentoNovo(string faculdade, string tipoFies, string semestre)
         {
-            BuscarLoginsEAlunos(faculdade, tipoFies, "", ref listaAlunos, ref listaLogins, admin: false, exportar: false);
+            BuscarLoginsEAlunos(faculdade, FIES_NOVO, "", ref listaAlunos, ref listaLogins, admin: false, exportar: false);
 
             UtilFiesNovo utilFiesNovo = new UtilFiesNovo();
             IWebDriver Driver = Util.StartBrowser("http://sifesweb.caixa.gov.br");
@@ -309,7 +311,7 @@ namespace robo.Control.Implementacoes
         }
         public void ExecutarStatusAluno(string faculdade, string tipoFies, string semestre)
         {
-            BuscarLoginsEAlunos(faculdade, tipoFies, "", ref listaAlunos, ref listaLogins, admin: false, exportar: false);
+            BuscarLoginsEAlunos(faculdade, FIES_NOVO, "", ref listaAlunos, ref listaLogins, admin: false, exportar: false);
 
             UtilFiesNovo utilFiesNovo = new UtilFiesNovo();
             StatusAluno statusAluno = new StatusAluno();
@@ -328,7 +330,7 @@ namespace robo.Control.Implementacoes
         }
         public void ExportarRelatorioFiesNovo(string faculdade, string tipoFies, string tipoRelatorio)
         {
-            BuscarLoginsEAlunos(faculdade, tipoFies, "", ref listaAlunos, ref listaLogins, admin: false, exportar: true);
+            BuscarLoginsEAlunos(faculdade, FIES_NOVO, "", ref listaAlunos, ref listaLogins, admin: false, exportar: true);
             UtilFiesNovo utilFiesNovo = new UtilFiesNovo();
             ExportarRelatorio exportarRelatorio = new ExportarRelatorio();
             IWebDriver Driver = Util.StartBrowser("http://sifesweb.caixa.gov.br");
@@ -361,7 +363,7 @@ namespace robo.Control.Implementacoes
         }
         public void ExportarInadimplencia(string faculdade, string mes, string ano)
         {
-            BuscarLoginsEAlunos(faculdade, "FIES Novo", "", ref listaAlunos, ref listaLogins, admin: true, exportar: true);
+            BuscarLoginsEAlunos(faculdade, FIES_NOVO, "", ref listaAlunos, ref listaLogins, admin: true, exportar: true);
             UtilFiesNovo utilFiesNovo = new UtilFiesNovo();
             ExportarInadimplencia exportarInadimplencia = new ExportarInadimplencia();
             IWebDriver Driver = Util.StartBrowser("http://sifesweb.caixa.gov.br", firefox: false);
@@ -384,7 +386,7 @@ namespace robo.Control.Implementacoes
         }
         public void ExportarRepasseFiesNovo(string faculdade, string mes, string ano)
         {
-            BuscarLoginsEAlunos(faculdade, "FIES Novo", "", ref listaAlunos, ref listaLogins, admin: true, exportar: true);
+            BuscarLoginsEAlunos(faculdade, FIES_NOVO, "", ref listaAlunos, ref listaLogins, admin: true, exportar: true);
             UtilFiesNovo utilFiesNovo = new UtilFiesNovo();
             ExportarRepasse exportarRepasse = new ExportarRepasse();
             IWebDriver Driver = Util.StartBrowser("http://sifesweb.caixa.gov.br", firefox: false);
@@ -400,7 +402,7 @@ namespace robo.Control.Implementacoes
         }
         public void ExportarCoparticipacaoFiesNovo(string faculdade, string dataInicial, string dataFinal)
         {
-            BuscarLoginsEAlunos(faculdade, "FIES Novo", "", ref listaAlunos, ref listaLogins, admin: true, exportar: true);
+            BuscarLoginsEAlunos(faculdade, FIES_NOVO, "", ref listaAlunos, ref listaLogins, admin: true, exportar: true);
             UtilFiesNovo utilFiesNovo = new UtilFiesNovo();
             IWebDriver Driver = Util.StartBrowser("http://sifesweb.caixa.gov.br", firefox: false);
             utilFiesNovo.FazerLogin(Driver, listaLogins[0]);
@@ -430,6 +432,12 @@ namespace robo.Control.Implementacoes
         {
             List<TOAluno> alunosFies = new List<TOAluno>();
             alunosFies = Dados.SelectAlunoWhere(plataforma.ToUpper());
+
+            if (alunosFies.Count == 0)
+            {
+                throw new Exception(string.Format("Nenhum aluno encontrado na plataforma escolhida ({0}). Cheque se o banco de dados contém alunos da plataforma que deseja realizar os aditamentos.", plataforma));
+            }
+
             foreach (TOAluno aluno in alunosFies)
             {
                 TratarDadosAluno(aluno);
@@ -445,10 +453,6 @@ namespace robo.Control.Implementacoes
 
             }
 
-            if (alunosFies.Count == 0)
-            {
-                throw new Exception(String.Format("Nenhum aluno encontrado na plataforma escolhida ({0}). Cheque se o banco de dados contém alunos da plataforma que deseja realizar os aditamentos.", plataforma));
-            }
             return alunosFies;
         }
         public List<string> PreencherListaExecucao()
