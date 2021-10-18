@@ -26,7 +26,7 @@ namespace Robo
             string downloadFolder = "";
             if (downloadFldr == true)
             {
-                CreateDirectory("RelatorioExportacao\\");
+                CreateDirectoryIfNotExists("RelatorioExportacao\\");
                 downloadFolder = Directory.GetCurrentDirectory() + "\\RelatorioExportacao\\";
             }
             else
@@ -121,13 +121,13 @@ namespace Robo
         }
 
         /// <summary>
-        /// Escolhe uma opção de um dropdown
+        /// Cria um diretorio
         /// </summary>
         /// <param name="driver">webdriver</param>
         /// <param name="metodo">qual metodo a ser usado, id, name, css, ou xpath</param>
         /// <param name="valorMetodo">qual o id, name, css ou xpath a procurar</param>
         /// <param name="valorEscolha">qual a opção a ser escolhida</param>
-        public static void CreateDirectory(params string[] directories)
+        public static void CreateDirectoryIfNotExists(params string[] directories)
         {
             foreach (String directory in directories)
             {

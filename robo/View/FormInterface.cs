@@ -39,7 +39,7 @@ namespace Robo
             presenter = new ImplementacaoPresenter(this);
             Dados.VerificaSemestre();
             InitializeComponent();
-            InitializeBackgroundWorker();
+
             Program.formInterface = this;
             labelDay.BackColor = System.Drawing.Color.Transparent;
             labelDay.Parent = pictureBox1;
@@ -48,7 +48,6 @@ namespace Robo
             radioBuscarStatus.Visible = true;
             radioBuscarStatus.Checked = true;
             barraProgressoImportacao.Visible = false;
-            lbProcessando.Visible = false;
             tbBarraStatus.BackColor = Color.White;
             tbBarraStatus.Visible = false;
 
@@ -103,51 +102,6 @@ namespace Robo
             AtualizarListViewUsuarios();
         }
 
-        //Barra de progresso da importação dos Alunos
-        private void InitializeBackgroundWorker()
-        {
-            bwBarraProgresso.DoWork += new DoWorkEventHandler(bwBarraProgresso_DoWork);
-            bwBarraProgresso.RunWorkerCompleted += new RunWorkerCompletedEventHandler(bwBarraProgresso_RunWorkerCompleted);
-        }
-        private void bwBarraProgresso_DoWork(object sender, DoWorkEventArgs e)
-        {
-            Cursor.Current = Cursors.WaitCursor;
-            string filePath = txtExcel.Text;
-            Dados.ImportaAlunos(filePath);
-            Cursor.Current = Cursors.Default;
-        }
-        private void bwBarraProgresso_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
-        {
-            lbProcessando.Visible = false;
-            barraProgressoImportacao.Visible = false;
-            btMenu.Enabled = true;
-            btnSelectPath.Enabled = true;
-            if (e.Error != null)
-            {
-                SystemSounds.Exclamation.Play();
-                tbBarraStatus.Visible = true;
-                tbBarraStatus.BackColor = Color.Red;
-                tbBarraStatus.BeginInvoke(
-                   new Action(() =>
-                   {
-                       tbBarraStatus.Text = Convert.ToString(e.Error);
-                   }
-                ));
-            }
-            else
-            {
-                AtualizarListViewAlunos();
-                SystemSounds.Beep.Play();
-                tbBarraStatus.Visible = true;
-                int qtdAlunosProcessados = Dados.Count<TOAluno>();
-                tbBarraStatus.BeginInvoke(
-                   new Action(() =>
-                   {
-                       tbBarraStatus.Text = "Importação de " + qtdAlunosProcessados + " alunos finalizada com sucesso!";
-                   }
-                ));
-            }
-        }
 
         //Botões Janela Windows
         private void btnMinimize_Click(object sender, EventArgs e)
@@ -167,6 +121,7 @@ namespace Robo
                 return;
             }
 
+
             AtualizarListViewAlunos();
 
             tbBarraStatus.Visible = false;
@@ -175,14 +130,23 @@ namespace Robo
             if (ofdSelectExcel.ShowDialog() == DialogResult.OK)
             {
                 txtExcel.Text = ofdSelectExcel.FileName;
-                lbProcessando.Visible = true;
-                barraProgressoImportacao.ProgressBarStyle = ProgressBarStyle.Marquee;
-                barraProgressoImportacao.Visible = true;
-                barraProgressoImportacao.MarqueeAnimationSpeed = 5;
-                barraProgressoImportacao.Enabled = true;
-                btnSelectPath.Enabled = false;
-                btMenu.Enabled = false;
-                bwBarraProgresso.RunWorkerAsync();
+                //barraProgressoImportacao.ProgressBarStyle = ProgressBarStyle.Marquee;
+                //barraProgressoImportacao.Visible = true;
+                //barraProgressoImportacao.MarqueeAnimationSpeed = 5;
+                //barraProgressoImportacao.Enabled = true;
+                //bwBarraProgresso.RunWorkerAsync();
+
+            }
+            if (txtExcel.Text != "")
+            {
+                Cursor.Current = Cursors.WaitCursor;
+                Dados.ImportaAlunos(txtExcel.Text);
+                Cursor.Current = Cursors.Default;
+                AtualizarListViewAlunos();
+                SystemSounds.Beep.Play();
+                tbBarraStatus.Visible = true;
+                int qtdAlunosProcessados = Dados.Count<TOAluno>();
+                tbBarraStatus.Text = "Importação de " + qtdAlunosProcessados + " alunos finalizada com sucesso!";
             }
         }
 

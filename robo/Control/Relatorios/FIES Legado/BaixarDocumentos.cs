@@ -95,7 +95,7 @@ namespace robo.Control.Relatorios
             }
             string diretorioDestino;
             string complemento = string.Empty;
-            Util.CreateDirectory("Temp");
+            Util.CreateDirectoryIfNotExists("Temp");
             System.IO.DirectoryInfo di = new DirectoryInfo("Temp");
             foreach (var item in di.GetFiles())
             {
@@ -107,7 +107,7 @@ namespace robo.Control.Relatorios
                 string diretorioSimplificado = diretorioDRM + "\\Simplificados";
                 string diretorioNaoSimplificado = diretorioDRM + "\\Nao-Simplificados";
 
-                Util.CreateDirectory(diretorioDRM, diretorioSimplificado, diretorioNaoSimplificado);
+                Util.CreateDirectoryIfNotExists(diretorioDRM, diretorioSimplificado, diretorioNaoSimplificado);
                 using (ZipArchive archive = new ZipArchive(File.OpenRead(myFile.FullName), ZipArchiveMode.Read))
                 {
                     archive.ExtractToDirectory("Temp");
@@ -132,7 +132,7 @@ namespace robo.Control.Relatorios
                     archive.ExtractToDirectory("Temp");
                 }
                 string diretorio = downloadFolder + "\\" + tipoRelatorio + " FIES Legado";
-                Util.CreateDirectory(diretorio);
+                Util.CreateDirectoryIfNotExists(diretorio);
                 diretorioDestino = diretorio;
             }
 

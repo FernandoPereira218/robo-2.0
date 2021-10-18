@@ -136,7 +136,7 @@ namespace robo
             string downloadFolder = "";
             if (downloadFldr == true)
             {
-                Util.CreateDirectory("RelatorioExportacao\\");
+                Util.CreateDirectoryIfNotExists("RelatorioExportacao\\");
                 downloadFolder = Directory.GetCurrentDirectory() + "\\RelatorioExportacao\\";
             }
             else
@@ -381,7 +381,7 @@ namespace robo
             {
                 string downloadFolder = Util.GetDownloadsFolderPath();
                 string nomeArquivo = DateTime.Now.ToString("dd-MM-yy") + campus + "_" + semestre + ".xls";
-                Util.CreateDirectory(downloadFolder + "\\Relatório Exportacao");
+                Util.CreateDirectoryIfNotExists(downloadFolder + "\\Relatório Exportacao");
                 string caminho = downloadFolder + "\\Relatório Exportacao\\" + tipoRelatorio + " " + nomeArquivo;
                 File.Copy(item, caminho, true);
                 File.Delete(item);
