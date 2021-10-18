@@ -159,58 +159,58 @@ namespace Robo
         /// </summary>
         public TOAluno()
         {
-            this.Cpf = string.Empty;
-            this.Campus = "-";
-            this.Nome = "-";
-            this.HistoricoAproveitamento = "-"; 
-            this.ReceitaBruta = "-";
-            this.ReceitaLiquida = "-";
-            this.ReceitaFies = "-";
-            this.ValorAditado = "-";
-            this.CampusAditado = "-";
-            this.Tipo = "-";
+            this.Cpf = null;
+            this.Campus = null;
+            this.Nome = null;
+            this.HistoricoAproveitamento = null; 
+            this.ReceitaBruta = null;
+            this.ReceitaLiquida = null;
+            this.ReceitaFies = null;
+            this.ValorAditado = null;
+            this.CampusAditado = null;
+            this.Tipo = null;
             this.Conclusao = "Não Feito";
-            this.AproveitamentoAtual = "-";
-            this.ValorAditadoComDesconto = "-";
-            this.ValorAditadoFinanciamento = "-";
-            this.ValorPagoRecursoEstudante = "-";
-            this.HorarioConclusao = "-";
-            this.DescontoLiberalidade = "-";
+            this.AproveitamentoAtual = null;
+            this.ValorAditadoComDesconto = null;
+            this.ValorAditadoFinanciamento = null;
+            this.ValorPagoRecursoEstudante = null;
+            this.HorarioConclusao = null;
+            this.DescontoLiberalidade = null;
             this.Extraido = "Não";
-            this.Justificativa = "-";
+            this.Justificativa = null;
 
             //Dados Extrair Informações DRM/DRI
-            this.SemestreAditar = string.Empty;
-            this.Curso = string.Empty;
-            this.DuracaoRegular = string.Empty;
-            this.TotalDeSemestresSuspensos = string.Empty;
-            this.TotalDeSemestresDilatados = string.Empty;
-            this.TotalDeSemestresConcluidos = string.Empty;
-            this.SemestreSerCursadoPeloEstudante = string.Empty;
-            this.TotalDeSemestresJaFinanciados = string.Empty;
-            this.PercentualDeFinanciamentoSolicitado = string.Empty;
-            this.GradeAtualComDesconto = string.Empty;
-            this.GradeAtualFinanciadoFIES = string.Empty;
-            this.GradeAtualCoparticipacao = string.Empty;
-            this.Tipo = string.Empty;
+            this.SemestreAditar = null;
+            this.Curso = null;
+            this.DuracaoRegular = null;
+            this.TotalDeSemestresSuspensos = null;
+            this.TotalDeSemestresDilatados = null;
+            this.TotalDeSemestresConcluidos = null;
+            this.SemestreSerCursadoPeloEstudante = null;
+            this.TotalDeSemestresJaFinanciados = null;
+            this.PercentualDeFinanciamentoSolicitado = null;
+            this.GradeAtualComDesconto = null;
+            this.GradeAtualFinanciadoFIES = null;
+            this.GradeAtualCoparticipacao = null;
+            this.Tipo = null;
 
             //Dados Consultar Status Aditamento Aluno FIES Novo
-            this.SemestreAno = string.Empty;
-            this.Finalidade = string.Empty;
-            this.Situacao = string.Empty;
-            this.ProUni = string.Empty;
-            this.DataInclusao = string.Empty;
-            this.DataConclusao = string.Empty;
+            this.SemestreAno = null;
+            this.Finalidade = null;
+            this.Situacao = null;
+            this.ProUni = null;
+            this.DataInclusao = null;
+            this.DataConclusao = null;
 
             //Dados SIGA
-            this.CursoSiga = string.Empty;
-            this.ValorDeRepasse = "-";
-            this.ParcelaSiga1 = string.Empty;
-            this.ParcelaSiga2 = string.Empty;
-            this.ParcelaSiga3 = string.Empty;
-            this.ParcelaSiga4 = string.Empty;
-            this.ParcelaSiga5 = string.Empty;
-            this.ParcelaSiga6 = string.Empty;
+            this.CursoSiga = null;
+            this.ValorDeRepasse = null;
+            this.ParcelaSiga1 = null;
+            this.ParcelaSiga2 = null;
+            this.ParcelaSiga3 = null;
+            this.ParcelaSiga4 = null;
+            this.ParcelaSiga5 = null;
+            this.ParcelaSiga6 = null;
         }
     }
 

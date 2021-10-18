@@ -155,52 +155,40 @@ namespace Robo
         {
             if (valor == null)
             {
-                return string.Empty;
+                return null;
             }
-            if (valor.Contains(","))
-            {
-                string[] split = valor.Split(new Char[] { ',' });
-                if (split[1].Length == 1)
-                {
-                    valor += "0";
-                }
-            }
-            else
-            {
-                valor += ",00";
-            }
+            double valorDouble = Convert.ToDouble(valor);
+            valorDouble = Math.Round(valorDouble, 2);
+            valor = valorDouble.ToString("0.00");
+
             return valor;
         }
         public static void TratarTextoReceitas(TOAluno aluno)
         {
-            if (aluno.ReceitaFies != null)
+            if (aluno.ReceitaBruta == null && aluno.ReceitaLiquida == null &&
+                aluno.ReceitaFies == null && aluno.ValorDeRepasse == null)
             {
-                aluno.ReceitaBruta = aluno.ReceitaBruta.Replace("R$", "");
-                aluno.ReceitaBruta = aluno.ReceitaBruta.Replace(" ", "");
-                aluno.ReceitaLiquida = aluno.ReceitaLiquida.Replace("R$", "");
-                aluno.ReceitaLiquida = aluno.ReceitaLiquida.Replace(" ", "");
-                aluno.ReceitaFies = aluno.ReceitaFies.Replace("R$", "");
-                aluno.ReceitaFies = aluno.ReceitaFies.Replace(" ", "");
+                return;
             }
-
-            //Receita para o SIGA
-            aluno.ValorDeRepasse = aluno.ValorDeRepasse.Replace("R$", "");
-            aluno.ValorDeRepasse = aluno.ValorDeRepasse.Replace(" ", "");
-
-            if (aluno.ReceitaBruta != "-")
+          
+            if (aluno.ReceitaBruta != null)
             {
+                aluno.ReceitaBruta = double.Parse(aluno.ReceitaBruta, NumberStyles.Currency).ToString();
                 aluno.ReceitaBruta = Math.Round(Convert.ToDouble(aluno.ReceitaBruta), 2).ToString();
             }
-            if (aluno.ReceitaLiquida != "-")
+            if (aluno.ReceitaLiquida != null)
             {
+                aluno.ReceitaLiquida = double.Parse(aluno.ReceitaLiquida, NumberStyles.Currency).ToString();
                 aluno.ReceitaLiquida = Math.Round(Convert.ToDouble(aluno.ReceitaLiquida), 2).ToString();
             }
-            if (aluno.ReceitaFies != "-")
+            if (aluno.ReceitaFies != null)
             {
+                aluno.ReceitaFies = double.Parse(aluno.ReceitaFies, NumberStyles.Currency).ToString();
                 aluno.ReceitaFies = Math.Round(Convert.ToDouble(aluno.ReceitaFies), 2).ToString();
             }
-            if (aluno.ValorDeRepasse != "-")
+            if (aluno.ValorDeRepasse != null)
             {
+                aluno.ValorDeRepasse = double.Parse(aluno.ValorDeRepasse, NumberStyles.Currency).ToString();
                 aluno.ValorDeRepasse = Math.Round(Convert.ToDouble(aluno.ValorDeRepasse), 2).ToString();
             }
         }
@@ -343,7 +331,7 @@ namespace Robo
             using (var db = new LiteDatabase(CAMINHO_BANCO))
             {
                 var colecao = db.GetCollection<TOAluno>();
-                return colecao.Query().Where(x => x.Tipo == tipoFies && x.Conclusao == "Não Feito").ToList();
+                return colecao.Query().Where(x => x.Tipo.ToUpper().Contains(tipoFies) && x.Conclusao == "Não Feito").ToList();
             }
         }
 
