@@ -25,6 +25,8 @@ namespace Robo
         {
             List<TOAluno> alunos = BuscarListaAlunos(filePath);
             AtualizarAlunosBD(alunos);
+            VerificarCPFDuplicado(alunos);
+
         }
 
         //CSV
@@ -197,12 +199,9 @@ namespace Robo
         public static void AtualizarAlunosBD(List<TOAluno> alunos)
         {
             InsertListLite(alunos);
-
-            //Deixar aqui por enquanto
-            VerificarCpfDuplicado(alunos);
         }
 
-        public static void VerificarCpfDuplicado(List<TOAluno> alunos)
+        public static void VerificarCPFDuplicado(List<TOAluno> alunos)
         {
             //Verificar se existem CPFs duplicados e marca as conclusões
             var duplicado = alunos.GroupBy(x => new { x.Cpf }).Where(x => x.Skip(1).Any()).ToList();
