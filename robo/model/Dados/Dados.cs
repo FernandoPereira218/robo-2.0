@@ -132,8 +132,11 @@ namespace Robo
                     aluno.Campus = "SALGADO FILHO";
                     break;
                 default:
-                    aluno.Campus = aluno.Campus.Trim();
-                    aluno.Campus = aluno.Campus.ToUpper();
+                    if (aluno.Campus != null)
+                    {
+                        aluno.Campus = aluno.Campus.Trim();
+                        aluno.Campus = aluno.Campus.ToUpper();
+                    }
                     break;
             }
         }
@@ -170,12 +173,15 @@ namespace Robo
         }
         public static void TratarTextoReceitas(TOAluno aluno)
         {
-            aluno.ReceitaBruta = aluno.ReceitaBruta.Replace("R$", "");
-            aluno.ReceitaBruta = aluno.ReceitaBruta.Replace(" ", "");
-            aluno.ReceitaLiquida = aluno.ReceitaLiquida.Replace("R$", "");
-            aluno.ReceitaLiquida = aluno.ReceitaLiquida.Replace(" ", "");
-            aluno.ReceitaFies = aluno.ReceitaFies.Replace("R$", "");
-            aluno.ReceitaFies = aluno.ReceitaFies.Replace(" ", "");
+            if (aluno.ReceitaFies != null)
+            {
+                aluno.ReceitaBruta = aluno.ReceitaBruta.Replace("R$", "");
+                aluno.ReceitaBruta = aluno.ReceitaBruta.Replace(" ", "");
+                aluno.ReceitaLiquida = aluno.ReceitaLiquida.Replace("R$", "");
+                aluno.ReceitaLiquida = aluno.ReceitaLiquida.Replace(" ", "");
+                aluno.ReceitaFies = aluno.ReceitaFies.Replace("R$", "");
+                aluno.ReceitaFies = aluno.ReceitaFies.Replace(" ", "");
+            }
 
             //Receita para o SIGA
             aluno.ValorDeRepasse = aluno.ValorDeRepasse.Replace("R$", "");
@@ -228,7 +234,7 @@ namespace Robo
         public static TOUsuario ValidateLogin(string user, string password)
         {
             string hashedPassword = Util.GetMD5(password);
-            List<TOUsuario> temp = Dados.SelectWhere<TOUsuario>(x=> x.Usuario==user && x.Senha == hashedPassword);
+            List<TOUsuario> temp = Dados.SelectWhere<TOUsuario>(x => x.Usuario == user && x.Senha == hashedPassword);
             if (temp.Count != 0)
             {
                 return temp[0];
@@ -248,11 +254,11 @@ namespace Robo
         //Verificações
         public static int verficarSemestre(string semestre)
         {
-            return SelectWhere<TOSemestre>(x=> x.Semestre == semestre).Count;
+            return SelectWhere<TOSemestre>(x => x.Semestre == semestre).Count;
         }
         public static bool DRIExists(string cpf)
         {
-            List<TODRI> list = SelectWhere<TODRI>(x=> x.Cpf == cpf);
+            List<TODRI> list = SelectWhere<TODRI>(x => x.Cpf == cpf);
             if (list.Count == 1)
             {
                 return true;
@@ -265,7 +271,7 @@ namespace Robo
         }
         public static TODRI GetDRI(string cpf)
         {
-            List<TODRI> list = SelectWhere<TODRI>(x=> x.Cpf == cpf);
+            List<TODRI> list = SelectWhere<TODRI>(x => x.Cpf == cpf);
             if (list.Count == 1)
             {
                 return list[0];
@@ -414,7 +420,7 @@ namespace Robo
                     else
                     {
                         listlogin = SelectWhere<TOLogin>(x => x.Faculdade == IES && x.Plataforma == plataforma && x.Admin == "Não");
-                    }   
+                    }
                 }
 
                 if (listlogin.Count == 0)
