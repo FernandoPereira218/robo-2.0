@@ -69,7 +69,7 @@ namespace robo.Control.Relatorios.FIES_Legado
                 downloading = myFile.Name.EndsWith(".crdownload");
             }
             string diretorioDRM = "DRM_Informações";
-            Util.CreateDirectory(diretorioDRM);
+            Util.CreateDirectoryIfNotExists(diretorioDRM);
             Util.ApagaArquivos(diretorioDRM);
 
 

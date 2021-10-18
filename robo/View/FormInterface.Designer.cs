@@ -48,8 +48,8 @@
             this.label6 = new System.Windows.Forms.Label();
             this.btnClose = new System.Windows.Forms.Button();
             this.panelExcel = new System.Windows.Forms.Panel();
+            this.btnMarcarNaoFeito = new System.Windows.Forms.Button();
             this.tbBarraStatus = new MetroFramework.Controls.MetroTextBox();
-            this.lbProcessando = new MetroFramework.Controls.MetroLabel();
             this.barraProgressoImportacao = new MetroFramework.Controls.MetroProgressBar();
             this.metroLabel10 = new MetroFramework.Controls.MetroLabel();
             this.button3 = new System.Windows.Forms.Button();
@@ -125,7 +125,6 @@
             this.btnAlunos = new System.Windows.Forms.Button();
             this.btExtrairInformacoes = new System.Windows.Forms.Button();
             this.btStatus = new System.Windows.Forms.Button();
-            this.btnMarcarNaoFeito = new System.Windows.Forms.Button();
             this.panelMenuBar.SuspendLayout();
             this.panelExcel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvAlunos)).BeginInit();
@@ -142,10 +141,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgvUsuarios)).BeginInit();
             this.panelSubMenu.SuspendLayout();
             this.SuspendLayout();
-            //  
-            // panelMenuBar 
-            //  
-            this.panelMenuBar.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            // 
+            // panelMenuBar
+            // 
+            this.panelMenuBar.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panelMenuBar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(37)))), ((int)(((byte)(34)))));
             this.panelMenuBar.Controls.Add(this.btnMinimize);
@@ -159,9 +158,9 @@
             this.panelMenuBar.Size = new System.Drawing.Size(1366, 40);
             this.panelMenuBar.TabIndex = 1;
             this.panelMenuBar.MouseDown += new System.Windows.Forms.MouseEventHandler(this.panelMenuBar_MouseDown);
-            //  
-            // btnMinimize 
-            //  
+            // 
+            // btnMinimize
+            // 
             this.btnMinimize.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnMinimize.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnMinimize.FlatAppearance.BorderSize = 0;
@@ -175,9 +174,9 @@
             this.btnMinimize.Text = "_";
             this.btnMinimize.UseVisualStyleBackColor = true;
             this.btnMinimize.Click += new System.EventHandler(this.btnMinimize_Click);
-            //  
-            // btMenu 
-            //  
+            // 
+            // btMenu
+            // 
             this.btMenu.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(37)))), ((int)(((byte)(34)))));
             this.btMenu.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btMenu.FlatAppearance.BorderSize = 0;
@@ -190,9 +189,9 @@
             this.btMenu.TextImageRelation = System.Windows.Forms.TextImageRelation.TextAboveImage;
             this.btMenu.UseVisualStyleBackColor = false;
             this.btMenu.Click += new System.EventHandler(this.btMenu_Click);
-            //  
-            // label2 
-            //  
+            // 
+            // label2
+            // 
             this.label2.AutoSize = true;
             this.label2.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.label2.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -202,9 +201,9 @@
             this.label2.Size = new System.Drawing.Size(155, 16);
             this.label2.TabIndex = 11;
             this.label2.Text = "Universidade Ritter dos Reis";
-            //  
-            // label6 
-            //  
+            // 
+            // label6
+            // 
             this.label6.AutoSize = true;
             this.label6.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.label6.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -214,9 +213,9 @@
             this.label6.Size = new System.Drawing.Size(155, 16);
             this.label6.TabIndex = 11;
             this.label6.Text = "Universidade Ritter dos Reis";
-            //  
-            // btnClose 
-            //  
+            // 
+            // btnClose
+            // 
             this.btnClose.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnClose.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnClose.FlatAppearance.BorderSize = 0;
@@ -230,14 +229,13 @@
             this.btnClose.Text = "X";
             this.btnClose.UseVisualStyleBackColor = true;
             this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
-            //  
-            // panelExcel 
-            //  
+            // 
+            // panelExcel
+            // 
             this.panelExcel.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.panelExcel.BackColor = System.Drawing.Color.White;
             this.panelExcel.Controls.Add(this.btnMarcarNaoFeito);
             this.panelExcel.Controls.Add(this.tbBarraStatus);
-            this.panelExcel.Controls.Add(this.lbProcessando);
             this.panelExcel.Controls.Add(this.barraProgressoImportacao);
             this.panelExcel.Controls.Add(this.metroLabel10);
             this.panelExcel.Controls.Add(this.button3);
@@ -250,12 +248,29 @@
             this.panelExcel.Name = "panelExcel";
             this.panelExcel.Size = new System.Drawing.Size(1306, 732);
             this.panelExcel.TabIndex = 0;
-            //  
-            // tbBarraStatus 
-            //  
-            //  
-            //  
-            //  
+            // 
+            // btnMarcarNaoFeito
+            // 
+            this.btnMarcarNaoFeito.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.btnMarcarNaoFeito.BackColor = System.Drawing.Color.White;
+            this.btnMarcarNaoFeito.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnMarcarNaoFeito.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
+            this.btnMarcarNaoFeito.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnMarcarNaoFeito.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnMarcarNaoFeito.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(33)))), ((int)(((byte)(33)))));
+            this.btnMarcarNaoFeito.Location = new System.Drawing.Point(842, 20);
+            this.btnMarcarNaoFeito.Name = "btnMarcarNaoFeito";
+            this.btnMarcarNaoFeito.Size = new System.Drawing.Size(148, 22);
+            this.btnMarcarNaoFeito.TabIndex = 10;
+            this.btnMarcarNaoFeito.Text = "Marcar não feito";
+            this.btnMarcarNaoFeito.UseVisualStyleBackColor = false;
+            this.btnMarcarNaoFeito.Click += new System.EventHandler(this.btnMarcarNaoFeito_Click);
+            // 
+            // tbBarraStatus
+            // 
+            // 
+            // 
+            // 
             this.tbBarraStatus.CustomButton.Image = null;
             this.tbBarraStatus.CustomButton.Location = new System.Drawing.Point(320, 2);
             this.tbBarraStatus.CustomButton.Margin = new System.Windows.Forms.Padding(2);
@@ -289,23 +304,9 @@
             this.tbBarraStatus.UseSelectable = true;
             this.tbBarraStatus.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
             this.tbBarraStatus.WaterMarkFont = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Pixel);
-            //  
-            // lbProcessando 
-            //  
-            this.lbProcessando.AutoSize = true;
-            this.lbProcessando.FontSize = MetroFramework.MetroLabelSize.Small;
-            this.lbProcessando.FontWeight = MetroFramework.MetroLabelWeight.Bold;
-            this.lbProcessando.ForeColor = System.Drawing.Color.Red;
-            this.lbProcessando.Location = new System.Drawing.Point(97, 44);
-            this.lbProcessando.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.lbProcessando.Name = "lbProcessando";
-            this.lbProcessando.Size = new System.Drawing.Size(126, 15);
-            this.lbProcessando.Style = MetroFramework.MetroColorStyle.Red;
-            this.lbProcessando.TabIndex = 8;
-            this.lbProcessando.Text = "Aguarde Processando";
-            //  
-            // barraProgressoImportacao 
-            //  
+            // 
+            // barraProgressoImportacao
+            // 
             this.barraProgressoImportacao.Location = new System.Drawing.Point(390, 18);
             this.barraProgressoImportacao.Margin = new System.Windows.Forms.Padding(2);
             this.barraProgressoImportacao.Name = "barraProgressoImportacao";
@@ -313,9 +314,9 @@
             this.barraProgressoImportacao.Size = new System.Drawing.Size(343, 23);
             this.barraProgressoImportacao.Style = MetroFramework.MetroColorStyle.Green;
             this.barraProgressoImportacao.TabIndex = 7;
-            //  
-            // metroLabel10 
-            //  
+            // 
+            // metroLabel10
+            // 
             this.metroLabel10.AutoSize = true;
             this.metroLabel10.ForeColor = System.Drawing.SystemColors.ControlText;
             this.metroLabel10.Location = new System.Drawing.Point(30, 20);
@@ -325,9 +326,9 @@
             this.metroLabel10.TabIndex = 6;
             this.metroLabel10.Text = "Diretório";
             this.metroLabel10.Theme = MetroFramework.MetroThemeStyle.Light;
-            //  
-            // button3 
-            //  
+            // 
+            // button3
+            // 
             this.button3.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.button3.BackColor = System.Drawing.Color.White;
             this.button3.Cursor = System.Windows.Forms.Cursors.Hand;
@@ -342,9 +343,9 @@
             this.button3.Text = "Exportar Informações";
             this.button3.UseVisualStyleBackColor = false;
             this.button3.Click += new System.EventHandler(this.btnExportarInformacoes_Click);
-            //  
-            // btnExportarExcel 
-            //  
+            // 
+            // btnExportarExcel
+            // 
             this.btnExportarExcel.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.btnExportarExcel.BackColor = System.Drawing.Color.White;
             this.btnExportarExcel.Cursor = System.Windows.Forms.Cursors.Hand;
@@ -359,9 +360,9 @@
             this.btnExportarExcel.Text = "Exportar Excel";
             this.btnExportarExcel.UseVisualStyleBackColor = false;
             this.btnExportarExcel.Click += new System.EventHandler(this.btnExportarExcel_Click);
-            //  
-            // btnSelectPath 
-            //  
+            // 
+            // btnSelectPath
+            // 
             this.btnSelectPath.BackColor = System.Drawing.Color.Silver;
             this.btnSelectPath.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnSelectPath.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
@@ -375,9 +376,9 @@
             this.btnSelectPath.Text = "Localizar Arquivo";
             this.btnSelectPath.UseVisualStyleBackColor = false;
             this.btnSelectPath.Click += new System.EventHandler(this.btnSelectPath_Click);
-            //  
-            // txtExcel 
-            //  
+            // 
+            // txtExcel
+            // 
             this.txtExcel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.txtExcel.Enabled = false;
             this.txtExcel.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -385,9 +386,9 @@
             this.txtExcel.Name = "txtExcel";
             this.txtExcel.Size = new System.Drawing.Size(161, 21);
             this.txtExcel.TabIndex = 1;
-            //  
-            // dgvAlunos 
-            //  
+            // 
+            // dgvAlunos
+            // 
             this.dgvAlunos.AllowUserToAddRows = false;
             this.dgvAlunos.AllowUserToDeleteRows = false;
             dataGridViewCellStyle1.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -418,9 +419,9 @@
             this.dgvAlunos.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvAlunos.Size = new System.Drawing.Size(1302, 665);
             this.dgvAlunos.TabIndex = 0;
-            //  
-            // lblNenhumAluno 
-            //  
+            // 
+            // lblNenhumAluno
+            // 
             this.lblNenhumAluno.AutoSize = true;
             this.lblNenhumAluno.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblNenhumAluno.Location = new System.Drawing.Point(6, 514);
@@ -428,15 +429,15 @@
             this.lblNenhumAluno.Size = new System.Drawing.Size(252, 21);
             this.lblNenhumAluno.TabIndex = 0;
             this.lblNenhumAluno.Text = "Nenhum aluno no banco de dados.";
-            //  
-            // ofdSelectExcel 
-            //  
+            // 
+            // ofdSelectExcel
+            // 
             this.ofdSelectExcel.FileName = "openFileDialog1";
-            //  
-            // panelCadastrarContent 
-            //  
-            this.panelCadastrarContent.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-            | System.Windows.Forms.AnchorStyles.Left)
+            // 
+            // panelCadastrarContent
+            // 
+            this.panelCadastrarContent.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panelCadastrarContent.AutoScroll = true;
             this.panelCadastrarContent.AutoSize = true;
@@ -449,9 +450,9 @@
             this.panelCadastrarContent.Name = "panelCadastrarContent";
             this.panelCadastrarContent.Size = new System.Drawing.Size(1628, 1080);
             this.panelCadastrarContent.TabIndex = 3;
-            //  
-            // panelCadastro 
-            //  
+            // 
+            // panelCadastro
+            // 
             this.panelCadastro.Controls.Add(this.panelDadosDeSituacao);
             this.panelCadastro.Controls.Add(this.metroLabel20);
             this.panelCadastro.Controls.Add(this.metroLabel19);
@@ -481,9 +482,9 @@
             this.panelCadastro.Name = "panelCadastro";
             this.panelCadastro.Size = new System.Drawing.Size(1363, 731);
             this.panelCadastro.TabIndex = 38;
-            //  
-            // panelDadosDeSituacao 
-            //  
+            // 
+            // panelDadosDeSituacao
+            // 
             this.panelDadosDeSituacao.BackColor = System.Drawing.Color.White;
             this.panelDadosDeSituacao.Controls.Add(this.labelFiesSiga);
             this.panelDadosDeSituacao.Controls.Add(this.cbFiesSiga);
@@ -503,9 +504,9 @@
             this.panelDadosDeSituacao.Name = "panelDadosDeSituacao";
             this.panelDadosDeSituacao.Size = new System.Drawing.Size(294, 289);
             this.panelDadosDeSituacao.TabIndex = 60;
-            //  
-            // labelFiesSiga 
-            //  
+            // 
+            // labelFiesSiga
+            // 
             this.labelFiesSiga.AutoSize = true;
             this.labelFiesSiga.Location = new System.Drawing.Point(4, 239);
             this.labelFiesSiga.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
@@ -513,9 +514,9 @@
             this.labelFiesSiga.Size = new System.Drawing.Size(65, 19);
             this.labelFiesSiga.TabIndex = 60;
             this.labelFiesSiga.Text = "FIES SIGA";
-            //  
-            // cbFiesSiga 
-            //  
+            // 
+            // cbFiesSiga
+            // 
             this.cbFiesSiga.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbFiesSiga.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cbFiesSiga.FormattingEnabled = true;
@@ -526,9 +527,9 @@
             this.cbFiesSiga.Name = "cbFiesSiga";
             this.cbFiesSiga.Size = new System.Drawing.Size(271, 25);
             this.cbFiesSiga.TabIndex = 59;
-            //  
-            // labelDataInicio 
-            //  
+            // 
+            // labelDataInicio
+            // 
             this.labelDataInicio.AutoSize = true;
             this.labelDataInicio.Location = new System.Drawing.Point(2, 3);
             this.labelDataInicio.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
@@ -536,9 +537,9 @@
             this.labelDataInicio.Size = new System.Drawing.Size(70, 19);
             this.labelDataInicio.TabIndex = 51;
             this.labelDataInicio.Text = "Data Inicio";
-            //  
-            // cbSituacao 
-            //  
+            // 
+            // cbSituacao
+            // 
             this.cbSituacao.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbSituacao.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cbSituacao.FormattingEnabled = true;
@@ -562,9 +563,9 @@
             this.cbSituacao.Name = "cbSituacao";
             this.cbSituacao.Size = new System.Drawing.Size(271, 25);
             this.cbSituacao.TabIndex = 42;
-            //  
-            // cbAno 
-            //  
+            // 
+            // cbAno
+            // 
             this.cbAno.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbAno.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cbAno.FormattingEnabled = true;
@@ -586,9 +587,9 @@
             this.cbAno.Name = "cbAno";
             this.cbAno.Size = new System.Drawing.Size(137, 25);
             this.cbAno.TabIndex = 43;
-            //  
-            // labelIESRepasse 
-            //  
+            // 
+            // labelIESRepasse
+            // 
             this.labelIESRepasse.AutoSize = true;
             this.labelIESRepasse.Location = new System.Drawing.Point(2, 185);
             this.labelIESRepasse.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
@@ -596,9 +597,9 @@
             this.labelIESRepasse.Size = new System.Drawing.Size(77, 19);
             this.labelIESRepasse.TabIndex = 58;
             this.labelIESRepasse.Text = "IES Repasse";
-            //  
-            // cbMes 
-            //  
+            // 
+            // cbMes
+            // 
             this.cbMes.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbMes.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cbMes.FormattingEnabled = true;
@@ -620,9 +621,9 @@
             this.cbMes.Name = "cbMes";
             this.cbMes.Size = new System.Drawing.Size(128, 25);
             this.cbMes.TabIndex = 44;
-            //  
-            // cbIESRepasse 
-            //  
+            // 
+            // cbIESRepasse
+            // 
             this.cbIESRepasse.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbIESRepasse.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cbIESRepasse.FormattingEnabled = true;
@@ -634,27 +635,27 @@
             this.cbIESRepasse.Name = "cbIESRepasse";
             this.cbIESRepasse.Size = new System.Drawing.Size(271, 25);
             this.cbIESRepasse.TabIndex = 57;
-            //  
-            // dtpDataInicial 
-            //  
+            // 
+            // dtpDataInicial
+            // 
             this.dtpDataInicial.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dtpDataInicial.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.dtpDataInicial.Location = new System.Drawing.Point(2, 25);
             this.dtpDataInicial.Name = "dtpDataInicial";
             this.dtpDataInicial.Size = new System.Drawing.Size(137, 22);
             this.dtpDataInicial.TabIndex = 45;
-            //  
-            // dtpDataFinal 
-            //  
+            // 
+            // dtpDataFinal
+            // 
             this.dtpDataFinal.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dtpDataFinal.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.dtpDataFinal.Location = new System.Drawing.Point(145, 25);
             this.dtpDataFinal.Name = "dtpDataFinal";
             this.dtpDataFinal.Size = new System.Drawing.Size(128, 22);
             this.dtpDataFinal.TabIndex = 46;
-            //  
-            // labelSituacao 
-            //  
+            // 
+            // labelSituacao
+            // 
             this.labelSituacao.AutoSize = true;
             this.labelSituacao.Location = new System.Drawing.Point(2, 123);
             this.labelSituacao.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
@@ -662,9 +663,9 @@
             this.labelSituacao.Size = new System.Drawing.Size(58, 19);
             this.labelSituacao.TabIndex = 55;
             this.labelSituacao.Text = "Situação";
-            //  
-            // labelDataFim 
-            //  
+            // 
+            // labelDataFim
+            // 
             this.labelDataFim.AutoSize = true;
             this.labelDataFim.Location = new System.Drawing.Point(147, 3);
             this.labelDataFim.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
@@ -672,9 +673,9 @@
             this.labelDataFim.Size = new System.Drawing.Size(62, 19);
             this.labelDataFim.TabIndex = 52;
             this.labelDataFim.Text = "Data Fim";
-            //  
-            // labelAno 
-            //  
+            // 
+            // labelAno
+            // 
             this.labelAno.AutoSize = true;
             this.labelAno.Location = new System.Drawing.Point(2, 61);
             this.labelAno.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
@@ -682,9 +683,9 @@
             this.labelAno.Size = new System.Drawing.Size(33, 19);
             this.labelAno.TabIndex = 54;
             this.labelAno.Text = "Ano";
-            //  
-            // labelMes 
-            //  
+            // 
+            // labelMes
+            // 
             this.labelMes.AutoSize = true;
             this.labelMes.Location = new System.Drawing.Point(147, 61);
             this.labelMes.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
@@ -692,11 +693,11 @@
             this.labelMes.Size = new System.Drawing.Size(33, 19);
             this.labelMes.TabIndex = 53;
             this.labelMes.Text = "Mês";
-            //  
-            // metroLabel20 
-            //  
-            this.metroLabel20.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-            | System.Windows.Forms.AnchorStyles.Left)
+            // 
+            // metroLabel20
+            // 
+            this.metroLabel20.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.metroLabel20.AutoSize = true;
             this.metroLabel20.FontSize = MetroFramework.MetroLabelSize.Small;
@@ -705,11 +706,11 @@
             this.metroLabel20.Size = new System.Drawing.Size(242, 15);
             this.metroLabel20.TabIndex = 37;
             this.metroLabel20.Text = "(Troque de conta para poder acessar outra IES)";
-            //  
-            // metroLabel19 
-            //  
-            this.metroLabel19.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-            | System.Windows.Forms.AnchorStyles.Left)
+            // 
+            // metroLabel19
+            // 
+            this.metroLabel19.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.metroLabel19.AutoSize = true;
             this.metroLabel19.FontWeight = MetroFramework.MetroLabelWeight.Regular;
@@ -718,11 +719,11 @@
             this.metroLabel19.Size = new System.Drawing.Size(126, 19);
             this.metroLabel19.TabIndex = 36;
             this.metroLabel19.Text = "Dados de Execução";
-            //  
-            // labelCPFCaracteres 
-            //  
-            this.labelCPFCaracteres.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-            | System.Windows.Forms.AnchorStyles.Left)
+            // 
+            // labelCPFCaracteres
+            // 
+            this.labelCPFCaracteres.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.labelCPFCaracteres.AutoSize = true;
             this.labelCPFCaracteres.FontSize = MetroFramework.MetroLabelSize.Small;
@@ -731,11 +732,11 @@
             this.labelCPFCaracteres.Size = new System.Drawing.Size(116, 15);
             this.labelCPFCaracteres.TabIndex = 35;
             this.labelCPFCaracteres.Text = "(11 caracteres Exatos*)";
-            //  
-            // metroLabel17 
-            //  
-            this.metroLabel17.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-            | System.Windows.Forms.AnchorStyles.Left)
+            // 
+            // metroLabel17
+            // 
+            this.metroLabel17.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.metroLabel17.AutoSize = true;
             this.metroLabel17.Location = new System.Drawing.Point(520, 73);
@@ -743,11 +744,11 @@
             this.metroLabel17.Size = new System.Drawing.Size(213, 19);
             this.metroLabel17.TabIndex = 34;
             this.metroLabel17.Text = "Digite e Selecione os dados abaixo";
-            //  
-            // metroLabel16 
-            //  
-            this.metroLabel16.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-            | System.Windows.Forms.AnchorStyles.Left)
+            // 
+            // metroLabel16
+            // 
+            this.metroLabel16.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.metroLabel16.AutoSize = true;
             this.metroLabel16.FontSize = MetroFramework.MetroLabelSize.Tall;
@@ -757,9 +758,9 @@
             this.metroLabel16.Size = new System.Drawing.Size(110, 25);
             this.metroLabel16.TabIndex = 33;
             this.metroLabel16.Text = "Robo Ritter";
-            //  
-            // labelDay 
-            //  
+            // 
+            // labelDay
+            // 
             this.labelDay.AutoSize = true;
             this.labelDay.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelDay.ForeColor = System.Drawing.Color.White;
@@ -768,11 +769,11 @@
             this.labelDay.Size = new System.Drawing.Size(367, 22);
             this.labelDay.TabIndex = 31;
             this.labelDay.Text = "Quarta-feira, 11 de novembro de 2022";
-            //  
-            // labelCPF 
-            //  
-            this.labelCPF.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-            | System.Windows.Forms.AnchorStyles.Left)
+            // 
+            // labelCPF
+            // 
+            this.labelCPF.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.labelCPF.AutoSize = true;
             this.labelCPF.Location = new System.Drawing.Point(6, 63);
@@ -780,11 +781,11 @@
             this.labelCPF.Size = new System.Drawing.Size(33, 19);
             this.labelCPF.TabIndex = 28;
             this.labelCPF.Text = "CPF";
-            //  
-            // btnIniciar 
-            //  
-            this.btnIniciar.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-            | System.Windows.Forms.AnchorStyles.Left)
+            // 
+            // btnIniciar
+            // 
+            this.btnIniciar.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.btnIniciar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(45)))));
             this.btnIniciar.FontSize = MetroFramework.MetroButtonSize.Medium;
@@ -798,11 +799,11 @@
             this.btnIniciar.Theme = MetroFramework.MetroThemeStyle.Dark;
             this.btnIniciar.UseSelectable = true;
             this.btnIniciar.Click += new System.EventHandler(this.btnIniciar_Click);
-            //  
-            // metroLabel6 
-            //  
-            this.metroLabel6.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-            | System.Windows.Forms.AnchorStyles.Left)
+            // 
+            // metroLabel6
+            // 
+            this.metroLabel6.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.metroLabel6.AutoSize = true;
             this.metroLabel6.Location = new System.Drawing.Point(984, 304);
@@ -810,11 +811,11 @@
             this.metroLabel6.Size = new System.Drawing.Size(63, 19);
             this.metroLabel6.TabIndex = 26;
             this.metroLabel6.Text = "CAMPUS";
-            //  
-            // metroLabel5 
-            //  
-            this.metroLabel5.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-            | System.Windows.Forms.AnchorStyles.Left)
+            // 
+            // metroLabel5
+            // 
+            this.metroLabel5.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.metroLabel5.AutoSize = true;
             this.metroLabel5.Location = new System.Drawing.Point(675, 305);
@@ -822,11 +823,11 @@
             this.metroLabel5.Size = new System.Drawing.Size(122, 19);
             this.metroLabel5.TabIndex = 25;
             this.metroLabel5.Text = "Modo de Execução";
-            //  
-            // metroLabel4 
-            //  
-            this.metroLabel4.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-            | System.Windows.Forms.AnchorStyles.Left)
+            // 
+            // metroLabel4
+            // 
+            this.metroLabel4.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.metroLabel4.AutoSize = true;
             this.metroLabel4.Location = new System.Drawing.Point(523, 305);
@@ -834,11 +835,11 @@
             this.metroLabel4.Size = new System.Drawing.Size(63, 19);
             this.metroLabel4.TabIndex = 24;
             this.metroLabel4.Text = "Semestre";
-            //  
-            // metroLabel3 
-            //  
-            this.metroLabel3.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-            | System.Windows.Forms.AnchorStyles.Left)
+            // 
+            // metroLabel3
+            // 
+            this.metroLabel3.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.metroLabel3.AutoSize = true;
             this.metroLabel3.Location = new System.Drawing.Point(523, 213);
@@ -846,11 +847,11 @@
             this.metroLabel3.Size = new System.Drawing.Size(26, 19);
             this.metroLabel3.TabIndex = 23;
             this.metroLabel3.Text = "IES";
-            //  
-            // metroLabel2 
-            //  
-            this.metroLabel2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-            | System.Windows.Forms.AnchorStyles.Left)
+            // 
+            // metroLabel2
+            // 
+            this.metroLabel2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.metroLabel2.AutoSize = true;
             this.metroLabel2.Location = new System.Drawing.Point(519, 143);
@@ -858,11 +859,11 @@
             this.metroLabel2.Size = new System.Drawing.Size(108, 19);
             this.metroLabel2.TabIndex = 22;
             this.metroLabel2.Text = "Modalidade FIES";
-            //  
-            // radioBaixarDocumento 
-            //  
-            this.radioBaixarDocumento.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-            | System.Windows.Forms.AnchorStyles.Left)
+            // 
+            // radioBaixarDocumento
+            // 
+            this.radioBaixarDocumento.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.radioBaixarDocumento.AutoSize = true;
             this.radioBaixarDocumento.FontSize = MetroFramework.MetroCheckBoxSize.Medium;
@@ -873,11 +874,11 @@
             this.radioBaixarDocumento.TabIndex = 21;
             this.radioBaixarDocumento.Text = "Baixar Documento";
             this.radioBaixarDocumento.UseSelectable = true;
-            //  
-            // radioBuscarStatus 
-            //  
-            this.radioBuscarStatus.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-            | System.Windows.Forms.AnchorStyles.Left)
+            // 
+            // radioBuscarStatus
+            // 
+            this.radioBuscarStatus.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.radioBuscarStatus.AutoSize = true;
             this.radioBuscarStatus.FontSize = MetroFramework.MetroCheckBoxSize.Medium;
@@ -888,11 +889,11 @@
             this.radioBuscarStatus.TabIndex = 20;
             this.radioBuscarStatus.Text = "Buscar Status";
             this.radioBuscarStatus.UseSelectable = true;
-            //  
-            // labelModoOperacao 
-            //  
-            this.labelModoOperacao.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-            | System.Windows.Forms.AnchorStyles.Left)
+            // 
+            // labelModoOperacao
+            // 
+            this.labelModoOperacao.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.labelModoOperacao.AutoSize = true;
             this.labelModoOperacao.FontWeight = MetroFramework.MetroLabelWeight.Regular;
@@ -901,11 +902,11 @@
             this.labelModoOperacao.Size = new System.Drawing.Size(128, 19);
             this.labelModoOperacao.TabIndex = 17;
             this.labelModoOperacao.Text = "Modo de Operação";
-            //  
-            // cbSemestre 
-            //  
-            this.cbSemestre.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-            | System.Windows.Forms.AnchorStyles.Left)
+            // 
+            // cbSemestre
+            // 
+            this.cbSemestre.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.cbSemestre.BackColor = System.Drawing.SystemColors.Control;
             this.cbSemestre.Cursor = System.Windows.Forms.Cursors.Hand;
@@ -920,11 +921,11 @@
             this.cbSemestre.Name = "cbSemestre";
             this.cbSemestre.Size = new System.Drawing.Size(154, 25);
             this.cbSemestre.TabIndex = 9;
-            //  
-            // cbCampus 
-            //  
-            this.cbCampus.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-            | System.Windows.Forms.AnchorStyles.Left)
+            // 
+            // cbCampus
+            // 
+            this.cbCampus.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.cbCampus.BackColor = System.Drawing.SystemColors.Control;
             this.cbCampus.Cursor = System.Windows.Forms.Cursors.Hand;
@@ -953,11 +954,11 @@
             this.cbCampus.Name = "cbCampus";
             this.cbCampus.Size = new System.Drawing.Size(151, 25);
             this.cbCampus.TabIndex = 4;
-            //  
-            // cbExecucao 
-            //  
-            this.cbExecucao.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-            | System.Windows.Forms.AnchorStyles.Left)
+            // 
+            // cbExecucao
+            // 
+            this.cbExecucao.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.cbExecucao.BackColor = System.Drawing.SystemColors.Control;
             this.cbExecucao.Cursor = System.Windows.Forms.Cursors.Hand;
@@ -994,11 +995,11 @@
             this.cbExecucao.Size = new System.Drawing.Size(303, 24);
             this.cbExecucao.TabIndex = 3;
             this.cbExecucao.SelectedIndexChanged += new System.EventHandler(this.cbExecucao_SelectedIndexChanged);
-            //  
-            // txtCPF 
-            //  
-            this.txtCPF.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-            | System.Windows.Forms.AnchorStyles.Left)
+            // 
+            // txtCPF
+            // 
+            this.txtCPF.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtCPF.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtCPF.Location = new System.Drawing.Point(6, 91);
@@ -1007,11 +1008,11 @@
             this.txtCPF.Size = new System.Drawing.Size(456, 22);
             this.txtCPF.TabIndex = 11;
             this.txtCPF.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtCPF_KeyPress);
-            //  
-            // cbFaculdade 
-            //  
-            this.cbFaculdade.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-            | System.Windows.Forms.AnchorStyles.Left)
+            // 
+            // cbFaculdade
+            // 
+            this.cbFaculdade.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.cbFaculdade.BackColor = System.Drawing.SystemColors.Control;
             this.cbFaculdade.Cursor = System.Windows.Forms.Cursors.Hand;
@@ -1031,11 +1032,11 @@
             this.cbFaculdade.Size = new System.Drawing.Size(619, 25);
             this.cbFaculdade.TabIndex = 2;
             this.cbFaculdade.SelectedIndexChanged += new System.EventHandler(this.cbFaculdade_SelectedIndexChanged);
-            //  
-            // cbPlataforma 
-            //  
-            this.cbPlataforma.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-            | System.Windows.Forms.AnchorStyles.Left)
+            // 
+            // cbPlataforma
+            // 
+            this.cbPlataforma.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.cbPlataforma.BackColor = System.Drawing.SystemColors.Control;
             this.cbPlataforma.Cursor = System.Windows.Forms.Cursors.Hand;
@@ -1051,10 +1052,10 @@
             this.cbPlataforma.Size = new System.Drawing.Size(619, 25);
             this.cbPlataforma.TabIndex = 0;
             this.cbPlataforma.SelectedIndexChanged += new System.EventHandler(this.cbPlataforma_SelectedIndexChanged);
-            //  
-            // pictureBox1 
-            //  
-            this.pictureBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
             this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
             this.pictureBox1.Location = new System.Drawing.Point(0, 0);
@@ -1063,9 +1064,9 @@
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox1.TabIndex = 29;
             this.pictureBox1.TabStop = false;
-            //  
-            // btnSenhaBanco 
-            //  
+            // 
+            // btnSenhaBanco
+            // 
             this.btnSenhaBanco.Location = new System.Drawing.Point(500, 1);
             this.btnSenhaBanco.Margin = new System.Windows.Forms.Padding(2);
             this.btnSenhaBanco.Name = "btnSenhaBanco";
@@ -1073,17 +1074,18 @@
             this.btnSenhaBanco.TabIndex = 13;
             this.btnSenhaBanco.Text = "button1";
             this.btnSenhaBanco.UseVisualStyleBackColor = true;
-            this.btnSenhaBanco.Visible = false;              
-            // panelPlanilha 
-            //  
+            this.btnSenhaBanco.Visible = false;
+            // 
+            // panelPlanilha
+            // 
             this.panelPlanilha.Controls.Add(this.dataGridView1);
             this.panelPlanilha.Location = new System.Drawing.Point(0, 0);
             this.panelPlanilha.Name = "panelPlanilha";
             this.panelPlanilha.Size = new System.Drawing.Size(1363, 727);
             this.panelPlanilha.TabIndex = 38;
-            //  
-            // dataGridView1 
-            //  
+            // 
+            // dataGridView1
+            // 
             this.dataGridView1.BackgroundColor = System.Drawing.Color.White;
             this.dataGridView1.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
@@ -1094,9 +1096,9 @@
             this.dataGridView1.RowHeadersWidth = 51;
             this.dataGridView1.Size = new System.Drawing.Size(1293, 719);
             this.dataGridView1.TabIndex = 14;
-            //  
-            // panelLogins 
-            //  
+            // 
+            // panelLogins
+            // 
             this.panelLogins.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.panelLogins.BackColor = System.Drawing.Color.White;
             this.panelLogins.Controls.Add(this.dgvLogins);
@@ -1110,16 +1112,16 @@
             this.panelLogins.Size = new System.Drawing.Size(1302, 741);
             this.panelLogins.TabIndex = 3;
             this.panelLogins.Visible = false;
-            //  
-            // dgvLogins 
-            //  
+            // 
+            // dgvLogins
+            // 
             dataGridViewCellStyle4.BackColor = System.Drawing.Color.White;
             dataGridViewCellStyle4.ForeColor = System.Drawing.Color.Black;
             dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
             dataGridViewCellStyle4.SelectionForeColor = System.Drawing.Color.Black;
             this.dgvLogins.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle4;
-            this.dgvLogins.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-            | System.Windows.Forms.AnchorStyles.Left)
+            this.dgvLogins.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dgvLogins.BackgroundColor = System.Drawing.SystemColors.Control;
             dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
@@ -1147,9 +1149,9 @@
             this.dgvLogins.RowHeadersWidth = 51;
             this.dgvLogins.Size = new System.Drawing.Size(1311, 682);
             this.dgvLogins.TabIndex = 6;
-            //  
-            // metroLabel8 
-            //  
+            // 
+            // metroLabel8
+            // 
             this.metroLabel8.AutoSize = true;
             this.metroLabel8.BackColor = System.Drawing.SystemColors.Window;
             this.metroLabel8.FontSize = MetroFramework.MetroLabelSize.Tall;
@@ -1159,9 +1161,9 @@
             this.metroLabel8.Size = new System.Drawing.Size(162, 25);
             this.metroLabel8.TabIndex = 5;
             this.metroLabel8.Text = "Data Grid de Logins";
-            //  
-            // btnExcluirLogin 
-            //  
+            // 
+            // btnExcluirLogin
+            // 
             this.btnExcluirLogin.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnExcluirLogin.BackColor = System.Drawing.Color.White;
             this.btnExcluirLogin.Cursor = System.Windows.Forms.Cursors.Hand;
@@ -1178,9 +1180,9 @@
             this.btnExcluirLogin.UseMnemonic = false;
             this.btnExcluirLogin.UseVisualStyleBackColor = false;
             this.btnExcluirLogin.Click += new System.EventHandler(this.btnExcluirLogin_Click);
-            //  
-            // btnModificarLogin 
-            //  
+            // 
+            // btnModificarLogin
+            // 
             this.btnModificarLogin.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnModificarLogin.BackColor = System.Drawing.Color.White;
             this.btnModificarLogin.Cursor = System.Windows.Forms.Cursors.Hand;
@@ -1196,9 +1198,9 @@
             this.btnModificarLogin.Text = "Modificar Login";
             this.btnModificarLogin.UseVisualStyleBackColor = false;
             this.btnModificarLogin.Click += new System.EventHandler(this.btnModificarLogin_Click);
-            //  
-            // btnAdicionarLogin 
-            //  
+            // 
+            // btnAdicionarLogin
+            // 
             this.btnAdicionarLogin.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnAdicionarLogin.BackColor = System.Drawing.Color.White;
             this.btnAdicionarLogin.Cursor = System.Windows.Forms.Cursors.Hand;
@@ -1214,15 +1216,15 @@
             this.btnAdicionarLogin.Text = "Adicionar Login";
             this.btnAdicionarLogin.UseVisualStyleBackColor = false;
             this.btnAdicionarLogin.Click += new System.EventHandler(this.btnAdicionarLogin_Click);
-            //  
-            // imageList1 
-            //  
+            // 
+            // imageList1
+            // 
             this.imageList1.ColorDepth = System.Windows.Forms.ColorDepth.Depth8Bit;
             this.imageList1.ImageSize = new System.Drawing.Size(16, 16);
             this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
-            //  
-            // panelMenu 
-            //  
+            // 
+            // panelMenu
+            // 
             this.panelMenu.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.panelMenu.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(50)))), ((int)(((byte)(50)))), ((int)(((byte)(50)))));
             this.panelMenu.Controls.Add(this.btLogout);
@@ -1231,9 +1233,9 @@
             this.panelMenu.Size = new System.Drawing.Size(166, 40);
             this.panelMenu.TabIndex = 14;
             this.panelMenu.Visible = false;
-            //  
-            // btLogout 
-            //  
+            // 
+            // btLogout
+            // 
             this.btLogout.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btLogout.FlatAppearance.BorderSize = 0;
             this.btLogout.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
@@ -1247,9 +1249,9 @@
             this.btLogout.Text = "LOGOUT";
             this.btLogout.UseVisualStyleBackColor = true;
             this.btLogout.Click += new System.EventHandler(this.btLogout_Click);
-            //  
-            // painelUsuarios 
-            //  
+            // 
+            // painelUsuarios
+            // 
             this.painelUsuarios.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.painelUsuarios.BackColor = System.Drawing.Color.White;
             this.painelUsuarios.Controls.Add(this.dgvUsuarios);
@@ -1263,9 +1265,9 @@
             this.painelUsuarios.Size = new System.Drawing.Size(1302, 731);
             this.painelUsuarios.TabIndex = 4;
             this.painelUsuarios.Visible = false;
-            //  
-            // dgvUsuarios 
-            //  
+            // 
+            // dgvUsuarios
+            // 
             this.dgvUsuarios.AllowUserToAddRows = false;
             this.dgvUsuarios.AllowUserToDeleteRows = false;
             dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
@@ -1324,9 +1326,9 @@
             this.dgvUsuarios.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
             this.dgvUsuarios.Size = new System.Drawing.Size(1332, 671);
             this.dgvUsuarios.TabIndex = 1;
-            //  
-            // metroLabel9 
-            //  
+            // 
+            // metroLabel9
+            // 
             this.metroLabel9.AutoSize = true;
             this.metroLabel9.FontSize = MetroFramework.MetroLabelSize.Tall;
             this.metroLabel9.Location = new System.Drawing.Point(6, 20);
@@ -1334,9 +1336,9 @@
             this.metroLabel9.Size = new System.Drawing.Size(178, 25);
             this.metroLabel9.TabIndex = 4;
             this.metroLabel9.Text = "Data Grid de Usuários";
-            //  
-            // btExcUsuario 
-            //  
+            // 
+            // btExcUsuario
+            // 
             this.btExcUsuario.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.btExcUsuario.BackColor = System.Drawing.Color.White;
             this.btExcUsuario.Cursor = System.Windows.Forms.Cursors.Hand;
@@ -1353,9 +1355,9 @@
             this.btExcUsuario.UseMnemonic = false;
             this.btExcUsuario.UseVisualStyleBackColor = false;
             this.btExcUsuario.Click += new System.EventHandler(this.btExcUsuario_Click);
-            //  
-            // btModUsuario 
-            //  
+            // 
+            // btModUsuario
+            // 
             this.btModUsuario.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.btModUsuario.BackColor = System.Drawing.Color.White;
             this.btModUsuario.Cursor = System.Windows.Forms.Cursors.Hand;
@@ -1372,9 +1374,9 @@
             this.btModUsuario.Text = "Modificar";
             this.btModUsuario.UseVisualStyleBackColor = false;
             this.btModUsuario.Click += new System.EventHandler(this.btModUsuario_Click);
-            //  
-            // btAddUsuario 
-            //  
+            // 
+            // btAddUsuario
+            // 
             this.btAddUsuario.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.btAddUsuario.BackColor = System.Drawing.Color.White;
             this.btAddUsuario.Cursor = System.Windows.Forms.Cursors.Hand;
@@ -1391,9 +1393,9 @@
             this.btAddUsuario.Text = "Adicionar Usuários";
             this.btAddUsuario.UseVisualStyleBackColor = false;
             this.btAddUsuario.Click += new System.EventHandler(this.btAddUsuario_Click);
-            //  
-            // label3 
-            //  
+            // 
+            // label3
+            // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.Location = new System.Drawing.Point(226, 250);
@@ -1401,14 +1403,14 @@
             this.label3.Size = new System.Drawing.Size(252, 21);
             this.label3.TabIndex = 0;
             this.label3.Text = "Nenhum Login no banco de dados.";
-            //  
-            // bwBarraProgresso 
-            //  
+            // 
+            // bwBarraProgresso
+            // 
             this.bwBarraProgresso.WorkerReportsProgress = true;
             this.bwBarraProgresso.WorkerSupportsCancellation = true;
-            //  
-            // panelSubMenu 
-            //  
+            // 
+            // panelSubMenu
+            // 
             this.panelSubMenu.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(45)))));
             this.panelSubMenu.Controls.Add(this.btUsuarios);
             this.panelSubMenu.Controls.Add(this.btnLogins);
@@ -1419,9 +1421,9 @@
             this.panelSubMenu.Name = "panelSubMenu";
             this.panelSubMenu.Size = new System.Drawing.Size(64, 728);
             this.panelSubMenu.TabIndex = 38;
-            //  
-            // btUsuarios 
-            //  
+            // 
+            // btUsuarios
+            // 
             this.btUsuarios.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(45)))));
             this.btUsuarios.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btUsuarios.FlatAppearance.BorderSize = 0;
@@ -1438,10 +1440,10 @@
             this.btUsuarios.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.btUsuarios.UseVisualStyleBackColor = false;
             this.btUsuarios.Click += new System.EventHandler(this.btUsuarios_Click);
-            //  
-            // btnLogins 
-            //  
-            this.btnLogins.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            // 
+            // btnLogins
+            // 
+            this.btnLogins.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.btnLogins.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.btnLogins.Cursor = System.Windows.Forms.Cursors.Hand;
@@ -1459,10 +1461,10 @@
             this.btnLogins.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.btnLogins.UseVisualStyleBackColor = true;
             this.btnLogins.Click += new System.EventHandler(this.btnLogins_Click);
-            //  
-            // btnAlunos 
-            //  
-            this.btnAlunos.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            // 
+            // btnAlunos
+            // 
+            this.btnAlunos.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.btnAlunos.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.btnAlunos.Cursor = System.Windows.Forms.Cursors.Hand;
@@ -1480,9 +1482,9 @@
             this.btnAlunos.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.btnAlunos.UseVisualStyleBackColor = true;
             this.btnAlunos.Click += new System.EventHandler(this.btnAlunos_Click);
-            //  
-            // btExtrairInformacoes 
-            //  
+            // 
+            // btExtrairInformacoes
+            // 
             this.btExtrairInformacoes.FlatAppearance.BorderSize = 0;
             this.btExtrairInformacoes.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btExtrairInformacoes.ForeColor = System.Drawing.Color.Silver;
@@ -1495,9 +1497,9 @@
             this.btExtrairInformacoes.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.btExtrairInformacoes.UseVisualStyleBackColor = true;
             this.btExtrairInformacoes.Click += new System.EventHandler(this.btExtrairInformacoes_Click);
-            //  
-            // btStatus 
-            //  
+            // 
+            // btStatus
+            // 
             this.btStatus.FlatAppearance.BorderSize = 0;
             this.btStatus.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btStatus.ForeColor = System.Drawing.Color.Silver;
@@ -1510,26 +1512,9 @@
             this.btStatus.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.btStatus.UseVisualStyleBackColor = true;
             this.btStatus.Click += new System.EventHandler(this.btExportar_Click);
-            //  
-            // btnMarcarNaoFeito 
-            //  
-            this.btnMarcarNaoFeito.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.btnMarcarNaoFeito.BackColor = System.Drawing.Color.White;
-            this.btnMarcarNaoFeito.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnMarcarNaoFeito.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
-            this.btnMarcarNaoFeito.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnMarcarNaoFeito.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnMarcarNaoFeito.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(33)))), ((int)(((byte)(33)))));
-            this.btnMarcarNaoFeito.Location = new System.Drawing.Point(842, 20);
-            this.btnMarcarNaoFeito.Name = "btnMarcarNaoFeito";
-            this.btnMarcarNaoFeito.Size = new System.Drawing.Size(148, 22);
-            this.btnMarcarNaoFeito.TabIndex = 10;
-            this.btnMarcarNaoFeito.Text = "Marcar não feito";
-            this.btnMarcarNaoFeito.UseVisualStyleBackColor = false;
-            this.btnMarcarNaoFeito.Click += new System.EventHandler(this.btnMarcarNaoFeito_Click);
-            //  
-            // RoboForm 
-            //  
+            // 
+            // RoboForm
+            // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
@@ -1634,7 +1619,6 @@
         private MetroFramework.Controls.MetroLabel metroLabel20;
         private System.Windows.Forms.DataGridView dgvLogins;
         private System.ComponentModel.BackgroundWorker bwBarraProgresso;
-        private MetroFramework.Controls.MetroLabel lbProcessando;
         private MetroFramework.Controls.MetroProgressBar barraProgressoImportacao;
         private MetroFramework.Controls.MetroTextBox tbBarraStatus;
         private System.Windows.Forms.Button button3;
