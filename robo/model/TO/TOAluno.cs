@@ -160,24 +160,24 @@ namespace Robo
         public TOAluno()
         {
             this.Cpf = string.Empty;
-            this.Campus = string.Empty;
-            this.Nome = string.Empty;
-            this.HistoricoAproveitamento = string.Empty;
+            this.Campus = "-";
+            this.Nome = "-";
+            this.HistoricoAproveitamento = "-"; 
             this.ReceitaBruta = "-";
             this.ReceitaLiquida = "-";
             this.ReceitaFies = "-";
-            this.ValorAditado = string.Empty;
-            this.CampusAditado = string.Empty;
-            this.Tipo = string.Empty;
+            this.ValorAditado = "-";
+            this.CampusAditado = "-";
+            this.Tipo = "-";
             this.Conclusao = "Não Feito";
-            this.AproveitamentoAtual = string.Empty;
-            this.ValorAditadoComDesconto = string.Empty;
-            this.ValorAditadoFinanciamento = string.Empty;
-            this.ValorPagoRecursoEstudante = string.Empty;
-            this.HorarioConclusao = string.Empty;
-            this.DescontoLiberalidade = string.Empty;
+            this.AproveitamentoAtual = "-";
+            this.ValorAditadoComDesconto = "-";
+            this.ValorAditadoFinanciamento = "-";
+            this.ValorPagoRecursoEstudante = "-";
+            this.HorarioConclusao = "-";
+            this.DescontoLiberalidade = "-";
             this.Extraido = "Não";
-            this.Justificativa = string.Empty;
+            this.Justificativa = "-";
 
             //Dados Extrair Informações DRM/DRI
             this.SemestreAditar = string.Empty;

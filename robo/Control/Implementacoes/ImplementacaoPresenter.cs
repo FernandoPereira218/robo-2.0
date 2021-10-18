@@ -433,7 +433,10 @@ namespace robo.Control.Implementacoes
             foreach (TOAluno aluno in alunosFies)
             {
                 TratarDadosAluno(aluno);
-
+                if (aluno.AproveitamentoAtual == null)
+                {
+                    continue;
+                }
                 if (aluno.AproveitamentoAtual.Contains("TRANCADO") == true)
                 {
                     aluno.Conclusao = "Trancado";
