@@ -1,4 +1,5 @@
 ﻿using robo;
+using robo.View;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,7 +22,7 @@ namespace Robo
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Login());
+            Application.Run(new FormInterface2());
         }
     }
 }
