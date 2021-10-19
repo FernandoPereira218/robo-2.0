@@ -19,7 +19,7 @@ namespace Robo
     public static class Dados
     {
         private const string CAMINHO_BANCO = "data/bdbot1.db";
-       
+
 
         //INSERTS
         public static void ImportaAlunos(string filePath)
@@ -173,7 +173,7 @@ namespace Robo
             {
                 return;
             }
-          
+
             if (aluno.ReceitaBruta != null)
             {
                 aluno.ReceitaBruta = double.Parse(aluno.ReceitaBruta, NumberStyles.Currency).ToString();
@@ -288,7 +288,8 @@ namespace Robo
 
                 if (MessageBox.Show(mensagem, "Limpar Banco de Dados", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK)
                 {
-                   
+
+                    Util.CreateDirectoryIfNotExists("backup");
                     DirectoryInfo directory = new DirectoryInfo("backup");
                     if (directory.GetFiles().Count() >= 5)
                     {
@@ -296,7 +297,7 @@ namespace Robo
                         myFile.Delete();
                     }
 
-                    Util.CreateDirectoryIfNotExists("backup");
+
                     File.Copy(CAMINHO_BANCO, "backup/BACKUP_BDBOT " + DateTime.Now.ToString("dd_MM_yy HH-mm-ss") + ".db");
                     DeleteAllLite<TOAluno>();
                     return true;
