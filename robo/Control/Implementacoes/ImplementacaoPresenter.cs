@@ -625,13 +625,8 @@ namespace robo.Control.Implementacoes
             utilFiesNovo.WaitForLoading(Driver);
             utilFiesNovo.ClicarMenuValidarReparcelamento(Driver);
 
-            foreach (TOAluno aluno in listaAlunos)
-            {
-                if (aluno.Conclusao == "Não Feito")
-                {
-                    validar.ExecutarValidarReparcelamento();
-                }
-            }
+            validar.ExecutarValidarReparcelamento(Driver);
+
             Driver.Close();
             Driver.Dispose();
         }
