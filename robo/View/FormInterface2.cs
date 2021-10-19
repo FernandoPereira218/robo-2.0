@@ -31,11 +31,17 @@ namespace robo.View
         {
             List<TOMenus> menusFIESNovo = Dados.SelectMenuWhereLite(tipoFies);
             labelTipoFies.Text = tipoFies;
+            
             foreach (var menu in menusFIESNovo)
             {
                 Button btn = new Button();
                 btn.Text = menu.Item;
-                btn.Width = flpModosDeExecucao.Width;
+                btn.Font = new Font("Century Gothic ", 9.75f);
+                btn.FlatStyle = (FlatStyle)BorderStyle.None;
+                btn.FlatAppearance.BorderSize = 0;
+                btn.Size = new Size(flpModosDeExecucao.Width - 23, 40);
+
+                //btn_1.Size = new Size(width, height);
                 btn.Tag = menu;
                 btn.Click += ExecutarAlgumaCoisa;
                 flpModosDeExecucao.Controls.Add(btn);
