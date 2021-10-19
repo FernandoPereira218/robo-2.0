@@ -30,21 +30,21 @@ namespace robo.View
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle15 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle16 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle17 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle18 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle19 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle20 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle21 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle22 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panelMenuBar = new System.Windows.Forms.Panel();
+            this.label6 = new System.Windows.Forms.Label();
             this.btnMinimize = new System.Windows.Forms.Button();
             this.btMenu = new System.Windows.Forms.Button();
-            this.label6 = new System.Windows.Forms.Label();
             this.btnClose = new System.Windows.Forms.Button();
             this.panelExcel = new System.Windows.Forms.Panel();
             this.btnMarcarNaoFeito = new System.Windows.Forms.Button();
@@ -59,43 +59,14 @@ namespace robo.View
             this.lblNenhumAluno = new System.Windows.Forms.Label();
             this.ofdSelectExcel = new System.Windows.Forms.OpenFileDialog();
             this.panelCadastrarContent = new System.Windows.Forms.Panel();
-            this.panelCadastro = new System.Windows.Forms.Panel();
-            this.panelDadosDeSituacao = new System.Windows.Forms.Panel();
-            this.labelFiesSiga = new MetroFramework.Controls.MetroLabel();
-            this.cbFiesSiga = new System.Windows.Forms.ComboBox();
-            this.labelDataInicio = new MetroFramework.Controls.MetroLabel();
-            this.cbSituacao = new System.Windows.Forms.ComboBox();
-            this.cbAno = new System.Windows.Forms.ComboBox();
-            this.labelIESRepasse = new MetroFramework.Controls.MetroLabel();
-            this.cbMes = new System.Windows.Forms.ComboBox();
-            this.cbIESRepasse = new System.Windows.Forms.ComboBox();
-            this.dtpDataInicial = new System.Windows.Forms.DateTimePicker();
-            this.dtpDataFinal = new System.Windows.Forms.DateTimePicker();
-            this.labelSituacao = new MetroFramework.Controls.MetroLabel();
-            this.labelDataFim = new MetroFramework.Controls.MetroLabel();
-            this.labelAno = new MetroFramework.Controls.MetroLabel();
-            this.labelMes = new MetroFramework.Controls.MetroLabel();
-            this.metroLabel20 = new MetroFramework.Controls.MetroLabel();
-            this.metroLabel19 = new MetroFramework.Controls.MetroLabel();
-            this.labelCPFCaracteres = new MetroFramework.Controls.MetroLabel();
-            this.metroLabel17 = new MetroFramework.Controls.MetroLabel();
-            this.metroLabel16 = new MetroFramework.Controls.MetroLabel();
-            this.labelDay = new System.Windows.Forms.Label();
-            this.labelCPF = new MetroFramework.Controls.MetroLabel();
-            this.metroLabel6 = new MetroFramework.Controls.MetroLabel();
-            this.metroLabel5 = new MetroFramework.Controls.MetroLabel();
-            this.metroLabel4 = new MetroFramework.Controls.MetroLabel();
-            this.metroLabel3 = new MetroFramework.Controls.MetroLabel();
-            this.radioBaixarDocumento = new MetroFramework.Controls.MetroRadioButton();
-            this.labelModoOperacao = new MetroFramework.Controls.MetroLabel();
-            this.cbSemestre = new System.Windows.Forms.ComboBox();
-            this.cbCampus = new System.Windows.Forms.ComboBox();
-            this.cbExecucao = new System.Windows.Forms.ComboBox();
-            this.txtCPF = new System.Windows.Forms.TextBox();
-            this.cbFaculdade = new System.Windows.Forms.ComboBox();
-            this.btnSenhaBanco = new System.Windows.Forms.Button();
+            this.panelMenuExecucao = new System.Windows.Forms.Panel();
+            this.metroLabel1 = new MetroFramework.Controls.MetroLabel();
+            this.button5 = new System.Windows.Forms.Button();
+            this.button4 = new System.Windows.Forms.Button();
+            this.panelExecucao = new System.Windows.Forms.Panel();
             this.panelPlanilha = new System.Windows.Forms.Panel();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.button2 = new System.Windows.Forms.Button();
             this.panelLogins = new System.Windows.Forms.Panel();
             this.dgvLogins = new System.Windows.Forms.DataGridView();
             this.metroLabel8 = new MetroFramework.Controls.MetroLabel();
@@ -114,25 +85,22 @@ namespace robo.View
             this.label3 = new System.Windows.Forms.Label();
             this.bwBarraProgresso = new System.ComponentModel.BackgroundWorker();
             this.panelSubMenu = new System.Windows.Forms.Panel();
+            this.flpModosDeExecucao = new System.Windows.Forms.FlowLayoutPanel();
+            this.labelTipoFies = new MetroFramework.Controls.MetroLabel();
+            this.btnFiesLegado = new System.Windows.Forms.Button();
+            this.btnFiesNovo = new System.Windows.Forms.Button();
             this.btUsuarios = new System.Windows.Forms.Button();
             this.btnLogins = new System.Windows.Forms.Button();
             this.btnAlunos = new System.Windows.Forms.Button();
             this.btExtrairInformacoes = new System.Windows.Forms.Button();
             this.btStatus = new System.Windows.Forms.Button();
-            this.radioBuscarStatus = new MetroFramework.Controls.MetroRadioButton();
-            this.panelMenuExecucao = new System.Windows.Forms.Panel();
-            this.panelExecucao = new System.Windows.Forms.Panel();
-            this.btnIniciar = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button4 = new System.Windows.Forms.Button();
-            this.button5 = new System.Windows.Forms.Button();
-            this.metroLabel1 = new MetroFramework.Controls.MetroLabel();
+            this.panelCadastro = new System.Windows.Forms.Panel();
             this.panelMenuBar.SuspendLayout();
             this.panelExcel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvAlunos)).BeginInit();
             this.panelCadastrarContent.SuspendLayout();
-            this.panelCadastro.SuspendLayout();
-            this.panelDadosDeSituacao.SuspendLayout();
+            this.panelMenuExecucao.SuspendLayout();
+            this.panelExecucao.SuspendLayout();
             this.panelPlanilha.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.panelLogins.SuspendLayout();
@@ -141,7 +109,6 @@ namespace robo.View
             this.painelUsuarios.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvUsuarios)).BeginInit();
             this.panelSubMenu.SuspendLayout();
-            this.panelMenuExecucao.SuspendLayout();
             this.SuspendLayout();
             // 
             // panelMenuBar
@@ -158,6 +125,18 @@ namespace robo.View
             this.panelMenuBar.Name = "panelMenuBar";
             this.panelMenuBar.Size = new System.Drawing.Size(1366, 43);
             this.panelMenuBar.TabIndex = 1;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.label6.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label6.ForeColor = System.Drawing.SystemColors.Control;
+            this.label6.Location = new System.Drawing.Point(45, 15);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(103, 16);
+            this.label6.TabIndex = 11;
+            this.label6.Text = "Anima Educação";
             // 
             // btnMinimize
             // 
@@ -186,18 +165,6 @@ namespace robo.View
             this.btMenu.TabIndex = 13;
             this.btMenu.TextImageRelation = System.Windows.Forms.TextImageRelation.TextAboveImage;
             this.btMenu.UseVisualStyleBackColor = false;
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.label6.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.ForeColor = System.Drawing.SystemColors.Control;
-            this.label6.Location = new System.Drawing.Point(45, 15);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(103, 16);
-            this.label6.TabIndex = 11;
-            this.label6.Text = "Anima Educação";
             // 
             // btnClose
             // 
@@ -371,21 +338,21 @@ namespace robo.View
             // 
             this.dgvAlunos.AllowUserToAddRows = false;
             this.dgvAlunos.AllowUserToDeleteRows = false;
-            dataGridViewCellStyle12.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dgvAlunos.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle12;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dgvAlunos.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             this.dgvAlunos.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.dgvAlunos.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
             this.dgvAlunos.BackgroundColor = System.Drawing.SystemColors.Control;
             this.dgvAlunos.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dgvAlunos.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle13.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle13.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle13.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle13.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle13.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle13.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle13.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvAlunos.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle13;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvAlunos.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.dgvAlunos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvAlunos.Location = new System.Drawing.Point(0, 62);
             this.dgvAlunos.Name = "dgvAlunos";
@@ -393,8 +360,8 @@ namespace robo.View
             this.dgvAlunos.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
             this.dgvAlunos.RowHeadersVisible = false;
             this.dgvAlunos.RowHeadersWidth = 51;
-            dataGridViewCellStyle14.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dgvAlunos.RowsDefaultCellStyle = dataGridViewCellStyle14;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dgvAlunos.RowsDefaultCellStyle = dataGridViewCellStyle3;
             this.dgvAlunos.RowTemplate.DefaultCellStyle.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dgvAlunos.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvAlunos.Size = new System.Drawing.Size(1302, 665);
@@ -433,547 +400,73 @@ namespace robo.View
             this.panelCadastrarContent.Size = new System.Drawing.Size(1628, 1080);
             this.panelCadastrarContent.TabIndex = 3;
             // 
-            // panelCadastro
+            // panelMenuExecucao
             // 
-            this.panelCadastro.Controls.Add(this.btnIniciar);
-            this.panelCadastro.Controls.Add(this.panelDadosDeSituacao);
-            this.panelCadastro.Controls.Add(this.metroLabel20);
-            this.panelCadastro.Controls.Add(this.metroLabel19);
-            this.panelCadastro.Controls.Add(this.labelCPFCaracteres);
-            this.panelCadastro.Controls.Add(this.metroLabel17);
-            this.panelCadastro.Controls.Add(this.metroLabel16);
-            this.panelCadastro.Controls.Add(this.labelDay);
-            this.panelCadastro.Controls.Add(this.labelCPF);
-            this.panelCadastro.Controls.Add(this.metroLabel6);
-            this.panelCadastro.Controls.Add(this.metroLabel5);
-            this.panelCadastro.Controls.Add(this.metroLabel4);
-            this.panelCadastro.Controls.Add(this.metroLabel3);
-            this.panelCadastro.Controls.Add(this.radioBaixarDocumento);
-            this.panelCadastro.Controls.Add(this.radioBuscarStatus);
-            this.panelCadastro.Controls.Add(this.labelModoOperacao);
-            this.panelCadastro.Controls.Add(this.cbSemestre);
-            this.panelCadastro.Controls.Add(this.cbCampus);
-            this.panelCadastro.Controls.Add(this.cbExecucao);
-            this.panelCadastro.Controls.Add(this.txtCPF);
-            this.panelCadastro.Controls.Add(this.cbFaculdade);
-            this.panelCadastro.Controls.Add(this.btnSenhaBanco);
-            this.panelCadastro.Location = new System.Drawing.Point(230, 61);
-            this.panelCadastro.Name = "panelCadastro";
-            this.panelCadastro.Size = new System.Drawing.Size(1072, 670);
-            this.panelCadastro.TabIndex = 38;
+            this.panelMenuExecucao.BackColor = System.Drawing.Color.White;
+            this.panelMenuExecucao.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.panelMenuExecucao.Controls.Add(this.metroLabel1);
+            this.panelMenuExecucao.Controls.Add(this.button5);
+            this.panelMenuExecucao.Controls.Add(this.button4);
+            this.panelMenuExecucao.Location = new System.Drawing.Point(0, -1);
+            this.panelMenuExecucao.Name = "panelMenuExecucao";
+            this.panelMenuExecucao.Size = new System.Drawing.Size(1303, 63);
+            this.panelMenuExecucao.TabIndex = 15;
             // 
-            // panelDadosDeSituacao
+            // metroLabel1
             // 
-            this.panelDadosDeSituacao.BackColor = System.Drawing.Color.White;
-            this.panelDadosDeSituacao.Controls.Add(this.labelFiesSiga);
-            this.panelDadosDeSituacao.Controls.Add(this.cbFiesSiga);
-            this.panelDadosDeSituacao.Controls.Add(this.labelDataInicio);
-            this.panelDadosDeSituacao.Controls.Add(this.cbSituacao);
-            this.panelDadosDeSituacao.Controls.Add(this.cbAno);
-            this.panelDadosDeSituacao.Controls.Add(this.labelIESRepasse);
-            this.panelDadosDeSituacao.Controls.Add(this.cbMes);
-            this.panelDadosDeSituacao.Controls.Add(this.cbIESRepasse);
-            this.panelDadosDeSituacao.Controls.Add(this.dtpDataInicial);
-            this.panelDadosDeSituacao.Controls.Add(this.dtpDataFinal);
-            this.panelDadosDeSituacao.Controls.Add(this.labelSituacao);
-            this.panelDadosDeSituacao.Controls.Add(this.labelDataFim);
-            this.panelDadosDeSituacao.Controls.Add(this.labelAno);
-            this.panelDadosDeSituacao.Controls.Add(this.labelMes);
-            this.panelDadosDeSituacao.Location = new System.Drawing.Point(537, 140);
-            this.panelDadosDeSituacao.Name = "panelDadosDeSituacao";
-            this.panelDadosDeSituacao.Size = new System.Drawing.Size(294, 289);
-            this.panelDadosDeSituacao.TabIndex = 60;
-            // 
-            // labelFiesSiga
-            // 
-            this.labelFiesSiga.AutoSize = true;
-            this.labelFiesSiga.Location = new System.Drawing.Point(4, 239);
-            this.labelFiesSiga.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.labelFiesSiga.Name = "labelFiesSiga";
-            this.labelFiesSiga.Size = new System.Drawing.Size(65, 19);
-            this.labelFiesSiga.TabIndex = 60;
-            this.labelFiesSiga.Text = "FIES SIGA";
-            // 
-            // cbFiesSiga
-            // 
-            this.cbFiesSiga.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbFiesSiga.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cbFiesSiga.FormattingEnabled = true;
-            this.cbFiesSiga.Items.AddRange(new object[] {
-            "FIES",
-            "FIES CONTRATADO"});
-            this.cbFiesSiga.Location = new System.Drawing.Point(4, 261);
-            this.cbFiesSiga.Name = "cbFiesSiga";
-            this.cbFiesSiga.Size = new System.Drawing.Size(271, 25);
-            this.cbFiesSiga.TabIndex = 59;
-            // 
-            // labelDataInicio
-            // 
-            this.labelDataInicio.AutoSize = true;
-            this.labelDataInicio.Location = new System.Drawing.Point(2, 3);
-            this.labelDataInicio.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.labelDataInicio.Name = "labelDataInicio";
-            this.labelDataInicio.Size = new System.Drawing.Size(70, 19);
-            this.labelDataInicio.TabIndex = 51;
-            this.labelDataInicio.Text = "Data Inicio";
-            // 
-            // cbSituacao
-            // 
-            this.cbSituacao.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbSituacao.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cbSituacao.FormattingEnabled = true;
-            this.cbSituacao.Items.AddRange(new object[] {
-            "",
-            "Contratado",
-            "Contrato Cancelado",
-            "Contrato encerrado",
-            "Contrato pendente de correcao",
-            "Contrato pendente de validacao",
-            "Em preenchimento pelo aluno",
-            "Enviado ao banco",
-            "Pendente de validacao pela CPSA",
-            "Reaberto pela CPSA para correcao",
-            "Recebido pelo banco",
-            "Rejeitado pela CPSA",
-            "Validado pela CPSA",
-            "Vencido",
-            "Prorrogado"});
-            this.cbSituacao.Location = new System.Drawing.Point(2, 145);
-            this.cbSituacao.Name = "cbSituacao";
-            this.cbSituacao.Size = new System.Drawing.Size(271, 25);
-            this.cbSituacao.TabIndex = 42;
-            // 
-            // cbAno
-            // 
-            this.cbAno.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbAno.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cbAno.FormattingEnabled = true;
-            this.cbAno.Items.AddRange(new object[] {
-            "",
-            "2010",
-            "2011",
-            "2012",
-            "2013",
-            "2014",
-            "2015",
-            "2016",
-            "2017",
-            "2018",
-            "2019",
-            "2020",
-            "2021"});
-            this.cbAno.Location = new System.Drawing.Point(2, 83);
-            this.cbAno.Name = "cbAno";
-            this.cbAno.Size = new System.Drawing.Size(137, 25);
-            this.cbAno.TabIndex = 43;
-            // 
-            // labelIESRepasse
-            // 
-            this.labelIESRepasse.AutoSize = true;
-            this.labelIESRepasse.Location = new System.Drawing.Point(2, 185);
-            this.labelIESRepasse.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.labelIESRepasse.Name = "labelIESRepasse";
-            this.labelIESRepasse.Size = new System.Drawing.Size(77, 19);
-            this.labelIESRepasse.TabIndex = 58;
-            this.labelIESRepasse.Text = "IES Repasse";
-            // 
-            // cbMes
-            // 
-            this.cbMes.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbMes.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cbMes.FormattingEnabled = true;
-            this.cbMes.Items.AddRange(new object[] {
-            "",
-            "Janeiro",
-            "Fevereiro",
-            "Março",
-            "Abril",
-            "Maio",
-            "Junho",
-            "Julho",
-            "Agosto",
-            "Setembro",
-            "Outubro",
-            "Novembro",
-            "Dezembro"});
-            this.cbMes.Location = new System.Drawing.Point(145, 83);
-            this.cbMes.Name = "cbMes";
-            this.cbMes.Size = new System.Drawing.Size(128, 25);
-            this.cbMes.TabIndex = 44;
-            // 
-            // cbIESRepasse
-            // 
-            this.cbIESRepasse.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbIESRepasse.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cbIESRepasse.FormattingEnabled = true;
-            this.cbIESRepasse.Items.AddRange(new object[] {
-            "488 - CENTRO UNIVERSITÁRIO RITTER DOS REIS",
-            "5317 - FACULDADE PORTO ALEGRENSE",
-            "2950 - Centro Universitário FADERGS"});
-            this.cbIESRepasse.Location = new System.Drawing.Point(2, 207);
-            this.cbIESRepasse.Name = "cbIESRepasse";
-            this.cbIESRepasse.Size = new System.Drawing.Size(271, 25);
-            this.cbIESRepasse.TabIndex = 57;
-            // 
-            // dtpDataInicial
-            // 
-            this.dtpDataInicial.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dtpDataInicial.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtpDataInicial.Location = new System.Drawing.Point(2, 25);
-            this.dtpDataInicial.Name = "dtpDataInicial";
-            this.dtpDataInicial.Size = new System.Drawing.Size(137, 22);
-            this.dtpDataInicial.TabIndex = 45;
-            // 
-            // dtpDataFinal
-            // 
-            this.dtpDataFinal.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dtpDataFinal.Format = System.Windows.Forms.DateTimePickerFormat.Short;
-            this.dtpDataFinal.Location = new System.Drawing.Point(145, 25);
-            this.dtpDataFinal.Name = "dtpDataFinal";
-            this.dtpDataFinal.Size = new System.Drawing.Size(128, 22);
-            this.dtpDataFinal.TabIndex = 46;
-            // 
-            // labelSituacao
-            // 
-            this.labelSituacao.AutoSize = true;
-            this.labelSituacao.Location = new System.Drawing.Point(2, 123);
-            this.labelSituacao.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.labelSituacao.Name = "labelSituacao";
-            this.labelSituacao.Size = new System.Drawing.Size(58, 19);
-            this.labelSituacao.TabIndex = 55;
-            this.labelSituacao.Text = "Situação";
-            // 
-            // labelDataFim
-            // 
-            this.labelDataFim.AutoSize = true;
-            this.labelDataFim.Location = new System.Drawing.Point(147, 3);
-            this.labelDataFim.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.labelDataFim.Name = "labelDataFim";
-            this.labelDataFim.Size = new System.Drawing.Size(62, 19);
-            this.labelDataFim.TabIndex = 52;
-            this.labelDataFim.Text = "Data Fim";
-            // 
-            // labelAno
-            // 
-            this.labelAno.AutoSize = true;
-            this.labelAno.Location = new System.Drawing.Point(2, 61);
-            this.labelAno.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.labelAno.Name = "labelAno";
-            this.labelAno.Size = new System.Drawing.Size(33, 19);
-            this.labelAno.TabIndex = 54;
-            this.labelAno.Text = "Ano";
-            // 
-            // labelMes
-            // 
-            this.labelMes.AutoSize = true;
-            this.labelMes.Location = new System.Drawing.Point(147, 61);
-            this.labelMes.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.labelMes.Name = "labelMes";
-            this.labelMes.Size = new System.Drawing.Size(33, 19);
-            this.labelMes.TabIndex = 53;
-            this.labelMes.Text = "Mês";
-            // 
-            // metroLabel20
-            // 
-            this.metroLabel20.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.metroLabel1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.metroLabel20.AutoSize = true;
-            this.metroLabel20.FontSize = MetroFramework.MetroLabelSize.Small;
-            this.metroLabel20.Location = new System.Drawing.Point(208, 168);
-            this.metroLabel20.Name = "metroLabel20";
-            this.metroLabel20.Size = new System.Drawing.Size(242, 15);
-            this.metroLabel20.TabIndex = 37;
-            this.metroLabel20.Text = "(Troque de conta para poder acessar outra IES)";
+            this.metroLabel1.AutoSize = true;
+            this.metroLabel1.FontSize = MetroFramework.MetroLabelSize.Tall;
+            this.metroLabel1.Location = new System.Drawing.Point(10, 17);
+            this.metroLabel1.Name = "metroLabel1";
+            this.metroLabel1.Size = new System.Drawing.Size(187, 25);
+            this.metroLabel1.TabIndex = 64;
+            this.metroLabel1.Text = "Sistema de Aditamento";
             // 
-            // metroLabel19
+            // button5
             // 
-            this.metroLabel19.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.metroLabel19.AutoSize = true;
-            this.metroLabel19.FontWeight = MetroFramework.MetroLabelWeight.Regular;
-            this.metroLabel19.Location = new System.Drawing.Point(16, 83);
-            this.metroLabel19.Name = "metroLabel19";
-            this.metroLabel19.Size = new System.Drawing.Size(126, 19);
-            this.metroLabel19.TabIndex = 36;
-            this.metroLabel19.Text = "Dados de Execução";
+            this.button5.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.button5.BackColor = System.Drawing.Color.White;
+            this.button5.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.button5.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
+            this.button5.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button5.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(33)))), ((int)(((byte)(33)))));
+            this.button5.Location = new System.Drawing.Point(1185, 16);
+            this.button5.Name = "button5";
+            this.button5.Size = new System.Drawing.Size(96, 29);
+            this.button5.TabIndex = 63;
+            this.button5.Text = "Planilha";
+            this.button5.UseVisualStyleBackColor = false;
             // 
-            // labelCPFCaracteres
+            // button4
             // 
-            this.labelCPFCaracteres.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.labelCPFCaracteres.AutoSize = true;
-            this.labelCPFCaracteres.FontSize = MetroFramework.MetroLabelSize.Small;
-            this.labelCPFCaracteres.Location = new System.Drawing.Point(334, 336);
-            this.labelCPFCaracteres.Name = "labelCPFCaracteres";
-            this.labelCPFCaracteres.Size = new System.Drawing.Size(116, 15);
-            this.labelCPFCaracteres.TabIndex = 35;
-            this.labelCPFCaracteres.Text = "(11 caracteres Exatos*)";
+            this.button4.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.button4.BackColor = System.Drawing.Color.White;
+            this.button4.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.button4.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
+            this.button4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button4.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(33)))), ((int)(((byte)(33)))));
+            this.button4.Location = new System.Drawing.Point(1090, 16);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(96, 29);
+            this.button4.TabIndex = 62;
+            this.button4.Text = "Executar";
+            this.button4.UseVisualStyleBackColor = false;
             // 
-            // metroLabel17
+            // panelExecucao
             // 
-            this.metroLabel17.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.metroLabel17.AutoSize = true;
-            this.metroLabel17.Location = new System.Drawing.Point(17, 51);
-            this.metroLabel17.Name = "metroLabel17";
-            this.metroLabel17.Size = new System.Drawing.Size(213, 19);
-            this.metroLabel17.TabIndex = 34;
-            this.metroLabel17.Text = "Digite e Selecione os dados abaixo";
-            // 
-            // metroLabel16
-            // 
-            this.metroLabel16.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.metroLabel16.AutoSize = true;
-            this.metroLabel16.FontSize = MetroFramework.MetroLabelSize.Tall;
-            this.metroLabel16.FontWeight = MetroFramework.MetroLabelWeight.Bold;
-            this.metroLabel16.Location = new System.Drawing.Point(17, 23);
-            this.metroLabel16.Name = "metroLabel16";
-            this.metroLabel16.Size = new System.Drawing.Size(110, 25);
-            this.metroLabel16.TabIndex = 33;
-            this.metroLabel16.Text = "Robo Ritter";
-            // 
-            // labelDay
-            // 
-            this.labelDay.AutoSize = true;
-            this.labelDay.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelDay.ForeColor = System.Drawing.Color.White;
-            this.labelDay.Location = new System.Drawing.Point(44, 370);
-            this.labelDay.Name = "labelDay";
-            this.labelDay.Size = new System.Drawing.Size(367, 22);
-            this.labelDay.TabIndex = 31;
-            this.labelDay.Text = "Quarta-feira, 11 de novembro de 2022";
-            // 
-            // labelCPF
-            // 
-            this.labelCPF.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.labelCPF.AutoSize = true;
-            this.labelCPF.Location = new System.Drawing.Point(208, 284);
-            this.labelCPF.Name = "labelCPF";
-            this.labelCPF.Size = new System.Drawing.Size(33, 19);
-            this.labelCPF.TabIndex = 28;
-            this.labelCPF.Text = "CPF";
-            // 
-            // metroLabel6
-            // 
-            this.metroLabel6.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.metroLabel6.AutoSize = true;
-            this.metroLabel6.Location = new System.Drawing.Point(16, 202);
-            this.metroLabel6.Name = "metroLabel6";
-            this.metroLabel6.Size = new System.Drawing.Size(63, 19);
-            this.metroLabel6.TabIndex = 26;
-            this.metroLabel6.Text = "CAMPUS";
-            // 
-            // metroLabel5
-            // 
-            this.metroLabel5.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.metroLabel5.AutoSize = true;
-            this.metroLabel5.Location = new System.Drawing.Point(24, 412);
-            this.metroLabel5.Name = "metroLabel5";
-            this.metroLabel5.Size = new System.Drawing.Size(122, 19);
-            this.metroLabel5.TabIndex = 25;
-            this.metroLabel5.Text = "Modo de Execução";
-            // 
-            // metroLabel4
-            // 
-            this.metroLabel4.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.metroLabel4.AutoSize = true;
-            this.metroLabel4.Location = new System.Drawing.Point(196, 412);
-            this.metroLabel4.Name = "metroLabel4";
-            this.metroLabel4.Size = new System.Drawing.Size(63, 19);
-            this.metroLabel4.TabIndex = 24;
-            this.metroLabel4.Text = "Semestre";
-            // 
-            // metroLabel3
-            // 
-            this.metroLabel3.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.metroLabel3.AutoSize = true;
-            this.metroLabel3.Location = new System.Drawing.Point(20, 118);
-            this.metroLabel3.Name = "metroLabel3";
-            this.metroLabel3.Size = new System.Drawing.Size(26, 19);
-            this.metroLabel3.TabIndex = 23;
-            this.metroLabel3.Text = "IES";
-            // 
-            // radioBaixarDocumento
-            // 
-            this.radioBaixarDocumento.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.radioBaixarDocumento.AutoSize = true;
-            this.radioBaixarDocumento.FontSize = MetroFramework.MetroCheckBoxSize.Medium;
-            this.radioBaixarDocumento.FontWeight = MetroFramework.MetroCheckBoxWeight.Light;
-            this.radioBaixarDocumento.Location = new System.Drawing.Point(24, 311);
-            this.radioBaixarDocumento.Name = "radioBaixarDocumento";
-            this.radioBaixarDocumento.Size = new System.Drawing.Size(133, 19);
-            this.radioBaixarDocumento.TabIndex = 21;
-            this.radioBaixarDocumento.Text = "Baixar Documento";
-            this.radioBaixarDocumento.UseSelectable = true;
-            // 
-            // labelModoOperacao
-            // 
-            this.labelModoOperacao.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.labelModoOperacao.AutoSize = true;
-            this.labelModoOperacao.FontWeight = MetroFramework.MetroLabelWeight.Regular;
-            this.labelModoOperacao.Location = new System.Drawing.Point(24, 284);
-            this.labelModoOperacao.Name = "labelModoOperacao";
-            this.labelModoOperacao.Size = new System.Drawing.Size(128, 19);
-            this.labelModoOperacao.TabIndex = 17;
-            this.labelModoOperacao.Text = "Modo de Operação";
-            // 
-            // cbSemestre
-            // 
-            this.cbSemestre.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.cbSemestre.BackColor = System.Drawing.SystemColors.Control;
-            this.cbSemestre.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.cbSemestre.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbSemestre.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.cbSemestre.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cbSemestre.FormattingEnabled = true;
-            this.cbSemestre.Items.AddRange(new object[] {
-            "FIES Legado",
-            "FIES Novo"});
-            this.cbSemestre.Location = new System.Drawing.Point(196, 439);
-            this.cbSemestre.Name = "cbSemestre";
-            this.cbSemestre.Size = new System.Drawing.Size(177, 25);
-            this.cbSemestre.TabIndex = 9;
-            // 
-            // cbCampus
-            // 
-            this.cbCampus.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.cbCampus.BackColor = System.Drawing.SystemColors.Control;
-            this.cbCampus.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.cbCampus.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbCampus.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.cbCampus.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cbCampus.FormattingEnabled = true;
-            this.cbCampus.Items.AddRange(new object[] {
-            "",
-            "Zona Sul",
-            "Fapa",
-            "Fapa-Fapa",
-            "Canoas",
-            "Iguatemi",
-            "Sertorio",
-            "Luis Afonso",
-            "General Vitorino",
-            "Riachuelo",
-            "Galeria Lusa",
-            "Uruguai",
-            "Barra",
-            "Botafogo",
-            "Catete",
-            "Manoel Elias"});
-            this.cbCampus.Location = new System.Drawing.Point(20, 224);
-            this.cbCampus.Name = "cbCampus";
-            this.cbCampus.Size = new System.Drawing.Size(430, 25);
-            this.cbCampus.TabIndex = 4;
-            // 
-            // cbExecucao
-            // 
-            this.cbExecucao.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.cbExecucao.BackColor = System.Drawing.SystemColors.Control;
-            this.cbExecucao.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.cbExecucao.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbExecucao.Enabled = false;
-            this.cbExecucao.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.cbExecucao.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cbExecucao.FormattingEnabled = true;
-            this.cbExecucao.Items.AddRange(new object[] {
-            "ADITAMENTO",
-            "IMPORTAR DRI PARA BANCO DE DADOS",
-            "BUSCAR STATUS ADITAMENTO",
-            "BAIXAR DRM",
-            "BAIXAR DRI",
-            "BAIXAR DRT",
-            "BAIXAR DRD",
-            "SUSPENSÃO",
-            "HISTÓRICO COPARTICIPAÇÃO",
-            "STATUS ALUNO",
-            "EXTRAIR INFORMAÇÕES DRI",
-            "EXTRAIR INFORMAÇÕES DRM",
-            "EXPORTAR DRM",
-            "EXPORTAR DRI",
-            "EXPORTAR DRT",
-            "EXPORTAR DRD",
-            "EXPORTAR SUSPENSÃO",
-            "EXPORTAR EXTRATO MENSAL DE REPASSE",
-            "EXPORTAR INADIMPLÊNCIA",
-            "EXPORTAR REPASSE",
-            "EXPORTAR COPARTICIPAÇÃO",
-            "VALIDAR REPARCELAMENTO"});
-            this.cbExecucao.Location = new System.Drawing.Point(24, 440);
-            this.cbExecucao.Name = "cbExecucao";
-            this.cbExecucao.Size = new System.Drawing.Size(154, 24);
-            this.cbExecucao.TabIndex = 3;
-            // 
-            // txtCPF
-            // 
-            this.txtCPF.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtCPF.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtCPF.Location = new System.Drawing.Point(208, 311);
-            this.txtCPF.Margin = new System.Windows.Forms.Padding(2);
-            this.txtCPF.Name = "txtCPF";
-            this.txtCPF.Size = new System.Drawing.Size(242, 22);
-            this.txtCPF.TabIndex = 11;
-            // 
-            // cbFaculdade
-            // 
-            this.cbFaculdade.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.cbFaculdade.BackColor = System.Drawing.SystemColors.Control;
-            this.cbFaculdade.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.cbFaculdade.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbFaculdade.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.cbFaculdade.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cbFaculdade.FormattingEnabled = true;
-            this.cbFaculdade.Items.AddRange(new object[] {
-            "TODOS",
-            "FADERGS",
-            "UNIRITTER",
-            "IBMR",
-            "UnP",
-            "FPB"});
-            this.cbFaculdade.Location = new System.Drawing.Point(20, 140);
-            this.cbFaculdade.Name = "cbFaculdade";
-            this.cbFaculdade.Size = new System.Drawing.Size(430, 25);
-            this.cbFaculdade.TabIndex = 2;
-            // 
-            // btnSenhaBanco
-            // 
-            this.btnSenhaBanco.Location = new System.Drawing.Point(537, 116);
-            this.btnSenhaBanco.Margin = new System.Windows.Forms.Padding(2);
-            this.btnSenhaBanco.Name = "btnSenhaBanco";
-            this.btnSenhaBanco.Size = new System.Drawing.Size(75, 19);
-            this.btnSenhaBanco.TabIndex = 13;
-            this.btnSenhaBanco.Text = "button1";
-            this.btnSenhaBanco.UseVisualStyleBackColor = true;
-            this.btnSenhaBanco.Visible = false;
+            this.panelExecucao.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(234)))), ((int)(((byte)(242)))), ((int)(((byte)(242)))));
+            this.panelExecucao.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.panelExecucao.Controls.Add(this.labelTipoFies);
+            this.panelExecucao.Controls.Add(this.flpModosDeExecucao);
+            this.panelExecucao.Location = new System.Drawing.Point(0, 60);
+            this.panelExecucao.Name = "panelExecucao";
+            this.panelExecucao.Size = new System.Drawing.Size(231, 671);
+            this.panelExecucao.TabIndex = 61;
             // 
             // panelPlanilha
             // 
@@ -997,6 +490,22 @@ namespace robo.View
             this.dataGridView1.Size = new System.Drawing.Size(1293, 719);
             this.dataGridView1.TabIndex = 14;
             // 
+            // button2
+            // 
+            this.button2.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.button2.BackColor = System.Drawing.Color.White;
+            this.button2.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.button2.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
+            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button2.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(33)))), ((int)(((byte)(33)))));
+            this.button2.Location = new System.Drawing.Point(570, 349);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(222, 29);
+            this.button2.TabIndex = 62;
+            this.button2.Text = "Executar";
+            this.button2.UseVisualStyleBackColor = false;
+            // 
             // panelLogins
             // 
             this.panelLogins.Anchor = System.Windows.Forms.AnchorStyles.None;
@@ -1015,32 +524,32 @@ namespace robo.View
             // 
             // dgvLogins
             // 
-            dataGridViewCellStyle15.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle15.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle15.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle15.SelectionForeColor = System.Drawing.Color.Black;
-            this.dgvLogins.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle15;
+            dataGridViewCellStyle4.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle4.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.Color.Black;
+            this.dgvLogins.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle4;
             this.dgvLogins.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dgvLogins.BackgroundColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle16.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle16.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle16.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle16.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle16.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle16.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle16.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvLogins.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle16;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvLogins.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
             this.dgvLogins.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle17.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle17.BackColor = System.Drawing.SystemColors.ScrollBar;
-            dataGridViewCellStyle17.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle17.ForeColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle17.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle17.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle17.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvLogins.DefaultCellStyle = dataGridViewCellStyle17;
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.ScrollBar;
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvLogins.DefaultCellStyle = dataGridViewCellStyle6;
             this.dgvLogins.GridColor = System.Drawing.Color.Black;
             this.dgvLogins.Location = new System.Drawing.Point(-5, 57);
             this.dgvLogins.Margin = new System.Windows.Forms.Padding(2);
@@ -1166,54 +675,54 @@ namespace robo.View
             // 
             this.dgvUsuarios.AllowUserToAddRows = false;
             this.dgvUsuarios.AllowUserToDeleteRows = false;
-            dataGridViewCellStyle18.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle18.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle18.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle18.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle18.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(25)))), ((int)(((byte)(25)))));
-            dataGridViewCellStyle18.SelectionForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle18.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvUsuarios.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle18;
+            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle7.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle7.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle7.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(25)))), ((int)(((byte)(25)))));
+            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvUsuarios.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle7;
             this.dgvUsuarios.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.dgvUsuarios.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
             this.dgvUsuarios.BackgroundColor = System.Drawing.SystemColors.Control;
             this.dgvUsuarios.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dgvUsuarios.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle19.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle19.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle19.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle19.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle19.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle19.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle19.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvUsuarios.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle19;
+            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle8.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle8.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle8.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvUsuarios.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle8;
             this.dgvUsuarios.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle20.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle20.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle20.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle20.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle20.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle20.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle20.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvUsuarios.DefaultCellStyle = dataGridViewCellStyle20;
+            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle9.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle9.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle9.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle9.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle9.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle9.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvUsuarios.DefaultCellStyle = dataGridViewCellStyle9;
             this.dgvUsuarios.GridColor = System.Drawing.Color.Black;
             this.dgvUsuarios.Location = new System.Drawing.Point(0, 58);
             this.dgvUsuarios.Margin = new System.Windows.Forms.Padding(2);
             this.dgvUsuarios.Name = "dgvUsuarios";
             this.dgvUsuarios.ReadOnly = true;
             this.dgvUsuarios.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle21.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle21.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle21.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle21.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle21.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle21.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle21.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvUsuarios.RowHeadersDefaultCellStyle = dataGridViewCellStyle21;
+            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle10.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle10.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle10.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle10.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle10.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle10.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvUsuarios.RowHeadersDefaultCellStyle = dataGridViewCellStyle10;
             this.dgvUsuarios.RowHeadersVisible = false;
             this.dgvUsuarios.RowHeadersWidth = 51;
-            dataGridViewCellStyle22.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dgvUsuarios.RowsDefaultCellStyle = dataGridViewCellStyle22;
+            dataGridViewCellStyle11.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dgvUsuarios.RowsDefaultCellStyle = dataGridViewCellStyle11;
             this.dgvUsuarios.RowTemplate.DefaultCellStyle.BackColor = System.Drawing.Color.White;
             this.dgvUsuarios.RowTemplate.DefaultCellStyle.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dgvUsuarios.RowTemplate.DefaultCellStyle.ForeColor = System.Drawing.SystemColors.WindowText;
@@ -1305,6 +814,8 @@ namespace robo.View
             // panelSubMenu
             // 
             this.panelSubMenu.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(45)))));
+            this.panelSubMenu.Controls.Add(this.btnFiesLegado);
+            this.panelSubMenu.Controls.Add(this.btnFiesNovo);
             this.panelSubMenu.Controls.Add(this.btUsuarios);
             this.panelSubMenu.Controls.Add(this.btnLogins);
             this.panelSubMenu.Controls.Add(this.btnAlunos);
@@ -1314,6 +825,71 @@ namespace robo.View
             this.panelSubMenu.Name = "panelSubMenu";
             this.panelSubMenu.Size = new System.Drawing.Size(68, 728);
             this.panelSubMenu.TabIndex = 38;
+            // 
+            // flpModosDeExecucao
+            // 
+            this.flpModosDeExecucao.AutoScroll = true;
+            this.flpModosDeExecucao.Location = new System.Drawing.Point(1, 26);
+            this.flpModosDeExecucao.Name = "flpModosDeExecucao";
+            this.flpModosDeExecucao.Size = new System.Drawing.Size(223, 640);
+            this.flpModosDeExecucao.TabIndex = 0;
+            // 
+            // labelTipoFies
+            // 
+            this.labelTipoFies.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.labelTipoFies.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(234)))), ((int)(((byte)(242)))), ((int)(((byte)(242)))));
+            this.labelTipoFies.FontSize = MetroFramework.MetroLabelSize.Tall;
+            this.labelTipoFies.Location = new System.Drawing.Point(1, 0);
+            this.labelTipoFies.Name = "labelTipoFies";
+            this.labelTipoFies.Size = new System.Drawing.Size(223, 23);
+            this.labelTipoFies.TabIndex = 65;
+            this.labelTipoFies.UseCustomBackColor = true;
+            this.labelTipoFies.UseCustomForeColor = true;
+            this.labelTipoFies.UseStyleColors = true;
+            // 
+            // btnFiesLegado
+            // 
+            this.btnFiesLegado.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnFiesLegado.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.btnFiesLegado.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnFiesLegado.FlatAppearance.BorderSize = 0;
+            this.btnFiesLegado.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnFiesLegado.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnFiesLegado.ForeColor = System.Drawing.Color.Silver;
+            this.btnFiesLegado.Image = global::robo.Properties.Resources.admin;
+            this.btnFiesLegado.Location = new System.Drawing.Point(1, 276);
+            this.btnFiesLegado.Margin = new System.Windows.Forms.Padding(0);
+            this.btnFiesLegado.Name = "btnFiesLegado";
+            this.btnFiesLegado.Size = new System.Drawing.Size(67, 67);
+            this.btnFiesLegado.TabIndex = 7;
+            this.btnFiesLegado.Text = "FIES Legado";
+            this.btnFiesLegado.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.btnFiesLegado.UseVisualStyleBackColor = true;
+            this.btnFiesLegado.Click += new System.EventHandler(this.btnFiesLegado_Click);
+            // 
+            // btnFiesNovo
+            // 
+            this.btnFiesNovo.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnFiesNovo.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.btnFiesNovo.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnFiesNovo.FlatAppearance.BorderSize = 0;
+            this.btnFiesNovo.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnFiesNovo.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnFiesNovo.ForeColor = System.Drawing.Color.Silver;
+            this.btnFiesNovo.Image = global::robo.Properties.Resources.admin;
+            this.btnFiesNovo.Location = new System.Drawing.Point(1, 331);
+            this.btnFiesNovo.Margin = new System.Windows.Forms.Padding(0);
+            this.btnFiesNovo.Name = "btnFiesNovo";
+            this.btnFiesNovo.Size = new System.Drawing.Size(67, 67);
+            this.btnFiesNovo.TabIndex = 6;
+            this.btnFiesNovo.Text = "FIES Novo";
+            this.btnFiesNovo.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.btnFiesNovo.UseVisualStyleBackColor = true;
+            this.btnFiesNovo.Click += new System.EventHandler(this.btnFiesNovo_Click);
             // 
             // btUsuarios
             // 
@@ -1401,120 +977,14 @@ namespace robo.View
             this.btStatus.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.btStatus.UseVisualStyleBackColor = true;
             // 
-            // radioBuscarStatus
+            // panelCadastro
             // 
-            this.radioBuscarStatus.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.radioBuscarStatus.AutoSize = true;
-            this.radioBuscarStatus.FontSize = MetroFramework.MetroCheckBoxSize.Medium;
-            this.radioBuscarStatus.FontWeight = MetroFramework.MetroCheckBoxWeight.Light;
-            this.radioBuscarStatus.Location = new System.Drawing.Point(24, 336);
-            this.radioBuscarStatus.Name = "radioBuscarStatus";
-            this.radioBuscarStatus.Size = new System.Drawing.Size(101, 19);
-            this.radioBuscarStatus.TabIndex = 20;
-            this.radioBuscarStatus.Text = "Buscar Status";
-            this.radioBuscarStatus.UseSelectable = true;
+            this.panelCadastro.Location = new System.Drawing.Point(230, 61);
+            this.panelCadastro.Name = "panelCadastro";
+            this.panelCadastro.Size = new System.Drawing.Size(1072, 670);
+            this.panelCadastro.TabIndex = 38;
             // 
-            // panelMenuExecucao
-            // 
-            this.panelMenuExecucao.BackColor = System.Drawing.Color.White;
-            this.panelMenuExecucao.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.panelMenuExecucao.Controls.Add(this.metroLabel1);
-            this.panelMenuExecucao.Controls.Add(this.button5);
-            this.panelMenuExecucao.Controls.Add(this.button4);
-            this.panelMenuExecucao.Location = new System.Drawing.Point(0, -1);
-            this.panelMenuExecucao.Name = "panelMenuExecucao";
-            this.panelMenuExecucao.Size = new System.Drawing.Size(1303, 63);
-            this.panelMenuExecucao.TabIndex = 15;
-            // 
-            // panelExecucao
-            // 
-            this.panelExecucao.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(234)))), ((int)(((byte)(242)))), ((int)(((byte)(242)))));
-            this.panelExecucao.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.panelExecucao.Location = new System.Drawing.Point(0, 60);
-            this.panelExecucao.Name = "panelExecucao";
-            this.panelExecucao.Size = new System.Drawing.Size(231, 671);
-            this.panelExecucao.TabIndex = 61;
-            // 
-            // btnIniciar
-            // 
-            this.btnIniciar.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.btnIniciar.BackColor = System.Drawing.Color.White;
-            this.btnIniciar.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnIniciar.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
-            this.btnIniciar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnIniciar.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnIniciar.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(33)))), ((int)(((byte)(33)))));
-            this.btnIniciar.Location = new System.Drawing.Point(26, 587);
-            this.btnIniciar.Name = "btnIniciar";
-            this.btnIniciar.Size = new System.Drawing.Size(222, 29);
-            this.btnIniciar.TabIndex = 61;
-            this.btnIniciar.Text = "Executar";
-            this.btnIniciar.UseVisualStyleBackColor = false;
-            // 
-            // button2
-            // 
-            this.button2.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.button2.BackColor = System.Drawing.Color.White;
-            this.button2.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.button2.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
-            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button2.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(33)))), ((int)(((byte)(33)))));
-            this.button2.Location = new System.Drawing.Point(570, 349);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(222, 29);
-            this.button2.TabIndex = 62;
-            this.button2.Text = "Executar";
-            this.button2.UseVisualStyleBackColor = false;
-            // 
-            // button4
-            // 
-            this.button4.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.button4.BackColor = System.Drawing.Color.White;
-            this.button4.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.button4.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
-            this.button4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button4.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(33)))), ((int)(((byte)(33)))));
-            this.button4.Location = new System.Drawing.Point(1090, 16);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(96, 29);
-            this.button4.TabIndex = 62;
-            this.button4.Text = "Executar";
-            this.button4.UseVisualStyleBackColor = false;
-            // 
-            // button5
-            // 
-            this.button5.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.button5.BackColor = System.Drawing.Color.White;
-            this.button5.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.button5.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
-            this.button5.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button5.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(33)))), ((int)(((byte)(33)))));
-            this.button5.Location = new System.Drawing.Point(1185, 16);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(96, 29);
-            this.button5.TabIndex = 63;
-            this.button5.Text = "Planilha";
-            this.button5.UseVisualStyleBackColor = false;
-            // 
-            // metroLabel1
-            // 
-            this.metroLabel1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.metroLabel1.AutoSize = true;
-            this.metroLabel1.FontSize = MetroFramework.MetroLabelSize.Tall;
-            this.metroLabel1.Location = new System.Drawing.Point(10, 17);
-            this.metroLabel1.Name = "metroLabel1";
-            this.metroLabel1.Size = new System.Drawing.Size(187, 25);
-            this.metroLabel1.TabIndex = 64;
-            this.metroLabel1.Text = "Sistema de Aditamento";
-            // 
-            // Form1
+            // FormInterface2
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -1529,7 +999,7 @@ namespace robo.View
             this.Controls.Add(this.panelMenu);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Margin = new System.Windows.Forms.Padding(2);
-            this.Name = "Form1";
+            this.Name = "FormInterface2";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.panelMenuBar.ResumeLayout(false);
             this.panelMenuBar.PerformLayout();
@@ -1537,10 +1007,9 @@ namespace robo.View
             this.panelExcel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvAlunos)).EndInit();
             this.panelCadastrarContent.ResumeLayout(false);
-            this.panelCadastro.ResumeLayout(false);
-            this.panelCadastro.PerformLayout();
-            this.panelDadosDeSituacao.ResumeLayout(false);
-            this.panelDadosDeSituacao.PerformLayout();
+            this.panelMenuExecucao.ResumeLayout(false);
+            this.panelMenuExecucao.PerformLayout();
+            this.panelExecucao.ResumeLayout(false);
             this.panelPlanilha.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.panelLogins.ResumeLayout(false);
@@ -1551,8 +1020,6 @@ namespace robo.View
             this.painelUsuarios.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvUsuarios)).EndInit();
             this.panelSubMenu.ResumeLayout(false);
-            this.panelMenuExecucao.ResumeLayout(false);
-            this.panelMenuExecucao.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1569,32 +1036,18 @@ namespace robo.View
         private System.Windows.Forms.DataGridView dgvAlunos;
         private System.Windows.Forms.OpenFileDialog ofdSelectExcel;
         private System.Windows.Forms.Panel panelCadastrarContent;
-        private System.Windows.Forms.ComboBox cbFaculdade;
         private System.Windows.Forms.Panel panelLogins;
         private System.Windows.Forms.Button btnExcluirLogin;
         private System.Windows.Forms.Button btnModificarLogin;
         private System.Windows.Forms.Button btnAdicionarLogin;
         private System.Windows.Forms.Button btnExportarExcel;
-        private System.Windows.Forms.ComboBox cbExecucao;
-        private System.Windows.Forms.ComboBox cbCampus;
-        private System.Windows.Forms.ComboBox cbSemestre;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.TextBox txtCPF;
         private System.Windows.Forms.Button btMenu;
         private System.Windows.Forms.Button btnAlunos;
         private System.Windows.Forms.Button btnLogins;
         private System.Windows.Forms.ImageList imageList1;
         private System.Windows.Forms.Panel panelMenu;
-        private System.Windows.Forms.Button btnSenhaBanco;
         private System.Windows.Forms.DataGridView dataGridView1;
-        private MetroFramework.Controls.MetroLabel labelModoOperacao;
-        private MetroFramework.Controls.MetroRadioButton radioBaixarDocumento;
-        private MetroFramework.Controls.MetroLabel metroLabel6;
-        private MetroFramework.Controls.MetroLabel metroLabel5;
-        private MetroFramework.Controls.MetroLabel metroLabel4;
-        private MetroFramework.Controls.MetroLabel metroLabel3;
-        private MetroFramework.Controls.MetroLabel labelCPF;
-        private System.Windows.Forms.Label labelDay;
         private System.Windows.Forms.Button btLogout;
         private System.Windows.Forms.Panel painelUsuarios;
         private System.Windows.Forms.Button btExcUsuario;
@@ -1606,36 +1059,15 @@ namespace robo.View
         private MetroFramework.Controls.MetroLabel metroLabel8;
         private MetroFramework.Controls.MetroLabel metroLabel9;
         private MetroFramework.Controls.MetroLabel metroLabel10;
-        private MetroFramework.Controls.MetroLabel labelCPFCaracteres;
-        private MetroFramework.Controls.MetroLabel metroLabel17;
-        private MetroFramework.Controls.MetroLabel metroLabel16;
-        private MetroFramework.Controls.MetroLabel metroLabel19;
-        private MetroFramework.Controls.MetroLabel metroLabel20;
         private System.Windows.Forms.DataGridView dgvLogins;
         private System.ComponentModel.BackgroundWorker bwBarraProgresso;
         private MetroFramework.Controls.MetroProgressBar barraProgressoImportacao;
         private MetroFramework.Controls.MetroTextBox tbBarraStatus;
         private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.Panel panelCadastro;
         private System.Windows.Forms.Panel panelPlanilha;
         private System.Windows.Forms.Panel panelSubMenu;
         private System.Windows.Forms.Button btExtrairInformacoes;
         private System.Windows.Forms.Button btStatus;
-        private System.Windows.Forms.Panel panelDadosDeSituacao;
-        private MetroFramework.Controls.MetroLabel labelDataInicio;
-        private System.Windows.Forms.ComboBox cbSituacao;
-        private System.Windows.Forms.ComboBox cbAno;
-        private MetroFramework.Controls.MetroLabel labelIESRepasse;
-        private System.Windows.Forms.ComboBox cbMes;
-        private System.Windows.Forms.ComboBox cbIESRepasse;
-        private System.Windows.Forms.DateTimePicker dtpDataInicial;
-        private System.Windows.Forms.DateTimePicker dtpDataFinal;
-        private MetroFramework.Controls.MetroLabel labelSituacao;
-        private MetroFramework.Controls.MetroLabel labelDataFim;
-        private MetroFramework.Controls.MetroLabel labelAno;
-        private MetroFramework.Controls.MetroLabel labelMes;
-        private MetroFramework.Controls.MetroLabel labelFiesSiga;
-        private System.Windows.Forms.ComboBox cbFiesSiga;
         private System.Windows.Forms.Button btnMarcarNaoFeito;
 
         #region Windows Form Designer generated code
@@ -1647,14 +1079,16 @@ namespace robo.View
 
 
         #endregion
-
-        private System.Windows.Forms.Button btnIniciar;
-        private MetroFramework.Controls.MetroRadioButton radioBuscarStatus;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Panel panelMenuExecucao;
         private MetroFramework.Controls.MetroLabel metroLabel1;
         private System.Windows.Forms.Button button5;
         private System.Windows.Forms.Button button4;
         private System.Windows.Forms.Panel panelExecucao;
+        private System.Windows.Forms.Button btnFiesLegado;
+        private System.Windows.Forms.Button btnFiesNovo;
+        private System.Windows.Forms.FlowLayoutPanel flpModosDeExecucao;
+        private MetroFramework.Controls.MetroLabel labelTipoFies;
+        private System.Windows.Forms.Panel panelCadastro;
     }
 }
