@@ -13,25 +13,28 @@ namespace robo.View
 {
     public partial class FormInterface2 : Form
     {
+        public string Modalidade;
         public FormInterface2()
         {
             InitializeComponent();
-
-
         }
 
         private void btnFiesNovo_Click(object sender, EventArgs e)
         {
+
             LimparModosDeExecucao();
 
             SelecionarMenusPorTipoFies("FIES NOVO");
+            Modalidade = "FIES NOVO";
         }
+
+
 
         private void SelecionarMenusPorTipoFies(string tipoFies)
         {
             List<TOMenus> menusFIESNovo = Dados.SelectMenuWhereLite(tipoFies);
             labelTipoFies.Text = tipoFies;
-            
+
             foreach (var menu in menusFIESNovo)
             {
                 Button btn = new Button();
@@ -59,7 +62,7 @@ namespace robo.View
         private void StartForm(TOMenus menu, string tipoFies)
         {
             //panelCadastro.Controls.Clear();
-            FormDefault formulario = new FormDefault(menu, tipoFies);
+            FormDefault formulario = new FormDefault(menu, tipoFies, Modalidade);
             formulario.TopLevel = false;
             formulario.FormBorderStyle = FormBorderStyle.None;
             formulario.Dock = DockStyle.Fill;
@@ -98,6 +101,7 @@ namespace robo.View
         {
             LimparModosDeExecucao();
             SelecionarMenusPorTipoFies("FIES LEGADO");
+            Modalidade = "FIES LEGADO";
         }
 
         private void btnClose_Click(object sender, EventArgs e)
