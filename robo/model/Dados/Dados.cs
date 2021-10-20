@@ -370,7 +370,7 @@ namespace Robo
             using (var db = new LiteDatabase(CAMINHO_BANCO))
             {
                 var colecao = db.GetCollection<TOMenus>();
-                return colecao.Query().Where(x => x.Modalidade == plataforma || x.Modalidade == null || x.Modalidade == "").ToList();
+                return colecao.Query().Where(x => x.Modalidade == plataforma || x.Modalidade == null || x.Modalidade == "").ToList().OrderBy(x => x.Ordem).ToList();
             }
         }
 
