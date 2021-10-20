@@ -14,37 +14,22 @@ namespace robo.View
 {
     public partial class FormDefault : Form
     {
-        List<Point> pontosComboBox = new List<Point>() { new Point(20, 140), new Point(20, 224) };
-        public FormDefault(TOMenus menuSelecionado, string tipoFies, string tipoAditamento)
+        public FormDefault(TOMenus menuSelecionado, string tipoFies)
         {
             InitializeComponent();
             LimparForm();
-            foreach (System.Windows.Forms.Control item in flowLayoutPanel1.Controls)
+
+
+            foreach (var item in menuSelecionado.Paineis)
             {
-                if (item.Tag != null)
-                {
-                    if (item.Tag.ToString().Contains(menuSelecionado.Item))
-                    {
-                        item.Visible = true;
-                        string resultado = Convert.ToString(item.Tag);
-                        if (resultado == "ADITAMENTO")
-                        {
-                            if (tipoAditamento == "FIES LEGADO")
-                            {
-                                foreach (System.Windows.Forms.Control item2 in flowLayoutPanel1.Controls)
-                                {
-                                    if (item2.Tag != null)
-                                    {
-                                        if (item2.Tag.ToString().Contains("A_LEGADO"))
-                                        {
-                                            item2.Visible = true;
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
+                flowLayoutPanel1.Controls.Find(item, false)[0].Visible = true;
+            }
+
+
+
+            if (tipoFies.ToUpper() == "FIES LEGADO")
+            {
+                panelCampus.Visible = true;
             }
         }
         private void LimparForm()
