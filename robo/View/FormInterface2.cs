@@ -37,7 +37,7 @@ namespace robo.View
                 Button btn = new Button();
                 btn.Text = menu.Item;
                 btn.Font = new Font("Century Gothic ", 9.75f);
-                btn.FlatStyle = (FlatStyle)BorderStyle.None;
+                btn.FlatStyle = FlatStyle.Flat;
                 btn.FlatAppearance.BorderSize = 0;
                 btn.Size = new Size(flpModosDeExecucao.Width - 23, 40);
 
@@ -98,6 +98,11 @@ namespace robo.View
         {
             LimparModosDeExecucao();
             SelecionarMenusPorTipoFies("FIES LEGADO");
+        }
+
+        private void btnClose_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
         }
     }
 }
