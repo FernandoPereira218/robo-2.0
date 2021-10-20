@@ -13,7 +13,7 @@ namespace robo.View
 {
     public partial class FormInterface2 : Form
     {
-        public string Modalidade;
+        FormDefault formulario;
         public FormInterface2()
         {
             InitializeComponent();
@@ -25,7 +25,6 @@ namespace robo.View
             LimparModosDeExecucao();
 
             SelecionarMenusPorTipoFies("FIES NOVO");
-            Modalidade = "FIES NOVO";
         }
 
 
@@ -62,7 +61,7 @@ namespace robo.View
         private void StartForm(TOMenus menu, string tipoFies)
         {
             //panelCadastro.Controls.Clear();
-            FormDefault formulario = new FormDefault(menu, tipoFies, Modalidade);
+            formulario = new FormDefault(menu, tipoFies);
             formulario.TopLevel = false;
             formulario.FormBorderStyle = FormBorderStyle.None;
             formulario.Dock = DockStyle.Fill;
@@ -101,7 +100,6 @@ namespace robo.View
         {
             LimparModosDeExecucao();
             SelecionarMenusPorTipoFies("FIES LEGADO");
-            Modalidade = "FIES LEGADO";
         }
 
         private void btnClose_Click(object sender, EventArgs e)
