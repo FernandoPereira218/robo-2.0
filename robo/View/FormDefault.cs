@@ -1,4 +1,5 @@
 ﻿using MetroFramework.Controls;
+using Robo;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -17,7 +18,6 @@ namespace robo.View
         public FormDefault()
         {
             InitializeComponent();
-
         }
         private void LimparForm()
         {
@@ -43,6 +43,18 @@ namespace robo.View
 
             lblExecucao.Text = menuSelecionado.Item;
 
+        }
+        public void setText(int cont)
+        {
+            
+            if(cont == 0)
+            {
+                lblAlunosImportados.Text = "Nenhum aluno importado!";
+            }
+            else
+            {
+                lblAlunosImportados.Text = cont + " alunos importados no Banco de Dados";
+            }
         }
     }
 }
