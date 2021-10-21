@@ -32,7 +32,7 @@ namespace robo.View
             this.panelCadastro = new System.Windows.Forms.Panel();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.panelCabecalho = new System.Windows.Forms.Panel();
-            this.metroLabel16 = new MetroFramework.Controls.MetroLabel();
+            this.lblExecucao = new MetroFramework.Controls.MetroLabel();
             this.metroLabel17 = new MetroFramework.Controls.MetroLabel();
             this.metroLabel19 = new MetroFramework.Controls.MetroLabel();
             this.panelIES = new System.Windows.Forms.Panel();
@@ -68,8 +68,8 @@ namespace robo.View
             this.panelFiesSiga = new System.Windows.Forms.Panel();
             this.labelFiesSiga = new MetroFramework.Controls.MetroLabel();
             this.cbFiesSiga = new System.Windows.Forms.ComboBox();
-            this.btnIniciar = new System.Windows.Forms.Button();
             this.labelDay = new System.Windows.Forms.Label();
+            this.btnIniciar = new System.Windows.Forms.Button();
             this.panelCadastro.SuspendLayout();
             this.flowLayoutPanel1.SuspendLayout();
             this.panelCabecalho.SuspendLayout();
@@ -89,6 +89,7 @@ namespace robo.View
             this.panelCadastro.BackColor = System.Drawing.Color.White;
             this.panelCadastro.Controls.Add(this.flowLayoutPanel1);
             this.panelCadastro.Controls.Add(this.labelDay);
+            this.panelCadastro.Controls.Add(this.btnIniciar);
             this.panelCadastro.Location = new System.Drawing.Point(0, 0);
             this.panelCadastro.Margin = new System.Windows.Forms.Padding(4);
             this.panelCadastro.Name = "panelCadastro";
@@ -108,16 +109,15 @@ namespace robo.View
             this.flowLayoutPanel1.Controls.Add(this.panelSituacao);
             this.flowLayoutPanel1.Controls.Add(this.panelIESRepasse);
             this.flowLayoutPanel1.Controls.Add(this.panelFiesSiga);
-            this.flowLayoutPanel1.Controls.Add(this.btnIniciar);
             this.flowLayoutPanel1.Location = new System.Drawing.Point(44, 15);
             this.flowLayoutPanel1.Margin = new System.Windows.Forms.Padding(4);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(1364, 843);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(1364, 759);
             this.flowLayoutPanel1.TabIndex = 37;
             // 
             // panelCabecalho
             // 
-            this.panelCabecalho.Controls.Add(this.metroLabel16);
+            this.panelCabecalho.Controls.Add(this.lblExecucao);
             this.panelCabecalho.Controls.Add(this.metroLabel17);
             this.panelCabecalho.Controls.Add(this.metroLabel19);
             this.panelCabecalho.Location = new System.Drawing.Point(4, 4);
@@ -125,22 +125,23 @@ namespace robo.View
             this.panelCabecalho.Name = "panelCabecalho";
             this.panelCabecalho.Size = new System.Drawing.Size(823, 123);
             this.panelCabecalho.TabIndex = 71;
-            this.panelCabecalho.Tag = "ADITAMENTO; BAIXAR DRM;";
+            this.panelCabecalho.Tag = "";
+            this.panelCabecalho.Visible = false;
             // 
-            // metroLabel16
+            // lblExecucao
             // 
-            this.metroLabel16.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.lblExecucao.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.metroLabel16.AutoSize = true;
-            this.metroLabel16.FontSize = MetroFramework.MetroLabelSize.Tall;
-            this.metroLabel16.FontWeight = MetroFramework.MetroLabelWeight.Bold;
-            this.metroLabel16.Location = new System.Drawing.Point(4, 7);
-            this.metroLabel16.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.metroLabel16.Name = "metroLabel16";
-            this.metroLabel16.Size = new System.Drawing.Size(114, 25);
-            this.metroLabel16.TabIndex = 33;
-            this.metroLabel16.Text = "Robo Ritter";
+            this.lblExecucao.AutoSize = true;
+            this.lblExecucao.FontSize = MetroFramework.MetroLabelSize.Tall;
+            this.lblExecucao.FontWeight = MetroFramework.MetroLabelWeight.Bold;
+            this.lblExecucao.Location = new System.Drawing.Point(4, 7);
+            this.lblExecucao.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblExecucao.Name = "lblExecucao";
+            this.lblExecucao.Size = new System.Drawing.Size(114, 25);
+            this.lblExecucao.TabIndex = 33;
+            this.lblExecucao.Text = "Robo Ritter";
             // 
             // metroLabel17
             // 
@@ -179,7 +180,8 @@ namespace robo.View
             this.panelIES.Name = "panelIES";
             this.panelIES.Size = new System.Drawing.Size(823, 116);
             this.panelIES.TabIndex = 62;
-            this.panelIES.Tag = "ADITAMENTO";
+            this.panelIES.Tag = "";
+            this.panelIES.Visible = false;
             // 
             // cbIES
             // 
@@ -243,6 +245,7 @@ namespace robo.View
             this.panelCampus.Name = "panelCampus";
             this.panelCampus.Size = new System.Drawing.Size(823, 94);
             this.panelCampus.TabIndex = 63;
+            this.panelCampus.Visible = false;
             // 
             // labelCampus
             // 
@@ -303,6 +306,7 @@ namespace robo.View
             this.panelCPF.Name = "panelCPF";
             this.panelCPF.Size = new System.Drawing.Size(823, 90);
             this.panelCPF.TabIndex = 64;
+            this.panelCPF.Visible = false;
             // 
             // txtCPF
             // 
@@ -352,7 +356,8 @@ namespace robo.View
             this.panelSemestre.Name = "panelSemestre";
             this.panelSemestre.Size = new System.Drawing.Size(823, 82);
             this.panelSemestre.TabIndex = 65;
-            this.panelSemestre.Tag = "ADITAMENTO";
+            this.panelSemestre.Tag = "";
+            this.panelSemestre.Visible = false;
             // 
             // cbSemestre
             // 
@@ -398,7 +403,8 @@ namespace robo.View
             this.panelDataInicioEFim.Name = "panelDataInicioEFim";
             this.panelDataInicioEFim.Size = new System.Drawing.Size(823, 80);
             this.panelDataInicioEFim.TabIndex = 66;
-            this.panelDataInicioEFim.Tag = "A_LEGADO";
+            this.panelDataInicioEFim.Tag = "";
+            this.panelDataInicioEFim.Visible = false;
             // 
             // dtpDataInicial
             // 
@@ -449,6 +455,7 @@ namespace robo.View
             this.panelAnoEMes.Name = "panelAnoEMes";
             this.panelAnoEMes.Size = new System.Drawing.Size(823, 78);
             this.panelAnoEMes.TabIndex = 67;
+            this.panelAnoEMes.Visible = false;
             // 
             // labelAno
             // 
@@ -527,6 +534,7 @@ namespace robo.View
             this.panelSituacao.Name = "panelSituacao";
             this.panelSituacao.Size = new System.Drawing.Size(823, 87);
             this.panelSituacao.TabIndex = 68;
+            this.panelSituacao.Visible = false;
             // 
             // labelSituacao
             // 
@@ -573,7 +581,8 @@ namespace robo.View
             this.panelIESRepasse.Name = "panelIESRepasse";
             this.panelIESRepasse.Size = new System.Drawing.Size(820, 84);
             this.panelIESRepasse.TabIndex = 69;
-            this.panelIESRepasse.Tag = "ADITAMENTO";
+            this.panelIESRepasse.Tag = "";
+            this.panelIESRepasse.Visible = false;
             // 
             // labelIESRepasse
             // 
@@ -608,7 +617,8 @@ namespace robo.View
             this.panelFiesSiga.Name = "panelFiesSiga";
             this.panelFiesSiga.Size = new System.Drawing.Size(820, 75);
             this.panelFiesSiga.TabIndex = 70;
-            this.panelFiesSiga.Tag = "ADITAMENTO";
+            this.panelFiesSiga.Tag = "";
+            this.panelFiesSiga.Visible = false;
             // 
             // labelFiesSiga
             // 
@@ -633,24 +643,6 @@ namespace robo.View
             this.cbFiesSiga.Size = new System.Drawing.Size(360, 28);
             this.cbFiesSiga.TabIndex = 59;
             // 
-            // btnIniciar
-            // 
-            this.btnIniciar.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.btnIniciar.BackColor = System.Drawing.Color.White;
-            this.btnIniciar.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnIniciar.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
-            this.btnIniciar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnIniciar.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnIniciar.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(33)))), ((int)(((byte)(33)))));
-            this.btnIniciar.Location = new System.Drawing.Point(4, 993);
-            this.btnIniciar.Margin = new System.Windows.Forms.Padding(4);
-            this.btnIniciar.Name = "btnIniciar";
-            this.btnIniciar.Size = new System.Drawing.Size(820, 36);
-            this.btnIniciar.TabIndex = 61;
-            this.btnIniciar.Tag = "ADITAMENTO BAIXAR DRM";
-            this.btnIniciar.Text = "Executar";
-            this.btnIniciar.UseVisualStyleBackColor = false;
-            // 
             // labelDay
             // 
             this.labelDay.AutoSize = true;
@@ -662,6 +654,24 @@ namespace robo.View
             this.labelDay.Size = new System.Drawing.Size(466, 30);
             this.labelDay.TabIndex = 31;
             this.labelDay.Text = "Quarta-feira, 11 de novembro de 2022";
+            // 
+            // btnIniciar
+            // 
+            this.btnIniciar.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.btnIniciar.BackColor = System.Drawing.Color.White;
+            this.btnIniciar.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnIniciar.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
+            this.btnIniciar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnIniciar.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnIniciar.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(33)))), ((int)(((byte)(33)))));
+            this.btnIniciar.Location = new System.Drawing.Point(311, 801);
+            this.btnIniciar.Margin = new System.Windows.Forms.Padding(4);
+            this.btnIniciar.Name = "btnIniciar";
+            this.btnIniciar.Size = new System.Drawing.Size(201, 36);
+            this.btnIniciar.TabIndex = 61;
+            this.btnIniciar.Tag = "ADITAMENTO BAIXAR DRM";
+            this.btnIniciar.Text = "Executar";
+            this.btnIniciar.UseVisualStyleBackColor = false;
             // 
             // FormDefault
             // 
@@ -702,7 +712,6 @@ namespace robo.View
         #endregion
 
         private System.Windows.Forms.Panel panelCadastro;
-        private System.Windows.Forms.Button btnIniciar;
         private MetroFramework.Controls.MetroLabel labelFiesSiga;
         private System.Windows.Forms.ComboBox cbFiesSiga;
         private MetroFramework.Controls.MetroLabel labelDataInicio;
@@ -721,7 +730,7 @@ namespace robo.View
         private MetroFramework.Controls.MetroLabel metroLabel19;
         private MetroFramework.Controls.MetroLabel labelCPFCaracteres;
         private MetroFramework.Controls.MetroLabel metroLabel17;
-        private MetroFramework.Controls.MetroLabel metroLabel16;
+        private MetroFramework.Controls.MetroLabel lblExecucao;
         private System.Windows.Forms.Label labelDay;
         private MetroFramework.Controls.MetroLabel labelCPF;
         private MetroFramework.Controls.MetroLabel labelCampus;
@@ -742,5 +751,6 @@ namespace robo.View
         private System.Windows.Forms.Panel panelSituacao;
         private System.Windows.Forms.Panel panelIESRepasse;
         private System.Windows.Forms.Panel panelFiesSiga;
+        private System.Windows.Forms.Button btnIniciar;
     }
 }

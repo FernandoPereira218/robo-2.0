@@ -14,23 +14,10 @@ namespace robo.View
 {
     public partial class FormDefault : Form
     {
-        public FormDefault(TOMenus menuSelecionado, string tipoFies)
+        public FormDefault()
         {
             InitializeComponent();
-            LimparForm();
 
-
-            foreach (var item in menuSelecionado.Paineis)
-            {
-                flowLayoutPanel1.Controls.Find(item, false)[0].Visible = true;
-            }
-
-
-
-            if (tipoFies.ToUpper() == "FIES LEGADO")
-            {
-                panelCampus.Visible = true;
-            }
         }
         private void LimparForm()
         {
@@ -38,6 +25,24 @@ namespace robo.View
             {
                 control.Visible = false;
             }
+        }
+        public void UpdateForm(TOMenus menuSelecionado, string tipoFies)
+        {
+            LimparForm();
+
+            foreach (var item in menuSelecionado.Paineis)
+            {
+                flowLayoutPanel1.Controls.Find(item, false)[0].Visible = true;
+            }
+
+
+            if (tipoFies.ToUpper() == "FIES LEGADO")
+            {
+                panelCampus.Visible = true;
+            }
+
+            lblExecucao.Text = menuSelecionado.Item;
+
         }
     }
 }

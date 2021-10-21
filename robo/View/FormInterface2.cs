@@ -61,23 +61,18 @@ namespace robo.View
         private void StartForm(TOMenus menu, string tipoFies)
         {
             //panelCadastro.Controls.Clear();
-            formulario = new FormDefault(menu, tipoFies);
-            formulario.TopLevel = false;
-            formulario.FormBorderStyle = FormBorderStyle.None;
-            formulario.Dock = DockStyle.Fill;
-            panelCadastro.Controls.Add(formulario);
-            //panelCadastro.Tag = formulario;
-            formulario.Show();
-            formulario.BringToFront();
-
-            //FormImportarCsv formulario2 = new FormImportarCsv();
-            //formulario2.TopLevel = false;
-            //formulario2.FormBorderStyle = FormBorderStyle.None;
-            //formulario2.Dock = DockStyle.Fill;
-            //panelCadastro.Controls.Add(formulario2);
-            ////panelCadastro.Tag = formulario;
-            //formulario2.Show();
-            //formulario2.BringToFront();
+            if (formulario == null)
+            {
+                formulario = new FormDefault();
+                formulario.TopLevel = false;
+                formulario.FormBorderStyle = FormBorderStyle.None;
+                formulario.Dock = DockStyle.Fill;
+                panelCadastro.Controls.Add(formulario);
+                formulario.Show();
+                formulario.BringToFront();
+            }
+            formulario.Visible = true;
+            formulario.UpdateForm(menu, tipoFies);
         }
 
         private void LimparModosDeExecucao()
@@ -86,7 +81,7 @@ namespace robo.View
             {
                 if (item.GetType() == typeof(FormDefault))
                 {
-                    panelCadastro.Controls.Remove(item);
+                    item.Visible = false;
                     break;
                 }
             }
@@ -105,6 +100,12 @@ namespace robo.View
         private void btnClose_Click(object sender, EventArgs e)
         {
             Application.Exit();
+        }
+
+        private void btnSiga_Click(object sender, EventArgs e)
+        {
+            LimparModosDeExecucao();
+            SelecionarMenusPorTipoFies("SIGA");
         }
     }
 }
