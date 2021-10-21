@@ -19,6 +19,7 @@ namespace robo
         public string Modalidade { get; set; }
         public string Regional { get; set; }
         public List<string> Paineis { get; set; }
+        public bool Planilha { get; set; }
 
         /// <summary>
         /// Contrutor da classe TOAluno que garante que não exista propriedade nula.
@@ -32,6 +33,7 @@ namespace robo
             this.Modalidade = string.Empty;
             this.Regional = string.Empty;
             this.Paineis = new List<string>();
+            this.Planilha = false;
         }
     }
 }

@@ -16,7 +16,9 @@ namespace robo.View
         FormDefault formulario;
         public FormInterface2()
         {
+          
             InitializeComponent();
+
         }
 
         private void btnFiesNovo_Click(object sender, EventArgs e)
@@ -26,9 +28,6 @@ namespace robo.View
 
             SelecionarMenusPorTipoFies("FIES NOVO");
         }
-
-
-
         private void SelecionarMenusPorTipoFies(string tipoFies)
         {
             List<TOMenus> menusFIESNovo = Dados.SelectMenuWhereLite(tipoFies);
@@ -71,8 +70,21 @@ namespace robo.View
                 formulario.Show();
                 formulario.BringToFront();
             }
+            lblExecucao.Text = "SISTEMA DE " + menu.Item;
+            if (menu.Planilha == true)
+            {
+                btnExecucao.Visible = true;
+                btnPlanilha.Visible = true;
+            }
+            else
+            {
+                btnExecucao.Visible = false;
+                btnPlanilha.Visible = false;
+            }
             formulario.Visible = true;
             formulario.UpdateForm(menu, tipoFies);
+            panelCadastro.BringToFront();
+            
         }
 
         private void LimparModosDeExecucao()
@@ -106,6 +118,17 @@ namespace robo.View
         {
             LimparModosDeExecucao();
             SelecionarMenusPorTipoFies("SIGA");
+        }
+
+        private void btnPlanilha_Click(object sender, EventArgs e)
+        {
+            panelExcel.BringToFront();
+        }
+
+        private void btnExecucao_Click(object sender, EventArgs e)
+        {
+            formulario.Visible = true;
+            panelCadastro.BringToFront();
         }
     }
 }
