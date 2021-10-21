@@ -16,9 +16,7 @@ namespace robo.View
         FormDefault formulario;
         public FormInterface2()
         {
-          
             InitializeComponent();
-
         }
 
         private void btnFiesNovo_Click(object sender, EventArgs e)
@@ -59,6 +57,7 @@ namespace robo.View
 
         private void StartForm(TOMenus menu, string tipoFies)
         {
+            int cont = Dados.Count<TOAluno>();
             //panelCadastro.Controls.Clear();
             if (formulario == null)
             {
@@ -73,18 +72,20 @@ namespace robo.View
             lblExecucao.Text = "SISTEMA DE " + menu.Item;
             if (menu.Planilha == true)
             {
-                btnExecucao.Visible = true;
                 btnPlanilha.Visible = true;
+                formulario.setText(cont);
             }
             else
             {
-                btnExecucao.Visible = false;
                 btnPlanilha.Visible = false;
             }
             formulario.Visible = true;
             formulario.UpdateForm(menu, tipoFies);
             panelCadastro.BringToFront();
-            
+            if (cont == 0 && menu.Planilha == true)
+            {
+                panelErroNenhumAluno.BringToFront();
+            }
         }
 
         private void LimparModosDeExecucao()
@@ -128,6 +129,16 @@ namespace robo.View
         private void btnExecucao_Click(object sender, EventArgs e)
         {
             formulario.Visible = true;
+            panelCadastro.BringToFront();
+        }
+
+        private void btnImportar_Click(object sender, EventArgs e)
+        {
+            panelExcel.BringToFront();
+        }
+
+        private void btnVoltar_Click(object sender, EventArgs e)
+        {
             panelCadastro.BringToFront();
         }
     }

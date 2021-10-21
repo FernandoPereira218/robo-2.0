@@ -34,7 +34,9 @@ namespace robo.View
             this.panelCabecalho = new System.Windows.Forms.Panel();
             this.lblExecucao = new MetroFramework.Controls.MetroLabel();
             this.metroLabel17 = new MetroFramework.Controls.MetroLabel();
-            this.metroLabel19 = new MetroFramework.Controls.MetroLabel();
+            this.panelImportar = new System.Windows.Forms.Panel();
+            this.btnImportar = new System.Windows.Forms.Button();
+            this.lblAlunosImportados = new MetroFramework.Controls.MetroLabel();
             this.panelIES = new System.Windows.Forms.Panel();
             this.cbIES = new System.Windows.Forms.ComboBox();
             this.labelIES = new MetroFramework.Controls.MetroLabel();
@@ -70,13 +72,11 @@ namespace robo.View
             this.cbFiesSiga = new System.Windows.Forms.ComboBox();
             this.labelDay = new System.Windows.Forms.Label();
             this.btnIniciar = new System.Windows.Forms.Button();
-            this.panelImportar = new System.Windows.Forms.Panel();
-            this.metroLabel2 = new MetroFramework.Controls.MetroLabel();
-            this.metroLabel3 = new MetroFramework.Controls.MetroLabel();
-            this.btnImportar = new System.Windows.Forms.Button();
+            this.metroLabel1 = new MetroFramework.Controls.MetroLabel();
             this.panelCadastro.SuspendLayout();
             this.flowLayoutPanel1.SuspendLayout();
             this.panelCabecalho.SuspendLayout();
+            this.panelImportar.SuspendLayout();
             this.panelIES.SuspendLayout();
             this.panelCampus.SuspendLayout();
             this.panelCPF.SuspendLayout();
@@ -86,7 +86,6 @@ namespace robo.View
             this.panelSituacao.SuspendLayout();
             this.panelIESRepasse.SuspendLayout();
             this.panelFiesSiga.SuspendLayout();
-            this.panelImportar.SuspendLayout();
             this.SuspendLayout();
             // 
             // panelCadastro
@@ -122,8 +121,8 @@ namespace robo.View
             // panelCabecalho
             // 
             this.panelCabecalho.Controls.Add(this.lblExecucao);
+            this.panelCabecalho.Controls.Add(this.metroLabel1);
             this.panelCabecalho.Controls.Add(this.metroLabel17);
-            this.panelCabecalho.Controls.Add(this.metroLabel19);
             this.panelCabecalho.Location = new System.Drawing.Point(3, 3);
             this.panelCabecalho.Name = "panelCabecalho";
             this.panelCabecalho.Size = new System.Drawing.Size(617, 100);
@@ -151,24 +150,47 @@ namespace robo.View
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.metroLabel17.AutoSize = true;
-            this.metroLabel17.Location = new System.Drawing.Point(3, 34);
+            this.metroLabel17.Location = new System.Drawing.Point(2, 31);
             this.metroLabel17.Name = "metroLabel17";
             this.metroLabel17.Size = new System.Drawing.Size(213, 19);
             this.metroLabel17.TabIndex = 34;
             this.metroLabel17.Text = "Digite e Selecione os dados abaixo";
             // 
-            // metroLabel19
+            // panelImportar
             // 
-            this.metroLabel19.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.panelImportar.Controls.Add(this.btnImportar);
+            this.panelImportar.Controls.Add(this.lblAlunosImportados);
+            this.panelImportar.Location = new System.Drawing.Point(3, 109);
+            this.panelImportar.Name = "panelImportar";
+            this.panelImportar.Size = new System.Drawing.Size(617, 100);
+            this.panelImportar.TabIndex = 72;
+            this.panelImportar.Tag = "";
+            this.panelImportar.Visible = false;
+            // 
+            // btnImportar
+            // 
+            this.btnImportar.BackColor = System.Drawing.Color.Green;
+            this.btnImportar.ForeColor = System.Drawing.SystemColors.Control;
+            this.btnImportar.Image = global::robo.Properties.Resources.excel_1_;
+            this.btnImportar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnImportar.Location = new System.Drawing.Point(2, 45);
+            this.btnImportar.Name = "btnImportar";
+            this.btnImportar.Size = new System.Drawing.Size(211, 35);
+            this.btnImportar.TabIndex = 37;
+            this.btnImportar.Text = "Atualizar";
+            this.btnImportar.UseVisualStyleBackColor = false;
+            // 
+            // lblAlunosImportados
+            // 
+            this.lblAlunosImportados.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.metroLabel19.AutoSize = true;
-            this.metroLabel19.FontWeight = MetroFramework.MetroLabelWeight.Regular;
-            this.metroLabel19.Location = new System.Drawing.Point(2, 53);
-            this.metroLabel19.Name = "metroLabel19";
-            this.metroLabel19.Size = new System.Drawing.Size(126, 19);
-            this.metroLabel19.TabIndex = 36;
-            this.metroLabel19.Text = "Dados de Execução";
+            this.lblAlunosImportados.AutoSize = true;
+            this.lblAlunosImportados.Location = new System.Drawing.Point(0, 23);
+            this.lblAlunosImportados.Name = "lblAlunosImportados";
+            this.lblAlunosImportados.Size = new System.Drawing.Size(213, 19);
+            this.lblAlunosImportados.TabIndex = 34;
+            this.lblAlunosImportados.Text = "Digite e Selecione os dados abaixo";
             // 
             // panelIES
             // 
@@ -307,7 +329,7 @@ namespace robo.View
             | System.Windows.Forms.AnchorStyles.Right)));
             this.txtCPF.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtCPF.Location = new System.Drawing.Point(13, 31);
-            this.txtCPF.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtCPF.Margin = new System.Windows.Forms.Padding(2);
             this.txtCPF.Name = "txtCPF";
             this.txtCPF.Size = new System.Drawing.Size(595, 22);
             this.txtCPF.TabIndex = 11;
@@ -653,53 +675,17 @@ namespace robo.View
             this.btnIniciar.Text = "Executar";
             this.btnIniciar.UseVisualStyleBackColor = false;
             // 
-            // panelImportar
+            // metroLabel1
             // 
-            this.panelImportar.Controls.Add(this.btnImportar);
-            this.panelImportar.Controls.Add(this.metroLabel2);
-            this.panelImportar.Controls.Add(this.metroLabel3);
-            this.panelImportar.Location = new System.Drawing.Point(3, 109);
-            this.panelImportar.Name = "panelImportar";
-            this.panelImportar.Size = new System.Drawing.Size(617, 100);
-            this.panelImportar.TabIndex = 72;
-            this.panelImportar.Tag = "";
-            this.panelImportar.Visible = false;
-            // 
-            // metroLabel2
-            // 
-            this.metroLabel2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.metroLabel1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.metroLabel2.AutoSize = true;
-            this.metroLabel2.Location = new System.Drawing.Point(3, 14);
-            this.metroLabel2.Name = "metroLabel2";
-            this.metroLabel2.Size = new System.Drawing.Size(213, 19);
-            this.metroLabel2.TabIndex = 34;
-            this.metroLabel2.Text = "Digite e Selecione os dados abaixo";
-            // 
-            // metroLabel3
-            // 
-            this.metroLabel3.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.metroLabel3.AutoSize = true;
-            this.metroLabel3.FontWeight = MetroFramework.MetroLabelWeight.Regular;
-            this.metroLabel3.Location = new System.Drawing.Point(3, 33);
-            this.metroLabel3.Name = "metroLabel3";
-            this.metroLabel3.Size = new System.Drawing.Size(126, 19);
-            this.metroLabel3.TabIndex = 36;
-            this.metroLabel3.Text = "Dados de Execução";
-            // 
-            // btnImportar
-            // 
-            this.btnImportar.BackColor = System.Drawing.Color.Green;
-            this.btnImportar.Image = global::robo.Properties.Resources.excel_1_;
-            this.btnImportar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnImportar.Location = new System.Drawing.Point(565, 3);
-            this.btnImportar.Name = "btnImportar";
-            this.btnImportar.Size = new System.Drawing.Size(46, 48);
-            this.btnImportar.TabIndex = 37;
-            this.btnImportar.UseVisualStyleBackColor = false;
+            this.metroLabel1.AutoSize = true;
+            this.metroLabel1.Location = new System.Drawing.Point(3, 31);
+            this.metroLabel1.Name = "metroLabel1";
+            this.metroLabel1.Size = new System.Drawing.Size(213, 19);
+            this.metroLabel1.TabIndex = 34;
+            this.metroLabel1.Text = "Digite e Selecione os dados abaixo";
             // 
             // FormDefault
             // 
@@ -714,6 +700,8 @@ namespace robo.View
             this.flowLayoutPanel1.ResumeLayout(false);
             this.panelCabecalho.ResumeLayout(false);
             this.panelCabecalho.PerformLayout();
+            this.panelImportar.ResumeLayout(false);
+            this.panelImportar.PerformLayout();
             this.panelIES.ResumeLayout(false);
             this.panelIES.PerformLayout();
             this.panelCampus.ResumeLayout(false);
@@ -732,8 +720,6 @@ namespace robo.View
             this.panelIESRepasse.PerformLayout();
             this.panelFiesSiga.ResumeLayout(false);
             this.panelFiesSiga.PerformLayout();
-            this.panelImportar.ResumeLayout(false);
-            this.panelImportar.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -756,7 +742,6 @@ namespace robo.View
         private MetroFramework.Controls.MetroLabel labelAno;
         private MetroFramework.Controls.MetroLabel labelMes;
         private MetroFramework.Controls.MetroLabel labelAvisoIES;
-        private MetroFramework.Controls.MetroLabel metroLabel19;
         private MetroFramework.Controls.MetroLabel labelCPFCaracteres;
         private MetroFramework.Controls.MetroLabel metroLabel17;
         private MetroFramework.Controls.MetroLabel lblExecucao;
@@ -783,7 +768,7 @@ namespace robo.View
         private System.Windows.Forms.Button btnIniciar;
         private System.Windows.Forms.Panel panelImportar;
         private System.Windows.Forms.Button btnImportar;
-        private MetroFramework.Controls.MetroLabel metroLabel2;
-        private MetroFramework.Controls.MetroLabel metroLabel3;
+        private MetroFramework.Controls.MetroLabel lblAlunosImportados;
+        private MetroFramework.Controls.MetroLabel metroLabel1;
     }
 }
