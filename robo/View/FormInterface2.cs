@@ -5,6 +5,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Media;
 using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
@@ -130,6 +131,7 @@ namespace robo.View
 
         private void btnPlanilha_Click(object sender, EventArgs e)
         {
+            AtualizarListViewAlunos();
             panelExcel.BringToFront();
         }
 
@@ -157,5 +159,87 @@ namespace robo.View
                 SendMessage(Handle, WM_NCLBUTTONDOWN, HT_CAPTION, 0);
             }
         }
+
+        private void btnMarcarNaoFeito_Click(object sender, EventArgs e)
+        {
+            DialogResult resultado = MessageBox.Show("Você realmente deseja marcar todas as conclusões como não feito", "Confirmação", MessageBoxButtons.YesNo);
+            if (resultado == DialogResult.No)
+            {
+                return;
+            }
+            Dados.UpdateConclusaoAluno("Não Feito");
+            AtualizarListViewAlunos();
+        }
+        private void AtualizarListViewAlunos()
+        {
+            var source = new BindingSource();
+            if (Dados.Count<TOAluno>() == 0)
+            {
+                dgvAlunos.Visible = false;
+            }
+            else
+            {
+                dgvAlunos.Visible = true;
+                source.DataSource = Dados.SelectAll<TOAluno>();
+                dgvAlunos.AutoGenerateColumns = true;
+                dgvAlunos.DataSource = source;
+                dgvAlunos.Columns["Cpf"].DisplayIndex = 0;
+                dgvAlunos.Columns["Nome"].DisplayIndex = 1;
+                dgvAlunos.Columns["Tipo"].DisplayIndex = 2;
+                dgvAlunos.Columns["Conclusao"].DisplayIndex = 3;
+                dgvAlunos.Columns["HorarioConclusao"].DisplayIndex = 4;
+
+
+                foreach (DataGridViewColumn item in dgvAlunos.Columns)
+                {
+                    if (Convert.ToString(dgvAlunos.Rows[0].Cells[item.Name].Value) == "")
+                    {
+                        dgvAlunos.Columns[item.Name].Visible = false;
+                    }
+                    else
+                    {
+                        dgvAlunos.Columns[item.Name].Visible = true;
+                    }
+                }
+
+
+            }
+        }
+
+        private void btnExportarExcel_Click(object sender, EventArgs e)
+        {
+            Util.ExportarCSV(dgvAlunos.Rows.Count);
+        }
+
+        private void btnSelectPath_Click(object sender, EventArgs e)
+        {
+
+            if (!Dados.VerificaQtdAlunos())
+            {
+                return;
+            }
+
+
+            AtualizarListViewAlunos();
+
+            lblStatusQuantidadeAlunos.Visible = false;
+            ofdSelectExcel.Filter = "CSV (*.csv)|*.csv";
+
+            if (ofdSelectExcel.ShowDialog() == DialogResult.OK)
+            {
+                if (ofdSelectExcel.FileName != "")
+                {
+                    Cursor.Current = Cursors.WaitCursor;
+                    Dados.ImportaAlunos(ofdSelectExcel.FileName);
+                    Cursor.Current = Cursors.Default;
+                    AtualizarListViewAlunos();
+                    SystemSounds.Beep.Play();
+                    lblStatusQuantidadeAlunos.Visible = true;
+                    int qtdAlunosProcessados = Dados.Count<TOAluno>();
+                    lblStatusQuantidadeAlunos.Text = "Importação de " + qtdAlunosProcessados + " alunos finalizada com sucesso!";
+                }
+            }
+        }
     }
 }
+
