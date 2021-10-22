@@ -208,7 +208,14 @@ namespace robo.View
 
         private void btnExportarExcel_Click(object sender, EventArgs e)
         {
-            Util.ExportarCSV(dgvAlunos.Rows.Count);
+            if (lblExecucao.Text.Contains("INFORMAÇÕES"))
+            {
+                Util.ExportarCSV(dgvAlunos.Rows.Count, "Informações");
+            }
+            else
+            {
+                Util.ExportarCSV(dgvAlunos.Rows.Count, "Alunos");
+            }
         }
 
         private void btnSelectPath_Click(object sender, EventArgs e)

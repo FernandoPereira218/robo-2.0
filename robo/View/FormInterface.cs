@@ -562,7 +562,7 @@ namespace Robo
         //Alterardo da ExportãExecel para .CSV diretamente do DataGridView, ao invés de ExportCSV (Implementado para exportar do DB)
         private void btnExportarExcel_Click(object sender, EventArgs e)
         {
-            Util.ExportarCSV(dgvAlunos.Rows.Count);
+            Util.ExportarCSV(dgvAlunos.Rows.Count, "Alunos");
         }
 
         //Mostrar painel menu (botão logout)
