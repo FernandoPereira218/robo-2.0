@@ -387,9 +387,6 @@ namespace Robo
                         presenter.ExtrairInformacoesDRMFiesNovo(cbFaculdade.Text, cbPlataforma.Text, cbSemestre.Text);
                     }
                     break;
-                case "EXTRAIR INFORMAÇÕES DRI":
-                    presenter.ExtrairInformacoesDRILegado(cbFaculdade.Text, cbPlataforma.Text, cbCampus.Text, cbSituacao.Text);
-                    break;
                 case "EXPORTAR DRI":
                     presenter.ExecutarExportarDRILegado(cbFaculdade.Text, cbPlataforma.Text, cbCampus.Text, cbSituacao.Text);
                     break;

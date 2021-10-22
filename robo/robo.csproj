@@ -262,7 +262,6 @@
     <Compile Include="Control\Implementacoes\ImplementacaoPresenter.cs" />
     <Compile Include="Control\Relatorios\FIES Legado\ExportarDRI.cs" />
     <Compile Include="Control\Relatorios\FIES Legado\ExportarExtratoMensalDeRepasse.cs" />
-    <Compile Include="Control\Relatorios\FIES Legado\ExtrairInformacoesDRI.cs" />
     <Compile Include="Control\Relatorios\FIES Legado\ExtrairInformacoesDRM.cs" />
     <Compile Include="Control\Relatorios\FIES Novo\BaixarDRM.cs" />
     <Compile Include="Control\Relatorios\FIES Novo\BuscarStatusAditamento.cs" />
