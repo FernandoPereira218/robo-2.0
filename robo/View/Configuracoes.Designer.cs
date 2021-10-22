@@ -57,6 +57,7 @@ namespace robo.View
             this.lbTitulo = new System.Windows.Forms.Label();
             this.btnMinimize = new System.Windows.Forms.Button();
             this.btnClose = new System.Windows.Forms.Button();
+            this.panelBackup = new System.Windows.Forms.Panel();
             this.panelSubMenu.SuspendLayout();
             this.panelLogins.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvLogins)).BeginInit();
@@ -91,6 +92,7 @@ namespace robo.View
             this.btBackup.TabIndex = 5;
             this.btBackup.Text = "Backup";
             this.btBackup.UseVisualStyleBackColor = true;
+            this.btBackup.Click += new System.EventHandler(this.btBackup_Click);
             // 
             // btUsuarios
             // 
@@ -446,12 +448,20 @@ namespace robo.View
             this.btnClose.Text = "X";
             this.btnClose.UseVisualStyleBackColor = true;
             // 
+            // panelBackup
+            // 
+            this.panelBackup.Location = new System.Drawing.Point(212, 63);
+            this.panelBackup.Name = "panelBackup";
+            this.panelBackup.Size = new System.Drawing.Size(856, 541);
+            this.panelBackup.TabIndex = 5;
+            // 
             // FormConfiguracoes
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
             this.ClientSize = new System.Drawing.Size(1074, 616);
+            this.Controls.Add(this.panelBackup);
             this.Controls.Add(this.panelUsuarios);
             this.Controls.Add(this.panelLogins);
             this.Controls.Add(this.panelMenuBar);
@@ -493,5 +503,6 @@ namespace robo.View
         private System.Windows.Forms.Label lbTitulo;
         private System.Windows.Forms.Button btnMinimize;
         private System.Windows.Forms.Button btnClose;
+        private System.Windows.Forms.Panel panelBackup;
     }
 }
