@@ -290,6 +290,12 @@
     <Compile Include="Model\TO\TOMenus.cs" />
     <Compile Include="Control\Util\UtilSelenium.cs" />
     <Compile Include="Control\Util\UtilSiga.cs" />
+    <Compile Include="View\Configuracoes.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\Configuracoes.Designer.cs">
+      <DependentUpon>Configuracoes.cs</DependentUpon>
+    </Compile>
     <Compile Include="View\FormDefault.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -301,12 +307,6 @@
     </Compile>
     <Compile Include="View\FormInterface2.Designer.cs">
       <DependentUpon>FormInterface2.cs</DependentUpon>
-    </Compile>
-    <Compile Include="View\FormImportarCsv.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="View\FormImportarCsv.Designer.cs">
-      <DependentUpon>FormImportarCsv.cs</DependentUpon>
     </Compile>
     <Compile Include="View\UsuarioForm.cs">
       <SubType>Form</SubType>
@@ -353,6 +353,9 @@
     <EmbeddedResource Include="Login.resx">
       <DependentUpon>Login.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="View\Configuracoes.resx">
+      <DependentUpon>Configuracoes.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="View\FormDefault.resx">
       <DependentUpon>FormDefault.cs</DependentUpon>
     </EmbeddedResource>
@@ -361,9 +364,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="View\FormInterface.resx">
       <DependentUpon>FormInterface.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="View\FormImportarCsv.resx">
-      <DependentUpon>FormImportarCsv.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="View\UsuarioForm.resx">
       <DependentUpon>UsuarioForm.cs</DependentUpon>

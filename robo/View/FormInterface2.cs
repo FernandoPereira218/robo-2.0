@@ -252,6 +252,12 @@ namespace robo.View
             }
 
         }
+
+        private void btnConfiguracoes(object sender, EventArgs e)
+        {
+            FormConfiguracoes Config = new FormConfiguracoes();
+            Config.Show();
+        }
     }
 }
 
