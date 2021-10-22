@@ -22,8 +22,10 @@ namespace robo.View
         public static extern int SendMessage(IntPtr hWnd, int Msg, int wParam, int lParam);
         [DllImportAttribute("user32.dll")]
         public static extern bool ReleaseCapture();
+        public static string versaoRobo;
         public FormInterface2()
         {
+            versaoRobo = Program.login.Permissao;
             InitializeComponent();
         }
 
@@ -69,7 +71,7 @@ namespace robo.View
             //panelCadastro.Controls.Clear();
             if (formulario == null)
             {
-                formulario = new FormDefault();
+                formulario = new FormDefault(this);
                 formulario.TopLevel = false;
                 formulario.FormBorderStyle = FormBorderStyle.None;
                 formulario.Dock = DockStyle.Fill;
@@ -221,7 +223,6 @@ namespace robo.View
 
         private void btnSelectPath_Click(object sender, EventArgs e)
         {
-
             if (!Dados.VerificaQtdAlunos())
             {
                 return;

@@ -11,6 +11,7 @@ using System.Security.Cryptography;
 using robo.Control.Update;
 using CsvHelper;
 using System.Globalization;
+using robo.View;
 
 namespace Robo
 {
@@ -43,7 +44,7 @@ namespace Robo
 
                 FirefoxOptions firefoxOptions = new FirefoxOptions();
                 firefoxOptions.AcceptInsecureCertificates = true;
-                if (RoboForm.versaoRobo != "operacoesFinanceiras" || headless == true)
+                if (FormInterface2.versaoRobo != "operacoesFinanceiras" || headless == true)
                 {
                     firefoxOptions.AddArgument("--headless");
                 }

@@ -22,7 +22,7 @@ namespace Robo
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new FormInterface2());
+            Application.Run(new Login());
         }
     }
 }
