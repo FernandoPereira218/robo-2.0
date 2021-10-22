@@ -33,6 +33,7 @@ namespace robo.View
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.panelCabecalho = new System.Windows.Forms.Panel();
             this.lblExecucao = new MetroFramework.Controls.MetroLabel();
+            this.metroLabel1 = new MetroFramework.Controls.MetroLabel();
             this.metroLabel17 = new MetroFramework.Controls.MetroLabel();
             this.panelImportar = new System.Windows.Forms.Panel();
             this.btnImportar = new System.Windows.Forms.Button();
@@ -72,7 +73,6 @@ namespace robo.View
             this.cbFiesSiga = new System.Windows.Forms.ComboBox();
             this.labelDay = new System.Windows.Forms.Label();
             this.btnIniciar = new System.Windows.Forms.Button();
-            this.metroLabel1 = new MetroFramework.Controls.MetroLabel();
             this.panelCadastro.SuspendLayout();
             this.flowLayoutPanel1.SuspendLayout();
             this.panelCabecalho.SuspendLayout();
@@ -143,6 +143,18 @@ namespace robo.View
             this.lblExecucao.Size = new System.Drawing.Size(110, 25);
             this.lblExecucao.TabIndex = 33;
             this.lblExecucao.Text = "Robo Ritter";
+            // 
+            // metroLabel1
+            // 
+            this.metroLabel1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.metroLabel1.AutoSize = true;
+            this.metroLabel1.Location = new System.Drawing.Point(3, 31);
+            this.metroLabel1.Name = "metroLabel1";
+            this.metroLabel1.Size = new System.Drawing.Size(213, 19);
+            this.metroLabel1.TabIndex = 34;
+            this.metroLabel1.Text = "Digite e Selecione os dados abaixo";
             // 
             // metroLabel17
             // 
@@ -226,7 +238,8 @@ namespace robo.View
             this.cbIES.Name = "cbIES";
             this.cbIES.Size = new System.Drawing.Size(598, 25);
             this.cbIES.TabIndex = 2;
-            this.cbIES.Tag = "ADITAMENTO DRD";
+            this.cbIES.Tag = "";
+            this.cbIES.SelectedIndexChanged += new System.EventHandler(this.cbIES_SelectedIndexChanged);
             // 
             // labelIES
             // 
@@ -238,7 +251,7 @@ namespace robo.View
             this.labelIES.Name = "labelIES";
             this.labelIES.Size = new System.Drawing.Size(26, 19);
             this.labelIES.TabIndex = 1;
-            this.labelIES.Tag = "FIES NOVOADITAMENTO DRM DRD";
+            this.labelIES.Tag = "";
             this.labelIES.Text = "IES";
             // 
             // labelAvisoIES
@@ -288,26 +301,9 @@ namespace robo.View
             this.cbCampus.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.cbCampus.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cbCampus.FormattingEnabled = true;
-            this.cbCampus.Items.AddRange(new object[] {
-            "",
-            "Zona Sul",
-            "Fapa",
-            "Fapa-Fapa",
-            "Canoas",
-            "Iguatemi",
-            "Sertorio",
-            "Luis Afonso",
-            "General Vitorino",
-            "Riachuelo",
-            "Galeria Lusa",
-            "Uruguai",
-            "Barra",
-            "Botafogo",
-            "Catete",
-            "Manoel Elias"});
             this.cbCampus.Location = new System.Drawing.Point(9, 25);
             this.cbCampus.Name = "cbCampus";
-            this.cbCampus.Size = new System.Drawing.Size(612, 25);
+            this.cbCampus.Size = new System.Drawing.Size(598, 25);
             this.cbCampus.TabIndex = 4;
             this.cbCampus.Tag = "";
             // 
@@ -573,7 +569,7 @@ namespace robo.View
             "Validado pela CPSA",
             "Vencido",
             "Prorrogado"});
-            this.cbSituacao.Location = new System.Drawing.Point(7, 35);
+            this.cbSituacao.Location = new System.Drawing.Point(15, 35);
             this.cbSituacao.Name = "cbSituacao";
             this.cbSituacao.Size = new System.Drawing.Size(271, 25);
             this.cbSituacao.TabIndex = 42;
@@ -608,7 +604,7 @@ namespace robo.View
             "488 - CENTRO UNIVERSITÁRIO RITTER DOS REIS",
             "5317 - FACULDADE PORTO ALEGRENSE",
             "2950 - Centro Universitário FADERGS"});
-            this.cbIESRepasse.Location = new System.Drawing.Point(7, 31);
+            this.cbIESRepasse.Location = new System.Drawing.Point(15, 31);
             this.cbIESRepasse.Name = "cbIESRepasse";
             this.cbIESRepasse.Size = new System.Drawing.Size(271, 25);
             this.cbIESRepasse.TabIndex = 57;
@@ -642,7 +638,7 @@ namespace robo.View
             this.cbFiesSiga.Items.AddRange(new object[] {
             "FIES",
             "FIES CONTRATADO"});
-            this.cbFiesSiga.Location = new System.Drawing.Point(2, 32);
+            this.cbFiesSiga.Location = new System.Drawing.Point(15, 32);
             this.cbFiesSiga.Name = "cbFiesSiga";
             this.cbFiesSiga.Size = new System.Drawing.Size(271, 25);
             this.cbFiesSiga.TabIndex = 59;
@@ -674,18 +670,6 @@ namespace robo.View
             this.btnIniciar.Tag = "ADITAMENTO BAIXAR DRM";
             this.btnIniciar.Text = "Executar";
             this.btnIniciar.UseVisualStyleBackColor = false;
-            // 
-            // metroLabel1
-            // 
-            this.metroLabel1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.metroLabel1.AutoSize = true;
-            this.metroLabel1.Location = new System.Drawing.Point(3, 31);
-            this.metroLabel1.Name = "metroLabel1";
-            this.metroLabel1.Size = new System.Drawing.Size(213, 19);
-            this.metroLabel1.TabIndex = 34;
-            this.metroLabel1.Text = "Digite e Selecione os dados abaixo";
             // 
             // FormDefault
             // 

@@ -240,7 +240,7 @@ namespace Robo
         }
 
         //Verificações
-        public static int verficarSemestre(string semestre)
+        public static int VerificarSemestreExiste(string semestre)
         {
             return SelectWhere<TOSemestre>(x => x.Semestre == semestre).Count;
         }
@@ -271,7 +271,7 @@ namespace Robo
         {
             string verificarSemestre = Util.VerificaSemestreAtual();
 
-            if (verficarSemestre(verificarSemestre) == 0)
+            if (VerificarSemestreExiste(verificarSemestre) == 0)
             {
                 TOSemestre semestre = new TOSemestre();
                 semestre.Semestre = verificarSemestre;
@@ -374,16 +374,17 @@ namespace Robo
             }
         }
 
+        //Remover parâmetro plataforma após finalização da interface
         public static List<string> SelectLoginTOIES(string IES, string plataforma)
         {
             List<TOLogin> listlogin;
             if (IES == "TODOS")
             {
-                listlogin = SelectWhere<TOLogin>(x => x.Plataforma == plataforma);
+                listlogin = SelectWhere<TOLogin>(x => x.Plataforma.ToUpper() == "FIES LEGADO");
             }
             else
             {
-                listlogin = SelectWhere<TOLogin>(x => x.Plataforma == plataforma && x.Faculdade == IES);
+                listlogin = SelectWhere<TOLogin>(x => x.Plataforma.ToUpper() == "FIES LEGADO" && x.Faculdade == IES);
             }
 
             List<string> listCampus = new List<string>();

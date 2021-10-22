@@ -1,4 +1,5 @@
 ﻿using MetroFramework.Controls;
+using robo.Control.Implementacoes;
 using Robo;
 using System;
 using System.Collections.Generic;
@@ -13,11 +14,18 @@ using static robo.View.FormInterface2;
 
 namespace robo.View
 {
-    public partial class FormDefault : Form
+    public partial class FormDefault : Form, IContratos.IMainForms
     {
+        private static ImplementacaoPresenter presenter;
         public FormDefault()
         {
+            presenter = new ImplementacaoPresenter(this);
+
+            Dados.VerificaSemestre();
             InitializeComponent();
+
+            cbSemestre.DataSource = presenter.PreencherListaSemestre();
+            cbSemestre.SelectedIndex = cbSemestre.Items.Count - 1;
         }
         private void LimparForm()
         {
@@ -46,8 +54,8 @@ namespace robo.View
         }
         public void setText(int cont)
         {
-            
-            if(cont == 0)
+
+            if (cont == 0)
             {
                 lblAlunosImportados.Text = "Nenhum aluno importado!";
             }
@@ -55,6 +63,11 @@ namespace robo.View
             {
                 lblAlunosImportados.Text = cont + " alunos importados no Banco de Dados";
             }
+        }
+
+        private void cbIES_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            cbCampus.DataSource = Dados.SelectLoginTOIES(cbIES.Text, "FIES LEGADO");
         }
     }
 }
