@@ -162,6 +162,12 @@ namespace Robo
             return sem;
         }
 
+        public static int BuscarMesAtual()
+        {
+            DateTime aDate = DateTime.Now;
+            return aDate.Month;
+        }
+
         public static string GetMD5(string password)
         {
             MD5 md5password = MD5.Create();

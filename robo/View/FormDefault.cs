@@ -26,6 +26,10 @@ namespace robo.View
 
             cbSemestre.DataSource = presenter.PreencherListaSemestre();
             cbSemestre.SelectedIndex = cbSemestre.Items.Count - 1;
+            cbAno.DataSource = presenter.PreencherListaAno();
+            cbAno.SelectedIndex = cbAno.Items.Count - 1;
+            cbMes.SelectedIndex = Util.BuscarMesAtual() - 1;
+            
         }
         private void LimparForm()
         {

@@ -486,7 +486,6 @@ namespace robo.View
             this.cbMes.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cbMes.FormattingEnabled = true;
             this.cbMes.Items.AddRange(new object[] {
-            "",
             "Janeiro",
             "Fevereiro",
             "Março",
