@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -112,6 +113,16 @@ namespace robo.View
             }
         }
 
-
+        private void btBackup_Click(object sender, EventArgs e)
+        {
+            panelBackup.BringToFront();
+            OpenFileDialog backup = new OpenFileDialog();
+            backup.Filter  = "DB (*.db)|*.db";
+            backup.InitialDirectory = Directory.GetCurrentDirectory() + "\\Backup\\";
+            if (backup.ShowDialog()==DialogResult.OK)
+            {
+                   
+            }
+        }
     }
 }
