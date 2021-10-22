@@ -115,7 +115,7 @@ namespace robo.View
             this.flowLayoutPanel1.Controls.Add(this.panelFiesSiga);
             this.flowLayoutPanel1.Location = new System.Drawing.Point(33, 12);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(1023, 617);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(1023, 506);
             this.flowLayoutPanel1.TabIndex = 37;
             // 
             // panelCabecalho
@@ -191,6 +191,7 @@ namespace robo.View
             this.btnImportar.TabIndex = 37;
             this.btnImportar.Text = "Atualizar";
             this.btnImportar.UseVisualStyleBackColor = false;
+            this.btnImportar.Click += new System.EventHandler(this.btnImportar_Click);
             // 
             // lblAlunosImportados
             // 
@@ -662,13 +663,14 @@ namespace robo.View
             this.btnIniciar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnIniciar.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnIniciar.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(33)))), ((int)(((byte)(33)))));
-            this.btnIniciar.Location = new System.Drawing.Point(233, 651);
+            this.btnIniciar.Location = new System.Drawing.Point(33, 543);
             this.btnIniciar.Name = "btnIniciar";
-            this.btnIniciar.Size = new System.Drawing.Size(151, 29);
+            this.btnIniciar.Size = new System.Drawing.Size(216, 29);
             this.btnIniciar.TabIndex = 61;
             this.btnIniciar.Tag = "ADITAMENTO BAIXAR DRM";
             this.btnIniciar.Text = "Executar";
             this.btnIniciar.UseVisualStyleBackColor = false;
+            this.btnIniciar.Click += new System.EventHandler(this.btnIniciar_Click);
             // 
             // FormDefault
             // 

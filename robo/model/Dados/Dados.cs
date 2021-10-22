@@ -403,29 +403,29 @@ namespace Robo
             if (IES == "TODOS")
             {
                 listlogin = Database.Acess.SelectWhere<TOLogin>("LOGIN", "Plataforma", plataforma);
-                listlogin = SelectWhere<TOLogin>(x => x.Plataforma == plataforma);
+                listlogin = SelectWhere<TOLogin>(x => x.Plataforma.ToUpper().Contains(plataforma));
             }
             else
             {
                 if (plataforma == "FIES Legado" && campus != string.Empty)
                 {
-                    listlogin = SelectWhere<TOLogin>(x => x.Faculdade == IES && x.Plataforma == plataforma && x.Campus == campus && x.Admin == "Não");
+                    listlogin = SelectWhere<TOLogin>(x => x.Faculdade == IES && x.Plataforma.ToUpper().Contains(plataforma) && x.Campus == campus && x.Admin == "Não");
                 }
                 else
                 {
                     if (admin == true)
                     {
-                        listlogin = SelectWhere<TOLogin>(x => x.Faculdade == IES && x.Plataforma == plataforma && x.Admin == "Sim");
+                        listlogin = SelectWhere<TOLogin>(x => x.Faculdade == IES && x.Plataforma.ToUpper().Contains(plataforma) && x.Admin == "Sim");
                     }
                     else
                     {
-                        listlogin = SelectWhere<TOLogin>(x => x.Faculdade == IES && x.Plataforma == plataforma && x.Admin == "Não");
+                        listlogin = SelectWhere<TOLogin>(x => x.Faculdade == IES && x.Plataforma.ToUpper().Contains(plataforma) && x.Admin == "Não");
                     }
                 }
 
                 if (listlogin.Count == 0)
                 {
-                    listlogin = SelectWhere<TOLogin>(x => x.Faculdade == IES && x.Plataforma == plataforma && x.Admin == "Sim");
+                    listlogin = SelectWhere<TOLogin>(x => x.Faculdade == IES && x.Plataforma.ToUpper().Contains(plataforma) && x.Admin == "Sim");
 
                     //Caso ainda não tenha nenhum login mostra exception
                     if (listlogin.Count == 0)

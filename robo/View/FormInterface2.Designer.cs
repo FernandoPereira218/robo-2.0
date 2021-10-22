@@ -979,7 +979,7 @@ namespace robo.View
         private System.Windows.Forms.Button btnClose;
         private System.Windows.Forms.Button btnMinimize;
         private System.Windows.Forms.Panel panelExcel;
-        private System.Windows.Forms.Button btnSelectPath;
+        public System.Windows.Forms.Button btnSelectPath;
         private System.Windows.Forms.DataGridView dgvAlunos;
         private System.Windows.Forms.OpenFileDialog ofdSelectExcel;
         private System.Windows.Forms.Panel panelCadastrarContent;

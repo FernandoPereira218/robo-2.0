@@ -1,4 +1,5 @@
-﻿using Robo;
+﻿using robo.View;
+using Robo;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -29,7 +30,7 @@ namespace robo
                 Program.login = Dados.ValidateSession(temp[0], temp[1]);
                 if (Program.login != null)
                 {
-                    RoboForm formSearch = new RoboForm();
+                    FormInterface2 formSearch = new FormInterface2();
                     this.Hide();
                     formSearch.Show();
                 }

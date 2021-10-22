@@ -12,7 +12,6 @@ namespace robo.Control.Implementacoes
 
         interface IMainForms
         {
-
         }
         interface IPresenter
         {
