@@ -46,9 +46,9 @@ namespace robo.View
             this.btnMinimize = new System.Windows.Forms.Button();
             this.btnClose = new System.Windows.Forms.Button();
             this.panelExcel = new System.Windows.Forms.Panel();
+            this.btnVoltar = new System.Windows.Forms.Button();
             this.lblStatusQuantidadeAlunos = new MetroFramework.Controls.MetroLabel();
             this.dgvAlunos = new System.Windows.Forms.DataGridView();
-            this.btnVoltar = new System.Windows.Forms.Button();
             this.btnMarcarNaoFeito = new System.Windows.Forms.Button();
             this.btnExportarExcel = new System.Windows.Forms.Button();
             this.btnSelectPath = new System.Windows.Forms.Button();
@@ -181,6 +181,23 @@ namespace robo.View
             this.panelExcel.Size = new System.Drawing.Size(1072, 666);
             this.panelExcel.TabIndex = 0;
             // 
+            // btnVoltar
+            // 
+            this.btnVoltar.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.btnVoltar.BackColor = System.Drawing.Color.White;
+            this.btnVoltar.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnVoltar.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
+            this.btnVoltar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnVoltar.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnVoltar.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(33)))), ((int)(((byte)(33)))));
+            this.btnVoltar.Location = new System.Drawing.Point(22, -8);
+            this.btnVoltar.Name = "btnVoltar";
+            this.btnVoltar.Size = new System.Drawing.Size(66, 73);
+            this.btnVoltar.TabIndex = 11;
+            this.btnVoltar.Text = "←";
+            this.btnVoltar.UseVisualStyleBackColor = false;
+            this.btnVoltar.Click += new System.EventHandler(this.btnVoltar_Click);
+            // 
             // lblStatusQuantidadeAlunos
             // 
             this.lblStatusQuantidadeAlunos.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -227,23 +244,6 @@ namespace robo.View
             this.dgvAlunos.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvAlunos.Size = new System.Drawing.Size(1050, 601);
             this.dgvAlunos.TabIndex = 0;
-            // 
-            // btnVoltar
-            // 
-            this.btnVoltar.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.btnVoltar.BackColor = System.Drawing.Color.White;
-            this.btnVoltar.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnVoltar.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
-            this.btnVoltar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnVoltar.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnVoltar.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(33)))), ((int)(((byte)(33)))));
-            this.btnVoltar.Location = new System.Drawing.Point(22, -8);
-            this.btnVoltar.Name = "btnVoltar";
-            this.btnVoltar.Size = new System.Drawing.Size(66, 73);
-            this.btnVoltar.TabIndex = 11;
-            this.btnVoltar.Text = "←";
-            this.btnVoltar.UseVisualStyleBackColor = false;
-            this.btnVoltar.Click += new System.EventHandler(this.btnVoltar_Click);
             // 
             // btnMarcarNaoFeito
             // 
@@ -308,10 +308,10 @@ namespace robo.View
             this.panelCadastrarContent.AutoSize = true;
             this.panelCadastrarContent.BackColor = System.Drawing.Color.White;
             this.panelCadastrarContent.Controls.Add(this.panelMenuExecucao);
-            this.panelCadastrarContent.Controls.Add(this.panelExcel);
             this.panelCadastrarContent.Controls.Add(this.panelExecucao);
             this.panelCadastrarContent.Controls.Add(this.panelCadastro);
             this.panelCadastrarContent.Controls.Add(this.panelErroNenhumAluno);
+            this.panelCadastrarContent.Controls.Add(this.panelExcel);
             this.panelCadastrarContent.Location = new System.Drawing.Point(64, 40);
             this.panelCadastrarContent.MaximumSize = new System.Drawing.Size(1920, 1080);
             this.panelCadastrarContent.MinimumSize = new System.Drawing.Size(1366, 768);

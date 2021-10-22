@@ -180,7 +180,7 @@ namespace Robo
             return sBuilder.ToString();
         }
 
-        public static void ExportarCSV(int countDataGrid)
+        public static void ExportarCSV(int countDataGrid, string tipo)
         {
             if (countDataGrid > 0)
             {
@@ -206,7 +206,7 @@ namespace Robo
                     {
                         try
                         {
-                            ExportarAlunosParaCSV(sfd.FileName,"Alunos");
+                            ExportarAlunosParaCSV(sfd.FileName, tipo);
                             MessageBox.Show("Dados Exportados com Sucesso!!!", "Info");
                         }
 
@@ -237,7 +237,7 @@ namespace Robo
             {
                 using (CsvWriter csv = new CsvWriter(exportaInf, CultureInfo.CurrentCulture))
                 {
-                    var mapa = new TOAlunoMap("Qualquer coisa");
+                    var mapa = new TOAlunoMap(tipo);
                     csv.Context.RegisterClassMap(mapa);
                     csv.WriteRecords(alunoParaExportar);
                 }
