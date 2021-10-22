@@ -19,6 +19,7 @@ namespace robo.Control.Implementacoes
 
             void ExecutarAbrirSite(string faculdade, string campus, string plataforma);
             List<string> PreencherListaSemestre();
+            List<string> PreencherListaAno();
             void SetForm(IContratos.IMainForms forms);
             string BuscarNunSemestre(string semestreAno);
             List<string> PreencherListaExecucao();

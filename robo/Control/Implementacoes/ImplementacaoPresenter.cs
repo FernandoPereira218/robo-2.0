@@ -465,6 +465,23 @@ namespace robo.Control.Implementacoes
             return nomeSemestre;
         }
 
+        public List<string> PreencherListaAno()
+        {
+            List<TOSemestre> semestre = Dados.SelectAll<TOSemestre>();
+            List<string> nomeAno = new List<string>();
+            foreach (var item in semestre)
+            {
+                if (item.Semestre.Contains("1/"))
+                {
+                    string ano = item.Semestre.Replace("1/", "");
+                    nomeAno.Add(ano);
+                }
+            }
+            return nomeAno;
+        }
+
+
+
         public void SetForm(IContratos.IMainForms forms)
         {
             this.forms = forms;
