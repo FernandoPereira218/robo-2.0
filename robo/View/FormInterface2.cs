@@ -92,6 +92,7 @@ namespace robo.View
             panelCadastro.BringToFront();
             if (cont == 0 && menu.Planilha == true)
             {
+                btnPlanilha.Visible = false;
                 panelErroNenhumAluno.BringToFront();
             }
         }
@@ -143,7 +144,7 @@ namespace robo.View
 
         private void btnImportar_Click(object sender, EventArgs e)
         {
-            panelExcel.BringToFront();
+            btnSelectPath.PerformClick();
         }
 
         private void btnVoltar_Click(object sender, EventArgs e)
@@ -244,8 +245,11 @@ namespace robo.View
                     lblStatusQuantidadeAlunos.Visible = true;
                     int qtdAlunosProcessados = Dados.Count<TOAluno>();
                     lblStatusQuantidadeAlunos.Text = "Importação de " + qtdAlunosProcessados + " alunos finalizada com sucesso!";
+                    panelExcel.BringToFront();
+                    btnPlanilha.Visible = true;
                 }
             }
+
         }
     }
 }
