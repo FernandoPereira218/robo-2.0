@@ -31,9 +31,8 @@ namespace robo.View
 
         private void btnFiesNovo_Click(object sender, EventArgs e)
         {
-
+            panelCadastrarContent.BringToFront();
             LimparModosDeExecucao();
-
             SelecionarMenusPorTipoFies("FIES NOVO");
         }
         private void SelecionarMenusPorTipoFies(string tipoFies)
@@ -117,6 +116,7 @@ namespace robo.View
 
         private void btnFiesLegado_Click(object sender, EventArgs e)
         {
+            panelCadastrarContent.BringToFront();
             LimparModosDeExecucao();
             SelecionarMenusPorTipoFies("FIES LEGADO");
         }
@@ -128,6 +128,7 @@ namespace robo.View
 
         private void btnSiga_Click(object sender, EventArgs e)
         {
+            panelCadastrarContent.BringToFront();
             LimparModosDeExecucao();
             SelecionarMenusPorTipoFies("SIGA");
         }
@@ -257,6 +258,11 @@ namespace robo.View
         {
             FormConfiguracoes Config = new FormConfiguracoes();
             Config.Show();
+        }
+
+        private void btnHome_Click(object sender, EventArgs e)
+        {
+            panelHome.BringToFront();
         }
     }
 }
