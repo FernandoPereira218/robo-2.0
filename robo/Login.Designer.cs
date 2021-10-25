@@ -104,7 +104,7 @@ namespace robo
             this.btConfirma.Margin = new System.Windows.Forms.Padding(2);
             this.btConfirma.Name = "btConfirma";
             this.btConfirma.Size = new System.Drawing.Size(191, 32);
-            this.btConfirma.TabIndex = 4;
+            this.btConfirma.TabIndex = 6;
             this.btConfirma.Text = "Confirma";
             this.btConfirma.UseVisualStyleBackColor = false;
             this.btConfirma.Click += new System.EventHandler(this.btConfirma_Click);
@@ -120,7 +120,7 @@ namespace robo
             this.cbManterLogado.Margin = new System.Windows.Forms.Padding(2);
             this.cbManterLogado.Name = "cbManterLogado";
             this.cbManterLogado.Size = new System.Drawing.Size(12, 11);
-            this.cbManterLogado.TabIndex = 6;
+            this.cbManterLogado.TabIndex = 4;
             this.cbManterLogado.UseVisualStyleBackColor = false;
             this.cbManterLogado.CheckedChanged += new System.EventHandler(this.cbManterLogado_CheckedChanged);
             this.cbManterLogado.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtValidacaoCampos_KeyDown);
