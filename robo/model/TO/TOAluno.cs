@@ -234,6 +234,15 @@ namespace Robo
                 Map(x => x.GradeAtualFinanciadoFIES).Name("Grade Atual Semestralidade (R$) Financiado FIES");
                 Map(x => x.GradeAtualCoparticipacao).Name("Grade Atual Semestralidade (R$) Coparticipação");
             }
+            else if(tipo == "Status Aluno")
+            {
+                Map(x => x.Cpf).Name("CPF");
+                Map(x => x.SemestreAno).Name("Semestre/Ano");
+                Map(x => x.Finalidade).Name("Finalidade");
+                Map(x => x.Situacao).Name("Situação");
+                Map(x => x.DataInclusao).Name("Data Inclusão");
+                Map(x => x.DataConclusao).Name("Data Conclusão");
+            }
             else
             {
                 Map(x => x.Cpf).Name("CPF");
