@@ -335,6 +335,15 @@
     <Compile Include="Model\TO\TOAluno.cs" />
     <Compile Include="Model\Dados\Dados.cs" />
     <Compile Include="Model\TO\TOUsuario.cs" />
+    <None Include="Resources\contorno-da-casa.png" />
+    <None Include="Resources\configuracoes.png" />
+    <None Include="Resources\silhueta-negra-de-casa-sem-porta2.png" />
+    <None Include="Resources\rotunda.png" />
+    <None Include="Resources\tv.png" />
+    <None Include="Resources\old-tv%283%29.png" />
+    <None Include="Resources\old-tv%282%29.png" />
+    <None Include="Resources\old-tv%281%29.png" />
+    <None Include="Resources\mec-logo-white.png" />
     <None Include="Resources\excel%281%29.png" />
     <None Include="Resources\excel.png" />
     <None Include="Resources\user.png" />

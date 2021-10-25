@@ -27,6 +27,7 @@ namespace robo.View
         {
             versaoRobo = Program.login.Permissao;
             InitializeComponent();
+            lblUsuario.Text = Program.login.Usuario;
         }
 
         private void btnFiesNovo_Click(object sender, EventArgs e)
@@ -256,6 +257,10 @@ namespace robo.View
 
         private void btnConfiguracoes(object sender, EventArgs e)
         {
+            if(FormConfiguracoes.verificacao == true)
+            {
+                return;
+            }
             FormConfiguracoes Config = new FormConfiguracoes();
             Config.Show();
         }
@@ -263,6 +268,11 @@ namespace robo.View
         private void btnHome_Click(object sender, EventArgs e)
         {
             panelHome.BringToFront();
+        }
+
+        private void btnMinimize_Click(object sender, EventArgs e)
+        {
+            this.WindowState = FormWindowState.Minimized;
         }
     }
 }
