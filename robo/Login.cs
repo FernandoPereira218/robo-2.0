@@ -57,7 +57,7 @@ namespace robo
                     }
                 }
 
-                RoboForm formUsuarios = new RoboForm();
+                FormInterface2 formUsuarios = new FormInterface2();
                 this.Hide();
                 formUsuarios.Show();
             }
@@ -88,6 +88,18 @@ namespace robo
                 cbManterLogado.ForeColor = Color.Black;
             else
                 cbManterLogado.ForeColor = Color.White;
+        }
+
+        private void txtValidacaoCampos_KeyDown(object sender, KeyEventArgs e)
+        {   
+            if (e.KeyCode == Keys.Enter)
+            {
+                if (txtSenha.Text != null 
+                    && txtUsuario.Text != null)
+                {
+                    btConfirma.PerformClick();
+                }
+            }
         }
     }
 }

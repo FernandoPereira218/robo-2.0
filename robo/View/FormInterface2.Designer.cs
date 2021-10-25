@@ -56,18 +56,19 @@ namespace robo.View
             this.flpModosDeExecucao = new System.Windows.Forms.FlowLayoutPanel();
             this.panelCadastro = new System.Windows.Forms.Panel();
             this.panelErroNenhumAluno = new System.Windows.Forms.Panel();
+            this.btnImportar = new System.Windows.Forms.Button();
             this.metroLabel2 = new MetroFramework.Controls.MetroLabel();
             this.metroLabel1 = new MetroFramework.Controls.MetroLabel();
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.bwBarraProgresso = new System.ComponentModel.BackgroundWorker();
             this.panelSubMenu = new System.Windows.Forms.Panel();
-            this.panelHome = new System.Windows.Forms.Panel();
+            this.btnLogout = new System.Windows.Forms.Button();
             this.btnHome = new System.Windows.Forms.Button();
             this.btnSiga = new System.Windows.Forms.Button();
             this.btnFiesLegado = new System.Windows.Forms.Button();
             this.btnFiesNovo = new System.Windows.Forms.Button();
             this.btnLogins = new System.Windows.Forms.Button();
-            this.btnImportar = new System.Windows.Forms.Button();
+            this.panelHome = new System.Windows.Forms.Panel();
             this.panelMenuBar.SuspendLayout();
             this.panelExcel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvAlunos)).BeginInit();
@@ -411,6 +412,21 @@ namespace robo.View
             this.panelErroNenhumAluno.Size = new System.Drawing.Size(1072, 667);
             this.panelErroNenhumAluno.TabIndex = 62;
             // 
+            // btnImportar
+            // 
+            this.btnImportar.BackColor = System.Drawing.Color.Green;
+            this.btnImportar.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnImportar.ForeColor = System.Drawing.SystemColors.Control;
+            this.btnImportar.Image = global::robo.Properties.Resources.excel_1_;
+            this.btnImportar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnImportar.Location = new System.Drawing.Point(533, 319);
+            this.btnImportar.Name = "btnImportar";
+            this.btnImportar.Size = new System.Drawing.Size(173, 48);
+            this.btnImportar.TabIndex = 38;
+            this.btnImportar.Text = "Importar";
+            this.btnImportar.UseVisualStyleBackColor = false;
+            this.btnImportar.Click += new System.EventHandler(this.btnImportar_Click);
+            // 
             // metroLabel2
             // 
             this.metroLabel2.AutoSize = true;
@@ -446,6 +462,7 @@ namespace robo.View
             // panelSubMenu
             // 
             this.panelSubMenu.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(45)))));
+            this.panelSubMenu.Controls.Add(this.btnLogout);
             this.panelSubMenu.Controls.Add(this.btnHome);
             this.panelSubMenu.Controls.Add(this.btnSiga);
             this.panelSubMenu.Controls.Add(this.btnFiesLegado);
@@ -456,12 +473,20 @@ namespace robo.View
             this.panelSubMenu.Size = new System.Drawing.Size(98, 728);
             this.panelSubMenu.TabIndex = 38;
             // 
-            // panelHome
+            // btnLogout
             // 
-            this.panelHome.Location = new System.Drawing.Point(97, 41);
-            this.panelHome.Name = "panelHome";
-            this.panelHome.Size = new System.Drawing.Size(1269, 727);
-            this.panelHome.TabIndex = 0;
+            this.btnLogout.FlatAppearance.BorderSize = 0;
+            this.btnLogout.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnLogout.Font = new System.Drawing.Font("Century Gothic", 8.25F);
+            this.btnLogout.ForeColor = System.Drawing.Color.Silver;
+            this.btnLogout.Location = new System.Drawing.Point(1, 591);
+            this.btnLogout.Name = "btnLogout";
+            this.btnLogout.Size = new System.Drawing.Size(97, 67);
+            this.btnLogout.TabIndex = 10;
+            this.btnLogout.Text = "Logout";
+            this.btnLogout.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.btnLogout.UseVisualStyleBackColor = true;
+            this.btnLogout.Click += new System.EventHandler(this.btnLogout_Click);
             // 
             // btnHome
             // 
@@ -474,7 +499,7 @@ namespace robo.View
             this.btnHome.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnHome.ForeColor = System.Drawing.Color.Silver;
             this.btnHome.Image = global::robo.Properties.Resources.contorno_da_casa;
-            this.btnHome.Location = new System.Drawing.Point(1, 594);
+            this.btnHome.Location = new System.Drawing.Point(1, 521);
             this.btnHome.Margin = new System.Windows.Forms.Padding(0);
             this.btnHome.Name = "btnHome";
             this.btnHome.Size = new System.Drawing.Size(97, 67);
@@ -568,20 +593,12 @@ namespace robo.View
             this.btnLogins.UseVisualStyleBackColor = true;
             this.btnLogins.Click += new System.EventHandler(this.btnConfiguracoes);
             // 
-            // btnImportar
+            // panelHome
             // 
-            this.btnImportar.BackColor = System.Drawing.Color.Green;
-            this.btnImportar.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnImportar.ForeColor = System.Drawing.SystemColors.Control;
-            this.btnImportar.Image = global::robo.Properties.Resources.excel_1_;
-            this.btnImportar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnImportar.Location = new System.Drawing.Point(533, 319);
-            this.btnImportar.Name = "btnImportar";
-            this.btnImportar.Size = new System.Drawing.Size(173, 48);
-            this.btnImportar.TabIndex = 38;
-            this.btnImportar.Text = "Importar";
-            this.btnImportar.UseVisualStyleBackColor = false;
-            this.btnImportar.Click += new System.EventHandler(this.btnImportar_Click);
+            this.panelHome.Location = new System.Drawing.Point(97, 41);
+            this.panelHome.Name = "panelHome";
+            this.panelHome.Size = new System.Drawing.Size(1269, 727);
+            this.panelHome.TabIndex = 0;
             // 
             // FormInterface2
             // 
@@ -661,5 +678,6 @@ namespace robo.View
         private System.Windows.Forms.Button btnHome;
         private System.Windows.Forms.Panel panelHome;
         private System.Windows.Forms.Label lblUsuario;
+        private System.Windows.Forms.Button btnLogout;
     }
 }

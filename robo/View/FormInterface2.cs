@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Media;
 using System.Runtime.InteropServices;
@@ -23,6 +24,7 @@ namespace robo.View
         [DllImportAttribute("user32.dll")]
         public static extern bool ReleaseCapture();
         public static string versaoRobo;
+        private bool logout = false;
         public FormInterface2()
         {
             versaoRobo = Program.login.Permissao;
@@ -124,7 +126,10 @@ namespace robo.View
 
         private void btnClose_Click(object sender, EventArgs e)
         {
-            Application.Exit();
+            if(logout == false)
+            {
+                Application.Exit();
+            }
         }
 
         private void btnSiga_Click(object sender, EventArgs e)
@@ -210,7 +215,6 @@ namespace robo.View
 
             }
         }
-
         private void btnExportarExcel_Click(object sender, EventArgs e)
         {
             if (lblExecucao.Text.Contains("INFORMAÇÕES"))
@@ -277,6 +281,18 @@ namespace robo.View
         private void btnMinimize_Click(object sender, EventArgs e)
         {
             this.WindowState = FormWindowState.Minimized;
+        }
+
+        private void btnLogout_Click(object sender, EventArgs e)
+        {
+            logout = true;
+            this.Close();
+            Program.formLogin.Show();
+            Program.login = null;
+            if (File.Exists("session.dat") == true)
+            {
+                File.Delete("session.dat");
+            }
         }
     }
 }
