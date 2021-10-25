@@ -115,14 +115,35 @@ namespace robo.View
 
         private void btBackup_Click(object sender, EventArgs e)
         {
+            string verificacao = string.Empty;
+
+            
             panelBackup.BringToFront();
             OpenFileDialog backup = new OpenFileDialog();
             backup.Filter  = "DB (*.db)|*.db";
             backup.InitialDirectory = Directory.GetCurrentDirectory() + "\\Backup\\";
-            if (backup.ShowDialog()==DialogResult.OK)
+            if (Dados.Count<TOAluno>() > 0)
             {
-                   
+                if (MessageBox.Show("Existe dados no banco. Deseja exportar ?", "Exportar", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+                {
+                    verificacao = "Se sim os dados atuais serão perdidos !";
+                    Util.ExportarCSV(Dados.Count<TOAluno>(), "Alunos");
+                }
             }
+
+            if (MessageBox.Show("Deseja realizar o backup ?  " + verificacao, "Backup", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            {
+                if (backup.ShowDialog() == DialogResult.OK)
+                {
+                    File.Delete("Data/bdbot1.db");
+                    File.Copy(backup.FileName, "Data/bdbot1.db");
+                    MessageBox.Show("Backup Executado com Sucesso");
+                }
+            }
+
+
+
+            
         }
     }
 }
