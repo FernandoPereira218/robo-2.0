@@ -216,6 +216,10 @@ namespace robo.View
             {
                 Util.ExportarCSV(dgvAlunos.Rows.Count, "Informações");
             }
+            else if (lblExecucao.Text.Contains("STATUS ALUNO"))
+            {
+                Util.ExportarCSV(dgvAlunos.Rows.Count, "Status Aluno");
+            }
             else
             {
                 Util.ExportarCSV(dgvAlunos.Rows.Count, "Alunos");
