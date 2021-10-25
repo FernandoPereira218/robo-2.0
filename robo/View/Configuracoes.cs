@@ -6,6 +6,7 @@ using System.Data;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -14,9 +15,17 @@ namespace robo.View
 {
     public partial class FormConfiguracoes : Form
     {
+        public static bool verificacao;
+        public const int WM_NCLBUTTONDOWN = 0xA1;
+        public const int HT_CAPTION = 0x2;
+        [DllImportAttribute("user32.dll")]
+        public static extern int SendMessage(IntPtr hWnd, int Msg, int wParam, int lParam);
+        [DllImportAttribute("user32.dll")]
+        public static extern bool ReleaseCapture();
         public FormConfiguracoes()
         {
             InitializeComponent();
+            verificacao = true;
         }
 
         private void btLogins_Click(object sender, EventArgs e)
@@ -117,10 +126,10 @@ namespace robo.View
         {
             string verificacao = string.Empty;
 
-            
+
             panelBackup.BringToFront();
             OpenFileDialog backup = new OpenFileDialog();
-            backup.Filter  = "DB (*.db)|*.db";
+            backup.Filter = "DB (*.db)|*.db";
             backup.InitialDirectory = Directory.GetCurrentDirectory() + "\\Backup\\";
             if (Dados.Count<TOAluno>() > 0)
             {
@@ -143,7 +152,28 @@ namespace robo.View
 
 
 
-            
+
+        }
+
+        private void panelMenuBar_MouseDown(object sender, MouseEventArgs e)
+        {
+
+            if (e.Button == MouseButtons.Left)
+            {
+                ReleaseCapture();
+                SendMessage(Handle, WM_NCLBUTTONDOWN, HT_CAPTION, 0);
+            }
+        }
+
+        private void btnClose_Click(object sender, EventArgs e)
+        {
+            verificacao = false;
+            this.Close();
+        }
+
+        private void btnMinimize_Click(object sender, EventArgs e)
+        {
+            this.WindowState = FormWindowState.Minimized;
         }
     }
 }
