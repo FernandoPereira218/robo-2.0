@@ -115,8 +115,11 @@ namespace Robo
             {
                 if (propriedade.Name != "Id")
                 {
-                    infs.GetType().GetProperty(propriedade.Name).SetValue(infs, infs.GetType().GetProperty(propriedade.Name).GetValue(infs).ToString().Replace("\r", ""));
-                    infs.GetType().GetProperty(propriedade.Name).SetValue(infs, infs.GetType().GetProperty(propriedade.Name).GetValue(infs).ToString().Replace("\n", ""));
+                    if (propriedade.GetValue(infs) != null)
+                    {
+                        infs.GetType().GetProperty(propriedade.Name).SetValue(infs, infs.GetType().GetProperty(propriedade.Name).GetValue(infs).ToString().Replace("\r", ""));
+                        infs.GetType().GetProperty(propriedade.Name).SetValue(infs, infs.GetType().GetProperty(propriedade.Name).GetValue(infs).ToString().Replace("\n", ""));
+                    }
                 }
             }
         }

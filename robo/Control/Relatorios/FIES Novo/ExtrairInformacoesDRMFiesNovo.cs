@@ -55,8 +55,16 @@ namespace robo.Control.Relatorios.FIES_Novo
                 }
                 catch (IndexOutOfRangeException ex)
                 {
-                    depoisTitulo = inf.Split(new string[] { "Data de validação do aditamento:" }, StringSplitOptions.None)[1];
+                    if (inf.Contains("Data de validação do aditamento:"))
+                    {
+                        depoisTitulo = inf.Split(new string[] { "Data de validação do aditamento:" }, StringSplitOptions.None)[1];
+                    }
+                    else
+                    {
+                        depoisTitulo = inf.Split(new string[] { "Data da validação do aditamento:" }, StringSplitOptions.None)[1];
+                    }
                 }
+
                 string depoisNovaLinha = depoisTitulo.Split('\n')[1];
                 infs.Add(depoisNovaLinha.Split(':')[1]);
                 aluno.SemestreAditar = infs[infs.Count() - 1];
