@@ -49,7 +49,14 @@ namespace robo.Control.Relatorios.FIES_Novo
                 {
                     return;
                 }
-                depoisTitulo = inf.Split(new string[] { "Data da DRM:" }, StringSplitOptions.None)[1];
+                try
+                {
+                    depoisTitulo = inf.Split(new string[] { "Data da DRM:" }, StringSplitOptions.None)[1];
+                }
+                catch (IndexOutOfRangeException ex)
+                {
+                    depoisTitulo = inf.Split(new string[] { "Data de validação do aditamento:" }, StringSplitOptions.None)[1];
+                }
                 string depoisNovaLinha = depoisTitulo.Split('\n')[1];
                 infs.Add(depoisNovaLinha.Split(':')[1]);
                 aluno.SemestreAditar = infs[infs.Count() - 1];
