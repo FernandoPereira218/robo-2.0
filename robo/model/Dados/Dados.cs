@@ -297,7 +297,7 @@ namespace Robo
                     }
 
 
-                    File.Copy(CAMINHO_BANCO, "backup/BACKUP_BDBOT " + DateTime.Now.ToString("dd_MM_yy HH-mm-ss") + ".db");
+                    File.Copy("data/bdbot1.db", "backup/BACKUP_BDBOT " + DateTime.Now.ToString("dd_MM_yy HH-mm-ss") + ".db");
                     DeleteAllLite<TOAluno>();
                     return true;
                 }
@@ -401,7 +401,6 @@ namespace Robo
 
             if (IES == "TODOS")
             {
-                listlogin = Database.Acess.SelectWhere<TOLogin>("LOGIN", "Plataforma", plataforma);
                 listlogin = SelectWhere<TOLogin>(x => x.Plataforma.ToUpper().Contains(plataforma));
             }
             else
