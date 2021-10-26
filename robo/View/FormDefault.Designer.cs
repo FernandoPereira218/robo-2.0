@@ -36,6 +36,7 @@ namespace robo.View
             this.metroLabel1 = new MetroFramework.Controls.MetroLabel();
             this.metroLabel17 = new MetroFramework.Controls.MetroLabel();
             this.panelCPF = new System.Windows.Forms.Panel();
+            this.txtCPF = new System.Windows.Forms.MaskedTextBox();
             this.labelCPF = new MetroFramework.Controls.MetroLabel();
             this.labelCPFCaracteres = new MetroFramework.Controls.MetroLabel();
             this.panelImportar = new System.Windows.Forms.Panel();
@@ -72,7 +73,7 @@ namespace robo.View
             this.cbFiesSiga = new System.Windows.Forms.ComboBox();
             this.labelDay = new System.Windows.Forms.Label();
             this.btnIniciar = new System.Windows.Forms.Button();
-            this.txtCPF = new System.Windows.Forms.MaskedTextBox();
+            this.circularProgressBar1 = new CircularProgressBar.CircularProgressBar();
             this.panelCadastro.SuspendLayout();
             this.flowLayoutPanel1.SuspendLayout();
             this.panelCabecalho.SuspendLayout();
@@ -91,6 +92,7 @@ namespace robo.View
             // panelCadastro
             // 
             this.panelCadastro.BackColor = System.Drawing.Color.White;
+            this.panelCadastro.Controls.Add(this.circularProgressBar1);
             this.panelCadastro.Controls.Add(this.flowLayoutPanel1);
             this.panelCadastro.Controls.Add(this.labelDay);
             this.panelCadastro.Controls.Add(this.btnIniciar);
@@ -115,7 +117,7 @@ namespace robo.View
             this.flowLayoutPanel1.Controls.Add(this.panelFiesSiga);
             this.flowLayoutPanel1.Location = new System.Drawing.Point(33, 12);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(1023, 506);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(646, 506);
             this.flowLayoutPanel1.TabIndex = 37;
             // 
             // panelCabecalho
@@ -178,6 +180,15 @@ namespace robo.View
             this.panelCPF.Size = new System.Drawing.Size(617, 73);
             this.panelCPF.TabIndex = 64;
             this.panelCPF.Visible = false;
+            // 
+            // txtCPF
+            // 
+            this.txtCPF.Location = new System.Drawing.Point(13, 26);
+            this.txtCPF.Name = "txtCPF";
+            this.txtCPF.Size = new System.Drawing.Size(590, 20);
+            this.txtCPF.TabIndex = 35;
+            this.txtCPF.MouseClick += new System.Windows.Forms.MouseEventHandler(this.txtCPF_MouseClick);
+            this.txtCPF.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtCPF_KeyPress);
             // 
             // labelCPF
             // 
@@ -660,14 +671,38 @@ namespace robo.View
             this.btnIniciar.UseVisualStyleBackColor = false;
             this.btnIniciar.Click += new System.EventHandler(this.btnIniciar_Click);
             // 
-            // txtCPF
+            // circularProgressBar1
             // 
-            this.txtCPF.Location = new System.Drawing.Point(13, 26);
-            this.txtCPF.Name = "txtCPF";
-            this.txtCPF.Size = new System.Drawing.Size(590, 20);
-            this.txtCPF.TabIndex = 35;
-            this.txtCPF.MouseClick += new System.Windows.Forms.MouseEventHandler(this.txtCPF_MouseClick);
-            this.txtCPF.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtCPF_KeyPress);
+            this.circularProgressBar1.AnimationFunction = WinFormAnimation.KnownAnimationFunctions.CircularEaseOut;
+            this.circularProgressBar1.AnimationSpeed = 500;
+            this.circularProgressBar1.BackColor = System.Drawing.Color.Transparent;
+            this.circularProgressBar1.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Bold);
+            this.circularProgressBar1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.circularProgressBar1.InnerColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.circularProgressBar1.InnerMargin = 2;
+            this.circularProgressBar1.InnerWidth = -1;
+            this.circularProgressBar1.Location = new System.Drawing.Point(708, 50);
+            this.circularProgressBar1.MarqueeAnimationSpeed = 2000;
+            this.circularProgressBar1.Name = "circularProgressBar1";
+            this.circularProgressBar1.OuterColor = System.Drawing.Color.Gray;
+            this.circularProgressBar1.OuterMargin = -25;
+            this.circularProgressBar1.OuterWidth = 26;
+            this.circularProgressBar1.ProgressColor = System.Drawing.Color.Aqua;
+            this.circularProgressBar1.ProgressWidth = 25;
+            this.circularProgressBar1.SecondaryFont = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.circularProgressBar1.Size = new System.Drawing.Size(320, 320);
+            this.circularProgressBar1.StartAngle = 270;
+            this.circularProgressBar1.Style = System.Windows.Forms.ProgressBarStyle.Marquee;
+            this.circularProgressBar1.SubscriptColor = System.Drawing.Color.FromArgb(((int)(((byte)(166)))), ((int)(((byte)(166)))), ((int)(((byte)(166)))));
+            this.circularProgressBar1.SubscriptMargin = new System.Windows.Forms.Padding(10, -35, 0, 0);
+            this.circularProgressBar1.SubscriptText = "";
+            this.circularProgressBar1.SuperscriptColor = System.Drawing.Color.FromArgb(((int)(((byte)(166)))), ((int)(((byte)(166)))), ((int)(((byte)(166)))));
+            this.circularProgressBar1.SuperscriptMargin = new System.Windows.Forms.Padding(10, 35, 0, 0);
+            this.circularProgressBar1.SuperscriptText = "";
+            this.circularProgressBar1.TabIndex = 73;
+            this.circularProgressBar1.Text = "Em andamento";
+            this.circularProgressBar1.TextMargin = new System.Windows.Forms.Padding(8, 8, 0, 0);
+            this.circularProgressBar1.Value = 67;
             // 
             // FormDefault
             // 
@@ -752,5 +787,6 @@ namespace robo.View
         private MetroFramework.Controls.MetroLabel lblAlunosImportados;
         private MetroFramework.Controls.MetroLabel metroLabel1;
         private System.Windows.Forms.MaskedTextBox txtCPF;
+        private CircularProgressBar.CircularProgressBar circularProgressBar1;
     }
 }
