@@ -30,6 +30,16 @@ namespace robo.View
             versaoRobo = Program.login.Permissao;
             InitializeComponent();
             lblUsuario.Text = Program.login.Usuario;
+            VerificarVersaoCAE();
+        }
+
+        private void VerificarVersaoCAE()
+        {
+            if (versaoRobo == "CAE")
+            {
+                btnSiga.Visible = false;
+                btnConfiguracoes.Visible = false;
+            }
         }
 
         private void btnFiesNovo_Click(object sender, EventArgs e)
@@ -126,7 +136,7 @@ namespace robo.View
 
         private void btnClose_Click(object sender, EventArgs e)
         {
-            if(logout == false)
+            if (logout == false)
             {
                 Application.Exit();
             }
@@ -263,9 +273,9 @@ namespace robo.View
 
         }
 
-        private void btnConfiguracoes(object sender, EventArgs e)
+        private void btnConfiguracoes_Click(object sender, EventArgs e)
         {
-            if(FormConfiguracoes.verificacao == true)
+            if (FormConfiguracoes.verificacao == true)
             {
                 return;
             }

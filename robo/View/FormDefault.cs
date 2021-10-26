@@ -19,7 +19,7 @@ namespace robo.View
         private static ImplementacaoPresenter presenter;
         private string tipoFies;
         private FormInterface2 formPrincipal;
-        
+
         public FormDefault(FormInterface2 formAnterior)
         {
             this.formPrincipal = formAnterior;
@@ -33,7 +33,31 @@ namespace robo.View
             cbAno.DataSource = presenter.PreencherListaAno();
             cbAno.SelectedIndex = cbAno.Items.Count - 1;
             cbMes.SelectedIndex = Util.BuscarMesAtual() - 1;
-            
+            PreencherListaIES();
+        }
+
+        private void PreencherListaIES()
+        {
+            List<TOLogin> loginsRegiao;
+            List<string> faculdades = new List<string>();
+            if (Program.login.Usuario == "Admin")
+            {
+                loginsRegiao = Dados.SelectAll<TOLogin>();
+            }
+            else
+            {
+                loginsRegiao = Dados.SelectWhere<TOLogin>(x => x.Regional == Program.login.Regional);
+            }
+
+            foreach (var item in loginsRegiao)
+            {
+                if (faculdades.Contains(item.Faculdade) == false)
+                {
+                    faculdades.Add(item.Faculdade);
+                }
+            }
+
+            cbIES.DataSource = faculdades;
         }
         private void LimparForm()
         {
@@ -56,6 +80,15 @@ namespace robo.View
             if (tipoFies.ToUpper() == "FIES LEGADO")
             {
                 panelCampus.Visible = true;
+            }
+
+            if (Program.login.Permissao == "CAE")
+            {
+                panelCPF.Visible = true;
+                panelImportar.Visible = false;
+                txtCPF.Text = string.Empty;
+                txtCPF.Mask = "";
+
             }
 
             lblExecucao.Text = menuSelecionado.Item;
@@ -82,10 +115,18 @@ namespace robo.View
         {
             RodarPrograma();
             MessageBox.Show("Processamentos concluídos com sucesso!");
-            return;
         }
         private void RodarPrograma()
         {
+            if (Program.login.Permissao == "CAE")
+            {
+                presenter.CPFCae = txtCPF.Text;
+                if (Util.VerificaCPFValido(presenter.CPFCae) == false)
+                {
+                    MessageBox.Show("Por favor digite um CPF válido!");
+                    return;
+                }
+            }
             switch (lblExecucao.Text.ToUpper())
             {
                 case "ADITAMENTO":
@@ -245,6 +286,24 @@ namespace robo.View
             formPrincipal.btnSelectPath.PerformClick();
             int countAlunos = Dados.Count<TOAluno>();
             setText(countAlunos);
+        }
+
+        private void txtCPF_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (txtCPF.TextLength >= 11 && e.KeyChar != (char)Keys.Back && !char.IsControl(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+            if (!char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+        }
+
+        private void txtCPF_MouseClick(object sender, MouseEventArgs e)
+        {
+            txtCPF.Mask = "000,000,000-00";
+            txtCPF.TextMaskFormat = MaskFormat.ExcludePromptAndLiterals;
         }
     }
 }
