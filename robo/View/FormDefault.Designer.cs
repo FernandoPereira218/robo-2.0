@@ -35,6 +35,9 @@ namespace robo.View
             this.lblExecucao = new MetroFramework.Controls.MetroLabel();
             this.metroLabel1 = new MetroFramework.Controls.MetroLabel();
             this.metroLabel17 = new MetroFramework.Controls.MetroLabel();
+            this.panelCPF = new System.Windows.Forms.Panel();
+            this.labelCPF = new MetroFramework.Controls.MetroLabel();
+            this.labelCPFCaracteres = new MetroFramework.Controls.MetroLabel();
             this.panelImportar = new System.Windows.Forms.Panel();
             this.btnImportar = new System.Windows.Forms.Button();
             this.lblAlunosImportados = new MetroFramework.Controls.MetroLabel();
@@ -45,10 +48,6 @@ namespace robo.View
             this.panelCampus = new System.Windows.Forms.Panel();
             this.labelCampus = new MetroFramework.Controls.MetroLabel();
             this.cbCampus = new System.Windows.Forms.ComboBox();
-            this.panelCPF = new System.Windows.Forms.Panel();
-            this.txtCPF = new System.Windows.Forms.TextBox();
-            this.labelCPF = new MetroFramework.Controls.MetroLabel();
-            this.labelCPFCaracteres = new MetroFramework.Controls.MetroLabel();
             this.panelSemestre = new System.Windows.Forms.Panel();
             this.cbSemestre = new System.Windows.Forms.ComboBox();
             this.metroLabel4 = new MetroFramework.Controls.MetroLabel();
@@ -73,13 +72,14 @@ namespace robo.View
             this.cbFiesSiga = new System.Windows.Forms.ComboBox();
             this.labelDay = new System.Windows.Forms.Label();
             this.btnIniciar = new System.Windows.Forms.Button();
+            this.txtCPF = new System.Windows.Forms.MaskedTextBox();
             this.panelCadastro.SuspendLayout();
             this.flowLayoutPanel1.SuspendLayout();
             this.panelCabecalho.SuspendLayout();
+            this.panelCPF.SuspendLayout();
             this.panelImportar.SuspendLayout();
             this.panelIES.SuspendLayout();
             this.panelCampus.SuspendLayout();
-            this.panelCPF.SuspendLayout();
             this.panelSemestre.SuspendLayout();
             this.panelDataInicioEFim.SuspendLayout();
             this.panelAnoEMes.SuspendLayout();
@@ -103,10 +103,10 @@ namespace robo.View
             // 
             this.flowLayoutPanel1.AutoScroll = true;
             this.flowLayoutPanel1.Controls.Add(this.panelCabecalho);
+            this.flowLayoutPanel1.Controls.Add(this.panelCPF);
             this.flowLayoutPanel1.Controls.Add(this.panelImportar);
             this.flowLayoutPanel1.Controls.Add(this.panelIES);
             this.flowLayoutPanel1.Controls.Add(this.panelCampus);
-            this.flowLayoutPanel1.Controls.Add(this.panelCPF);
             this.flowLayoutPanel1.Controls.Add(this.panelSemestre);
             this.flowLayoutPanel1.Controls.Add(this.panelDataInicioEFim);
             this.flowLayoutPanel1.Controls.Add(this.panelAnoEMes);
@@ -168,11 +168,47 @@ namespace robo.View
             this.metroLabel17.TabIndex = 34;
             this.metroLabel17.Text = "Digite e Selecione os dados abaixo";
             // 
+            // panelCPF
+            // 
+            this.panelCPF.Controls.Add(this.txtCPF);
+            this.panelCPF.Controls.Add(this.labelCPF);
+            this.panelCPF.Controls.Add(this.labelCPFCaracteres);
+            this.panelCPF.Location = new System.Drawing.Point(3, 109);
+            this.panelCPF.Name = "panelCPF";
+            this.panelCPF.Size = new System.Drawing.Size(617, 73);
+            this.panelCPF.TabIndex = 64;
+            this.panelCPF.Visible = false;
+            // 
+            // labelCPF
+            // 
+            this.labelCPF.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.labelCPF.AutoSize = true;
+            this.labelCPF.Location = new System.Drawing.Point(13, 4);
+            this.labelCPF.Name = "labelCPF";
+            this.labelCPF.Size = new System.Drawing.Size(33, 19);
+            this.labelCPF.TabIndex = 28;
+            this.labelCPF.Text = "CPF";
+            // 
+            // labelCPFCaracteres
+            // 
+            this.labelCPFCaracteres.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.labelCPFCaracteres.AutoSize = true;
+            this.labelCPFCaracteres.FontSize = MetroFramework.MetroLabelSize.Small;
+            this.labelCPFCaracteres.Location = new System.Drawing.Point(488, 55);
+            this.labelCPFCaracteres.Name = "labelCPFCaracteres";
+            this.labelCPFCaracteres.Size = new System.Drawing.Size(116, 15);
+            this.labelCPFCaracteres.TabIndex = 35;
+            this.labelCPFCaracteres.Text = "(11 caracteres Exatos*)";
+            // 
             // panelImportar
             // 
             this.panelImportar.Controls.Add(this.btnImportar);
             this.panelImportar.Controls.Add(this.lblAlunosImportados);
-            this.panelImportar.Location = new System.Drawing.Point(3, 109);
+            this.panelImportar.Location = new System.Drawing.Point(3, 188);
             this.panelImportar.Name = "panelImportar";
             this.panelImportar.Size = new System.Drawing.Size(617, 100);
             this.panelImportar.TabIndex = 72;
@@ -210,7 +246,7 @@ namespace robo.View
             this.panelIES.Controls.Add(this.cbIES);
             this.panelIES.Controls.Add(this.labelIES);
             this.panelIES.Controls.Add(this.labelAvisoIES);
-            this.panelIES.Location = new System.Drawing.Point(3, 215);
+            this.panelIES.Location = new System.Drawing.Point(3, 294);
             this.panelIES.Name = "panelIES";
             this.panelIES.Size = new System.Drawing.Size(617, 94);
             this.panelIES.TabIndex = 62;
@@ -272,7 +308,7 @@ namespace robo.View
             // 
             this.panelCampus.Controls.Add(this.labelCampus);
             this.panelCampus.Controls.Add(this.cbCampus);
-            this.panelCampus.Location = new System.Drawing.Point(3, 315);
+            this.panelCampus.Location = new System.Drawing.Point(3, 394);
             this.panelCampus.Name = "panelCampus";
             this.panelCampus.Size = new System.Drawing.Size(617, 76);
             this.panelCampus.TabIndex = 63;
@@ -307,54 +343,6 @@ namespace robo.View
             this.cbCampus.Size = new System.Drawing.Size(598, 25);
             this.cbCampus.TabIndex = 4;
             this.cbCampus.Tag = "";
-            // 
-            // panelCPF
-            // 
-            this.panelCPF.Controls.Add(this.txtCPF);
-            this.panelCPF.Controls.Add(this.labelCPF);
-            this.panelCPF.Controls.Add(this.labelCPFCaracteres);
-            this.panelCPF.Location = new System.Drawing.Point(3, 397);
-            this.panelCPF.Name = "panelCPF";
-            this.panelCPF.Size = new System.Drawing.Size(617, 73);
-            this.panelCPF.TabIndex = 64;
-            this.panelCPF.Visible = false;
-            // 
-            // txtCPF
-            // 
-            this.txtCPF.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.txtCPF.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtCPF.Location = new System.Drawing.Point(13, 31);
-            this.txtCPF.Margin = new System.Windows.Forms.Padding(2);
-            this.txtCPF.Name = "txtCPF";
-            this.txtCPF.Size = new System.Drawing.Size(595, 22);
-            this.txtCPF.TabIndex = 11;
-            // 
-            // labelCPF
-            // 
-            this.labelCPF.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.labelCPF.AutoSize = true;
-            this.labelCPF.Location = new System.Drawing.Point(13, 4);
-            this.labelCPF.Name = "labelCPF";
-            this.labelCPF.Size = new System.Drawing.Size(33, 19);
-            this.labelCPF.TabIndex = 28;
-            this.labelCPF.Text = "CPF";
-            // 
-            // labelCPFCaracteres
-            // 
-            this.labelCPFCaracteres.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.labelCPFCaracteres.AutoSize = true;
-            this.labelCPFCaracteres.FontSize = MetroFramework.MetroLabelSize.Small;
-            this.labelCPFCaracteres.Location = new System.Drawing.Point(488, 55);
-            this.labelCPFCaracteres.Name = "labelCPFCaracteres";
-            this.labelCPFCaracteres.Size = new System.Drawing.Size(116, 15);
-            this.labelCPFCaracteres.TabIndex = 35;
-            this.labelCPFCaracteres.Text = "(11 caracteres Exatos*)";
             // 
             // panelSemestre
             // 
@@ -672,6 +660,15 @@ namespace robo.View
             this.btnIniciar.UseVisualStyleBackColor = false;
             this.btnIniciar.Click += new System.EventHandler(this.btnIniciar_Click);
             // 
+            // txtCPF
+            // 
+            this.txtCPF.Location = new System.Drawing.Point(13, 26);
+            this.txtCPF.Name = "txtCPF";
+            this.txtCPF.Size = new System.Drawing.Size(590, 20);
+            this.txtCPF.TabIndex = 35;
+            this.txtCPF.MouseClick += new System.Windows.Forms.MouseEventHandler(this.txtCPF_MouseClick);
+            this.txtCPF.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtCPF_KeyPress);
+            // 
             // FormDefault
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -685,14 +682,14 @@ namespace robo.View
             this.flowLayoutPanel1.ResumeLayout(false);
             this.panelCabecalho.ResumeLayout(false);
             this.panelCabecalho.PerformLayout();
+            this.panelCPF.ResumeLayout(false);
+            this.panelCPF.PerformLayout();
             this.panelImportar.ResumeLayout(false);
             this.panelImportar.PerformLayout();
             this.panelIES.ResumeLayout(false);
             this.panelIES.PerformLayout();
             this.panelCampus.ResumeLayout(false);
             this.panelCampus.PerformLayout();
-            this.panelCPF.ResumeLayout(false);
-            this.panelCPF.PerformLayout();
             this.panelSemestre.ResumeLayout(false);
             this.panelSemestre.PerformLayout();
             this.panelDataInicioEFim.ResumeLayout(false);
@@ -737,7 +734,6 @@ namespace robo.View
         private MetroFramework.Controls.MetroLabel labelIES;
         private System.Windows.Forms.ComboBox cbSemestre;
         private System.Windows.Forms.ComboBox cbCampus;
-        private System.Windows.Forms.TextBox txtCPF;
         private System.Windows.Forms.ComboBox cbIES;
         private System.Windows.Forms.Panel panelIES;
         private System.Windows.Forms.Panel panelCampus;
@@ -755,5 +751,6 @@ namespace robo.View
         private System.Windows.Forms.Button btnImportar;
         private MetroFramework.Controls.MetroLabel lblAlunosImportados;
         private MetroFramework.Controls.MetroLabel metroLabel1;
+        private System.Windows.Forms.MaskedTextBox txtCPF;
     }
 }

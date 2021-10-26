@@ -24,6 +24,7 @@ namespace robo.Control.Implementacoes
         private List<TOLogin> listaLogins;
         private const string FIES_NOVO = "NOVO";
         private const string FIES_LEGADO = "LEGADO";
+        public string CPFCae { get; set; }
         public ImplementacaoPresenter(IContratos.IMainForms forms)
         {
             SetForm(forms);
@@ -33,7 +34,14 @@ namespace robo.Control.Implementacoes
         {
             if (exportar == false)
             {
-                alunos = SelecionarAlunosPorPlataforma(tipoFies);
+                if (Program.login.Permissao == "CAE")
+                {
+                    alunos = new List<TOAluno>() { new TOAluno() { Cpf = CPFCae, Tipo = tipoFies } };
+                }
+                else
+                {
+                    alunos = SelecionarAlunosPorPlataforma(tipoFies);
+                }
             }
             if (admin == true)
             {
