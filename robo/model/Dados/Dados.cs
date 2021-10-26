@@ -18,8 +18,7 @@ namespace Robo
 {
     public static class Dados
     {
-        private const string CAMINHO_BANCO = "data/bdbot1.db";
-
+        private const string CAMINHO_BANCO = "Filename = data/bdbot1.db; Password=AlunosBrilhantes;";
 
         //INSERTS
         public static void ImportaAlunos(string filePath)
