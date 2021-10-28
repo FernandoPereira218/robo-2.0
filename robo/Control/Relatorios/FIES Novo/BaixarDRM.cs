@@ -19,6 +19,10 @@ namespace robo.Control.Relatorios.FIES_Novo
             string janelaInicial = Driver.CurrentWindowHandle;
             BuscarEAbrirDRM(Driver, aluno, semestre);
 
+            if (aluno.Conclusao != "Não Feito")
+            {
+                return;
+            }
             string simplificado = BuscarDRMSimplificado();
 
             string fileName = aluno.Nome + "_" + aluno.Cpf;
