@@ -1,4 +1,4 @@
-﻿using OpenQA.Selenium;
+using OpenQA.Selenium;
 using OpenQA.Selenium.Firefox;
 using robo.Control.Aditamento;
 using robo.Control.Legado;
@@ -527,7 +527,8 @@ namespace robo.Control.Implementacoes
         public void ExecutarLancamentoFiesSiga(string semestre, string tipoFies)
         {
             listaAlunos = Dados.SelectAll<TOAluno>();
-            listaLogins = Dados.SelectLoginPorIESePlataforma("", "SIGA", "", admin: false);
+            //listaLogins = Dados.SelectLoginPorIESePlataforma("", "SIGA", "", admin: false);
+            listaLogins = Dados.SelectWhere<TOLogin>(x => x.Plataforma == "SIGA");
             foreach (TOAluno aluno in listaAlunos)
             {
                 Dados.TratarTextoReceitas(aluno);
@@ -558,7 +559,8 @@ namespace robo.Control.Implementacoes
         public void GeracaoParcelasFies(string semestre)
         {
             listaAlunos = Dados.SelectAll<TOAluno>();
-            listaLogins = Dados.SelectLoginPorIESePlataforma("", "SIGA", "", admin: false);
+            //listaLogins = Dados.SelectLoginPorIESePlataforma("", "SIGA", "", admin: false);
+            listaLogins = Dados.SelectWhere<TOLogin>(x => x.Plataforma == "SIGA");
             UtilSiga utilsiga = new UtilSiga();
             IWebDriver Driver = utilsiga.FazerLogin("https://siga.uniritter.edu.br/financeiro/geracaoIndividualParcela.php", listaLogins[0]);
 
@@ -582,7 +584,7 @@ namespace robo.Control.Implementacoes
                     resultado = aluno.Conclusao.Split(new string[] { "PARCELA" }, StringSplitOptions.None).Length;
                     var teste = aluno.Conclusao.Split(new string[] { "PARCELA" }, StringSplitOptions.None);
                 }
-                if (aluno.Conclusao == "Não Feito" || resultado < 6)
+                if (aluno.Conclusao == "Não Feito")
                 {
                     GeracaoParcelasFies.GeraParcelaFies(Driver, aluno, semestre);
                 }

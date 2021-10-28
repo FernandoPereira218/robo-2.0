@@ -26,14 +26,13 @@ namespace Robo
             List<TOAluno> alunos = BuscarListaAlunos(filePath);
             AtualizarAlunosBD(alunos);
             VerificarCPFDuplicado(alunos);
-
         }
 
         //CSV
         /// <summary>
         /// Busca todos alunos na planilha Excel.
         /// </summary>
-        /// <param name="directory">Diretório da planilha excel.</param>
+        /// <param name="directory">Diretï¿½rio da planilha excel.</param>
         /// <returns>Lista de alunos.</returns>
         public static List<TOAluno> BuscarListaAlunos(string directory)
         {
@@ -89,7 +88,7 @@ namespace Robo
             aluno.Tipo = aluno.Tipo.ToUpper();
         }
         /// <summary>
-        /// Arredonda para duas casas decimais e remove caracteres desnecessários
+        /// Arredonda para duas casas decimais e remove caracteres desnecessï¿½rios
         /// </summary>
         /// <param name="aluno"></param>
         /// <param name="chamadaInicial">se foi chamado no util (true) ou pelo tratamento de erro no formulario (false)</param>
@@ -203,7 +202,7 @@ namespace Robo
 
         public static void VerificarCPFDuplicado(List<TOAluno> alunos)
         {
-            //Verificar se existem CPFs duplicados e marca as conclusões
+            //Verificar se existem CPFs duplicados e marca as conclusï¿½es
             var duplicado = alunos.GroupBy(x => new { x.Cpf }).Where(x => x.Skip(1).Any()).ToList();
             string mensagem = "CPF(s) duplicados: ";
             foreach (var item in duplicado)
@@ -238,7 +237,7 @@ namespace Robo
             return null;
         }
 
-        //Verificações
+        //Verificaï¿½ï¿½es
         public static int VerificarSemestreExiste(string semestre)
         {
             return SelectWhere<TOSemestre>(x => x.Semestre == semestre).Count;
@@ -283,7 +282,7 @@ namespace Robo
             if (countAlunoTO > 0)
             {
                 string mensagem = "Tem certeza que deseja excluir o banco de dados?" +
-                    "\n\nCertifique-se de já ter exportado antes para que nenhuma informação seja perdida!";
+                    "\n\nCertifique-se de jï¿½ ter exportado antes para que nenhuma informaï¿½ï¿½o seja perdida!";
 
                 if (MessageBox.Show(mensagem, "Limpar Banco de Dados", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK)
                 {
@@ -314,7 +313,7 @@ namespace Robo
 
         //Selects
         /// <summary>
-        /// Select All de qualquer coleção, basta especificar a classe
+        /// Select All de qualquer coleï¿½ï¿½o, basta especificar a classe
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <returns></returns>
@@ -341,7 +340,7 @@ namespace Robo
             using (var db = new LiteDatabase(CAMINHO_BANCO))
             {
                 var colecao = db.GetCollection<TOAluno>();
-                return colecao.Query().Where(x => x.Tipo.ToUpper().Contains(tipoFies) && x.Conclusao == "Não Feito").ToList();
+                return colecao.Query().Where(x => x.Tipo.ToUpper().Contains(tipoFies) && x.Conclusao == "Nï¿½o Feito").ToList();
             }
         }
 
@@ -373,7 +372,7 @@ namespace Robo
             }
         }
 
-        //Remover parâmetro plataforma após finalização da interface
+        //Remover parï¿½metro plataforma apï¿½s finalizaï¿½ï¿½o da interface
         public static List<string> SelectLoginTOIES(string IES, string plataforma)
         {
             List<TOLogin> listlogin;
@@ -405,9 +404,9 @@ namespace Robo
             }
             else
             {
-                if (plataforma == "FIES Legado" && campus != string.Empty)
+                if (plataforma.Contains("LEGADO") && campus != string.Empty)
                 {
-                    listlogin = SelectWhere<TOLogin>(x => x.Faculdade == IES && x.Plataforma.ToUpper().Contains(plataforma) && x.Campus == campus && x.Admin == "Não");
+                    listlogin = SelectWhere<TOLogin>(x => x.Faculdade == IES && x.Plataforma.ToUpper().Contains(plataforma) && x.Campus == campus && x.Admin == "Nï¿½o");
                 }
                 else
                 {
@@ -417,7 +416,7 @@ namespace Robo
                     }
                     else
                     {
-                        listlogin = SelectWhere<TOLogin>(x => x.Faculdade == IES && x.Plataforma.ToUpper().Contains(plataforma) && x.Admin == "Não");
+                        listlogin = SelectWhere<TOLogin>(x => x.Faculdade == IES && x.Plataforma.ToUpper().Contains(plataforma) && x.Admin == "Nï¿½o");
                     }
                 }
 
@@ -425,10 +424,10 @@ namespace Robo
                 {
                     listlogin = SelectWhere<TOLogin>(x => x.Faculdade == IES && x.Plataforma.ToUpper().Contains(plataforma) && x.Admin == "Sim");
 
-                    //Caso ainda não tenha nenhum login mostra exception
+                    //Caso ainda nï¿½o tenha nenhum login mostra exception
                     if (listlogin.Count == 0)
                     {
-                        throw new Exception("Login não encontrado!");
+                        throw new Exception("Login nï¿½o encontrado!");
                     }
                 }
             }
@@ -476,7 +475,7 @@ namespace Robo
             using (var db = new LiteDatabase(CAMINHO_BANCO))
             {
                 var colecao = db.GetCollection<TOAluno>();
-                colecao.UpdateMany(x => new TOAluno { Conclusao = conclusao }, x => x.Conclusao != "Não Feito" && x.Conclusao != "Duplicado");
+                colecao.UpdateMany(x => new TOAluno { Conclusao = conclusao }, x => x.Conclusao != "Nï¿½o Feito" && x.Conclusao != "Duplicado");
             }
         }
 
