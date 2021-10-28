@@ -26,6 +26,8 @@ namespace robo.Control.Implementacoes
         private List<TOLogin> listaLogins;
         private const string FIES_NOVO = "NOVO";
         private const string FIES_LEGADO = "LEGADO";
+        private int contador;
+        private float progresso = 0;
         public string CPFCae { get; set; }
         public ImplementacaoPresenter(FormDefault forms)
         {
@@ -49,6 +51,7 @@ namespace robo.Control.Implementacoes
                 else
                 {
                     alunos = SelecionarAlunosPorPlataforma(tipoFies);
+                    contador = alunos.Count;
                 }
             }
             if (admin == true)
@@ -79,6 +82,7 @@ namespace robo.Control.Implementacoes
                     if (aluno.Campus.ToUpper() == login.Campus.ToUpper())
                     {
                         aditamento.AditamentoFiesLegado(Driver, login, aluno, numSemestre);
+                        UpdateProgresso(ref progresso, contador);
                     }
                 }
                 fiesLegadoutil.FazerLogout(Driver);
@@ -102,6 +106,7 @@ namespace robo.Control.Implementacoes
             foreach (TOAluno aluno in listaAlunos)
             {
                 aditamento.AditamentoFiesNovo(aluno, listaLogins[0].Faculdade, semestreAtual);
+                UpdateProgresso(ref progresso, contador);
             }
             Driver.Close();
             Driver.Dispose();
@@ -122,6 +127,7 @@ namespace robo.Control.Implementacoes
                 foreach (TOAluno aluno in listaAlunos)
                 {
                     dri.DRIFiesLegado(Driver, aluno, login, baixarDRI, situacaoDRI);
+                    UpdateProgresso(ref progresso, contador);
                 }
 
                 fiesLegadoUtil.FazerLogout(Driver);
@@ -147,6 +153,7 @@ namespace robo.Control.Implementacoes
                 foreach (TOAluno aluno in listaAlunos)
                 {
                     baixarDocumentos.BaixarDocumentoFiesLegado(Driver, aluno, semestre, tipoDocumento);
+                    UpdateProgresso(ref progresso, contador);
                 }
 
                 fiesLegadoUtil.FazerLogout(Driver);
@@ -195,6 +202,7 @@ namespace robo.Control.Implementacoes
                 foreach (TOAluno aluno in listaAlunos)
                 {
                     extrairInformacoesDRM.ExtrairDRM(Driver, aluno, login.Campus, semestre);
+                    UpdateProgresso(ref progresso, contador);
                 }
 
                 fiesLegadoUtil.FazerLogout(Driver);
@@ -257,6 +265,7 @@ namespace robo.Control.Implementacoes
                 foreach (TOAluno aluno in listaAlunos)
                 {
                     drm.BaixarDRMFiesNovo(aluno, semestre);
+                    UpdateProgresso(ref progresso, contador);
                 }
 
             }
@@ -278,6 +287,7 @@ namespace robo.Control.Implementacoes
                 foreach (TOAluno aluno in listaAlunos)
                 {
                     extrairInformacoesDRM.ExtrairInformacoesDRM(aluno, semestre);
+                    UpdateProgresso(ref progresso, contador);
                 }
 
             }
@@ -286,30 +296,27 @@ namespace robo.Control.Implementacoes
         }
         public void ExecutarBuscarStatusAditamentoNovo(string faculdade, string tipoFies, string semestre)
         {
-            forms.backgroundWorker.DoWork += (object sender, DoWorkEventArgs e) =>
+            BuscarLoginsEAlunos(faculdade, FIES_NOVO, "", ref listaAlunos, ref listaLogins, admin: false, exportar: false);
+            UtilFiesNovo utilFiesNovo = new UtilFiesNovo();
+            IWebDriver Driver = Util.StartBrowser("http://sifesweb.caixa.gov.br");
+            BuscarStatusAditamento statusAditamento = new BuscarStatusAditamento();
+            statusAditamento.SetDriver(Driver);
+            utilFiesNovo.FazerLogin(Driver, listaLogins[0]);
+            utilFiesNovo.WaitForLoading(Driver);
+            utilFiesNovo.ClicarMenuAditamento(Driver);
+            foreach (TOAluno aluno in listaAlunos)
             {
-                forms.backgroundWorker.ReportProgress(0);
-                BuscarLoginsEAlunos(faculdade, FIES_NOVO, "", ref listaAlunos, ref listaLogins, admin: false, exportar: false);
-                UtilFiesNovo utilFiesNovo = new UtilFiesNovo();
-                IWebDriver Driver = Util.StartBrowser("http://sifesweb.caixa.gov.br");
-                BuscarStatusAditamento statusAditamento = new BuscarStatusAditamento();
-                statusAditamento.SetDriver(Driver);
-                utilFiesNovo.FazerLogin(Driver, listaLogins[0]);
-                utilFiesNovo.WaitForLoading(Driver);
-                utilFiesNovo.ClicarMenuAditamento(Driver);
-                float progresso = 0;
-                foreach (TOAluno aluno in listaAlunos)
-                {
-                    statusAditamento.BuscarStatus(aluno, semestre);
-                    progresso += 100.0f / listaAlunos.Count;
-                    forms.backgroundWorker.ReportProgress(Convert.ToInt32(progresso));
-                }
-                Driver.Close();
-                Driver.Dispose();
-            };
+                statusAditamento.BuscarStatus(aluno, semestre);
+                UpdateProgresso(ref progresso, contador);
+            }
+            Driver.Close();
+            Driver.Dispose();
+        }
 
-            forms.backgroundWorker.RunWorkerAsync();
-
+        private void UpdateProgresso(ref float progresso, int listCount)
+        {
+            progresso += 100.0f / listCount;
+            forms.backgroundWorker.ReportProgress(Convert.ToInt32(progresso));
         }
 
         private void BackgroundWorker_DoWork(object sender, System.ComponentModel.DoWorkEventArgs e)
@@ -332,6 +339,7 @@ namespace robo.Control.Implementacoes
             foreach (TOAluno aluno in listaAlunos)
             {
                 statusAluno.BuscarStatusAluno(aluno, semestre);
+                UpdateProgresso(ref progresso, contador);
             }
             Driver.Close();
             Driver.Dispose();
@@ -574,6 +582,7 @@ namespace robo.Control.Implementacoes
                 if (aluno.Conclusao == "Não Feito")
                 {
                     lancamentoFiesSiga.ExecutarLancamentoFiesSiga(aluno, Driver, semestre, tipoFies);
+                    UpdateProgresso(ref progresso, contador);
                 }
             }
         }
@@ -598,17 +607,10 @@ namespace robo.Control.Implementacoes
             GeracaoParcelasFies.ExecutarCookieGuiche(Driver);
             foreach (TOAluno aluno in listaAlunos)
             {
-                // Isso deu pau
-                int resultado = 7;
-                // Pode dar problema futuro
-                if (aluno.Conclusao.Contains("PARCELA"))
-                {
-                    resultado = aluno.Conclusao.Split(new string[] { "PARCELA" }, StringSplitOptions.None).Length;
-                    var teste = aluno.Conclusao.Split(new string[] { "PARCELA" }, StringSplitOptions.None);
-                }
                 if (aluno.Conclusao == "Não Feito")
                 {
                     GeracaoParcelasFies.GeraParcelaFies(Driver, aluno, semestre);
+                    UpdateProgresso(ref progresso, contador);
                 }
             }
         }
