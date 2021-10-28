@@ -19,6 +19,10 @@ namespace Robo
     {
         /// <summary>
         /// Inicia nova sessão do browser.
+        /// <param name="url">URL que será aberta</param>
+        /// <param name="downloadFldr">TRUE se for necessário utilizar a pasta RelatorioExportacao</param>
+        /// <param name="firefox">false para utilizar o Google Chrome</param>
+        /// <param name="headless">Rodar sem abrir navegador (versão CAE)</param>
         /// </summary>
         public static IWebDriver StartBrowser(string url, bool downloadFldr = false, bool firefox = true, bool headless = false)
         {
@@ -109,6 +113,10 @@ namespace Robo
             return driver;
         }
 
+        /// <summary>
+        /// Substitui \r por espacos vazios de todos os campos de strings
+        /// </summary>
+        /// <param name="infs">Aluno que será atualizado</param>
         public static void AcertaBarraR(TOAluno infs)
         {
             foreach (var propriedade in infs.GetType().GetProperties())
@@ -125,12 +133,9 @@ namespace Robo
         }
 
         /// <summary>
-        /// Cria um diretorio
+        /// Cria um diretorio caso não exista
         /// </summary>
-        /// <param name="driver">webdriver</param>
-        /// <param name="metodo">qual metodo a ser usado, id, name, css, ou xpath</param>
-        /// <param name="valorMetodo">qual o id, name, css ou xpath a procurar</param>
-        /// <param name="valorEscolha">qual a opção a ser escolhida</param>
+        /// <param name="directories">Conjunto de diretórios que devem ser criados</param>
         public static void CreateDirectoryIfNotExists(params string[] directories)
         {
             foreach (String directory in directories)
@@ -142,6 +147,10 @@ namespace Robo
             }
         }
 
+        /// <summary>
+        /// Busca o diretório de download do usuário
+        /// </summary>
+        /// <returns>Caminho da pasta de download do usuário</returns>
         public static string GetDownloadsFolderPath()
         {
             string userRoot = Environment.GetEnvironmentVariable("USERPROFILE");
@@ -149,6 +158,10 @@ namespace Robo
             return downloadFolder;
         }
 
+        /// <summary>
+        /// Verifica qual o semestre atual
+        /// </summary>
+        /// <returns>1 ou 2</returns>
         public static string VerificaSemestreAtual()
         {
             DateTime aDate = DateTime.Now;
@@ -166,12 +179,21 @@ namespace Robo
             return sem;
         }
 
+        /// <summary>
+        /// Busca o mes atual
+        /// </summary>
+        /// <returns></returns>
         public static int BuscarMesAtual()
         {
             DateTime aDate = DateTime.Now;
             return aDate.Month;
         }
 
+        /// <summary>
+        /// Retorna o MD5 de uma string
+        /// </summary>
+        /// <param name="password">String que será convertida</param>
+        /// <returns></returns>
         public static string GetMD5(string password)
         {
             MD5 md5password = MD5.Create();
@@ -190,6 +212,11 @@ namespace Robo
             return sBuilder.ToString();
         }
 
+        /// <summary>
+        /// Exporta todos os alunos do banco de dados para um CSV
+        /// </summary>
+        /// <param name="countDataGrid">Quantidade de alunos</param>
+        /// <param name="tipo">Alunos ou Informações</param>
         public static void ExportarCSV(int countDataGrid, string tipo)
         {
             if (countDataGrid > 0)
@@ -236,6 +263,11 @@ namespace Robo
 
         }
 
+        /// <summary>
+        /// Exporta todos os alunos do banco de dados para um arquivo CSV
+        /// </summary>
+        /// <param name="fileName">Nome do arquivo</param>
+        /// <param name="tipo">Alunos ou Informações</param>
         public static void ExportarAlunosParaCSV(string fileName, string tipo)
         {
             if (fileName.Contains(".csv") == false)
@@ -254,6 +286,12 @@ namespace Robo
             }
         }
 
+        /// <summary>
+        /// Muda a conclusão de um aluno no banco
+        /// </summary>
+        /// <param name="aluno"></param>
+        /// <param name="conclusao"></param>
+        /// <param name="tipoAluno"></param>
         public static void EditarConclusaoAluno(TOAluno aluno, string conclusao, string tipoAluno = "ALUNO")
         {
             aluno.Conclusao = conclusao;
@@ -262,6 +300,10 @@ namespace Robo
             Dados.UpdateDocumento<TOAluno>(aluno);
         }
 
+        /// <summary>
+        /// Apaga todos os arquivos de um diretório
+        /// </summary>
+        /// <param name="path">Caminho do diretório</param>
         public static void ApagaArquivos(string path)
         {
             string[] arquivos = Directory.GetFiles(path);
@@ -271,6 +313,11 @@ namespace Robo
             }
         }
 
+        /// <summary>
+        /// Verifica se o CPF é válido
+        /// </summary>
+        /// <param name="cpf"></param>
+        /// <returns></returns>
         public static bool VerificaCPFValido(string cpf)
         {
             int[] multiplicador1 = new int[9] { 10, 9, 8, 7, 6, 5, 4, 3, 2 };
