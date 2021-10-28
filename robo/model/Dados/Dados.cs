@@ -282,7 +282,7 @@ namespace Robo
             if (countAlunoTO > 0)
             {
                 string mensagem = "Tem certeza que deseja excluir o banco de dados?" +
-                    "\n\nCertifique-se de j� ter exportado antes para que nenhuma informa��o seja perdida!";
+                    "\n\nCertifique-se de já ter exportado antes para que nenhuma informação seja perdida!";
 
                 if (MessageBox.Show(mensagem, "Limpar Banco de Dados", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK)
                 {
@@ -406,7 +406,7 @@ namespace Robo
             {
                 if (plataforma.Contains("LEGADO") && campus != string.Empty)
                 {
-                    listlogin = SelectWhere<TOLogin>(x => x.Faculdade == IES && x.Plataforma.ToUpper().Contains(plataforma) && x.Campus == campus && x.Admin == "N�o");
+                    listlogin = SelectWhere<TOLogin>(x => x.Faculdade == IES && x.Plataforma.ToUpper().Contains(plataforma) && x.Campus == campus && x.Admin == "Não");
                 }
                 else
                 {
@@ -416,7 +416,7 @@ namespace Robo
                     }
                     else
                     {
-                        listlogin = SelectWhere<TOLogin>(x => x.Faculdade == IES && x.Plataforma.ToUpper().Contains(plataforma) && x.Admin == "N�o");
+                        listlogin = SelectWhere<TOLogin>(x => x.Faculdade == IES && x.Plataforma.ToUpper().Contains(plataforma) && x.Admin == "Não");
                     }
                 }
 
@@ -475,7 +475,7 @@ namespace Robo
             using (var db = new LiteDatabase(CAMINHO_BANCO))
             {
                 var colecao = db.GetCollection<TOAluno>();
-                colecao.UpdateMany(x => new TOAluno { Conclusao = conclusao }, x => x.Conclusao != "N�o Feito" && x.Conclusao != "Duplicado");
+                colecao.UpdateMany(x => new TOAluno { Conclusao = conclusao }, x => x.Conclusao != "Não Feito" && x.Conclusao != "Duplicado");
             }
         }
 

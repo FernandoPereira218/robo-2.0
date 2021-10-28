@@ -19,7 +19,7 @@ namespace robo.View
         private static ImplementacaoPresenter presenter;
         private string tipoFies;
         private FormInterface2 formPrincipal;
-
+        private string execucao;
         public FormDefault(FormInterface2 formAnterior)
         {
             this.formPrincipal = formAnterior;
@@ -126,158 +126,173 @@ namespace robo.View
                     return;
                 }
             }
-            switch (lblExecucao.Text.ToUpper())
+            string IES = cbIES.Text;
+            string semestre = cbSemestre.Text;
+            execucao = lblExecucao.Text.ToUpper();
+            string campus = cbCampus.Text;
+            string situacao = cbSituacao.Text;
+            string mes = cbMes.Text;
+            string ano = cbAno.Text;
+            string dataInicio = dtpDataInicial.Text;
+            string dataFim = dtpDataFinal.Text;
+            string fiesSiga = cbFiesSiga.Text;
+            backgroundWorker.DoWork += (object sender, DoWorkEventArgs e) =>
             {
-                case "ADITAMENTO":
-                    if (tipoFies.ToUpper() == "FIES LEGADO")
-                    {
-                        presenter.ExecutarAditamentoLegado(cbSemestre.Text, cbIES.Text, tipoFies, cbCampus.Text);
-                    }
-                    else
-                    {
-                        presenter.ExecutarAditamentoNovo(cbIES.Text, tipoFies, cbSemestre.Text);
-                    }
-                    break;
-                case "IMPORTAR DRI PARA BANCO DE DADOS":
-                    presenter.ExecutarDRI(cbIES.Text, tipoFies, cbCampus.Text, cbSituacao.Text, baixarDRI: false);
-                    break;
-                case "BAIXAR DRI":
-                    presenter.ExecutarDRI(cbIES.Text, tipoFies, cbCampus.Text, cbSituacao.Text, baixarDRI: true);
-                    break;
-                case "BAIXAR DRM":
-                    if (tipoFies.ToUpper() == "FIES LEGADO")
-                    {
-                        presenter.ExecutarBaixarDocumentoLegado(cbIES.Text, tipoFies, cbCampus.Text, cbSemestre.Text, "DRM");
-                    }
-                    else
-                    {
-                        presenter.ExecutarBaixarDRMFiesNovo(cbIES.Text, tipoFies, cbSemestre.Text);
-                    }
-                    break;
-                case "BAIXAR DRT":
-                    if (tipoFies.ToUpper() == "FIES LEGADO")
-                    {
-                        presenter.ExecutarBaixarDocumentoLegado(cbIES.Text, tipoFies, cbCampus.Text, cbSemestre.Text, "DRT");
-                    }
-                    else
-                    {
+                backgroundWorker.ReportProgress(0);
+                switch (execucao)
+                {
+                    case "ADITAMENTO":
+                        if (tipoFies.ToUpper() == "FIES LEGADO")
+                        {
+                            presenter.ExecutarAditamentoLegado(semestre, IES, tipoFies, campus);
+                        }
+                        else
+                        {
+                            presenter.ExecutarAditamentoNovo(IES, tipoFies, semestre);
+                        }
+                        break;
+                    case "IMPORTAR DRI PARA BANCO DE DADOS":
+                        presenter.ExecutarDRI(IES, tipoFies, campus, situacao, baixarDRI: false);
+                        break;
+                    case "BAIXAR DRI":
+                        presenter.ExecutarDRI(IES, tipoFies, campus, situacao, baixarDRI: true);
+                        break;
+                    case "BAIXAR DRM":
+                        if (tipoFies.ToUpper() == "FIES LEGADO")
+                        {
+                            presenter.ExecutarBaixarDocumentoLegado(IES, tipoFies, campus, semestre, "DRM");
+                        }
+                        else
+                        {
+                            presenter.ExecutarBaixarDRMFiesNovo(IES, tipoFies, semestre);
+                        }
+                        break;
+                    case "BAIXAR DRT":
+                        if (tipoFies.ToUpper() == "FIES LEGADO")
+                        {
+                            presenter.ExecutarBaixarDocumentoLegado(IES, tipoFies, campus, semestre, "DRT");
+                        }
+                        else
+                        {
 
-                    }
-                    break;
-                case "BAIXAR DRD":
-                    if (tipoFies.ToUpper() == "FIES LEGADO")
-                    {
-                        presenter.ExecutarBaixarDocumentoLegado(cbIES.Text, tipoFies, cbCampus.Text, cbSemestre.Text, "DRD");
-                    }
-                    else
-                    {
+                        }
+                        break;
+                    case "BAIXAR DRD":
+                        if (tipoFies.ToUpper() == "FIES LEGADO")
+                        {
+                            presenter.ExecutarBaixarDocumentoLegado(IES, tipoFies, campus, semestre, "DRD");
+                        }
+                        else
+                        {
 
-                    }
-                    break;
-                case "SUSPENSÃO":
-                    if (tipoFies.ToUpper() == "FIES LEGADO")
-                    {
-                        presenter.ExecutarBaixarDocumentoLegado(cbIES.Text, tipoFies, cbCampus.Text, cbSemestre.Text, "Suspensao");
-                    }
-                    else
-                    {
+                        }
+                        break;
+                    case "SUSPENSÃO":
+                        if (tipoFies.ToUpper() == "FIES LEGADO")
+                        {
+                            presenter.ExecutarBaixarDocumentoLegado(IES, tipoFies, campus, semestre, "Suspensao");
+                        }
+                        else
+                        {
 
-                    }
-                    break;
-                case "EXPORTAR DRM":
-                    if (tipoFies.ToUpper() == "FIES LEGADO")
-                    {
-                        presenter.ExecutarExportarRelatoriosLegado(cbIES.Text, tipoFies, cbCampus.Text, cbSemestre.Text, "DRM");
-                    }
-                    else
-                    {
-                        presenter.ExportarRelatorioFiesNovo(cbIES.Text, tipoFies, "DRM");
-                    }
-                    break;
-                case "EXPORTAR DRD":
-                    if (tipoFies.ToUpper() == "FIES LEGADO")
-                    {
-                        presenter.ExecutarExportarRelatoriosLegado(cbIES.Text, tipoFies, cbCampus.Text, cbSemestre.Text, "DRD");
-                    }
-                    else
-                    {
-                        presenter.ExportarRelatorioFiesNovo(cbIES.Text, tipoFies, "DRD");
-                    }
-                    break;
-                case "EXPORTAR DRT":
-                    if (tipoFies.ToUpper() == "FIES LEGADO")
-                    {
-                        presenter.ExecutarExportarRelatoriosLegado(cbIES.Text, tipoFies, cbCampus.Text, cbSemestre.Text, "DRT");
-                    }
-                    else
-                    {
-                        presenter.ExportarRelatorioFiesNovo(cbIES.Text, tipoFies, "DRT");
-                    }
-                    break;
-                case "EXPORTAR SUSPENSÃO":
-                    if (tipoFies.ToUpper() == "FIES LEGADO")
-                    {
-                        presenter.ExecutarExportarRelatoriosLegado(cbIES.Text, tipoFies, cbCampus.Text, cbSemestre.Text, "SUSPENSÃO");
-                    }
-                    else
-                    {
-                        presenter.ExportarRelatorioFiesNovo(cbIES.Text, tipoFies, "SUSPENSÃO");
-                    }
-                    break;
-                case "EXTRAIR INFORMAÇÕES DRM":
-                    if (tipoFies.ToUpper() == "FIES LEGADO")
-                    {
-                        presenter.ExtrairInformacoesDRMLegado(cbIES.Text, tipoFies, cbCampus.Text, cbSemestre.Text);
-                    }
-                    else
-                    {
-                        presenter.ExtrairInformacoesDRMFiesNovo(cbIES.Text, tipoFies, cbSemestre.Text);
-                    }
-                    break;
-                case "EXPORTAR DRI":
-                    presenter.ExecutarExportarDRILegado(cbIES.Text, tipoFies, cbCampus.Text, cbSituacao.Text);
-                    break;
-                case "EXPORTAR REPASSE":
-                    if (tipoFies.ToUpper() == "FIES LEGADO")
-                    {
-                        presenter.ExportarExtratoMensalDeRepasseLegado(cbIES.Text, tipoFies, cbCampus.Text, cbAno.Text, cbMes.Text);
-                    }
-                    else
-                    {
-                        presenter.ExportarRepasseFiesNovo(cbIES.Text, cbMes.Text, cbAno.Text);
-                    }
-                    break;
-                case "ABRIR SITE":
-                    presenter.ExecutarAbrirSite(cbIES.Text, cbCampus.Text, tipoFies);
-                    break;
-                case "BUSCAR STATUS ADITAMENTO":
-                    presenter.ExecutarBuscarStatusAditamentoNovo(cbIES.Text, tipoFies, cbSemestre.Text);
-                    break;
-                case "STATUS ALUNO":
-                    presenter.ExecutarStatusAluno(cbIES.Text, tipoFies, cbSemestre.Text);
-                    break;
-                case "EXPORTAR INADIMPLÊNCIA":
-                    presenter.ExportarInadimplencia(cbIES.Text, cbMes.Text, cbAno.Text);
-                    break;
-                case "EXPORTAR COPARTICIPAÇÃO":
-                    presenter.ExportarCoparticipacaoFiesNovo(cbIES.Text, dtpDataInicial.Text, dtpDataFinal.Text);
-                    break;
-                case "LANÇAMENTO FIES SIGA":
-                    presenter.ExecutarLancamentoFiesSiga(cbSemestre.Text, cbFiesSiga.Text);
-                    break;
-                case "GERAÇÃO PARCELAS FIES SIGA":
-                    presenter.GeracaoParcelasFies(cbSemestre.Text);
-                    break;
-                case "HISTÓRICO DE REPARCELAMENTO DA COPARTICIPAÇÃO":
-                    presenter.ExecutarHistoricoReparcelamentoCoparticipacao(cbIES.Text, tipoFies);
-                    break;
-                case "VALIDAR REPARCELAMENTO":
-                    presenter.ValidarReparcelamento(cbIES.Text, tipoFies);
-                    break;
-                default:
-                    MessageBox.Show("Favor criar o CASE antes de rodar!!!!!");
-                    break;
-            }
+                        }
+                        break;
+                    case "EXPORTAR DRM":
+                        if (tipoFies.ToUpper() == "FIES LEGADO")
+                        {
+                            presenter.ExecutarExportarRelatoriosLegado(IES, tipoFies, campus, semestre, "DRM");
+                        }
+                        else
+                        {
+                            presenter.ExportarRelatorioFiesNovo(IES, tipoFies, "DRM");
+                        }
+                        break;
+                    case "EXPORTAR DRD":
+                        if (tipoFies.ToUpper() == "FIES LEGADO")
+                        {
+                            presenter.ExecutarExportarRelatoriosLegado(IES, tipoFies, campus, semestre, "DRD");
+                        }
+                        else
+                        {
+                            presenter.ExportarRelatorioFiesNovo(IES, tipoFies, "DRD");
+                        }
+                        break;
+                    case "EXPORTAR DRT":
+                        if (tipoFies.ToUpper() == "FIES LEGADO")
+                        {
+                            presenter.ExecutarExportarRelatoriosLegado(IES, tipoFies, campus, semestre, "DRT");
+                        }
+                        else
+                        {
+                            presenter.ExportarRelatorioFiesNovo(IES, tipoFies, "DRT");
+                        }
+                        break;
+                    case "EXPORTAR SUSPENSÃO":
+                        if (tipoFies.ToUpper() == "FIES LEGADO")
+                        {
+                            presenter.ExecutarExportarRelatoriosLegado(IES, tipoFies, campus, semestre, "SUSPENSÃO");
+                        }
+                        else
+                        {
+                            presenter.ExportarRelatorioFiesNovo(IES, tipoFies, "SUSPENSÃO");
+                        }
+                        break;
+                    case "EXTRAIR INFORMAÇÕES DRM":
+                        if (tipoFies.ToUpper() == "FIES LEGADO")
+                        {
+                            presenter.ExtrairInformacoesDRMLegado(IES, tipoFies, campus, semestre);
+                        }
+                        else
+                        {
+                            presenter.ExtrairInformacoesDRMFiesNovo(IES, tipoFies, semestre);
+                        }
+                        break;
+                    case "EXPORTAR DRI":
+                        presenter.ExecutarExportarDRILegado(IES, tipoFies, campus, situacao);
+                        break;
+                    case "EXPORTAR REPASSE":
+                        if (tipoFies.ToUpper() == "FIES LEGADO")
+                        {
+                            presenter.ExportarExtratoMensalDeRepasseLegado(IES, tipoFies, campus, ano, mes);
+                        }
+                        else
+                        {
+                            presenter.ExportarRepasseFiesNovo(IES, mes, ano);
+                        }
+                        break;
+                    case "ABRIR SITE":
+                        presenter.ExecutarAbrirSite(IES, campus, tipoFies);
+                        break;
+                    case "BUSCAR STATUS ADITAMENTO":
+                        presenter.ExecutarBuscarStatusAditamentoNovo(IES, tipoFies, semestre);
+                        break;
+                    case "STATUS ALUNO":
+                        presenter.ExecutarStatusAluno(IES, tipoFies, semestre);
+                        break;
+                    case "EXPORTAR INADIMPLÊNCIA":
+                        presenter.ExportarInadimplencia(IES, mes, ano);
+                        break;
+                    case "EXPORTAR COPARTICIPAÇÃO":
+                        presenter.ExportarCoparticipacaoFiesNovo(IES, dataInicio, dataFim);
+                        break;
+                    case "LANÇAMENTO FIES SIGA":
+                        presenter.ExecutarLancamentoFiesSiga(semestre, fiesSiga);
+                        break;
+                    case "GERAÇÃO PARCELAS FIES SIGA":
+                        presenter.GeracaoParcelasFies(semestre);
+                        break;
+                    case "HISTÓRICO DE REPARCELAMENTO DA COPARTICIPAÇÃO":
+                        presenter.ExecutarHistoricoReparcelamentoCoparticipacao(IES, tipoFies);
+                        break;
+                    case "VALIDAR REPARCELAMENTO":
+                        presenter.ValidarReparcelamento(IES, tipoFies);
+                        break;
+                    default:
+                        MessageBox.Show("Favor criar o CASE antes de rodar!!!!!");
+                        break;
+                }
+            };
+            backgroundWorker.RunWorkerAsync();
         }
 
         private void btnImportar_Click(object sender, EventArgs e)
@@ -305,23 +320,20 @@ namespace robo.View
             txtCPF.TextMaskFormat = MaskFormat.ExcludePromptAndLiterals;
         }
 
-        private void backgroundWorker_DoWork(object sender, DoWorkEventArgs e)
-        {
-
-            for (int i = 0; i < 100; i++)
-            {
-                backgroundWorker.ReportProgress(i);
-                System.Threading.Thread.Sleep(500);
-            }
-        }
-
         private void backgroundWorker_ProgressChanged(object sender, ProgressChangedEventArgs e)
         {
             formPrincipal.flpModosDeExecucao.Enabled = false;
             btnImportar.Enabled = false;
             btnIniciar.Enabled = false;
             circularProgressBar1.Visible = true;
-            circularProgressBar1.Value = e.ProgressPercentage;
+            if (execucao.Contains("EXPORTAR"))
+            {
+                circularProgressBar1.Style = ProgressBarStyle.Marquee;
+            }
+            else
+            {
+                circularProgressBar1.Value = e.ProgressPercentage;
+            }
 
             if (e.ProgressPercentage == 0)
             {
@@ -339,6 +351,9 @@ namespace robo.View
             btnImportar.Enabled = true;
             btnIniciar.Enabled = true;
             formPrincipal.flpModosDeExecucao.Enabled = true;
+
+            circularProgressBar1.Style = ProgressBarStyle.Continuous;
+            circularProgressBar1.Visible = false;
         }
     }
 }
