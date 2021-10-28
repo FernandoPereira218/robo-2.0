@@ -7,6 +7,7 @@ using System.Data;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -15,6 +16,12 @@ namespace robo
 {
     public partial class Login : Form
     {
+        public const int WM_NCLBUTTONDOWN = 0xA1;
+        public const int HT_CAPTION = 0x2;
+        [DllImportAttribute("user32.dll")]
+        public static extern int SendMessage(IntPtr hWnd, int Msg, int wParam, int lParam);
+        [DllImportAttribute("user32.dll")]
+        public static extern bool ReleaseCapture();
         private static string sessionFile = "session.dat";
         public Login()
         {
@@ -72,15 +79,9 @@ namespace robo
             VerifySession();
         }
 
-        private void btnClose_Click(object sender, EventArgs e)
-        {
-            Close();
-        }
 
-        private void btnMinimize_Click(object sender, EventArgs e)
-        {
-            this.WindowState = FormWindowState.Minimized;
-        }
+
+
 
         private void cbManterLogado_CheckedChanged(object sender, EventArgs e)
         {
@@ -91,15 +92,34 @@ namespace robo
         }
 
         private void txtValidacaoCampos_KeyDown(object sender, KeyEventArgs e)
-        {   
+        {
             if (e.KeyCode == Keys.Enter)
             {
-                if (txtSenha.Text != null 
+                if (txtSenha.Text != null
                     && txtUsuario.Text != null)
                 {
                     btConfirma.PerformClick();
                 }
             }
+        }
+
+        private void Login_MouseDown(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Left)
+            {
+                ReleaseCapture();
+                SendMessage(Handle, WM_NCLBUTTONDOWN, HT_CAPTION, 0);
+            }
+        }
+
+        private void btnClose_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
+
+        private void btnMinimize_Click(object sender, EventArgs e)
+        {
+            this.WindowState = FormWindowState.Minimized;
         }
     }
 }

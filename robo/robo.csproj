@@ -333,6 +333,7 @@
     <Compile Include="Model\TO\TOAluno.cs" />
     <Compile Include="Model\Dados\Dados.cs" />
     <Compile Include="Model\TO\TOUsuario.cs" />
+    <None Include="Resources\logoAnima.png" />
     <None Include="Resources\contorno-da-casa.png" />
     <None Include="Resources\configuracoes.png" />
     <None Include="Resources\silhueta-negra-de-casa-sem-porta2.png" />
@@ -390,6 +391,7 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <None Include="Resources\admin.png" />
+    <None Include="Resources\anima_educacao_UniFG.jpg" />
     <Content Include="Resources\bot.ico" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
