@@ -25,10 +25,12 @@ namespace robo.View
         public static extern bool ReleaseCapture();
         public static string versaoRobo;
         private bool logout = false;
+        private bool verificacaoMAX = false;
         public FormInterface2()
         {
             versaoRobo = Program.login.Permissao;
             InitializeComponent();
+            
             lblUsuario.Text = Program.login.Usuario;
             VerificarVersaoCAE();
         }
@@ -83,6 +85,7 @@ namespace robo.View
             //panelCadastro.Controls.Clear();
             if (formulario == null)
             {
+                
                 formulario = new FormDefault(this);
                 formulario.TopLevel = false;
                 formulario.FormBorderStyle = FormBorderStyle.None;
@@ -302,6 +305,22 @@ namespace robo.View
             if (File.Exists("session.dat") == true)
             {
                 File.Delete("session.dat");
+            }
+        }
+
+        private void btnMaximize_Click(object sender, EventArgs e)
+        {
+            if (verificacaoMAX == false)
+            {
+                this.MaximizedBounds = Screen.FromHandle(this.Handle).WorkingArea;
+                this.WindowState = FormWindowState.Maximized;
+                verificacaoMAX = true;
+                return;
+            }
+            if(verificacaoMAX == true)
+            {
+                this.WindowState = FormWindowState.Normal;
+                verificacaoMAX = false;
             }
         }
     }

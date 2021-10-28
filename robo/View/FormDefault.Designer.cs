@@ -92,6 +92,9 @@ namespace robo.View
             // 
             // panelCadastro
             // 
+            this.panelCadastro.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.panelCadastro.BackColor = System.Drawing.Color.White;
             this.panelCadastro.Controls.Add(this.circularProgressBar1);
             this.panelCadastro.Controls.Add(this.flowLayoutPanel1);
@@ -689,14 +692,13 @@ namespace robo.View
             // 
             // btnIniciar
             // 
-            this.btnIniciar.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.btnIniciar.BackColor = System.Drawing.Color.White;
             this.btnIniciar.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnIniciar.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
             this.btnIniciar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnIniciar.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnIniciar.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(33)))), ((int)(((byte)(33)))));
-            this.btnIniciar.Location = new System.Drawing.Point(33, 543);
+            this.btnIniciar.Location = new System.Drawing.Point(45, 549);
             this.btnIniciar.Name = "btnIniciar";
             this.btnIniciar.Size = new System.Drawing.Size(216, 29);
             this.btnIniciar.TabIndex = 61;

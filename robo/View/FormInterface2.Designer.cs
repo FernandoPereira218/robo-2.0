@@ -30,10 +30,11 @@ namespace robo.View
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle49 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle50 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle51 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panelMenuBar = new System.Windows.Forms.Panel();
+            this.btnMaximize = new System.Windows.Forms.Button();
             this.lblUsuario = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.btnMinimize = new System.Windows.Forms.Button();
@@ -85,6 +86,7 @@ namespace robo.View
             this.panelMenuBar.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panelMenuBar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(45)))));
+            this.panelMenuBar.Controls.Add(this.btnMaximize);
             this.panelMenuBar.Controls.Add(this.lblUsuario);
             this.panelMenuBar.Controls.Add(this.label6);
             this.panelMenuBar.Controls.Add(this.btnMinimize);
@@ -96,16 +98,34 @@ namespace robo.View
             this.panelMenuBar.TabIndex = 1;
             this.panelMenuBar.MouseDown += new System.Windows.Forms.MouseEventHandler(this.panelMenuBar_MouseDown);
             // 
+            // btnMaximize
+            // 
+            this.btnMaximize.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnMaximize.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnMaximize.FlatAppearance.BorderSize = 0;
+            this.btnMaximize.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnMaximize.ForeColor = System.Drawing.Color.White;
+            this.btnMaximize.Location = new System.Drawing.Point(1236, 0);
+            this.btnMaximize.Margin = new System.Windows.Forms.Padding(2);
+            this.btnMaximize.Name = "btnMaximize";
+            this.btnMaximize.Size = new System.Drawing.Size(22, 25);
+            this.btnMaximize.TabIndex = 13;
+            this.btnMaximize.Text = "_";
+            this.btnMaximize.UseVisualStyleBackColor = true;
+            this.btnMaximize.Click += new System.EventHandler(this.btnMaximize_Click);
+            // 
             // lblUsuario
             // 
+            this.lblUsuario.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lblUsuario.AutoSize = true;
             this.lblUsuario.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.lblUsuario.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblUsuario.ForeColor = System.Drawing.SystemColors.Control;
-            this.lblUsuario.Location = new System.Drawing.Point(1276, 9);
+            this.lblUsuario.Location = new System.Drawing.Point(1154, 14);
             this.lblUsuario.Name = "lblUsuario";
-            this.lblUsuario.Size = new System.Drawing.Size(0, 16);
+            this.lblUsuario.Size = new System.Drawing.Size(42, 16);
             this.lblUsuario.TabIndex = 12;
+            this.lblUsuario.Text = "Admin";
             // 
             // label6
             // 
@@ -126,7 +146,7 @@ namespace robo.View
             this.btnMinimize.FlatAppearance.BorderSize = 0;
             this.btnMinimize.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnMinimize.ForeColor = System.Drawing.Color.White;
-            this.btnMinimize.Location = new System.Drawing.Point(1236, 0);
+            this.btnMinimize.Location = new System.Drawing.Point(1210, 0);
             this.btnMinimize.Margin = new System.Windows.Forms.Padding(2);
             this.btnMinimize.Name = "btnMinimize";
             this.btnMinimize.Size = new System.Drawing.Size(22, 25);
@@ -161,7 +181,7 @@ namespace robo.View
             this.panelExcel.Controls.Add(this.btnMarcarNaoFeito);
             this.panelExcel.Controls.Add(this.btnExportarExcel);
             this.panelExcel.Controls.Add(this.btnSelectPath);
-            this.panelExcel.Location = new System.Drawing.Point(230, 63);
+            this.panelExcel.Location = new System.Drawing.Point(231, 41);
             this.panelExcel.Name = "panelExcel";
             this.panelExcel.Size = new System.Drawing.Size(974, 667);
             this.panelExcel.TabIndex = 0;
@@ -201,21 +221,21 @@ namespace robo.View
             this.dgvAlunos.AccessibleRole = System.Windows.Forms.AccessibleRole.None;
             this.dgvAlunos.AllowUserToAddRows = false;
             this.dgvAlunos.AllowUserToDeleteRows = false;
-            dataGridViewCellStyle10.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dgvAlunos.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle10;
+            dataGridViewCellStyle49.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dgvAlunos.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle49;
             this.dgvAlunos.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.dgvAlunos.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
             this.dgvAlunos.BackgroundColor = System.Drawing.SystemColors.Control;
             this.dgvAlunos.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dgvAlunos.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle11.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle11.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle11.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle11.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle11.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle11.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvAlunos.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle11;
+            dataGridViewCellStyle50.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle50.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle50.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle50.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle50.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle50.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle50.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvAlunos.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle50;
             this.dgvAlunos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvAlunos.Location = new System.Drawing.Point(-27, 65);
             this.dgvAlunos.Name = "dgvAlunos";
@@ -223,8 +243,8 @@ namespace robo.View
             this.dgvAlunos.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
             this.dgvAlunos.RowHeadersVisible = false;
             this.dgvAlunos.RowHeadersWidth = 51;
-            dataGridViewCellStyle12.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dgvAlunos.RowsDefaultCellStyle = dataGridViewCellStyle12;
+            dataGridViewCellStyle51.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dgvAlunos.RowsDefaultCellStyle = dataGridViewCellStyle51;
             this.dgvAlunos.RowTemplate.DefaultCellStyle.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dgvAlunos.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvAlunos.Size = new System.Drawing.Size(1050, 601);
@@ -289,7 +309,6 @@ namespace robo.View
             this.panelCadastrarContent.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.panelCadastrarContent.AutoScroll = true;
             this.panelCadastrarContent.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.panelCadastrarContent.BackColor = System.Drawing.Color.White;
             this.panelCadastrarContent.Controls.Add(this.panelMenuExecucao);
@@ -304,13 +323,15 @@ namespace robo.View
             // 
             // panelMenuExecucao
             // 
+            this.panelMenuExecucao.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.panelMenuExecucao.BackColor = System.Drawing.Color.White;
             this.panelMenuExecucao.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.panelMenuExecucao.Controls.Add(this.lblExecucao);
             this.panelMenuExecucao.Controls.Add(this.btnPlanilha);
             this.panelMenuExecucao.Location = new System.Drawing.Point(0, -1);
             this.panelMenuExecucao.Name = "panelMenuExecucao";
-            this.panelMenuExecucao.Size = new System.Drawing.Size(1204, 63);
+            this.panelMenuExecucao.Size = new System.Drawing.Size(1205, 63);
             this.panelMenuExecucao.TabIndex = 15;
             // 
             // lblExecucao
@@ -328,14 +349,14 @@ namespace robo.View
             // 
             // btnPlanilha
             // 
-            this.btnPlanilha.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.btnPlanilha.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnPlanilha.BackColor = System.Drawing.Color.White;
             this.btnPlanilha.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnPlanilha.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
             this.btnPlanilha.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnPlanilha.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnPlanilha.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(33)))), ((int)(((byte)(33)))));
-            this.btnPlanilha.Location = new System.Drawing.Point(1084, 17);
+            this.btnPlanilha.Location = new System.Drawing.Point(1100, 17);
             this.btnPlanilha.Name = "btnPlanilha";
             this.btnPlanilha.Size = new System.Drawing.Size(96, 29);
             this.btnPlanilha.TabIndex = 63;
@@ -352,29 +373,29 @@ namespace robo.View
             this.panelExecucao.Controls.Add(this.flpModosDeExecucao);
             this.panelExecucao.Location = new System.Drawing.Point(0, 60);
             this.panelExecucao.Name = "panelExecucao";
-            this.panelExecucao.Size = new System.Drawing.Size(231, 671);
+            this.panelExecucao.Size = new System.Drawing.Size(231, 620);
             this.panelExecucao.TabIndex = 61;
             // 
             // panel1
             // 
+            this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.panel1.Controls.Add(this.labelTipoFies);
             this.panel1.Location = new System.Drawing.Point(-2, -14);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(231, 78);
+            this.panel1.Size = new System.Drawing.Size(231, 90);
             this.panel1.TabIndex = 66;
             // 
             // labelTipoFies
             // 
-            this.labelTipoFies.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.labelTipoFies.BackColor = System.Drawing.Color.White;
             this.labelTipoFies.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.labelTipoFies.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.labelTipoFies.Location = new System.Drawing.Point(-15, 11);
             this.labelTipoFies.Name = "labelTipoFies";
-            this.labelTipoFies.Size = new System.Drawing.Size(246, 67);
+            this.labelTipoFies.Size = new System.Drawing.Size(246, 81);
             this.labelTipoFies.TabIndex = 65;
             this.labelTipoFies.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.labelTipoFies.UseCustomBackColor = true;
@@ -383,20 +404,27 @@ namespace robo.View
             // 
             // flpModosDeExecucao
             // 
+            this.flpModosDeExecucao.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
             this.flpModosDeExecucao.AutoScroll = true;
             this.flpModosDeExecucao.BackColor = System.Drawing.Color.White;
             this.flpModosDeExecucao.ForeColor = System.Drawing.Color.Gray;
-            this.flpModosDeExecucao.Location = new System.Drawing.Point(-2, 60);
+            this.flpModosDeExecucao.Location = new System.Drawing.Point(-2, 73);
+            this.flpModosDeExecucao.MaximumSize = new System.Drawing.Size(231, 1080);
+            this.flpModosDeExecucao.MinimumSize = new System.Drawing.Size(231, 500);
             this.flpModosDeExecucao.Name = "flpModosDeExecucao";
-            this.flpModosDeExecucao.Size = new System.Drawing.Size(231, 606);
+            this.flpModosDeExecucao.Size = new System.Drawing.Size(231, 545);
             this.flpModosDeExecucao.TabIndex = 0;
             // 
             // panelCadastro
             // 
+            this.panelCadastro.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.panelCadastro.BackColor = System.Drawing.Color.White;
             this.panelCadastro.Location = new System.Drawing.Point(230, 61);
             this.panelCadastro.Name = "panelCadastro";
-            this.panelCadastro.Size = new System.Drawing.Size(974, 670);
+            this.panelCadastro.Size = new System.Drawing.Size(977, 619);
             this.panelCadastro.TabIndex = 38;
             // 
             // panelErroNenhumAluno
@@ -459,6 +487,8 @@ namespace robo.View
             // 
             // panelSubMenu
             // 
+            this.panelSubMenu.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
             this.panelSubMenu.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(45)))));
             this.panelSubMenu.Controls.Add(this.btnLogout);
             this.panelSubMenu.Controls.Add(this.btnHome);
@@ -473,13 +503,14 @@ namespace robo.View
             // 
             // btnLogout
             // 
+            this.btnLogout.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnLogout.FlatAppearance.BorderSize = 0;
             this.btnLogout.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnLogout.Font = new System.Drawing.Font("Century Gothic", 8.25F);
             this.btnLogout.ForeColor = System.Drawing.Color.Silver;
-            this.btnLogout.Location = new System.Drawing.Point(3, 545);
+            this.btnLogout.Location = new System.Drawing.Point(1, 543);
             this.btnLogout.Name = "btnLogout";
-            this.btnLogout.Size = new System.Drawing.Size(72, 67);
+            this.btnLogout.Size = new System.Drawing.Size(74, 67);
             this.btnLogout.TabIndex = 10;
             this.btnLogout.Text = "Logout";
             this.btnLogout.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
@@ -488,8 +519,7 @@ namespace robo.View
             // 
             // btnHome
             // 
-            this.btnHome.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnHome.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnHome.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.btnHome.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnHome.FlatAppearance.BorderSize = 0;
@@ -497,7 +527,7 @@ namespace robo.View
             this.btnHome.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnHome.ForeColor = System.Drawing.Color.Silver;
             this.btnHome.Image = global::robo.Properties.Resources.contorno_da_casa;
-            this.btnHome.Location = new System.Drawing.Point(1, 475);
+            this.btnHome.Location = new System.Drawing.Point(1, 473);
             this.btnHome.Margin = new System.Windows.Forms.Padding(0);
             this.btnHome.Name = "btnHome";
             this.btnHome.Size = new System.Drawing.Size(77, 67);
@@ -509,8 +539,6 @@ namespace robo.View
             // 
             // btnSiga
             // 
-            this.btnSiga.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.btnSiga.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.btnSiga.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnSiga.FlatAppearance.BorderSize = 0;
@@ -530,8 +558,6 @@ namespace robo.View
             // 
             // btnFiesLegado
             // 
-            this.btnFiesLegado.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.btnFiesLegado.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.btnFiesLegado.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnFiesLegado.FlatAppearance.BorderSize = 0;
@@ -551,8 +577,6 @@ namespace robo.View
             // 
             // btnFiesNovo
             // 
-            this.btnFiesNovo.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.btnFiesNovo.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.btnFiesNovo.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnFiesNovo.FlatAppearance.BorderSize = 0;
@@ -572,8 +596,7 @@ namespace robo.View
             // 
             // btnConfiguracoes
             // 
-            this.btnConfiguracoes.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnConfiguracoes.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnConfiguracoes.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.btnConfiguracoes.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnConfiguracoes.FlatAppearance.BorderSize = 0;
@@ -581,7 +604,7 @@ namespace robo.View
             this.btnConfiguracoes.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnConfiguracoes.ForeColor = System.Drawing.Color.Silver;
             this.btnConfiguracoes.Image = global::robo.Properties.Resources.configuracoes;
-            this.btnConfiguracoes.Location = new System.Drawing.Point(0, 615);
+            this.btnConfiguracoes.Location = new System.Drawing.Point(1, 613);
             this.btnConfiguracoes.Margin = new System.Windows.Forms.Padding(0);
             this.btnConfiguracoes.Name = "btnConfiguracoes";
             this.btnConfiguracoes.Size = new System.Drawing.Size(77, 67);
@@ -593,6 +616,9 @@ namespace robo.View
             // 
             // panelHome
             // 
+            this.panelHome.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.panelHome.Location = new System.Drawing.Point(76, 40);
             this.panelHome.Name = "panelHome";
             this.panelHome.Size = new System.Drawing.Size(1204, 686);
@@ -604,10 +630,10 @@ namespace robo.View
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.ClientSize = new System.Drawing.Size(1280, 720);
-            this.Controls.Add(this.panelHome);
-            this.Controls.Add(this.panelSubMenu);
             this.Controls.Add(this.panelCadastrarContent);
+            this.Controls.Add(this.panelHome);
             this.Controls.Add(this.panelMenuBar);
+            this.Controls.Add(this.panelSubMenu);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "FormInterface2";
@@ -676,5 +702,6 @@ namespace robo.View
         private System.Windows.Forms.Panel panelHome;
         private System.Windows.Forms.Label lblUsuario;
         private System.Windows.Forms.Button btnLogout;
+        private System.Windows.Forms.Button btnMaximize;
     }
 }
