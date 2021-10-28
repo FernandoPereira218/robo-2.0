@@ -7,9 +7,11 @@ using robo.Control.Relatorios.FIES_Legado;
 using robo.Control.Relatorios.FIES_Novo;
 using robo.Control.Relatorios.SIGA;
 using robo.pgm;
+using robo.View;
 using Robo;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -19,15 +21,21 @@ namespace robo.Control.Implementacoes
 {
     public class ImplementacaoPresenter : IContratos.IPresenter
     {
-        private IContratos.IMainForms forms;
+        private FormDefault forms;
         private List<TOAluno> listaAlunos;
         private List<TOLogin> listaLogins;
         private const string FIES_NOVO = "NOVO";
         private const string FIES_LEGADO = "LEGADO";
         public string CPFCae { get; set; }
+        public ImplementacaoPresenter(FormDefault forms)
+        {
+            this.forms = forms;
+
+            //SetForm(forms);
+        }
+
         public ImplementacaoPresenter(IContratos.IMainForms forms)
         {
-            SetForm(forms);
         }
 
         private void BuscarLoginsEAlunos(string faculdade, string tipoFies, string campus, ref List<TOAluno> alunos, ref List<TOLogin> logins, bool admin, bool exportar)
@@ -278,23 +286,37 @@ namespace robo.Control.Implementacoes
         }
         public void ExecutarBuscarStatusAditamentoNovo(string faculdade, string tipoFies, string semestre)
         {
-            BuscarLoginsEAlunos(faculdade, FIES_NOVO, "", ref listaAlunos, ref listaLogins, admin: false, exportar: false);
-
-            UtilFiesNovo utilFiesNovo = new UtilFiesNovo();
-            IWebDriver Driver = Util.StartBrowser("http://sifesweb.caixa.gov.br");
-            BuscarStatusAditamento statusAditamento = new BuscarStatusAditamento();
-            statusAditamento.SetDriver(Driver);
-            utilFiesNovo.FazerLogin(Driver, listaLogins[0]);
-            utilFiesNovo.WaitForLoading(Driver);
-            utilFiesNovo.ClicarMenuAditamento(Driver);
-
-            foreach (TOAluno aluno in listaAlunos)
+            forms.backgroundWorker.DoWork += (object sender, DoWorkEventArgs e) =>
             {
-                statusAditamento.BuscarStatus(aluno, semestre);
-            }
-            Driver.Close();
-            Driver.Dispose();
+                forms.backgroundWorker.ReportProgress(0);
+                BuscarLoginsEAlunos(faculdade, FIES_NOVO, "", ref listaAlunos, ref listaLogins, admin: false, exportar: false);
+                UtilFiesNovo utilFiesNovo = new UtilFiesNovo();
+                IWebDriver Driver = Util.StartBrowser("http://sifesweb.caixa.gov.br");
+                BuscarStatusAditamento statusAditamento = new BuscarStatusAditamento();
+                statusAditamento.SetDriver(Driver);
+                utilFiesNovo.FazerLogin(Driver, listaLogins[0]);
+                utilFiesNovo.WaitForLoading(Driver);
+                utilFiesNovo.ClicarMenuAditamento(Driver);
+                float progresso = 0;
+                foreach (TOAluno aluno in listaAlunos)
+                {
+                    statusAditamento.BuscarStatus(aluno, semestre);
+                    progresso += 100.0f / listaAlunos.Count;
+                    forms.backgroundWorker.ReportProgress(Convert.ToInt32(progresso));
+                }
+                Driver.Close();
+                Driver.Dispose();
+            };
+
+            forms.backgroundWorker.RunWorkerAsync();
+
         }
+
+        private void BackgroundWorker_DoWork(object sender, System.ComponentModel.DoWorkEventArgs e)
+        {
+            throw new NotImplementedException();
+        }
+
         public void ExecutarStatusAluno(string faculdade, string tipoFies, string semestre)
         {
             BuscarLoginsEAlunos(faculdade, FIES_NOVO, "", ref listaAlunos, ref listaLogins, admin: false, exportar: false);
@@ -492,7 +514,7 @@ namespace robo.Control.Implementacoes
 
         public void SetForm(IContratos.IMainForms forms)
         {
-            this.forms = forms;
+            //this.forms = forms;
         }
 
         public void TratarDadosAluno(TOAluno aluno)

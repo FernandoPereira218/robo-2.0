@@ -30,6 +30,7 @@ namespace robo.View
         private void InitializeComponent()
         {
             this.panelCadastro = new System.Windows.Forms.Panel();
+            this.circularProgressBar1 = new CircularProgressBar.CircularProgressBar();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.panelCabecalho = new System.Windows.Forms.Panel();
             this.lblExecucao = new MetroFramework.Controls.MetroLabel();
@@ -73,6 +74,7 @@ namespace robo.View
             this.cbFiesSiga = new System.Windows.Forms.ComboBox();
             this.labelDay = new System.Windows.Forms.Label();
             this.btnIniciar = new System.Windows.Forms.Button();
+            this.backgroundWorker = new System.ComponentModel.BackgroundWorker();
             this.panelCadastro.SuspendLayout();
             this.flowLayoutPanel1.SuspendLayout();
             this.panelCabecalho.SuspendLayout();
@@ -91,6 +93,7 @@ namespace robo.View
             // panelCadastro
             // 
             this.panelCadastro.BackColor = System.Drawing.Color.White;
+            this.panelCadastro.Controls.Add(this.circularProgressBar1);
             this.panelCadastro.Controls.Add(this.flowLayoutPanel1);
             this.panelCadastro.Controls.Add(this.labelDay);
             this.panelCadastro.Controls.Add(this.btnIniciar);
@@ -98,6 +101,39 @@ namespace robo.View
             this.panelCadastro.Name = "panelCadastro";
             this.panelCadastro.Size = new System.Drawing.Size(1072, 700);
             this.panelCadastro.TabIndex = 39;
+            // 
+            // circularProgressBar1
+            // 
+            this.circularProgressBar1.AnimationFunction = WinFormAnimation.KnownAnimationFunctions.Liner;
+            this.circularProgressBar1.AnimationSpeed = 500;
+            this.circularProgressBar1.BackColor = System.Drawing.Color.Transparent;
+            this.circularProgressBar1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold);
+            this.circularProgressBar1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.circularProgressBar1.InnerColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
+            this.circularProgressBar1.InnerMargin = 2;
+            this.circularProgressBar1.InnerWidth = -1;
+            this.circularProgressBar1.Location = new System.Drawing.Point(710, 21);
+            this.circularProgressBar1.MarqueeAnimationSpeed = 2000;
+            this.circularProgressBar1.Name = "circularProgressBar1";
+            this.circularProgressBar1.OuterColor = System.Drawing.Color.Gray;
+            this.circularProgressBar1.OuterMargin = -25;
+            this.circularProgressBar1.OuterWidth = 26;
+            this.circularProgressBar1.ProgressColor = System.Drawing.Color.Red;
+            this.circularProgressBar1.ProgressWidth = 25;
+            this.circularProgressBar1.SecondaryFont = new System.Drawing.Font("Microsoft Sans Serif", 36F);
+            this.circularProgressBar1.Size = new System.Drawing.Size(320, 320);
+            this.circularProgressBar1.StartAngle = 270;
+            this.circularProgressBar1.SubscriptColor = System.Drawing.Color.FromArgb(((int)(((byte)(166)))), ((int)(((byte)(166)))), ((int)(((byte)(166)))));
+            this.circularProgressBar1.SubscriptMargin = new System.Windows.Forms.Padding(10, -35, 0, 0);
+            this.circularProgressBar1.SubscriptText = "";
+            this.circularProgressBar1.SuperscriptColor = System.Drawing.Color.FromArgb(((int)(((byte)(166)))), ((int)(((byte)(166)))), ((int)(((byte)(166)))));
+            this.circularProgressBar1.SuperscriptMargin = new System.Windows.Forms.Padding(10, 35, 0, 0);
+            this.circularProgressBar1.SuperscriptText = "";
+            this.circularProgressBar1.TabIndex = 62;
+            this.circularProgressBar1.Text = "Processando";
+            this.circularProgressBar1.TextMargin = new System.Windows.Forms.Padding(8, 8, 0, 0);
+            this.circularProgressBar1.Value = 68;
+            this.circularProgressBar1.Visible = false;
             // 
             // flowLayoutPanel1
             // 
@@ -669,6 +705,12 @@ namespace robo.View
             this.btnIniciar.UseVisualStyleBackColor = false;
             this.btnIniciar.Click += new System.EventHandler(this.btnIniciar_Click);
             // 
+            // backgroundWorker
+            // 
+            this.backgroundWorker.WorkerReportsProgress = true;
+            this.backgroundWorker.ProgressChanged += new System.ComponentModel.ProgressChangedEventHandler(this.backgroundWorker_ProgressChanged);
+            this.backgroundWorker.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.backgroundWorker_RunWorkerCompleted);
+            // 
             // FormDefault
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -752,5 +794,7 @@ namespace robo.View
         private MetroFramework.Controls.MetroLabel lblAlunosImportados;
         private MetroFramework.Controls.MetroLabel metroLabel1;
         private System.Windows.Forms.MaskedTextBox txtCPF;
+        public CircularProgressBar.CircularProgressBar circularProgressBar1;
+        public System.ComponentModel.BackgroundWorker backgroundWorker;
     }
 }
