@@ -83,6 +83,16 @@ namespace robo.Properties {
         /// <summary>
         ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap anima_educacao_UniFG {
+            get {
+                object obj = ResourceManager.GetObject("anima_educacao_UniFG", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap bot {
             get {
                 object obj = ResourceManager.GetObject("bot", resourceCulture);
@@ -206,6 +216,16 @@ namespace robo.Properties {
         internal static System.Drawing.Bitmap insert_memory_card {
             get {
                 object obj = ResourceManager.GetObject("insert-memory-card", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap logoAnima {
+            get {
+                object obj = ResourceManager.GetObject("logoAnima", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
