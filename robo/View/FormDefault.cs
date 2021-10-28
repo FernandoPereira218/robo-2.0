@@ -19,7 +19,7 @@ namespace robo.View
         private static ImplementacaoPresenter presenter;
         private string tipoFies;
         private FormInterface2 formPrincipal;
-
+        private string execucao;
         public FormDefault(FormInterface2 formAnterior)
         {
             this.formPrincipal = formAnterior;
@@ -128,7 +128,7 @@ namespace robo.View
             }
             string IES = cbIES.Text;
             string semestre = cbSemestre.Text;
-            string execucao = lblExecucao.Text.ToUpper();
+            execucao = lblExecucao.Text.ToUpper();
             string campus = cbCampus.Text;
             string situacao = cbSituacao.Text;
             string mes = cbMes.Text;
@@ -320,23 +320,20 @@ namespace robo.View
             txtCPF.TextMaskFormat = MaskFormat.ExcludePromptAndLiterals;
         }
 
-        private void backgroundWorker_DoWork(object sender, DoWorkEventArgs e)
-        {
-
-            for (int i = 0; i < 100; i++)
-            {
-                backgroundWorker.ReportProgress(i);
-                System.Threading.Thread.Sleep(500);
-            }
-        }
-
         private void backgroundWorker_ProgressChanged(object sender, ProgressChangedEventArgs e)
         {
             formPrincipal.flpModosDeExecucao.Enabled = false;
             btnImportar.Enabled = false;
             btnIniciar.Enabled = false;
             circularProgressBar1.Visible = true;
-            circularProgressBar1.Value = e.ProgressPercentage;
+            if (execucao.Contains("EXPORTAR"))
+            {
+                circularProgressBar1.Style = ProgressBarStyle.Marquee;
+            }
+            else
+            {
+                circularProgressBar1.Value = e.ProgressPercentage;
+            }
 
             if (e.ProgressPercentage == 0)
             {
@@ -354,6 +351,9 @@ namespace robo.View
             btnImportar.Enabled = true;
             btnIniciar.Enabled = true;
             formPrincipal.flpModosDeExecucao.Enabled = true;
+
+            circularProgressBar1.Style = ProgressBarStyle.Continuous;
+            circularProgressBar1.Visible = false;
         }
     }
 }
