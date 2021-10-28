@@ -140,7 +140,7 @@ namespace Robo
             if (txtExcel.Text != "")
             {
                 Cursor.Current = Cursors.WaitCursor;
-                Dados.ImportaAlunos(txtExcel.Text);
+                Dados.ImportaAlunos(txtExcel.Text, "");
                 Cursor.Current = Cursors.Default;
                 AtualizarListViewAlunos();
                 SystemSounds.Beep.Play();

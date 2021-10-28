@@ -259,7 +259,7 @@ namespace robo.View
                 if (ofdSelectExcel.FileName != "")
                 {
                     Cursor.Current = Cursors.WaitCursor;
-                    Dados.ImportaAlunos(ofdSelectExcel.FileName);
+                    Dados.ImportaAlunos(ofdSelectExcel.FileName, labelTipoFies.Text);
                     Cursor.Current = Cursors.Default;
                     AtualizarListViewAlunos();
                     SystemSounds.Beep.Play();

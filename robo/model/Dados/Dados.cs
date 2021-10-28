@@ -21,10 +21,10 @@ namespace Robo
         private const string CAMINHO_BANCO = "Filename = data/bdbot1.db; Password=AlunosBrilhantes;";
 
         //INSERTS
-        public static void ImportaAlunos(string filePath)
+        public static void ImportaAlunos(string filePath, string tipo)
         {
-            List<TOAluno> alunos = BuscarListaAlunos(filePath);
-            AtualizarAlunosBD(alunos);
+            List<TOAluno> alunos = BuscarListaAlunos(filePath, tipo);
+            InsertListLite(alunos);
             VerificarCPFDuplicado(alunos);
         }
 
@@ -34,7 +34,7 @@ namespace Robo
         /// </summary>
         /// <param name="directory">Diret�rio da planilha excel.</param>
         /// <returns>Lista de alunos.</returns>
-        public static List<TOAluno> BuscarListaAlunos(string directory)
+        public static List<TOAluno> BuscarListaAlunos(string directory, string tipo)
         {
             try
             {
@@ -53,7 +53,6 @@ namespace Robo
 
                 for (int i = alunos.Count() - 1; i >= 0; i--)
                 {
-                    alunos[i].Tipo = alunos[i].Tipo.Trim();
                     if (alunos[i].Cpf == string.Empty)
                     {
                         alunos.RemoveAt(i);
@@ -61,15 +60,18 @@ namespace Robo
                     else
                     {
                         TratarCpf(alunos[i]);
+                        if (alunos[i].Tipo == string.Empty)
+                        {
+                            alunos[i].Tipo = tipo;
+                        }
+                        alunos[i].Tipo = alunos[i].Tipo.Trim();
                     }
                 }
 
-                //return TratarCpf(alunos);
                 return alunos;
             }
             catch (Exception e)
             {
-                //throw new Exception("Erro na busca de dados no excel.");
                 throw new Exception(e.Message);
             }
         }
@@ -192,12 +194,6 @@ namespace Robo
                 aluno.ValorDeRepasse = double.Parse(aluno.ValorDeRepasse, NumberStyles.Currency).ToString();
                 aluno.ValorDeRepasse = Math.Round(Convert.ToDouble(aluno.ValorDeRepasse), 2).ToString();
             }
-        }
-
-        //Atualizar BD
-        public static void AtualizarAlunosBD(List<TOAluno> alunos)
-        {
-            InsertListLite(alunos);
         }
 
         public static void VerificarCPFDuplicado(List<TOAluno> alunos)
