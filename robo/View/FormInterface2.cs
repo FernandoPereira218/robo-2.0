@@ -54,10 +54,15 @@ namespace robo.View
         {
             List<TOMenus> menusFIESNovo = Dados.SelectMenuWhereLite(tipoFies);
             labelTipoFies.Text = tipoFies;
+            
 
             foreach (var menu in menusFIESNovo)
             {
                 Button btn = new Button();
+                btn.Anchor = AnchorStyles.Top;
+                btn.Anchor = AnchorStyles.Left;
+                btn.Anchor = AnchorStyles.Right;
+                btn.Anchor = AnchorStyles.Bottom;
                 btn.Text = menu.Item;
                 btn.Font = new Font("Century Gothic ", 9.75f);
                 btn.FlatStyle = FlatStyle.Flat;
@@ -310,17 +315,15 @@ namespace robo.View
 
         private void btnMaximize_Click(object sender, EventArgs e)
         {
-            if (verificacaoMAX == false)
+            if (this.WindowState == FormWindowState.Normal)
             {
                 this.MaximizedBounds = Screen.FromHandle(this.Handle).WorkingArea;
                 this.WindowState = FormWindowState.Maximized;
-                verificacaoMAX = true;
                 return;
             }
-            if(verificacaoMAX == true)
+            if(this.WindowState ==  FormWindowState.Maximized)
             {
                 this.WindowState = FormWindowState.Normal;
-                verificacaoMAX = false;
             }
         }
     }
