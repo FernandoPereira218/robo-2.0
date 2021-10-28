@@ -664,7 +664,7 @@ namespace robo.View
         private System.Windows.Forms.Panel panelExecucao;
         private System.Windows.Forms.Button btnFiesLegado;
         private System.Windows.Forms.Button btnFiesNovo;
-        private System.Windows.Forms.FlowLayoutPanel flpModosDeExecucao;
+        public System.Windows.Forms.FlowLayoutPanel flpModosDeExecucao;
         private MetroFramework.Controls.MetroLabel labelTipoFies;
         private System.Windows.Forms.Panel panelCadastro;
         private System.Windows.Forms.Panel panel1;

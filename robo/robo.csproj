@@ -351,7 +351,6 @@
     <None Include="Resources\export.png" />
     <None Include="Resources\insert-memory-card.png" />
     <None Include="Resources\silhueta-negra-de-casa-sem-porta.png" />
-    <None Include="Resources\menu.bmp" />
     <None Include="Resources\fachada-fapa.png" />
     <None Include="Resources\menu.png" />
     <None Include="Resources\configuration-gears%282%29.png" />
@@ -392,7 +391,6 @@
     </Content>
     <None Include="Resources\admin.png" />
     <Content Include="Resources\bot.ico" />
-    <None Include="Drapper.Settings.json" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -408,7 +406,6 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <None Include="robo_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config">

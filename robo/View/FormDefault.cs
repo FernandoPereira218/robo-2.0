@@ -114,7 +114,6 @@ namespace robo.View
         private void btnIniciar_Click(object sender, EventArgs e)
         {
             RodarPrograma();
-            MessageBox.Show("Processamentos concluídos com sucesso!");
         }
         private void RodarPrograma()
         {
@@ -304,6 +303,42 @@ namespace robo.View
         {
             txtCPF.Mask = "000,000,000-00";
             txtCPF.TextMaskFormat = MaskFormat.ExcludePromptAndLiterals;
+        }
+
+        private void backgroundWorker_DoWork(object sender, DoWorkEventArgs e)
+        {
+
+            for (int i = 0; i < 100; i++)
+            {
+                backgroundWorker.ReportProgress(i);
+                System.Threading.Thread.Sleep(500);
+            }
+        }
+
+        private void backgroundWorker_ProgressChanged(object sender, ProgressChangedEventArgs e)
+        {
+            formPrincipal.flpModosDeExecucao.Enabled = false;
+            btnImportar.Enabled = false;
+            btnIniciar.Enabled = false;
+            circularProgressBar1.Visible = true;
+            circularProgressBar1.Value = e.ProgressPercentage;
+
+            if (e.ProgressPercentage == 0)
+            {
+                circularProgressBar1.Text = "Abrindo site...";
+            }
+            else
+            {
+                circularProgressBar1.Text = e.ProgressPercentage.ToString() + "%";
+            }
+        }
+
+        private void backgroundWorker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        {
+            MessageBox.Show("Processamentos concluídos com sucesso!");
+            btnImportar.Enabled = true;
+            btnIniciar.Enabled = true;
+            formPrincipal.flpModosDeExecucao.Enabled = true;
         }
     }
 }
