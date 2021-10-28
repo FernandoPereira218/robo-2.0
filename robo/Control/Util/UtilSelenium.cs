@@ -24,7 +24,7 @@ namespace robo
         /// <param name="driver"></param>
         /// <param name="tipo"></param>
         /// <param name="segundos">Tempo limite de espera em segundos</param>
-        protected void WaitElementIsVisible(IWebDriver driver, By tipo, int segundos = 30)
+        protected void WaitElementIsVisible(IWebDriver driver, By tipo, int segundos = 60)
         {
             TimeSpan span = TimeSpan.FromSeconds(segundos);
             wait = new WebDriverWait(driver, span);
