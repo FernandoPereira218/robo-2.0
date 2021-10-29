@@ -333,6 +333,7 @@
     <Compile Include="Model\TO\TOAluno.cs" />
     <Compile Include="Model\Dados\Dados.cs" />
     <Compile Include="Model\TO\TOUsuario.cs" />
+    <None Include="Resources\question-mark.png" />
     <None Include="Resources\logoAnima.png" />
     <None Include="Resources\contorno-da-casa.png" />
     <None Include="Resources\configuracoes.png" />
