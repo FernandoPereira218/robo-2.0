@@ -29,7 +29,7 @@ namespace robo.View
         {
             versaoRobo = Program.login.Permissao;
             InitializeComponent();
-            
+            StartEvent();
             lblUsuario.Text = Program.login.Usuario;
             VerificarVersaoCAE();
 
@@ -38,13 +38,6 @@ namespace robo.View
             tooltip.SetToolTip(btnSiga, "Operações realizadas no site do SIGA");
         }
 
-        private void VerificarVersaoCAE()
-        {
-            if (versaoRobo == "CAE")
-            {
-                btnSiga.Visible = false;
-                btnConfiguracoes.Visible = false;
-            }
         }
 
         private void btnFiesNovo_Click(object sender, EventArgs e)
@@ -85,14 +78,13 @@ namespace robo.View
             Button btn = (Button)sender;
             StartForm((TOMenus)btn.Tag, labelTipoFies.Text.ToUpper());
         }
-
         private void StartForm(TOMenus menu, string tipoFies)
         {
             int cont = Dados.Count<TOAluno>();
             //panelCadastro.Controls.Clear();
             if (formulario == null)
             {
-                
+
                 formulario = new FormDefault(this);
                 formulario.TopLevel = false;
                 formulario.FormBorderStyle = FormBorderStyle.None;
@@ -120,7 +112,65 @@ namespace robo.View
                 panelErroNenhumAluno.BringToFront();
             }
         }
+        private void StartEvent()
+        {
+            btnFiesLegado.      MouseEnter += new EventHandler(btnChangeColorEnter);
+            btnFiesNovo.        MouseEnter += new EventHandler(btnChangeColorEnter);
+            btnSiga.            MouseEnter += new EventHandler(btnChangeColorEnter);
+            btnConfiguracoes.   MouseEnter += new EventHandler(btnChangeColorEnter);
+            btnLogout.          MouseEnter += new EventHandler(btnChangeColorEnter);
+            btnHome.            MouseEnter += new EventHandler(btnChangeColorEnter);
 
+
+            btnFiesLegado.     MouseLeave += new EventHandler(btnChangeColorLeave);
+            btnFiesNovo.       MouseLeave += new EventHandler(btnChangeColorLeave);
+            btnSiga.           MouseLeave += new EventHandler(btnChangeColorLeave);
+            btnConfiguracoes.  MouseLeave += new EventHandler(btnChangeColorLeave);
+            btnLogout.         MouseLeave += new EventHandler(btnChangeColorLeave);
+            btnHome.           MouseLeave += new EventHandler(btnChangeColorLeave);
+        }
+        private void SelecionarMenusPorTipoFies(string tipoFies)
+        {
+            List<TOMenus> menusFIESNovo = Dados.SelectMenuWhereLite(tipoFies);
+            labelTipoFies.Text = tipoFies;
+
+
+
+            foreach (var menu in menusFIESNovo)
+            {
+                Button btn = new Button();
+                btn.Anchor = AnchorStyles.Top;
+                btn.Anchor = AnchorStyles.Left;
+                btn.Anchor = AnchorStyles.Right;
+                btn.Anchor = AnchorStyles.Bottom;
+                btn.Text = menu.Item;
+                btn.Font = new Font("Century Gothic ", 9.75f);
+                btn.FlatStyle = FlatStyle.Flat;
+                btn.FlatAppearance.BorderSize = 0;
+                btn.Size = new Size(flpModosDeExecucao.Width - 23, 40);
+
+                //btn_1.Size = new Size(width, height);
+                btn.Tag = menu;
+                btn.Click += ExecutarAlgumaCoisa;
+                flpModosDeExecucao.Controls.Add(btn);
+            }
+            //flpModosDeExecucao.Controls[1].Visible = false;
+            //flpModosDeExecucao.Controls[2].Visible = false;
+        }
+        private void VerificarVersaoCAE()
+        {
+            if (versaoRobo == "CAE")
+            {
+                btnSiga.Visible = false;
+                btnConfiguracoes.Visible = false;
+            }
+        }
+        private void btnFiesNovo_Click(object sender, EventArgs e)
+        {
+            OpenPanelCadastro();
+            LimparModosDeExecucao();
+            SelecionarMenusPorTipoFies("FIES NOVO");
+        }
         private void LimparModosDeExecucao()
         {
             foreach (System.Windows.Forms.Control item in panelCadastro.Controls)
@@ -139,11 +189,11 @@ namespace robo.View
 
         private void btnFiesLegado_Click(object sender, EventArgs e)
         {
-            panelCadastrarContent.BringToFront();
+            OpenPanelCadastro();
             LimparModosDeExecucao();
             SelecionarMenusPorTipoFies("FIES LEGADO");
         }
-
+        
         private void btnClose_Click(object sender, EventArgs e)
         {
             if (logout == false)
@@ -154,7 +204,7 @@ namespace robo.View
 
         private void btnSiga_Click(object sender, EventArgs e)
         {
-            panelCadastrarContent.BringToFront();
+            OpenPanelCadastro();
             LimparModosDeExecucao();
             SelecionarMenusPorTipoFies("SIGA");
         }
@@ -304,7 +354,8 @@ namespace robo.View
 
         private void btnHome_Click(object sender, EventArgs e)
         {
-            panelHome.BringToFront();
+            panelHome.Visible = true;
+            panelCadastrarContent.Visible = false;
         }
 
         private void btnMinimize_Click(object sender, EventArgs e)
@@ -332,11 +383,34 @@ namespace robo.View
                 this.WindowState = FormWindowState.Maximized;
                 return;
             }
-            if(this.WindowState ==  FormWindowState.Maximized)
+            if (this.WindowState == FormWindowState.Maximized)
             {
                 this.WindowState = FormWindowState.Normal;
             }
         }
+
+        private void btnChangeColorEnter(object sender, EventArgs e)
+        {
+            Button button = sender as Button;
+            button.UseVisualStyleBackColor = false;
+            button.ForeColor = SystemColors.Control;
+            button.BackColor = Color.Purple;
+        }
+
+        private void btnChangeColorLeave(object sender, EventArgs e)
+        {
+            Button button = sender as Button;
+            button.UseVisualStyleBackColor = true;
+            button.ForeColor = Color.FromArgb(0, 45, 45, 45);
+            button.BackColor = SystemColors.Control;
+        }
+        private void OpenPanelCadastro()
+        {
+            panelCadastrarContent.Visible = true;
+            panelHome.Visible = false;
+        }
+
     }
 }
+
 
