@@ -10,8 +10,16 @@ using System.Windows.Forms;
 
 namespace robo
 {
+    /// <summary>
+    /// Métodos comuns que podem ser utilizados no site do SIGA
+    /// </summary>
     class UtilSiga : UtilSelenium
     {
+        /// <summary>
+        /// Busca um aluno por CPF
+        /// </summary>
+        /// <param name="Driver"></param>
+        /// <param name="aluno"></param>
         protected void FiltraAluno(IWebDriver Driver, TOAluno aluno)
         {
             try
@@ -37,6 +45,12 @@ namespace robo
                 throw e;
             }
         }
+
+        /// <summary>
+        /// Busca se
+        /// </summary>
+        /// <param name="semestreAno">Semestre utilizado (semestre/ano)</param>
+        /// <returns>Semestre no formato utilizado nos atributos do SIGA -> Ex.: 2/2021 -> 2021210</returns>
         protected string BuscarSemestreSiga(string semestreAno)
         {
             // 2/2021 -> 2021210
@@ -47,6 +61,13 @@ namespace robo
 
             return final;
         }
+
+        /// <summary>
+        /// Abre site do SIGA e tenta fazer login após usuário ter clicado no Captcha
+        /// </summary>
+        /// <param name="url"></param>
+        /// <param name="login"></param>
+        /// <returns></returns>
         public IWebDriver FazerLogin(string url, TOLogin login)
         {
             IWebDriver Driver;
@@ -69,6 +90,11 @@ namespace robo
 
             return Driver;
         }
+
+        /// <summary>
+        /// Espera até o elemento "divCarregando" não estar mais presente na página
+        /// </summary>
+        /// <param name="driver"></param>
         protected void WaitLoading(IWebDriver driver)
         {
             IWebElement carregando;
