@@ -38,21 +38,14 @@ namespace robo.View
             tooltip.SetToolTip(btnSiga, "Operações realizadas no site do SIGA");
         }
 
-        }
 
-        private void btnFiesNovo_Click(object sender, EventArgs e)
-        {
-            panelCadastrarContent.Visible = true;
-            panelHome.Visible = false;
-            LimparModosDeExecucao();
-            SelecionarMenusPorTipoFies("FIES NOVO");
-        }
+
         private void SelecionarMenusPorTipoFies(string tipoFies)
         {
             List<TOMenus> menusFIESNovo = Dados.SelectMenuWhereLite(tipoFies);
             labelTipoFies.Text = tipoFies;
-            
-            
+
+
 
             foreach (var menu in menusFIESNovo)
             {
@@ -114,48 +107,20 @@ namespace robo.View
         }
         private void StartEvent()
         {
-            btnFiesLegado.      MouseEnter += new EventHandler(btnChangeColorEnter);
-            btnFiesNovo.        MouseEnter += new EventHandler(btnChangeColorEnter);
-            btnSiga.            MouseEnter += new EventHandler(btnChangeColorEnter);
-            btnConfiguracoes.   MouseEnter += new EventHandler(btnChangeColorEnter);
-            btnLogout.          MouseEnter += new EventHandler(btnChangeColorEnter);
-            btnHome.            MouseEnter += new EventHandler(btnChangeColorEnter);
+            btnFiesLegado.MouseEnter += new EventHandler(btnChangeColorEnter);
+            btnFiesNovo.MouseEnter += new EventHandler(btnChangeColorEnter);
+            btnSiga.MouseEnter += new EventHandler(btnChangeColorEnter);
+            btnConfiguracoes.MouseEnter += new EventHandler(btnChangeColorEnter);
+            btnLogout.MouseEnter += new EventHandler(btnChangeColorEnter);
+            btnHome.MouseEnter += new EventHandler(btnChangeColorEnter);
 
 
-            btnFiesLegado.     MouseLeave += new EventHandler(btnChangeColorLeave);
-            btnFiesNovo.       MouseLeave += new EventHandler(btnChangeColorLeave);
-            btnSiga.           MouseLeave += new EventHandler(btnChangeColorLeave);
-            btnConfiguracoes.  MouseLeave += new EventHandler(btnChangeColorLeave);
-            btnLogout.         MouseLeave += new EventHandler(btnChangeColorLeave);
-            btnHome.           MouseLeave += new EventHandler(btnChangeColorLeave);
-        }
-        private void SelecionarMenusPorTipoFies(string tipoFies)
-        {
-            List<TOMenus> menusFIESNovo = Dados.SelectMenuWhereLite(tipoFies);
-            labelTipoFies.Text = tipoFies;
-
-
-
-            foreach (var menu in menusFIESNovo)
-            {
-                Button btn = new Button();
-                btn.Anchor = AnchorStyles.Top;
-                btn.Anchor = AnchorStyles.Left;
-                btn.Anchor = AnchorStyles.Right;
-                btn.Anchor = AnchorStyles.Bottom;
-                btn.Text = menu.Item;
-                btn.Font = new Font("Century Gothic ", 9.75f);
-                btn.FlatStyle = FlatStyle.Flat;
-                btn.FlatAppearance.BorderSize = 0;
-                btn.Size = new Size(flpModosDeExecucao.Width - 23, 40);
-
-                //btn_1.Size = new Size(width, height);
-                btn.Tag = menu;
-                btn.Click += ExecutarAlgumaCoisa;
-                flpModosDeExecucao.Controls.Add(btn);
-            }
-            //flpModosDeExecucao.Controls[1].Visible = false;
-            //flpModosDeExecucao.Controls[2].Visible = false;
+            btnFiesLegado.MouseLeave += new EventHandler(btnChangeColorLeave);
+            btnFiesNovo.MouseLeave += new EventHandler(btnChangeColorLeave);
+            btnSiga.MouseLeave += new EventHandler(btnChangeColorLeave);
+            btnConfiguracoes.MouseLeave += new EventHandler(btnChangeColorLeave);
+            btnLogout.MouseLeave += new EventHandler(btnChangeColorLeave);
+            btnHome.MouseLeave += new EventHandler(btnChangeColorLeave);
         }
         private void VerificarVersaoCAE()
         {
@@ -193,7 +158,7 @@ namespace robo.View
             LimparModosDeExecucao();
             SelecionarMenusPorTipoFies("FIES LEGADO");
         }
-        
+
         private void btnClose_Click(object sender, EventArgs e)
         {
             if (logout == false)
@@ -412,5 +377,3 @@ namespace robo.View
 
     }
 }
-
-

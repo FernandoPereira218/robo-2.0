@@ -8,6 +8,9 @@ using System.Threading.Tasks;
 
 namespace robo.Control
 {
+    /// <summary>
+    /// Métodos comuns para serem utilizados no site da Caixa
+    /// </summary>
     public class UtilFiesNovo : UtilSelenium
     {
         /// <summary>
@@ -25,6 +28,12 @@ namespace robo.Control
             WaitElementIsVisible(Driver, By.XPath("//p[text()='Quadro de Avisos']"));
         }
 
+        /// <summary>
+        /// Espera até algum elemento da página existir ou deixar de existir
+        /// </summary>
+        /// <param name="Driver"></param>
+        /// <param name="element"></param>
+        /// <param name="exist">'true' para esperar até o elemento existir 'false' para esperar até que desapareça</param>
         private void WaitPageLoading(IWebDriver Driver, string element, bool exist)
         {
             while (Driver.PageSource.Contains(element) == exist)
@@ -43,6 +52,11 @@ namespace robo.Control
             WaitPageLoading(Driver, "modal-backdrop fade", true);
         }
 
+        /// <summary>
+        /// Clica em algum botão do menu da página inicial do site
+        /// </summary>
+        /// <param name="Driver"></param>
+        /// <param name="idMenu">ID do botão desejado</param>
         private void ClicarBotaoMenuPaginaInicial(IWebDriver Driver, string idMenu)
         {
             if (!Driver.PageSource.Contains("código autenticador"))
@@ -61,51 +75,100 @@ namespace robo.Control
         }
 
         /// <summary>
-        /// Menu de consulta de alunos para aditamentos e DRM
+        /// Abre menu de consulta de alunos para aditamentos e DRM
         /// </summary>
         /// <param name="Driver"></param>
         public void ClicarMenuAditamento(IWebDriver Driver)
         {
             ClicarBotaoMenuPaginaInicial(Driver, "btnAdmnstrcManutenccedilatildeoAditamentoRenovaccedilatildeo");
         }
+
+        /// <summary>
+        /// Abre menu histório de reparcelamento da coparticipação
+        /// </summary>
+        /// <param name="Driver"></param>
         public void ClicarMenuHistoricoReparcelamentoCopartipacao(IWebDriver Driver)
         {
             ClicarBotaoMenuPaginaInicial(Driver, "btnAdmnstrcReparcelamentodaCoparticipaccedilatildeoHistoacutericodoReparcelamentodaCoparticipaccedilatildeo");
         }
+
+        /// <summary>
+        /// Abre menu de consulta de contrato
+        /// </summary>
+        /// <param name="Driver"></param>
         public void ClicarMenuConsultaContrato(IWebDriver Driver)
         {
             ClicarBotaoMenuPaginaInicial(Driver, "btnAdmnstrcProcessodeFinanciamentoConsultarContratoEstudante");
         }
+
+        /// <summary>
+        /// Abre menu de validar reparcelamentos
+        /// </summary>
+        /// <param name="Driver"></param>
         public void ClicarMenuValidarReparcelamento(IWebDriver Driver)
         {
             ClicarBotaoMenuPaginaInicial(Driver, "btnAdmnstrcReparcelamentodaCoparticipaccedilatildeoValidarReparcelamentodaCoparticipaccedilatildeo");
         }
+
+        /// <summary>
+        /// Abre menu de dilatação
+        /// </summary>
+        /// <param name="Driver"></param>
         public void ClicarMenuDilatacao(IWebDriver Driver)
         {
             ClicarBotaoMenuPaginaInicial(Driver, "btnAdmnstrcManutenccedilatildeoAprovarDilataccedilatildeo");
         }
+
+        /// <summary>
+        /// Abre menu de suspensão
+        /// </summary>
+        /// <param name="Driver"></param>
         public void ClicarMenuSuspensao(IWebDriver Driver)
         {
             ClicarBotaoMenuPaginaInicial(Driver, "btnAdmnstrcManutenccedilatildeoAprovarSuspensatildeo");
         }
+
+        /// <summary>
+        /// Abre menu de transferência
+        /// </summary>
+        /// <param name="Driver"></param>
         public void ClicarMenuTransferencia(IWebDriver Driver)
         {
             ClicarBotaoMenuPaginaInicial(Driver, "btnAdmnstrcManutenccedilatildeoAprovarTransferecircncia");
         }
+
+        /// <summary>
+        /// Abre menu de inadimplência
+        /// </summary>
+        /// <param name="Driver"></param>
         public void ClicarMenuInadimplencia(IWebDriver Driver)
         {
             ClicarBotaoMenuPaginaInicial(Driver, "btnAdmnstrcRelatoacuteriosAgenteFinanceiroInadimplecircnciaAgecircnciaEstudante");
         }
+
+        /// <summary>
+        /// Abre menu de repasse
+        /// </summary>
+        /// <param name="Driver"></param>
         public void ClicarMenuRepasse(IWebDriver Driver)
         {
             ClicarBotaoMenuPaginaInicial(Driver, "btnAdmnstrcRelatrioRelatriodeContrataoAnaltico");
         }
 
+        /// <summary>
+        /// Abre menu de coparticipação
+        /// </summary>
+        /// <param name="Driver"></param>
         public void ClicarMenuCoparticipacao(IWebDriver Driver)
         {
             ClicarBotaoMenuPaginaInicial(Driver, "btnAdmnstrcRelatriosNovoFIESRelatriodeRepasseAnaliacuteticoIES");
         }
 
+        /// <summary>
+        /// Consulta CPF do aluno na página de aditamento
+        /// </summary>
+        /// <param name="Driver"></param>
+        /// <param name="aluno"></param>
         public void ConsultarAluno(IWebDriver Driver, TOAluno aluno)
         {
             WaitForLoading(Driver);
@@ -131,12 +194,23 @@ namespace robo.Control
             WaitForLoading(Driver);
         }
 
+        /// <summary>
+        /// Clica em algum botão utilizando JavaScriptExecutor
+        /// </summary>
+        /// <param name="Driver"></param>
+        /// <param name="id">ID do botão</param>
         public void ClickButtonByIdWithJavaScript(IWebDriver Driver, string id)
         {
             IWebElement element = Driver.FindElement(By.XPath(string.Format("//*[@id=\"{0}\"]", id)));
             ((IJavaScriptExecutor)Driver).ExecuteScript("arguments[0].click();", element);
         }
 
+        /// <summary>
+        /// Consultar aluno e abrir DRM do semestre selecionado
+        /// </summary>
+        /// <param name="Driver"></param>
+        /// <param name="aluno"></param>
+        /// <param name="semestreAtual">Semestre selecionado (semestre/ano)</param>
         public void BuscarEAbrirDRM(IWebDriver Driver, TOAluno aluno, string semestreAtual)
         {
             ConsultarAluno(Driver, aluno);
@@ -210,6 +284,11 @@ namespace robo.Control
             }
         }
 
+        /// <summary>
+        /// Verifica se a página atual contém "Nenhuma informação disponível"
+        /// </summary>
+        /// <param name="Driver"></param>
+        /// <returns>True se houver e false se não</returns>
         public bool VerificarNenhumaInformacaoDisponivel(IWebDriver Driver)
         {
             if (Driver.PageSource.Contains("Nenhuma informação disponível") == true)
@@ -219,6 +298,12 @@ namespace robo.Control
             return false;
         }
 
+        /// <summary>
+        /// Procura botão de aditamento que possui atributos do semestre selecionado
+        /// </summary>
+        /// <param name="Driver"></param>
+        /// <param name="semestreAtual">Semestre atual (semestre/ano)</param>
+        /// <returns></returns>
         private IWebElement BuscarBotaoSemestre(IWebDriver Driver, string semestreAtual)
         {
             string semestreFormatado = semestreAtual.Split('/')[0];
@@ -245,7 +330,8 @@ namespace robo.Control
         /// <summary>
         /// Retorna situacao do semestre especificado do aluno no datagrid do site
         /// </summary>
-        /// <returns></returns>
+        /// <param name="semestreAtual">Semestre atual (semestre/ano)</param>
+        /// <returns>Conclusão encontrada</returns>
         public string BuscarSituacaoAluno(IWebDriver Driver, string semestreAtual)
         {
             string situacaoAluno = string.Empty;

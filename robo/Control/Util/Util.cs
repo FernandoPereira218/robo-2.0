@@ -15,6 +15,9 @@ using robo.View;
 
 namespace Robo
 {
+    /// <summary>
+    /// Métodos comuns que podem ser utilizados no código como um todo
+    /// </summary>
     class Util
     {
         /// <summary>

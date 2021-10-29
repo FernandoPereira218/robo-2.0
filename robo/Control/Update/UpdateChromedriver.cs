@@ -6,9 +6,16 @@ using System.Linq;
 
 namespace robo.Control.Update
 {
+    /// <summary>
+    /// Métodos utilizados para buscar a versão atual do chromedriver
+    /// </summary>
     public static class UpdateChromedriver
     {
         private static IWebDriver Driver;
+
+        /// <summary>
+        /// Busca a versão mais recente do ChromeDriver e atualiza o arquivo na pasta Driver
+        /// </summary>
         public static void DownloadChromedriver()
         {
             Driver = Robo.Util.StartBrowser("https://chromedriver.chromium.org/downloads", downloadFldr:true, headless:true);
@@ -44,7 +51,6 @@ namespace robo.Control.Update
                 {
                     DirectoryInfo driverFile = new DirectoryInfo("driver");
                     archive.ExtractToDirectory("driver");
-                    //ZipArchiveEntry arquivozipado = archive.Entries[0];
                 }
                 foreach (var item in directory.GetFiles())
                 {
@@ -54,13 +60,6 @@ namespace robo.Control.Update
                 Driver.Close();
                 Driver.Dispose();
             }
-
-
-
-            
-            //element.Click();
-
-
         }
     }
 }

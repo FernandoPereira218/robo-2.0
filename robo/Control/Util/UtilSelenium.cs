@@ -14,6 +14,9 @@ using OpenQA.Selenium.Support.UI;
 
 namespace robo
 {
+    /// <summary>
+    /// Possui métodos comuns que podem ser utilizados durante a navegação em um site
+    /// </summary>
     public class UtilSelenium
     {
         private WebDriverWait wait;
@@ -21,8 +24,7 @@ namespace robo
         /// <summary>
         /// Espera até um elemento específico ser visível
         /// </summary>
-        /// <param name="driver"></param>
-        /// <param name="tipo"></param>
+        /// <param name="tipo">By.(Id, Xpath, Css)("elementoDesejado")</param>
         /// <param name="segundos">Tempo limite de espera em segundos</param>
         protected void WaitElementIsVisible(IWebDriver driver, By tipo, int segundos = 60)
         {
@@ -219,10 +221,19 @@ namespace robo
             return driver;
         }
 
+        /// <summary>
+        /// Encerra a sessão atual do browser
+        /// </summary>
+        /// <param name="driver"></param>
         protected void EndBrowser(IWebDriver driver)
         {
             driver.Quit();
         }
+
+        /// <summary>
+        /// Clica no elemento 'body' do site do MEC
+        /// </summary>
+        /// <param name="driver"></param>
         private void ClearClickFiesVelho(IWebDriver driver)
         {
             if (IsFormFillingFiesVelho(driver))
@@ -230,6 +241,14 @@ namespace robo
                 driver.FindElement(By.CssSelector("body")).Click();
             }
         }
+
+        /// <summary>
+        /// Clica em um elemento dropdown e seleciona o elemento desejado
+        /// </summary>
+        /// <param name="driver"></param>
+        /// <param name="metodo">id, xpath, name, classname</param>
+        /// <param name="valorMetodo">valor do metodo selecionado</param>
+        /// <param name="valorEscolha">texto que a opção deverá conter</param>
         protected void ClickDropDown(IWebDriver driver, string metodo, string valorMetodo, string valorEscolha)
         {
             WaitLogoLoading(driver);
@@ -237,12 +256,25 @@ namespace robo
 
             Sleep();
         }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="driver"></param>
+        /// <param name="metodo">id, xpath, name, classname</param>
+        /// <param name="valorMetodo">valor do metodo selecionado</param>
+        /// <param name="valorEscolha">texto exato que a opção deverá conter</param>
         protected void ClickDropDownExact(IWebDriver driver, string metodo, string valorMetodo, string valorEscolha)
         {
             driver.FindElement(By.XPath("//select[@" + metodo + "='" + valorMetodo + "']/option[@" + "value ='" + valorEscolha + "']")).Click();
 
             Sleep();
         }
+
+        /// <summary>
+        /// Espera até a página de carregando do site do MEC desaparecer
+        /// </summary>
+        /// <param name="driver"></param>
         protected void WaitLogoLoading(IWebDriver driver)
         {
             if (IsFormFillingFiesVelho(driver))
@@ -265,10 +297,10 @@ namespace robo
         }
 
         /// <summary>
-        /// Checa se não esta na página de login (unica que não tem o loading)
+        /// Checa se a página inicia com a URL de uma página de Aditamento
         /// </summary>
         /// <param name="driver">webdriver</param>
-        /// <returns></returns>
+        /// <returns>True se a página é a página de aditamento</returns>
         protected Boolean IsFormFillingFiesVelho(IWebDriver driver)
         {
             //string pagesource = driver.PageSource;
@@ -285,27 +317,51 @@ namespace robo
         {
             //string pagesource = driver.PageSource;
             return driver.Url.StartsWith("http://sifesweb.caixa.gov.br/fes-web/?session_state=") ||
-                driver.Url.StartsWith("https://sifesweb.caixa.gov.br/fes-web/?session_state=");
+                   driver.Url.StartsWith("https://sifesweb.caixa.gov.br/fes-web/?session_state=");
 
         }
+
+        /// <summary>
+        /// Fecha o Driver, o remove da memória e dá throw na excessão gerada
+        /// </summary>
+        /// <param name="motivo"></param>
+        /// <param name="Driver"></param>
         protected void getDriverDisposeAndDriverCloseWithThrow(Exception motivo, IWebDriver Driver)
         {
             Driver.Close();
             Driver.Dispose();
             throw motivo;
         }
+
+        /// <summary>
+        /// Dá scroll até algum elemento
+        /// </summary>
+        /// <param name="Driver"></param>
+        /// <param name="button">ID do elemento desejado</param>
         protected void ScrollToElementByID(IWebDriver Driver, string button)
         {
             var element = Driver.FindElement(By.Id(button));
             ((IJavaScriptExecutor)Driver).ExecuteScript(string.Format("window.scrollTo({0}, {1})", element.Location.X, element.Location.Y - 150));
         }
 
+        /// <summary>
+        /// Dá scroll até algum elemento
+        /// </summary>
+        /// <param name="Driver"></param>
+        /// <param name="button">Xpath do elemento desejado</param>
         protected void ScrollToElementByXpath(IWebDriver Driver, string button)
         {
             var element = Driver.FindElement(By.XPath(button));
             ((IJavaScriptExecutor)Driver).ExecuteScript(string.Format("window.scrollTo({0}, {1})", element.Location.X, element.Location.Y - 100));
         }
 
+        /// <summary>
+        /// Verifica se o elemento existe na página
+        /// </summary>
+        /// <param name="Driver"></param>
+        /// <param name="tipo">id, classname ou name</param>
+        /// <param name="identificador">elemento desejado</param>
+        /// <returns>O elemento caso exista e null caso não exista</returns>
         protected IWebElement VerificarElementoExiste(IWebDriver Driver, string tipo, string identificador)
         {
             var executor = (IJavaScriptExecutor)Driver;
@@ -323,6 +379,11 @@ namespace robo
             }
 
         }
+
+        /// <summary>
+        /// Espera até que a propriedade ReadyState da página seja igual a "complete"
+        /// </summary>
+        /// <param name="Driver"></param>
         protected void WaitPageToLoad(IWebDriver Driver)
         {
             string result = (string)((IJavaScriptExecutor)Driver).ExecuteScript("return document.readyState");
@@ -332,10 +393,20 @@ namespace robo
                 result = (string)((IJavaScriptExecutor)Driver).ExecuteScript("return document.readyState");
             }
         }
+
+        /// <summary>
+        /// Pausa a thread atual
+        /// </summary>
         protected void Sleep()
         {
             System.Threading.Thread.Sleep(250);
         }
+
+        /// <summary>
+        /// Verifica se há algum alerta presente na página
+        /// </summary>
+        /// <param name="Driver"></param>
+        /// <returns>True caso haja false caso não</returns>
         protected bool isAlertPresent(IWebDriver Driver)
         {
             try
@@ -348,14 +419,39 @@ namespace robo
                 return false;
             }
         }
+
+        /// <summary>
+        /// Clica em algum elemento por Xpath
+        /// </summary>
+        /// <param name="Driver"></param>
+        /// <param name="elemento">Tag HTML do elemento buscado</param>
+        /// <param name="atributte">Atributo do elemento buscado</param>
+        /// <param name="value">Valor buscado</param>
         protected void ClickElementByXPath(IWebDriver Driver, string elemento, string atributte, string value)
         {
             Driver.FindElement(By.XPath("//" + elemento + "[@" + atributte + "='" + value + "']")).Click();
         }
+
+        /// <summary>
+        /// Busca o texto de um elemento por Xpath
+        /// </summary>
+        /// <param name="Driver"></param>
+        /// <param name="elemento">Tag HTML do elemento buscado</param>
+        /// <param name="atributte">Atributo do elemento buscado</param>
+        /// <param name="value">Valor buscado</param>
+        /// <returns>Texto encontrado</returns>
         protected string TakeTextByXPath(IWebDriver Driver, string elemento, string atributte, string value)
         {
             return Driver.FindElement(By.XPath("//" + elemento + "[@" + atributte + "='" + value + "']")).Text;
         }
+
+        /// <summary>
+        /// Salva arquivos exportados na pasta "RelatorioExportacao" e os coloca na pasta de Downloads
+        /// </summary>
+        /// <param name="Driver"></param>
+        /// <param name="tipoRelatorio"></param>
+        /// <param name="campus"></param>
+        /// <param name="semestre"></param>
         protected static void SalvarArquivos(IWebDriver Driver, string tipoRelatorio, string campus = "", string semestre = "")
         {
             if (Driver.PageSource.Contains("Nenhuma informação disponível") == true)
