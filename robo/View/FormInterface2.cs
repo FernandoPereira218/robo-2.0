@@ -187,6 +187,15 @@ namespace robo.View
             {
                 ReleaseCapture();
                 SendMessage(Handle, WM_NCLBUTTONDOWN, HT_CAPTION, 0);
+
+                if (this.Location.Y <= 0)
+                {
+                    btnMaximize.PerformClick();
+                }
+                else
+                {
+                    this.WindowState = FormWindowState.Normal;
+                }
             }
         }
 
