@@ -46,7 +46,8 @@ namespace robo.View
 
         private void btnFiesNovo_Click(object sender, EventArgs e)
         {
-            panelCadastrarContent.BringToFront();
+            panelCadastrarContent.Visible = true;
+            panelHome.Visible = false;
             LimparModosDeExecucao();
             SelecionarMenusPorTipoFies("FIES NOVO");
         }
@@ -54,6 +55,7 @@ namespace robo.View
         {
             List<TOMenus> menusFIESNovo = Dados.SelectMenuWhereLite(tipoFies);
             labelTipoFies.Text = tipoFies;
+            
             
 
             foreach (var menu in menusFIESNovo)
