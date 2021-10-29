@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -92,6 +93,7 @@ namespace robo.View
             }
 
             lblExecucao.Text = menuSelecionado.Item;
+            btnHelp.Location = new Point(lblExecucao.Size.Width + 10, 6);
 
         }
         public void setText(int cont)
@@ -354,6 +356,14 @@ namespace robo.View
 
             circularProgressBar1.Style = ProgressBarStyle.Continuous;
             circularProgressBar1.Visible = false;
+        }
+
+        private void btnHelp_Click(object sender, EventArgs e)
+        {
+            string execucao = lblExecucao.Text;
+            string diretorioAtual = Directory.GetCurrentDirectory();
+            string caminhoArquivo = diretorioAtual + "\\help\\" + execucao.ToLower() + ".html";
+            this.wbHelp.Url = new Uri(string.Format("file:///{0}", caminhoArquivo));
         }
     }
 }

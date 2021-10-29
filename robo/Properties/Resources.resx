@@ -121,8 +121,8 @@
   <data name="old-tv(2)" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\old-tv(2).png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="silhueta-negra-de-casa-sem-porta" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\silhueta-negra-de-casa-sem-porta.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="logoAnima" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\logoAnima.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="mec-logo-white" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\mec-logo-white.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -136,9 +136,6 @@
   <data name="fachada-fapa" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\fachada-fapa.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="college-graduation" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\college-graduation.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="anima_educacao_UniFG" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\anima_educacao_UniFG.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -151,11 +148,11 @@
   <data name="tv" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\tv.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="configuracoes" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\configuracoes.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="silhueta-negra-de-casa-sem-porta" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\silhueta-negra-de-casa-sem-porta.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="user" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\user.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="college-graduation" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\college-graduation.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="old-tv(3)" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\old-tv(3).png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -174,6 +171,12 @@
   </data>
   <data name="export" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\export.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="configuracoes" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\configuracoes.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="user" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\user.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="old-tv(1)" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\old-tv(1).png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -199,7 +202,7 @@
   <data name="silhueta-negra-de-casa-sem-porta1" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\silhueta-negra-de-casa-sem-porta1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="logoAnima" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\logoAnima.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="question-mark" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\question-mark.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>
