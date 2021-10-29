@@ -50,7 +50,14 @@ namespace robo.View
             else
             {
                 dgvLogins.Visible = true;
-                source.DataSource = Dados.SelectAll<TOLogin>();
+                if (Program.login.Usuario == "Admin")
+                {
+                    source.DataSource = Dados.SelectAll<TOLogin>();
+                }
+                else
+                {
+                    source.DataSource = Dados.SelectWhere<TOLogin>(x=>x.Faculdade == Program.login.IES);
+                }
                 dgvLogins.AutoGenerateColumns = true;
                 dgvLogins.DataSource = source;
                 dgvLogins.Columns[dgvLogins.ColumnCount - 1].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
