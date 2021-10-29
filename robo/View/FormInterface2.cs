@@ -31,6 +31,10 @@ namespace robo.View
             InitializeComponent();
             
             lblUsuario.Text = Program.login.Usuario;
+            if (Program.login.Usuario != "Admin")
+            {
+                btnSiga.Visible = false;
+            }
             VerificarVersaoCAE();
 
             tooltip.SetToolTip(btnFiesLegado, "Operações realizadas no site do MEC");
