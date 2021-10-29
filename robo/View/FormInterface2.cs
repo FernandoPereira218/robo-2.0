@@ -328,7 +328,12 @@ namespace robo.View
         private void btnMaximize_Click(object sender, EventArgs e)
         {
             if (this.WindowState == FormWindowState.Normal)
-            {
+            {   
+                if (this.MaximizedBounds != Screen.FromHandle(this.Handle).WorkingArea)
+                {
+                    this.WindowState = FormWindowState.Maximized;
+                    return;
+                }
                 this.MaximizedBounds = Screen.FromHandle(this.Handle).WorkingArea;
                 this.WindowState = FormWindowState.Maximized;
                 return;
