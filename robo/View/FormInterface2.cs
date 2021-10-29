@@ -29,7 +29,7 @@ namespace robo.View
         {
             versaoRobo = Program.login.Permissao;
             InitializeComponent();
-            StartEvent();
+            
             lblUsuario.Text = Program.login.Usuario;
             VerificarVersaoCAE();
 
@@ -37,9 +37,6 @@ namespace robo.View
             tooltip.SetToolTip(btnFiesNovo, "Operações realizadas no site da Caixa");
             tooltip.SetToolTip(btnSiga, "Operações realizadas no site do SIGA");
         }
-
-
-
         private void SelecionarMenusPorTipoFies(string tipoFies)
         {
             List<TOMenus> menusFIESNovo = Dados.SelectMenuWhereLite(tipoFies);
@@ -105,23 +102,7 @@ namespace robo.View
                 panelErroNenhumAluno.BringToFront();
             }
         }
-        private void StartEvent()
-        {
-            btnFiesLegado.MouseEnter += new EventHandler(btnChangeColorEnter);
-            btnFiesNovo.MouseEnter += new EventHandler(btnChangeColorEnter);
-            btnSiga.MouseEnter += new EventHandler(btnChangeColorEnter);
-            btnConfiguracoes.MouseEnter += new EventHandler(btnChangeColorEnter);
-            btnLogout.MouseEnter += new EventHandler(btnChangeColorEnter);
-            btnHome.MouseEnter += new EventHandler(btnChangeColorEnter);
-
-
-            btnFiesLegado.MouseLeave += new EventHandler(btnChangeColorLeave);
-            btnFiesNovo.MouseLeave += new EventHandler(btnChangeColorLeave);
-            btnSiga.MouseLeave += new EventHandler(btnChangeColorLeave);
-            btnConfiguracoes.MouseLeave += new EventHandler(btnChangeColorLeave);
-            btnLogout.MouseLeave += new EventHandler(btnChangeColorLeave);
-            btnHome.MouseLeave += new EventHandler(btnChangeColorLeave);
-        }
+        
         private void VerificarVersaoCAE()
         {
             if (versaoRobo == "CAE")
