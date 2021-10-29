@@ -29,10 +29,9 @@ namespace robo.View
         /// </summary>     
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle94 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle95 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle96 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panelMenuBar = new System.Windows.Forms.Panel();
             this.btnMaximize = new System.Windows.Forms.Button();
             this.lblUsuario = new System.Windows.Forms.Label();
@@ -60,8 +59,6 @@ namespace robo.View
             this.btnImportar = new System.Windows.Forms.Button();
             this.metroLabel2 = new MetroFramework.Controls.MetroLabel();
             this.metroLabel1 = new MetroFramework.Controls.MetroLabel();
-            this.imageList1 = new System.Windows.Forms.ImageList(this.components);
-            this.bwBarraProgresso = new System.ComponentModel.BackgroundWorker();
             this.panelSubMenu = new System.Windows.Forms.Panel();
             this.btnLogout = new System.Windows.Forms.Button();
             this.btnHome = new System.Windows.Forms.Button();
@@ -70,6 +67,7 @@ namespace robo.View
             this.btnFiesNovo = new System.Windows.Forms.Button();
             this.btnConfiguracoes = new System.Windows.Forms.Button();
             this.panelHome = new System.Windows.Forms.Panel();
+            this.tooltip = new MetroFramework.Components.MetroToolTip();
             this.panelMenuBar.SuspendLayout();
             this.panelExcel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvAlunos)).BeginInit();
@@ -223,21 +221,21 @@ namespace robo.View
             this.dgvAlunos.AccessibleRole = System.Windows.Forms.AccessibleRole.None;
             this.dgvAlunos.AllowUserToAddRows = false;
             this.dgvAlunos.AllowUserToDeleteRows = false;
-            dataGridViewCellStyle94.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dgvAlunos.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle94;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dgvAlunos.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             this.dgvAlunos.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.dgvAlunos.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
             this.dgvAlunos.BackgroundColor = System.Drawing.SystemColors.Control;
             this.dgvAlunos.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dgvAlunos.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle95.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle95.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle95.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle95.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle95.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle95.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle95.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvAlunos.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle95;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvAlunos.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.dgvAlunos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvAlunos.Location = new System.Drawing.Point(-27, 65);
             this.dgvAlunos.Name = "dgvAlunos";
@@ -245,8 +243,8 @@ namespace robo.View
             this.dgvAlunos.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
             this.dgvAlunos.RowHeadersVisible = false;
             this.dgvAlunos.RowHeadersWidth = 51;
-            dataGridViewCellStyle96.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dgvAlunos.RowsDefaultCellStyle = dataGridViewCellStyle96;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dgvAlunos.RowsDefaultCellStyle = dataGridViewCellStyle3;
             this.dgvAlunos.RowTemplate.DefaultCellStyle.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dgvAlunos.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvAlunos.Size = new System.Drawing.Size(1050, 601);
@@ -479,17 +477,6 @@ namespace robo.View
             this.metroLabel1.TabIndex = 5;
             this.metroLabel1.Text = "Ops...";
             // 
-            // imageList1
-            // 
-            this.imageList1.ColorDepth = System.Windows.Forms.ColorDepth.Depth8Bit;
-            this.imageList1.ImageSize = new System.Drawing.Size(16, 16);
-            this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
-            // 
-            // bwBarraProgresso
-            // 
-            this.bwBarraProgresso.WorkerReportsProgress = true;
-            this.bwBarraProgresso.WorkerSupportsCancellation = true;
-            // 
             // panelSubMenu
             // 
             this.panelSubMenu.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -631,6 +618,12 @@ namespace robo.View
             this.panelHome.Size = new System.Drawing.Size(1204, 686);
             this.panelHome.TabIndex = 0;
             // 
+            // tooltip
+            // 
+            this.tooltip.Style = MetroFramework.MetroColorStyle.Blue;
+            this.tooltip.StyleManager = null;
+            this.tooltip.Theme = MetroFramework.MetroThemeStyle.Light;
+            // 
             // FormInterface2
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -664,7 +657,7 @@ namespace robo.View
 
         #endregion
         private System.Windows.Forms.Panel panelMenuBar;
-        private System.Windows.Forms.Button btnClose;
+        public System.Windows.Forms.Button btnClose;
         private System.Windows.Forms.Button btnMinimize;
         private System.Windows.Forms.Panel panelExcel;
         public System.Windows.Forms.Button btnSelectPath;
@@ -674,9 +667,7 @@ namespace robo.View
         private System.Windows.Forms.Button btnExportarExcel;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Button btnConfiguracoes;
-        private System.Windows.Forms.ImageList imageList1;
-        private System.ComponentModel.BackgroundWorker bwBarraProgresso;
-        private System.Windows.Forms.Panel panelSubMenu;
+        public System.Windows.Forms.Panel panelSubMenu;
         private System.Windows.Forms.Button btnMarcarNaoFeito;
 
         #region Windows Form Designer generated code
@@ -690,7 +681,7 @@ namespace robo.View
         #endregion
         private System.Windows.Forms.Panel panelMenuExecucao;
         private MetroFramework.Controls.MetroLabel lblExecucao;
-        private System.Windows.Forms.Button btnPlanilha;
+        public System.Windows.Forms.Button btnPlanilha;
         private System.Windows.Forms.Panel panelExecucao;
         private System.Windows.Forms.Button btnFiesLegado;
         private System.Windows.Forms.Button btnFiesNovo;
@@ -710,5 +701,6 @@ namespace robo.View
         private System.Windows.Forms.Label lblUsuario;
         private System.Windows.Forms.Button btnLogout;
         private System.Windows.Forms.Button btnMaximize;
+        private MetroFramework.Components.MetroToolTip tooltip;
     }
 }

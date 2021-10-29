@@ -35,6 +35,8 @@ namespace robo.View
             cbAno.SelectedIndex = cbAno.Items.Count - 1;
             cbMes.SelectedIndex = Util.BuscarMesAtual() - 1;
             PreencherListaIES();
+
+            tooltip.SetToolTip(btnHelp, "Clique uma vez para ajuda ou clique novamente para fechar");
         }
 
         private void PreencherListaIES()
@@ -328,6 +330,10 @@ namespace robo.View
             btnImportar.Enabled = false;
             btnIniciar.Enabled = false;
             circularProgressBar1.Visible = true;
+            btnHelp.Enabled = false;
+            formPrincipal.panelSubMenu.Enabled = false;
+            formPrincipal.btnPlanilha.Enabled = false;
+            formPrincipal.btnClose.Enabled = false;
             if (execucao.Contains("EXPORTAR"))
             {
                 circularProgressBar1.Style = ProgressBarStyle.Marquee;
@@ -352,7 +358,11 @@ namespace robo.View
             MessageBox.Show("Processamentos concluídos com sucesso!");
             btnImportar.Enabled = true;
             btnIniciar.Enabled = true;
+            btnHelp.Enabled = false;
             formPrincipal.flpModosDeExecucao.Enabled = true;
+            formPrincipal.panelSubMenu.Enabled = true;
+            formPrincipal.btnPlanilha.Enabled = true;
+            formPrincipal.btnClose.Enabled = true;
 
             circularProgressBar1.Style = ProgressBarStyle.Continuous;
             circularProgressBar1.Visible = false;
@@ -360,10 +370,18 @@ namespace robo.View
 
         private void btnHelp_Click(object sender, EventArgs e)
         {
-            string execucao = lblExecucao.Text;
-            string diretorioAtual = Directory.GetCurrentDirectory();
-            string caminhoArquivo = diretorioAtual + "\\help\\" + execucao.ToLower() + ".html";
-            this.wbHelp.Url = new Uri(string.Format("file:///{0}", caminhoArquivo));
+            if (wbHelp.Visible == true)
+            {
+                wbHelp.Visible = false;
+            }
+            else
+            {
+                wbHelp.Visible = true;
+                string execucao = lblExecucao.Text;
+                string diretorioAtual = Directory.GetCurrentDirectory();
+                string caminhoArquivo = diretorioAtual + "\\help\\" + execucao.ToLower() + ".html";
+                wbHelp.Url = new Uri(string.Format("file:///{0}", caminhoArquivo));
+            }
         }
     }
 }

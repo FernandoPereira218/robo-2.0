@@ -25,11 +25,6 @@ namespace robo.Control
             WaitElementIsVisible(Driver, By.XPath("//p[text()='Quadro de Avisos']"));
         }
 
-        public void FazerLogout(IWebDriver Driver)
-        {
-
-        }
-
         private void WaitPageLoading(IWebDriver Driver, string element, bool exist)
         {
             while (Driver.PageSource.Contains(element) == exist)
