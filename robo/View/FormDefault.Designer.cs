@@ -31,9 +31,11 @@ namespace robo.View
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormDefault));
             this.panelCadastro = new System.Windows.Forms.Panel();
+            this.wbHelp = new System.Windows.Forms.WebBrowser();
             this.circularProgressBar1 = new CircularProgressBar.CircularProgressBar();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.panelCabecalho = new System.Windows.Forms.Panel();
+            this.btnHelp = new MetroFramework.Controls.MetroButton();
             this.lblExecucao = new MetroFramework.Controls.MetroLabel();
             this.metroLabel1 = new MetroFramework.Controls.MetroLabel();
             this.metroLabel17 = new MetroFramework.Controls.MetroLabel();
@@ -42,6 +44,7 @@ namespace robo.View
             this.labelCPF = new MetroFramework.Controls.MetroLabel();
             this.labelCPFCaracteres = new MetroFramework.Controls.MetroLabel();
             this.panelImportar = new System.Windows.Forms.Panel();
+            this.btnImportar = new System.Windows.Forms.Button();
             this.lblAlunosImportados = new MetroFramework.Controls.MetroLabel();
             this.panelIES = new System.Windows.Forms.Panel();
             this.cbIES = new System.Windows.Forms.ComboBox();
@@ -75,9 +78,7 @@ namespace robo.View
             this.labelDay = new System.Windows.Forms.Label();
             this.btnIniciar = new System.Windows.Forms.Button();
             this.backgroundWorker = new System.ComponentModel.BackgroundWorker();
-            this.wbHelp = new System.Windows.Forms.WebBrowser();
-            this.btnHelp = new MetroFramework.Controls.MetroButton();
-            this.btnImportar = new System.Windows.Forms.Button();
+            this.tooltip = new MetroFramework.Components.MetroToolTip();
             this.panelCadastro.SuspendLayout();
             this.flowLayoutPanel1.SuspendLayout();
             this.panelCabecalho.SuspendLayout();
@@ -108,6 +109,15 @@ namespace robo.View
             this.panelCadastro.Name = "panelCadastro";
             this.panelCadastro.Size = new System.Drawing.Size(1072, 700);
             this.panelCadastro.TabIndex = 39;
+            // 
+            // wbHelp
+            // 
+            this.wbHelp.Location = new System.Drawing.Point(673, 345);
+            this.wbHelp.MinimumSize = new System.Drawing.Size(20, 20);
+            this.wbHelp.Name = "wbHelp";
+            this.wbHelp.Size = new System.Drawing.Size(371, 281);
+            this.wbHelp.TabIndex = 63;
+            this.wbHelp.Visible = false;
             // 
             // circularProgressBar1
             // 
@@ -173,6 +183,17 @@ namespace robo.View
             this.panelCabecalho.TabIndex = 71;
             this.panelCabecalho.Tag = "";
             this.panelCabecalho.Visible = false;
+            // 
+            // btnHelp
+            // 
+            this.btnHelp.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnHelp.BackgroundImage")));
+            this.btnHelp.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btnHelp.Location = new System.Drawing.Point(119, 6);
+            this.btnHelp.Name = "btnHelp";
+            this.btnHelp.Size = new System.Drawing.Size(26, 23);
+            this.btnHelp.TabIndex = 35;
+            this.btnHelp.UseSelectable = true;
+            this.btnHelp.Click += new System.EventHandler(this.btnHelp_Click);
             // 
             // lblExecucao
             // 
@@ -267,6 +288,20 @@ namespace robo.View
             this.panelImportar.TabIndex = 72;
             this.panelImportar.Tag = "";
             this.panelImportar.Visible = false;
+            // 
+            // btnImportar
+            // 
+            this.btnImportar.BackColor = System.Drawing.Color.Green;
+            this.btnImportar.ForeColor = System.Drawing.SystemColors.Control;
+            this.btnImportar.Image = global::robo.Properties.Resources.excel_1_;
+            this.btnImportar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnImportar.Location = new System.Drawing.Point(2, 45);
+            this.btnImportar.Name = "btnImportar";
+            this.btnImportar.Size = new System.Drawing.Size(211, 35);
+            this.btnImportar.TabIndex = 37;
+            this.btnImportar.Text = "Atualizar";
+            this.btnImportar.UseVisualStyleBackColor = false;
+            this.btnImportar.Click += new System.EventHandler(this.btnImportar_Click);
             // 
             // lblAlunosImportados
             // 
@@ -704,38 +739,11 @@ namespace robo.View
             this.backgroundWorker.ProgressChanged += new System.ComponentModel.ProgressChangedEventHandler(this.backgroundWorker_ProgressChanged);
             this.backgroundWorker.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.backgroundWorker_RunWorkerCompleted);
             // 
-            // wbHelp
+            // tooltip
             // 
-            this.wbHelp.Location = new System.Drawing.Point(673, 345);
-            this.wbHelp.MinimumSize = new System.Drawing.Size(20, 20);
-            this.wbHelp.Name = "wbHelp";
-            this.wbHelp.Size = new System.Drawing.Size(371, 281);
-            this.wbHelp.TabIndex = 63;
-            // 
-            // btnHelp
-            // 
-            this.btnHelp.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnHelp.BackgroundImage")));
-            this.btnHelp.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.btnHelp.Location = new System.Drawing.Point(119, 6);
-            this.btnHelp.Name = "btnHelp";
-            this.btnHelp.Size = new System.Drawing.Size(26, 23);
-            this.btnHelp.TabIndex = 35;
-            this.btnHelp.UseSelectable = true;
-            this.btnHelp.Click += new System.EventHandler(this.btnHelp_Click);
-            // 
-            // btnImportar
-            // 
-            this.btnImportar.BackColor = System.Drawing.Color.Green;
-            this.btnImportar.ForeColor = System.Drawing.SystemColors.Control;
-            this.btnImportar.Image = global::robo.Properties.Resources.excel_1_;
-            this.btnImportar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnImportar.Location = new System.Drawing.Point(2, 45);
-            this.btnImportar.Name = "btnImportar";
-            this.btnImportar.Size = new System.Drawing.Size(211, 35);
-            this.btnImportar.TabIndex = 37;
-            this.btnImportar.Text = "Atualizar";
-            this.btnImportar.UseVisualStyleBackColor = false;
-            this.btnImportar.Click += new System.EventHandler(this.btnImportar_Click);
+            this.tooltip.Style = MetroFramework.MetroColorStyle.Blue;
+            this.tooltip.StyleManager = null;
+            this.tooltip.Theme = MetroFramework.MetroThemeStyle.Light;
             // 
             // FormDefault
             // 
@@ -824,5 +832,6 @@ namespace robo.View
         public System.ComponentModel.BackgroundWorker backgroundWorker;
         private System.Windows.Forms.WebBrowser wbHelp;
         private MetroFramework.Controls.MetroButton btnHelp;
+        private MetroFramework.Components.MetroToolTip tooltip;
     }
 }

@@ -25,7 +25,6 @@ namespace robo.View
         public static extern bool ReleaseCapture();
         public static string versaoRobo;
         private bool logout = false;
-        private bool verificacaoMAX = false;
         public FormInterface2()
         {
             versaoRobo = Program.login.Permissao;
@@ -33,6 +32,10 @@ namespace robo.View
             
             lblUsuario.Text = Program.login.Usuario;
             VerificarVersaoCAE();
+
+            tooltip.SetToolTip(btnFiesLegado, "Operações realizadas no site do MEC");
+            tooltip.SetToolTip(btnFiesNovo, "Operações realizadas no site da Caixa");
+            tooltip.SetToolTip(btnSiga, "Operações realizadas no site do SIGA");
         }
 
         private void VerificarVersaoCAE()
@@ -71,13 +74,10 @@ namespace robo.View
                 btn.FlatAppearance.BorderSize = 0;
                 btn.Size = new Size(flpModosDeExecucao.Width - 23, 40);
 
-                //btn_1.Size = new Size(width, height);
                 btn.Tag = menu;
                 btn.Click += ExecutarAlgumaCoisa;
                 flpModosDeExecucao.Controls.Add(btn);
             }
-            //flpModosDeExecucao.Controls[1].Visible = false;
-            //flpModosDeExecucao.Controls[2].Visible = false;
         }
 
         private void ExecutarAlgumaCoisa(object sender, EventArgs e)
