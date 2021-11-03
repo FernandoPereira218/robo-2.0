@@ -30,13 +30,15 @@ namespace robo.View
 
         private void btLogins_Click(object sender, EventArgs e)
         {
-            panelLogins.BringToFront();
+            panelLogins.Visible = true;
+            panelUsuarios.Visible = false;
             AtualizarListViewLogins();
         }
 
         private void btnUsuarios_Click(object sender, EventArgs e)
         {
-            panelUsuarios.BringToFront();
+            panelUsuarios.Visible = true;
+            panelLogins.Visible = false;
             AtualizarListViewUsuarios();
         }
         public void AtualizarListViewLogins()
@@ -132,9 +134,6 @@ namespace robo.View
         private void btBackup_Click(object sender, EventArgs e)
         {
             string verificacao = string.Empty;
-
-
-            panelBackup.BringToFront();
             OpenFileDialog backup = new OpenFileDialog();
             backup.Filter = "DB (*.db)|*.db";
             backup.InitialDirectory = Directory.GetCurrentDirectory() + "\\Backup\\";
@@ -161,7 +160,6 @@ namespace robo.View
 
 
         }
-
         private void panelMenuBar_MouseDown(object sender, MouseEventArgs e)
         {
 
