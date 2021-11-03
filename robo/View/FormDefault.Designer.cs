@@ -79,6 +79,7 @@ namespace robo.View
             this.btnIniciar = new System.Windows.Forms.Button();
             this.backgroundWorker = new System.ComponentModel.BackgroundWorker();
             this.tooltip = new MetroFramework.Components.MetroToolTip();
+            this.lblStatus = new MetroFramework.Controls.MetroLabel();
             this.panelCadastro.SuspendLayout();
             this.flowLayoutPanel1.SuspendLayout();
             this.panelCabecalho.SuspendLayout();
@@ -100,6 +101,7 @@ namespace robo.View
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panelCadastro.BackColor = System.Drawing.Color.White;
+            this.panelCadastro.Controls.Add(this.lblStatus);
             this.panelCadastro.Controls.Add(this.wbHelp);
             this.panelCadastro.Controls.Add(this.circularProgressBar1);
             this.panelCadastro.Controls.Add(this.flowLayoutPanel1);
@@ -745,6 +747,16 @@ namespace robo.View
             this.tooltip.StyleManager = null;
             this.tooltip.Theme = MetroFramework.MetroThemeStyle.Light;
             // 
+            // lblStatus
+            // 
+            this.lblStatus.AutoSize = true;
+            this.lblStatus.Location = new System.Drawing.Point(36, 624);
+            this.lblStatus.Name = "lblStatus";
+            this.lblStatus.Size = new System.Drawing.Size(34, 19);
+            this.lblStatus.TabIndex = 64;
+            this.lblStatus.Text = "Erro";
+            this.lblStatus.Visible = false;
+            // 
             // FormDefault
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -833,5 +845,6 @@ namespace robo.View
         private System.Windows.Forms.WebBrowser wbHelp;
         private MetroFramework.Controls.MetroButton btnHelp;
         private MetroFramework.Components.MetroToolTip tooltip;
+        private MetroFramework.Controls.MetroLabel lblStatus;
     }
 }
