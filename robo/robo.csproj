@@ -333,6 +333,9 @@
     <Compile Include="Model\TO\TOAluno.cs" />
     <Compile Include="Model\Dados\Dados.cs" />
     <Compile Include="Model\TO\TOUsuario.cs" />
+    <None Include="Resources\Sem Título-2.png" />
+    <None Include="Resources\Sem Título-1.png" />
+    <None Include="Resources\logoAnima1.png" />
     <None Include="Resources\question-mark.png" />
     <None Include="Resources\logoAnima.png" />
     <None Include="Resources\contorno-da-casa.png" />
@@ -393,6 +396,8 @@
     </Content>
     <None Include="Resources\admin.png" />
     <None Include="Resources\anima_educacao_UniFG.jpg" />
+    <None Include="Resources\anima_educacao_UniFG.png" />
+    <None Include="Resources\anima_educacao_UniFG1.png" />
     <Content Include="Resources\bot.ico" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
