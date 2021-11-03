@@ -333,6 +333,11 @@
     <Compile Include="Model\TO\TOAluno.cs" />
     <Compile Include="Model\Dados\Dados.cs" />
     <Compile Include="Model\TO\TOUsuario.cs" />
+    <None Include="Resources\square new.png" />
+    <None Include="Resources\q horror.png" />
+    <None Include="Resources\contorno-de-forma-quadrada.png" />
+    <None Include="Resources\quadrado%281%29.png" />
+    <None Include="Resources\quadrado.png" />
     <None Include="Resources\LOGO.png" />
     <None Include="Resources\logoAnima2.png" />
     <None Include="Resources\Sem Título-21.png" />

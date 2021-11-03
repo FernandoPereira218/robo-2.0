@@ -29,18 +29,20 @@ namespace robo.View
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle64 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle65 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle66 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle67 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle68 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle69 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle70 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle71 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle72 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle15 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle16 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle17 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle18 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panelSubMenu = new System.Windows.Forms.Panel();
+            this.lblconfig = new System.Windows.Forms.Label();
             this.btBackup = new System.Windows.Forms.Button();
             this.btUsuarios = new System.Windows.Forms.Button();
+            this.btLogins = new System.Windows.Forms.Button();
             this.panelLogins = new System.Windows.Forms.Panel();
             this.dgvLogins = new System.Windows.Forms.DataGridView();
             this.metroLabel8 = new MetroFramework.Controls.MetroLabel();
@@ -53,40 +55,46 @@ namespace robo.View
             this.btModUsuario = new System.Windows.Forms.Button();
             this.btAddUsuario = new System.Windows.Forms.Button();
             this.dgvUsuarios = new System.Windows.Forms.DataGridView();
-            this.panelMenuBar = new System.Windows.Forms.Panel();
-            this.lbTitulo = new System.Windows.Forms.Label();
-            this.btnMinimize = new System.Windows.Forms.Button();
-            this.btnClose = new System.Windows.Forms.Button();
             this.panelBackup = new System.Windows.Forms.Panel();
-            this.btLogins = new System.Windows.Forms.Button();
             this.panelSubMenu.SuspendLayout();
             this.panelLogins.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvLogins)).BeginInit();
             this.panelUsuarios.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvUsuarios)).BeginInit();
-            this.panelMenuBar.SuspendLayout();
             this.SuspendLayout();
             // 
             // panelSubMenu
             // 
-            this.panelSubMenu.BackColor = System.Drawing.SystemColors.Control;
+            this.panelSubMenu.BackColor = System.Drawing.Color.White;
+            this.panelSubMenu.Controls.Add(this.lblconfig);
             this.panelSubMenu.Controls.Add(this.btBackup);
             this.panelSubMenu.Controls.Add(this.btUsuarios);
             this.panelSubMenu.Controls.Add(this.btLogins);
-            this.panelSubMenu.Location = new System.Drawing.Point(0, 33);
+            this.panelSubMenu.Location = new System.Drawing.Point(0, 0);
             this.panelSubMenu.Name = "panelSubMenu";
-            this.panelSubMenu.Size = new System.Drawing.Size(135, 512);
+            this.panelSubMenu.Size = new System.Drawing.Size(179, 545);
             this.panelSubMenu.TabIndex = 39;
+            // 
+            // lblconfig
+            // 
+            this.lblconfig.AutoSize = true;
+            this.lblconfig.Font = new System.Drawing.Font("Microsoft JhengHei", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblconfig.Location = new System.Drawing.Point(12, 41);
+            this.lblconfig.Name = "lblconfig";
+            this.lblconfig.Size = new System.Drawing.Size(118, 20);
+            this.lblconfig.TabIndex = 6;
+            this.lblconfig.Text = "Configurações";
             // 
             // btBackup
             // 
             this.btBackup.FlatAppearance.BorderSize = 0;
             this.btBackup.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btBackup.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btBackup.ForeColor = System.Drawing.Color.Black;
             this.btBackup.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btBackup.Location = new System.Drawing.Point(0, 62);
+            this.btBackup.Location = new System.Drawing.Point(0, 153);
             this.btBackup.Name = "btBackup";
-            this.btBackup.Size = new System.Drawing.Size(136, 29);
+            this.btBackup.Size = new System.Drawing.Size(178, 29);
             this.btBackup.TabIndex = 5;
             this.btBackup.Text = "Backup";
             this.btBackup.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -97,16 +105,33 @@ namespace robo.View
             // 
             this.btUsuarios.FlatAppearance.BorderSize = 0;
             this.btUsuarios.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btUsuarios.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btUsuarios.ForeColor = System.Drawing.Color.Black;
             this.btUsuarios.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btUsuarios.Location = new System.Drawing.Point(0, 33);
+            this.btUsuarios.Location = new System.Drawing.Point(0, 122);
             this.btUsuarios.Name = "btUsuarios";
-            this.btUsuarios.Size = new System.Drawing.Size(136, 25);
+            this.btUsuarios.Size = new System.Drawing.Size(178, 25);
             this.btUsuarios.TabIndex = 4;
             this.btUsuarios.Text = "Usuários";
             this.btUsuarios.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btUsuarios.UseVisualStyleBackColor = true;
             this.btUsuarios.Click += new System.EventHandler(this.btnUsuarios_Click);
+            // 
+            // btLogins
+            // 
+            this.btLogins.FlatAppearance.BorderSize = 0;
+            this.btLogins.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btLogins.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btLogins.ForeColor = System.Drawing.Color.Black;
+            this.btLogins.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btLogins.Location = new System.Drawing.Point(0, 89);
+            this.btLogins.Name = "btLogins";
+            this.btLogins.Size = new System.Drawing.Size(178, 27);
+            this.btLogins.TabIndex = 3;
+            this.btLogins.Text = "Logins";
+            this.btLogins.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btLogins.UseVisualStyleBackColor = true;
+            this.btLogins.Click += new System.EventHandler(this.btLogins_Click);
             // 
             // panelLogins
             // 
@@ -125,48 +150,48 @@ namespace robo.View
             // 
             // dgvLogins
             // 
-            dataGridViewCellStyle64.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle64.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle64.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle64.SelectionForeColor = System.Drawing.Color.Black;
-            this.dgvLogins.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle64;
+            dataGridViewCellStyle10.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle10.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle10.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle10.SelectionForeColor = System.Drawing.Color.Black;
+            this.dgvLogins.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle10;
             this.dgvLogins.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dgvLogins.BackgroundColor = System.Drawing.SystemColors.Control;
             this.dgvLogins.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.dgvLogins.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle65.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle65.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle65.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle65.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle65.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle65.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle65.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvLogins.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle65;
+            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle11.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle11.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle11.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle11.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle11.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle11.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvLogins.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle11;
             this.dgvLogins.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle66.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle66.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle66.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle66.ForeColor = System.Drawing.Color.Black;
-            dataGridViewCellStyle66.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle66.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle66.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvLogins.DefaultCellStyle = dataGridViewCellStyle66;
+            dataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle12.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle12.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle12.ForeColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle12.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle12.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle12.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvLogins.DefaultCellStyle = dataGridViewCellStyle12;
             this.dgvLogins.GridColor = System.Drawing.Color.Silver;
             this.dgvLogins.Location = new System.Drawing.Point(36, 89);
             this.dgvLogins.Margin = new System.Windows.Forms.Padding(2);
             this.dgvLogins.Name = "dgvLogins";
             this.dgvLogins.ReadOnly = true;
             this.dgvLogins.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle67.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle67.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle67.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle67.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle67.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle67.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle67.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvLogins.RowHeadersDefaultCellStyle = dataGridViewCellStyle67;
+            dataGridViewCellStyle13.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle13.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle13.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle13.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle13.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle13.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle13.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvLogins.RowHeadersDefaultCellStyle = dataGridViewCellStyle13;
             this.dgvLogins.RowHeadersVisible = false;
             this.dgvLogins.RowHeadersWidth = 51;
             this.dgvLogins.ShowCellToolTips = false;
@@ -249,16 +274,16 @@ namespace robo.View
             this.panelUsuarios.Controls.Add(this.btModUsuario);
             this.panelUsuarios.Controls.Add(this.btAddUsuario);
             this.panelUsuarios.Controls.Add(this.dgvUsuarios);
-            this.panelUsuarios.Location = new System.Drawing.Point(136, 33);
+            this.panelUsuarios.Location = new System.Drawing.Point(136, 0);
             this.panelUsuarios.Name = "panelUsuarios";
-            this.panelUsuarios.Size = new System.Drawing.Size(712, 512);
+            this.panelUsuarios.Size = new System.Drawing.Size(712, 545);
             this.panelUsuarios.TabIndex = 41;
             // 
             // metroLabel9
             // 
             this.metroLabel9.AutoSize = true;
             this.metroLabel9.FontSize = MetroFramework.MetroLabelSize.Tall;
-            this.metroLabel9.Location = new System.Drawing.Point(36, 33);
+            this.metroLabel9.Location = new System.Drawing.Point(87, 67);
             this.metroLabel9.Name = "metroLabel9";
             this.metroLabel9.Size = new System.Drawing.Size(178, 25);
             this.metroLabel9.TabIndex = 4;
@@ -273,10 +298,10 @@ namespace robo.View
             this.btExcUsuario.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btExcUsuario.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btExcUsuario.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(33)))), ((int)(((byte)(33)))));
-            this.btExcUsuario.Location = new System.Drawing.Point(548, 33);
+            this.btExcUsuario.Location = new System.Drawing.Point(563, 66);
             this.btExcUsuario.Margin = new System.Windows.Forms.Padding(0);
             this.btExcUsuario.Name = "btExcUsuario";
-            this.btExcUsuario.Size = new System.Drawing.Size(121, 24);
+            this.btExcUsuario.Size = new System.Drawing.Size(108, 24);
             this.btExcUsuario.TabIndex = 3;
             this.btExcUsuario.Text = "Deletar";
             this.btExcUsuario.UseMnemonic = false;
@@ -293,7 +318,7 @@ namespace robo.View
             this.btModUsuario.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btModUsuario.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(33)))), ((int)(((byte)(33)))));
             this.btModUsuario.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btModUsuario.Location = new System.Drawing.Point(438, 33);
+            this.btModUsuario.Location = new System.Drawing.Point(438, 66);
             this.btModUsuario.Margin = new System.Windows.Forms.Padding(0);
             this.btModUsuario.Name = "btModUsuario";
             this.btModUsuario.Size = new System.Drawing.Size(110, 24);
@@ -312,7 +337,7 @@ namespace robo.View
             this.btAddUsuario.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btAddUsuario.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btAddUsuario.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(33)))), ((int)(((byte)(33)))));
-            this.btAddUsuario.Location = new System.Drawing.Point(308, 33);
+            this.btAddUsuario.Location = new System.Drawing.Point(291, 66);
             this.btAddUsuario.Margin = new System.Windows.Forms.Padding(0);
             this.btAddUsuario.Name = "btAddUsuario";
             this.btAddUsuario.Size = new System.Drawing.Size(130, 24);
@@ -325,121 +350,62 @@ namespace robo.View
             // 
             this.dgvUsuarios.AllowUserToAddRows = false;
             this.dgvUsuarios.AllowUserToDeleteRows = false;
-            dataGridViewCellStyle68.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle68.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle68.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle68.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle68.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(25)))), ((int)(((byte)(25)))));
-            dataGridViewCellStyle68.SelectionForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle68.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvUsuarios.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle68;
+            dataGridViewCellStyle14.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle14.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle14.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle14.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle14.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(25)))), ((int)(((byte)(25)))), ((int)(((byte)(25)))));
+            dataGridViewCellStyle14.SelectionForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle14.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvUsuarios.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle14;
             this.dgvUsuarios.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.dgvUsuarios.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
             this.dgvUsuarios.BackgroundColor = System.Drawing.SystemColors.Control;
             this.dgvUsuarios.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.dgvUsuarios.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle69.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle69.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle69.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle69.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle69.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle69.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle69.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvUsuarios.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle69;
+            dataGridViewCellStyle15.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle15.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle15.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle15.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle15.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle15.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle15.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvUsuarios.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle15;
             this.dgvUsuarios.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridViewCellStyle70.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle70.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle70.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle70.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle70.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle70.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle70.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvUsuarios.DefaultCellStyle = dataGridViewCellStyle70;
+            dataGridViewCellStyle16.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle16.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle16.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle16.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle16.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle16.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle16.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvUsuarios.DefaultCellStyle = dataGridViewCellStyle16;
             this.dgvUsuarios.GridColor = System.Drawing.SystemColors.Control;
-            this.dgvUsuarios.Location = new System.Drawing.Point(36, 89);
+            this.dgvUsuarios.Location = new System.Drawing.Point(87, 122);
             this.dgvUsuarios.Margin = new System.Windows.Forms.Padding(2);
             this.dgvUsuarios.Name = "dgvUsuarios";
             this.dgvUsuarios.ReadOnly = true;
             this.dgvUsuarios.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle71.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle71.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle71.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle71.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle71.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle71.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle71.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvUsuarios.RowHeadersDefaultCellStyle = dataGridViewCellStyle71;
+            dataGridViewCellStyle17.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle17.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle17.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle17.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle17.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle17.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle17.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvUsuarios.RowHeadersDefaultCellStyle = dataGridViewCellStyle17;
             this.dgvUsuarios.RowHeadersVisible = false;
             this.dgvUsuarios.RowHeadersWidth = 51;
-            dataGridViewCellStyle72.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dgvUsuarios.RowsDefaultCellStyle = dataGridViewCellStyle72;
+            dataGridViewCellStyle18.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dgvUsuarios.RowsDefaultCellStyle = dataGridViewCellStyle18;
             this.dgvUsuarios.RowTemplate.DefaultCellStyle.BackColor = System.Drawing.Color.White;
             this.dgvUsuarios.RowTemplate.DefaultCellStyle.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dgvUsuarios.RowTemplate.DefaultCellStyle.ForeColor = System.Drawing.SystemColors.WindowText;
             this.dgvUsuarios.RowTemplate.DefaultCellStyle.SelectionBackColor = System.Drawing.SystemColors.Highlight;
             this.dgvUsuarios.RowTemplate.DefaultCellStyle.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             this.dgvUsuarios.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
-            this.dgvUsuarios.Size = new System.Drawing.Size(635, 410);
+            this.dgvUsuarios.Size = new System.Drawing.Size(584, 393);
             this.dgvUsuarios.TabIndex = 1;
-            // 
-            // panelMenuBar
-            // 
-            this.panelMenuBar.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.panelMenuBar.BackColor = System.Drawing.Color.Purple;
-            this.panelMenuBar.Controls.Add(this.lbTitulo);
-            this.panelMenuBar.Controls.Add(this.btnMinimize);
-            this.panelMenuBar.Controls.Add(this.btnClose);
-            this.panelMenuBar.Location = new System.Drawing.Point(0, 0);
-            this.panelMenuBar.Margin = new System.Windows.Forms.Padding(2);
-            this.panelMenuBar.Name = "panelMenuBar";
-            this.panelMenuBar.Size = new System.Drawing.Size(848, 37);
-            this.panelMenuBar.TabIndex = 42;
-            this.panelMenuBar.MouseDown += new System.Windows.Forms.MouseEventHandler(this.panelMenuBar_MouseDown);
-            // 
-            // lbTitulo
-            // 
-            this.lbTitulo.AutoSize = true;
-            this.lbTitulo.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.lbTitulo.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbTitulo.ForeColor = System.Drawing.SystemColors.Control;
-            this.lbTitulo.Location = new System.Drawing.Point(7, 14);
-            this.lbTitulo.Name = "lbTitulo";
-            this.lbTitulo.Size = new System.Drawing.Size(86, 16);
-            this.lbTitulo.TabIndex = 11;
-            this.lbTitulo.Text = "Configurações";
-            // 
-            // btnMinimize
-            // 
-            this.btnMinimize.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnMinimize.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnMinimize.FlatAppearance.BorderSize = 0;
-            this.btnMinimize.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnMinimize.ForeColor = System.Drawing.Color.White;
-            this.btnMinimize.Location = new System.Drawing.Point(758, 0);
-            this.btnMinimize.Margin = new System.Windows.Forms.Padding(2);
-            this.btnMinimize.Name = "btnMinimize";
-            this.btnMinimize.Size = new System.Drawing.Size(47, 38);
-            this.btnMinimize.TabIndex = 2;
-            this.btnMinimize.Text = "_";
-            this.btnMinimize.UseVisualStyleBackColor = true;
-            this.btnMinimize.Click += new System.EventHandler(this.btnMinimize_Click);
-            // 
-            // btnClose
-            // 
-            this.btnClose.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnClose.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnClose.FlatAppearance.BorderSize = 0;
-            this.btnClose.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnClose.ForeColor = System.Drawing.Color.White;
-            this.btnClose.Location = new System.Drawing.Point(801, 0);
-            this.btnClose.Margin = new System.Windows.Forms.Padding(2);
-            this.btnClose.Name = "btnClose";
-            this.btnClose.Size = new System.Drawing.Size(47, 38);
-            this.btnClose.TabIndex = 0;
-            this.btnClose.Text = "X";
-            this.btnClose.UseVisualStyleBackColor = true;
-            this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
             // 
             // panelBackup
             // 
@@ -449,27 +415,11 @@ namespace robo.View
             this.panelBackup.Size = new System.Drawing.Size(696, 492);
             this.panelBackup.TabIndex = 5;
             // 
-            // btLogins
-            // 
-            this.btLogins.FlatAppearance.BorderSize = 0;
-            this.btLogins.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btLogins.ForeColor = System.Drawing.Color.Black;
-            this.btLogins.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btLogins.Location = new System.Drawing.Point(1, 4);
-            this.btLogins.Name = "btLogins";
-            this.btLogins.Size = new System.Drawing.Size(135, 27);
-            this.btLogins.TabIndex = 3;
-            this.btLogins.Text = "Logins";
-            this.btLogins.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btLogins.UseVisualStyleBackColor = true;
-            this.btLogins.Click += new System.EventHandler(this.btLogins_Click);
-            // 
             // FormConfiguracoes
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(848, 545);
-            this.Controls.Add(this.panelMenuBar);
             this.Controls.Add(this.panelSubMenu);
             this.Controls.Add(this.panelUsuarios);
             this.Controls.Add(this.panelLogins);
@@ -479,14 +429,13 @@ namespace robo.View
             this.Name = "FormConfiguracoes";
             this.Text = "Configuracoes";
             this.panelSubMenu.ResumeLayout(false);
+            this.panelSubMenu.PerformLayout();
             this.panelLogins.ResumeLayout(false);
             this.panelLogins.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvLogins)).EndInit();
             this.panelUsuarios.ResumeLayout(false);
             this.panelUsuarios.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvUsuarios)).EndInit();
-            this.panelMenuBar.ResumeLayout(false);
-            this.panelMenuBar.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -508,11 +457,8 @@ namespace robo.View
         private System.Windows.Forms.Button btAddUsuario;
         private System.Windows.Forms.DataGridView dgvUsuarios;
         private System.Windows.Forms.Button btBackup;
-        private System.Windows.Forms.Panel panelMenuBar;
-        private System.Windows.Forms.Label lbTitulo;
-        private System.Windows.Forms.Button btnMinimize;
-        private System.Windows.Forms.Button btnClose;
         private System.Windows.Forms.Panel panelBackup;
         private System.Windows.Forms.Button btLogins;
+        private System.Windows.Forms.Label lblconfig;
     }
 }
