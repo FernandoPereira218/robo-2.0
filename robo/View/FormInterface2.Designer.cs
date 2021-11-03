@@ -29,9 +29,9 @@ namespace robo.View
         /// </summary>     
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle16 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle17 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle18 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panelMenuBar = new System.Windows.Forms.Panel();
             this.btnMaximize = new System.Windows.Forms.Button();
             this.lblUsuario = new System.Windows.Forms.Label();
@@ -55,6 +55,9 @@ namespace robo.View
             this.labelTipoFies = new MetroFramework.Controls.MetroLabel();
             this.flpModosDeExecucao = new System.Windows.Forms.FlowLayoutPanel();
             this.panelCadastro = new System.Windows.Forms.Panel();
+            this.panelSelecionarModoExecucao = new System.Windows.Forms.Panel();
+            this.lblCadastroSelecione = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
             this.panelErroNenhumAluno = new System.Windows.Forms.Panel();
             this.metroLabel2 = new MetroFramework.Controls.MetroLabel();
             this.metroLabel1 = new MetroFramework.Controls.MetroLabel();
@@ -62,6 +65,7 @@ namespace robo.View
             this.btnLogout = new System.Windows.Forms.Button();
             this.tooltip = new MetroFramework.Components.MetroToolTip();
             this.panelHome = new System.Windows.Forms.Panel();
+            this.lblDireitoReservados = new System.Windows.Forms.Label();
             this.labelDescricaoHome = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.btnHome = new System.Windows.Forms.Button();
@@ -69,12 +73,9 @@ namespace robo.View
             this.btnFiesLegado = new System.Windows.Forms.Button();
             this.btnFiesNovo = new System.Windows.Forms.Button();
             this.btnConfiguracoes = new System.Windows.Forms.Button();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.btnImportar = new System.Windows.Forms.Button();
-            this.lblDireitoReservados = new System.Windows.Forms.Label();
-            this.lblCadastroSelecione = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.panelSelecionarModoExecucao = new System.Windows.Forms.Panel();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.panelMenuBar.SuspendLayout();
             this.panelExcel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvAlunos)).BeginInit();
@@ -83,11 +84,12 @@ namespace robo.View
             this.panelExecucao.SuspendLayout();
             this.panel1.SuspendLayout();
             this.panelCadastro.SuspendLayout();
+            this.panelSelecionarModoExecucao.SuspendLayout();
             this.panelErroNenhumAluno.SuspendLayout();
             this.panelSubMenu.SuspendLayout();
             this.panelHome.SuspendLayout();
+            this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
-            this.panelSelecionarModoExecucao.SuspendLayout();
             this.SuspendLayout();
             // 
             // panelMenuBar
@@ -233,8 +235,8 @@ namespace robo.View
             this.dgvAlunos.AccessibleRole = System.Windows.Forms.AccessibleRole.None;
             this.dgvAlunos.AllowUserToAddRows = false;
             this.dgvAlunos.AllowUserToDeleteRows = false;
-            dataGridViewCellStyle7.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dgvAlunos.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle7;
+            dataGridViewCellStyle16.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dgvAlunos.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle16;
             this.dgvAlunos.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
@@ -242,14 +244,14 @@ namespace robo.View
             this.dgvAlunos.BackgroundColor = System.Drawing.SystemColors.Control;
             this.dgvAlunos.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dgvAlunos.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle8.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle8.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle8.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvAlunos.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle8;
+            dataGridViewCellStyle17.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle17.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle17.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle17.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle17.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle17.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle17.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvAlunos.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle17;
             this.dgvAlunos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvAlunos.Location = new System.Drawing.Point(-1, 69);
             this.dgvAlunos.Name = "dgvAlunos";
@@ -257,8 +259,8 @@ namespace robo.View
             this.dgvAlunos.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
             this.dgvAlunos.RowHeadersVisible = false;
             this.dgvAlunos.RowHeadersWidth = 51;
-            dataGridViewCellStyle9.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dgvAlunos.RowsDefaultCellStyle = dataGridViewCellStyle9;
+            dataGridViewCellStyle18.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dgvAlunos.RowsDefaultCellStyle = dataGridViewCellStyle18;
             this.dgvAlunos.RowTemplate.DefaultCellStyle.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dgvAlunos.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvAlunos.Size = new System.Drawing.Size(974, 551);
@@ -446,6 +448,35 @@ namespace robo.View
             this.panelCadastro.Size = new System.Drawing.Size(977, 619);
             this.panelCadastro.TabIndex = 38;
             // 
+            // panelSelecionarModoExecucao
+            // 
+            this.panelSelecionarModoExecucao.Controls.Add(this.lblCadastroSelecione);
+            this.panelSelecionarModoExecucao.Controls.Add(this.label2);
+            this.panelSelecionarModoExecucao.Location = new System.Drawing.Point(250, 131);
+            this.panelSelecionarModoExecucao.Name = "panelSelecionarModoExecucao";
+            this.panelSelecionarModoExecucao.Size = new System.Drawing.Size(539, 291);
+            this.panelSelecionarModoExecucao.TabIndex = 2;
+            // 
+            // lblCadastroSelecione
+            // 
+            this.lblCadastroSelecione.AutoSize = true;
+            this.lblCadastroSelecione.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblCadastroSelecione.Location = new System.Drawing.Point(166, 107);
+            this.lblCadastroSelecione.Name = "lblCadastroSelecione";
+            this.lblCadastroSelecione.Size = new System.Drawing.Size(232, 19);
+            this.lblCadastroSelecione.TabIndex = 0;
+            this.lblCadastroSelecione.Text = "Selecione o modo Execução";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(82, 134);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(419, 17);
+            this.label2.TabIndex = 1;
+            this.label2.Text = "Selecione o modo de execução e seus campos após selecionar";
+            // 
             // panelErroNenhumAluno
             // 
             this.panelErroNenhumAluno.BackColor = System.Drawing.Color.White;
@@ -525,14 +556,27 @@ namespace robo.View
             this.panelHome.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.panelHome.Controls.Add(this.panel2);
             this.panelHome.Controls.Add(this.lblDireitoReservados);
             this.panelHome.Controls.Add(this.labelDescricaoHome);
             this.panelHome.Controls.Add(this.label1);
-            this.panelHome.Controls.Add(this.pictureBox1);
             this.panelHome.Location = new System.Drawing.Point(76, 40);
             this.panelHome.Name = "panelHome";
             this.panelHome.Size = new System.Drawing.Size(1204, 686);
             this.panelHome.TabIndex = 0;
+            // 
+            // lblDireitoReservados
+            // 
+            this.lblDireitoReservados.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblDireitoReservados.AutoSize = true;
+            this.lblDireitoReservados.BackColor = System.Drawing.SystemColors.Control;
+            this.lblDireitoReservados.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblDireitoReservados.Location = new System.Drawing.Point(163, 611);
+            this.lblDireitoReservados.Name = "lblDireitoReservados";
+            this.lblDireitoReservados.Size = new System.Drawing.Size(320, 17);
+            this.lblDireitoReservados.TabIndex = 3;
+            this.lblDireitoReservados.Text = "Todos os direitos reservados a Anima Educação.";
             // 
             // labelDescricaoHome
             // 
@@ -662,16 +706,6 @@ namespace robo.View
             this.btnConfiguracoes.MouseEnter += new System.EventHandler(this.btnChangeColorEnter);
             this.btnConfiguracoes.MouseLeave += new System.EventHandler(this.btnChangeColorLeave);
             // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Image = global::robo.Properties.Resources.Sem_Título_2;
-            this.pictureBox1.Location = new System.Drawing.Point(704, -2);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(500, 685);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox1.TabIndex = 0;
-            this.pictureBox1.TabStop = false;
-            // 
             // btnImportar
             // 
             this.btnImportar.BackColor = System.Drawing.Color.Green;
@@ -687,44 +721,27 @@ namespace robo.View
             this.btnImportar.UseVisualStyleBackColor = false;
             this.btnImportar.Click += new System.EventHandler(this.btnImportar_Click);
             // 
-            // lblDireitoReservados
+            // panel2
             // 
-            this.lblDireitoReservados.AutoSize = true;
-            this.lblDireitoReservados.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblDireitoReservados.Location = new System.Drawing.Point(163, 611);
-            this.lblDireitoReservados.Name = "lblDireitoReservados";
-            this.lblDireitoReservados.Size = new System.Drawing.Size(320, 17);
-            this.lblDireitoReservados.TabIndex = 3;
-            this.lblDireitoReservados.Text = "Todos os direitos reservados a Anima Educação.";
+            this.panel2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel2.BackColor = System.Drawing.Color.Purple;
+            this.panel2.Controls.Add(this.pictureBox1);
+            this.panel2.Location = new System.Drawing.Point(826, 0);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(378, 680);
+            this.panel2.TabIndex = 11;
             // 
-            // lblCadastroSelecione
+            // pictureBox1
             // 
-            this.lblCadastroSelecione.AutoSize = true;
-            this.lblCadastroSelecione.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblCadastroSelecione.Location = new System.Drawing.Point(166, 107);
-            this.lblCadastroSelecione.Name = "lblCadastroSelecione";
-            this.lblCadastroSelecione.Size = new System.Drawing.Size(232, 19);
-            this.lblCadastroSelecione.TabIndex = 0;
-            this.lblCadastroSelecione.Text = "Selecione o modo Execução";
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(82, 134);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(419, 17);
-            this.label2.TabIndex = 1;
-            this.label2.Text = "Selecione o modo de execução e seus campos após selecionar";
-            // 
-            // panelSelecionarModoExecucao
-            // 
-            this.panelSelecionarModoExecucao.Controls.Add(this.lblCadastroSelecione);
-            this.panelSelecionarModoExecucao.Controls.Add(this.label2);
-            this.panelSelecionarModoExecucao.Location = new System.Drawing.Point(250, 131);
-            this.panelSelecionarModoExecucao.Name = "panelSelecionarModoExecucao";
-            this.panelSelecionarModoExecucao.Size = new System.Drawing.Size(539, 291);
-            this.panelSelecionarModoExecucao.TabIndex = 2;
+            this.pictureBox1.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.pictureBox1.Image = global::robo.Properties.Resources.logoAnima;
+            this.pictureBox1.Location = new System.Drawing.Point(106, 212);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(188, 179);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox1.TabIndex = 0;
+            this.pictureBox1.TabStop = false;
             // 
             // FormInterface2
             // 
@@ -734,8 +751,8 @@ namespace robo.View
             this.ClientSize = new System.Drawing.Size(1280, 720);
             this.Controls.Add(this.panelMenuBar);
             this.Controls.Add(this.panelSubMenu);
-            this.Controls.Add(this.panelCadastrarContent);
             this.Controls.Add(this.panelHome);
+            this.Controls.Add(this.panelCadastrarContent);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "FormInterface2";
@@ -751,14 +768,15 @@ namespace robo.View
             this.panelExecucao.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
             this.panelCadastro.ResumeLayout(false);
+            this.panelSelecionarModoExecucao.ResumeLayout(false);
+            this.panelSelecionarModoExecucao.PerformLayout();
             this.panelErroNenhumAluno.ResumeLayout(false);
             this.panelErroNenhumAluno.PerformLayout();
             this.panelSubMenu.ResumeLayout(false);
             this.panelHome.ResumeLayout(false);
             this.panelHome.PerformLayout();
+            this.panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-            this.panelSelecionarModoExecucao.ResumeLayout(false);
-            this.panelSelecionarModoExecucao.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -810,12 +828,13 @@ namespace robo.View
         private System.Windows.Forms.Button btnLogout;
         private System.Windows.Forms.Button btnMaximize;
         private MetroFramework.Components.MetroToolTip tooltip;
-        private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label labelDescricaoHome;
         private System.Windows.Forms.Label lblDireitoReservados;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label lblCadastroSelecione;
         private System.Windows.Forms.Panel panelSelecionarModoExecucao;
+        private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.PictureBox pictureBox1;
     }
 }
