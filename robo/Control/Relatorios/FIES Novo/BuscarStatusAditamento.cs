@@ -15,6 +15,10 @@ namespace robo.Control.Relatorios.FIES_Novo
         public void BuscarStatus(TOAluno aluno, string semestreAtual)
         {
             ConsultarAluno(Driver, aluno);
+            if (aluno.Conclusao != "Não Feito")
+            {
+                return;
+            }
             WaitForLoading(Driver);
 
             if (VerificarNenhumaInformacaoDisponivel(Driver) == true)
