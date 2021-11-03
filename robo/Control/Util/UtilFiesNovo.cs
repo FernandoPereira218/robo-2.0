@@ -189,9 +189,35 @@ namespace robo.Control
             {
                 System.Threading.Thread.Sleep(500);
             }
+            ClickButtonsByCss(Driver, "body");
+            string erro = BuscarMensagemDeErro(Driver);
+            if (erro.Contains("CPF com Dígito Verificador inválido. Redigite-o!") == true)
+            {
+                Util.EditarConclusaoAluno(aluno, erro);
+                return;
+            }
             ClickButtonsById(Driver, "btnConsultar");
-
+            erro = BuscarMensagemDeErro(Driver);
+            if (erro.Contains("Ocorreu um erro na consulta, tente novamente."))
+            {
+                throw new Exception("O site da caixa parece estar instável. Tente novamente mais tarde.");
+            }
             WaitForLoading(Driver);
+
+            
+        }
+
+        protected string BuscarMensagemDeErro(IWebDriver Driver)
+        {
+            if (Driver.PageSource.Contains("alert alert-error"))
+            {
+                IWebElement msgErro = Driver.FindElement(By.ClassName("alert-error"));
+                return msgErro.Text.Replace("x\r\n", "");
+            }
+            else
+            {
+                return string.Empty;
+            }
         }
 
         /// <summary>
