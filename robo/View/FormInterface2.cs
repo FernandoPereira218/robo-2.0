@@ -29,7 +29,7 @@ namespace robo.View
         {
             versaoRobo = Program.login.Permissao;
             InitializeComponent();
-            
+
             lblUsuario.Text = Program.login.Usuario;
             if (Program.login.Usuario != "Admin")
             {
@@ -80,7 +80,6 @@ namespace robo.View
         private void StartForm(TOMenus menu, string tipoFies)
         {
             int cont = Dados.Count<TOAluno>();
-            //panelCadastro.Controls.Clear();
             if (formulario == null)
             {
 

@@ -183,6 +183,16 @@ namespace robo.Properties {
         /// <summary>
         ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap contorno_de_forma_quadrada {
+            get {
+                object obj = ResourceManager.GetObject("contorno-de-forma-quadrada", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap excel {
             get {
                 object obj = ResourceManager.GetObject("excel", resourceCulture);
@@ -333,6 +343,36 @@ namespace robo.Properties {
         /// <summary>
         ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap q_horror {
+            get {
+                object obj = ResourceManager.GetObject("q horror", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap quadrado {
+            get {
+                object obj = ResourceManager.GetObject("quadrado", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap quadrado_1_ {
+            get {
+                object obj = ResourceManager.GetObject("quadrado(1)", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap question_mark {
             get {
                 object obj = ResourceManager.GetObject("question-mark", resourceCulture);
@@ -406,6 +446,16 @@ namespace robo.Properties {
         internal static System.Drawing.Bitmap silhueta_negra_de_casa_sem_porta2 {
             get {
                 object obj = ResourceManager.GetObject("silhueta-negra-de-casa-sem-porta2", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap square_new {
+            get {
+                object obj = ResourceManager.GetObject("square new", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
