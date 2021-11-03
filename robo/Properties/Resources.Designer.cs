@@ -243,6 +243,16 @@ namespace robo.Properties {
         /// <summary>
         ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap LOGO {
+            get {
+                object obj = ResourceManager.GetObject("LOGO", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap logoAnima {
             get {
                 object obj = ResourceManager.GetObject("logoAnima", resourceCulture);
@@ -256,6 +266,16 @@ namespace robo.Properties {
         internal static System.Drawing.Bitmap logoAnima1 {
             get {
                 object obj = ResourceManager.GetObject("logoAnima1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap logoAnima2 {
+            get {
+                object obj = ResourceManager.GetObject("logoAnima2", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -346,6 +366,16 @@ namespace robo.Properties {
         internal static System.Drawing.Bitmap Sem_Título_2 {
             get {
                 object obj = ResourceManager.GetObject("Sem Título-2", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Sem_Título_21 {
+            get {
+                object obj = ResourceManager.GetObject("Sem Título-21", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
