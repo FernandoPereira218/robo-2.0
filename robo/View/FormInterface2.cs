@@ -37,6 +37,11 @@ namespace robo.View
             }
             VerificarVersaoCAE();
 
+            labelDescricaoHome.Text = 
+                "Um projeto com a têndencia de melhorar e trazer ganhos de tempo \n" +
+                "e eficiência para times dos setores, com um sistema de automatização\n" +
+                "que atenda de forma clara e precisa nos processos executados.";
+
             tooltip.SetToolTip(btnFiesLegado, "Operações realizadas no site do MEC");
             tooltip.SetToolTip(btnFiesNovo, "Operações realizadas no site da Caixa");
             tooltip.SetToolTip(btnSiga, "Operações realizadas no site do SIGA");
