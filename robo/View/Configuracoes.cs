@@ -59,7 +59,7 @@ namespace robo.View
                 }
                 else
                 {
-                    source.DataSource = Dados.SelectWhere<TOLogin>(x=>x.Faculdade == Program.login.IES);
+                    source.DataSource = Dados.SelectWhere<TOLogin>(x => x.Faculdade == Program.login.IES);
                 }
                 dgvLogins.AutoGenerateColumns = true;
                 dgvLogins.DataSource = source;
