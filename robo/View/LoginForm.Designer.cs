@@ -29,6 +29,8 @@
         private void InitializeComponent()
         {
             this.panelFormLogin = new System.Windows.Forms.Panel();
+            this.txtID = new System.Windows.Forms.TextBox();
+            this.labelID = new System.Windows.Forms.Label();
             this.txtRegionalLogin = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.txtPlataformaLogin = new System.Windows.Forms.TextBox();
@@ -44,8 +46,6 @@
             this.panelButtonsLogin = new System.Windows.Forms.Panel();
             this.btnCancelLogin = new System.Windows.Forms.Button();
             this.btnOKLogin = new System.Windows.Forms.Button();
-            this.txtID = new System.Windows.Forms.TextBox();
-            this.labelID = new System.Windows.Forms.Label();
             this.panelFormLogin.SuspendLayout();
             this.panelButtonsLogin.SuspendLayout();
             this.SuspendLayout();
@@ -72,6 +72,27 @@
             this.panelFormLogin.Size = new System.Drawing.Size(253, 211);
             this.panelFormLogin.TabIndex = 0;
             // 
+            // txtID
+            // 
+            this.txtID.BackColor = System.Drawing.SystemColors.Control;
+            this.txtID.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.txtID.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtID.Location = new System.Drawing.Point(64, 9);
+            this.txtID.Name = "txtID";
+            this.txtID.Size = new System.Drawing.Size(177, 22);
+            this.txtID.TabIndex = 14;
+            // 
+            // labelID
+            // 
+            this.labelID.AutoSize = true;
+            this.labelID.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(45)))));
+            this.labelID.Location = new System.Drawing.Point(38, 15);
+            this.labelID.Name = "labelID";
+            this.labelID.Size = new System.Drawing.Size(21, 13);
+            this.labelID.TabIndex = 13;
+            this.labelID.Text = "ID:";
+            this.labelID.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
             // txtRegionalLogin
             // 
             this.txtRegionalLogin.BackColor = System.Drawing.SystemColors.Control;
@@ -85,7 +106,8 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(0, 185);
+            this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(45)))));
+            this.label1.Location = new System.Drawing.Point(3, 183);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(56, 13);
             this.label1.TabIndex = 11;
@@ -105,6 +127,7 @@
             // lblPlataformaLogin
             // 
             this.lblPlataformaLogin.AutoSize = true;
+            this.lblPlataformaLogin.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(45)))));
             this.lblPlataformaLogin.Location = new System.Drawing.Point(0, 156);
             this.lblPlataformaLogin.Name = "lblPlataformaLogin";
             this.lblPlataformaLogin.Size = new System.Drawing.Size(65, 13);
@@ -125,6 +148,7 @@
             // lvlCampusLogin
             // 
             this.lvlCampusLogin.AutoSize = true;
+            this.lvlCampusLogin.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(45)))));
             this.lvlCampusLogin.Location = new System.Drawing.Point(14, 129);
             this.lvlCampusLogin.Name = "lvlCampusLogin";
             this.lvlCampusLogin.Size = new System.Drawing.Size(51, 13);
@@ -145,6 +169,7 @@
             // lblFaculdade
             // 
             this.lblFaculdade.AutoSize = true;
+            this.lblFaculdade.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(45)))));
             this.lblFaculdade.Location = new System.Drawing.Point(2, 100);
             this.lblFaculdade.Name = "lblFaculdade";
             this.lblFaculdade.Size = new System.Drawing.Size(63, 13);
@@ -165,6 +190,7 @@
             // lblSenhaLogin
             // 
             this.lblSenhaLogin.AutoSize = true;
+            this.lblSenhaLogin.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(45)))));
             this.lblSenhaLogin.Location = new System.Drawing.Point(23, 72);
             this.lblSenhaLogin.Name = "lblSenhaLogin";
             this.lblSenhaLogin.Size = new System.Drawing.Size(42, 13);
@@ -185,6 +211,7 @@
             // lblUser
             // 
             this.lblUser.AutoSize = true;
+            this.lblUser.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(45)))));
             this.lblUser.Location = new System.Drawing.Point(15, 44);
             this.lblUser.Name = "lblUser";
             this.lblUser.Size = new System.Drawing.Size(50, 13);
@@ -206,7 +233,7 @@
             this.btnCancelLogin.Dock = System.Windows.Forms.DockStyle.Right;
             this.btnCancelLogin.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnCancelLogin.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCancelLogin.ForeColor = System.Drawing.Color.White;
+            this.btnCancelLogin.ForeColor = System.Drawing.Color.Silver;
             this.btnCancelLogin.Location = new System.Drawing.Point(127, 0);
             this.btnCancelLogin.Name = "btnCancelLogin";
             this.btnCancelLogin.Size = new System.Drawing.Size(126, 28);
@@ -220,7 +247,7 @@
             this.btnOKLogin.Dock = System.Windows.Forms.DockStyle.Left;
             this.btnOKLogin.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnOKLogin.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnOKLogin.ForeColor = System.Drawing.Color.White;
+            this.btnOKLogin.ForeColor = System.Drawing.Color.Silver;
             this.btnOKLogin.Location = new System.Drawing.Point(0, 0);
             this.btnOKLogin.Name = "btnOKLogin";
             this.btnOKLogin.Size = new System.Drawing.Size(126, 28);
@@ -228,31 +255,11 @@
             this.btnOKLogin.Text = "Aceitar";
             this.btnOKLogin.UseVisualStyleBackColor = true;
             // 
-            // txtID
-            // 
-            this.txtID.BackColor = System.Drawing.SystemColors.Control;
-            this.txtID.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtID.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtID.Location = new System.Drawing.Point(64, 9);
-            this.txtID.Name = "txtID";
-            this.txtID.Size = new System.Drawing.Size(177, 22);
-            this.txtID.TabIndex = 14;
-            // 
-            // labelID
-            // 
-            this.labelID.AutoSize = true;
-            this.labelID.Location = new System.Drawing.Point(13, 13);
-            this.labelID.Name = "labelID";
-            this.labelID.Size = new System.Drawing.Size(21, 13);
-            this.labelID.TabIndex = 13;
-            this.labelID.Text = "ID:";
-            this.labelID.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            // 
             // LoginForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(37)))), ((int)(((byte)(34)))));
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(45)))));
             this.ClientSize = new System.Drawing.Size(278, 283);
             this.Controls.Add(this.panelFormLogin);
             this.Controls.Add(this.panelButtonsLogin);
