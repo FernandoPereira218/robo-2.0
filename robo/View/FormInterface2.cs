@@ -36,7 +36,8 @@ namespace robo.View
                 btnSiga.Visible = false;
             }
             VerificarVersaoCAE();
-
+            this.MaximizedBounds = Screen.FromHandle(this.Handle).WorkingArea;
+            this.WindowState = FormWindowState.Maximized;
             labelDescricaoHome.Text = 
                 "Um projeto com a têndencia de melhorar e trazer ganhos de tempo \n" +
                 "e eficiência para times dos setores, com um sistema de automatização\n" +
