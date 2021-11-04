@@ -25,6 +25,7 @@ namespace robo.View
         public FormConfiguracoes()
         {
             InitializeComponent();
+            this.Text = string.Empty;
             verificacao = true;
         }
 
@@ -172,13 +173,15 @@ namespace robo.View
 
         private void btnClose_Click(object sender, EventArgs e)
         {
-            verificacao = false;
             this.Close();
         }
-
         private void btnMinimize_Click(object sender, EventArgs e)
         {
             this.WindowState = FormWindowState.Minimized;
+        }
+        private void FormConfiguracoes_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            verificacao = false;
         }
     }
 }
