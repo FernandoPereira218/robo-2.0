@@ -22,6 +22,7 @@ namespace robo.View
         private string tipoFies;
         private FormInterface2 formPrincipal;
         private string execucao;
+        private bool primeiraExecucao = true;
         public FormDefault(FormInterface2 formAnterior)
         {
             this.formPrincipal = formAnterior;
@@ -141,6 +142,12 @@ namespace robo.View
             string dataInicio = dtpDataInicial.Text;
             string dataFim = dtpDataFinal.Text;
             string fiesSiga = cbFiesSiga.Text;
+            backgroundWorker.Dispose();
+            GC.Collect();
+            backgroundWorker = new BackgroundWorker();
+            backgroundWorker.WorkerReportsProgress = true;
+            backgroundWorker.ProgressChanged += backgroundWorker_ProgressChanged;
+            backgroundWorker.RunWorkerCompleted += backgroundWorker_RunWorkerCompleted;
             backgroundWorker.DoWork += (object sender, DoWorkEventArgs e) =>
             {
                 try
@@ -308,6 +315,7 @@ namespace robo.View
                     presenter.EncerrarDriver();
                 }
             };
+
             backgroundWorker.RunWorkerAsync();
         }
 

@@ -194,6 +194,7 @@ namespace robo.Control.Implementacoes
             semestre = semestre.Replace("2/", "2º/");
 
             Driver = Util.StartBrowser("http://sisfies.mec.gov.br/");
+            extrairInformacoesDRM.SetDriver(Driver);
 
             foreach (TOLogin login in listaLogins)
             {
@@ -314,6 +315,10 @@ namespace robo.Control.Implementacoes
 
         private void UpdateProgresso(ref float progresso, int listCount)
         {
+            if (progresso >= 100)
+            {
+                progresso = 0;
+            }
             progresso += 100.0f / listCount;
             forms.backgroundWorker.ReportProgress(Convert.ToInt32(progresso));
         }

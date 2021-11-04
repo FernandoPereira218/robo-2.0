@@ -18,7 +18,6 @@ namespace robo.Control.Relatorios.FIES_Legado
         private IWebDriver Driver;
         public void ExtrairDRM(IWebDriver driver, TOAluno aluno, string campus, string semestre)
         {
-            Driver = driver;
             ClickDropDown(Driver, "id", "co_finalidade_aditamento", "Aditamento de Renovação");
             WaitinLoading(Driver);
             ClickDropDown(Driver, "id", "coSemestreAditamento", semestre);
@@ -48,10 +47,6 @@ namespace robo.Control.Relatorios.FIES_Legado
                     ClickButtonsById(Driver, "voltar");
                     Util.EditarConclusaoAluno(aluno, situacaoAluno);
                 }
-            }
-            else
-            {
-                Util.EditarConclusaoAluno(aluno, "Nenhum registro encontrado.");
             }
         }
         private void BaixarDRM(ref TOAluno aluno)
@@ -143,6 +138,11 @@ namespace robo.Control.Relatorios.FIES_Legado
             {
                 throw new Exception(string.Format("Erro não esperado encontrado.\n Contate os alunos brilhantes.\n\n{0}", e.Message));
             }
+        }
+
+        public void SetDriver(IWebDriver Driver) 
+        {
+            this.Driver = Driver;
         }
     }
 }
