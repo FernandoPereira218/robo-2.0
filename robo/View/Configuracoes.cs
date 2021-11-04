@@ -27,6 +27,7 @@ namespace robo.View
             InitializeComponent();
             this.Text = string.Empty;
             verificacao = true;
+            AtualizarListViewLogins();
         }
 
         private void btLogins_Click(object sender, EventArgs e)
