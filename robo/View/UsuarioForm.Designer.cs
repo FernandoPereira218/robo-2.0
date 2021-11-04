@@ -69,7 +69,8 @@
             // labelId
             // 
             this.labelId.AutoSize = true;
-            this.labelId.Location = new System.Drawing.Point(11, 20);
+            this.labelId.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(45)))));
+            this.labelId.Location = new System.Drawing.Point(38, 16);
             this.labelId.Name = "labelId";
             this.labelId.Size = new System.Drawing.Size(21, 13);
             this.labelId.TabIndex = 15;
@@ -97,6 +98,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
+            this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(45)))));
             this.label1.Location = new System.Drawing.Point(8, 150);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(53, 13);
@@ -126,6 +128,7 @@
             // lblFaculdade
             // 
             this.lblFaculdade.AutoSize = true;
+            this.lblFaculdade.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(45)))));
             this.lblFaculdade.Location = new System.Drawing.Point(42, 125);
             this.lblFaculdade.Name = "lblFaculdade";
             this.lblFaculdade.Size = new System.Drawing.Size(25, 13);
@@ -146,6 +149,7 @@
             // lblSenhaLogin
             // 
             this.lblSenhaLogin.AutoSize = true;
+            this.lblSenhaLogin.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(45)))));
             this.lblSenhaLogin.Location = new System.Drawing.Point(23, 71);
             this.lblSenhaLogin.Name = "lblSenhaLogin";
             this.lblSenhaLogin.Size = new System.Drawing.Size(42, 13);
@@ -166,6 +170,7 @@
             // lblUser
             // 
             this.lblUser.AutoSize = true;
+            this.lblUser.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(45)))));
             this.lblUser.Location = new System.Drawing.Point(15, 43);
             this.lblUser.Name = "lblUser";
             this.lblUser.Size = new System.Drawing.Size(50, 13);
@@ -176,6 +181,7 @@
             // lblPermissoes
             // 
             this.lblPermissoes.AutoSize = true;
+            this.lblPermissoes.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(45)))));
             this.lblPermissoes.Location = new System.Drawing.Point(-1, 97);
             this.lblPermissoes.Name = "lblPermissoes";
             this.lblPermissoes.Size = new System.Drawing.Size(66, 13);
@@ -187,7 +193,7 @@
             // 
             this.btnCancelLogin.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnCancelLogin.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCancelLogin.ForeColor = System.Drawing.Color.White;
+            this.btnCancelLogin.ForeColor = System.Drawing.Color.Silver;
             this.btnCancelLogin.Location = new System.Drawing.Point(145, 215);
             this.btnCancelLogin.Name = "btnCancelLogin";
             this.btnCancelLogin.Size = new System.Drawing.Size(126, 28);
@@ -200,7 +206,7 @@
             // 
             this.btnOKLogin.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnOKLogin.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnOKLogin.ForeColor = System.Drawing.Color.White;
+            this.btnOKLogin.ForeColor = System.Drawing.Color.Silver;
             this.btnOKLogin.Location = new System.Drawing.Point(13, 215);
             this.btnOKLogin.Name = "btnOKLogin";
             this.btnOKLogin.Size = new System.Drawing.Size(126, 28);
@@ -212,7 +218,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(37)))), ((int)(((byte)(34)))));
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(45)))));
             this.ClientSize = new System.Drawing.Size(278, 271);
             this.Controls.Add(this.btnCancelLogin);
             this.Controls.Add(this.btnOKLogin);
