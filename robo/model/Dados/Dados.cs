@@ -403,7 +403,7 @@ namespace Robo
         /// Select where genérico
         /// </summary>
         /// <typeparam name="T">Classe da coleção de dados desejada</typeparam>
-        /// <param name="expression">Expressão lambda com a consulta desejada, exemplo: x => x.tipoFies == "FIES LEGADO"</param>
+        /// <param name="expression">Expressão lambda com a consulta desejada, exemplo: x => x.nomeDaPropriedade == valorDaPropriedade</param>
         /// <returns>Lista com os registros encontrados</returns>
         public static List<T> SelectWhere<T>(Expression<Func<T, bool>> expression)
         {

@@ -47,12 +47,11 @@ namespace robo.View
             tooltip.SetToolTip(btnFiesNovo, "Operações realizadas no site da Caixa");
             tooltip.SetToolTip(btnSiga, "Operações realizadas no site do SIGA");
         }
-        private void SelecionarMenusPorTipoFies(string tipoFies)
+
+        private void CriarBotoesModosDeExecucao(string tipoFies)
         {
             List<TOMenus> menusFIESNovo = Dados.SelectMenuWhereLite(tipoFies);
             labelTipoFies.Text = tipoFies;
-
-
 
             foreach (var menu in menusFIESNovo)
             {
@@ -68,12 +67,11 @@ namespace robo.View
                 btn.Size = new Size(flpModosDeExecucao.Width - 23, 40);
 
                 btn.Tag = menu;
-                btn.Click += ExecutarAlgumaCoisa;
+                btn.Click += ClickBotoesModoDeExecucao;
                 flpModosDeExecucao.Controls.Add(btn);
             }
         }
-
-        private void ExecutarAlgumaCoisa(object sender, EventArgs e)
+        private void ClickBotoesModoDeExecucao(object sender, EventArgs e)
         {
             Button btn = (Button)sender;
             StartForm((TOMenus)btn.Tag, labelTipoFies.Text.ToUpper());
@@ -83,7 +81,6 @@ namespace robo.View
             int cont = Dados.Count<TOAluno>();
             if (formulario == null)
             {
-
                 formulario = new FormDefault(this);
                 formulario.TopLevel = false;
                 formulario.FormBorderStyle = FormBorderStyle.None;
@@ -111,7 +108,6 @@ namespace robo.View
                 panelErroNenhumAluno.BringToFront();
             }
         }
-        
         private void VerificarVersaoCAE()
         {
             if (versaoRobo == "CAE")
@@ -119,12 +115,6 @@ namespace robo.View
                 btnSiga.Visible = false;
                 btnConfiguracoes.Visible = false;
             }
-        }
-        private void btnFiesNovo_Click(object sender, EventArgs e)
-        {
-            OpenPanelCadastro();
-            LimparModosDeExecucao();
-            SelecionarMenusPorTipoFies("FIES NOVO");
         }
         private void LimparModosDeExecucao()
         {
@@ -140,79 +130,6 @@ namespace robo.View
             {
                 flpModosDeExecucao.Controls.Clear();
             }
-        }
-
-        private void btnFiesLegado_Click(object sender, EventArgs e)
-        {
-            OpenPanelCadastro();
-            LimparModosDeExecucao();
-            SelecionarMenusPorTipoFies("FIES LEGADO");
-        }
-
-        private void btnClose_Click(object sender, EventArgs e)
-        {
-            if (logout == false)
-            {
-                Application.Exit();
-            }
-        }
-
-        private void btnSiga_Click(object sender, EventArgs e)
-        {
-            OpenPanelCadastro();
-            LimparModosDeExecucao();
-            SelecionarMenusPorTipoFies("SIGA");
-        }
-
-        private void btnPlanilha_Click(object sender, EventArgs e)
-        {
-            AtualizarListViewAlunos();
-            panelExcel.BringToFront();
-        }
-
-        private void btnExecucao_Click(object sender, EventArgs e)
-        {
-            formulario.Visible = true;
-            panelCadastro.BringToFront();
-        }
-
-        private void btnImportar_Click(object sender, EventArgs e)
-        {
-            btnSelectPath.PerformClick();
-        }
-
-        private void btnVoltar_Click(object sender, EventArgs e)
-        {
-            panelCadastro.BringToFront();
-        }
-
-        private void panelMenuBar_MouseDown(object sender, MouseEventArgs e)
-        {
-            if (e.Button == MouseButtons.Left)
-            {
-                ReleaseCapture();
-                SendMessage(Handle, WM_NCLBUTTONDOWN, HT_CAPTION, 0);
-
-                if (this.Location.Y <= 0)
-                {
-                    btnMaximize.PerformClick();
-                }
-                else
-                {
-                    this.WindowState = FormWindowState.Normal;
-                }
-            }
-        }
-
-        private void btnMarcarNaoFeito_Click(object sender, EventArgs e)
-        {
-            DialogResult resultado = MessageBox.Show("Você realmente deseja marcar todas as conclusões como não feito", "Confirmação", MessageBoxButtons.YesNo);
-            if (resultado == DialogResult.No)
-            {
-                return;
-            }
-            Dados.UpdateConclusaoAluno("Não Feito");
-            AtualizarListViewAlunos();
         }
         private void AtualizarListViewAlunos()
         {
@@ -249,6 +166,67 @@ namespace robo.View
 
             }
         }
+        private void OpenPanelCadastro()
+        {
+            panelCadastrarContent.Visible = true;
+            panelHome.Visible = false;
+        }
+
+        //Eventos de click
+        private void btnFiesNovo_Click(object sender, EventArgs e)
+        {
+            OpenPanelCadastro();
+            LimparModosDeExecucao();
+            CriarBotoesModosDeExecucao("FIES NOVO");
+        }
+        private void btnFiesLegado_Click(object sender, EventArgs e)
+        {
+            OpenPanelCadastro();
+            LimparModosDeExecucao();
+            CriarBotoesModosDeExecucao("FIES LEGADO");
+        }
+        private void btnClose_Click(object sender, EventArgs e)
+        {
+            if (logout == false)
+            {
+                Application.Exit();
+            }
+        }
+        private void btnSiga_Click(object sender, EventArgs e)
+        {
+            OpenPanelCadastro();
+            LimparModosDeExecucao();
+            CriarBotoesModosDeExecucao("SIGA");
+        }
+        private void btnPlanilha_Click(object sender, EventArgs e)
+        {
+            AtualizarListViewAlunos();
+            panelExcel.BringToFront();
+        }
+        private void btnExecucao_Click(object sender, EventArgs e)
+        {
+            formulario.Visible = true;
+            panelCadastro.BringToFront();
+        }
+        private void btnImportar_Click(object sender, EventArgs e)
+        {
+            btnSelectPath.PerformClick();
+        }
+        private void btnVoltar_Click(object sender, EventArgs e)
+        {
+            panelCadastro.BringToFront();
+        }
+
+        private void btnMarcarNaoFeito_Click(object sender, EventArgs e)
+        {
+            DialogResult resultado = MessageBox.Show("Você realmente deseja marcar todas as conclusões como não feito", "Confirmação", MessageBoxButtons.YesNo);
+            if (resultado == DialogResult.No)
+            {
+                return;
+            }
+            Dados.UpdateConclusaoAluno("Não Feito");
+            AtualizarListViewAlunos();
+        }
         private void btnExportarExcel_Click(object sender, EventArgs e)
         {
             if (lblExecucao.Text.Contains("INFORMAÇÕES"))
@@ -264,7 +242,6 @@ namespace robo.View
                 Util.ExportarCSV(dgvAlunos.Rows.Count, "Alunos");
             }
         }
-
         private void btnSelectPath_Click(object sender, EventArgs e)
         {
             if (!Dados.VerificaQtdAlunos())
@@ -296,7 +273,6 @@ namespace robo.View
             }
 
         }
-
         private void btnConfiguracoes_Click(object sender, EventArgs e)
         {
             if (FormConfiguracoes.verificacao == true)
@@ -306,18 +282,15 @@ namespace robo.View
             FormConfiguracoes Config = new FormConfiguracoes();
             Config.Show();
         }
-
         private void btnHome_Click(object sender, EventArgs e)
         {
             panelHome.Visible = true;
             panelCadastrarContent.Visible = false;
         }
-
         private void btnMinimize_Click(object sender, EventArgs e)
         {
             this.WindowState = FormWindowState.Minimized;
         }
-
         private void btnLogout_Click(object sender, EventArgs e)
         {
             logout = true;
@@ -329,7 +302,6 @@ namespace robo.View
                 File.Delete("session.dat");
             }
         }
-
         private void btnMaximize_Click(object sender, EventArgs e)
         {
             if (this.WindowState == FormWindowState.Normal)
@@ -349,6 +321,28 @@ namespace robo.View
             }
         }
 
+        //Eventos de Form
+        private void FormInterface2_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            btnClose.PerformClick();
+        }
+        private void panelMenuBar_MouseDown(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Left)
+            {
+                ReleaseCapture();
+                SendMessage(Handle, WM_NCLBUTTONDOWN, HT_CAPTION, 0);
+
+                if (this.Location.Y <= 0)
+                {
+                    btnMaximize.PerformClick();
+                }
+                else
+                {
+                    this.WindowState = FormWindowState.Normal;
+                }
+            }
+        }
         private void btnChangeColorEnter(object sender, EventArgs e)
         {
             Button button = sender as Button;
@@ -356,23 +350,12 @@ namespace robo.View
             button.ForeColor = SystemColors.Control;
             button.BackColor = Color.Purple;
         }
-
         private void btnChangeColorLeave(object sender, EventArgs e)
         {
             Button button = sender as Button;
             button.UseVisualStyleBackColor = true;
             button.ForeColor = Color.FromArgb(0, 45, 45, 45);
             button.BackColor = SystemColors.Control;
-        }
-        private void OpenPanelCadastro()
-        {
-            panelCadastrarContent.Visible = true;
-            panelHome.Visible = false;
-        }
-
-        private void FormInterface2_FormClosing(object sender, FormClosingEventArgs e)
-        {
-            btnClose.PerformClick();
         }
     }
 }
