@@ -2,12 +2,9 @@
 using robo.Control.Legado;
 using Robo;
 using System;
-using System.Collections.Generic;
 using System.IO;
 using System.IO.Compression;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace robo.Control.Relatorios
 {
@@ -54,10 +51,6 @@ namespace robo.Control.Relatorios
                     ClickButtonsById(Driver, "voltar");
                     Util.EditarConclusaoAluno(aluno, situacaoAluno);
                 }
-            }
-            else
-            {
-                Util.EditarConclusaoAluno(aluno, "Nenhum registro encontrado.");
             }
         }
         private void BaixarDocumento(TOAluno aluno, string semestre, string tipoRelatorio)

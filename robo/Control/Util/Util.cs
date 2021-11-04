@@ -3,7 +3,6 @@ using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Firefox;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
 using System.IO;
 using System.Windows.Forms;
@@ -164,7 +163,7 @@ namespace Robo
         /// <summary>
         /// Verifica qual o semestre atual
         /// </summary>
-        /// <returns>1 ou 2</returns>
+        /// <returns>Semestre atual no formato semestre/ano</returns>
         public static string VerificaSemestreAtual()
         {
             DateTime aDate = DateTime.Now;

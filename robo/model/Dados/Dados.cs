@@ -5,34 +5,39 @@ using robo.pgm;
 using robo;
 using System.Windows.Forms;
 using LiteDB;
-using System.Reflection;
 using System.Linq.Expressions;
 using System.IO;
 using System.Text;
 using CsvHelper;
 using System.Globalization;
 
-//using ExcelManager;
-
 namespace Robo
 {
+    /// <summary>
+    /// Classe utilizada para operações envolvendo banco de dados
+    /// </summary>
     public static class Dados
     {
         private const string CAMINHO_BANCO = "Filename = data/bdbot1.db; Password=AlunosBrilhantes;";
 
-        //INSERTS
+
+        //CSV
+        /// <summary>
+        /// Importa um arquivo CSV para o banco de dados
+        /// </summary>
+        /// <param name="filePath">Caminho para o arquivo .csv</param>
+        /// <param name="tipo">FIES Legado ou FIES Novo</param>
         public static void ImportaAlunos(string filePath, string tipo)
         {
             List<TOAluno> alunos = BuscarListaAlunos(filePath, tipo);
             InsertListLite(alunos);
             VerificarCPFDuplicado(alunos);
         }
-
-        //CSV
         /// <summary>
         /// Busca todos alunos na planilha Excel.
         /// </summary>
-        /// <param name="directory">Diret�rio da planilha excel.</param>
+        /// <param name="directory">Diretório da planilha excel.</param>
+        /// <param name="tipo">FIES Legado ou FIES Novo</param>
         /// <returns>Lista de alunos.</returns>
         public static List<TOAluno> BuscarListaAlunos(string directory, string tipo)
         {
@@ -77,6 +82,9 @@ namespace Robo
         }
 
         //Tratamentos de valores
+        /// <summary>
+        /// Remove . e - e adiciona a quantidade de zeros necessária
+        /// </summary>
         public static void TratarCpf(TOAluno aluno)
         {
             aluno.Cpf = aluno.Cpf.Replace(".", "");
@@ -90,11 +98,9 @@ namespace Robo
             aluno.Tipo = aluno.Tipo.ToUpper();
         }
         /// <summary>
-        /// Arredonda para duas casas decimais e remove caracteres desnecess�rios
+        /// Arredonda para duas casas decimais e remove caracteres desnecessários
         /// </summary>
-        /// <param name="aluno"></param>
-        /// <param name="chamadaInicial">se foi chamado no util (true) ou pelo tratamento de erro no formulario (false)</param>
-        public static void TratarVirgulaReceitas(TOAluno aluno, bool chamadaInicial = true, float valorNovo = 0)
+        public static void TratarVirgulaReceitas(TOAluno aluno)
         {
             aluno.ReceitaBruta = FormatarReceitas(aluno.ReceitaBruta);
             aluno.ReceitaLiquida = FormatarReceitas(aluno.ReceitaLiquida);
@@ -103,6 +109,9 @@ namespace Robo
 
             aluno.ValorDeRepasse = FormatarReceitas(aluno.ValorDeRepasse);
         }
+        /// <summary>
+        /// Corrige o campus vindo da planilha de acordo com alguns casos conhecidos
+        /// </summary>
         public static void TratarCampusAluno(TOAluno aluno)
         {
             switch (aluno.Campus)
@@ -143,6 +152,9 @@ namespace Robo
                     break;
             }
         }
+        /// <summary>
+        /// Corrige o tipo de FIES do aluno vindo da planilha para o formato utilizado
+        /// </summary>
         public static void TratarTipoFIES(TOAluno aluno)
         {
             if (aluno.Tipo.ToUpper().Contains("NOVO") == true)
@@ -154,6 +166,11 @@ namespace Robo
                 aluno.Tipo = "FIES Legado".ToUpper();
             }
         }
+        /// <summary>
+        /// Formata a receita para a maneira aceita pelos sites
+        /// </summary>
+        /// <param name="valor">Receita a ser formatada</param>
+        /// <returns>Receita formatada no formato 0,00</returns>
         public static string FormatarReceitas(string valor)
         {
             if (valor == null)
@@ -166,6 +183,9 @@ namespace Robo
 
             return valor;
         }
+        /// <summary>
+        /// Remove os possíveis textos (R$) que possam vir da planilha importada
+        /// </summary>
         public static void TratarTextoReceitas(TOAluno aluno)
         {
             if (aluno.ReceitaBruta == null && aluno.ReceitaLiquida == null &&
@@ -196,6 +216,9 @@ namespace Robo
             }
         }
 
+        /// <summary>
+        /// Verifica se o banco de dados possui algum CPF duplicado
+        /// </summary>
         public static void VerificarCPFDuplicado(List<TOAluno> alunos)
         {
             //Verificar se existem CPFs duplicados e marca as conclus�es
@@ -213,6 +236,10 @@ namespace Robo
         }
 
         //Validar Login
+        /// <summary>
+        /// Valida se o login digitado pelo usuário é válido
+        /// </summary>
+        /// <returns>Usuário que corresponde ao login e senha digitados</returns>
         public static TOUsuario ValidateLogin(string user, string password)
         {
             string hashedPassword = Util.GetMD5(password);
@@ -223,6 +250,10 @@ namespace Robo
             }
             return null;
         }
+        /// <summary>
+        /// Verifica se o usuário e senha do arquivo session.dat é válido
+        /// </summary>
+        /// <returns>Usuário que corresponde ao login e senha encontrados no arquivo</returns>
         public static TOUsuario ValidateSession(string user, string password)
         {
             List<TOUsuario> temp = Dados.SelectWhere<TOUsuario>(x => x.Usuario == user && x.Senha == password);
@@ -233,11 +264,19 @@ namespace Robo
             return null;
         }
 
-        //Verifica��es
+        //Verificações
+        /// <summary>
+        /// Verifica se o semestre já está presente no banco de dados
+        /// </summary>
+        /// <returns>0 se o semestre não for encontrado e 1 se for</returns>
         public static int VerificarSemestreExiste(string semestre)
         {
             return SelectWhere<TOSemestre>(x => x.Semestre == semestre).Count;
         }
+        /// <summary>
+        /// Verifica se existe uma DRI do CPF desejado no banco de dados
+        /// </summary>
+        /// <returns>true se for encontrada e false se não for</returns>
         public static bool DRIExists(string cpf)
         {
             List<TODRI> list = SelectWhere<TODRI>(x => x.Cpf == cpf);
@@ -251,6 +290,10 @@ namespace Robo
             }
             throw new Exception("Existem dados repetidos na tabela das DRIs.");
         }
+        /// <summary>
+        /// Busca a DRI desejada no banco de dados
+        /// </summary>
+        /// <returns>A DRI correspondente ao CPF buscado</returns>
         public static TODRI GetDRI(string cpf)
         {
             List<TODRI> list = SelectWhere<TODRI>(x => x.Cpf == cpf);
@@ -261,6 +304,9 @@ namespace Robo
             throw new Exception("Existem dados repetidos na tabela das DRIs.");
 
         }
+        /// <summary>
+        /// Verifica se o semestre atual está presente no banco de dados e o adiciona caso não esteja
+        /// </summary>
         public static void VerificaSemestre()
         {
             string verificarSemestre = Util.VerificaSemestreAtual();
@@ -272,6 +318,10 @@ namespace Robo
                 InsertDocumento<TOSemestre>(semestre);
             }
         }
+        /// <summary>
+        /// Verifica se a quantidade de alunos no banco de dados é maior que 0, se for pergunta se o banco de dados deve ser limpo
+        /// </summary>
+        /// <returns>True se for < 0 e false se for > 0</returns>
         public static bool VerificaQtdAlunos()
         {
             int countAlunoTO = Count<TOAluno>();
@@ -306,13 +356,13 @@ namespace Robo
 
 
         //LITE
-
         //Selects
+
         /// <summary>
-        /// Select All de qualquer cole��o, basta especificar a classe
+        /// Select All de qualquer coleção, basta especificar a classe
         /// </summary>
-        /// <typeparam name="T"></typeparam>
-        /// <returns></returns>
+        /// <typeparam name="T">Tipo de dado desejado</typeparam>
+        /// <returns>Lista com todos os registros do tipo de dado desejado</returns>
         public static List<T> SelectAll<T>()
         {
             using (var db = new LiteDatabase(CAMINHO_BANCO))
@@ -322,6 +372,11 @@ namespace Robo
             }
         }
 
+        /// <summary>
+        /// Select usuário baseado na IES
+        /// </summary>
+        /// <param name="IES">IES desejado</param>
+        /// <returns>Lista com todos os usuários da IES selecionada</returns>
         public static List<TOUsuario> SelectUsuarioWhereIES(string IES)
         {
             using (var db = new LiteDatabase(CAMINHO_BANCO))
@@ -331,6 +386,10 @@ namespace Robo
             }
         }
 
+        /// <summary>
+        /// Select aluno baseado no tipo do FIES
+        /// </summary>
+        /// <returns>Lista de alunos do tipo FIES selecionado</returns>
         public static List<TOAluno> SelectAlunoWhere(string tipoFies)
         {
             using (var db = new LiteDatabase(CAMINHO_BANCO))
@@ -340,15 +399,12 @@ namespace Robo
             }
         }
 
-        public static List<TOLogin> SelectLoginWhere(string plataforma)
-        {
-            using (var db = new LiteDatabase(CAMINHO_BANCO))
-            {
-                var colecao = db.GetCollection<TOLogin>();
-                return colecao.Query().Where(x => x.Plataforma == plataforma).ToList();
-            }
-        }
-
+        /// <summary>
+        /// Select where genérico
+        /// </summary>
+        /// <typeparam name="T">Classe da coleção de dados desejada</typeparam>
+        /// <param name="expression">Expressão lambda com a consulta desejada, exemplo: x => x.tipoFies == "FIES LEGADO"</param>
+        /// <returns>Lista com os registros encontrados</returns>
         public static List<T> SelectWhere<T>(Expression<Func<T, bool>> expression)
         {
             using (var db = new LiteDatabase(CAMINHO_BANCO))
@@ -358,6 +414,11 @@ namespace Robo
             }
         }
 
+        /// <summary>
+        /// Select lista de menus baseado na plataforma
+        /// </summary>
+        /// <param name="plataforma">NOVO ou LEGADO</param>
+        /// <returns>Lista de menus encontrados</returns>
         public static List<TOMenus> SelectMenuWhereLite(string plataforma)
         {
             var lista = new List<TOMenus>();
@@ -368,7 +429,12 @@ namespace Robo
             }
         }
 
-        //Remover par�metro plataforma ap�s finaliza��o da interface
+        //Remover parâmetro plataforma após finalização da interface
+
+        /// <summary>
+        /// Busca lista de campus existentes no banco de dados baseado na IES desejada
+        /// </summary>
+        /// <returns>Lista de nomes de todos os campus da IES selecionada</returns>
         public static List<string> SelectLoginTOIES(string IES, string plataforma)
         {
             List<TOLogin> listlogin;
@@ -390,6 +456,14 @@ namespace Robo
             return listCampus;
 
         }
+        /// <summary>
+        /// Busca logins de acordo com a IES e o tipo FIES selecionados
+        /// </summary>
+        /// <param name="IES">IES desejada</param>
+        /// <param name="plataforma">Tipo de FIES</param>
+        /// <param name="campus">Campus para buscar logins do FIES Legado</param>
+        /// <param name="admin">True se o usuário deve ser obrigatoriamente um admin</param>
+        /// <returns>Lista com todos os logins encontrados</returns>
         public static List<TOLogin> SelectLoginPorIESePlataforma(string IES, string plataforma, string campus, bool admin)
         {
             List<TOLogin> listlogin;
@@ -429,7 +503,14 @@ namespace Robo
             }
             return listlogin;
         }
+
+
         //DELETE
+
+        /// <summary>
+        /// Delete de todos os documentos da coleção desejada
+        /// </summary>
+        /// <typeparam name="T">Classe da coleção desejada</typeparam>
         public static void DeleteAllLite<T>()
         {
             using (var db = new LiteDatabase(CAMINHO_BANCO))
@@ -438,6 +519,11 @@ namespace Robo
                 colecao.DeleteAll();
             }
         }
+        /// <summary>
+        /// Delete de um único documento do banco de dados
+        /// </summary>
+        /// <typeparam name="T">Classe do objeto desejado</typeparam>
+        /// <param name="objeto">Objeto que se deseja deletar</param>
         public static void DeleteLite<T>(T objeto)
         {
             using (var db = new LiteDatabase(CAMINHO_BANCO))
@@ -448,6 +534,12 @@ namespace Robo
         }
 
         //UPDATES
+
+        /// <summary>
+        /// Update em um documento
+        /// </summary>
+        /// <typeparam name="T">Classe do documento desejado</typeparam>
+        /// <param name="objeto">Documento que irá substituir o documento com mesmo ID no banco de dados</param>
         public static void UpdateDocumento<T>(T objeto)
         {
             using (var db = new LiteDatabase(CAMINHO_BANCO))
@@ -456,7 +548,9 @@ namespace Robo
                 colecao.Update(objeto);
             }
         }
-
+        /// <summary>
+        /// Update conclusão de aluno para Duplicado
+        /// </summary>
         public static void UpdateConclusao(string Cpf)
         {
             using (var db = new LiteDatabase(CAMINHO_BANCO))
@@ -466,6 +560,10 @@ namespace Robo
             }
         }
 
+        /// <summary>
+        /// Atualiza todos as conclusões diferentes de Não Feito ou Duplicado para a conclusão desejada
+        /// </summary>
+        /// <param name="conclusao">Conclusão desejada</param>
         public static void UpdateConclusaoAluno(string conclusao)
         {
             using (var db = new LiteDatabase(CAMINHO_BANCO))
@@ -476,6 +574,12 @@ namespace Robo
         }
 
         //Insert
+
+        /// <summary>
+        /// Insert de uma lista de documentos no banco de dados
+        /// </summary>
+        /// <typeparam name="T">Classe da lista desejada</typeparam>
+        /// <param name="lista">Lista de objetos que será inserida</param>
         public static void InsertListLite<T>(List<T> lista) where T : class, new()
         {
             using (var db = new LiteDatabase(CAMINHO_BANCO))
@@ -484,6 +588,11 @@ namespace Robo
                 colecao.InsertBulk(lista);
             }
         }
+        /// <summary>
+        /// Insert de um único documento no banco de dados
+        /// </summary>
+        /// <typeparam name="T">Classe do documento desejado</typeparam>
+        /// <param name="objeto">Documento que será inserido no banco de dados</param>
         public static void InsertDocumento<T>(T objeto)
         {
             using (var db = new LiteDatabase(CAMINHO_BANCO))
@@ -494,6 +603,12 @@ namespace Robo
         }
 
         //Count
+        
+        /// <summary>
+        /// Count de alguma coleção do banco de dados
+        /// </summary>
+        /// <typeparam name="T">Classe da coleção desejada</typeparam>
+        /// <returns>Quantidade de documentos da coleção encontrados no banco de dados</returns>
         public static int Count<T>()
         {
             using (var db = new LiteDatabase(CAMINHO_BANCO))
