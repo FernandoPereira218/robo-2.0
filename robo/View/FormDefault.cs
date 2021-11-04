@@ -97,7 +97,7 @@ namespace robo.View
 
             lblExecucao.Text = menuSelecionado.Item;
             btnHelp.Location = new Point(lblExecucao.Size.Width + 10, 6);
-
+            wbHelp.Visible = false;
         }
         public void setText(int cont)
         {

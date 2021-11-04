@@ -756,6 +756,7 @@ namespace robo.View
             this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "FormInterface2";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FormInterface2_FormClosing);
             this.panelMenuBar.ResumeLayout(false);
             this.panelMenuBar.PerformLayout();
             this.panelExcel.ResumeLayout(false);

@@ -369,5 +369,9 @@ namespace robo.View
             panelHome.Visible = false;
         }
 
+        private void FormInterface2_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            btnClose.PerformClick();
+        }
     }
 }

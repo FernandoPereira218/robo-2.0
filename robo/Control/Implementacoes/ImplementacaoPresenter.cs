@@ -654,8 +654,11 @@ namespace robo.Control.Implementacoes
 
         public void EncerrarDriver()
         {
-            Driver.Close();
-            Driver.Dispose();
+            if (Driver != null)
+            {
+                Driver.Close();
+                Driver.Dispose();
+            }
         }
     }
 }
