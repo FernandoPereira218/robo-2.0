@@ -37,9 +37,9 @@ namespace robo
             this.cbManterLogado = new System.Windows.Forms.CheckBox();
             this.label2 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.label1 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.label1 = new System.Windows.Forms.Label();
             this.btnMinimize = new System.Windows.Forms.Button();
             this.btnClose = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
@@ -50,21 +50,21 @@ namespace robo
             // txtUsuario
             // 
             this.txtUsuario.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtUsuario.Location = new System.Drawing.Point(367, 152);
-            this.txtUsuario.Margin = new System.Windows.Forms.Padding(2);
+            this.txtUsuario.Location = new System.Drawing.Point(489, 187);
+            this.txtUsuario.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtUsuario.Name = "txtUsuario";
-            this.txtUsuario.Size = new System.Drawing.Size(248, 23);
+            this.txtUsuario.Size = new System.Drawing.Size(329, 27);
             this.txtUsuario.TabIndex = 0;
             this.txtUsuario.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtValidacaoCampos_KeyDown);
             // 
             // txtSenha
             // 
             this.txtSenha.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtSenha.Location = new System.Drawing.Point(367, 227);
-            this.txtSenha.Margin = new System.Windows.Forms.Padding(2);
+            this.txtSenha.Location = new System.Drawing.Point(489, 279);
+            this.txtSenha.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtSenha.Name = "txtSenha";
             this.txtSenha.PasswordChar = '*';
-            this.txtSenha.Size = new System.Drawing.Size(248, 23);
+            this.txtSenha.Size = new System.Drawing.Size(329, 27);
             this.txtSenha.TabIndex = 1;
             this.txtSenha.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtValidacaoCampos_KeyDown);
             // 
@@ -75,10 +75,9 @@ namespace robo
             this.lbUsuario.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.lbUsuario.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbUsuario.ForeColor = System.Drawing.Color.Black;
-            this.lbUsuario.Location = new System.Drawing.Point(364, 118);
-            this.lbUsuario.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lbUsuario.Location = new System.Drawing.Point(485, 145);
             this.lbUsuario.Name = "lbUsuario";
-            this.lbUsuario.Size = new System.Drawing.Size(54, 17);
+            this.lbUsuario.Size = new System.Drawing.Size(70, 21);
             this.lbUsuario.TabIndex = 2;
             this.lbUsuario.Text = "Usuário";
             // 
@@ -89,10 +88,9 @@ namespace robo
             this.lblSenha.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.lblSenha.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblSenha.ForeColor = System.Drawing.Color.Black;
-            this.lblSenha.Location = new System.Drawing.Point(364, 198);
-            this.lblSenha.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblSenha.Location = new System.Drawing.Point(485, 244);
             this.lblSenha.Name = "lblSenha";
-            this.lblSenha.Size = new System.Drawing.Size(47, 17);
+            this.lblSenha.Size = new System.Drawing.Size(61, 21);
             this.lblSenha.TabIndex = 3;
             this.lblSenha.Text = "Senha";
             // 
@@ -103,10 +101,10 @@ namespace robo
             this.btConfirma.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btConfirma.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btConfirma.ForeColor = System.Drawing.Color.White;
-            this.btConfirma.Location = new System.Drawing.Point(367, 366);
-            this.btConfirma.Margin = new System.Windows.Forms.Padding(2);
+            this.btConfirma.Location = new System.Drawing.Point(489, 450);
+            this.btConfirma.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btConfirma.Name = "btConfirma";
-            this.btConfirma.Size = new System.Drawing.Size(241, 43);
+            this.btConfirma.Size = new System.Drawing.Size(321, 53);
             this.btConfirma.TabIndex = 6;
             this.btConfirma.Text = "Confirma";
             this.btConfirma.UseVisualStyleBackColor = false;
@@ -119,10 +117,10 @@ namespace robo
             this.cbManterLogado.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.cbManterLogado.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cbManterLogado.ForeColor = System.Drawing.Color.Black;
-            this.cbManterLogado.Location = new System.Drawing.Point(367, 276);
-            this.cbManterLogado.Margin = new System.Windows.Forms.Padding(2);
+            this.cbManterLogado.Location = new System.Drawing.Point(489, 340);
+            this.cbManterLogado.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.cbManterLogado.Name = "cbManterLogado";
-            this.cbManterLogado.Size = new System.Drawing.Size(12, 11);
+            this.cbManterLogado.Size = new System.Drawing.Size(14, 13);
             this.cbManterLogado.TabIndex = 4;
             this.cbManterLogado.UseVisualStyleBackColor = false;
             this.cbManterLogado.CheckedChanged += new System.EventHandler(this.cbManterLogado_CheckedChanged);
@@ -134,10 +132,9 @@ namespace robo
             this.label2.BackColor = System.Drawing.Color.Transparent;
             this.label2.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.Color.Black;
-            this.label2.Location = new System.Drawing.Point(395, 274);
-            this.label2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label2.Location = new System.Drawing.Point(527, 337);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(91, 16);
+            this.label2.Size = new System.Drawing.Size(116, 19);
             this.label2.TabIndex = 9;
             this.label2.Text = "Lembre de mim";
             // 
@@ -152,40 +149,44 @@ namespace robo
             this.panel1.Controls.Add(this.cbManterLogado);
             this.panel1.Controls.Add(this.btConfirma);
             this.panel1.Controls.Add(this.label2);
-            this.panel1.Location = new System.Drawing.Point(28, 33);
+            this.panel1.Location = new System.Drawing.Point(37, 41);
+            this.panel1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(727, 505);
+            this.panel1.Size = new System.Drawing.Size(969, 622);
             this.panel1.TabIndex = 10;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Century Gothic", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.ForeColor = System.Drawing.Color.Purple;
-            this.label1.Location = new System.Drawing.Point(438, 49);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(101, 32);
-            this.label1.TabIndex = 11;
-            this.label1.Text = "LOGIN";
             // 
             // panel2
             // 
             this.panel2.BackColor = System.Drawing.Color.Purple;
             this.panel2.Controls.Add(this.pictureBox1);
             this.panel2.Location = new System.Drawing.Point(0, 0);
+            this.panel2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(291, 514);
+            this.panel2.Size = new System.Drawing.Size(388, 633);
             this.panel2.TabIndex = 10;
             // 
             // pictureBox1
             // 
             this.pictureBox1.Image = global::robo.Properties.Resources.logoAnima;
-            this.pictureBox1.Location = new System.Drawing.Point(45, 152);
+            this.pictureBox1.Location = new System.Drawing.Point(60, 187);
+            this.pictureBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(188, 179);
+            this.pictureBox1.Size = new System.Drawing.Size(251, 220);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Century Gothic", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.ForeColor = System.Drawing.Color.Purple;
+            this.label1.Location = new System.Drawing.Point(584, 60);
+            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(125, 40);
+            this.label1.TabIndex = 11;
+            this.label1.Text = "LOGIN";
             // 
             // btnMinimize
             // 
@@ -195,10 +196,10 @@ namespace robo
             this.btnMinimize.FlatAppearance.BorderSize = 0;
             this.btnMinimize.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnMinimize.ForeColor = System.Drawing.Color.White;
-            this.btnMinimize.Location = new System.Drawing.Point(735, 0);
-            this.btnMinimize.Margin = new System.Windows.Forms.Padding(2);
+            this.btnMinimize.Location = new System.Drawing.Point(980, 0);
+            this.btnMinimize.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnMinimize.Name = "btnMinimize";
-            this.btnMinimize.Size = new System.Drawing.Size(22, 25);
+            this.btnMinimize.Size = new System.Drawing.Size(29, 31);
             this.btnMinimize.TabIndex = 12;
             this.btnMinimize.Text = "_";
             this.btnMinimize.UseVisualStyleBackColor = false;
@@ -212,10 +213,10 @@ namespace robo
             this.btnClose.FlatAppearance.BorderSize = 0;
             this.btnClose.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnClose.ForeColor = System.Drawing.Color.White;
-            this.btnClose.Location = new System.Drawing.Point(756, -1);
-            this.btnClose.Margin = new System.Windows.Forms.Padding(2);
+            this.btnClose.Location = new System.Drawing.Point(1008, -1);
+            this.btnClose.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btnClose.Name = "btnClose";
-            this.btnClose.Size = new System.Drawing.Size(27, 26);
+            this.btnClose.Size = new System.Drawing.Size(36, 32);
             this.btnClose.TabIndex = 11;
             this.btnClose.Text = "X";
             this.btnClose.UseVisualStyleBackColor = false;
@@ -223,20 +224,21 @@ namespace robo
             // 
             // Login
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.BackgroundImage = global::robo.Properties.Resources.anima_educacao_UniFG;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.ClientSize = new System.Drawing.Size(784, 561);
+            this.ClientSize = new System.Drawing.Size(1045, 690);
             this.ControlBox = false;
             this.Controls.Add(this.btnMinimize);
             this.Controls.Add(this.btnClose);
             this.Controls.Add(this.panel1);
-            this.Margin = new System.Windows.Forms.Padding(2);
+            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "Login";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Login";
+            this.Load += new System.EventHandler(this.Login_Load);
             this.Shown += new System.EventHandler(this.Login_Shown);
             this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Login_MouseDown);
             this.panel1.ResumeLayout(false);
