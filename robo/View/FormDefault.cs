@@ -1,18 +1,11 @@
-﻿using MetroFramework.Controls;
-using robo.Control.Implementacoes;
+﻿using robo.Control.Implementacoes;
 using Robo;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Data;
 using System.Drawing;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using static robo.View.FormInterface2;
 
 namespace robo.View
 {
@@ -22,7 +15,6 @@ namespace robo.View
         private string tipoFies;
         private FormInterface2 formPrincipal;
         private string execucao;
-        private bool primeiraExecucao = true;
         public FormDefault(FormInterface2 formAnterior)
         {
             this.formPrincipal = formAnterior;
@@ -265,14 +257,10 @@ namespace robo.View
                             presenter.ExecutarExportarDRILegado(IES, tipoFies, campus, situacao);
                             break;
                         case "EXPORTAR REPASSE":
-                            if (tipoFies.ToUpper() == "FIES LEGADO")
-                            {
-                                presenter.ExportarExtratoMensalDeRepasseLegado(IES, tipoFies, campus, ano, mes);
-                            }
-                            else
-                            {
-                                presenter.ExportarRepasseFiesNovo(IES, mes, ano);
-                            }
+                            presenter.ExportarRepasseFiesNovo(IES, mes, ano);
+                            break;
+                        case "EXPORTAR EXTRATO MENSAL DE REPASSE":
+                            presenter.ExportarExtratoMensalDeRepasseLegado(IES, tipoFies, campus, ano, mes);
                             break;
                         case "ABRIR SITE":
                             presenter.ExecutarAbrirSite(IES, campus, tipoFies);
@@ -365,6 +353,7 @@ namespace robo.View
             }
             if (execucao.Contains("EXPORTAR"))
             {
+                circularProgressBar1.Value = 25;
                 circularProgressBar1.Style = ProgressBarStyle.Marquee;
             }
             else
