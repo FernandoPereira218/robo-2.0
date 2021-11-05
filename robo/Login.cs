@@ -38,7 +38,7 @@ namespace robo
                 if (Program.login != null)
                 {
                     FormInterface2 formSearch = new FormInterface2();
-                    this.Hide();
+                    this.Shown += Login_Shown;
                     formSearch.Show();
                 }
             }
@@ -76,7 +76,7 @@ namespace robo
         }
         private void Login_Shown(object sender, EventArgs e)
         {
-            VerifySession();
+            this.Hide();
         }
 
 
@@ -124,7 +124,7 @@ namespace robo
 
         private void Login_Load(object sender, EventArgs e)
         {
-
+            VerifySession();
         }
     }
 }
