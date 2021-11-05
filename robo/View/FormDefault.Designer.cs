@@ -179,7 +179,7 @@ namespace robo.View
             | System.Windows.Forms.AnchorStyles.Right)));
             this.wbHelp.CausesValidation = false;
             this.wbHelp.Location = new System.Drawing.Point(859, 19);
-            this.wbHelp.Margin = new System.Windows.Forms.Padding(4);
+            this.wbHelp.Margin = new System.Windows.Forms.Padding(0);
             this.wbHelp.Name = "wbHelp";
             this.wbHelp.Size = new System.Drawing.Size(503, 680);
             this.wbHelp.TabIndex = 63;
