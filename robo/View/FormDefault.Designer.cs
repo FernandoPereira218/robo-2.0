@@ -31,8 +31,9 @@ namespace robo.View
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormDefault));
             this.panelCadastro = new System.Windows.Forms.Panel();
+            this.panellStatus = new System.Windows.Forms.Panel();
+            this.lblStatus = new System.Windows.Forms.Label();
             this.circularProgressBar1 = new CircularProgressBar.CircularProgressBar();
-            this.lblStatus = new MetroFramework.Controls.MetroLabel();
             this.wbHelp = new System.Windows.Forms.WebBrowser();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.panelCabecalho = new System.Windows.Forms.Panel();
@@ -81,6 +82,7 @@ namespace robo.View
             this.backgroundWorker = new System.ComponentModel.BackgroundWorker();
             this.tooltip = new MetroFramework.Components.MetroToolTip();
             this.panelCadastro.SuspendLayout();
+            this.panellStatus.SuspendLayout();
             this.flowLayoutPanel1.SuspendLayout();
             this.panelCabecalho.SuspendLayout();
             this.panelCPF.SuspendLayout();
@@ -101,30 +103,53 @@ namespace robo.View
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panelCadastro.BackColor = System.Drawing.Color.White;
+            this.panelCadastro.Controls.Add(this.panellStatus);
             this.panelCadastro.Controls.Add(this.circularProgressBar1);
-            this.panelCadastro.Controls.Add(this.lblStatus);
             this.panelCadastro.Controls.Add(this.wbHelp);
             this.panelCadastro.Controls.Add(this.flowLayoutPanel1);
             this.panelCadastro.Controls.Add(this.labelDay);
             this.panelCadastro.Controls.Add(this.btnIniciar);
             this.panelCadastro.Location = new System.Drawing.Point(0, 0);
-            this.panelCadastro.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panelCadastro.Margin = new System.Windows.Forms.Padding(4);
             this.panelCadastro.Name = "panelCadastro";
             this.panelCadastro.Size = new System.Drawing.Size(1429, 862);
             this.panelCadastro.TabIndex = 39;
+            // 
+            // panellStatus
+            // 
+            this.panellStatus.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.panellStatus.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.panellStatus.Controls.Add(this.lblStatus);
+            this.panellStatus.Location = new System.Drawing.Point(0, 722);
+            this.panellStatus.Name = "panellStatus";
+            this.panellStatus.Size = new System.Drawing.Size(1376, 29);
+            this.panellStatus.TabIndex = 66;
+            // 
+            // lblStatus
+            // 
+            this.lblStatus.AutoSize = true;
+            this.lblStatus.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblStatus.ForeColor = System.Drawing.Color.Purple;
+            this.lblStatus.Location = new System.Drawing.Point(3, 4);
+            this.lblStatus.Name = "lblStatus";
+            this.lblStatus.Size = new System.Drawing.Size(56, 18);
+            this.lblStatus.TabIndex = 67;
+            this.lblStatus.Text = "Status";
             // 
             // circularProgressBar1
             // 
             this.circularProgressBar1.AnimationFunction = WinFormAnimation.KnownAnimationFunctions.Liner;
             this.circularProgressBar1.AnimationSpeed = 500;
             this.circularProgressBar1.BackColor = System.Drawing.Color.Transparent;
+            this.circularProgressBar1.Cursor = System.Windows.Forms.Cursors.WaitCursor;
             this.circularProgressBar1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.circularProgressBar1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
             this.circularProgressBar1.InnerColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.circularProgressBar1.InnerMargin = 2;
             this.circularProgressBar1.InnerWidth = -1;
-            this.circularProgressBar1.Location = new System.Drawing.Point(928, 4);
-            this.circularProgressBar1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.circularProgressBar1.Location = new System.Drawing.Point(550, 250);
+            this.circularProgressBar1.Margin = new System.Windows.Forms.Padding(4);
             this.circularProgressBar1.MarqueeAnimationSpeed = 2000;
             this.circularProgressBar1.Name = "circularProgressBar1";
             this.circularProgressBar1.OuterColor = System.Drawing.Color.Gray;
@@ -147,27 +172,16 @@ namespace robo.View
             this.circularProgressBar1.Value = 68;
             this.circularProgressBar1.Visible = false;
             // 
-            // lblStatus
-            // 
-            this.lblStatus.AutoSize = true;
-            this.lblStatus.Location = new System.Drawing.Point(793, 735);
-            this.lblStatus.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.lblStatus.Name = "lblStatus";
-            this.lblStatus.Size = new System.Drawing.Size(35, 20);
-            this.lblStatus.TabIndex = 64;
-            this.lblStatus.Text = "Erro";
-            this.lblStatus.Visible = false;
-            // 
             // wbHelp
             // 
-            this.wbHelp.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.wbHelp.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.wbHelp.CausesValidation = false;
-            this.wbHelp.Location = new System.Drawing.Point(732, 312);
-            this.wbHelp.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.wbHelp.MinimumSize = new System.Drawing.Size(27, 25);
+            this.wbHelp.Location = new System.Drawing.Point(859, 19);
+            this.wbHelp.Margin = new System.Windows.Forms.Padding(4);
             this.wbHelp.Name = "wbHelp";
-            this.wbHelp.Size = new System.Drawing.Size(626, 419);
+            this.wbHelp.Size = new System.Drawing.Size(503, 680);
             this.wbHelp.TabIndex = 63;
             this.wbHelp.Visible = false;
             // 
@@ -186,9 +200,9 @@ namespace robo.View
             this.flowLayoutPanel1.Controls.Add(this.panelIESRepasse);
             this.flowLayoutPanel1.Controls.Add(this.panelFiesSiga);
             this.flowLayoutPanel1.Location = new System.Drawing.Point(44, 15);
-            this.flowLayoutPanel1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.flowLayoutPanel1.Margin = new System.Windows.Forms.Padding(4);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(680, 623);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(807, 623);
             this.flowLayoutPanel1.TabIndex = 37;
             // 
             // panelCabecalho
@@ -198,9 +212,9 @@ namespace robo.View
             this.panelCabecalho.Controls.Add(this.metroLabel1);
             this.panelCabecalho.Controls.Add(this.metroLabel17);
             this.panelCabecalho.Location = new System.Drawing.Point(4, 4);
-            this.panelCabecalho.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panelCabecalho.Margin = new System.Windows.Forms.Padding(4);
             this.panelCabecalho.Name = "panelCabecalho";
-            this.panelCabecalho.Size = new System.Drawing.Size(651, 123);
+            this.panelCabecalho.Size = new System.Drawing.Size(764, 123);
             this.panelCabecalho.TabIndex = 71;
             this.panelCabecalho.Tag = "";
             this.panelCabecalho.Visible = false;
@@ -210,7 +224,7 @@ namespace robo.View
             this.btnHelp.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnHelp.BackgroundImage")));
             this.btnHelp.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.btnHelp.Location = new System.Drawing.Point(159, 7);
-            this.btnHelp.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnHelp.Margin = new System.Windows.Forms.Padding(4);
             this.btnHelp.Name = "btnHelp";
             this.btnHelp.Size = new System.Drawing.Size(35, 28);
             this.btnHelp.TabIndex = 35;
@@ -264,18 +278,18 @@ namespace robo.View
             this.panelCPF.Controls.Add(this.labelCPF);
             this.panelCPF.Controls.Add(this.labelCPFCaracteres);
             this.panelCPF.Location = new System.Drawing.Point(4, 135);
-            this.panelCPF.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panelCPF.Margin = new System.Windows.Forms.Padding(4);
             this.panelCPF.Name = "panelCPF";
-            this.panelCPF.Size = new System.Drawing.Size(651, 90);
+            this.panelCPF.Size = new System.Drawing.Size(764, 90);
             this.panelCPF.TabIndex = 64;
             this.panelCPF.Visible = false;
             // 
             // txtCPF
             // 
             this.txtCPF.Location = new System.Drawing.Point(17, 32);
-            this.txtCPF.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtCPF.Margin = new System.Windows.Forms.Padding(4);
             this.txtCPF.Name = "txtCPF";
-            this.txtCPF.Size = new System.Drawing.Size(600, 22);
+            this.txtCPF.Size = new System.Drawing.Size(708, 22);
             this.txtCPF.TabIndex = 35;
             this.txtCPF.MouseClick += new System.Windows.Forms.MouseEventHandler(this.txtCPF_MouseClick);
             this.txtCPF.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtCPF_KeyPress);
@@ -300,7 +314,7 @@ namespace robo.View
             | System.Windows.Forms.AnchorStyles.Right)));
             this.labelCPFCaracteres.AutoSize = true;
             this.labelCPFCaracteres.FontSize = MetroFramework.MetroLabelSize.Small;
-            this.labelCPFCaracteres.Location = new System.Drawing.Point(427, 58);
+            this.labelCPFCaracteres.Location = new System.Drawing.Point(595, 58);
             this.labelCPFCaracteres.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelCPFCaracteres.Name = "labelCPFCaracteres";
             this.labelCPFCaracteres.Size = new System.Drawing.Size(128, 17);
@@ -312,9 +326,9 @@ namespace robo.View
             this.panelImportar.Controls.Add(this.btnImportar);
             this.panelImportar.Controls.Add(this.lblAlunosImportados);
             this.panelImportar.Location = new System.Drawing.Point(4, 233);
-            this.panelImportar.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panelImportar.Margin = new System.Windows.Forms.Padding(4);
             this.panelImportar.Name = "panelImportar";
-            this.panelImportar.Size = new System.Drawing.Size(651, 123);
+            this.panelImportar.Size = new System.Drawing.Size(764, 123);
             this.panelImportar.TabIndex = 72;
             this.panelImportar.Tag = "";
             this.panelImportar.Visible = false;
@@ -325,8 +339,8 @@ namespace robo.View
             this.btnImportar.ForeColor = System.Drawing.SystemColors.Control;
             this.btnImportar.Image = global::robo.Properties.Resources.excel_1_;
             this.btnImportar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnImportar.Location = new System.Drawing.Point(3, 55);
-            this.btnImportar.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnImportar.Location = new System.Drawing.Point(237, 60);
+            this.btnImportar.Margin = new System.Windows.Forms.Padding(4);
             this.btnImportar.Name = "btnImportar";
             this.btnImportar.Size = new System.Drawing.Size(281, 43);
             this.btnImportar.TabIndex = 37;
@@ -339,13 +353,13 @@ namespace robo.View
             this.lblAlunosImportados.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblAlunosImportados.AutoSize = true;
             this.lblAlunosImportados.Location = new System.Drawing.Point(12, 31);
             this.lblAlunosImportados.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblAlunosImportados.Name = "lblAlunosImportados";
-            this.lblAlunosImportados.Size = new System.Drawing.Size(223, 20);
+            this.lblAlunosImportados.Size = new System.Drawing.Size(738, 20);
             this.lblAlunosImportados.TabIndex = 34;
             this.lblAlunosImportados.Text = "Digite e Selecione os dados abaixo";
+            this.lblAlunosImportados.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // panelIES
             // 
@@ -353,9 +367,9 @@ namespace robo.View
             this.panelIES.Controls.Add(this.labelIES);
             this.panelIES.Controls.Add(this.labelAvisoIES);
             this.panelIES.Location = new System.Drawing.Point(4, 364);
-            this.panelIES.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panelIES.Margin = new System.Windows.Forms.Padding(4);
             this.panelIES.Name = "panelIES";
-            this.panelIES.Size = new System.Drawing.Size(651, 116);
+            this.panelIES.Size = new System.Drawing.Size(764, 116);
             this.panelIES.TabIndex = 62;
             this.panelIES.Tag = "";
             this.panelIES.Visible = false;
@@ -379,9 +393,9 @@ namespace robo.View
             "UnP",
             "FPB"});
             this.cbIES.Location = new System.Drawing.Point(12, 48);
-            this.cbIES.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cbIES.Margin = new System.Windows.Forms.Padding(4);
             this.cbIES.Name = "cbIES";
-            this.cbIES.Size = new System.Drawing.Size(600, 29);
+            this.cbIES.Size = new System.Drawing.Size(713, 29);
             this.cbIES.TabIndex = 2;
             this.cbIES.Tag = "";
             this.cbIES.SelectedIndexChanged += new System.EventHandler(this.cbIES_SelectedIndexChanged);
@@ -407,7 +421,7 @@ namespace robo.View
             | System.Windows.Forms.AnchorStyles.Right)));
             this.labelAvisoIES.AutoSize = true;
             this.labelAvisoIES.FontSize = MetroFramework.MetroLabelSize.Small;
-            this.labelAvisoIES.Location = new System.Drawing.Point(281, 81);
+            this.labelAvisoIES.Location = new System.Drawing.Point(459, 81);
             this.labelAvisoIES.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelAvisoIES.Name = "labelAvisoIES";
             this.labelAvisoIES.Size = new System.Drawing.Size(263, 17);
@@ -419,9 +433,9 @@ namespace robo.View
             this.panelCampus.Controls.Add(this.labelCampus);
             this.panelCampus.Controls.Add(this.cbCampus);
             this.panelCampus.Location = new System.Drawing.Point(4, 488);
-            this.panelCampus.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panelCampus.Margin = new System.Windows.Forms.Padding(4);
             this.panelCampus.Name = "panelCampus";
-            this.panelCampus.Size = new System.Drawing.Size(651, 94);
+            this.panelCampus.Size = new System.Drawing.Size(764, 94);
             this.panelCampus.TabIndex = 63;
             this.panelCampus.Visible = false;
             // 
@@ -451,9 +465,9 @@ namespace robo.View
             this.cbCampus.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cbCampus.FormattingEnabled = true;
             this.cbCampus.Location = new System.Drawing.Point(12, 31);
-            this.cbCampus.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cbCampus.Margin = new System.Windows.Forms.Padding(4);
             this.cbCampus.Name = "cbCampus";
-            this.cbCampus.Size = new System.Drawing.Size(600, 29);
+            this.cbCampus.Size = new System.Drawing.Size(713, 29);
             this.cbCampus.TabIndex = 4;
             this.cbCampus.Tag = "";
             // 
@@ -462,9 +476,9 @@ namespace robo.View
             this.panelSemestre.Controls.Add(this.cbSemestre);
             this.panelSemestre.Controls.Add(this.metroLabel4);
             this.panelSemestre.Location = new System.Drawing.Point(4, 590);
-            this.panelSemestre.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panelSemestre.Margin = new System.Windows.Forms.Padding(4);
             this.panelSemestre.Name = "panelSemestre";
-            this.panelSemestre.Size = new System.Drawing.Size(651, 65);
+            this.panelSemestre.Size = new System.Drawing.Size(764, 65);
             this.panelSemestre.TabIndex = 65;
             this.panelSemestre.Tag = "";
             this.panelSemestre.Visible = false;
@@ -484,9 +498,9 @@ namespace robo.View
             "FIES Legado",
             "FIES Novo"});
             this.cbSemestre.Location = new System.Drawing.Point(12, 26);
-            this.cbSemestre.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cbSemestre.Margin = new System.Windows.Forms.Padding(4);
             this.cbSemestre.Name = "cbSemestre";
-            this.cbSemestre.Size = new System.Drawing.Size(600, 29);
+            this.cbSemestre.Size = new System.Drawing.Size(713, 29);
             this.cbSemestre.TabIndex = 9;
             // 
             // metroLabel4
@@ -509,9 +523,9 @@ namespace robo.View
             this.panelDataInicioEFim.Controls.Add(this.dtpDataFinal);
             this.panelDataInicioEFim.Controls.Add(this.labelDataInicio);
             this.panelDataInicioEFim.Location = new System.Drawing.Point(4, 663);
-            this.panelDataInicioEFim.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panelDataInicioEFim.Margin = new System.Windows.Forms.Padding(4);
             this.panelDataInicioEFim.Name = "panelDataInicioEFim";
-            this.panelDataInicioEFim.Size = new System.Drawing.Size(651, 80);
+            this.panelDataInicioEFim.Size = new System.Drawing.Size(764, 80);
             this.panelDataInicioEFim.TabIndex = 66;
             this.panelDataInicioEFim.Tag = "";
             this.panelDataInicioEFim.Visible = false;
@@ -521,7 +535,7 @@ namespace robo.View
             this.dtpDataInicial.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dtpDataInicial.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.dtpDataInicial.Location = new System.Drawing.Point(23, 34);
-            this.dtpDataInicial.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dtpDataInicial.Margin = new System.Windows.Forms.Padding(4);
             this.dtpDataInicial.Name = "dtpDataInicial";
             this.dtpDataInicial.Size = new System.Drawing.Size(181, 26);
             this.dtpDataInicial.TabIndex = 45;
@@ -540,7 +554,7 @@ namespace robo.View
             this.dtpDataFinal.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dtpDataFinal.Format = System.Windows.Forms.DateTimePickerFormat.Short;
             this.dtpDataFinal.Location = new System.Drawing.Point(213, 34);
-            this.dtpDataFinal.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dtpDataFinal.Margin = new System.Windows.Forms.Padding(4);
             this.dtpDataFinal.Name = "dtpDataFinal";
             this.dtpDataFinal.Size = new System.Drawing.Size(169, 26);
             this.dtpDataFinal.TabIndex = 46;
@@ -561,9 +575,9 @@ namespace robo.View
             this.panelAnoEMes.Controls.Add(this.cbMes);
             this.panelAnoEMes.Controls.Add(this.cbAno);
             this.panelAnoEMes.Location = new System.Drawing.Point(4, 751);
-            this.panelAnoEMes.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panelAnoEMes.Margin = new System.Windows.Forms.Padding(4);
             this.panelAnoEMes.Name = "panelAnoEMes";
-            this.panelAnoEMes.Size = new System.Drawing.Size(651, 78);
+            this.panelAnoEMes.Size = new System.Drawing.Size(764, 78);
             this.panelAnoEMes.TabIndex = 67;
             this.panelAnoEMes.Visible = false;
             // 
@@ -604,7 +618,7 @@ namespace robo.View
             "Novembro",
             "Dezembro"});
             this.cbMes.Location = new System.Drawing.Point(211, 41);
-            this.cbMes.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cbMes.Margin = new System.Windows.Forms.Padding(4);
             this.cbMes.Name = "cbMes";
             this.cbMes.Size = new System.Drawing.Size(169, 28);
             this.cbMes.TabIndex = 44;
@@ -629,7 +643,7 @@ namespace robo.View
             "2020",
             "2021"});
             this.cbAno.Location = new System.Drawing.Point(20, 41);
-            this.cbAno.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cbAno.Margin = new System.Windows.Forms.Padding(4);
             this.cbAno.Name = "cbAno";
             this.cbAno.Size = new System.Drawing.Size(181, 28);
             this.cbAno.TabIndex = 43;
@@ -639,9 +653,9 @@ namespace robo.View
             this.panelSituacao.Controls.Add(this.labelSituacao);
             this.panelSituacao.Controls.Add(this.cbSituacao);
             this.panelSituacao.Location = new System.Drawing.Point(4, 837);
-            this.panelSituacao.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panelSituacao.Margin = new System.Windows.Forms.Padding(4);
             this.panelSituacao.Name = "panelSituacao";
-            this.panelSituacao.Size = new System.Drawing.Size(651, 87);
+            this.panelSituacao.Size = new System.Drawing.Size(764, 87);
             this.panelSituacao.TabIndex = 68;
             this.panelSituacao.Visible = false;
             // 
@@ -676,9 +690,9 @@ namespace robo.View
             "Vencido",
             "Prorrogado"});
             this.cbSituacao.Location = new System.Drawing.Point(20, 43);
-            this.cbSituacao.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cbSituacao.Margin = new System.Windows.Forms.Padding(4);
             this.cbSituacao.Name = "cbSituacao";
-            this.cbSituacao.Size = new System.Drawing.Size(600, 28);
+            this.cbSituacao.Size = new System.Drawing.Size(705, 28);
             this.cbSituacao.TabIndex = 42;
             // 
             // panelIESRepasse
@@ -686,9 +700,9 @@ namespace robo.View
             this.panelIESRepasse.Controls.Add(this.labelIESRepasse);
             this.panelIESRepasse.Controls.Add(this.cbIESRepasse);
             this.panelIESRepasse.Location = new System.Drawing.Point(4, 932);
-            this.panelIESRepasse.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panelIESRepasse.Margin = new System.Windows.Forms.Padding(4);
             this.panelIESRepasse.Name = "panelIESRepasse";
-            this.panelIESRepasse.Size = new System.Drawing.Size(651, 84);
+            this.panelIESRepasse.Size = new System.Drawing.Size(764, 84);
             this.panelIESRepasse.TabIndex = 69;
             this.panelIESRepasse.Tag = "";
             this.panelIESRepasse.Visible = false;
@@ -712,9 +726,9 @@ namespace robo.View
             "5317 - FACULDADE PORTO ALEGRENSE",
             "2950 - Centro Universitário FADERGS"});
             this.cbIESRepasse.Location = new System.Drawing.Point(20, 38);
-            this.cbIESRepasse.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cbIESRepasse.Margin = new System.Windows.Forms.Padding(4);
             this.cbIESRepasse.Name = "cbIESRepasse";
-            this.cbIESRepasse.Size = new System.Drawing.Size(600, 28);
+            this.cbIESRepasse.Size = new System.Drawing.Size(702, 28);
             this.cbIESRepasse.TabIndex = 57;
             // 
             // panelFiesSiga
@@ -722,9 +736,9 @@ namespace robo.View
             this.panelFiesSiga.Controls.Add(this.labelFiesSiga);
             this.panelFiesSiga.Controls.Add(this.cbFiesSiga);
             this.panelFiesSiga.Location = new System.Drawing.Point(4, 1024);
-            this.panelFiesSiga.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panelFiesSiga.Margin = new System.Windows.Forms.Padding(4);
             this.panelFiesSiga.Name = "panelFiesSiga";
-            this.panelFiesSiga.Size = new System.Drawing.Size(651, 75);
+            this.panelFiesSiga.Size = new System.Drawing.Size(764, 75);
             this.panelFiesSiga.TabIndex = 70;
             this.panelFiesSiga.Tag = "";
             this.panelFiesSiga.Visible = false;
@@ -747,9 +761,9 @@ namespace robo.View
             "FIES",
             "FIES CONTRATADO"});
             this.cbFiesSiga.Location = new System.Drawing.Point(20, 39);
-            this.cbFiesSiga.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cbFiesSiga.Margin = new System.Windows.Forms.Padding(4);
             this.cbFiesSiga.Name = "cbFiesSiga";
-            this.cbFiesSiga.Size = new System.Drawing.Size(600, 28);
+            this.cbFiesSiga.Size = new System.Drawing.Size(702, 28);
             this.cbFiesSiga.TabIndex = 59;
             // 
             // labelDay
@@ -772,8 +786,8 @@ namespace robo.View
             this.btnIniciar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnIniciar.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnIniciar.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(33)))), ((int)(((byte)(33)))));
-            this.btnIniciar.Location = new System.Drawing.Point(117, 704);
-            this.btnIniciar.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnIniciar.Location = new System.Drawing.Point(207, 646);
+            this.btnIniciar.Margin = new System.Windows.Forms.Padding(4);
             this.btnIniciar.Name = "btnIniciar";
             this.btnIniciar.Size = new System.Drawing.Size(288, 36);
             this.btnIniciar.TabIndex = 61;
@@ -800,18 +814,19 @@ namespace robo.View
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1371, 750);
             this.Controls.Add(this.panelCadastro);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "FormDefault";
             this.Text = "FormDefault";
             this.panelCadastro.ResumeLayout(false);
             this.panelCadastro.PerformLayout();
+            this.panellStatus.ResumeLayout(false);
+            this.panellStatus.PerformLayout();
             this.flowLayoutPanel1.ResumeLayout(false);
             this.panelCabecalho.ResumeLayout(false);
             this.panelCabecalho.PerformLayout();
             this.panelCPF.ResumeLayout(false);
             this.panelCPF.PerformLayout();
             this.panelImportar.ResumeLayout(false);
-            this.panelImportar.PerformLayout();
             this.panelIES.ResumeLayout(false);
             this.panelIES.PerformLayout();
             this.panelCampus.ResumeLayout(false);
@@ -883,6 +898,7 @@ namespace robo.View
         private System.Windows.Forms.WebBrowser wbHelp;
         private MetroFramework.Controls.MetroButton btnHelp;
         private MetroFramework.Components.MetroToolTip tooltip;
-        private MetroFramework.Controls.MetroLabel lblStatus;
+        private System.Windows.Forms.Panel panellStatus;
+        private System.Windows.Forms.Label lblStatus;
     }
 }
