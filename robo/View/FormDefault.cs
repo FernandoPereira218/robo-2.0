@@ -28,6 +28,8 @@ namespace robo.View
             cbAno.DataSource = presenter.PreencherListaAno();
             cbAno.SelectedIndex = cbAno.Items.Count - 1;
             cbMes.SelectedIndex = Util.BuscarMesAtual() - 1;
+            panelCadastro.Visible = true;
+            lblStatus.Text = "Pronto";
             PreencherListaIES();
 
             tooltip.SetToolTip(btnHelp, "Clique uma vez para ajuda ou clique novamente para fechar");
@@ -97,10 +99,12 @@ namespace robo.View
             if (cont == 0)
             {
                 lblAlunosImportados.Text = "Nenhum aluno importado!";
+                lblStatus.Text = "Sem alunos para importar.";
             }
             else
             {
-                lblAlunosImportados.Text = cont + " alunos importados no Banco de Dados";
+                lblAlunosImportados.Text = "Clique em ATUALIZAR para Importar os novos Alunos a Processar.";
+                lblStatus.Text = cont + " alunos importados no Banco de Dados";
             }
         }
 
@@ -121,6 +125,7 @@ namespace robo.View
                 if (Util.VerificaCPFValido(presenter.CPFCae) == false)
                 {
                     MessageBox.Show("Por favor digite um CPF válido!");
+                    lblStatus.Text = "O CPF digitado está incorreto, por favor digite novamente";
                     return;
                 }
             }
@@ -337,8 +342,6 @@ namespace robo.View
             if (e.ProgressPercentage == 404)
             {
                 lblStatus.Text = "Ocorreu um erro não esperado no site. Por favor tente novamente em alguns instantes.";
-                lblStatus.Visible = true;
-
                 btnImportar.Enabled = true;
                 btnIniciar.Enabled = true;
                 btnHelp.Enabled = true;
@@ -372,6 +375,7 @@ namespace robo.View
                 formPrincipal.btnPlanilha.Enabled = false;
                 formPrincipal.btnClose.Enabled = false;
                 circularProgressBar1.Text = "Abrindo site...";
+                lblStatus.Text = "Processando " + execucao;
             }
             else
             {
@@ -382,6 +386,7 @@ namespace robo.View
         private void backgroundWorker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
             MessageBox.Show("Processamentos concluídos com sucesso!");
+            lblStatus.Text = "Processamentos concluídos com sucesso!";
             btnImportar.Enabled = true;
             btnIniciar.Enabled = true;
             btnHelp.Enabled = true;
