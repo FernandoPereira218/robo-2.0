@@ -73,9 +73,20 @@ namespace robo.View
         }
         private void ClickBotoesModoDeExecucao(object sender, EventArgs e)
         {
+            ResetarBotaoEPainel();
             Button btn = (Button)sender;
             StartForm((TOMenus)btn.Tag, labelTipoFies.Text.ToUpper());
         }
+
+        private void ResetarBotaoEPainel()
+        {
+            panelExcel.Visible = false;
+            panelCadastro.Visible = true;
+
+            btnVoltar.Visible = false;
+            btnPlanilha.Visible = true;
+        }
+
         private void StartForm(TOMenus menu, string tipoFies)
         {
             int cont = Dados.Count<TOAluno>();
@@ -178,12 +189,16 @@ namespace robo.View
             OpenPanelCadastro();
             LimparModosDeExecucao();
             CriarBotoesModosDeExecucao("FIES NOVO");
+            ResetarBotaoEPainel();
+
+
         }
         private void btnFiesLegado_Click(object sender, EventArgs e)
         {
             OpenPanelCadastro();
             LimparModosDeExecucao();
             CriarBotoesModosDeExecucao("FIES LEGADO");
+            ResetarBotaoEPainel();
         }
         private void btnClose_Click(object sender, EventArgs e)
         {
@@ -197,11 +212,17 @@ namespace robo.View
             OpenPanelCadastro();
             LimparModosDeExecucao();
             CriarBotoesModosDeExecucao("SIGA");
+            ResetarBotaoEPainel();
         }
         private void btnPlanilha_Click(object sender, EventArgs e)
         {
+            VerificarStatusAluno();
             AtualizarListViewAlunos();
-            panelExcel.BringToFront();
+
+            panelCadastro.Visible = false;
+            panelExcel.Visible = true;
+            btnVoltar.Visible = true;
+            btnPlanilha.Visible = false;
         }
         private void btnExecucao_Click(object sender, EventArgs e)
         {
@@ -214,7 +235,12 @@ namespace robo.View
         }
         private void btnVoltar_Click(object sender, EventArgs e)
         {
-            panelCadastro.BringToFront();
+            panelCadastro.Visible = true;
+            panelExcel.Visible = false;
+
+            
+            btnVoltar.Visible = false;
+            btnPlanilha.Visible = true;
         }
 
         private void btnMarcarNaoFeito_Click(object sender, EventArgs e)
@@ -248,11 +274,7 @@ namespace robo.View
             {
                 return;
             }
-
-
             AtualizarListViewAlunos();
-
-            lblStatusQuantidadeAlunos.Visible = false;
             ofdSelectExcel.Filter = "CSV (*.csv)|*.csv";
 
             if (ofdSelectExcel.ShowDialog() == DialogResult.OK)
@@ -264,15 +286,28 @@ namespace robo.View
                     Cursor.Current = Cursors.Default;
                     AtualizarListViewAlunos();
                     SystemSounds.Beep.Play();
-                    lblStatusQuantidadeAlunos.Visible = true;
-                    int qtdAlunosProcessados = Dados.Count<TOAluno>();
-                    lblStatusQuantidadeAlunos.Text = "Importação de " + qtdAlunosProcessados + " alunos finalizada com sucesso!";
-                    panelExcel.BringToFront();
+                    VerificarStatusAluno();
+                    panelExcel.Visible = true;
                     btnPlanilha.Visible = true;
                 }
             }
 
         }
+
+        private void VerificarStatusAluno()
+        {
+            int qtdAlunosProcessados = Dados.Count<TOAluno>();
+            if (qtdAlunosProcessados == 0)
+            {
+                lblStatusQuantidadeAlunos.Text = "Nenhum aluno Exportado no Banco";
+            }
+            else
+            {
+                lblStatusQuantidadeAlunos.Text = qtdAlunosProcessados + " alunos importados no Banco de Dados";
+            }
+            
+        }
+
         private void btnConfiguracoes_Click(object sender, EventArgs e)
         {
             if (FormConfiguracoes.verificacao == true)
