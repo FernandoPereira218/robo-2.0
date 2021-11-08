@@ -29,13 +29,14 @@ namespace robo.View
         {
             versaoRobo = Program.login.Permissao;
             InitializeComponent();
-
+            
             lblUsuario.Text = Program.login.Usuario;
             if (Program.login.Usuario != "Admin")
             {
                 btnSiga.Visible = false;
             }
             VerificarVersaoCAE();
+
             this.MaximizedBounds = Screen.FromHandle(this.Handle).WorkingArea;
             this.WindowState = FormWindowState.Maximized;
             labelDescricaoHome.Text = 
@@ -222,6 +223,8 @@ namespace robo.View
 
             btnVoltar.Visible = true;
             btnPlanilha.Visible = false;
+            btnVoltar.Location = new Point(lblExecucao.Size.Width + 40, lblExecucao.Location.Y);
+           
         }
         private void btnExecucao_Click(object sender, EventArgs e)
         {
