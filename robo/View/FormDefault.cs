@@ -12,8 +12,8 @@ namespace robo.View
     public partial class FormDefault : Form, IContratos.IMainForms
     {
         private static ImplementacaoPresenter presenter;
-        private string tipoFies;
         private FormInterface2 formPrincipal;
+        private string tipoFies;
         private string execucao;
         public FormDefault(FormInterface2 formAnterior)
         {
