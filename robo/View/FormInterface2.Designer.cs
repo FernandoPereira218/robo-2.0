@@ -29,9 +29,9 @@ namespace robo.View
         /// </summary>     
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle31 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle32 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle33 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panelMenuBar = new System.Windows.Forms.Panel();
             this.btnMaximize = new System.Windows.Forms.Button();
             this.lblUsuario = new System.Windows.Forms.Label();
@@ -39,7 +39,6 @@ namespace robo.View
             this.btnMinimize = new System.Windows.Forms.Button();
             this.btnClose = new System.Windows.Forms.Button();
             this.panelExcel = new System.Windows.Forms.Panel();
-            this.panel3 = new System.Windows.Forms.Panel();
             this.btnMarcarNaoFeito = new System.Windows.Forms.Button();
             this.btnSelectPath = new System.Windows.Forms.Button();
             this.btnExportarExcel = new System.Windows.Forms.Button();
@@ -80,7 +79,6 @@ namespace robo.View
             this.label1 = new System.Windows.Forms.Label();
             this.panelMenuBar.SuspendLayout();
             this.panelExcel.SuspendLayout();
-            this.panel3.SuspendLayout();
             this.panellStatus.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvAlunos)).BeginInit();
             this.panelCadastrarContent.SuspendLayout();
@@ -194,39 +192,25 @@ namespace robo.View
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panelExcel.BackColor = System.Drawing.Color.White;
-            this.panelExcel.Controls.Add(this.panel3);
+            this.panelExcel.Controls.Add(this.btnSelectPath);
+            this.panelExcel.Controls.Add(this.btnMarcarNaoFeito);
             this.panelExcel.Controls.Add(this.panellStatus);
+            this.panelExcel.Controls.Add(this.btnExportarExcel);
             this.panelExcel.Controls.Add(this.dgvAlunos);
             this.panelExcel.Location = new System.Drawing.Point(231, 60);
             this.panelExcel.Name = "panelExcel";
             this.panelExcel.Size = new System.Drawing.Size(974, 648);
             this.panelExcel.TabIndex = 0;
             // 
-            // panel3
-            // 
-            this.panel3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.panel3.BackColor = System.Drawing.SystemColors.Control;
-            this.panel3.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.panel3.Controls.Add(this.btnMarcarNaoFeito);
-            this.panel3.Controls.Add(this.btnSelectPath);
-            this.panel3.Controls.Add(this.btnExportarExcel);
-            this.panel3.ForeColor = System.Drawing.SystemColors.Control;
-            this.panel3.Location = new System.Drawing.Point(-4, 0);
-            this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(977, 28);
-            this.panel3.TabIndex = 68;
-            // 
             // btnMarcarNaoFeito
             // 
             this.btnMarcarNaoFeito.BackColor = System.Drawing.Color.White;
             this.btnMarcarNaoFeito.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnMarcarNaoFeito.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
-            this.btnMarcarNaoFeito.FlatAppearance.BorderSize = 0;
             this.btnMarcarNaoFeito.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnMarcarNaoFeito.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnMarcarNaoFeito.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(33)))), ((int)(((byte)(33)))));
-            this.btnMarcarNaoFeito.Location = new System.Drawing.Point(123, 0);
+            this.btnMarcarNaoFeito.Location = new System.Drawing.Point(180, 50);
             this.btnMarcarNaoFeito.Name = "btnMarcarNaoFeito";
             this.btnMarcarNaoFeito.Size = new System.Drawing.Size(126, 24);
             this.btnMarcarNaoFeito.TabIndex = 10;
@@ -239,11 +223,10 @@ namespace robo.View
             this.btnSelectPath.BackColor = System.Drawing.Color.White;
             this.btnSelectPath.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnSelectPath.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
-            this.btnSelectPath.FlatAppearance.BorderSize = 0;
             this.btnSelectPath.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSelectPath.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSelectPath.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(33)))), ((int)(((byte)(33)))));
-            this.btnSelectPath.Location = new System.Drawing.Point(-3, 0);
+            this.btnSelectPath.Location = new System.Drawing.Point(45, 50);
             this.btnSelectPath.Name = "btnSelectPath";
             this.btnSelectPath.Size = new System.Drawing.Size(129, 24);
             this.btnSelectPath.TabIndex = 2;
@@ -256,11 +239,10 @@ namespace robo.View
             this.btnExportarExcel.BackColor = System.Drawing.Color.White;
             this.btnExportarExcel.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnExportarExcel.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
-            this.btnExportarExcel.FlatAppearance.BorderSize = 0;
             this.btnExportarExcel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnExportarExcel.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnExportarExcel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(33)))), ((int)(((byte)(33)))));
-            this.btnExportarExcel.Location = new System.Drawing.Point(247, 0);
+            this.btnExportarExcel.Location = new System.Drawing.Point(312, 50);
             this.btnExportarExcel.Name = "btnExportarExcel";
             this.btnExportarExcel.Size = new System.Drawing.Size(126, 24);
             this.btnExportarExcel.TabIndex = 5;
@@ -297,8 +279,8 @@ namespace robo.View
             this.dgvAlunos.AccessibleRole = System.Windows.Forms.AccessibleRole.None;
             this.dgvAlunos.AllowUserToAddRows = false;
             this.dgvAlunos.AllowUserToDeleteRows = false;
-            dataGridViewCellStyle31.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dgvAlunos.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle31;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dgvAlunos.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle4;
             this.dgvAlunos.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
@@ -307,26 +289,26 @@ namespace robo.View
             this.dgvAlunos.BackgroundColor = System.Drawing.Color.White;
             this.dgvAlunos.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dgvAlunos.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle32.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle32.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle32.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle32.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle32.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle32.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle32.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvAlunos.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle32;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvAlunos.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
             this.dgvAlunos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvAlunos.Location = new System.Drawing.Point(44, 50);
+            this.dgvAlunos.Location = new System.Drawing.Point(44, 103);
             this.dgvAlunos.Name = "dgvAlunos";
             this.dgvAlunos.ReadOnly = true;
             this.dgvAlunos.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
             this.dgvAlunos.RowHeadersVisible = false;
             this.dgvAlunos.RowHeadersWidth = 51;
-            dataGridViewCellStyle33.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dgvAlunos.RowsDefaultCellStyle = dataGridViewCellStyle33;
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dgvAlunos.RowsDefaultCellStyle = dataGridViewCellStyle6;
             this.dgvAlunos.RowTemplate.DefaultCellStyle.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dgvAlunos.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvAlunos.Size = new System.Drawing.Size(884, 527);
+            this.dgvAlunos.Size = new System.Drawing.Size(884, 474);
             this.dgvAlunos.TabIndex = 0;
             // 
             // ofdSelectExcel
@@ -342,8 +324,8 @@ namespace robo.View
             this.panelCadastrarContent.BackColor = System.Drawing.Color.White;
             this.panelCadastrarContent.Controls.Add(this.panelMenuExecucao);
             this.panelCadastrarContent.Controls.Add(this.panelExecucao);
-            this.panelCadastrarContent.Controls.Add(this.panelCadastro);
             this.panelCadastrarContent.Controls.Add(this.panelExcel);
+            this.panelCadastrarContent.Controls.Add(this.panelCadastro);
             this.panelCadastrarContent.Controls.Add(this.panelErroNenhumAluno);
             this.panelCadastrarContent.Location = new System.Drawing.Point(76, 40);
             this.panelCadastrarContent.Name = "panelCadastrarContent";
@@ -795,7 +777,6 @@ namespace robo.View
             this.panelMenuBar.ResumeLayout(false);
             this.panelMenuBar.PerformLayout();
             this.panelExcel.ResumeLayout(false);
-            this.panel3.ResumeLayout(false);
             this.panellStatus.ResumeLayout(false);
             this.panellStatus.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvAlunos)).EndInit();
@@ -873,7 +854,6 @@ namespace robo.View
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Panel panellStatus;
         private System.Windows.Forms.Label lblStatusQuantidadeAlunos;
-        private System.Windows.Forms.Panel panel3;
         public System.Windows.Forms.Button btnVoltar;
     }
 }
