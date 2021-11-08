@@ -80,8 +80,7 @@ namespace robo.View
 
         private void ResetarBotaoEPainel()
         {
-            panelExcel.Visible = false;
-            panelCadastro.Visible = true;
+            panelCadastro.BringToFront();
 
             btnVoltar.Visible = false;
             btnPlanilha.Visible = true;
@@ -219,8 +218,8 @@ namespace robo.View
             VerificarStatusAluno();
             AtualizarListViewAlunos();
 
-            panelCadastro.Visible = false;
-            panelExcel.Visible = true;
+            panelExcel.BringToFront();
+
             btnVoltar.Visible = true;
             btnPlanilha.Visible = false;
         }
@@ -232,11 +231,11 @@ namespace robo.View
         private void btnImportar_Click(object sender, EventArgs e)
         {
             btnSelectPath.PerformClick();
+            panelCadastro.BringToFront();
         }
         private void btnVoltar_Click(object sender, EventArgs e)
         {
-            panelCadastro.Visible = true;
-            panelExcel.Visible = false;
+            panelCadastro.BringToFront();
 
             
             btnVoltar.Visible = false;
