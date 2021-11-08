@@ -126,6 +126,8 @@ namespace Robo
         [Optional]
         public string Finalidade { get; set; }
         [Optional]
+        public string TipoAditamento { get; set; }
+        [Optional]
         public string Situacao { get; set; }
         [Optional]
         public string ProUni { get; set; }
@@ -198,6 +200,7 @@ namespace Robo
             this.SemestreAno = null;
             this.Finalidade = null;
             this.Situacao = null;
+            this.TipoAditamento = null;
             this.ProUni = null;
             this.DataInclusao = null;
             this.DataConclusao = null;
@@ -240,6 +243,8 @@ namespace Robo
                 Map(x => x.SemestreAno).Name("Semestre/Ano");
                 Map(x => x.Finalidade).Name("Finalidade");
                 Map(x => x.Situacao).Name("Situação");
+                Map(x => x.TipoAditamento).Name("Tipo");
+                Map(x => x.ProUni).Name("ProUni");
                 Map(x => x.DataInclusao).Name("Data Inclusão");
                 Map(x => x.DataConclusao).Name("Data Conclusão");
             }

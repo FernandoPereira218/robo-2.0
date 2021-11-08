@@ -63,6 +63,7 @@ namespace robo.Control.Implementacoes
             {
                 logins = Dados.SelectLoginPorIESePlataforma(faculdade, tipoFies, campus, false);
             }
+            progresso = 0;
         }
 
         //Processamentos
@@ -334,6 +335,7 @@ namespace robo.Control.Implementacoes
             utilFiesNovo.FazerLogin(Driver, listaLogins[0]);
             utilFiesNovo.WaitForLoading(Driver);
             utilFiesNovo.ClicarMenuConsultaContrato(Driver);
+            utilFiesNovo.WaitForLoading(Driver);
 
             foreach (TOAluno aluno in listaAlunos)
             {
