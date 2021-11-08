@@ -36,7 +36,7 @@ namespace robo.Control.Relatorios.FIES_Novo
                     aluno.SemestreAno = dados[j].Text;
                     aluno.Finalidade = dados[j + 1].Text;
                     aluno.Situacao = dados[j + 2].Text;
-                    aluno.Tipo = dados[j + 3].Text;
+                    aluno.TipoAditamento = dados[j + 3].Text;
                     aluno.ProUni = dados[j + 4].Text;
                     aluno.DataInclusao = dados[j + 5].Text;
                     aluno.DataConclusao = dados[j + 6].Text;
@@ -59,7 +59,7 @@ namespace robo.Control.Relatorios.FIES_Novo
                 aluno.SemestreAno = "N/A";
                 aluno.Finalidade = "N/A";
                 aluno.Situacao = "Semestre não encontrado";
-                aluno.Tipo = "N/A";
+                aluno.TipoAditamento = "N/A";
                 aluno.ProUni = "N/A";
                 aluno.DataInclusao = "N/A";
                 aluno.DataConclusao = "N/A";
