@@ -1,4 +1,4 @@
-﻿using robo.Control.Implementacoes;
+using robo.Control.Implementacoes;
 using Robo;
 using System;
 using System.Collections.Generic;
@@ -15,6 +15,7 @@ namespace robo.View
         private FormInterface2 formPrincipal;
         private string tipoFies;
         private string execucao;
+        private string excessaoCausada = string.Empty;
         public FormDefault(FormInterface2 formAnterior)
         {
             this.formPrincipal = formAnterior;
@@ -119,6 +120,7 @@ namespace robo.View
         }
         private void RodarPrograma()
         {
+            excessaoCausada = string.Empty;
             if (Program.login.Permissao == "CAE")
             {
                 presenter.CPFCae = txtCPF.Text;
@@ -301,6 +303,7 @@ namespace robo.View
                 }
                 catch (Exception ex)
                 {
+                    excessaoCausada = ex.Message;
                     backgroundWorker.ReportProgress(404);
                 }
                 finally
@@ -385,8 +388,16 @@ namespace robo.View
 
         private void backgroundWorker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
-            MessageBox.Show("Processamentos concluídos com sucesso!");
-            lblStatus.Text = "Processamentos concluídos com sucesso!";
+            if (excessaoCausada == string.Empty)
+            {
+                MessageBox.Show("Processamentos concluídos com sucesso!", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information) ;
+                lblStatus.Text = "Processamentos concluídos com sucesso!";
+            }
+            else
+            {
+                MessageBox.Show(excessaoCausada, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                lblStatus.Text = excessaoCausada;
+            }
             btnImportar.Enabled = true;
             btnIniciar.Enabled = true;
             btnHelp.Enabled = true;

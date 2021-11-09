@@ -644,7 +644,7 @@ namespace robo.Control.Implementacoes
             ValidarReparcelamento validar = new ValidarReparcelamento();
 
 
-            BuscarLoginsEAlunos(faculdade, tipoFIES, "", ref listaAlunos, ref listaLogins, admin: true, exportar: false);
+            BuscarLoginsEAlunos(faculdade, tipoFIES, "", ref listaAlunos, ref listaLogins, admin: true, exportar: true);
 
             UtilFiesNovo utilFiesNovo = new UtilFiesNovo();
             Driver = Util.StartBrowser("http://sifesweb.caixa.gov.br");
