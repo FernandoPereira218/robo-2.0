@@ -165,7 +165,7 @@ namespace robo.View
                             }
                             break;
                         case "IMPORTAR DRI PARA BANCO DE DADOS":
-                            presenter.ExecutarDRI(IES, tipoFies, campus, situacao, baixarDRI: false);
+                            presenter.ExecutarDRI(IES, tipoFies, campus, "Contratado", baixarDRI: false);
                             break;
                         case "BAIXAR DRI":
                             presenter.ExecutarDRI(IES, tipoFies, campus, situacao, baixarDRI: true);

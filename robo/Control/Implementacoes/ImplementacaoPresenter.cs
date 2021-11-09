@@ -421,15 +421,13 @@ namespace robo.Control.Implementacoes
         {
             BuscarLoginsEAlunos(faculdade, FIES_NOVO, "", ref listaAlunos, ref listaLogins, admin: true, exportar: true);
             UtilFiesNovo utilFiesNovo = new UtilFiesNovo();
-            Driver = Util.StartBrowser("http://sifesweb.caixa.gov.br", firefox: false);
+            Driver = Util.StartBrowser("http://sifesweb.caixa.gov.br", firefox: false, downloadFldr:true);
             utilFiesNovo.FazerLogin(Driver, listaLogins[0]);
             utilFiesNovo.WaitForLoading(Driver);
             utilFiesNovo.ClicarMenuCoparticipacao(Driver);
             utilFiesNovo.WaitForLoading(Driver);
             ExportarCoparticipacao exportarCoparticipacao = new ExportarCoparticipacao();
             exportarCoparticipacao.ExportarRelatórioCoparticipacao(Driver, faculdade, dataInicial, dataFinal);
-
-
         }
 
 
@@ -654,9 +652,6 @@ namespace robo.Control.Implementacoes
             utilFiesNovo.ClicarMenuValidarReparcelamento(Driver);
 
             validar.ExecutarValidarReparcelamento(Driver);
-
-
-
         }
 
         public void EncerrarDriver()
