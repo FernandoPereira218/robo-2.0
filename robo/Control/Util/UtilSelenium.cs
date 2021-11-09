@@ -11,6 +11,7 @@ using OpenQA.Selenium.Chrome;
 using System.Windows.Forms;
 using robo.Control.Update;
 using OpenQA.Selenium.Support.UI;
+using SeleniumExtras.WaitHelpers;
 
 namespace robo
 {
