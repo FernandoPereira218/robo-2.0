@@ -29,9 +29,10 @@ namespace robo.View
         /// </summary>     
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormInterface2));
             this.panelMenuBar = new System.Windows.Forms.Panel();
             this.btnMaximize = new System.Windows.Forms.Button();
             this.lblUsuario = new System.Windows.Forms.Label();
@@ -39,18 +40,18 @@ namespace robo.View
             this.btnMinimize = new System.Windows.Forms.Button();
             this.btnClose = new System.Windows.Forms.Button();
             this.panelExcel = new System.Windows.Forms.Panel();
-            this.btnMarcarNaoFeito = new System.Windows.Forms.Button();
             this.btnSelectPath = new System.Windows.Forms.Button();
-            this.btnExportarExcel = new System.Windows.Forms.Button();
+            this.btnMarcarNaoFeito = new System.Windows.Forms.Button();
             this.panellStatus = new System.Windows.Forms.Panel();
             this.lblStatusQuantidadeAlunos = new System.Windows.Forms.Label();
+            this.btnExportarExcel = new System.Windows.Forms.Button();
             this.dgvAlunos = new System.Windows.Forms.DataGridView();
             this.ofdSelectExcel = new System.Windows.Forms.OpenFileDialog();
             this.panelCadastrarContent = new System.Windows.Forms.Panel();
             this.panelMenuExecucao = new System.Windows.Forms.Panel();
             this.btnVoltar = new System.Windows.Forms.Button();
-            this.lblExecucao = new MetroFramework.Controls.MetroLabel();
             this.btnPlanilha = new System.Windows.Forms.Button();
+            this.lblExecucao = new MetroFramework.Controls.MetroLabel();
             this.panelExecucao = new System.Windows.Forms.Panel();
             this.panel1 = new System.Windows.Forms.Panel();
             this.labelTipoFies = new MetroFramework.Controls.MetroLabel();
@@ -60,23 +61,23 @@ namespace robo.View
             this.lblCadastroSelecione = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.panelErroNenhumAluno = new System.Windows.Forms.Panel();
-            this.btnImportar = new System.Windows.Forms.Button();
             this.metroLabel2 = new MetroFramework.Controls.MetroLabel();
             this.metroLabel1 = new MetroFramework.Controls.MetroLabel();
             this.panelSubMenu = new System.Windows.Forms.Panel();
+            this.tooltip = new MetroFramework.Components.MetroToolTip();
+            this.panelHome = new System.Windows.Forms.Panel();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.lblDireitoReservados = new System.Windows.Forms.Label();
+            this.labelDescricaoHome = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
             this.btnLogout = new System.Windows.Forms.Button();
             this.btnHome = new System.Windows.Forms.Button();
             this.btnSiga = new System.Windows.Forms.Button();
             this.btnFiesLegado = new System.Windows.Forms.Button();
             this.btnFiesNovo = new System.Windows.Forms.Button();
             this.btnConfiguracoes = new System.Windows.Forms.Button();
-            this.tooltip = new MetroFramework.Components.MetroToolTip();
-            this.panelHome = new System.Windows.Forms.Panel();
-            this.panel2 = new System.Windows.Forms.Panel();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.lblDireitoReservados = new System.Windows.Forms.Label();
-            this.labelDescricaoHome = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
+            this.btnImportar = new System.Windows.Forms.Button();
             this.panelMenuBar.SuspendLayout();
             this.panelExcel.SuspendLayout();
             this.panellStatus.SuspendLayout();
@@ -202,22 +203,6 @@ namespace robo.View
             this.panelExcel.Size = new System.Drawing.Size(974, 648);
             this.panelExcel.TabIndex = 0;
             // 
-            // btnMarcarNaoFeito
-            // 
-            this.btnMarcarNaoFeito.BackColor = System.Drawing.Color.White;
-            this.btnMarcarNaoFeito.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnMarcarNaoFeito.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
-            this.btnMarcarNaoFeito.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnMarcarNaoFeito.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnMarcarNaoFeito.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(33)))), ((int)(((byte)(33)))));
-            this.btnMarcarNaoFeito.Location = new System.Drawing.Point(180, 50);
-            this.btnMarcarNaoFeito.Name = "btnMarcarNaoFeito";
-            this.btnMarcarNaoFeito.Size = new System.Drawing.Size(126, 24);
-            this.btnMarcarNaoFeito.TabIndex = 10;
-            this.btnMarcarNaoFeito.Text = "Marcar não feito";
-            this.btnMarcarNaoFeito.UseVisualStyleBackColor = false;
-            this.btnMarcarNaoFeito.Click += new System.EventHandler(this.btnMarcarNaoFeito_Click);
-            // 
             // btnSelectPath
             // 
             this.btnSelectPath.BackColor = System.Drawing.Color.White;
@@ -234,21 +219,21 @@ namespace robo.View
             this.btnSelectPath.UseVisualStyleBackColor = false;
             this.btnSelectPath.Click += new System.EventHandler(this.btnSelectPath_Click);
             // 
-            // btnExportarExcel
+            // btnMarcarNaoFeito
             // 
-            this.btnExportarExcel.BackColor = System.Drawing.Color.White;
-            this.btnExportarExcel.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnExportarExcel.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
-            this.btnExportarExcel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnExportarExcel.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnExportarExcel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(33)))), ((int)(((byte)(33)))));
-            this.btnExportarExcel.Location = new System.Drawing.Point(312, 50);
-            this.btnExportarExcel.Name = "btnExportarExcel";
-            this.btnExportarExcel.Size = new System.Drawing.Size(126, 24);
-            this.btnExportarExcel.TabIndex = 5;
-            this.btnExportarExcel.Text = "Exportar Excel";
-            this.btnExportarExcel.UseVisualStyleBackColor = false;
-            this.btnExportarExcel.Click += new System.EventHandler(this.btnExportarExcel_Click);
+            this.btnMarcarNaoFeito.BackColor = System.Drawing.Color.White;
+            this.btnMarcarNaoFeito.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnMarcarNaoFeito.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
+            this.btnMarcarNaoFeito.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnMarcarNaoFeito.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnMarcarNaoFeito.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(33)))), ((int)(((byte)(33)))));
+            this.btnMarcarNaoFeito.Location = new System.Drawing.Point(180, 50);
+            this.btnMarcarNaoFeito.Name = "btnMarcarNaoFeito";
+            this.btnMarcarNaoFeito.Size = new System.Drawing.Size(126, 24);
+            this.btnMarcarNaoFeito.TabIndex = 10;
+            this.btnMarcarNaoFeito.Text = "Marcar não feito";
+            this.btnMarcarNaoFeito.UseVisualStyleBackColor = false;
+            this.btnMarcarNaoFeito.Click += new System.EventHandler(this.btnMarcarNaoFeito_Click);
             // 
             // panellStatus
             // 
@@ -274,13 +259,29 @@ namespace robo.View
             this.lblStatusQuantidadeAlunos.TabIndex = 67;
             this.lblStatusQuantidadeAlunos.Text = "Status";
             // 
+            // btnExportarExcel
+            // 
+            this.btnExportarExcel.BackColor = System.Drawing.Color.White;
+            this.btnExportarExcel.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnExportarExcel.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
+            this.btnExportarExcel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnExportarExcel.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnExportarExcel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(33)))), ((int)(((byte)(33)))));
+            this.btnExportarExcel.Location = new System.Drawing.Point(312, 50);
+            this.btnExportarExcel.Name = "btnExportarExcel";
+            this.btnExportarExcel.Size = new System.Drawing.Size(126, 24);
+            this.btnExportarExcel.TabIndex = 5;
+            this.btnExportarExcel.Text = "Exportar Excel";
+            this.btnExportarExcel.UseVisualStyleBackColor = false;
+            this.btnExportarExcel.Click += new System.EventHandler(this.btnExportarExcel_Click);
+            // 
             // dgvAlunos
             // 
             this.dgvAlunos.AccessibleRole = System.Windows.Forms.AccessibleRole.None;
             this.dgvAlunos.AllowUserToAddRows = false;
             this.dgvAlunos.AllowUserToDeleteRows = false;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dgvAlunos.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dgvAlunos.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             this.dgvAlunos.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
@@ -289,14 +290,14 @@ namespace robo.View
             this.dgvAlunos.BackgroundColor = System.Drawing.Color.White;
             this.dgvAlunos.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dgvAlunos.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvAlunos.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvAlunos.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.dgvAlunos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvAlunos.Location = new System.Drawing.Point(44, 103);
             this.dgvAlunos.Name = "dgvAlunos";
@@ -304,8 +305,8 @@ namespace robo.View
             this.dgvAlunos.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
             this.dgvAlunos.RowHeadersVisible = false;
             this.dgvAlunos.RowHeadersWidth = 51;
-            dataGridViewCellStyle6.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dgvAlunos.RowsDefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dgvAlunos.RowsDefaultCellStyle = dataGridViewCellStyle3;
             this.dgvAlunos.RowTemplate.DefaultCellStyle.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dgvAlunos.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvAlunos.Size = new System.Drawing.Size(884, 474);
@@ -365,23 +366,6 @@ namespace robo.View
             this.btnVoltar.Visible = false;
             this.btnVoltar.Click += new System.EventHandler(this.btnVoltar_Click);
             // 
-            // lblExecucao
-            // 
-            this.lblExecucao.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblExecucao.AutoSize = true;
-            this.lblExecucao.FontSize = MetroFramework.MetroLabelSize.Tall;
-            this.lblExecucao.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(45)))));
-            this.lblExecucao.Location = new System.Drawing.Point(15, 21);
-            this.lblExecucao.Name = "lblExecucao";
-            this.lblExecucao.Size = new System.Drawing.Size(106, 25);
-            this.lblExecucao.TabIndex = 64;
-            this.lblExecucao.Text = "Robo Anima";
-            this.lblExecucao.UseCustomBackColor = true;
-            this.lblExecucao.UseCustomForeColor = true;
-            this.lblExecucao.UseStyleColors = true;
-            // 
             // btnPlanilha
             // 
             this.btnPlanilha.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -399,6 +383,23 @@ namespace robo.View
             this.btnPlanilha.UseVisualStyleBackColor = false;
             this.btnPlanilha.Visible = false;
             this.btnPlanilha.Click += new System.EventHandler(this.btnPlanilha_Click);
+            // 
+            // lblExecucao
+            // 
+            this.lblExecucao.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblExecucao.AutoSize = true;
+            this.lblExecucao.FontSize = MetroFramework.MetroLabelSize.Tall;
+            this.lblExecucao.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(45)))));
+            this.lblExecucao.Location = new System.Drawing.Point(15, 21);
+            this.lblExecucao.Name = "lblExecucao";
+            this.lblExecucao.Size = new System.Drawing.Size(106, 25);
+            this.lblExecucao.TabIndex = 64;
+            this.lblExecucao.Text = "Robo Anima";
+            this.lblExecucao.UseCustomBackColor = true;
+            this.lblExecucao.UseCustomForeColor = true;
+            this.lblExecucao.UseStyleColors = true;
             // 
             // panelExecucao
             // 
@@ -504,21 +505,6 @@ namespace robo.View
             this.panelErroNenhumAluno.Size = new System.Drawing.Size(970, 667);
             this.panelErroNenhumAluno.TabIndex = 62;
             // 
-            // btnImportar
-            // 
-            this.btnImportar.BackColor = System.Drawing.Color.Green;
-            this.btnImportar.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnImportar.ForeColor = System.Drawing.SystemColors.Control;
-            this.btnImportar.Image = global::robo.Properties.Resources.excel_1_;
-            this.btnImportar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnImportar.Location = new System.Drawing.Point(533, 319);
-            this.btnImportar.Name = "btnImportar";
-            this.btnImportar.Size = new System.Drawing.Size(173, 48);
-            this.btnImportar.TabIndex = 38;
-            this.btnImportar.Text = "Importar";
-            this.btnImportar.UseVisualStyleBackColor = false;
-            this.btnImportar.Click += new System.EventHandler(this.btnImportar_Click);
-            // 
             // metroLabel2
             // 
             this.metroLabel2.AutoSize = true;
@@ -558,6 +544,71 @@ namespace robo.View
             this.panelSubMenu.Size = new System.Drawing.Size(83, 733);
             this.panelSubMenu.TabIndex = 38;
             // 
+            // tooltip
+            // 
+            this.tooltip.Style = MetroFramework.MetroColorStyle.Blue;
+            this.tooltip.StyleManager = null;
+            this.tooltip.Theme = MetroFramework.MetroThemeStyle.Light;
+            // 
+            // panelHome
+            // 
+            this.panelHome.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.panelHome.Controls.Add(this.panel2);
+            this.panelHome.Controls.Add(this.lblDireitoReservados);
+            this.panelHome.Controls.Add(this.labelDescricaoHome);
+            this.panelHome.Controls.Add(this.label1);
+            this.panelHome.Location = new System.Drawing.Point(76, 40);
+            this.panelHome.Name = "panelHome";
+            this.panelHome.Size = new System.Drawing.Size(1204, 686);
+            this.panelHome.TabIndex = 0;
+            // 
+            // panel2
+            // 
+            this.panel2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel2.BackColor = System.Drawing.Color.Purple;
+            this.panel2.Controls.Add(this.pictureBox1);
+            this.panel2.Location = new System.Drawing.Point(826, 0);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(378, 680);
+            this.panel2.TabIndex = 11;
+            // 
+            // lblDireitoReservados
+            // 
+            this.lblDireitoReservados.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblDireitoReservados.AutoSize = true;
+            this.lblDireitoReservados.BackColor = System.Drawing.SystemColors.Control;
+            this.lblDireitoReservados.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblDireitoReservados.Location = new System.Drawing.Point(129, 611);
+            this.lblDireitoReservados.Name = "lblDireitoReservados";
+            this.lblDireitoReservados.Size = new System.Drawing.Size(320, 17);
+            this.lblDireitoReservados.TabIndex = 3;
+            this.lblDireitoReservados.Text = "Todos os direitos reservados a Anima Educação.";
+            // 
+            // labelDescricaoHome
+            // 
+            this.labelDescricaoHome.AutoSize = true;
+            this.labelDescricaoHome.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelDescricaoHome.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
+            this.labelDescricaoHome.Location = new System.Drawing.Point(47, 175);
+            this.labelDescricaoHome.Name = "labelDescricaoHome";
+            this.labelDescricaoHome.Size = new System.Drawing.Size(0, 17);
+            this.labelDescricaoHome.TabIndex = 2;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Century Gothic", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
+            this.label1.Location = new System.Drawing.Point(44, 68);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(519, 39);
+            this.label1.TabIndex = 1;
+            this.label1.Text = "Seja bem vinda ao Robo Anima";
+            // 
             // btnLogout
             // 
             this.btnLogout.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
@@ -565,6 +616,7 @@ namespace robo.View
             this.btnLogout.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnLogout.Font = new System.Drawing.Font("Century Gothic", 8.25F);
             this.btnLogout.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(45)))));
+            this.btnLogout.Image = global::robo.Properties.Resources.logout;
             this.btnLogout.Location = new System.Drawing.Point(1, 544);
             this.btnLogout.Name = "btnLogout";
             this.btnLogout.Size = new System.Drawing.Size(74, 67);
@@ -683,37 +735,6 @@ namespace robo.View
             this.btnConfiguracoes.MouseEnter += new System.EventHandler(this.btnChangeColorEnter);
             this.btnConfiguracoes.MouseLeave += new System.EventHandler(this.btnChangeColorLeave);
             // 
-            // tooltip
-            // 
-            this.tooltip.Style = MetroFramework.MetroColorStyle.Blue;
-            this.tooltip.StyleManager = null;
-            this.tooltip.Theme = MetroFramework.MetroThemeStyle.Light;
-            // 
-            // panelHome
-            // 
-            this.panelHome.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.panelHome.Controls.Add(this.panel2);
-            this.panelHome.Controls.Add(this.lblDireitoReservados);
-            this.panelHome.Controls.Add(this.labelDescricaoHome);
-            this.panelHome.Controls.Add(this.label1);
-            this.panelHome.Location = new System.Drawing.Point(76, 40);
-            this.panelHome.Name = "panelHome";
-            this.panelHome.Size = new System.Drawing.Size(1204, 686);
-            this.panelHome.TabIndex = 0;
-            // 
-            // panel2
-            // 
-            this.panel2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.panel2.BackColor = System.Drawing.Color.Purple;
-            this.panel2.Controls.Add(this.pictureBox1);
-            this.panel2.Location = new System.Drawing.Point(826, 0);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(378, 680);
-            this.panel2.TabIndex = 11;
-            // 
             // pictureBox1
             // 
             this.pictureBox1.Anchor = System.Windows.Forms.AnchorStyles.None;
@@ -725,39 +746,20 @@ namespace robo.View
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
             // 
-            // lblDireitoReservados
+            // btnImportar
             // 
-            this.lblDireitoReservados.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblDireitoReservados.AutoSize = true;
-            this.lblDireitoReservados.BackColor = System.Drawing.SystemColors.Control;
-            this.lblDireitoReservados.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblDireitoReservados.Location = new System.Drawing.Point(129, 611);
-            this.lblDireitoReservados.Name = "lblDireitoReservados";
-            this.lblDireitoReservados.Size = new System.Drawing.Size(320, 17);
-            this.lblDireitoReservados.TabIndex = 3;
-            this.lblDireitoReservados.Text = "Todos os direitos reservados a Anima Educação.";
-            // 
-            // labelDescricaoHome
-            // 
-            this.labelDescricaoHome.AutoSize = true;
-            this.labelDescricaoHome.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelDescricaoHome.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
-            this.labelDescricaoHome.Location = new System.Drawing.Point(47, 175);
-            this.labelDescricaoHome.Name = "labelDescricaoHome";
-            this.labelDescricaoHome.Size = new System.Drawing.Size(0, 17);
-            this.labelDescricaoHome.TabIndex = 2;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Century Gothic", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
-            this.label1.Location = new System.Drawing.Point(44, 68);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(519, 39);
-            this.label1.TabIndex = 1;
-            this.label1.Text = "Seja bem vinda ao Robo Anima";
+            this.btnImportar.BackColor = System.Drawing.Color.Green;
+            this.btnImportar.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnImportar.ForeColor = System.Drawing.SystemColors.Control;
+            this.btnImportar.Image = global::robo.Properties.Resources.excel_1_;
+            this.btnImportar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnImportar.Location = new System.Drawing.Point(533, 319);
+            this.btnImportar.Name = "btnImportar";
+            this.btnImportar.Size = new System.Drawing.Size(173, 48);
+            this.btnImportar.TabIndex = 38;
+            this.btnImportar.Text = "Importar";
+            this.btnImportar.UseVisualStyleBackColor = false;
+            this.btnImportar.Click += new System.EventHandler(this.btnImportar_Click);
             // 
             // FormInterface2
             // 
@@ -766,9 +768,10 @@ namespace robo.View
             this.ClientSize = new System.Drawing.Size(1280, 720);
             this.Controls.Add(this.panelMenuBar);
             this.Controls.Add(this.panelSubMenu);
-            this.Controls.Add(this.panelCadastrarContent);
             this.Controls.Add(this.panelHome);
+            this.Controls.Add(this.panelCadastrarContent);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(2);
             this.Name = "FormInterface2";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
