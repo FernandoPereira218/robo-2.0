@@ -81,7 +81,7 @@ namespace Robo
                 var chromeDriverService = ChromeDriverService.CreateDefaultService(Environment.CurrentDirectory + @"\driver");
                 chromeDriverService.HideCommandPromptWindow = true;
                 ChromeOptions chromeOptions = new ChromeOptions();
-                if (RoboForm.versaoRobo != "operacoesFinanceiras")
+                if (FormInterface2.versaoRobo != "operacoesFinanceiras")
                 {
                     chromeOptions.AddArgument("--headless");
                 }
@@ -100,12 +100,10 @@ namespace Robo
                     chromeDriverService = ChromeDriverService.CreateDefaultService(Environment.CurrentDirectory + @"\driver");
                     chromeDriverService.HideCommandPromptWindow = true;
                     driver = new ChromeDriver(chromeDriverService, chromeOptions);
-                    //throw new Exception("Versão do chromedriver foi atualizada, favor tentar novamente!");
                 }
             }
             driver.Manage().Window.Maximize();
             driver.Url = url;
-            //driver.Manage().Timeouts().ImplicitWait = new TimeSpan(0, 3, 0);
             if (headless == true)
             {
                 driver.Manage().Timeouts().PageLoad = TimeSpan.FromSeconds(5);

@@ -64,12 +64,12 @@ namespace Robo
                     }
                     else
                     {
-                        TratarCpf(alunos[i]);
-                        if (alunos[i].Tipo == string.Empty)
+                        //TratarCpf(alunos[i]);
+                        if (string.IsNullOrEmpty(alunos[i].Tipo))
                         {
                             alunos[i].Tipo = tipo;
+                            alunos[i].Tipo = alunos[i].Tipo.ToUpper().Trim();
                         }
-                        alunos[i].Tipo = alunos[i].Tipo.Trim();
                     }
                 }
 
@@ -95,7 +95,6 @@ namespace Robo
                 aluno.Cpf = "0" + aluno.Cpf;
             }
 
-            aluno.Tipo = aluno.Tipo.ToUpper();
         }
         /// <summary>
         /// Arredonda para duas casas decimais e remove caracteres desnecessários
@@ -603,7 +602,7 @@ namespace Robo
         }
 
         //Count
-        
+
         /// <summary>
         /// Count de alguma coleção do banco de dados
         /// </summary>

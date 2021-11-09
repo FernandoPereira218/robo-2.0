@@ -1,12 +1,9 @@
 ﻿using OpenQA.Selenium;
 using robo.Control.Legado;
+using robo.View;
 using Robo;
-using System;
-using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace robo.Control.Relatorios
 {
@@ -54,6 +51,9 @@ namespace robo.Control.Relatorios
         }
         private void BaixarDRI(TOAluno aluno)
         {
+            IWebElement elementoNome = Driver.FindElement(By.XPath("/html/body/div[3]/div[4]/div[2]/div[2]/div[3]/div[1]/span[2]"));
+            string nome = elementoNome.Text.Replace("Nome Completo: ", "");
+            aluno.Nome = nome;
             ScrollToElementByID(Driver, "imprimir_dri");
             ClickButtonsById(Driver, "imprimir_dri");
             if (!Driver.PageSource.Contains("Voltar para a página principal"))
@@ -74,7 +74,7 @@ namespace robo.Control.Relatorios
 
                 Util.CreateDirectoryIfNotExists(diretorioDRI);
 
-                File.Move(myFile.FullName, diretorioDRI + "\\" + aluno.Cpf + "DRI.zip");
+                File.Move(myFile.FullName, diretorioDRI + "\\" + aluno.Nome + "_" + aluno.Cpf + "_DRI.zip");
                 Util.EditarConclusaoAluno(aluno, "DRI Baixada");
                 ClickButtonsById(Driver, "voltar");
             }
@@ -92,7 +92,7 @@ namespace robo.Control.Relatorios
                 dri.Cpf = aluno.Cpf;
                 dri.CampusAditado = loginCampus;
 
-                if (RoboForm.versaoRobo == "operacoesFinanceiras")
+                if (FormInterface2.versaoRobo == "operacoesFinanceiras")
                 {
                     Dados.InsertDocumento<TODRI>(dri);
                 }
