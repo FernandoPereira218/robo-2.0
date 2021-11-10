@@ -36,7 +36,7 @@ namespace robo.Control.Relatorios.FIES_Novo
             string erro = BuscarMensagemDeErro(Driver);
             if (erro == string.Empty)
             {
-                SalvarArquivos(Driver, "COPARTICIPAÇÃO");
+                SalvarArquivos(Driver, "COPARTICIPAÇÃO", nomeArquivo: IES + "_" + Convert.ToDateTime(dataInicial).ToString("dd-MM-yyyy") + " - " + Convert.ToDateTime(dataFinal).ToString("dd-MM-yyyy") + ".xls");
             }
             else
             {
