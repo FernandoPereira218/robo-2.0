@@ -64,23 +64,11 @@ namespace Robo
                     }
                     else
                     {
-                        //TratarCpf(alunos[i]);
-                        if (string.IsNullOrEmpty(alunos[i].Tipo))
-                        {
-                            alunos[i].Tipo = tipo;
-                            alunos[i].Tipo = alunos[i].Tipo.ToUpper().Trim();
-                        }
-                        else
-                        {
-                            if (alunos[i].Tipo.ToUpper().Contains("NOVO"))
-                            {
-                                alunos[i].Tipo = "FIES NOVO";
-                            }
-                            else
-                            {
-                                alunos[i].Tipo = "FIES LEGADO";
-                            }
-                        }
+                        TratarCpf(alunos[i]);
+                        TratarTextoReceitas(alunos[i]);
+                        TratarVirgulaReceitas(alunos[i]);
+                        TratarCampusAluno(alunos[i]);
+                        TratarTipoFiesAluno(tipo, alunos[i]);
                     }
                 }
 
@@ -91,6 +79,8 @@ namespace Robo
                 throw new Exception(e.Message);
             }
         }
+
+        
 
         //Tratamentos de valores
         /// <summary>
@@ -165,15 +155,23 @@ namespace Robo
         /// <summary>
         /// Corrige o tipo de FIES do aluno vindo da planilha para o formato utilizado
         /// </summary>
-        public static void TratarTipoFIES(TOAluno aluno)
+        private static void TratarTipoFiesAluno(string tipo, TOAluno aluno)
         {
-            if (aluno.Tipo.ToUpper().Contains("NOVO") == true)
+            if (string.IsNullOrEmpty(aluno.Tipo))
             {
-                aluno.Tipo = "FIES Novo".ToUpper();
+                aluno.Tipo = tipo;
+                aluno.Tipo = aluno.Tipo.ToUpper().Trim();
             }
             else
             {
-                aluno.Tipo = "FIES Legado".ToUpper();
+                if (aluno.Tipo.ToUpper().Contains("NOVO"))
+                {
+                    aluno.Tipo = "FIES NOVO";
+                }
+                else
+                {
+                    aluno.Tipo = "FIES LEGADO";
+                }
             }
         }
         /// <summary>
@@ -183,7 +181,7 @@ namespace Robo
         /// <returns>Receita formatada no formato 0,00</returns>
         public static string FormatarReceitas(string valor)
         {
-            if (valor == null)
+            if (string.IsNullOrEmpty(valor))
             {
                 return null;
             }
@@ -198,8 +196,8 @@ namespace Robo
         /// </summary>
         public static void TratarTextoReceitas(TOAluno aluno)
         {
-            if (aluno.ReceitaBruta == null && aluno.ReceitaLiquida == null &&
-                aluno.ReceitaFies == null && aluno.ValorDeRepasse == null)
+            if (string.IsNullOrEmpty(aluno.ReceitaBruta) && string.IsNullOrEmpty(aluno.ReceitaLiquida) &&
+                string.IsNullOrEmpty(aluno.ReceitaFies) && string.IsNullOrEmpty(aluno.ValorDeRepasse))
             {
                 return;
             }

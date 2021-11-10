@@ -1,4 +1,5 @@
-﻿using Robo;
+﻿using org.apache.commons.lang.time;
+using Robo;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -29,7 +30,7 @@ namespace robo.View
         {
             versaoRobo = Program.login.Permissao;
             InitializeComponent();
-            
+
             lblUsuario.Text = Program.login.Usuario;
             if (Program.login.Usuario != "Admin")
             {
@@ -39,7 +40,7 @@ namespace robo.View
 
             this.MaximizedBounds = Screen.FromHandle(this.Handle).WorkingArea;
             this.WindowState = FormWindowState.Maximized;
-            labelDescricaoHome.Text = 
+            labelDescricaoHome.Text =
                 "Um projeto com a têndencia de melhorar e trazer ganhos de tempo \n" +
                 "e eficiência para times dos setores, com um sistema de automatização\n" +
                 "que atenda de forma clara e precisa nos processos executados.";
@@ -84,7 +85,7 @@ namespace robo.View
             panelCadastro.BringToFront();
 
             btnVoltar.Visible = false;
-            btnPlanilha.Visible = true;
+            btnPlanilha.Visible = false;
         }
 
         private void StartForm(TOMenus menu, string tipoFies)
@@ -144,7 +145,6 @@ namespace robo.View
         }
         private void AtualizarListViewAlunos()
         {
-            var source = new BindingSource();
             if (Dados.Count<TOAluno>() == 0)
             {
                 dgvAlunos.Visible = false;
@@ -152,19 +152,14 @@ namespace robo.View
             else
             {
                 dgvAlunos.Visible = true;
-                source.DataSource = Dados.SelectAll<TOAluno>();
+                List<TOAluno> alunos = Dados.SelectAll<TOAluno>();
                 dgvAlunos.AutoGenerateColumns = true;
-                dgvAlunos.DataSource = source;
-                dgvAlunos.Columns["Cpf"].DisplayIndex = 0;
-                dgvAlunos.Columns["Nome"].DisplayIndex = 1;
-                dgvAlunos.Columns["Tipo"].DisplayIndex = 2;
-                dgvAlunos.Columns["Conclusao"].DisplayIndex = 3;
-                dgvAlunos.Columns["HorarioConclusao"].DisplayIndex = 4;
-
+                dgvAlunos.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+                dgvAlunos.DataSource = alunos;
 
                 foreach (DataGridViewColumn item in dgvAlunos.Columns)
                 {
-                    if (Convert.ToString(dgvAlunos.Rows[0].Cells[item.Name].Value) == "")
+                    if (Convert.ToString(dgvAlunos.Rows[0].Cells[item.Name].Value) == "" || item.Name == "Id")
                     {
                         dgvAlunos.Columns[item.Name].Visible = false;
                     }
@@ -173,7 +168,6 @@ namespace robo.View
                         dgvAlunos.Columns[item.Name].Visible = true;
                     }
                 }
-
 
             }
         }
@@ -224,7 +218,7 @@ namespace robo.View
             btnVoltar.Visible = true;
             btnPlanilha.Visible = false;
             btnVoltar.Location = new Point(lblExecucao.Size.Width + 40, lblExecucao.Location.Y);
-           
+
         }
         private void btnExecucao_Click(object sender, EventArgs e)
         {
@@ -234,13 +228,12 @@ namespace robo.View
         private void btnImportar_Click(object sender, EventArgs e)
         {
             btnSelectPath.PerformClick();
-            panelCadastro.BringToFront();
+            panelExcel.BringToFront();
         }
         private void btnVoltar_Click(object sender, EventArgs e)
         {
             panelCadastro.BringToFront();
 
-            
             btnVoltar.Visible = false;
             btnPlanilha.Visible = true;
         }
@@ -308,7 +301,7 @@ namespace robo.View
             {
                 lblStatusQuantidadeAlunos.Text = qtdAlunosProcessados + " alunos importados no Banco de Dados";
             }
-            
+
         }
 
         private void btnConfiguracoes_Click(object sender, EventArgs e)
@@ -343,7 +336,7 @@ namespace robo.View
         private void btnMaximize_Click(object sender, EventArgs e)
         {
             if (this.WindowState == FormWindowState.Normal)
-            {   
+            {
                 if (this.MaximizedBounds != Screen.FromHandle(this.Handle).WorkingArea)
                 {
                     this.WindowState = FormWindowState.Maximized;
