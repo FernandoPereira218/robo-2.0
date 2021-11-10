@@ -453,7 +453,7 @@ namespace robo
         /// <param name="tipoRelatorio"></param>
         /// <param name="campus"></param>
         /// <param name="semestre"></param>
-        protected static void SalvarArquivos(IWebDriver Driver, string tipoRelatorio, string campus = "", string semestre = "")
+        protected static void SalvarArquivos(IWebDriver Driver, string tipoRelatorio, string campus = "", string semestre = "", string nomeArquivo = "")
         {
             if (Driver.PageSource.Contains("Nenhuma informação disponível") == true)
             {
@@ -477,12 +477,14 @@ namespace robo
             foreach (var item in Directory.GetFiles("RelatorioExportacao\\"))
             {
                 string downloadFolder = Util.GetDownloadsFolderPath();
-                string nomeArquivo = DateTime.Now.ToString("dd-MM-yy") + campus + "_" + semestre + ".xls";
+                if (nomeArquivo == "")
+                {
+                    nomeArquivo = DateTime.Now.ToString("dd-MM-yy") + campus + "_" + semestre + ".xls";
+                }
                 Util.CreateDirectoryIfNotExists(downloadFolder + "\\Relatório Exportacao");
                 string caminho = downloadFolder + "\\Relatório Exportacao\\" + tipoRelatorio + " " + nomeArquivo;
                 File.Copy(item, caminho, true);
                 File.Delete(item);
-                //Process.Start(caminho);
             }
         }
     }
