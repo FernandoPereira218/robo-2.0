@@ -29,13 +29,19 @@ namespace robo.Control.Relatorios.FIES_Novo
                     System.Threading.Thread.Sleep(100);
                 }
 
-                //Driver.FindElement(By.XPath("/html/body/div[2]/div/form/div[1]/div/div[1]/div/div/ul/li[2]")).Click();
-                //Driver.FindElement(By.XPath("/html/body/div[2]/div/form/div[1]/div/div[1]/div/div/ul/li[3]")).Click();
             }
             ClickAndWriteById(Driver, "dataInicio", dataInicial);
             ClickAndWriteById(Driver, "dataFim", dataFinal);
             ClickButtonsById(Driver, "btnExportarRelatorio");
-            SalvarArquivos(Driver, "COPARTICIPAÇÃO");
+            string erro = BuscarMensagemDeErro(Driver);
+            if (erro == string.Empty)
+            {
+                SalvarArquivos(Driver, "COPARTICIPAÇÃO");
+            }
+            else
+            {
+                throw new Exception(erro);
+            }
         }
     }
 }
