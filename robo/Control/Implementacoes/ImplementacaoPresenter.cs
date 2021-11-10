@@ -455,7 +455,6 @@ namespace robo.Control.Implementacoes
 
             foreach (TOAluno aluno in alunosFies)
             {
-                TratarDadosAluno(aluno);
                 if (aluno.AproveitamentoAtual == null)
                 {
                     continue;
@@ -526,11 +525,11 @@ namespace robo.Control.Implementacoes
 
         public void TratarDadosAluno(TOAluno aluno)
         {
-            Dados.TratarCpf(aluno);
-            Dados.TratarTextoReceitas(aluno);
-            Dados.TratarVirgulaReceitas(aluno);
-            Dados.TratarCampusAluno(aluno);
-            Dados.TratarTipoFIES(aluno);
+            //Dados.TratarCpf(aluno);
+            //Dados.TratarTextoReceitas(aluno);
+            //Dados.TratarVirgulaReceitas(aluno);
+            //Dados.TratarCampusAluno(aluno);
+            //Dados.TratarTipoFIES(aluno);
         }
 
         public void ExecutarAbrirSite(string faculdade, string campus, string plataforma)

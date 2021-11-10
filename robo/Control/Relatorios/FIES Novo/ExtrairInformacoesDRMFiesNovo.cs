@@ -16,6 +16,11 @@ namespace robo.Control.Relatorios.FIES_Novo
         {
             string janelaInicial = Driver.CurrentWindowHandle;
             BuscarEAbrirDRM(Driver, aluno, semestre);
+            if (aluno.Conclusao != "Não Feito")
+            {
+                Util.EditarConclusaoAluno(aluno, aluno.Conclusao);
+                return;
+            }
 
             string informacao = SalvarTextoPagina();
             Driver.Close();
