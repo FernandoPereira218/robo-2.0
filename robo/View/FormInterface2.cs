@@ -291,7 +291,7 @@ namespace robo.View
                     VerificarStatusAluno();
                     panelExcel.Visible = true;
                     btnPlanilha.Visible = true;
-                    panelExcel.BringToFront();
+                    btnPlanilha.PerformClick();
                 }
             }
 

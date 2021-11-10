@@ -70,6 +70,17 @@ namespace Robo
                             alunos[i].Tipo = tipo;
                             alunos[i].Tipo = alunos[i].Tipo.ToUpper().Trim();
                         }
+                        else
+                        {
+                            if (alunos[i].Tipo.ToUpper().Contains("NOVO"))
+                            {
+                                alunos[i].Tipo = "FIES NOVO";
+                            }
+                            else
+                            {
+                                alunos[i].Tipo = "FIES LEGADO";
+                            }
+                        }
                     }
                 }
 
@@ -386,7 +397,7 @@ namespace Robo
         }
 
         /// <summary>
-        /// Select aluno baseado no tipo do FIES
+        /// Select aluno baseado no tipo do FIES e que possuem conclusao = Não Feito
         /// </summary>
         /// <returns>Lista de alunos do tipo FIES selecionado</returns>
         public static List<TOAluno> SelectAlunoWhere(string tipoFies)

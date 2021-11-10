@@ -26,23 +26,21 @@ namespace robo.Control.Relatorios.FIES_Novo
             ClickButtonsById(Driver, "btnConsultar");
             WaitForLoading(driver);
 
-
-            var verificarErro = VerificarElementoExiste(driver, "CLASSNAME", "alert alert-error");
-            string responseVerificarErro = verificarErro.Text.Replace("x\r\n", "");
-            if (verificarErro != null)
+            string erro = BuscarMensagemDeErro(Driver);
+            if (erro != string.Empty)
             {
-                Util.EditarConclusaoAluno(aluno, "Erro na Busca: " + responseVerificarErro);
+                Util.EditarConclusaoAluno(aluno, "Erro na Busca: " + erro);
                 return;
             }
-            string nome = Driver.FindElement(By.XPath("//*[@id=\"gridResult\"]/tbody/tr[1]/td[2]")).Text;
             if (Driver.PageSource.Contains("Nenhuma informação disponível") == false)
             {
+                string nome = Driver.FindElement(By.XPath("//*[@id=\"gridResult\"]/tbody/tr[1]/td[2]")).Text;
                 ListaParaCSV(nome + "_Histórico_Coparticipação", "gridResult_length", "gridResult", true);
                 Util.EditarConclusaoAluno(aluno, "Histórico do Aluno Processado com Sucesso");
             }
             else
             {
-                Util.EditarConclusaoAluno(aluno, "Nenhum Histórico do Aluno não encontrado");
+                Util.EditarConclusaoAluno(aluno, "Nenhuma informação disponível");
             }
         }
         private void ListaParaCSV(string fileName, string idDropdown, string idTabela, bool status)
