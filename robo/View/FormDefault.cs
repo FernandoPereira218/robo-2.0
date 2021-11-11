@@ -1,3 +1,4 @@
+using OpenQA.Selenium;
 using robo.Control.Implementacoes;
 using Robo;
 using System;
@@ -301,6 +302,11 @@ namespace robo.View
                             break;
                     }
                 }
+                catch (ElementClickInterceptedException ex)
+                {
+                    excessaoCausada = "Ocorreu algum problema ao clicar em um elemento da página. Tente executar o programa novamente.";
+                    backgroundWorker.ReportProgress(404);
+                }
                 catch (Exception ex)
                 {
                     excessaoCausada = ex.Message;
@@ -324,7 +330,7 @@ namespace robo.View
 
         private void txtCPF_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (txtCPF.TextLength >= 11 && e.KeyChar != (char)Keys.Back && !char.IsControl(e.KeyChar))
+            if (txtCPF.TextLength >= 11 && e.KeyChar != (char)System.Windows.Forms.Keys.Back && !char.IsControl(e.KeyChar))
             {
                 e.Handled = true;
             }
