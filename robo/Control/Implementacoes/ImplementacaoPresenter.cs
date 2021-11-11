@@ -378,35 +378,32 @@ namespace robo.Control.Implementacoes
 
 
         }
-        public void ExportarInadimplencia(string faculdade, string mes, string ano)
+        public void ExportarInadimplencia(string faculdade, string mes, string ano, bool todosMeses)
         {
             BuscarLoginsEAlunos(faculdade, FIES_NOVO, "", ref listaAlunos, ref listaLogins, admin: true, exportar: true);
             UtilFiesNovo utilFiesNovo = new UtilFiesNovo();
             ExportarInadimplencia exportarInadimplencia = new ExportarInadimplencia();
-            Driver = Util.StartBrowser("http://sifesweb.caixa.gov.br", firefox: false);
+            Driver = Util.StartBrowser("http://sifesweb.caixa.gov.br", firefox: false, downloadFldr: true);
             utilFiesNovo.FazerLogin(Driver, listaLogins[0]);
             utilFiesNovo.WaitForLoading(Driver);
             utilFiesNovo.ClicarMenuInadimplencia(Driver);
             utilFiesNovo.WaitForLoading(Driver);
 
-            //IMPLEMENTAR PASTA DE DOWLOAD
-
-            //string userRoot = System.Environment.GetEnvironmentVariable("USERPROFILE");
-            //string downloadFolder = System.IO.Path.Combine(userRoot, "Downloads");
-            //Util.CreateDirectory(downloadFolder + "\\Relatório Inadimplência");
-
-            exportarInadimplencia.Inadimplencia(Driver, mes, ano);
-            //exportarInadimplencia.Inadimplencia(Driver);
-
-
-
+            if (todosMeses == true)
+            {
+                exportarInadimplencia.Inadimplencia(Driver);
+            }
+            else
+            {
+                exportarInadimplencia.Inadimplencia(Driver, mes, ano);
+            }
         }
         public void ExportarRepasseFiesNovo(string faculdade, string mes, string ano)
         {
             BuscarLoginsEAlunos(faculdade, FIES_NOVO, "", ref listaAlunos, ref listaLogins, admin: true, exportar: true);
             UtilFiesNovo utilFiesNovo = new UtilFiesNovo();
             ExportarRepasse exportarRepasse = new ExportarRepasse();
-            Driver = Util.StartBrowser("http://sifesweb.caixa.gov.br", firefox: false);
+            Driver = Util.StartBrowser("http://sifesweb.caixa.gov.br", firefox: false, downloadFldr: true);
             utilFiesNovo.FazerLogin(Driver, listaLogins[0]);
             utilFiesNovo.WaitForLoading(Driver);
             utilFiesNovo.ClicarMenuRepasse(Driver);

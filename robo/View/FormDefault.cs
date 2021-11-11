@@ -142,6 +142,7 @@ namespace robo.View
             string dataInicio = dtpDataInicial.Text;
             string dataFim = dtpDataFinal.Text;
             string fiesSiga = cbFiesSiga.Text;
+            bool todosMeses = checkBoxTodosMeses.Checked;
             backgroundWorker.Dispose();
             GC.Collect();
             backgroundWorker = new BackgroundWorker();
@@ -280,7 +281,7 @@ namespace robo.View
                             presenter.ExecutarStatusAluno(IES, tipoFies, semestre);
                             break;
                         case "EXPORTAR INADIMPLÊNCIA":
-                            presenter.ExportarInadimplencia(IES, mes, ano);
+                            presenter.ExportarInadimplencia(IES, mes, ano, todosMeses);
                             break;
                         case "EXPORTAR COPARTICIPAÇÃO":
                             presenter.ExportarCoparticipacaoFiesNovo(IES, dataInicio, dataFim);

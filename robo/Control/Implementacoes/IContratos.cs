@@ -36,7 +36,7 @@ namespace robo.Control.Implementacoes
             void ExecutarBuscarStatusAditamentoNovo(string faculdade, string tipoFies, string semestre);
             void ExecutarStatusAluno(string faculdade, string tipoFies, string semestre);
             void ExportarRelatorioFiesNovo(string faculdade, string tipoFies, string tipoRelatorio);
-            void ExportarInadimplencia(string faculdade, string mes, string ano);
+            void ExportarInadimplencia(string faculdade, string mes, string ano, bool todosMeses);
             void ExportarRepasseFiesNovo(string faculdade, string mes, string ano);
             void ExportarCoparticipacaoFiesNovo(string faculdade, string dataInicial, string dataFinal);
             void ExecutarLancamentoFiesSiga(string semestre, string tipoFies);
