@@ -207,6 +207,10 @@ namespace robo.Control
             
         }
 
+        /// <summary>
+        /// Procura mensagem de erro do topo da página
+        /// </summary>
+        /// <returns>A mensagem encontrada</returns>
         protected string BuscarMensagemDeErro(IWebDriver Driver)
         {
             if (Driver.PageSource.Contains("alert alert-error"))

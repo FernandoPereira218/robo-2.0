@@ -23,6 +23,8 @@ namespace robo.Control.Relatorios.FIES_Novo
 
             ClickButtonsById(Driver, "btnExportar");
             WaitForLoading(Driver);
+
+            SalvarArquivos(Driver, "Inadimplência", nomeArquivo: mes + "_" + ano + ".xls");
         }
 
         public void Inadimplencia(IWebDriver driver)
@@ -45,13 +47,22 @@ namespace robo.Control.Relatorios.FIES_Novo
                     {
                         break;
                     }
-                    ClickDropDown(Driver, "id", "selectMesMovimento", selectMes.Options[contador].Text);
+                    string mesSelecionado = selectMes.Options[contador].Text;
+                    ClickDropDown(Driver, "id", "selectMesMovimento", mesSelecionado);
 
                     ClickButtonsById(Driver, "btnConsultar");
                     WaitForLoading(Driver);
 
+                    if (Driver.PageSource.Contains("Nenhuma informação disponível") == true)
+                    {
+                        contador--;
+                        continue;
+                    }
+
                     ClickButtonsById(Driver, "btnExportar");
                     WaitForLoading(Driver);
+
+                    SalvarArquivos(Driver, "Inadimplência", nomeArquivo: mesSelecionado + "_" + anoSelecionado + ".xls");
 
                     contador--;
                 }

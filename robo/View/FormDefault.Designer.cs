@@ -81,6 +81,9 @@ namespace robo.View
             this.btnIniciar = new System.Windows.Forms.Button();
             this.backgroundWorker = new System.ComponentModel.BackgroundWorker();
             this.tooltip = new MetroFramework.Components.MetroToolTip();
+            this.panelTodosMesesDisponiveis = new System.Windows.Forms.Panel();
+            this.checkBoxTodosMeses = new MetroFramework.Controls.MetroCheckBox();
+            this.labelTodosMeses = new MetroFramework.Controls.MetroLabel();
             this.panelCadastro.SuspendLayout();
             this.panellStatus.SuspendLayout();
             this.flowLayoutPanel1.SuspendLayout();
@@ -95,6 +98,7 @@ namespace robo.View
             this.panelSituacao.SuspendLayout();
             this.panelIESRepasse.SuspendLayout();
             this.panelFiesSiga.SuspendLayout();
+            this.panelTodosMesesDisponiveis.SuspendLayout();
             this.SuspendLayout();
             // 
             // panelCadastro
@@ -199,6 +203,7 @@ namespace robo.View
             this.flowLayoutPanel1.Controls.Add(this.panelSituacao);
             this.flowLayoutPanel1.Controls.Add(this.panelIESRepasse);
             this.flowLayoutPanel1.Controls.Add(this.panelFiesSiga);
+            this.flowLayoutPanel1.Controls.Add(this.panelTodosMesesDisponiveis);
             this.flowLayoutPanel1.Location = new System.Drawing.Point(33, 12);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
             this.flowLayoutPanel1.Size = new System.Drawing.Size(605, 506);
@@ -775,6 +780,35 @@ namespace robo.View
             this.tooltip.StyleManager = null;
             this.tooltip.Theme = MetroFramework.MetroThemeStyle.Light;
             // 
+            // panelTodosMesesDisponiveis
+            // 
+            this.panelTodosMesesDisponiveis.Controls.Add(this.checkBoxTodosMeses);
+            this.panelTodosMesesDisponiveis.Controls.Add(this.labelTodosMeses);
+            this.panelTodosMesesDisponiveis.Location = new System.Drawing.Point(3, 893);
+            this.panelTodosMesesDisponiveis.Name = "panelTodosMesesDisponiveis";
+            this.panelTodosMesesDisponiveis.Size = new System.Drawing.Size(573, 61);
+            this.panelTodosMesesDisponiveis.TabIndex = 71;
+            this.panelTodosMesesDisponiveis.Tag = "";
+            this.panelTodosMesesDisponiveis.Visible = false;
+            // 
+            // checkBoxTodosMeses
+            // 
+            this.checkBoxTodosMeses.Location = new System.Drawing.Point(17, 34);
+            this.checkBoxTodosMeses.Name = "checkBoxTodosMeses";
+            this.checkBoxTodosMeses.Size = new System.Drawing.Size(231, 15);
+            this.checkBoxTodosMeses.TabIndex = 61;
+            this.checkBoxTodosMeses.UseSelectable = true;
+            // 
+            // labelTodosMeses
+            // 
+            this.labelTodosMeses.AutoSize = true;
+            this.labelTodosMeses.Location = new System.Drawing.Point(13, 12);
+            this.labelTodosMeses.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.labelTodosMeses.Name = "labelTodosMeses";
+            this.labelTodosMeses.Size = new System.Drawing.Size(248, 19);
+            this.labelTodosMeses.TabIndex = 60;
+            this.labelTodosMeses.Text = "BAIXAR TODOS OS MESES DISPONÍVEIS";
+            // 
             // FormDefault
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -809,6 +843,8 @@ namespace robo.View
             this.panelIESRepasse.PerformLayout();
             this.panelFiesSiga.ResumeLayout(false);
             this.panelFiesSiga.PerformLayout();
+            this.panelTodosMesesDisponiveis.ResumeLayout(false);
+            this.panelTodosMesesDisponiveis.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -866,5 +902,8 @@ namespace robo.View
         private MetroFramework.Components.MetroToolTip tooltip;
         private System.Windows.Forms.Panel panellStatus;
         private System.Windows.Forms.Label lblStatus;
+        private System.Windows.Forms.Panel panelTodosMesesDisponiveis;
+        private MetroFramework.Controls.MetroCheckBox checkBoxTodosMeses;
+        private MetroFramework.Controls.MetroLabel labelTodosMeses;
     }
 }
