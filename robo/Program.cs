@@ -15,7 +15,6 @@ namespace Robo
         /// </summary>
         public static TOUsuario login;
         public static Login formLogin;
-        public static RoboForm formInterface;
 
         [STAThread]
         static void Main()

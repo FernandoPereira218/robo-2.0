@@ -13,11 +13,11 @@ namespace robo.View
     public partial class FormDefault : Form, IContratos.IMainForms
     {
         private static ImplementacaoPresenter presenter;
-        private FormInterface2 formPrincipal;
+        private FormInterface formPrincipal;
         private string tipoFies;
         private string execucao;
         private string excessaoCausada = string.Empty;
-        public FormDefault(FormInterface2 formAnterior)
+        public FormDefault(FormInterface formAnterior)
         {
             this.formPrincipal = formAnterior;
             presenter = new ImplementacaoPresenter(this);

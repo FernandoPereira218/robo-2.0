@@ -50,7 +50,7 @@ namespace Robo
 
                 FirefoxOptions firefoxOptions = new FirefoxOptions();
                 firefoxOptions.AcceptInsecureCertificates = true;
-                if (FormInterface2.versaoRobo != "operacoesFinanceiras" || headless == true)
+                if (FormInterface.versaoRobo != "operacoesFinanceiras" || headless == true)
                 {
                     firefoxOptions.AddArgument("--headless");
                 }
@@ -81,7 +81,7 @@ namespace Robo
                 var chromeDriverService = ChromeDriverService.CreateDefaultService(Environment.CurrentDirectory + @"\driver");
                 chromeDriverService.HideCommandPromptWindow = true;
                 ChromeOptions chromeOptions = new ChromeOptions();
-                if (FormInterface2.versaoRobo != "operacoesFinanceiras")
+                if (FormInterface.versaoRobo != "operacoesFinanceiras")
                 {
                     chromeOptions.AddArgument("--headless");
                 }
