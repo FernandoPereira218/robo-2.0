@@ -92,7 +92,7 @@ namespace robo.Control.Relatorios
                 dri.Cpf = aluno.Cpf;
                 dri.CampusAditado = loginCampus;
 
-                if (FormInterface2.versaoRobo == "operacoesFinanceiras")
+                if (FormInterface.versaoRobo == "operacoesFinanceiras")
                 {
                     Dados.InsertDocumento<TODRI>(dri);
                 }

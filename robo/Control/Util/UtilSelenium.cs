@@ -12,6 +12,7 @@ using System.Windows.Forms;
 using robo.Control.Update;
 using OpenQA.Selenium.Support.UI;
 using SeleniumExtras.WaitHelpers;
+using robo.View;
 
 namespace robo
 {
@@ -156,7 +157,7 @@ namespace robo
 
                 FirefoxOptions firefoxOptions = new FirefoxOptions();
                 firefoxOptions.AcceptInsecureCertificates = true;
-                if (RoboForm.versaoRobo != "operacoesFinanceiras" || headless == true)
+                if (FormInterface.versaoRobo != "operacoesFinanceiras" || headless == true)
                 {
                     firefoxOptions.AddArgument("--headless");
                 }
@@ -188,7 +189,7 @@ namespace robo
                 var chromeDriverService = ChromeDriverService.CreateDefaultService(Environment.CurrentDirectory + @"\driver");
                 chromeDriverService.HideCommandPromptWindow = true;
                 ChromeOptions chromeOptions = new ChromeOptions();
-                if (RoboForm.versaoRobo != "operacoesFinanceiras")
+                if (FormInterface.versaoRobo != "operacoesFinanceiras")
                 {
                     chromeOptions.AddArgument("--headless");
                 }

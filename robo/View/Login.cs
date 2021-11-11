@@ -37,7 +37,7 @@ namespace robo
                 Program.login = Dados.ValidateSession(temp[0], temp[1]);
                 if (Program.login != null)
                 {
-                    FormInterface2 formSearch = new FormInterface2();
+                    FormInterface formSearch = new FormInterface();
                     this.Shown += Login_Shown;
                     formSearch.Show();
                 }
@@ -64,7 +64,7 @@ namespace robo
                     }
                 }
 
-                FormInterface2 formUsuarios = new FormInterface2();
+                FormInterface formUsuarios = new FormInterface();
                 this.Hide();
                 formUsuarios.Show();
             }
