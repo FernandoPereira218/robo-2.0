@@ -47,11 +47,6 @@ namespace robo.Control.Relatorios.FIES_Novo
             if (aluno.SemestreAno != string.Empty)
             {
                 aluno.SemestreAno = CorrigirSemestreAlunoConsultaNovo(aluno.SemestreAno);
-                //Dados.InsertAluno(aluno);
-
-                //alunos[i].Conclusao = "Status Atualizado";
-                //alunos[i].HorarioConclusao = string.Format("{0:dd/MM/yyyy HH:mm}", DateTime.Now);
-                // Dados.UpdateAluno(alunos[i]);
                 Util.EditarConclusaoAluno(aluno, "Status Atualizado");
             }
             else
@@ -63,12 +58,7 @@ namespace robo.Control.Relatorios.FIES_Novo
                 aluno.ProUni = "N/A";
                 aluno.DataInclusao = "N/A";
                 aluno.DataConclusao = "N/A";
-                // aluno.HorarioConclusao = string.Format("{0:dd/MM/yyyy HH:mm}", DateTime.Now);
-                // Dados.InsertAluno(aluno);
-                // aluno.Conclusao = "Semestre não encontrado";
-                // aluno.HorarioConclusao = string.Format("{0:dd/MM/yyyy HH:mm}", DateTime.Now);
                 Util.EditarConclusaoAluno(aluno, "Semestre não encontrado");
-                // Dados.UpdateAluno(alunos[i]);
             }
 
 

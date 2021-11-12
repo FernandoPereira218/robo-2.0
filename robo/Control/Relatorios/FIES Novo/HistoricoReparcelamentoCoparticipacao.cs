@@ -16,8 +16,6 @@ namespace robo.Control.Relatorios.FIES_Novo
         {
             Driver = driver;
 
-
-
             WaitForLoading(driver);
             ClickButtonsById(driver, "btnLimpar");
             WaitForLoading(driver);
@@ -104,10 +102,7 @@ namespace robo.Control.Relatorios.FIES_Novo
                 {
                     contador++;
                 }
-
-
             }
-
         }
     }
 }

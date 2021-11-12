@@ -9,16 +9,11 @@ namespace robo.Control.Implementacoes
 {
     public interface IContratos
     {
-
-        interface IMainForms
-        {
-        }
         interface IPresenter
         {
             void ExecutarAbrirSite(string faculdade, string campus, string plataforma);
             List<string> PreencherListaSemestre();
             List<string> PreencherListaAno();
-            void SetForm(IContratos.IMainForms forms);
             string BuscarNunSemestre(string semestreAno);
             List<string> PreencherListaExecucao();
             List<string> PreencherListaExecucaoPorPlataforma(string plataforma);

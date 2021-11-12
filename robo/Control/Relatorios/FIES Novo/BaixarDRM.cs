@@ -1,12 +1,8 @@
 ﻿using OpenQA.Selenium;
 using Robo;
 using System;
-using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace robo.Control.Relatorios.FIES_Novo
 {
@@ -78,19 +74,6 @@ namespace robo.Control.Relatorios.FIES_Novo
 
             //Chamada do arquivo em Python para salvar a página como pdf
             SaveHtmlAsPdf(htmlDirectory, DataDirectory);
-
-            //Caso seja da versão CAE, copia para uma pasta local e abre automaticamente o pdf
-            //if (emLote == false)
-            //{
-            //    CreateDirectory("Temp");
-            //    DirectoryInfo di = new DirectoryInfo("Temp");
-            //    foreach (var item in di.GetFiles())
-            //    {
-            //        item.Delete();
-            //    }
-            //    File.Copy(DataDirectory, "Temp\\" + fileName + ".pdf");
-            //    Process.Start("Temp\\" + fileName + ".pdf");
-            //}
         }
 
         private static void SaveHtmlAsPdf(string htmlPath, string pdfFilePath)
@@ -122,6 +105,5 @@ namespace robo.Control.Relatorios.FIES_Novo
         {
             Driver = driver;
         }
-
     }
 }

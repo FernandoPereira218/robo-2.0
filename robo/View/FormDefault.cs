@@ -10,7 +10,7 @@ using System.Windows.Forms;
 
 namespace robo.View
 {
-    public partial class FormDefault : Form, IContratos.IMainForms
+    public partial class FormDefault : Form
     {
         private static ImplementacaoPresenter presenter;
         private FormInterface formPrincipal;

@@ -33,12 +33,6 @@ namespace robo.Control.Implementacoes
         public ImplementacaoPresenter(FormDefault forms)
         {
             this.forms = forms;
-
-            //SetForm(forms);
-        }
-
-        public ImplementacaoPresenter(IContratos.IMainForms forms)
-        {
         }
 
         private void BuscarLoginsEAlunos(string faculdade, string tipoFies, string campus, ref List<TOAluno> alunos, ref List<TOLogin> logins, bool admin, bool exportar)
@@ -128,7 +122,7 @@ namespace robo.Control.Implementacoes
                 fiesLegadoUtil.SelecionarMenuDRI(Driver);
                 foreach (TOAluno aluno in listaAlunos)
                 {
-                    dri.DRIFiesLegado(Driver, aluno, login, baixarDRI, situacaoDRI);
+                    dri.DRIFiesLegado(aluno, login, baixarDRI, situacaoDRI);
                     UpdateProgresso(ref progresso, contador);
                 }
 
@@ -313,17 +307,6 @@ namespace robo.Control.Implementacoes
                 UpdateProgresso(ref progresso, contador);
             }
         }
-
-        private void UpdateProgresso(ref float progresso, int listCount)
-        {
-            if (progresso >= 100)
-            {
-                progresso = 0;
-            }
-            progresso += 100.0f / listCount;
-            forms.backgroundWorker.ReportProgress(Convert.ToInt32(progresso));
-        }
-
         public void ExecutarStatusAluno(string faculdade, string tipoFies, string semestre)
         {
             BuscarLoginsEAlunos(faculdade, FIES_NOVO, "", ref listaAlunos, ref listaLogins, admin: false, exportar: false);
@@ -426,8 +409,137 @@ namespace robo.Control.Implementacoes
             ExportarCoparticipacao exportarCoparticipacao = new ExportarCoparticipacao();
             exportarCoparticipacao.ExportarRelatórioCoparticipacao(Driver, faculdade, dataInicial, dataFinal);
         }
+        public void ExecutarAbrirSite(string faculdade, string campus, string plataforma)
+        {
+
+            BuscarLoginsEAlunos(faculdade, plataforma, campus, ref listaAlunos, ref listaLogins, admin: false, exportar: true);
+
+            if (plataforma.ToUpper() == "FIES LEGADO")
+            {
+                UtilFiesLegado fiesLegadoUtil = new UtilFiesLegado();
+                Driver = Util.StartBrowser("http://sisfies.mec.gov.br/");
+                fiesLegadoUtil.RealizarLoginSucesso(listaLogins[0], Driver);
+                fiesLegadoUtil.SelecionarPerfilPresidencia(Driver);
+            }
+            else
+            {
+                UtilFiesNovo fiesNovoUtil = new UtilFiesNovo();
+                Driver = Util.StartBrowser("http://sifesweb.caixa.gov.br");
+                fiesNovoUtil.FazerLogin(Driver, listaLogins[0]);
+            }
+        }
+        public void ExecutarLancamentoFiesSiga(string semestre, string tipoFies)
+        {
+            listaAlunos = Dados.SelectWhere<TOAluno>(x => x.Conclusao == "Não Feito");
+            //listaLogins = Dados.SelectLoginPorIESePlataforma("", "SIGA", "", admin: false);
+            listaLogins = Dados.SelectWhere<TOLogin>(x => x.Plataforma == "SIGA");
+
+            foreach (TOAluno aluno in listaAlunos)
+            {
+                Dados.TratarTextoReceitas(aluno);
+                Dados.TratarVirgulaReceitas(aluno);
+            }
+            progresso = 0;
+            contador = listaAlunos.Count;
+
+            UtilSiga utilsiga = new UtilSiga();
+            Driver = utilsiga.FazerLogin("https://siga.uniritter.edu.br/financeiro/fichaFinanceira.php", listaLogins[0]);
+            // Não caiu
+            if (Driver == null || Driver.PageSource.Contains("Você precisa realizar a validação \"Não sou um robô\".Tente novamente marcando esta opção!"))
+            {
+                return;
+            }
+            while (Driver.PageSource.ToUpper().Contains("FILTRO POR DADOS DE ALUNO") == false)
+            {
+                System.Threading.Thread.Sleep(250);
+            }
+            LancamentoFiesSiga lancamentoFiesSiga = new LancamentoFiesSiga();
+            foreach (TOAluno aluno in listaAlunos)
+            {
+                if (aluno.Conclusao == "Não Feito")
+                {
+                    lancamentoFiesSiga.ExecutarLancamentoFiesSiga(aluno, Driver, semestre, tipoFies);
+                    UpdateProgresso(ref progresso, contador);
+                }
+            }
+        }
+        public void GeracaoParcelasFies(string semestre)
+        {
+            listaAlunos = Dados.SelectWhere<TOAluno>(x => x.Conclusao == "Não Feito");
+            //listaLogins = Dados.SelectLoginPorIESePlataforma("", "SIGA", "", admin: false);
+            listaLogins = Dados.SelectWhere<TOLogin>(x => x.Plataforma == "SIGA");
+
+            progresso = 0;
+            contador = listaAlunos.Count;
+            UtilSiga utilsiga = new UtilSiga();
+            Driver = utilsiga.FazerLogin("https://siga.uniritter.edu.br/financeiro/geracaoIndividualParcela.php", listaLogins[0]);
+
+            if (Driver == null || Driver.PageSource.Contains("Você precisa realizar a validação \"Não sou um robô\"."))
+            {
+                return;
+            }
 
 
+            GeracaoParcelasFies GeracaoParcelasFies = new GeracaoParcelasFies();
+            GeracaoParcelasFies.ExecutarCookieGuiche(Driver);
+            foreach (TOAluno aluno in listaAlunos)
+            {
+                if (aluno.Conclusao == "Não Feito")
+                {
+                    GeracaoParcelasFies.GeraParcelaFies(Driver, aluno, semestre);
+                    UpdateProgresso(ref progresso, contador);
+                }
+            }
+        }
+        public void ExecutarHistoricoReparcelamentoCoparticipacao(string faculdade, string tipoFIES)
+        {
+
+            HistoricoReparcelamentoCoparticipacao historico = new HistoricoReparcelamentoCoparticipacao();
+
+            BuscarLoginsEAlunos(faculdade, tipoFIES, "", ref listaAlunos, ref listaLogins, admin: false, exportar: false);
+
+            UtilFiesNovo utilFiesNovo = new UtilFiesNovo();
+            Driver = Util.StartBrowser("http://sifesweb.caixa.gov.br");
+
+            utilFiesNovo.FazerLogin(Driver, listaLogins[0]);
+            utilFiesNovo.WaitForLoading(Driver);
+            utilFiesNovo.ClicarMenuHistoricoReparcelamentoCopartipacao(Driver);
+            utilFiesNovo.WaitForLoading(Driver);
+
+            foreach (TOAluno aluno in listaAlunos)
+            {
+                historico.ExecutarHistoricoReparcelamentoCoparticipacao(Driver, aluno);
+            }
+
+
+        }
+        public void ValidarReparcelamento(string faculdade, string tipoFIES)
+        {
+            ValidarReparcelamento validar = new ValidarReparcelamento();
+
+
+            BuscarLoginsEAlunos(faculdade, tipoFIES, "", ref listaAlunos, ref listaLogins, admin: true, exportar: true);
+
+            UtilFiesNovo utilFiesNovo = new UtilFiesNovo();
+            Driver = Util.StartBrowser("http://sifesweb.caixa.gov.br");
+
+            utilFiesNovo.FazerLogin(Driver, listaLogins[0]);
+            utilFiesNovo.WaitForLoading(Driver);
+            utilFiesNovo.ClicarMenuValidarReparcelamento(Driver);
+
+            validar.ExecutarValidarReparcelamento(Driver);
+        }
+
+        
+        private void UpdateProgresso(ref float progresso, int listCount)
+        {
+            if (progresso >= 100)
+            {
+                progresso = 0;
+            }
+            progresso += 100.0f / listCount;
+            forms.backgroundWorker.ReportProgress(Convert.ToInt32(progresso));
+        }
         public string BuscarNunSemestre(string semestreAno)
         {
             List<TOSemestre> semestre = Dados.SelectAll<TOSemestre>();
@@ -486,7 +598,6 @@ namespace robo.Control.Implementacoes
             }
             return nomeMenu;
         }
-
         public List<string> PreencherListaSemestre()
         {
             List<TOSemestre> semestre = Dados.SelectAll<TOSemestre>();
@@ -497,7 +608,6 @@ namespace robo.Control.Implementacoes
             }
             return nomeSemestre;
         }
-
         public List<string> PreencherListaAno()
         {
             List<TOSemestre> semestre = Dados.SelectAll<TOSemestre>();
@@ -512,14 +622,6 @@ namespace robo.Control.Implementacoes
             }
             return nomeAno;
         }
-
-
-
-        public void SetForm(IContratos.IMainForms forms)
-        {
-            //this.forms = forms;
-        }
-
         public void TratarDadosAluno(TOAluno aluno)
         {
             //Dados.TratarCpf(aluno);
@@ -528,132 +630,6 @@ namespace robo.Control.Implementacoes
             //Dados.TratarCampusAluno(aluno);
             //Dados.TratarTipoFIES(aluno);
         }
-
-        public void ExecutarAbrirSite(string faculdade, string campus, string plataforma)
-        {
-
-            BuscarLoginsEAlunos(faculdade, plataforma, campus, ref listaAlunos, ref listaLogins, admin: false, exportar: true);
-
-            if (plataforma.ToUpper() == "FIES LEGADO")
-            {
-                UtilFiesLegado fiesLegadoUtil = new UtilFiesLegado();
-                Driver = Util.StartBrowser("http://sisfies.mec.gov.br/");
-                fiesLegadoUtil.RealizarLoginSucesso(listaLogins[0], Driver);
-                fiesLegadoUtil.SelecionarPerfilPresidencia(Driver);
-            }
-            else
-            {
-                UtilFiesNovo fiesNovoUtil = new UtilFiesNovo();
-                Driver = Util.StartBrowser("http://sifesweb.caixa.gov.br");
-                fiesNovoUtil.FazerLogin(Driver, listaLogins[0]);
-            }
-        }
-
-        public void ExecutarLancamentoFiesSiga(string semestre, string tipoFies)
-        {
-            listaAlunos = Dados.SelectWhere<TOAluno>(x => x.Conclusao == "Não Feito");
-            //listaLogins = Dados.SelectLoginPorIESePlataforma("", "SIGA", "", admin: false);
-            listaLogins = Dados.SelectWhere<TOLogin>(x => x.Plataforma == "SIGA");
-
-            foreach (TOAluno aluno in listaAlunos)
-            {
-                Dados.TratarTextoReceitas(aluno);
-                Dados.TratarVirgulaReceitas(aluno);
-            }
-            progresso = 0;
-            contador = listaAlunos.Count;
-
-            UtilSiga utilsiga = new UtilSiga();
-            Driver = utilsiga.FazerLogin("https://siga.uniritter.edu.br/financeiro/fichaFinanceira.php", listaLogins[0]);
-            // Não caiu
-            if (Driver == null || Driver.PageSource.Contains("Você precisa realizar a validação \"Não sou um robô\".Tente novamente marcando esta opção!"))
-            {
-                return;
-            }
-            while (Driver.PageSource.ToUpper().Contains("FILTRO POR DADOS DE ALUNO") == false)
-            {
-                System.Threading.Thread.Sleep(250);
-            }
-            LancamentoFiesSiga lancamentoFiesSiga = new LancamentoFiesSiga();
-            foreach (TOAluno aluno in listaAlunos)
-            {
-                if (aluno.Conclusao == "Não Feito")
-                {
-                    lancamentoFiesSiga.ExecutarLancamentoFiesSiga(aluno, Driver, semestre, tipoFies);
-                    UpdateProgresso(ref progresso, contador);
-                }
-            }
-        }
-
-        public void GeracaoParcelasFies(string semestre)
-        {
-            listaAlunos = Dados.SelectWhere<TOAluno>(x => x.Conclusao == "Não Feito");
-            //listaLogins = Dados.SelectLoginPorIESePlataforma("", "SIGA", "", admin: false);
-            listaLogins = Dados.SelectWhere<TOLogin>(x => x.Plataforma == "SIGA");
-
-            progresso = 0;
-            contador = listaAlunos.Count;
-            UtilSiga utilsiga = new UtilSiga();
-            Driver = utilsiga.FazerLogin("https://siga.uniritter.edu.br/financeiro/geracaoIndividualParcela.php", listaLogins[0]);
-
-            if (Driver == null || Driver.PageSource.Contains("Você precisa realizar a validação \"Não sou um robô\"."))
-            {
-                return;
-            }
-
-
-            GeracaoParcelasFies GeracaoParcelasFies = new GeracaoParcelasFies();
-            GeracaoParcelasFies.ExecutarCookieGuiche(Driver);
-            foreach (TOAluno aluno in listaAlunos)
-            {
-                if (aluno.Conclusao == "Não Feito")
-                {
-                    GeracaoParcelasFies.GeraParcelaFies(Driver, aluno, semestre);
-                    UpdateProgresso(ref progresso, contador);
-                }
-            }
-        }
-
-        public void ExecutarHistoricoReparcelamentoCoparticipacao(string faculdade, string tipoFIES)
-        {
-
-            HistoricoReparcelamentoCoparticipacao historico = new HistoricoReparcelamentoCoparticipacao();
-
-            BuscarLoginsEAlunos(faculdade, tipoFIES, "", ref listaAlunos, ref listaLogins, admin: false, exportar: false);
-
-            UtilFiesNovo utilFiesNovo = new UtilFiesNovo();
-            Driver = Util.StartBrowser("http://sifesweb.caixa.gov.br");
-
-            utilFiesNovo.FazerLogin(Driver, listaLogins[0]);
-            utilFiesNovo.WaitForLoading(Driver);
-            utilFiesNovo.ClicarMenuHistoricoReparcelamentoCopartipacao(Driver);
-            utilFiesNovo.WaitForLoading(Driver);
-
-            foreach (TOAluno aluno in listaAlunos)
-            {
-                historico.ExecutarHistoricoReparcelamentoCoparticipacao(Driver, aluno);
-            }
-
-
-        }
-
-        public void ValidarReparcelamento(string faculdade, string tipoFIES)
-        {
-            ValidarReparcelamento validar = new ValidarReparcelamento();
-
-
-            BuscarLoginsEAlunos(faculdade, tipoFIES, "", ref listaAlunos, ref listaLogins, admin: true, exportar: true);
-
-            UtilFiesNovo utilFiesNovo = new UtilFiesNovo();
-            Driver = Util.StartBrowser("http://sifesweb.caixa.gov.br");
-
-            utilFiesNovo.FazerLogin(Driver, listaLogins[0]);
-            utilFiesNovo.WaitForLoading(Driver);
-            utilFiesNovo.ClicarMenuValidarReparcelamento(Driver);
-
-            validar.ExecutarValidarReparcelamento(Driver);
-        }
-
         public void EncerrarDriver()
         {
             if (Driver != null)
