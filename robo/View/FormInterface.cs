@@ -379,7 +379,7 @@ namespace robo.View
             Button button = sender as Button;
             button.UseVisualStyleBackColor = false;
             button.ForeColor = SystemColors.Control;
-            button.BackColor = Color.Purple;
+            button.BackColor = Color.FromArgb(0,0, 172, 166);
         }
         private void btnChangeColorLeave(object sender, EventArgs e)
         {

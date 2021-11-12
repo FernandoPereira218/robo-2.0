@@ -61,23 +61,23 @@ namespace robo.View
             this.lblCadastroSelecione = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.panelErroNenhumAluno = new System.Windows.Forms.Panel();
+            this.btnImportar = new System.Windows.Forms.Button();
             this.metroLabel2 = new MetroFramework.Controls.MetroLabel();
             this.metroLabel1 = new MetroFramework.Controls.MetroLabel();
             this.panelSubMenu = new System.Windows.Forms.Panel();
-            this.tooltip = new MetroFramework.Components.MetroToolTip();
-            this.panelHome = new System.Windows.Forms.Panel();
-            this.panel2 = new System.Windows.Forms.Panel();
-            this.lblDireitoReservados = new System.Windows.Forms.Label();
-            this.labelDescricaoHome = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
             this.btnLogout = new System.Windows.Forms.Button();
             this.btnHome = new System.Windows.Forms.Button();
             this.btnSiga = new System.Windows.Forms.Button();
             this.btnFiesLegado = new System.Windows.Forms.Button();
             this.btnFiesNovo = new System.Windows.Forms.Button();
             this.btnConfiguracoes = new System.Windows.Forms.Button();
+            this.tooltip = new MetroFramework.Components.MetroToolTip();
+            this.panelHome = new System.Windows.Forms.Panel();
+            this.panel2 = new System.Windows.Forms.Panel();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.btnImportar = new System.Windows.Forms.Button();
+            this.lblDireitoReservados = new System.Windows.Forms.Label();
+            this.labelDescricaoHome = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
             this.panelMenuBar.SuspendLayout();
             this.panelExcel.SuspendLayout();
             this.panellStatus.SuspendLayout();
@@ -391,7 +391,8 @@ namespace robo.View
             | System.Windows.Forms.AnchorStyles.Right)));
             this.lblExecucao.AutoSize = true;
             this.lblExecucao.FontSize = MetroFramework.MetroLabelSize.Tall;
-            this.lblExecucao.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(45)))));
+            this.lblExecucao.FontWeight = MetroFramework.MetroLabelWeight.Bold;
+            this.lblExecucao.ForeColor = System.Drawing.Color.Purple;
             this.lblExecucao.Location = new System.Drawing.Point(15, 21);
             this.lblExecucao.Name = "lblExecucao";
             this.lblExecucao.Size = new System.Drawing.Size(106, 25);
@@ -505,6 +506,21 @@ namespace robo.View
             this.panelErroNenhumAluno.Size = new System.Drawing.Size(970, 667);
             this.panelErroNenhumAluno.TabIndex = 62;
             // 
+            // btnImportar
+            // 
+            this.btnImportar.BackColor = System.Drawing.Color.Green;
+            this.btnImportar.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnImportar.ForeColor = System.Drawing.SystemColors.Control;
+            this.btnImportar.Image = global::robo.Properties.Resources.excel_1_;
+            this.btnImportar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnImportar.Location = new System.Drawing.Point(533, 319);
+            this.btnImportar.Name = "btnImportar";
+            this.btnImportar.Size = new System.Drawing.Size(173, 48);
+            this.btnImportar.TabIndex = 38;
+            this.btnImportar.Text = "Importar";
+            this.btnImportar.UseVisualStyleBackColor = false;
+            this.btnImportar.Click += new System.EventHandler(this.btnImportar_Click);
+            // 
             // metroLabel2
             // 
             this.metroLabel2.AutoSize = true;
@@ -543,71 +559,6 @@ namespace robo.View
             this.panelSubMenu.Name = "panelSubMenu";
             this.panelSubMenu.Size = new System.Drawing.Size(83, 733);
             this.panelSubMenu.TabIndex = 38;
-            // 
-            // tooltip
-            // 
-            this.tooltip.Style = MetroFramework.MetroColorStyle.Blue;
-            this.tooltip.StyleManager = null;
-            this.tooltip.Theme = MetroFramework.MetroThemeStyle.Light;
-            // 
-            // panelHome
-            // 
-            this.panelHome.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.panelHome.Controls.Add(this.panel2);
-            this.panelHome.Controls.Add(this.lblDireitoReservados);
-            this.panelHome.Controls.Add(this.labelDescricaoHome);
-            this.panelHome.Controls.Add(this.label1);
-            this.panelHome.Location = new System.Drawing.Point(76, 40);
-            this.panelHome.Name = "panelHome";
-            this.panelHome.Size = new System.Drawing.Size(1204, 686);
-            this.panelHome.TabIndex = 0;
-            // 
-            // panel2
-            // 
-            this.panel2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.panel2.BackColor = System.Drawing.Color.Purple;
-            this.panel2.Controls.Add(this.pictureBox1);
-            this.panel2.Location = new System.Drawing.Point(826, 0);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(378, 680);
-            this.panel2.TabIndex = 11;
-            // 
-            // lblDireitoReservados
-            // 
-            this.lblDireitoReservados.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblDireitoReservados.AutoSize = true;
-            this.lblDireitoReservados.BackColor = System.Drawing.SystemColors.Control;
-            this.lblDireitoReservados.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblDireitoReservados.Location = new System.Drawing.Point(129, 611);
-            this.lblDireitoReservados.Name = "lblDireitoReservados";
-            this.lblDireitoReservados.Size = new System.Drawing.Size(320, 17);
-            this.lblDireitoReservados.TabIndex = 3;
-            this.lblDireitoReservados.Text = "Todos os direitos reservados a Anima Educação.";
-            // 
-            // labelDescricaoHome
-            // 
-            this.labelDescricaoHome.AutoSize = true;
-            this.labelDescricaoHome.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelDescricaoHome.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
-            this.labelDescricaoHome.Location = new System.Drawing.Point(47, 175);
-            this.labelDescricaoHome.Name = "labelDescricaoHome";
-            this.labelDescricaoHome.Size = new System.Drawing.Size(0, 17);
-            this.labelDescricaoHome.TabIndex = 2;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Century Gothic", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
-            this.label1.Location = new System.Drawing.Point(44, 68);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(519, 39);
-            this.label1.TabIndex = 1;
-            this.label1.Text = "Seja bem vinda ao Robo Anima";
             // 
             // btnLogout
             // 
@@ -735,6 +686,37 @@ namespace robo.View
             this.btnConfiguracoes.MouseEnter += new System.EventHandler(this.btnChangeColorEnter);
             this.btnConfiguracoes.MouseLeave += new System.EventHandler(this.btnChangeColorLeave);
             // 
+            // tooltip
+            // 
+            this.tooltip.Style = MetroFramework.MetroColorStyle.Blue;
+            this.tooltip.StyleManager = null;
+            this.tooltip.Theme = MetroFramework.MetroThemeStyle.Light;
+            // 
+            // panelHome
+            // 
+            this.panelHome.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.panelHome.Controls.Add(this.panel2);
+            this.panelHome.Controls.Add(this.lblDireitoReservados);
+            this.panelHome.Controls.Add(this.labelDescricaoHome);
+            this.panelHome.Controls.Add(this.label1);
+            this.panelHome.Location = new System.Drawing.Point(76, 40);
+            this.panelHome.Name = "panelHome";
+            this.panelHome.Size = new System.Drawing.Size(1204, 686);
+            this.panelHome.TabIndex = 0;
+            // 
+            // panel2
+            // 
+            this.panel2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel2.BackColor = System.Drawing.Color.Purple;
+            this.panel2.Controls.Add(this.pictureBox1);
+            this.panel2.Location = new System.Drawing.Point(826, 0);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(378, 680);
+            this.panel2.TabIndex = 11;
+            // 
             // pictureBox1
             // 
             this.pictureBox1.Anchor = System.Windows.Forms.AnchorStyles.None;
@@ -746,34 +728,53 @@ namespace robo.View
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
             // 
-            // btnImportar
+            // lblDireitoReservados
             // 
-            this.btnImportar.BackColor = System.Drawing.Color.Green;
-            this.btnImportar.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnImportar.ForeColor = System.Drawing.SystemColors.Control;
-            this.btnImportar.Image = global::robo.Properties.Resources.excel_1_;
-            this.btnImportar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnImportar.Location = new System.Drawing.Point(533, 319);
-            this.btnImportar.Name = "btnImportar";
-            this.btnImportar.Size = new System.Drawing.Size(173, 48);
-            this.btnImportar.TabIndex = 38;
-            this.btnImportar.Text = "Importar";
-            this.btnImportar.UseVisualStyleBackColor = false;
-            this.btnImportar.Click += new System.EventHandler(this.btnImportar_Click);
+            this.lblDireitoReservados.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblDireitoReservados.AutoSize = true;
+            this.lblDireitoReservados.BackColor = System.Drawing.SystemColors.Control;
+            this.lblDireitoReservados.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblDireitoReservados.Location = new System.Drawing.Point(129, 611);
+            this.lblDireitoReservados.Name = "lblDireitoReservados";
+            this.lblDireitoReservados.Size = new System.Drawing.Size(320, 17);
+            this.lblDireitoReservados.TabIndex = 3;
+            this.lblDireitoReservados.Text = "Todos os direitos reservados a Anima Educação.";
             // 
-            // FormInterface2
+            // labelDescricaoHome
+            // 
+            this.labelDescricaoHome.AutoSize = true;
+            this.labelDescricaoHome.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelDescricaoHome.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
+            this.labelDescricaoHome.Location = new System.Drawing.Point(47, 175);
+            this.labelDescricaoHome.Name = "labelDescricaoHome";
+            this.labelDescricaoHome.Size = new System.Drawing.Size(0, 17);
+            this.labelDescricaoHome.TabIndex = 2;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Century Gothic", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
+            this.label1.Location = new System.Drawing.Point(44, 68);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(519, 39);
+            this.label1.TabIndex = 1;
+            this.label1.Text = "Seja bem vinda ao Robo Anima";
+            // 
+            // FormInterface
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Inherit;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.ClientSize = new System.Drawing.Size(1280, 720);
             this.Controls.Add(this.panelMenuBar);
             this.Controls.Add(this.panelSubMenu);
-            this.Controls.Add(this.panelHome);
             this.Controls.Add(this.panelCadastrarContent);
+            this.Controls.Add(this.panelHome);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(2);
-            this.Name = "FormInterface2";
+            this.Name = "FormInterface";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FormInterface2_FormClosing);
