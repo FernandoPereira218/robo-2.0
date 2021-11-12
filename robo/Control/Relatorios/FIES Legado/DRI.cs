@@ -10,10 +10,8 @@ namespace robo.Control.Relatorios
     public class DRI : UtilFiesLegado
     {
         private IWebDriver Driver;
-        public void DRIFiesLegado(IWebDriver driver, TOAluno aluno, TOLogin login, bool baixar, string situacaoDRI)
+        public void DRIFiesLegado(TOAluno aluno, TOLogin login, bool baixar, string situacaoDRI)
         {
-            //Driver = driver;
-
             ClickDropDown(Driver, "id", "co_situacao_inscricao", situacaoDRI);
 
             if (!Dados.DRIExists(aluno.Cpf) || baixar == true)

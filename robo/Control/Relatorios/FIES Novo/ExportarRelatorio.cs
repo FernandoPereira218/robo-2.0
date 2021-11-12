@@ -53,7 +53,6 @@ namespace robo.Control.Relatorios.FIES_Novo
 
         private string ListaParaString(string idDropdown, string idTabela, bool buscarCabecalhos, string paginaAnterior)
         {
-            //Util.ClickDropDown(Driver, "name", idDropdown, "100");
             IWebElement elementoTabela = Driver.FindElement(By.Id(idTabela));
             List<IWebElement> cabecalhos = elementoTabela.FindElements(By.TagName("th")).ToList();
             List<IWebElement> dados = elementoTabela.FindElements(By.TagName("td")).ToList();
@@ -80,7 +79,6 @@ namespace robo.Control.Relatorios.FIES_Novo
             int contador = 0;
             for (int i = 0; i < dados.Count(); i++)
             {
-                //StringBuilder t = new StringBuilder();
 
                 if (contador == cabecalhos.Count() - 1)
                 {
@@ -101,11 +99,8 @@ namespace robo.Control.Relatorios.FIES_Novo
 
                     contador++;
                 }
-
-
             }
             return t.ToString();
         }
-
     }
 }

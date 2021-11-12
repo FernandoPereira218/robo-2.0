@@ -35,7 +35,6 @@ namespace robo.Control.Relatorios.FIES_Novo
         {
             wait = new WebDriverWait(Driver, TimeSpan.FromMinutes(5));
             wait.Until(x => x.FindElement(tipo) != null);
-            
         }
     }
 }

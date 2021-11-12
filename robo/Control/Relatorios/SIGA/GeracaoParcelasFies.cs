@@ -104,12 +104,6 @@ namespace robo.Control.Relatorios.SIGA
 
             if (msgSistema.Text.Contains("Geração de mensalidade efetuada com sucesso!"))
             {
-                //if (aluno.Conclusao == "Não Feito")
-                //{
-                //    aluno.Conclusao = "";
-                //}
-                //aluno.Conclusao = aluno.Conclusao + ParcelaSelecionada + " OK" + ", ";
-                //Util.EditarConclusaoAluno(aluno, aluno.Conclusao);
                 string conclusao = "Parcela gerada com sucesso.";
 
                 switch (ParcelaSelecionada.ToUpper())
@@ -133,7 +127,6 @@ namespace robo.Control.Relatorios.SIGA
                         aluno.ParcelaSiga6 = conclusao;
                         break;
                     default:
-                        //Util.EditarConclusaoAluno(aluno, "Número de parcelas não previsto");
                         throw new Exception("Número de parcelas não previsto");
                 }
                 Util.EditarConclusaoAluno(aluno, aluno.Conclusao);
@@ -165,11 +158,9 @@ namespace robo.Control.Relatorios.SIGA
                         aluno.ParcelaSiga6 = mensagemSistema;
                         break;
                     default:
-                        //Util.EditarConclusaoAluno(aluno, "Número de parcelas não previsto");
                         throw new Exception("Número de parcelas não previsto");
                 }
                 opcaoParcela++;
-                //Util.EditarConclusaoAluno(aluno, mensagemSistema);
                 Util.EditarConclusaoAluno(aluno, aluno.Conclusao);
             }
         }

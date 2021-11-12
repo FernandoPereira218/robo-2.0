@@ -121,7 +121,7 @@ namespace robo.Control.Relatorios.SIGA
                 {
                     Util.EditarConclusaoAluno(aluno, "CADASTRO EFETUADO ANTERIORMENTE");
                 }
-                //Sim, está certo
+                //Voltar para página de consulta de alunos
                 Driver.Url = Driver.Url;
             }
         }
