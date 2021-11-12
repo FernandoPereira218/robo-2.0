@@ -77,13 +77,13 @@ namespace robo.View
             this.panelFiesSiga = new System.Windows.Forms.Panel();
             this.labelFiesSiga = new MetroFramework.Controls.MetroLabel();
             this.cbFiesSiga = new System.Windows.Forms.ComboBox();
+            this.panelTodosMesesDisponiveis = new System.Windows.Forms.Panel();
+            this.checkBoxTodosMeses = new MetroFramework.Controls.MetroCheckBox();
+            this.labelTodosMeses = new MetroFramework.Controls.MetroLabel();
             this.labelDay = new System.Windows.Forms.Label();
             this.btnIniciar = new System.Windows.Forms.Button();
             this.backgroundWorker = new System.ComponentModel.BackgroundWorker();
             this.tooltip = new MetroFramework.Components.MetroToolTip();
-            this.panelTodosMesesDisponiveis = new System.Windows.Forms.Panel();
-            this.checkBoxTodosMeses = new MetroFramework.Controls.MetroCheckBox();
-            this.labelTodosMeses = new MetroFramework.Controls.MetroLabel();
             this.panelCadastro.SuspendLayout();
             this.panellStatus.SuspendLayout();
             this.flowLayoutPanel1.SuspendLayout();
@@ -740,46 +740,6 @@ namespace robo.View
             this.cbFiesSiga.Size = new System.Drawing.Size(528, 25);
             this.cbFiesSiga.TabIndex = 59;
             // 
-            // labelDay
-            // 
-            this.labelDay.AutoSize = true;
-            this.labelDay.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelDay.ForeColor = System.Drawing.Color.White;
-            this.labelDay.Location = new System.Drawing.Point(44, 370);
-            this.labelDay.Name = "labelDay";
-            this.labelDay.Size = new System.Drawing.Size(367, 22);
-            this.labelDay.TabIndex = 31;
-            this.labelDay.Text = "Quarta-feira, 11 de novembro de 2022";
-            // 
-            // btnIniciar
-            // 
-            this.btnIniciar.BackColor = System.Drawing.Color.White;
-            this.btnIniciar.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnIniciar.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
-            this.btnIniciar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnIniciar.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnIniciar.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(33)))), ((int)(((byte)(33)))));
-            this.btnIniciar.Location = new System.Drawing.Point(44, 524);
-            this.btnIniciar.Name = "btnIniciar";
-            this.btnIniciar.Size = new System.Drawing.Size(216, 29);
-            this.btnIniciar.TabIndex = 61;
-            this.btnIniciar.Tag = "ADITAMENTO BAIXAR DRM";
-            this.btnIniciar.Text = "Executar";
-            this.btnIniciar.UseVisualStyleBackColor = false;
-            this.btnIniciar.Click += new System.EventHandler(this.btnIniciar_Click);
-            // 
-            // backgroundWorker
-            // 
-            this.backgroundWorker.WorkerReportsProgress = true;
-            this.backgroundWorker.ProgressChanged += new System.ComponentModel.ProgressChangedEventHandler(this.backgroundWorker_ProgressChanged);
-            this.backgroundWorker.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.backgroundWorker_RunWorkerCompleted);
-            // 
-            // tooltip
-            // 
-            this.tooltip.Style = MetroFramework.MetroColorStyle.Blue;
-            this.tooltip.StyleManager = null;
-            this.tooltip.Theme = MetroFramework.MetroThemeStyle.Light;
-            // 
             // panelTodosMesesDisponiveis
             // 
             this.panelTodosMesesDisponiveis.Controls.Add(this.checkBoxTodosMeses);
@@ -808,6 +768,46 @@ namespace robo.View
             this.labelTodosMeses.Size = new System.Drawing.Size(248, 19);
             this.labelTodosMeses.TabIndex = 60;
             this.labelTodosMeses.Text = "BAIXAR TODOS OS MESES DISPONÍVEIS";
+            // 
+            // labelDay
+            // 
+            this.labelDay.AutoSize = true;
+            this.labelDay.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelDay.ForeColor = System.Drawing.Color.White;
+            this.labelDay.Location = new System.Drawing.Point(44, 370);
+            this.labelDay.Name = "labelDay";
+            this.labelDay.Size = new System.Drawing.Size(367, 22);
+            this.labelDay.TabIndex = 31;
+            this.labelDay.Text = "Quarta-feira, 11 de novembro de 2022";
+            // 
+            // btnIniciar
+            // 
+            this.btnIniciar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(172)))), ((int)(((byte)(166)))));
+            this.btnIniciar.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnIniciar.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(172)))), ((int)(((byte)(166)))));
+            this.btnIniciar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnIniciar.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnIniciar.ForeColor = System.Drawing.Color.White;
+            this.btnIniciar.Location = new System.Drawing.Point(45, 540);
+            this.btnIniciar.Name = "btnIniciar";
+            this.btnIniciar.Size = new System.Drawing.Size(216, 29);
+            this.btnIniciar.TabIndex = 61;
+            this.btnIniciar.Tag = "ADITAMENTO BAIXAR DRM";
+            this.btnIniciar.Text = "Executar";
+            this.btnIniciar.UseVisualStyleBackColor = false;
+            this.btnIniciar.Click += new System.EventHandler(this.btnIniciar_Click);
+            // 
+            // backgroundWorker
+            // 
+            this.backgroundWorker.WorkerReportsProgress = true;
+            this.backgroundWorker.ProgressChanged += new System.ComponentModel.ProgressChangedEventHandler(this.backgroundWorker_ProgressChanged);
+            this.backgroundWorker.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.backgroundWorker_RunWorkerCompleted);
+            // 
+            // tooltip
+            // 
+            this.tooltip.Style = MetroFramework.MetroColorStyle.Blue;
+            this.tooltip.StyleManager = null;
+            this.tooltip.Theme = MetroFramework.MetroThemeStyle.Light;
             // 
             // FormDefault
             // 
