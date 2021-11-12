@@ -44,6 +44,14 @@ namespace robo.Control.Relatorios.SIGA
                     //Sempre o mesmo
                     ClickDropDown(Driver, "id", "nens_id", "GRADUAÇÃO");
 
+                    //Verificação se o curso está disponível no site
+                    SelectElement selectElement = new SelectElement(Driver.FindElement(By.Id("curs_id")));
+                    if (selectElement.Options.Count == 1)
+                    {
+                        Util.EditarConclusaoAluno(aluno, "Curso não disponível no SIGA");
+                        Driver.Url = Driver.Url;
+                        return;
+                    }
                     //Buscar da planilha do aluno
                     ClickDropDown(Driver, "id", "curs_id", aluno.CursoSiga.ToUpper());
 

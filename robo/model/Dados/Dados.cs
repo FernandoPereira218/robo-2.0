@@ -350,7 +350,7 @@ namespace Robo
                     }
 
 
-                    File.Copy("data/bdbot1.db", "backup/BACKUP_BDBOT " + DateTime.Now.ToString("dd_MM_yy HH-mm-ss") + ".db");
+                    File.Copy("data/bdbot.db", "backup/BACKUP_BDBOT " + DateTime.Now.ToString("dd_MM_yy HH-mm-ss") + ".db");
                     DeleteAllLite<TOAluno>();
                     return true;
                 }

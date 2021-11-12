@@ -139,7 +139,7 @@ namespace Robo
         [Name("CURSO SIGA")]
         public string CursoSiga { get; set; }
         [Optional]
-        [Name("VALOR DE REPASSE")]
+        [Name("VALOR DE REPASSE", "Valor de Repasse")]
         public string ValorDeRepasse { get; set; }
         [Optional]
         public string ParcelaSiga1 { get; set; }
