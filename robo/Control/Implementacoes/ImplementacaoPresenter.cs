@@ -551,14 +551,17 @@ namespace robo.Control.Implementacoes
 
         public void ExecutarLancamentoFiesSiga(string semestre, string tipoFies)
         {
-            listaAlunos = Dados.SelectAll<TOAluno>();
+            listaAlunos = Dados.SelectWhere<TOAluno>(x => x.Conclusao == "Não Feito");
             //listaLogins = Dados.SelectLoginPorIESePlataforma("", "SIGA", "", admin: false);
             listaLogins = Dados.SelectWhere<TOLogin>(x => x.Plataforma == "SIGA");
+
             foreach (TOAluno aluno in listaAlunos)
             {
                 Dados.TratarTextoReceitas(aluno);
                 Dados.TratarVirgulaReceitas(aluno);
             }
+            progresso = 0;
+            contador = listaAlunos.Count;
 
             UtilSiga utilsiga = new UtilSiga();
             Driver = utilsiga.FazerLogin("https://siga.uniritter.edu.br/financeiro/fichaFinanceira.php", listaLogins[0]);
@@ -584,9 +587,12 @@ namespace robo.Control.Implementacoes
 
         public void GeracaoParcelasFies(string semestre)
         {
-            listaAlunos = Dados.SelectAll<TOAluno>();
+            listaAlunos = Dados.SelectWhere<TOAluno>(x => x.Conclusao == "Não Feito");
             //listaLogins = Dados.SelectLoginPorIESePlataforma("", "SIGA", "", admin: false);
             listaLogins = Dados.SelectWhere<TOLogin>(x => x.Plataforma == "SIGA");
+
+            progresso = 0;
+            contador = listaAlunos.Count;
             UtilSiga utilsiga = new UtilSiga();
             Driver = utilsiga.FazerLogin("https://siga.uniritter.edu.br/financeiro/geracaoIndividualParcela.php", listaLogins[0]);
 
