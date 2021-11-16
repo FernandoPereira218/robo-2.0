@@ -29,7 +29,6 @@ namespace robo.View
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormDefault));
             this.panelCadastro = new System.Windows.Forms.Panel();
             this.panellStatus = new System.Windows.Forms.Panel();
             this.lblStatus = new System.Windows.Forms.Label();
@@ -37,7 +36,6 @@ namespace robo.View
             this.wbHelp = new System.Windows.Forms.WebBrowser();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.panelCabecalho = new System.Windows.Forms.Panel();
-            this.btnHelp = new MetroFramework.Controls.MetroButton();
             this.lblExecucao = new MetroFramework.Controls.MetroLabel();
             this.metroLabel1 = new MetroFramework.Controls.MetroLabel();
             this.metroLabel17 = new MetroFramework.Controls.MetroLabel();
@@ -84,6 +82,7 @@ namespace robo.View
             this.btnIniciar = new System.Windows.Forms.Button();
             this.backgroundWorker = new System.ComponentModel.BackgroundWorker();
             this.tooltip = new MetroFramework.Components.MetroToolTip();
+            this.btnHelp = new System.Windows.Forms.Button();
             this.panelCadastro.SuspendLayout();
             this.panellStatus.SuspendLayout();
             this.flowLayoutPanel1.SuspendLayout();
@@ -221,17 +220,6 @@ namespace robo.View
             this.panelCabecalho.TabIndex = 71;
             this.panelCabecalho.Tag = "";
             this.panelCabecalho.Visible = false;
-            // 
-            // btnHelp
-            // 
-            this.btnHelp.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnHelp.BackgroundImage")));
-            this.btnHelp.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.btnHelp.Location = new System.Drawing.Point(119, 6);
-            this.btnHelp.Name = "btnHelp";
-            this.btnHelp.Size = new System.Drawing.Size(26, 23);
-            this.btnHelp.TabIndex = 35;
-            this.btnHelp.UseSelectable = true;
-            this.btnHelp.Click += new System.EventHandler(this.btnHelp_Click);
             // 
             // lblExecucao
             // 
@@ -809,6 +797,19 @@ namespace robo.View
             this.tooltip.StyleManager = null;
             this.tooltip.Theme = MetroFramework.MetroThemeStyle.Light;
             // 
+            // btnHelp
+            // 
+            this.btnHelp.BackgroundImage = global::robo.Properties.Resources.question_mark;
+            this.btnHelp.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btnHelp.FlatAppearance.BorderSize = 0;
+            this.btnHelp.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnHelp.Location = new System.Drawing.Point(108, 6);
+            this.btnHelp.Name = "btnHelp";
+            this.btnHelp.Size = new System.Drawing.Size(31, 23);
+            this.btnHelp.TabIndex = 36;
+            this.btnHelp.UseVisualStyleBackColor = true;
+            this.btnHelp.Click += new System.EventHandler(this.btnHelp_Click);
+            // 
             // FormDefault
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -898,12 +899,12 @@ namespace robo.View
         public CircularProgressBar.CircularProgressBar circularProgressBar1;
         public System.ComponentModel.BackgroundWorker backgroundWorker;
         private System.Windows.Forms.WebBrowser wbHelp;
-        private MetroFramework.Controls.MetroButton btnHelp;
         private MetroFramework.Components.MetroToolTip tooltip;
         private System.Windows.Forms.Panel panellStatus;
         private System.Windows.Forms.Label lblStatus;
         private System.Windows.Forms.Panel panelTodosMesesDisponiveis;
         private MetroFramework.Controls.MetroCheckBox checkBoxTodosMeses;
         private MetroFramework.Controls.MetroLabel labelTodosMeses;
+        private System.Windows.Forms.Button btnHelp;
     }
 }
