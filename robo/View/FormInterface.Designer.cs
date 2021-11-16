@@ -395,7 +395,7 @@ namespace robo.View
             this.lblExecucao.ForeColor = System.Drawing.Color.Purple;
             this.lblExecucao.Location = new System.Drawing.Point(15, 21);
             this.lblExecucao.Name = "lblExecucao";
-            this.lblExecucao.Size = new System.Drawing.Size(106, 25);
+            this.lblExecucao.Size = new System.Drawing.Size(117, 25);
             this.lblExecucao.TabIndex = 64;
             this.lblExecucao.Text = "Robo Anima";
             this.lblExecucao.UseCustomBackColor = true;
@@ -769,8 +769,8 @@ namespace robo.View
             this.ClientSize = new System.Drawing.Size(1280, 720);
             this.Controls.Add(this.panelMenuBar);
             this.Controls.Add(this.panelSubMenu);
-            this.Controls.Add(this.panelCadastrarContent);
             this.Controls.Add(this.panelHome);
+            this.Controls.Add(this.panelCadastrarContent);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(2);
