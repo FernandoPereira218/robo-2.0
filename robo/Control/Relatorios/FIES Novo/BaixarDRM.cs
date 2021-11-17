@@ -52,10 +52,10 @@ namespace robo.Control.Relatorios.FIES_Novo
             Driver.SwitchTo().Window(windowOriginal);
 
             //Criação das pastas necessárias
-            Util.CreateDirectoryIfNotExists("html");
+            Util.CriarDiretorioCasoNaoExista("html");
             string downloadFolder = Util.GetDownloadsFolderPath();
             string diretorioDRM = downloadFolder + "\\" + nomePasta + "\\";
-            Util.CreateDirectoryIfNotExists(diretorioDRM);
+            Util.CriarDiretorioCasoNaoExista(diretorioDRM);
 
             //Buscar texto do HTML
             string htmlDirectory = "html\\contrato.html";

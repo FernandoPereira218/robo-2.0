@@ -20,9 +20,9 @@ namespace robo.View
         FormDefault formulario;
         public const int WM_NCLBUTTONDOWN = 0xA1;
         public const int HT_CAPTION = 0x2;
-        [DllImportAttribute("user32.dll")]
+        [DllImport("user32.dll")]
         public static extern int SendMessage(IntPtr hWnd, int Msg, int wParam, int lParam);
-        [DllImportAttribute("user32.dll")]
+        [DllImport("user32.dll")]
         public static extern bool ReleaseCapture();
         public static string versaoRobo;
         private bool logout = false;
@@ -80,27 +80,12 @@ namespace robo.View
             Button btn = (Button)sender;
             StartForm((TOMenus)btn.Tag, labelTipoFies.Text.ToUpper());
         }
-
-        private void ResetarBotaoEPainel()
-        {
-            panelCadastro.BringToFront();
-
-            btnVoltar.Visible = false;
-            btnPlanilha.Visible = false;
-        }
-
         private void StartForm(TOMenus menu, string tipoFies)
         {
             int cont = Dados.Count<TOAluno>();
             if (formulario == null)
             {
-                formulario = new FormDefault(this);
-                formulario.TopLevel = false;
-                formulario.FormBorderStyle = FormBorderStyle.None;
-                formulario.Dock = DockStyle.Fill;
-                panelCadastro.Controls.Add(formulario);
-                formulario.Show();
-                formulario.BringToFront();
+                CriarFormDefault();
             }
             lblExecucao.Text = "SISTEMA DE " + menu.Item;
             if (menu.Planilha == true)
@@ -120,6 +105,23 @@ namespace robo.View
                 btnPlanilha.Visible = false;
                 panelErroNenhumAluno.BringToFront();
             }
+        }
+        private void CriarFormDefault()
+        {
+            formulario = new FormDefault(this);
+            formulario.TopLevel = false;
+            formulario.FormBorderStyle = FormBorderStyle.None;
+            formulario.Dock = DockStyle.Fill;
+            panelCadastro.Controls.Add(formulario);
+            formulario.Show();
+            formulario.BringToFront();
+        }
+        private void ResetarBotaoEPainel()
+        {
+            panelCadastro.BringToFront();
+
+            btnVoltar.Visible = false;
+            btnPlanilha.Visible = false;
         }
         private void VerificarVersaoCAE()
         {
@@ -144,7 +146,26 @@ namespace robo.View
                 flpModosDeExecucao.Controls.Clear();
             }
         }
+        private void OpenPanelCadastro()
+        {
+            panelCadastrarContent.Visible = true;
+            panelHome.Visible = false;
+        }
+        private void VerificarStatusAluno()
+        {
+            int qtdAlunosProcessados = Dados.Count<TOAluno>();
+            if (qtdAlunosProcessados == 0)
+            {
+                lblStatusQuantidadeAlunos.Text = "Nenhum aluno Exportado no Banco";
+            }
+            else
+            {
+                lblStatusQuantidadeAlunos.Text = qtdAlunosProcessados + " alunos importados no Banco de Dados";
+            }
 
+        }
+
+        //DataGrid
         private void InicializarDataGridViewAlunos()
         {
             dgvAlunos.Visible = true;
@@ -167,7 +188,6 @@ namespace robo.View
                 RemoverColunasVaziasDatagrid();
             }
         }
-
         private void RemoverColunasVaziasDatagrid()
         {
             foreach (DataGridViewColumn item in dgvAlunos.Columns)
@@ -183,11 +203,6 @@ namespace robo.View
             }
         }
 
-        private void OpenPanelCadastro()
-        {
-            panelCadastrarContent.Visible = true;
-            panelHome.Visible = false;
-        }
 
         //Eventos de click
         private void btnFiesNovo_Click(object sender, EventArgs e)
@@ -247,7 +262,6 @@ namespace robo.View
             btnVoltar.Visible = false;
             btnPlanilha.Visible = true;
         }
-
         private void btnMarcarNaoFeito_Click(object sender, EventArgs e)
         {
             DialogResult resultado = MessageBox.Show("Você realmente deseja marcar todas as conclusões como não feito", "Confirmação", MessageBoxButtons.YesNo);
@@ -296,21 +310,6 @@ namespace robo.View
                 }
             }
         }
-
-        private void VerificarStatusAluno()
-        {
-            int qtdAlunosProcessados = Dados.Count<TOAluno>();
-            if (qtdAlunosProcessados == 0)
-            {
-                lblStatusQuantidadeAlunos.Text = "Nenhum aluno Exportado no Banco";
-            }
-            else
-            {
-                lblStatusQuantidadeAlunos.Text = qtdAlunosProcessados + " alunos importados no Banco de Dados";
-            }
-
-        }
-
         private void btnConfiguracoes_Click(object sender, EventArgs e)
         {
             if (FormConfiguracoes.verificacao == true)
@@ -395,10 +394,10 @@ namespace robo.View
             button.ForeColor = Color.FromArgb(0, 45, 45, 45);
             button.BackColor = SystemColors.Control;
         }
-
         private void FormInterface_Shown(object sender, EventArgs e)
         {
             btnHome.PerformClick();
         }
+
     }
 }

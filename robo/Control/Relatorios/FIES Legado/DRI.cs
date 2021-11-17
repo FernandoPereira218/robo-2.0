@@ -70,7 +70,7 @@ namespace robo.Control.Relatorios
 
                 string diretorioDRI = downloadFolder + "\\DRI";
 
-                Util.CreateDirectoryIfNotExists(diretorioDRI);
+                Util.CriarDiretorioCasoNaoExista(diretorioDRI);
 
                 File.Move(myFile.FullName, diretorioDRI + "\\" + aluno.Nome + "_" + aluno.Cpf + "_DRI.zip");
                 Util.EditarConclusaoAluno(aluno, "DRI Baixada");

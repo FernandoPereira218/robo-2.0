@@ -140,7 +140,7 @@ namespace robo
             string downloadFolder = "";
             if (downloadFldr == true)
             {
-                Util.CreateDirectoryIfNotExists("RelatorioExportacao\\");
+                Util.CriarDiretorioCasoNaoExista("RelatorioExportacao\\");
                 downloadFolder = Directory.GetCurrentDirectory() + "\\RelatorioExportacao\\";
             }
             else
@@ -448,6 +448,17 @@ namespace robo
         }
 
         /// <summary>
+        /// Busca um elemento por xpath à partir do texto
+        /// </summary>
+        /// <param name="tag">Tag HTML</param>
+        /// <param name="texto">Texto que deve existir no elemento</param>
+        /// <returns></returns>
+        protected IWebElement FindElementByXpathText(IWebDriver Driver, string tag, string texto)
+        {
+            return Driver.FindElement(By.XPath("//" + tag + "[contains(text(),'" + texto + "')]"));
+        }
+
+        /// <summary>
         /// Salva arquivos exportados na pasta "RelatorioExportacao" e os coloca na pasta de Downloads
         /// </summary>
         /// <param name="Driver"></param>
@@ -482,7 +493,7 @@ namespace robo
                 {
                     nomeArquivo = DateTime.Now.ToString("dd-MM-yy") + campus + "_" + semestre + ".xls";
                 }
-                Util.CreateDirectoryIfNotExists(downloadFolder + "\\Relatório Exportacao");
+                Util.CriarDiretorioCasoNaoExista(downloadFolder + "\\Relatório Exportacao");
                 string caminho = downloadFolder + "\\Relatório Exportacao\\" + tipoRelatorio + " " + nomeArquivo;
                 File.Copy(item, caminho, true);
                 File.Delete(item);
