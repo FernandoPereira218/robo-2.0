@@ -36,8 +36,9 @@ namespace robo.View
             {
                 btnSiga.Visible = false;
             }
+            dgvAlunos.AutoGenerateColumns = true;
             VerificarVersaoCAE();
-
+            InicializarDatagridView();
             this.MaximizedBounds = Screen.FromHandle(this.Handle).WorkingArea;
             this.WindowState = FormWindowState.Maximized;
             labelDescricaoHome.Text =
@@ -143,6 +144,15 @@ namespace robo.View
                 flpModosDeExecucao.Controls.Clear();
             }
         }
+
+        private void InicializarDatagridView()
+        {
+            dgvAlunos.Visible = true;
+            dgvAlunos.DataSource = new List<TOAluno>() { new TOAluno { Cpf = "0", Tipo = "Fies" } };
+            RemoverColunasVaziasDatagrid();
+            panelExcel.BringToFront();
+            panelCadastrarContent.BringToFront();
+        }
         private void AtualizarListViewAlunos()
         {
             if (Dados.Count<TOAluno>() == 0)
@@ -151,26 +161,28 @@ namespace robo.View
             }
             else
             {
-                dgvAlunos.Visible = true;
                 List<TOAluno> alunos = Dados.SelectAll<TOAluno>();
-                dgvAlunos.AutoGenerateColumns = true;
-                dgvAlunos.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
+                dgvAlunos.Visible = true;
                 dgvAlunos.DataSource = alunos;
-
-                foreach (DataGridViewColumn item in dgvAlunos.Columns)
-                {
-                    if (Convert.ToString(dgvAlunos.Rows[0].Cells[item.Name].Value) == "" || item.Name == "Id")
-                    {
-                        dgvAlunos.Columns[item.Name].Visible = false;
-                    }
-                    else
-                    {
-                        dgvAlunos.Columns[item.Name].Visible = true;
-                    }
-                }
-
+                RemoverColunasVaziasDatagrid();
             }
         }
+
+        private void RemoverColunasVaziasDatagrid()
+        {
+            foreach (DataGridViewColumn item in dgvAlunos.Columns)
+            {
+                if (Convert.ToString(dgvAlunos.Rows[0].Cells[item.Name].Value) == "" || item.Name == "Id")
+                {
+                    dgvAlunos.Columns[item.Name].Visible = false;
+                }
+                else
+                {
+                    dgvAlunos.Columns[item.Name].Visible = true;
+                }
+            }
+        }
+
         private void OpenPanelCadastro()
         {
             panelCadastrarContent.Visible = true;
@@ -210,15 +222,13 @@ namespace robo.View
         }
         private void btnPlanilha_Click(object sender, EventArgs e)
         {
-            VerificarStatusAluno();
-            AtualizarListViewAlunos();
-
             panelExcel.BringToFront();
-
             btnVoltar.Visible = true;
             btnPlanilha.Visible = false;
             btnVoltar.Location = new Point(lblExecucao.Size.Width + 40, lblExecucao.Location.Y);
 
+            VerificarStatusAluno();
+            AtualizarListViewAlunos();
         }
         private void btnExecucao_Click(object sender, EventArgs e)
         {
@@ -269,7 +279,6 @@ namespace robo.View
             {
                 return;
             }
-            AtualizarListViewAlunos();
             ofdSelectExcel.Filter = "CSV (*.csv)|*.csv";
 
             if (ofdSelectExcel.ShowDialog() == DialogResult.OK)
@@ -279,7 +288,6 @@ namespace robo.View
                     Cursor.Current = Cursors.WaitCursor;
                     Dados.ImportaAlunos(ofdSelectExcel.FileName, labelTipoFies.Text);
                     Cursor.Current = Cursors.Default;
-                    AtualizarListViewAlunos();
                     SystemSounds.Beep.Play();
                     VerificarStatusAluno();
                     panelExcel.Visible = true;
@@ -379,7 +387,7 @@ namespace robo.View
             Button button = sender as Button;
             button.UseVisualStyleBackColor = false;
             button.ForeColor = SystemColors.Control;
-            button.BackColor = Color.FromArgb(0,0, 172, 166);
+            button.BackColor = Color.FromArgb(0, 0, 172, 166);
         }
         private void btnChangeColorLeave(object sender, EventArgs e)
         {
@@ -387,6 +395,11 @@ namespace robo.View
             button.UseVisualStyleBackColor = true;
             button.ForeColor = Color.FromArgb(0, 45, 45, 45);
             button.BackColor = SystemColors.Control;
+        }
+
+        private void FormInterface_Shown(object sender, EventArgs e)
+        {
+            btnHome.PerformClick();
         }
     }
 }
