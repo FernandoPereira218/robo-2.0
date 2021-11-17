@@ -23,22 +23,21 @@ namespace Robo
             {
                 txtId.Text = usuario.Id.ToString();
                 txtUser.Text = usuario.Usuario;
-                txtSenhaUsuario.Text = usuario.Senha;
+                txtSenhaUsuario.Text = string.Empty;
                 cbPermissoes.Text = usuario.Permissao;
                 cbRegional.Text = usuario.Regional;
 
                 this.btnOKLogin.Text = "Atualizar";
                 txtId.Enabled = false;
                 this.txtUser.Enabled = false;
-                this.btnOKLogin.Click -= new System.EventHandler(this.btnOKLogin_Click);
-                this.btnOKLogin.Click += new System.EventHandler(this.btnAtualizarLogin_Click);
+                this.btnOKLogin.Click -= new EventHandler(this.btnOKLogin_Click);
+                this.btnOKLogin.Click += new EventHandler(this.btnAtualizarLogin_Click);
             }
             else
             {
-                txtUser.Text = String.Empty;
-                txtSenhaUsuario.Text = String.Empty;
-                cbPermissoes.Text = String.Empty;
-                //cbIES.Text = String.Empty;
+                txtUser.Text = string.Empty;
+                txtSenhaUsuario.Text = string.Empty;
+                cbPermissoes.Text = string.Empty;
 
                 this.btnOKLogin.Text = "Aceitar";
                 this.txtUser.Enabled = true;

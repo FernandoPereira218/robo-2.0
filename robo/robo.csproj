@@ -292,11 +292,11 @@
     <Compile Include="Model\TO\TOMenus.cs" />
     <Compile Include="Control\Util\UtilSelenium.cs" />
     <Compile Include="Control\Util\UtilSiga.cs" />
-    <Compile Include="View\Configuracoes.cs">
+    <Compile Include="View\FormConfiguracoes.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="View\Configuracoes.Designer.cs">
-      <DependentUpon>Configuracoes.cs</DependentUpon>
+    <Compile Include="View\FormConfiguracoes.Designer.cs">
+      <DependentUpon>FormConfiguracoes.cs</DependentUpon>
     </Compile>
     <Compile Include="View\FormDefault.cs">
       <SubType>Form</SubType>
@@ -372,8 +372,8 @@
     <EmbeddedResource Include="View\Login.resx">
       <DependentUpon>Login.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="View\Configuracoes.resx">
-      <DependentUpon>Configuracoes.cs</DependentUpon>
+    <EmbeddedResource Include="View\FormConfiguracoes.resx">
+      <DependentUpon>FormConfiguracoes.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="View\FormDefault.resx">
       <DependentUpon>FormDefault.cs</DependentUpon>

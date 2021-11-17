@@ -45,19 +45,19 @@ namespace robo.View
             this.btLogins = new System.Windows.Forms.Button();
             this.panelLogins = new System.Windows.Forms.Panel();
             this.dgvLogins = new System.Windows.Forms.DataGridView();
-            this.metroLabel8 = new MetroFramework.Controls.MetroLabel();
+            this.lblTituloLogins = new MetroFramework.Controls.MetroLabel();
             this.btnExcluirLogin = new System.Windows.Forms.Button();
             this.btnModificarLogin = new System.Windows.Forms.Button();
             this.btnAdicionarLogin = new System.Windows.Forms.Button();
             this.panelUsuarios = new System.Windows.Forms.Panel();
-            this.metroLabel9 = new MetroFramework.Controls.MetroLabel();
+            this.lblTituloUsuarios = new MetroFramework.Controls.MetroLabel();
             this.btExcUsuario = new System.Windows.Forms.Button();
             this.btModUsuario = new System.Windows.Forms.Button();
             this.btAddUsuario = new System.Windows.Forms.Button();
             this.dgvUsuarios = new System.Windows.Forms.DataGridView();
             this.panelBackup = new System.Windows.Forms.Panel();
             this.panelMenuBar = new System.Windows.Forms.Panel();
-            this.label6 = new System.Windows.Forms.Label();
+            this.lblTitulo = new System.Windows.Forms.Label();
             this.btnMinimize = new System.Windows.Forms.Button();
             this.btnClose = new System.Windows.Forms.Button();
             this.panelSubMenu.SuspendLayout();
@@ -133,7 +133,7 @@ namespace robo.View
             this.panelLogins.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.panelLogins.BackColor = System.Drawing.Color.White;
             this.panelLogins.Controls.Add(this.dgvLogins);
-            this.panelLogins.Controls.Add(this.metroLabel8);
+            this.panelLogins.Controls.Add(this.lblTituloLogins);
             this.panelLogins.Controls.Add(this.btnExcluirLogin);
             this.panelLogins.Controls.Add(this.btnModificarLogin);
             this.panelLogins.Controls.Add(this.btnAdicionarLogin);
@@ -168,7 +168,7 @@ namespace robo.View
             dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle3.BackColor = System.Drawing.Color.White;
             dataGridViewCellStyle3.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.Black;
             dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
             dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
@@ -193,17 +193,17 @@ namespace robo.View
             this.dgvLogins.Size = new System.Drawing.Size(459, 475);
             this.dgvLogins.TabIndex = 6;
             // 
-            // metroLabel8
+            // lblTituloLogins
             // 
-            this.metroLabel8.AutoSize = true;
-            this.metroLabel8.BackColor = System.Drawing.SystemColors.Window;
-            this.metroLabel8.FontSize = MetroFramework.MetroLabelSize.Tall;
-            this.metroLabel8.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.metroLabel8.Location = new System.Drawing.Point(246, 89);
-            this.metroLabel8.Name = "metroLabel8";
-            this.metroLabel8.Size = new System.Drawing.Size(162, 25);
-            this.metroLabel8.TabIndex = 5;
-            this.metroLabel8.Text = "Data Grid de Logins";
+            this.lblTituloLogins.AutoSize = true;
+            this.lblTituloLogins.BackColor = System.Drawing.SystemColors.Window;
+            this.lblTituloLogins.FontSize = MetroFramework.MetroLabelSize.Tall;
+            this.lblTituloLogins.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.lblTituloLogins.Location = new System.Drawing.Point(246, 89);
+            this.lblTituloLogins.Name = "lblTituloLogins";
+            this.lblTituloLogins.Size = new System.Drawing.Size(137, 25);
+            this.lblTituloLogins.TabIndex = 5;
+            this.lblTituloLogins.Text = "Tabela de Logins";
             // 
             // btnExcluirLogin
             // 
@@ -264,7 +264,7 @@ namespace robo.View
             // 
             this.panelUsuarios.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.panelUsuarios.BackColor = System.Drawing.Color.White;
-            this.panelUsuarios.Controls.Add(this.metroLabel9);
+            this.panelUsuarios.Controls.Add(this.lblTituloUsuarios);
             this.panelUsuarios.Controls.Add(this.btExcUsuario);
             this.panelUsuarios.Controls.Add(this.btModUsuario);
             this.panelUsuarios.Controls.Add(this.btAddUsuario);
@@ -274,15 +274,15 @@ namespace robo.View
             this.panelUsuarios.Size = new System.Drawing.Size(630, 729);
             this.panelUsuarios.TabIndex = 41;
             // 
-            // metroLabel9
+            // lblTituloUsuarios
             // 
-            this.metroLabel9.AutoSize = true;
-            this.metroLabel9.FontSize = MetroFramework.MetroLabelSize.Tall;
-            this.metroLabel9.Location = new System.Drawing.Point(233, 102);
-            this.metroLabel9.Name = "metroLabel9";
-            this.metroLabel9.Size = new System.Drawing.Size(178, 25);
-            this.metroLabel9.TabIndex = 4;
-            this.metroLabel9.Text = "Data Grid de Usuários";
+            this.lblTituloUsuarios.AutoSize = true;
+            this.lblTituloUsuarios.FontSize = MetroFramework.MetroLabelSize.Tall;
+            this.lblTituloUsuarios.Location = new System.Drawing.Point(233, 102);
+            this.lblTituloUsuarios.Name = "lblTituloUsuarios";
+            this.lblTituloUsuarios.Size = new System.Drawing.Size(153, 25);
+            this.lblTituloUsuarios.TabIndex = 4;
+            this.lblTituloUsuarios.Text = "Tabela de Usuários";
             // 
             // btExcUsuario
             // 
@@ -415,7 +415,7 @@ namespace robo.View
             this.panelMenuBar.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panelMenuBar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(45)))));
-            this.panelMenuBar.Controls.Add(this.label6);
+            this.panelMenuBar.Controls.Add(this.lblTitulo);
             this.panelMenuBar.Controls.Add(this.btnMinimize);
             this.panelMenuBar.Controls.Add(this.btnClose);
             this.panelMenuBar.ForeColor = System.Drawing.Color.White;
@@ -426,18 +426,18 @@ namespace robo.View
             this.panelMenuBar.TabIndex = 5;
             this.panelMenuBar.MouseDown += new System.Windows.Forms.MouseEventHandler(this.panelMenuBar_MouseDown);
             // 
-            // label6
+            // lblTitulo
             // 
-            this.label6.AutoSize = true;
-            this.label6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(45)))));
-            this.label6.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.label6.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.ForeColor = System.Drawing.Color.White;
-            this.label6.Location = new System.Drawing.Point(12, 10);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(86, 16);
-            this.label6.TabIndex = 11;
-            this.label6.Text = "Configurações";
+            this.lblTitulo.AutoSize = true;
+            this.lblTitulo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(45)))));
+            this.lblTitulo.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.lblTitulo.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTitulo.ForeColor = System.Drawing.Color.White;
+            this.lblTitulo.Location = new System.Drawing.Point(12, 10);
+            this.lblTitulo.Name = "lblTitulo";
+            this.lblTitulo.Size = new System.Drawing.Size(86, 16);
+            this.lblTitulo.TabIndex = 11;
+            this.lblTitulo.Text = "Configurações";
             // 
             // btnMinimize
             // 
@@ -506,13 +506,13 @@ namespace robo.View
         private System.Windows.Forms.Panel panelSubMenu;
         private System.Windows.Forms.Panel panelLogins;
         private System.Windows.Forms.DataGridView dgvLogins;
-        private MetroFramework.Controls.MetroLabel metroLabel8;
+        private MetroFramework.Controls.MetroLabel lblTituloLogins;
         private System.Windows.Forms.Button btnExcluirLogin;
         private System.Windows.Forms.Button btnModificarLogin;
         private System.Windows.Forms.Button btnAdicionarLogin;
         private System.Windows.Forms.Button btUsuarios;
         private System.Windows.Forms.Panel panelUsuarios;
-        private MetroFramework.Controls.MetroLabel metroLabel9;
+        private MetroFramework.Controls.MetroLabel lblTituloUsuarios;
         private System.Windows.Forms.Button btExcUsuario;
         private System.Windows.Forms.Button btModUsuario;
         private System.Windows.Forms.Button btAddUsuario;
@@ -521,7 +521,7 @@ namespace robo.View
         private System.Windows.Forms.Panel panelBackup;
         private System.Windows.Forms.Button btLogins;
         private System.Windows.Forms.Panel panelMenuBar;
-        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label lblTitulo;
         private System.Windows.Forms.Button btnMinimize;
         public System.Windows.Forms.Button btnClose;
     }

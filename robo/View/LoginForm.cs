@@ -33,12 +33,12 @@ namespace Robo
             }
             else
             {
-                txtUser.Text = String.Empty;
-                txtSenhaLogin.Text = String.Empty;
-                txtFaculdadeLogin.Text = String.Empty;
-                txtCampusLogin.Text = String.Empty;
-                txtPlataformaLogin.Text = String.Empty;
-                txtRegionalLogin.Text = String.Empty;
+                txtUser.Text = string.Empty;
+                txtSenhaLogin.Text = string.Empty;
+                txtFaculdadeLogin.Text = string.Empty;
+                txtCampusLogin.Text = string.Empty;
+                txtPlataformaLogin.Text = string.Empty;
+                txtRegionalLogin.Text = string.Empty;
 
                 this.btnOKLogin.Text = "Aceitar";
                 this.txtUser.Enabled = true;

@@ -1,4 +1,4 @@
-﻿using org.apache.commons.lang.time;
+using org.apache.commons.lang.time;
 using Robo;
 using System;
 using System.Collections.Generic;
@@ -38,7 +38,7 @@ namespace robo.View
             }
             dgvAlunos.AutoGenerateColumns = true;
             VerificarVersaoCAE();
-            InicializarDatagridView();
+            InicializarDataGridViewAlunos();
             this.MaximizedBounds = Screen.FromHandle(this.Handle).WorkingArea;
             this.WindowState = FormWindowState.Maximized;
             labelDescricaoHome.Text =
@@ -145,7 +145,7 @@ namespace robo.View
             }
         }
 
-        private void InicializarDatagridView()
+        private void InicializarDataGridViewAlunos()
         {
             dgvAlunos.Visible = true;
             dgvAlunos.DataSource = new List<TOAluno>() { new TOAluno { Cpf = "0", Tipo = "Fies" } };
@@ -153,7 +153,7 @@ namespace robo.View
             panelExcel.BringToFront();
             panelCadastrarContent.BringToFront();
         }
-        private void AtualizarListViewAlunos()
+        private void AtualizarDataGridAlunos()
         {
             if (Dados.Count<TOAluno>() == 0)
             {
@@ -228,7 +228,7 @@ namespace robo.View
             btnVoltar.Location = new Point(lblExecucao.Size.Width + 40, lblExecucao.Location.Y);
 
             VerificarStatusAluno();
-            AtualizarListViewAlunos();
+            AtualizarDataGridAlunos();
         }
         private void btnExecucao_Click(object sender, EventArgs e)
         {
@@ -256,7 +256,7 @@ namespace robo.View
                 return;
             }
             Dados.UpdateConclusaoAluno("Não Feito");
-            AtualizarListViewAlunos();
+            AtualizarDataGridAlunos();
         }
         private void btnExportarExcel_Click(object sender, EventArgs e)
         {
@@ -295,7 +295,6 @@ namespace robo.View
                     btnPlanilha.PerformClick();
                 }
             }
-
         }
 
         private void VerificarStatusAluno()
