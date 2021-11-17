@@ -1,12 +1,6 @@
 ﻿using robo;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Robo
@@ -41,8 +35,8 @@ namespace Robo
 
                 this.btnOKLogin.Text = "Aceitar";
                 this.txtUser.Enabled = true;
-                this.btnOKLogin.Click -= new System.EventHandler(this.btnAtualizarLogin_Click);
-                this.btnOKLogin.Click += new System.EventHandler(this.btnOKLogin_Click);
+                this.btnOKLogin.Click -= new EventHandler(this.btnAtualizarLogin_Click);
+                this.btnOKLogin.Click += new EventHandler(this.btnOKLogin_Click);
             }
         }
 
