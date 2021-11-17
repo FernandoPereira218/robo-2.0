@@ -52,7 +52,7 @@ namespace robo.Control.Relatorios.FIES_Novo
             {
                 var downloadFolder = Util.GetDownloadsFolderPath();
                 downloadFolder = downloadFolder + "\\Historico Reparcelamento Coparticipação";
-                Util.CreateDirectoryIfNotExists(downloadFolder);
+                Util.CriarDiretorioCasoNaoExista(downloadFolder);
                 arquivo = downloadFolder + "\\" + fileName + ".csv";
             }
             else

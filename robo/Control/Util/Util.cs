@@ -11,6 +11,8 @@ using robo.Control.Update;
 using CsvHelper;
 using System.Globalization;
 using robo.View;
+using System.Linq;
+using System.IO.Compression;
 
 namespace Robo
 {
@@ -33,12 +35,14 @@ namespace Robo
             string downloadFolder = "";
             if (downloadFldr == true)
             {
-                CreateDirectoryIfNotExists("RelatorioExportacao\\");
+                CriarDiretorioCasoNaoExista("RelatorioExportacao\\");
                 downloadFolder = Directory.GetCurrentDirectory() + "\\RelatorioExportacao\\";
             }
             else
             {
-                downloadFolder = GetDownloadsFolderPath();
+                //downloadFolder = GetDownloadsFolderPath();
+                CriarDiretorioCasoNaoExista("DocumentosBaixados\\");
+                downloadFolder = Directory.GetCurrentDirectory() + "\\DocumentosBaixados\\";
             }
 
             if (firefox == true)
@@ -136,7 +140,7 @@ namespace Robo
         /// Cria um diretorio caso não exista
         /// </summary>
         /// <param name="directories">Conjunto de diretórios que devem ser criados</param>
-        public static void CreateDirectoryIfNotExists(params string[] directories)
+        public static void CriarDiretorioCasoNaoExista(params string[] directories)
         {
             foreach (String directory in directories)
             {
@@ -366,6 +370,70 @@ namespace Robo
             }
             digito = digito + resto.ToString();
             return cpf.EndsWith(digito);
+        }
+
+        public static void BaixarDocumento(string nomeArquivo, string tipoDocumento, string simplificado)
+        {
+            string caminhoDownloads = GetDownloadsFolderPath();
+            DirectoryInfo pastaDownloads = new DirectoryInfo(Directory.GetCurrentDirectory() + "\\DocumentosBaixados");
+            EsperarDownload(pastaDownloads);
+            FileInfo arquivoBaixado = pastaDownloads.GetFiles().OrderByDescending(f => f.LastWriteTime).First();
+            string diretorioFinal;
+
+            if (arquivoBaixado.FullName.EndsWith(".zip"))
+            {
+                if (tipoDocumento == "DRM")
+                {
+                    string diretorioDRM = GetDownloadsFolderPath() + "\\DRM FIES Legado";
+                    string diretorioSimplificado = diretorioDRM + "\\Simplificados";
+                    string diretorioNaoSimplificado = diretorioDRM + "\\Nao-Simplificados";
+                    CriarDiretorioCasoNaoExista(diretorioDRM, diretorioSimplificado, diretorioNaoSimplificado);
+
+                    if (simplificado.Trim() == "Simplificado")
+                    {
+                        diretorioFinal = diretorioSimplificado;
+                    }
+                    else
+                    {
+                        diretorioFinal = diretorioNaoSimplificado;
+                    }
+                }
+                else
+                {
+                    string diretorio = caminhoDownloads + "\\" + tipoDocumento + " FIES Legado";
+                    CriarDiretorioCasoNaoExista(diretorio);
+                    diretorioFinal = diretorio;
+                }
+
+                File.Copy(arquivoBaixado.FullName, diretorioFinal + "\\" + nomeArquivo + ".zip", true);
+            }
+            else
+            {
+
+            }
+
+
+            foreach (FileInfo item in pastaDownloads.GetFiles())
+            {
+                item.Delete();
+            }
+        }
+
+        private static void EsperarDownload(DirectoryInfo pastaDownloads)
+        {
+            FileInfo ultimoArquivo = pastaDownloads.GetFiles().OrderByDescending(f => f.LastWriteTime).First();
+            bool baixando = true;
+            while (ultimoArquivo.Name.EndsWith(".crdownload") == true)
+            {
+                System.Threading.Thread.Sleep(1000);
+                ultimoArquivo = pastaDownloads.GetFiles().OrderByDescending(f => f.LastWriteTime).First();
+                baixando = ultimoArquivo.Name.EndsWith(".crdownload");
+            }
+        }
+
+        public static void ExportarDocumento()
+        {
+
         }
 
     }

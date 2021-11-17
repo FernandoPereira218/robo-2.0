@@ -341,7 +341,7 @@ namespace Robo
                 if (MessageBox.Show(mensagem, "Limpar Banco de Dados", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK)
                 {
 
-                    Util.CreateDirectoryIfNotExists("backup");
+                    Util.CriarDiretorioCasoNaoExista("backup");
                     DirectoryInfo directory = new DirectoryInfo("backup");
                     if (directory.GetFiles().Count() >= 5)
                     {

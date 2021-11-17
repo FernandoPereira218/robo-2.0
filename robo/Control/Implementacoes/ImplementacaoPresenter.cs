@@ -42,6 +42,7 @@ namespace robo.Control.Implementacoes
                 if (Program.login.Permissao == "CAE")
                 {
                     alunos = new List<TOAluno>() { new TOAluno() { Cpf = CPFCae, Tipo = tipoFies } };
+                    contador = 1;
                 }
                 else
                 {
@@ -51,11 +52,11 @@ namespace robo.Control.Implementacoes
             }
             if (admin == true)
             {
-                logins = Dados.SelectLoginPorIESePlataforma(faculdade, tipoFies, campus, true);
+                logins = Dados.SelectLoginPorIESePlataforma(faculdade, tipoFies, campus, admin:true);
             }
             else
             {
-                logins = Dados.SelectLoginPorIESePlataforma(faculdade, tipoFies, campus, false);
+                logins = Dados.SelectLoginPorIESePlataforma(faculdade, tipoFies, campus, admin:false);
             }
             progresso = 0;
         }
