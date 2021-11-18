@@ -43,12 +43,15 @@ namespace robo.Control.Relatorios.FIES_Novo
                 }
                 
             }
-            string downloadFolder = Util.GetDownloadsFolderPath();
-            string arquivo = downloadFolder + "\\Relatório_" + tipoRelatorio + ".csv";
+            string downloadFolder = Directory.GetCurrentDirectory() + "\\RelatorioExportacao\\";
+            string nomeArquivo = "Relatório_" + tipoRelatorio + ".csv";
+            string arquivo = downloadFolder + nomeArquivo;
             using (StreamWriter sw = new StreamWriter(arquivo, false, UTF8Encoding.UTF8))
             {
                 sw.Write(sb.ToString());
             }
+
+            Util.ExportarDocumento("", nomeArquivo: nomeArquivo);
         }
 
         private string ListaParaString(string idDropdown, string idTabela, bool buscarCabecalhos, string paginaAnterior)

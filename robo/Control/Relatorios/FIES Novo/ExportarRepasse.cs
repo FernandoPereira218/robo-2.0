@@ -23,7 +23,8 @@ namespace robo.Control.Relatorios.FIES_Novo
             ClickButtonsById(Driver, "btnExportar");
             WaitForLoading(Driver);
 
-            SalvarArquivos(Driver, "Repasse", nomeArquivo: mes + "_" + ano + ".xls");
+            //SalvarArquivos(Driver, "Repasse", nomeArquivo: mes + "_" + ano + ".xls");
+            Util.ExportarDocumento("Repasse", nomeArquivo: mes + "_" + ano + ".xls");
         }
     }
 }

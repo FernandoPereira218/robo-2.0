@@ -407,11 +407,6 @@ namespace Robo
 
                 File.Copy(arquivoBaixado.FullName, diretorioFinal + "\\" + nomeArquivo + ".zip", true);
             }
-            else
-            {
-
-            }
-
 
             foreach (FileInfo item in pastaDownloads.GetFiles())
             {
@@ -419,7 +414,7 @@ namespace Robo
             }
         }
 
-        private static void EsperarDownload(DirectoryInfo pastaDownloads)
+        public static void EsperarDownload(DirectoryInfo pastaDownloads)
         {
             FileInfo ultimoArquivo = pastaDownloads.GetFiles().OrderByDescending(f => f.LastWriteTime).First();
             bool baixando = true;
@@ -431,9 +426,29 @@ namespace Robo
             }
         }
 
-        public static void ExportarDocumento()
+        public static void ExportarDocumento(string tipoRelatorio, string campus = "", string semestre = "", string nomeArquivo = "")
         {
+            while (Directory.GetFiles("RelatorioExportacao\\").Count() == 0)
+            {
+                System.Threading.Thread.Sleep(100);
+            }
 
+            DirectoryInfo directory = new DirectoryInfo("RelatorioExportacao\\");
+            FileInfo myFile = directory.GetFiles().OrderByDescending(f => f.LastWriteTime).First();
+            EsperarDownload(directory);
+
+            foreach (var item in Directory.GetFiles("RelatorioExportacao\\"))
+            {
+                string downloadFolder = Util.GetDownloadsFolderPath();
+                if (nomeArquivo == "")
+                {
+                    nomeArquivo = DateTime.Now.ToString("dd-MM-yy") + campus + "_" + semestre + ".xls";
+                }
+                Util.CriarDiretorioCasoNaoExista(downloadFolder + "\\Relatório Exportacao");
+                string caminho = downloadFolder + "\\Relatório Exportacao\\" + tipoRelatorio + " " + nomeArquivo;
+                File.Copy(item, caminho, true);
+                File.Delete(item);
+            }
         }
 
     }

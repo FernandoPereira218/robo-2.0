@@ -24,7 +24,8 @@ namespace robo.Control.Relatorios.FIES_Novo
             ClickButtonsById(Driver, "btnExportar");
             WaitForLoading(Driver);
 
-            SalvarArquivos(Driver, "Inadimplência", nomeArquivo: mes + "_" + ano + ".xls");
+            //SalvarArquivos(Driver, "Inadimplência", nomeArquivo: mes + "_" + ano + ".xls");
+            Util.ExportarDocumento("Inadimplência", nomeArquivo: mes + "_" + ano + ".xls");
         }
 
         public void Inadimplencia(IWebDriver driver)
@@ -62,7 +63,8 @@ namespace robo.Control.Relatorios.FIES_Novo
                     ClickButtonsById(Driver, "btnExportar");
                     WaitForLoading(Driver);
 
-                    SalvarArquivos(Driver, "Inadimplência", nomeArquivo: mesSelecionado + "_" + anoSelecionado + ".xls");
+                    //SalvarArquivos(Driver, "Inadimplência", nomeArquivo: mesSelecionado + "_" + anoSelecionado + ".xls");
+                    Util.ExportarDocumento("Inadimplência", nomeArquivo: mesSelecionado + "_" + anoSelecionado + ".xls");
 
                     contador--;
                 }
