@@ -14,16 +14,10 @@ namespace robo.Control.Relatorios.FIES_Legado
 {
     class ExtrairInformacoesDRM : UtilFiesLegado
     {
-        private UtilFiesLegado utilFiesLegado = new UtilFiesLegado();
         private IWebDriver Driver;
-        public void ExtrairDRM(IWebDriver driver, TOAluno aluno, string campus, string semestre)
+        public void ExtrairDRM(TOAluno aluno, string semestre)
         {
-            ClickDropDown(Driver, "id", "co_finalidade_aditamento", "Aditamento de Renovação");
-            WaitinLoading(Driver);
-            ClickDropDown(Driver, "id", "coSemestreAditamento", semestre);
-            ClickAndWriteById(Driver, "cpf", aluno.Cpf);
-            ClickDropDown(Driver, "id", "coSemestreAditamento", semestre);
-            ClickButtonsById(Driver, "consultar");
+            ConsultarAluno(aluno, semestre);
             string situacaoAluno;
             if (Driver.PageSource.Contains("Lista de Aditamentos"))
             {
@@ -35,10 +29,15 @@ namespace robo.Control.Relatorios.FIES_Legado
                 {
                     WaitinLoading(Driver);
 
-                    if (VerificaErro(Driver, aluno) == false)
+                    string erro = VerificarMensagem(Driver);
+                    if (erro != string.Empty)
                     {
                         BaixarDRM(ref aluno);
-                        Util.EditarConclusaoAluno(aluno, "DRM Baixado", "ALUNOINF");
+                        Util.EditarConclusaoAluno(aluno, "DRM Baixado");
+                    }
+                    else
+                    {
+                        Util.EditarConclusaoAluno(aluno, erro);
                     }
                 }
                 else
@@ -49,6 +48,17 @@ namespace robo.Control.Relatorios.FIES_Legado
                 }
             }
         }
+
+        private void ConsultarAluno(TOAluno aluno, string semestre)
+        {
+            ClickDropDown(Driver, "id", "co_finalidade_aditamento", "Aditamento de Renovação");
+            WaitinLoading(Driver);
+            ClickDropDown(Driver, "id", "coSemestreAditamento", semestre);
+            ClickAndWriteById(Driver, "cpf", aluno.Cpf);
+            ClickDropDown(Driver, "id", "coSemestreAditamento", semestre);
+            ClickButtonsById(Driver, "consultar");
+        }
+
         private void BaixarDRM(ref TOAluno aluno)
         {
             ClickButtonsById(Driver, "imprimirDrm");
@@ -130,7 +140,7 @@ namespace robo.Control.Relatorios.FIES_Legado
                 aluno.GradeAtualFinanciadoFIES = depoisTitulo.Split(' ')[11];
                 aluno.GradeAtualCoparticipacao = depoisTitulo.Split(' ')[14];
                 //infs.Conclusao = "DRM Baixada";
-        
+
                 Util.AcertaBarraR(aluno);
 
             }
@@ -140,7 +150,7 @@ namespace robo.Control.Relatorios.FIES_Legado
             }
         }
 
-        public void SetDriver(IWebDriver Driver) 
+        public void SetDriver(IWebDriver Driver)
         {
             this.Driver = Driver;
         }

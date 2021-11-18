@@ -24,7 +24,10 @@ namespace robo.Control.Relatorios.FIES_Novo
             ClickButtonsById(Driver, "btnExportar");
             WaitForLoading(Driver);
 
-            //SalvarArquivos(Driver, "Inadimplência", nomeArquivo: mes + "_" + ano + ".xls");
+            if (Driver.PageSource.Contains("Nenhuma informação disponível") == true)
+            {
+                throw new Exception("Nenhuma informação disponível");
+            }
             Util.ExportarDocumento("Inadimplência", nomeArquivo: mes + "_" + ano + ".xls");
         }
 
@@ -63,7 +66,6 @@ namespace robo.Control.Relatorios.FIES_Novo
                     ClickButtonsById(Driver, "btnExportar");
                     WaitForLoading(Driver);
 
-                    //SalvarArquivos(Driver, "Inadimplência", nomeArquivo: mesSelecionado + "_" + anoSelecionado + ".xls");
                     Util.ExportarDocumento("Inadimplência", nomeArquivo: mesSelecionado + "_" + anoSelecionado + ".xls");
 
                     contador--;

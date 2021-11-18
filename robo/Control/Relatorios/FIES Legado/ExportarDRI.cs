@@ -20,12 +20,6 @@ namespace robo.Control.Relatorios.FIES_Legado
 
             ClickButtonsById(Driver, "excel");
 
-            if (Driver.PageSource.Contains("Nenhuma informação disponível") == true)
-            {
-                throw new Exception("Nenhuma informação disponível");
-            }
-
-            //SalvarArquivos(Driver, "DRI_" + situacaoDRI, campus);
             Util.ExportarDocumento("DRI_" + situacaoDRI, campus);
         }
     }

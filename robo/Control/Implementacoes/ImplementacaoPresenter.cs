@@ -199,7 +199,7 @@ namespace robo.Control.Implementacoes
                 fiesLegadoUtil.SelecionarMenuBaixarDocumentos(Driver);
                 foreach (TOAluno aluno in listaAlunos)
                 {
-                    extrairInformacoesDRM.ExtrairDRM(Driver, aluno, login.Campus, semestre);
+                    extrairInformacoesDRM.ExtrairDRM(aluno, semestre);
                     UpdateProgresso(ref progresso, contador);
                 }
 

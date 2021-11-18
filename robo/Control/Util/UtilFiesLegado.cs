@@ -146,7 +146,7 @@ namespace robo.Control.Legado
         /// Verifica se há alguma mensagem no topo da página e retorna a mensagem encontrada
         /// </summary>
         /// <returns></returns>
-        public string VerificaMensagem(IWebDriver Driver)
+        public string VerificarMensagem(IWebDriver Driver)
         {
             IWebElement listaME = Driver.FindElement(By.Id("lista-mensageiro-erros"));
             if(listaME.Displayed)

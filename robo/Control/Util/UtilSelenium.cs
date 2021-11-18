@@ -457,18 +457,6 @@ namespace robo
         {
             return Driver.FindElement(By.XPath("//" + tag + "[contains(text(),'" + texto + "')]"));
         }
-
-        /// <summary>
-        /// Salva arquivos exportados na pasta "RelatorioExportacao" e os coloca na pasta de Downloads
-        /// </summary>
-        /// <param name="Driver"></param>
-        /// <param name="tipoRelatorio"></param>
-        /// <param name="campus"></param>
-        /// <param name="semestre"></param>
-        protected static void SalvarArquivos(IWebDriver Driver, string tipoRelatorio, string campus = "", string semestre = "", string nomeArquivo = "")
-        {
-            
-        }
     }
 }
 

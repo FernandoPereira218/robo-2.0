@@ -296,7 +296,7 @@ namespace Robo
         /// <param name="aluno"></param>
         /// <param name="conclusao"></param>
         /// <param name="tipoAluno"></param>
-        public static void EditarConclusaoAluno(TOAluno aluno, string conclusao, string tipoAluno = "ALUNO")
+        public static void EditarConclusaoAluno(TOAluno aluno, string conclusao)
         {
             aluno.Conclusao = conclusao;
             aluno.HorarioConclusao = string.Format("{0:dd/MM/yyyy HH:mm}", DateTime.Now);
@@ -372,6 +372,12 @@ namespace Robo
             return cpf.EndsWith(digito);
         }
 
+        /// <summary>
+        /// Salva arquivos baixados na pasta "DocumentosBaixados" e os coloca na pasta de Downloads
+        /// </summary>
+        /// <param name="nomeArquivo">Nome desejado para o arquivo</param>
+        /// <param name="tipoDocumento">Tipo de documento baixado</param>
+        /// <param name="simplificado">Para DRM, se o arquivo é simplificado ou não</param>
         public static void BaixarDocumento(string nomeArquivo, string tipoDocumento, string simplificado)
         {
             string caminhoDownloads = GetDownloadsFolderPath();
@@ -414,18 +420,32 @@ namespace Robo
             }
         }
 
+        /// <summary>
+        /// Aguarda até que haja algum arquivo na pasta selecionada
+        /// </summary>
+        /// <param name="pastaDownloads">Pasta que terá o arquivo baixado</param>
         public static void EsperarDownload(DirectoryInfo pastaDownloads)
         {
+            while (pastaDownloads.GetFiles().Count() == 0)
+            {
+                System.Threading.Thread.Sleep(100);
+            }
+
             FileInfo ultimoArquivo = pastaDownloads.GetFiles().OrderByDescending(f => f.LastWriteTime).First();
-            bool baixando = true;
-            while (ultimoArquivo.Name.EndsWith(".crdownload") == true)
+            while (ultimoArquivo.Name.EndsWith(".crdownload") == true || ultimoArquivo.Name.EndsWith(".part") == true)
             {
                 System.Threading.Thread.Sleep(1000);
                 ultimoArquivo = pastaDownloads.GetFiles().OrderByDescending(f => f.LastWriteTime).First();
-                baixando = ultimoArquivo.Name.EndsWith(".crdownload");
             }
         }
 
+        /// <summary>
+        /// Salva arquivos exportados na pasta "RelatorioExportacao" e os coloca na pasta de Downloads
+        /// </summary>
+        /// <param name="Driver"></param>
+        /// <param name="tipoRelatorio"></param>
+        /// <param name="campus"></param>
+        /// <param name="semestre"></param>
         public static void ExportarDocumento(string tipoRelatorio, string campus = "", string semestre = "", string nomeArquivo = "")
         {
             while (Directory.GetFiles("RelatorioExportacao\\").Count() == 0)
@@ -439,12 +459,12 @@ namespace Robo
 
             foreach (var item in Directory.GetFiles("RelatorioExportacao\\"))
             {
-                string downloadFolder = Util.GetDownloadsFolderPath();
+                string downloadFolder = GetDownloadsFolderPath();
                 if (nomeArquivo == "")
                 {
                     nomeArquivo = DateTime.Now.ToString("dd-MM-yy") + campus + "_" + semestre + ".xls";
                 }
-                Util.CriarDiretorioCasoNaoExista(downloadFolder + "\\Relatório Exportacao");
+                CriarDiretorioCasoNaoExista(downloadFolder + "\\Relatório Exportacao");
                 string caminho = downloadFolder + "\\Relatório Exportacao\\" + tipoRelatorio + " " + nomeArquivo;
                 File.Copy(item, caminho, true);
                 File.Delete(item);

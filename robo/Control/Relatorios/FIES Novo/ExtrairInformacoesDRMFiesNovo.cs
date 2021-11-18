@@ -28,7 +28,7 @@ namespace robo.Control.Relatorios.FIES_Novo
 
             ProcessarInfsFiesNovo(informacao, aluno);
 
-            Util.EditarConclusaoAluno(aluno, "DRM Baixado", "ALUNOINF");
+            Util.EditarConclusaoAluno(aluno, "DRM Baixado");
         }
 
         public void SetDriver(IWebDriver driver)
