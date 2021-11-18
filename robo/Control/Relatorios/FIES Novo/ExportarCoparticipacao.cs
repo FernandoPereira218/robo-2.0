@@ -33,10 +33,14 @@ namespace robo.Control.Relatorios.FIES_Novo
             ClickAndWriteById(Driver, "dataInicio", dataInicial);
             ClickAndWriteById(Driver, "dataFim", dataFinal);
             ClickButtonsById(Driver, "btnExportarRelatorio");
+            WaitForLoading(Driver);
             string erro = BuscarMensagemDeErro(Driver);
             if (erro == string.Empty)
             {
-                SalvarArquivos(Driver, "COPARTICIPAÇÃO", nomeArquivo: IES + "_" + Convert.ToDateTime(dataInicial).ToString("dd-MM-yyyy") + " - " + Convert.ToDateTime(dataFinal).ToString("dd-MM-yyyy") + ".xls");
+                //SalvarArquivos(Driver, "COPARTICIPAÇÃO", nomeArquivo: IES + "_" + Convert.ToDateTime(dataInicial).ToString("dd-MM-yyyy") + " - " + Convert.ToDateTime(dataFinal).ToString("dd-MM-yyyy") + ".xls");
+                Util.ExportarDocumento("COPARTICIPAÇÃO", nomeArquivo: IES + "_" + 
+                    Convert.ToDateTime(dataInicial).ToString("dd-MM-yyyy") + " - " + 
+                    Convert.ToDateTime(dataFinal).ToString("dd-MM-yyyy") + ".xls");
             }
             else
             {
