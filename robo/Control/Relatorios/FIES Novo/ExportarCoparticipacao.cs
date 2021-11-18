@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Robo;
+using OpenQA.Selenium.Support.UI;
 
 namespace robo.Control.Relatorios.FIES_Novo
 {
@@ -15,21 +16,9 @@ namespace robo.Control.Relatorios.FIES_Novo
         {
             Driver = driver;
             WaitForLoading(driver);
-            if (IES.ToUpper().Equals("UNIRITTER") || IES.ToUpper().Equals("FADERGS"))
-            {
-                IWebElement dropDownIES = Driver.FindElement(By.Id("ies_chosen"));
-                dropDownIES.Click();
-                ((IJavaScriptExecutor)Driver).ExecuteScript("alert(\"Por favor selecione uma IES\")");
-                while (isAlertPresent(Driver))
-                {
-                    System.Threading.Thread.Sleep(100);
-                }
-                while (dropDownIES.Text.ToUpper().Contains("SELECIONE"))
-                {
-                    System.Threading.Thread.Sleep(100);
-                }
 
-            }
+            SelecionarOpcaoMenu();
+
             ClickAndWriteById(Driver, "dataInicio", dataInicial);
             ClickAndWriteById(Driver, "dataFim", dataFinal);
             ClickButtonsById(Driver, "btnExportarRelatorio");
@@ -37,15 +26,52 @@ namespace robo.Control.Relatorios.FIES_Novo
             string erro = BuscarMensagemDeErro(Driver);
             if (erro == string.Empty)
             {
-                //SalvarArquivos(Driver, "COPARTICIPAÇÃO", nomeArquivo: IES + "_" + Convert.ToDateTime(dataInicial).ToString("dd-MM-yyyy") + " - " + Convert.ToDateTime(dataFinal).ToString("dd-MM-yyyy") + ".xls");
-                Util.ExportarDocumento("COPARTICIPAÇÃO", nomeArquivo: IES + "_" + 
-                    Convert.ToDateTime(dataInicial).ToString("dd-MM-yyyy") + " - " + 
+                if (Driver.PageSource.Contains("Nenhuma informação disponível") == true)
+                {
+                    throw new Exception("Nenhuma informação disponível");
+                }
+                Util.ExportarDocumento("COPARTICIPAÇÃO", nomeArquivo: IES + "_" +
+                    Convert.ToDateTime(dataInicial).ToString("dd-MM-yyyy") + " - " +
                     Convert.ToDateTime(dataFinal).ToString("dd-MM-yyyy") + ".xls");
             }
             else
             {
                 throw new Exception(erro);
             }
+        }
+
+        private void SelecionarOpcaoMenu()
+        {
+            try
+            {
+                SelectElement select = new SelectElement(Driver.FindElement(By.Id("ies")));
+                if (select.Options.Count > 2)
+                {
+                    IWebElement dropDownIES = Driver.FindElement(By.Id("ies_chosen"));
+                    dropDownIES.Click();
+                    ((IJavaScriptExecutor)Driver).ExecuteScript("alert(\"Por favor selecione uma IES\")");
+                    while (isAlertPresent(Driver))
+                    {
+                        System.Threading.Thread.Sleep(100);
+                    }
+                    while (dropDownIES.Text.ToUpper().Contains("SELECIONE"))
+                    {
+                        System.Threading.Thread.Sleep(100);
+                    }
+                }
+                else if (select.Options.Count == 2)
+                {
+                    IWebElement dropDownIES = Driver.FindElement(By.Id("ies_chosen"));
+                    dropDownIES.Click();
+                    IWebElement opcao = Driver.FindElement(By.XPath("//li[@data-option-array-index=1]"));
+                    opcao.Click();
+                }
+            }
+            catch (NoSuchElementException)
+            {
+
+            }
+
         }
     }
 }

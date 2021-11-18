@@ -21,27 +21,31 @@ namespace robo.Control.Relatorios.FIES_Legado
             SelectElement select = new SelectElement(Driver.FindElement(By.Id("dt_repasse")));
             if (select.Options.Count > 2)
             {
-                ((IJavaScriptExecutor)Driver).ExecuteScript("alert(\"Por favor selecione uma data\")");
-                while (isAlertPresent(Driver))
-                {
-                    System.Threading.Thread.Sleep(100);
-                }
-                while (select.SelectedOption.Text == "Selecione")
-                {
-                    System.Threading.Thread.Sleep(500);
-                }
+                EsperarSelecaoIES(select);
             }
             else if (select.Options.Count == 1)
             {
-                return;
+                throw new Exception("IES não disponível.");
             }
             else
             {
                 select.SelectByIndex(1);
             }
             Driver.FindElement(By.Id("btn_excel")).Click();
-            //SalvarArquivos(Driver, "Extrato_Mensal_Repasse_", campus);
             Util.ExportarDocumento("Extrato_Mensal_Repasse_", campus);
+        }
+
+        private void EsperarSelecaoIES(SelectElement select)
+        {
+            ((IJavaScriptExecutor)Driver).ExecuteScript("alert(\"Por favor selecione uma data\")");
+            while (isAlertPresent(Driver))
+            {
+                System.Threading.Thread.Sleep(100);
+            }
+            while (select.SelectedOption.Text == "Selecione")
+            {
+                System.Threading.Thread.Sleep(500);
+            }
         }
     }
 }
