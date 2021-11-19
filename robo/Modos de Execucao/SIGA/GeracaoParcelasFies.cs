@@ -19,9 +19,7 @@ namespace robo.Control.Relatorios.SIGA
             WaitElementIsVisible(driver, By.Id("pess_cpf"));
             FiltraAluno(driver, aluno);
             string semestreCorreto = FormatarSemestreSiga(semestre);
-            IWebElement tdParcelas;
-            string botaoId;
-            BuscarLinhaCorreta(aluno, out tdParcelas, out botaoId);
+            BuscarLinhaCorreta(aluno, out IWebElement tdParcelas, out string botaoId);
             string parcelas = BuscarQuantidadeParcelas(semestreCorreto, tdParcelas);
 
             if (parcelas == string.Empty)
@@ -36,8 +34,6 @@ namespace robo.Control.Relatorios.SIGA
 
                 SelectElement select = new SelectElement(Driver.FindElement(By.Id("num_parcela")));
                 int numParcelas = select.Options.Count();
-                string semetreSiga = BuscarSemestreSiga(semestre);
-                DateTime dataAtual = DateTime.Now;
                 if (numParcelas <= 2)
                 {
                     Util.EditarConclusaoAluno(aluno, "Sem parcelas disponíveis!");
@@ -45,53 +41,63 @@ namespace robo.Control.Relatorios.SIGA
                     return;
                 }
 
-                for (int i = 2; i < numParcelas; i++)
-                {
-                    WaitLoading(driver);
-                    try
-                    {
-                        select = new SelectElement(Driver.FindElement(By.Id("num_parcela")));
-                    }
-                    catch (UnexpectedTagNameException)
-                    {
-                        WaitLoading(driver);
-                        select = new SelectElement(Driver.FindElement(By.Id("num_parcela")));
-                    }
+                GerarTodasMensalidades(driver, aluno, numParcelas, semestre);
 
-                    if (select.Options[opcaoParcela].Text.ToUpper().Contains("PARCELA"))
-                    {
-                        //Clica no semestre correto
-                        ClickDropDownExact(driver, "id", "peri_id", semetreSiga);
-
-                        select = new SelectElement(Driver.FindElement(By.Id("num_parcela")));
-                        string ParcelaSelecionada = select.Options[opcaoParcela].Text;
-
-                        //Clicar na parcela
-                        ClickDropDown(driver, "id", "num_parcela", select.Options[opcaoParcela].Text);
-
-                        //Clicar em número do documento
-                        SelecionarNumeroDocumento();
-
-                        DateTime dataVencimento = BuscarDataVencimento(aluno, dataAtual, ParcelaSelecionada);
-
-                        //Escrever data vencimento
-                        ClickAndWriteById(driver, "id_dt_vencimento", dataVencimento.ToString("dd/MM/yyyy"));
-
-                        //Gerar mensalidade
-                        ClickElementByXPath(driver, "input", "value", "Gerar Mensalidade");
-
-                        WaitElementIsVisible(driver, By.Id("msg_1"));
-
-                        string textoMensagem = ConfirmacaoGravacaoParcelaAjuste(driver);
-                        VerificarErro(driver, aluno, ParcelaSelecionada, textoMensagem);
-
-                    }
-
-                }
                 Util.EditarConclusaoAluno(aluno, "Processo finalizado.");
                 Driver.Url = Driver.Url;
             }
 
+        }
+
+        private void GerarTodasMensalidades(IWebDriver driver, TOAluno aluno, int numParcelas, string semestre)
+        {
+            for (int i = 2; i < numParcelas; i++)
+            {
+                WaitLoading(driver);
+                SelectElement select;
+                try
+                {
+                    select = new SelectElement(Driver.FindElement(By.Id("num_parcela")));
+                }
+                catch (UnexpectedTagNameException)
+                {
+                    WaitLoading(driver);
+                    select = new SelectElement(Driver.FindElement(By.Id("num_parcela")));
+                }
+
+                if (select.Options[opcaoParcela].Text.ToUpper().Contains("PARCELA"))
+                {
+                    GerarMensalidade(driver, aluno, DateTime.Now, BuscarSemestreSiga(semestre));
+                }
+            }
+        }
+
+        private void GerarMensalidade(IWebDriver driver, TOAluno aluno, DateTime dataAtual , string semestreSiga)
+        {
+            //Clica no semestre correto
+            ClickDropDownExact(driver, "id", "peri_id", semestreSiga);
+
+            SelectElement select = new SelectElement(Driver.FindElement(By.Id("num_parcela")));
+            string ParcelaSelecionada = select.Options[opcaoParcela].Text;
+
+            //Clicar na parcela
+            ClickDropDown(driver, "id", "num_parcela", select.Options[opcaoParcela].Text);
+
+            //Clicar em número do documento
+            SelecionarNumeroDocumento();
+
+            DateTime dataVencimento = BuscarDataVencimento(aluno, dataAtual, ParcelaSelecionada);
+
+            //Escrever data vencimento
+            ClickAndWriteById(driver, "id_dt_vencimento", dataVencimento.ToString("dd/MM/yyyy"));
+
+            //Gerar mensalidade
+            ClickElementByXPath(driver, "input", "value", "Gerar Mensalidade");
+
+            WaitElementIsVisible(driver, By.Id("msg_1"));
+
+            string textoMensagem = ConfirmacaoGravacaoParcelaAjuste(driver);
+            VerificarErro(driver, aluno, ParcelaSelecionada, textoMensagem);
         }
 
         private void VerificarErro(IWebDriver driver, TOAluno aluno, string ParcelaSelecionada, string textoMensagem)
@@ -106,29 +112,8 @@ namespace robo.Control.Relatorios.SIGA
             {
                 string conclusao = "Parcela gerada com sucesso.";
 
-                switch (ParcelaSelecionada.ToUpper())
-                {
-                    case "PARCELA 1":
-                        aluno.ParcelaSiga1 = conclusao;
-                        break;
-                    case "PARCELA 2":
-                        aluno.ParcelaSiga2 = conclusao;
-                        break;
-                    case "PARCELA 3":
-                        aluno.ParcelaSiga3 = conclusao;
-                        break;
-                    case "PARCELA 4":
-                        aluno.ParcelaSiga4 = conclusao;
-                        break;
-                    case "PARCELA 5":
-                        aluno.ParcelaSiga5 = conclusao;
-                        break;
-                    case "PARCELA 6":
-                        aluno.ParcelaSiga6 = conclusao;
-                        break;
-                    default:
-                        throw new Exception("Número de parcelas não previsto");
-                }
+                PreencherParcelas(aluno, ParcelaSelecionada, conclusao);
+
                 Util.EditarConclusaoAluno(aluno, aluno.Conclusao);
             }
             else
@@ -137,31 +122,38 @@ namespace robo.Control.Relatorios.SIGA
                 mensagemSistema = mensagemSistema.Replace("\r", "");
                 mensagemSistema = mensagemSistema.Replace("ocultar", "");
                 mensagemSistema = mensagemSistema.Replace("Mensagem do Sistema", "");
-                switch (ParcelaSelecionada.ToUpper())
-                {
-                    case "PARCELA 1":
-                        aluno.ParcelaSiga1 = mensagemSistema;
-                        break;
-                    case "PARCELA 2":
-                        aluno.ParcelaSiga2 = mensagemSistema;
-                        break;
-                    case "PARCELA 3":
-                        aluno.ParcelaSiga3 = mensagemSistema;
-                        break;
-                    case "PARCELA 4":
-                        aluno.ParcelaSiga4 = mensagemSistema;
-                        break;
-                    case "PARCELA 5":
-                        aluno.ParcelaSiga5 = mensagemSistema;
-                        break;
-                    case "PARCELA 6":
-                        aluno.ParcelaSiga6 = mensagemSistema;
-                        break;
-                    default:
-                        throw new Exception("Número de parcelas não previsto");
-                }
+
+                PreencherParcelas(aluno, ParcelaSelecionada, mensagemSistema);
+
                 opcaoParcela++;
                 Util.EditarConclusaoAluno(aluno, aluno.Conclusao);
+            }
+        }
+
+        private void PreencherParcelas(TOAluno aluno, string parcelaSelecionada, string conclusaoParcela)
+        {
+            switch (parcelaSelecionada.ToUpper())
+            {
+                case "PARCELA 1":
+                    aluno.ParcelaSiga1 = conclusaoParcela;
+                    break;
+                case "PARCELA 2":
+                    aluno.ParcelaSiga2 = conclusaoParcela;
+                    break;
+                case "PARCELA 3":
+                    aluno.ParcelaSiga3 = conclusaoParcela;
+                    break;
+                case "PARCELA 4":
+                    aluno.ParcelaSiga4 = conclusaoParcela;
+                    break;
+                case "PARCELA 5":
+                    aluno.ParcelaSiga5 = conclusaoParcela;
+                    break;
+                case "PARCELA 6":
+                    aluno.ParcelaSiga6 = conclusaoParcela;
+                    break;
+                default:
+                    throw new Exception("Número de parcelas não previsto");
             }
         }
 
