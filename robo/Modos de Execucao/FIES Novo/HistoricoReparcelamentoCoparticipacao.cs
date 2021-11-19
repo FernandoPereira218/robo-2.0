@@ -63,22 +63,12 @@ namespace robo.Control.Relatorios.FIES_Novo
             {
                 File.Delete(arquivo);
             }
-            for (int i = 0; i < cabecalhos.Count(); i++)
-            {
-                using (StreamWriter t = new StreamWriter(arquivo, true, UTF8Encoding.UTF8))
-                {
-                    if (i == cabecalhos.Count() - 1)
-                    {
-                        t.Write(cabecalhos[i].Text);
-                        t.Write("\n");
-                    }
-                    else
-                    {
-                        t.Write(cabecalhos[i].Text + ";");
-                    }
-                }
+            EscreverCabecalhos(cabecalhos, arquivo);
+            EscreverDados(cabecalhos, dados, arquivo);
+        }
 
-            }
+        private static void EscreverDados(List<IWebElement> cabecalhos, List<IWebElement> dados, string arquivo)
+        {
             int contador = 0;
             for (int i = 0; i < dados.Count(); i++)
             {
@@ -102,6 +92,26 @@ namespace robo.Control.Relatorios.FIES_Novo
                 {
                     contador++;
                 }
+            }
+        }
+
+        private static void EscreverCabecalhos(List<IWebElement> cabecalhos, string arquivo)
+        {
+            for (int i = 0; i < cabecalhos.Count(); i++)
+            {
+                using (StreamWriter t = new StreamWriter(arquivo, true, UTF8Encoding.UTF8))
+                {
+                    if (i == cabecalhos.Count() - 1)
+                    {
+                        t.Write(cabecalhos[i].Text);
+                        t.Write("\n");
+                    }
+                    else
+                    {
+                        t.Write(cabecalhos[i].Text + ";");
+                    }
+                }
+
             }
         }
     }
