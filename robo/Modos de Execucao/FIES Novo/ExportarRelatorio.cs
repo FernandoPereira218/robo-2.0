@@ -25,23 +25,21 @@ namespace robo.Control.Relatorios.FIES_Novo
             int qtdLinhas = Convert.ToInt32(quantidade);
             int qtdPaginas = Convert.ToInt32(Math.Ceiling(qtdLinhas / 100f));
             StringBuilder sb = new StringBuilder();
-            string pagina = string.Empty;
             for (int i = 0; i < qtdPaginas; i++)
             {
                 if (i == 0)
                 {
-                    sb.Append(ListaParaString("gridResult_length", "gridResult", true, pagina));
+                    sb.Append(ListaParaString("gridResult", true));
                 }
                 else
                 {
-                    sb.Append(ListaParaString("gridResult_length", "gridResult", false, pagina));
+                    sb.Append(ListaParaString("gridResult", false));
                 }
                 if (qtdPaginas > 1)
                 {
                     IWebElement sAdminMenuJobTitle = Driver.FindElement(By.XPath(string.Format("//*[@id=\"{0}\"]", "gridResult_next")));
                     ((IJavaScriptExecutor)Driver).ExecuteScript("arguments[0].click();", sAdminMenuJobTitle);
                 }
-                
             }
             string downloadFolder = Directory.GetCurrentDirectory() + "\\RelatorioExportacao\\";
             string nomeArquivo = "Relatório_" + tipoRelatorio + ".csv";
@@ -54,43 +52,34 @@ namespace robo.Control.Relatorios.FIES_Novo
             Util.ExportarDocumento("", nomeArquivo: nomeArquivo);
         }
 
-        private string ListaParaString(string idDropdown, string idTabela, bool buscarCabecalhos, string paginaAnterior)
+        private string ListaParaString(string idTabela, bool buscarCabecalhos)
         {
             IWebElement elementoTabela = Driver.FindElement(By.Id(idTabela));
             List<IWebElement> cabecalhos = elementoTabela.FindElements(By.TagName("th")).ToList();
             List<IWebElement> dados = elementoTabela.FindElements(By.TagName("td")).ToList();
-            string final = paginaAnterior;
-            StringBuilder t = new StringBuilder();
+            StringBuilder sb = new StringBuilder();
             if (buscarCabecalhos == true)
             {
-                for (int i = 0; i < cabecalhos.Count(); i++)
-                {
-
-                    if (i == cabecalhos.Count() - 1)
-                    {
-                        t.Append(" " + cabecalhos[i].Text + " ");
-                        t.Append("\n");
-                    }
-                    else
-                    {
-                        t.Append(" " + cabecalhos[i].Text + " " + ";");
-                    }
-
-
-                }
+                EscreverCabecalhos(cabecalhos, sb);
             }
+            EscreverDados(cabecalhos, dados, sb);
+            return sb.ToString();
+        }
+
+        private void EscreverDados(List<IWebElement> cabecalhos, List<IWebElement> dados, StringBuilder sb)
+        {
             int contador = 0;
             for (int i = 0; i < dados.Count(); i++)
             {
 
                 if (contador == cabecalhos.Count() - 1)
                 {
-                    t.Append(" " + dados[i].Text + " ");
-                    t.Append("\n");
+                    sb.Append(" " + dados[i].Text + " ");
+                    sb.Append("\n");
                 }
                 else
                 {
-                    t.Append(" " + dados[i].Text + " " + ";");
+                    sb.Append(" " + dados[i].Text + " " + ";");
                 }
 
                 if (contador == cabecalhos.Count() - 1)
@@ -103,7 +92,23 @@ namespace robo.Control.Relatorios.FIES_Novo
                     contador++;
                 }
             }
-            return t.ToString();
+        }
+
+        private void EscreverCabecalhos(List<IWebElement> cabecalhos, StringBuilder sb)
+        {
+            for (int i = 0; i < cabecalhos.Count(); i++)
+            {
+
+                if (i == cabecalhos.Count() - 1)
+                {
+                    sb.Append(" " + cabecalhos[i].Text + " ");
+                    sb.Append("\n");
+                }
+                else
+                {
+                    sb.Append(" " + cabecalhos[i].Text + " " + ";");
+                }
+            }
         }
     }
 }
