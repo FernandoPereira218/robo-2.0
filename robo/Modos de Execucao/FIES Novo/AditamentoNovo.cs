@@ -28,180 +28,218 @@ namespace robo.Control.Aditamento
                 ScrollToElementByID(Driver, "btnAditarEstudante");
                 ClickButtonsById(Driver, "btnAditarEstudante");
 
-                IWebElement ajax = Driver.FindElement(By.Id("ajaxStatus"));
-                while (ajax.Displayed == true)
-                {
-                    System.Threading.Thread.Sleep(1000);
-                }
-                var executor = (IJavaScriptExecutor)Driver;
+                EsperarAjax();
 
-                
                 WaitForLoading(Driver);
-                string erro = VerificarErroAditamento();
-                if (erro != string.Empty)
+                VerificarAditamentoNaoDisponivel(aluno);
+                if (ConclusaoAlunoAlterada(aluno) == true)
                 {
-                    Util.EditarConclusaoAluno(aluno, erro);
-                    ScrollToElementByID(Driver, "btnVoltar");
-                    ClickButtonsById(Driver, "btnVoltar");
-                    WaitForLoading(Driver);
-                    ClicarMenuAditamento(Driver);
                     return;
                 }
 
-                if (Driver.PageSource.ToUpper().Contains("ESTUDANTE TRANSFERIDO NO SEMESTRE") == true)
+                VerificarEstudanteTransferidoNoSemestre();
+                VerificarAlertaAlunoTransferido(aluno);
+
+                PreencherReceitaAluno(aluno);
+                if (ConclusaoAlunoAlterada(aluno) == true)
                 {
-                    Driver.FindElement(By.ClassName("btn-ok")).Click();
-                }
-
-                string alerta = VerificarAlertaAditamento();
-                if (alerta != string.Empty)
-                {
-                    if (alerta.ToUpper().Contains("TRANSFERIDO NO SEMESTRE") == false)
-                    {
-                        aluno.Conclusao = alerta;
-                        aluno.HorarioConclusao = string.Format("{0:dd/MM/yyyy HH:mm}", DateTime.Now);
-                        Dados.UpdateDocumento<TOAluno>(aluno);
-                        ScrollToElementByID(Driver, "btnVoltar");
-                        ClickButtonsById(Driver, "btnVoltar");
-                        return;
-                    }
-                }
-
-                //Definição semestre atual
-                ScrollToElementByID(Driver, "qtSemestreACursar");
-                int semestreASerCursado = Convert.ToInt32(Driver.FindElement(By.Id("totalSemestresFinanciados")).Text);
-                executor.ExecuteScript($@"document.getElementById(""qtSemestreACursar"").value = ""{semestreASerCursado + 1}"";");
-
-                //Semestralidade Atual 
-                ScrollToElementByID(Driver, "semestralidadeAtualComDescGradeASerCursada");
-                ClickAndWriteById(Driver, "semestralidadeAtualComDescGradeASerCursada", aluno.ReceitaFies);
-
-                //Click para atualizar a página
-                Driver.FindElement(By.Id("semestralidadeAtualComDescGradeASerCursadaLabel")).Click();
-                WaitForLoading(Driver);
-
-                if (Driver.PageSource.Contains("inferior ao valor mínimo"))
-                {
-                    alerta = VerificarAlertaAditamento();
-                    Util.EditarConclusaoAluno(aluno, alerta);
-                    ScrollToElementByID(Driver, "btnVoltar");
-                    ClickButtonsById(Driver, "btnVoltar");
                     return;
                 }
 
                 WaitForLoading(Driver);
-
-                string alertMessage = string.Empty;
-                if (Driver.PageSource.Contains("MDLalerta_"))
-                {
-                    //driver.FindElement(By.XPath("//select[@" + metodo + "='" + valorMetodo + "']/option[contains(.,'" + valorEscolha + "')]")).Click();
-                    var elementosAlerta = Driver.FindElements(By.XPath("//div[contains(@id,\"MDLalerta_\")]"));
-                    if (elementosAlerta.Count == 1)
-                    {
-                        if (elementosAlerta[0].Displayed == true)
-                        {
-
-                            if (Driver.PageSource.ToUpper().Contains("INFERIOR AO PERCENTUAL MÍNIMO DE SEMESTRALIDADE ATUAL") == false)
-                            {
-
-                                Driver.FindElement(By.ClassName("btn-ok")).Click();
-                                if (IES.ToUpper() == "UNIRITTER" || IES.ToUpper() == "FADERGS")
-                                {
-                                    if (aluno.Justificativa == string.Empty)
-                                    {
-                                        ClickAndWriteById(Driver, "justificativaAcimaLimite", "Valores conforme o número de créditos financeiros matriculados no semestre");
-                                    }
-                                    else
-                                    {
-                                        ClickAndWriteById(Driver, "justificativaAcimaLimite", aluno.Justificativa);
-                                    }
-                                }
-                                else
-                                {
-                                    ClickAndWriteById(Driver, "justificativaAcimaLimite", "Alteração na grade curricular em relação ao semestre anterior");
-                                }
-                            }
-                            else
-                            {
-                                IWebElement alertElement = Driver.FindElement(By.XPath("//div[@class='modal hide fade in']/div[2]"));
-                                alertMessage = alertElement.Text;
-                                Driver.FindElement(By.ClassName("btn-ok")).Click();
-                            }
-                        }
-                    }
-                }
+                string alertMessage = VerificarAlertaReceitaAluno(aluno, IES);
 
                 //Prouni
                 string possuiProuni = Driver.FindElement(By.Id("prouni")).Text;
 
-                //Marcar CheckBox
-                ScrollToElementByID(Driver, "aproveitamento75S");
-                if (aluno.AproveitamentoAtual.ToUpper().Contains("SUPERIOR A 75%") == true)
+                PreencherQuestionamentoAluno(aluno, possuiProuni);
+                if (ConclusaoAlunoAlterada(aluno) == true)
                 {
-                    AproveitamentoMaiorDe75(aluno, possuiProuni);
-                }
-                else if (aluno.AproveitamentoAtual.ToUpper().Contains("INFERIOR A 75%") == true)
-                {
-                    AproveitamentoMenorDe75(aluno, possuiProuni);
-                }
-                else
-                {
-                    Util.EditarConclusaoAluno(aluno, "Aproveitamento: " + aluno.AproveitamentoAtual);
-                    ScrollToElementByID(Driver, "btnVoltar");
-                    ClickButtonsById(Driver, "btnVoltar");
                     return;
                 }
 
-                aluno.ValorPagoRecursoEstudante = Driver.FindElement(By.Id("vlrPagoRecursoEstudante")).Text;
-                aluno.ValorAditadoFinanciamento = Driver.FindElement(By.Id("vlrPagoRecursoFinanciamento")).Text;
+                BuscarValoresAditamento(aluno);
 
-                //Aguarda até voltar a página de consulta
-                while (Driver.PageSource.Contains("btnConsultar") == false)
-                {
-                    if (alertMessage == "")
-                    {
-                        ScrollToElementByID(Driver, "btnConfirmar");
-                        ClickButtonsById(Driver, "btnConfirmar");
-                        WaitForLoading(Driver);
-
-                        if (Driver.PageSource.Contains("alert alert-error"))
-                        {
-                            IWebElement alertElement = Driver.FindElement(By.ClassName("alert-error"));
-                            alertMessage = alertElement.Text;
-                            alertMessage = alertMessage.Replace("x\r\n", "");
-
-                            break;
-
-                        }
-                        break;
-                    }
-                    break;
-                }
-                if (alertMessage != "")
-                {
-                    Util.EditarConclusaoAluno(aluno, alertMessage);
-                }
-                else
-                {
-                    Util.EditarConclusaoAluno(aluno, "Aditado com sucesso");
-                }
+                ConfirmarAditamento(aluno, alertMessage);
                 ScrollToElementByID(Driver, "btnVoltar");
                 ClickButtonsById(Driver, "btnVoltar");
             }
             else
             {
-                string situacaoAluno = string.Empty;
-                IWebElement grid = Driver.FindElement(By.Id("gridResult"));
-                if (grid.Text.Contains(semestreAtual) == true)
+                MarcarSituacaoAtualAluno(aluno, semestreAtual);
+            }
+        }
+
+        private void BuscarValoresAditamento(TOAluno aluno)
+        {
+            aluno.ValorPagoRecursoEstudante = Driver.FindElement(By.Id("vlrPagoRecursoEstudante")).Text;
+            aluno.ValorAditadoFinanciamento = Driver.FindElement(By.Id("vlrPagoRecursoFinanciamento")).Text;
+        }
+        private void ConfirmarAditamento(TOAluno aluno, string alertMessage)
+        {
+            if (alertMessage == "")
+            {
+                ScrollToElementByID(Driver, "btnConfirmar");
+                ClickButtonsById(Driver, "btnConfirmar");
+                WaitForLoading(Driver);
+
+                alertMessage = BuscarMensagemDeErro(Driver);
+            }
+
+            if (alertMessage != "")
+            {
+                Util.EditarConclusaoAluno(aluno, alertMessage);
+            }
+            else
+            {
+                Util.EditarConclusaoAluno(aluno, "Aditado com sucesso");
+            }
+        }
+        private void VerificarAlertaAlunoTransferido(TOAluno aluno)
+        {
+            string alerta = VerificarAlertaAditamento();
+            if (alerta != string.Empty)
+            {
+                if (alerta.ToUpper().Contains("TRANSFERIDO NO SEMESTRE") == false)
                 {
-                    situacaoAluno = BuscarSituacaoAluno(Driver, semestreAtual);
+                    Util.EditarConclusaoAluno(aluno, alerta);
+                    ScrollToElementByID(Driver, "btnVoltar");
+                    ClickButtonsById(Driver, "btnVoltar");
+                }
+            }
+        }
+        private void VerificarAditamentoNaoDisponivel(TOAluno aluno)
+        {
+            string erro = VerificarErroAditamento();
+            if (erro != string.Empty)
+            {
+                Util.EditarConclusaoAluno(aluno, erro);
+                ScrollToElementByID(Driver, "btnVoltar");
+                ClickButtonsById(Driver, "btnVoltar");
+                WaitForLoading(Driver);
+                ClicarMenuAditamento(Driver);
+            }
+        }
+        private bool ConclusaoAlunoAlterada(TOAluno aluno)
+        {
+            if (aluno.Conclusao.ToUpper() != "NÃO FEITO")
+            {
+                return true;
+            }
+            return false;
+        }
+        private void MarcarSituacaoAtualAluno(TOAluno aluno, string semestreAtual)
+        {
+            string situacaoAluno = string.Empty;
+            IWebElement grid = Driver.FindElement(By.Id("gridResult"));
+            if (grid.Text.Contains(semestreAtual) == true)
+            {
+                situacaoAluno = BuscarSituacaoAluno(Driver, semestreAtual);
+            }
+            else
+            {
+                situacaoAluno = "Semestre não encontrado.";
+            }
+
+            Util.EditarConclusaoAluno(aluno, situacaoAluno);
+        }
+        private void PreencherQuestionamentoAluno(TOAluno aluno, string possuiProuni)
+        {
+            ScrollToElementByID(Driver, "aproveitamento75S");
+            if (aluno.AproveitamentoAtual.ToUpper().Contains("SUPERIOR A 75%") == true)
+            {
+                AproveitamentoMaiorDe75(aluno, possuiProuni);
+            }
+            else if (aluno.AproveitamentoAtual.ToUpper().Contains("INFERIOR A 75%") == true)
+            {
+                AproveitamentoMenorDe75(aluno, possuiProuni);
+            }
+            else
+            {
+                Util.EditarConclusaoAluno(aluno, "Aproveitamento: " + aluno.AproveitamentoAtual);
+                ScrollToElementByID(Driver, "btnVoltar");
+                ClickButtonsById(Driver, "btnVoltar");
+            }
+        }
+        private string VerificarAlertaReceitaAluno(TOAluno aluno, string IES)
+        {
+            string alertMessage = string.Empty;
+            if (Driver.PageSource.Contains("MDLalerta_"))
+            {
+                var elementosAlerta = Driver.FindElements(By.XPath("//div[contains(@id,\"MDLalerta_\")]"));
+                if (elementosAlerta.Count == 1 && elementosAlerta[0].Displayed == true)
+                {
+                    if (Driver.PageSource.ToUpper().Contains("INFERIOR AO PERCENTUAL MÍNIMO DE SEMESTRALIDADE ATUAL") == false)
+                    {
+                        Driver.FindElement(By.ClassName("btn-ok")).Click();
+                        EscreverJustificativaAluno(aluno, IES);
+                        return string.Empty;
+                    }
+
+                    IWebElement alertElement = Driver.FindElement(By.XPath("//div[@class='modal hide fade in']/div[2]"));
+                    alertMessage = alertElement.Text;
+                    Driver.FindElement(By.ClassName("btn-ok")).Click();
+
+                }
+            }
+
+            return alertMessage;
+        }
+        private void EscreverJustificativaAluno(TOAluno aluno, string IES)
+        {
+            if (IES.ToUpper() == "UNIRITTER" || IES.ToUpper() == "FADERGS")
+            {
+                if (aluno.Justificativa == string.Empty)
+                {
+                    ClickAndWriteById(Driver, "justificativaAcimaLimite", "Valores conforme o número de créditos financeiros matriculados no semestre");
                 }
                 else
                 {
-                    situacaoAluno = "Semestre não encontrado.";
+                    ClickAndWriteById(Driver, "justificativaAcimaLimite", aluno.Justificativa);
                 }
+            }
+            else
+            {
+                ClickAndWriteById(Driver, "justificativaAcimaLimite", "Alteração na grade curricular em relação ao semestre anterior");
+            }
+        }
+        private void PreencherReceitaAluno(TOAluno aluno)
+        {
+            //Definição semestre atual
+            ScrollToElementByID(Driver, "qtSemestreACursar");
+            int semestreASerCursado = Convert.ToInt32(Driver.FindElement(By.Id("totalSemestresFinanciados")).Text);
+            ((IJavaScriptExecutor)Driver).ExecuteScript($@"document.getElementById(""qtSemestreACursar"").value = ""{semestreASerCursado + 1}"";");
 
-                Util.EditarConclusaoAluno(aluno, situacaoAluno);
+            //Semestralidade Atual 
+            ScrollToElementByID(Driver, "semestralidadeAtualComDescGradeASerCursada");
+            ClickAndWriteById(Driver, "semestralidadeAtualComDescGradeASerCursada", aluno.ReceitaFies);
+
+            //Click para atualizar a página
+            Driver.FindElement(By.Id("semestralidadeAtualComDescGradeASerCursadaLabel")).Click();
+            WaitForLoading(Driver);
+
+            if (Driver.PageSource.Contains("inferior ao valor mínimo"))
+            {
+                string alerta = VerificarAlertaAditamento();
+                Util.EditarConclusaoAluno(aluno, alerta);
+                ScrollToElementByID(Driver, "btnVoltar");
+                ClickButtonsById(Driver, "btnVoltar");
+                return;
+            }
+        }
+        private void VerificarEstudanteTransferidoNoSemestre()
+        {
+            if (Driver.PageSource.ToUpper().Contains("ESTUDANTE TRANSFERIDO NO SEMESTRE") == true)
+            {
+                Driver.FindElement(By.ClassName("btn-ok")).Click();
+            }
+        }
+        private void EsperarAjax()
+        {
+            IWebElement ajax = Driver.FindElement(By.Id("ajaxStatus"));
+            while (ajax.Displayed == true)
+            {
+                System.Threading.Thread.Sleep(1000);
             }
         }
         private void QuestionamentoPadrao(TOAluno aluno, string possuiProuni)
