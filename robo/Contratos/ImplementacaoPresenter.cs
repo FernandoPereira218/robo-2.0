@@ -78,7 +78,7 @@ namespace robo.Control.Implementacoes
                 {
                     if (aluno.Campus.ToUpper() == login.Campus.ToUpper())
                     {
-                        aditamento.AditamentoFiesLegado(Driver, login, aluno, numSemestre);
+                        aditamento.AditamentoFiesLegado(Driver, aluno, numSemestre);
                         UpdateProgresso(ref progresso, contador);
                     }
                 }

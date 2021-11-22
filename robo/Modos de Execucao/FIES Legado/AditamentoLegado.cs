@@ -18,102 +18,75 @@ namespace robo.Control
     public class AditamentoLegado : UtilFiesLegado
     {
         static IWebDriver Driver;
-        public void AditamentoFiesLegado(IWebDriver driver, TOLogin login, TOAluno aluno, string numSemestre)
+        public void AditamentoFiesLegado(IWebDriver driver, TOAluno aluno, string numSemestre)
         {
             Driver = driver;
-            try
+
+            ClickButtonsByCss(Driver, "div:nth-child(3) > ul > .menu-button:nth-child(2) > a");
+            if (Dados.DRIExists(aluno.Cpf) == false)
             {
-                //Aqui começa o aditamento
-                //            MetodoAditamento(login, alunos, numSemestre);
-
-                ClickButtonsByCss(Driver, "div:nth-child(3) > ul > .menu-button:nth-child(2) > a");
-                if (Dados.DRIExists(aluno.Cpf))
-                {
-                    TODRI driAtual = Dados.GetDRI(aluno.Cpf);
-                    string url = string.Format("http://sisfies.mec.gov.br/cpsa/aditamento/formulario/co_inscricao/{0}/sem/{1}", driAtual.DRI, numSemestre);
-                    Driver.Url = url;
-
-                    if (Driver.PageSource.Contains("Voltar para a página principal"))
-                    {
-                        Util.EditarConclusaoAluno(aluno, "Página não encontrada");
-                        Driver.Url = "http://sisfies.mec.gov.br/cpsa/aditamento";
-                        return;
-                    }
-
-                    WaitinLoading(Driver);
-
-                    if (VerificaErro(Driver, aluno) == false)
-                    {
-                        //Mensagem que não aparece somente quando o aluno já foi aditado anteriomente
-                        if (Driver.PageSource.Contains("igual ou superior a 75% no semestre"))
-                        {
-                            PreencherFormulario(aluno);
-                        }
-                        else
-                        {
-                            Util.EditarConclusaoAluno(aluno, "Acadêmico aditado anteriormente");
-                        }
-                    }
-                    else
-                    {
-                        return;
-                    }
-                }
-                else
-                {
-                    Util.EditarConclusaoAluno(aluno, "DRI não encontrada");
-                }
-
-            }
-            catch (Exception e)
-            {
-                Driver.Quit();
-                Driver.Dispose();
-                throw e;
-            }
-            finally
-            {
-                //Driver.Quit();
-                //Driver.Dispose();
+                Util.EditarConclusaoAluno(aluno, "DRI não encontrada");
+                return;
             }
 
-        }
+            AcessarPaginaAditamento(aluno, numSemestre);
 
-        private void PreencherFormulario(TOAluno aluno)
-        {
-
+            if (Driver.PageSource.Contains("Voltar para a página principal"))
+            {
+                Util.EditarConclusaoAluno(aluno, "Página não encontrada");
+                Driver.Url = "http://sisfies.mec.gov.br/cpsa/aditamento";
+                return;
+            }
 
             WaitinLoading(Driver);
 
-            PreencheReceitas(aluno);
-
-            if ("Aproveitamento Superior a 75%".Equals(aluno.AproveitamentoAtual.Trim()) || "Aproveitamento em análise (estágio)".Equals(aluno.AproveitamentoAtual.Trim()))
+            RealizarAditamento(aluno);
+        }
+        private void RealizarAditamento(TOAluno aluno)
+        {
+            string mensagem = VerificarMensagem(Driver);
+            if (mensagem != string.Empty)
             {
-                CasoComAproveitamento(aluno.Justificativa);
-            }
-            else
-            {
-                ClickButtonsByCss(Driver, "#divAproveitamentoAcademico input:nth-of-type(1)"); //O estudante teve aproveitamento acadêmico igual ou superior a 75% no semestre ? NAO
-                if (aluno.HistoricoAproveitamento.Contains("Excesso de reprovação") == true)
+                //Mensagem que não aparece somente quando o aluno já foi aditado anteriomente
+                if (Driver.PageSource.Contains("igual ou superior a 75% no semestre"))
                 {
-                    Util.EditarConclusaoAluno(aluno, "Rejeitou excesso de reprovação");
+                    while (aluno.Conclusao == "Não Feito")
+                    {
+                        PreencherFormulario(aluno);
+                    }
                 }
                 else
                 {
-                    CasoSemAproveitamento(aluno);
+                    Util.EditarConclusaoAluno(aluno, "Acadêmico aditado anteriormente");
                 }
-
             }
-            SystemSounds.Beep.Play();
+            else
+            {
+                Util.EditarConclusaoAluno(aluno, mensagem);
+            }
+        }
+        private static void AcessarPaginaAditamento(TOAluno aluno, string numSemestre)
+        {
+            TODRI driAtual = Dados.GetDRI(aluno.Cpf);
+            string url = string.Format("http://sisfies.mec.gov.br/cpsa/aditamento/formulario/co_inscricao/{0}/sem/{1}", driAtual.DRI, numSemestre);
+            Driver.Url = url;
+        }
+        private void PreencherFormulario(TOAluno aluno)
+        {
+            WaitinLoading(Driver);
 
-            ScrollToElementByID(Driver, "captcha-imagem");
-            var element = Driver.FindElement(By.Id("captcha-imagem"));
-            Screenshot scr = ((ITakesScreenshot)element).GetScreenshot();
-            Util.CriarDiretorioCasoNaoExista("img");            
-            scr.SaveAsFile("img\\teste.png");
-            LimparCaptcha();
+            PreencheReceitas(aluno);
+            PreencherAproveitamentoAluno(aluno);
 
-            Thread thread = new Thread(LerCaptcha);
+            if (aluno.Conclusao != "Não Feito")
+            {
+                return;
+            }
+
+            SalvarImagemCaptcha();
+            LimparImagemCaptcha();
+
+            Thread thread = new Thread(PreencherCaptcha);
             thread.Start();
             thread.Join();
 
@@ -121,12 +94,39 @@ namespace robo.Control
             while (Driver.Url.StartsWith("http://sisfies.mec.gov.br/cpsa/aditamento/formulario/") == true && possuiErros == false)
             {
                 possuiErros = PossuiErros(Driver.PageSource);
-                System.Threading.Thread.Sleep(100);
+                Thread.Sleep(100);
             }
             ChecarSePossuiErros(possuiErros, aluno);
-            //Marca resultado aditamento
-            VerificaErro(Driver, aluno);
 
+            string mensagemAditamento = VerificarMensagem(Driver);
+            if (mensagemAditamento != "")
+            {
+                Util.EditarConclusaoAluno(aluno, mensagemAditamento);
+            }
+        }
+        private void SalvarImagemCaptcha()
+        {
+            ScrollToElementByID(Driver, "captcha-imagem");
+            var element = Driver.FindElement(By.Id("captcha-imagem"));
+            Screenshot scr = ((ITakesScreenshot)element).GetScreenshot();
+            Util.CriarDiretorioCasoNaoExista("img");
+            scr.SaveAsFile("img\\teste.png");
+        }
+        private void PreencherAproveitamentoAluno(TOAluno aluno)
+        {
+            if ("Aproveitamento Superior a 75%".Equals(aluno.AproveitamentoAtual.Trim()) || "Aproveitamento em análise (estágio)".Equals(aluno.AproveitamentoAtual.Trim()))
+            {
+                CasoComAproveitamento(aluno.Justificativa);
+            }
+            else if (aluno.HistoricoAproveitamento.Contains("Excesso de reprovação") == true)
+            {
+                Util.EditarConclusaoAluno(aluno, "Rejeitou excesso de reprovação");
+            }
+            else
+            {
+                ClickButtonsByCss(Driver, "#divAproveitamentoAcademico input:nth-of-type(1)");
+                CasoSemAproveitamento(aluno);
+            }
         }
         private void PreencheReceitas(TOAluno aluno)
         {
@@ -172,7 +172,7 @@ namespace robo.Control
             }
 
             //checa se existe e escreve a justificativa
-            Justificativa(justificativaAluno);
+            EscreverJustificativa(justificativaAluno);
 
             //Duração regular do curso MARCAR A CHECKBOX (SE APARECER)
             if (Driver.FindElement(By.Name("checkNaoAlteraCurso[]")).Displayed)
@@ -183,18 +183,16 @@ namespace robo.Control
                 }
             }
         }
-        private void Justificativa(string justificativaAluno)
+        private void EscreverJustificativa(string justificativaAluno)
         {
             IWebElement justificativa = Driver.FindElement(By.Id("divVariacao"));
             if (justificativa.Displayed)
             {
                 if (justificativa.Text.Contains("Valor da semestralidade COM desconto"))
                 {
-                    //Alteração na grade curricular em relação ao semestre anterior
-                    //Util.ClickAndWriteById(Driver, "ds_justificativa", "                                                                                    "); // Sim, é pra ser assim
                     if (justificativaAluno == string.Empty)
                     {
-                        ClickAndWriteById(Driver, "ds_justificativa", "Alteração na grade curricular em relação ao semestre anterior"); // Sim, é pra ser assim
+                        ClickAndWriteById(Driver, "ds_justificativa", "Alteração na grade curricular em relação ao semestre anterior");
                     }
                     else
                     {
@@ -233,7 +231,7 @@ namespace robo.Control
                 }
 
                 //checa se existe e escreve a justificativa
-                Justificativa(aluno.Justificativa);
+                EscreverJustificativa(aluno.Justificativa);
 
                 //Duração regular do curso MARCAR A CHECKBOX (SE APARECER)
                 if (Driver.FindElement(By.Name("checkNaoAlteraCurso[]")).Displayed)
@@ -250,9 +248,7 @@ namespace robo.Control
                 Driver.Url = "http://sisfies.mec.gov.br/cpsa/aditamento";
             }
         }
-            
-           
-        private void LimparCaptcha()
+        private void LimparImagemCaptcha()
         {
             Bitmap imagem = new Bitmap("img\\teste.png");
             imagem = imagem.Clone(new Rectangle(0, 0, imagem.Width, imagem.Height), System.Drawing.Imaging.PixelFormat.Format24bppRgb);
@@ -266,16 +262,12 @@ namespace robo.Control
             FiltersSequence seq = new FiltersSequence(gs, inverter, open, inverter, bc, inverter, cc, bc, inverter);
             seq.Apply(imagem).Save("img\\captchaLimpo.png");
         }
-
-        private async void LerCaptcha()
+        private async void PreencherCaptcha()
         {
-
             try
             {
                 HttpClient httpClient = new HttpClient();
                 httpClient.Timeout = new TimeSpan(1, 1, 1);
-
-
                 MultipartFormDataContent form = new MultipartFormDataContent();
                 form.Add(new StringContent("991ab1ca4c88957"), "apikey"); //Added api key in form data
                 form.Add(new StringContent("eng"), "language");
@@ -298,33 +290,27 @@ namespace robo.Control
                 resultado = resultado.Replace("$", "5");
                 resultado = resultado.Replace(")", "j");
                 resultado = resultado.ToLower();
+
                 ScrollToElementByID(Driver, "captcha");
                 ClickAndWriteById(Driver, "captcha", resultado);
                 ClickButtonsById(Driver, "validar");
                 ClickButtonsByXpath(Driver, "/html/body/div[8]/div[3]/div/button[2]/span");
-
-
-
-
             }
             catch (Exception exception)
             {
                 throw exception;
             }
         }
-        private Boolean PossuiErros(String pageSource)
+        private bool PossuiErros(string pageSource)
         {
             if (pageSource.Contains("lista-mensageiro-erros"))
             {
-
                 return pageSource.Contains("(E0336) Código de verificação inválido.") ||
                        pageSource.Contains("(E0019) - O valor da semestralidade com desconto não pode ser superior a") ||
                        pageSource.Contains(" O valor do campo “Valor da semestralidade para o FIES” não pode ultrapassar 95% do campo “Valor da Semestralidade COM desconto”.");
-
             }
             return false;
         }
-
         private void ChecarSePossuiErros(bool possuiErros, TOAluno aluno)
         {
             if (possuiErros)
@@ -332,17 +318,13 @@ namespace robo.Control
                 if (Driver.PageSource.Contains("(E0336) Código de verificação inválido."))
                 {
                     Driver.Navigate().Refresh();
-                    PreencherFormulario(aluno);
                 }
                 else
                 {
-                    IWebElement listaMensageirosErros = Driver.FindElement(By.Id("lista-mensageiro-erros"));
-                    IWebElement lista = listaMensageirosErros.FindElement(By.XPath(".//li"));
-                    Util.EditarConclusaoAluno(aluno, lista.Text);
+                    string erro = VerificarMensagem(Driver);
+                    Util.EditarConclusaoAluno(aluno, erro);
                 }
-               
             }
-
         }
     }
 }

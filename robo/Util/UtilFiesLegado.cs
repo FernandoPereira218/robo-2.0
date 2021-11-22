@@ -125,24 +125,6 @@ namespace robo.Control.Legado
         }
 
         /// <summary>
-        /// Verifica se há alguma mensagem de erro na página de aditamento e salva na conclusão do aluno casa haja
-        /// </summary>
-        /// <param name="Driver"></param>
-        /// <param name="aluno"></param>
-        /// <returns>True se há alguma mensagem e False se não há</returns>
-        public bool VerificaErro(IWebDriver Driver, TOAluno aluno)
-        {
-            IWebElement listaME = Driver.FindElement(By.Id("lista-mensageiro-erros"));
-            if (listaME.Displayed)
-            {
-                IWebElement listaF = listaME.FindElement(By.XPath(".//li"));
-                Util.EditarConclusaoAluno(aluno, listaF.Text);
-                return true;
-            }
-            return false;
-        }
-
-        /// <summary>
         /// Verifica se há alguma mensagem no topo da página e retorna a mensagem encontrada
         /// </summary>
         /// <returns></returns>
