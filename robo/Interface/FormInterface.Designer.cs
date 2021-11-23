@@ -99,7 +99,7 @@ namespace robo.View
             // 
             this.panelMenuBar.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.panelMenuBar.BackColor = System.Drawing.Color.Purple;
+            this.panelMenuBar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(77)))), ((int)(((byte)(77)))), ((int)(((byte)(128)))));
             this.panelMenuBar.Controls.Add(this.btnMaximize);
             this.panelMenuBar.Controls.Add(this.lblUsuario);
             this.panelMenuBar.Controls.Add(this.label6);
@@ -145,11 +145,11 @@ namespace robo.View
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.BackColor = System.Drawing.Color.Purple;
+            this.label6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(77)))), ((int)(((byte)(77)))), ((int)(((byte)(128)))));
             this.label6.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.label6.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label6.ForeColor = System.Drawing.Color.White;
-            this.label6.Location = new System.Drawing.Point(12, 16);
+            this.label6.Location = new System.Drawing.Point(12, 13);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(103, 16);
             this.label6.TabIndex = 11;
@@ -546,7 +546,7 @@ namespace robo.View
             // 
             this.panelSubMenu.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
-            this.panelSubMenu.BackColor = System.Drawing.SystemColors.Control;
+            this.panelSubMenu.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(45)))));
             this.panelSubMenu.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.panelSubMenu.Controls.Add(this.btnLogout);
             this.panelSubMenu.Controls.Add(this.btnHome);
@@ -566,7 +566,7 @@ namespace robo.View
             this.btnLogout.FlatAppearance.BorderSize = 0;
             this.btnLogout.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnLogout.Font = new System.Drawing.Font("Century Gothic", 8.25F);
-            this.btnLogout.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(45)))));
+            this.btnLogout.ForeColor = System.Drawing.Color.Silver;
             this.btnLogout.Image = global::robo.Properties.Resources.logout;
             this.btnLogout.Location = new System.Drawing.Point(1, 544);
             this.btnLogout.Name = "btnLogout";
@@ -587,7 +587,7 @@ namespace robo.View
             this.btnHome.FlatAppearance.BorderSize = 0;
             this.btnHome.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnHome.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnHome.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(45)))));
+            this.btnHome.ForeColor = System.Drawing.Color.Silver;
             this.btnHome.Image = global::robo.Properties.Resources.contorno_da_casa;
             this.btnHome.Location = new System.Drawing.Point(1, 474);
             this.btnHome.Margin = new System.Windows.Forms.Padding(0);
@@ -608,7 +608,7 @@ namespace robo.View
             this.btnSiga.FlatAppearance.BorderSize = 0;
             this.btnSiga.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSiga.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSiga.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(45)))));
+            this.btnSiga.ForeColor = System.Drawing.Color.Silver;
             this.btnSiga.Image = global::robo.Properties.Resources.rotunda;
             this.btnSiga.Location = new System.Drawing.Point(1, 132);
             this.btnSiga.Margin = new System.Windows.Forms.Padding(0);
@@ -629,7 +629,7 @@ namespace robo.View
             this.btnFiesLegado.FlatAppearance.BorderSize = 0;
             this.btnFiesLegado.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnFiesLegado.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnFiesLegado.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(45)))));
+            this.btnFiesLegado.ForeColor = System.Drawing.Color.Silver;
             this.btnFiesLegado.Image = global::robo.Properties.Resources.old_tv_3_;
             this.btnFiesLegado.Location = new System.Drawing.Point(1, 1);
             this.btnFiesLegado.Margin = new System.Windows.Forms.Padding(0);
@@ -650,7 +650,7 @@ namespace robo.View
             this.btnFiesNovo.FlatAppearance.BorderSize = 0;
             this.btnFiesNovo.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnFiesNovo.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnFiesNovo.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(45)))));
+            this.btnFiesNovo.ForeColor = System.Drawing.Color.Silver;
             this.btnFiesNovo.Image = global::robo.Properties.Resources.tv;
             this.btnFiesNovo.Location = new System.Drawing.Point(0, 65);
             this.btnFiesNovo.Margin = new System.Windows.Forms.Padding(0);
@@ -672,7 +672,7 @@ namespace robo.View
             this.btnConfiguracoes.FlatAppearance.BorderSize = 0;
             this.btnConfiguracoes.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnConfiguracoes.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnConfiguracoes.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(45)))));
+            this.btnConfiguracoes.ForeColor = System.Drawing.Color.Silver;
             this.btnConfiguracoes.Image = global::robo.Properties.Resources.configuracoes;
             this.btnConfiguracoes.Location = new System.Drawing.Point(1, 614);
             this.btnConfiguracoes.Margin = new System.Windows.Forms.Padding(0);
@@ -710,7 +710,7 @@ namespace robo.View
             // 
             this.panel2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.panel2.BackColor = System.Drawing.Color.Purple;
+            this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(77)))), ((int)(((byte)(77)))), ((int)(((byte)(128)))));
             this.panel2.Controls.Add(this.pictureBox1);
             this.panel2.Location = new System.Drawing.Point(826, 0);
             this.panel2.Name = "panel2";
@@ -755,7 +755,7 @@ namespace robo.View
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Century Gothic", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
+            this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(77)))), ((int)(((byte)(77)))), ((int)(((byte)(128)))));
             this.label1.Location = new System.Drawing.Point(44, 68);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(519, 39);
