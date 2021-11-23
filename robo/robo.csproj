@@ -331,6 +331,12 @@
     <Compile Include="TO\TOAluno.cs" />
     <Compile Include="Dados\Dados.cs" />
     <Compile Include="TO\TOUsuario.cs" />
+    <None Include="Resources\logoAlunosBrilhantes.png" />
+    <None Include="Resources\rotinas-de-departamento-pessoal1.png" />
+    <None Include="Resources\logotipoAnima.png" />
+    <None Include="Resources\LogoTipoAlunosBrilhantes1.png" />
+    <None Include="Resources\rotinas-de-departamento-pessoal.png" />
+    <None Include="Resources\LogoTipoAlunosBrilhantes.png" />
     <None Include="Properties\app.manifest" />
     <None Include="Resources\logout.png" />
     <None Include="Resources\square new.png" />
