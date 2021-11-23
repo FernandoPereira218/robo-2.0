@@ -61,23 +61,23 @@ namespace robo.View
             this.lblCadastroSelecione = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.panelErroNenhumAluno = new System.Windows.Forms.Panel();
-            this.btnImportar = new System.Windows.Forms.Button();
             this.metroLabel2 = new MetroFramework.Controls.MetroLabel();
             this.metroLabel1 = new MetroFramework.Controls.MetroLabel();
             this.panelSubMenu = new System.Windows.Forms.Panel();
+            this.tooltip = new MetroFramework.Components.MetroToolTip();
+            this.panelHome = new System.Windows.Forms.Panel();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.lblDireitoReservados = new System.Windows.Forms.Label();
+            this.labelDescricaoHome = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
             this.btnLogout = new System.Windows.Forms.Button();
             this.btnHome = new System.Windows.Forms.Button();
             this.btnSiga = new System.Windows.Forms.Button();
             this.btnFiesLegado = new System.Windows.Forms.Button();
             this.btnFiesNovo = new System.Windows.Forms.Button();
             this.btnConfiguracoes = new System.Windows.Forms.Button();
-            this.tooltip = new MetroFramework.Components.MetroToolTip();
-            this.panelHome = new System.Windows.Forms.Panel();
-            this.panel2 = new System.Windows.Forms.Panel();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.lblDireitoReservados = new System.Windows.Forms.Label();
-            this.labelDescricaoHome = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
+            this.btnImportar = new System.Windows.Forms.Button();
             this.panelMenuBar.SuspendLayout();
             this.panelExcel.SuspendLayout();
             this.panellStatus.SuspendLayout();
@@ -251,7 +251,7 @@ namespace robo.View
             // 
             this.lblStatusQuantidadeAlunos.AutoSize = true;
             this.lblStatusQuantidadeAlunos.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblStatusQuantidadeAlunos.ForeColor = System.Drawing.Color.Purple;
+            this.lblStatusQuantidadeAlunos.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(77)))), ((int)(((byte)(77)))), ((int)(((byte)(128)))));
             this.lblStatusQuantidadeAlunos.Location = new System.Drawing.Point(9, 6);
             this.lblStatusQuantidadeAlunos.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblStatusQuantidadeAlunos.Name = "lblStatusQuantidadeAlunos";
@@ -323,10 +323,10 @@ namespace robo.View
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panelCadastrarContent.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.panelCadastrarContent.BackColor = System.Drawing.Color.White;
-            this.panelCadastrarContent.Controls.Add(this.panelMenuExecucao);
-            this.panelCadastrarContent.Controls.Add(this.panelExecucao);
             this.panelCadastrarContent.Controls.Add(this.panelExcel);
+            this.panelCadastrarContent.Controls.Add(this.panelExecucao);
             this.panelCadastrarContent.Controls.Add(this.panelCadastro);
+            this.panelCadastrarContent.Controls.Add(this.panelMenuExecucao);
             this.panelCadastrarContent.Controls.Add(this.panelErroNenhumAluno);
             this.panelCadastrarContent.Location = new System.Drawing.Point(76, 40);
             this.panelCadastrarContent.Name = "panelCadastrarContent";
@@ -391,8 +391,7 @@ namespace robo.View
             | System.Windows.Forms.AnchorStyles.Right)));
             this.lblExecucao.AutoSize = true;
             this.lblExecucao.FontSize = MetroFramework.MetroLabelSize.Tall;
-            this.lblExecucao.FontWeight = MetroFramework.MetroLabelWeight.Bold;
-            this.lblExecucao.ForeColor = System.Drawing.Color.Purple;
+            this.lblExecucao.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(45)))));
             this.lblExecucao.Location = new System.Drawing.Point(15, 21);
             this.lblExecucao.Name = "lblExecucao";
             this.lblExecucao.Size = new System.Drawing.Size(117, 25);
@@ -506,21 +505,6 @@ namespace robo.View
             this.panelErroNenhumAluno.Size = new System.Drawing.Size(970, 667);
             this.panelErroNenhumAluno.TabIndex = 62;
             // 
-            // btnImportar
-            // 
-            this.btnImportar.BackColor = System.Drawing.Color.Green;
-            this.btnImportar.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnImportar.ForeColor = System.Drawing.SystemColors.Control;
-            this.btnImportar.Image = global::robo.Properties.Resources.excel_1_;
-            this.btnImportar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnImportar.Location = new System.Drawing.Point(533, 319);
-            this.btnImportar.Name = "btnImportar";
-            this.btnImportar.Size = new System.Drawing.Size(173, 48);
-            this.btnImportar.TabIndex = 38;
-            this.btnImportar.Text = "Importar";
-            this.btnImportar.UseVisualStyleBackColor = false;
-            this.btnImportar.Click += new System.EventHandler(this.btnImportar_Click);
-            // 
             // metroLabel2
             // 
             this.metroLabel2.AutoSize = true;
@@ -560,132 +544,6 @@ namespace robo.View
             this.panelSubMenu.Size = new System.Drawing.Size(83, 733);
             this.panelSubMenu.TabIndex = 38;
             // 
-            // btnLogout
-            // 
-            this.btnLogout.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnLogout.FlatAppearance.BorderSize = 0;
-            this.btnLogout.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnLogout.Font = new System.Drawing.Font("Century Gothic", 8.25F);
-            this.btnLogout.ForeColor = System.Drawing.Color.Silver;
-            this.btnLogout.Image = global::robo.Properties.Resources.logout;
-            this.btnLogout.Location = new System.Drawing.Point(1, 544);
-            this.btnLogout.Name = "btnLogout";
-            this.btnLogout.Size = new System.Drawing.Size(74, 67);
-            this.btnLogout.TabIndex = 10;
-            this.btnLogout.Text = "Logout";
-            this.btnLogout.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.btnLogout.UseVisualStyleBackColor = true;
-            this.btnLogout.Click += new System.EventHandler(this.btnLogout_Click);
-            this.btnLogout.MouseEnter += new System.EventHandler(this.btnChangeColorEnter);
-            this.btnLogout.MouseLeave += new System.EventHandler(this.btnChangeColorLeave);
-            // 
-            // btnHome
-            // 
-            this.btnHome.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnHome.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.btnHome.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnHome.FlatAppearance.BorderSize = 0;
-            this.btnHome.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnHome.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnHome.ForeColor = System.Drawing.Color.Silver;
-            this.btnHome.Image = global::robo.Properties.Resources.contorno_da_casa;
-            this.btnHome.Location = new System.Drawing.Point(1, 474);
-            this.btnHome.Margin = new System.Windows.Forms.Padding(0);
-            this.btnHome.Name = "btnHome";
-            this.btnHome.Size = new System.Drawing.Size(77, 67);
-            this.btnHome.TabIndex = 9;
-            this.btnHome.Text = "Home";
-            this.btnHome.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.btnHome.UseVisualStyleBackColor = true;
-            this.btnHome.Click += new System.EventHandler(this.btnHome_Click);
-            this.btnHome.MouseEnter += new System.EventHandler(this.btnChangeColorEnter);
-            this.btnHome.MouseLeave += new System.EventHandler(this.btnChangeColorLeave);
-            // 
-            // btnSiga
-            // 
-            this.btnSiga.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.btnSiga.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnSiga.FlatAppearance.BorderSize = 0;
-            this.btnSiga.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnSiga.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSiga.ForeColor = System.Drawing.Color.Silver;
-            this.btnSiga.Image = global::robo.Properties.Resources.rotunda;
-            this.btnSiga.Location = new System.Drawing.Point(1, 132);
-            this.btnSiga.Margin = new System.Windows.Forms.Padding(0);
-            this.btnSiga.Name = "btnSiga";
-            this.btnSiga.Size = new System.Drawing.Size(77, 67);
-            this.btnSiga.TabIndex = 8;
-            this.btnSiga.Text = "SIGA";
-            this.btnSiga.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.btnSiga.UseVisualStyleBackColor = true;
-            this.btnSiga.Click += new System.EventHandler(this.btnSiga_Click);
-            this.btnSiga.MouseEnter += new System.EventHandler(this.btnChangeColorEnter);
-            this.btnSiga.MouseLeave += new System.EventHandler(this.btnChangeColorLeave);
-            // 
-            // btnFiesLegado
-            // 
-            this.btnFiesLegado.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.btnFiesLegado.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnFiesLegado.FlatAppearance.BorderSize = 0;
-            this.btnFiesLegado.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnFiesLegado.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnFiesLegado.ForeColor = System.Drawing.Color.Silver;
-            this.btnFiesLegado.Image = global::robo.Properties.Resources.old_tv_3_;
-            this.btnFiesLegado.Location = new System.Drawing.Point(1, 1);
-            this.btnFiesLegado.Margin = new System.Windows.Forms.Padding(0);
-            this.btnFiesLegado.Name = "btnFiesLegado";
-            this.btnFiesLegado.Size = new System.Drawing.Size(77, 67);
-            this.btnFiesLegado.TabIndex = 7;
-            this.btnFiesLegado.Text = "Legado";
-            this.btnFiesLegado.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.btnFiesLegado.UseVisualStyleBackColor = true;
-            this.btnFiesLegado.Click += new System.EventHandler(this.btnFiesLegado_Click);
-            this.btnFiesLegado.MouseEnter += new System.EventHandler(this.btnChangeColorEnter);
-            this.btnFiesLegado.MouseLeave += new System.EventHandler(this.btnChangeColorLeave);
-            // 
-            // btnFiesNovo
-            // 
-            this.btnFiesNovo.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.btnFiesNovo.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnFiesNovo.FlatAppearance.BorderSize = 0;
-            this.btnFiesNovo.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnFiesNovo.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnFiesNovo.ForeColor = System.Drawing.Color.Silver;
-            this.btnFiesNovo.Image = global::robo.Properties.Resources.tv;
-            this.btnFiesNovo.Location = new System.Drawing.Point(0, 65);
-            this.btnFiesNovo.Margin = new System.Windows.Forms.Padding(0);
-            this.btnFiesNovo.Name = "btnFiesNovo";
-            this.btnFiesNovo.Size = new System.Drawing.Size(77, 67);
-            this.btnFiesNovo.TabIndex = 6;
-            this.btnFiesNovo.Text = "FIES Novo";
-            this.btnFiesNovo.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.btnFiesNovo.UseVisualStyleBackColor = true;
-            this.btnFiesNovo.Click += new System.EventHandler(this.btnFiesNovo_Click);
-            this.btnFiesNovo.MouseEnter += new System.EventHandler(this.btnChangeColorEnter);
-            this.btnFiesNovo.MouseLeave += new System.EventHandler(this.btnChangeColorLeave);
-            // 
-            // btnConfiguracoes
-            // 
-            this.btnConfiguracoes.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnConfiguracoes.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.btnConfiguracoes.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnConfiguracoes.FlatAppearance.BorderSize = 0;
-            this.btnConfiguracoes.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnConfiguracoes.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnConfiguracoes.ForeColor = System.Drawing.Color.Silver;
-            this.btnConfiguracoes.Image = global::robo.Properties.Resources.configuracoes;
-            this.btnConfiguracoes.Location = new System.Drawing.Point(1, 614);
-            this.btnConfiguracoes.Margin = new System.Windows.Forms.Padding(0);
-            this.btnConfiguracoes.Name = "btnConfiguracoes";
-            this.btnConfiguracoes.Size = new System.Drawing.Size(77, 67);
-            this.btnConfiguracoes.TabIndex = 3;
-            this.btnConfiguracoes.Text = "Ajustes";
-            this.btnConfiguracoes.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.btnConfiguracoes.UseVisualStyleBackColor = true;
-            this.btnConfiguracoes.Click += new System.EventHandler(this.btnConfiguracoes_Click);
-            this.btnConfiguracoes.MouseEnter += new System.EventHandler(this.btnChangeColorEnter);
-            this.btnConfiguracoes.MouseLeave += new System.EventHandler(this.btnChangeColorLeave);
-            // 
             // tooltip
             // 
             this.tooltip.Style = MetroFramework.MetroColorStyle.Blue;
@@ -712,21 +570,10 @@ namespace robo.View
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(77)))), ((int)(((byte)(77)))), ((int)(((byte)(128)))));
             this.panel2.Controls.Add(this.pictureBox1);
-            this.panel2.Location = new System.Drawing.Point(826, 0);
+            this.panel2.Location = new System.Drawing.Point(763, 0);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(378, 680);
+            this.panel2.Size = new System.Drawing.Size(441, 680);
             this.panel2.TabIndex = 11;
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.pictureBox1.Image = global::robo.Properties.Resources.logoAnima;
-            this.pictureBox1.Location = new System.Drawing.Point(106, 212);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(188, 179);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox1.TabIndex = 0;
-            this.pictureBox1.TabStop = false;
             // 
             // lblDireitoReservados
             // 
@@ -745,7 +592,7 @@ namespace robo.View
             // 
             this.labelDescricaoHome.AutoSize = true;
             this.labelDescricaoHome.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelDescricaoHome.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(0)))), ((int)(((byte)(64)))));
+            this.labelDescricaoHome.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(45)))));
             this.labelDescricaoHome.Location = new System.Drawing.Point(47, 175);
             this.labelDescricaoHome.Name = "labelDescricaoHome";
             this.labelDescricaoHome.Size = new System.Drawing.Size(0, 17);
@@ -761,6 +608,146 @@ namespace robo.View
             this.label1.Size = new System.Drawing.Size(519, 39);
             this.label1.TabIndex = 1;
             this.label1.Text = "Seja bem vinda ao Robo Anima";
+            // 
+            // btnLogout
+            // 
+            this.btnLogout.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnLogout.FlatAppearance.BorderSize = 0;
+            this.btnLogout.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnLogout.Font = new System.Drawing.Font("Century Gothic", 8.25F);
+            this.btnLogout.ForeColor = System.Drawing.Color.Silver;
+            this.btnLogout.Image = global::robo.Properties.Resources.logout;
+            this.btnLogout.Location = new System.Drawing.Point(1, 544);
+            this.btnLogout.Name = "btnLogout";
+            this.btnLogout.Size = new System.Drawing.Size(74, 67);
+            this.btnLogout.TabIndex = 10;
+            this.btnLogout.Text = "Logout";
+            this.btnLogout.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.btnLogout.UseVisualStyleBackColor = true;
+            this.btnLogout.Click += new System.EventHandler(this.btnLogout_Click);
+            // 
+            // btnHome
+            // 
+            this.btnHome.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnHome.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.btnHome.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnHome.FlatAppearance.BorderSize = 0;
+            this.btnHome.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnHome.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnHome.ForeColor = System.Drawing.Color.Silver;
+            this.btnHome.Image = global::robo.Properties.Resources.contorno_da_casa;
+            this.btnHome.Location = new System.Drawing.Point(1, 474);
+            this.btnHome.Margin = new System.Windows.Forms.Padding(0);
+            this.btnHome.Name = "btnHome";
+            this.btnHome.Size = new System.Drawing.Size(77, 67);
+            this.btnHome.TabIndex = 9;
+            this.btnHome.Text = "Home";
+            this.btnHome.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.btnHome.UseVisualStyleBackColor = true;
+            this.btnHome.Click += new System.EventHandler(this.btnHome_Click);
+            // 
+            // btnSiga
+            // 
+            this.btnSiga.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.btnSiga.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnSiga.FlatAppearance.BorderSize = 0;
+            this.btnSiga.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSiga.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSiga.ForeColor = System.Drawing.Color.Silver;
+            this.btnSiga.Image = global::robo.Properties.Resources.rotunda;
+            this.btnSiga.Location = new System.Drawing.Point(1, 132);
+            this.btnSiga.Margin = new System.Windows.Forms.Padding(0);
+            this.btnSiga.Name = "btnSiga";
+            this.btnSiga.Size = new System.Drawing.Size(77, 67);
+            this.btnSiga.TabIndex = 8;
+            this.btnSiga.Text = "SIGA";
+            this.btnSiga.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.btnSiga.UseVisualStyleBackColor = true;
+            this.btnSiga.Click += new System.EventHandler(this.btnSiga_Click);
+            // 
+            // btnFiesLegado
+            // 
+            this.btnFiesLegado.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.btnFiesLegado.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnFiesLegado.FlatAppearance.BorderSize = 0;
+            this.btnFiesLegado.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnFiesLegado.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnFiesLegado.ForeColor = System.Drawing.Color.Silver;
+            this.btnFiesLegado.Image = global::robo.Properties.Resources.old_tv_3_;
+            this.btnFiesLegado.Location = new System.Drawing.Point(1, 1);
+            this.btnFiesLegado.Margin = new System.Windows.Forms.Padding(0);
+            this.btnFiesLegado.Name = "btnFiesLegado";
+            this.btnFiesLegado.Size = new System.Drawing.Size(77, 67);
+            this.btnFiesLegado.TabIndex = 7;
+            this.btnFiesLegado.Text = "Legado";
+            this.btnFiesLegado.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.btnFiesLegado.UseVisualStyleBackColor = true;
+            this.btnFiesLegado.Click += new System.EventHandler(this.btnFiesLegado_Click);
+            // 
+            // btnFiesNovo
+            // 
+            this.btnFiesNovo.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.btnFiesNovo.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnFiesNovo.FlatAppearance.BorderSize = 0;
+            this.btnFiesNovo.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnFiesNovo.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnFiesNovo.ForeColor = System.Drawing.Color.Silver;
+            this.btnFiesNovo.Image = global::robo.Properties.Resources.tv;
+            this.btnFiesNovo.Location = new System.Drawing.Point(0, 65);
+            this.btnFiesNovo.Margin = new System.Windows.Forms.Padding(0);
+            this.btnFiesNovo.Name = "btnFiesNovo";
+            this.btnFiesNovo.Size = new System.Drawing.Size(77, 67);
+            this.btnFiesNovo.TabIndex = 6;
+            this.btnFiesNovo.Text = "FIES Novo";
+            this.btnFiesNovo.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.btnFiesNovo.UseVisualStyleBackColor = true;
+            this.btnFiesNovo.Click += new System.EventHandler(this.btnFiesNovo_Click);
+            // 
+            // btnConfiguracoes
+            // 
+            this.btnConfiguracoes.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnConfiguracoes.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.btnConfiguracoes.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnConfiguracoes.FlatAppearance.BorderSize = 0;
+            this.btnConfiguracoes.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnConfiguracoes.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnConfiguracoes.ForeColor = System.Drawing.Color.Silver;
+            this.btnConfiguracoes.Image = global::robo.Properties.Resources.configuracoes;
+            this.btnConfiguracoes.Location = new System.Drawing.Point(1, 614);
+            this.btnConfiguracoes.Margin = new System.Windows.Forms.Padding(0);
+            this.btnConfiguracoes.Name = "btnConfiguracoes";
+            this.btnConfiguracoes.Size = new System.Drawing.Size(77, 67);
+            this.btnConfiguracoes.TabIndex = 3;
+            this.btnConfiguracoes.Text = "Ajustes";
+            this.btnConfiguracoes.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.btnConfiguracoes.UseVisualStyleBackColor = true;
+            this.btnConfiguracoes.Click += new System.EventHandler(this.btnConfiguracoes_Click);
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
+            this.pictureBox1.Image = global::robo.Properties.Resources.logoAlunosBrilhantes;
+            this.pictureBox1.Location = new System.Drawing.Point(0, 0);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(444, 680);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
+            this.pictureBox1.TabIndex = 0;
+            this.pictureBox1.TabStop = false;
+            // 
+            // btnImportar
+            // 
+            this.btnImportar.BackColor = System.Drawing.Color.Green;
+            this.btnImportar.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnImportar.ForeColor = System.Drawing.SystemColors.Control;
+            this.btnImportar.Image = global::robo.Properties.Resources.excel_1_;
+            this.btnImportar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnImportar.Location = new System.Drawing.Point(533, 319);
+            this.btnImportar.Name = "btnImportar";
+            this.btnImportar.Size = new System.Drawing.Size(173, 48);
+            this.btnImportar.TabIndex = 38;
+            this.btnImportar.Text = "Importar";
+            this.btnImportar.UseVisualStyleBackColor = false;
+            this.btnImportar.Click += new System.EventHandler(this.btnImportar_Click);
             // 
             // FormInterface
             // 

@@ -263,6 +263,16 @@ namespace robo.Properties {
         /// <summary>
         ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap logoAlunosBrilhantes {
+            get {
+                object obj = ResourceManager.GetObject("logoAlunosBrilhantes", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap logoAnima {
             get {
                 object obj = ResourceManager.GetObject("logoAnima", resourceCulture);
@@ -286,6 +296,36 @@ namespace robo.Properties {
         internal static System.Drawing.Bitmap logoAnima2 {
             get {
                 object obj = ResourceManager.GetObject("logoAnima2", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap LogoTipoAlunosBrilhantes {
+            get {
+                object obj = ResourceManager.GetObject("LogoTipoAlunosBrilhantes", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap LogoTipoAlunosBrilhantes1 {
+            get {
+                object obj = ResourceManager.GetObject("LogoTipoAlunosBrilhantes1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap logotipoAnima {
+            get {
+                object obj = ResourceManager.GetObject("logotipoAnima", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -386,6 +426,26 @@ namespace robo.Properties {
         internal static System.Drawing.Bitmap question_mark {
             get {
                 object obj = ResourceManager.GetObject("question-mark", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap rotinas_de_departamento_pessoal {
+            get {
+                object obj = ResourceManager.GetObject("rotinas-de-departamento-pessoal", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Consulta um recurso localizado do tipo System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap rotinas_de_departamento_pessoal1 {
+            get {
+                object obj = ResourceManager.GetObject("rotinas-de-departamento-pessoal1", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

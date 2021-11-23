@@ -380,20 +380,8 @@ namespace robo.View
                 }
             }
         }
-        private void btnChangeColorEnter(object sender, EventArgs e)
-        {
-            Button button = sender as Button;
-            button.UseVisualStyleBackColor = false;
-            button.ForeColor = SystemColors.Control;
-            button.BackColor = Color.FromArgb(0, 0, 172, 166);
-        }
-        private void btnChangeColorLeave(object sender, EventArgs e)
-        {
-            Button button = sender as Button;
-            button.UseVisualStyleBackColor = true;
-            button.ForeColor = Color.FromArgb(0, 45, 45, 45);
-            button.BackColor = SystemColors.Control;
-        }
+       
+      
         private void FormInterface_Shown(object sender, EventArgs e)
         {
             btnHome.PerformClick();
