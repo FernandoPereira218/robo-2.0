@@ -31,6 +31,9 @@ namespace robo.View
             versaoRobo = Program.login.Permissao;
             InitializeComponent();
 
+
+
+            lblUsuario.Location = new Point(btnMinimize.Location.X - btnMinimize.Size.Width, lblUsuario.Height);
             lblUsuario.Text = Program.login.Usuario;
             if (Program.login.Usuario != "Admin")
             {

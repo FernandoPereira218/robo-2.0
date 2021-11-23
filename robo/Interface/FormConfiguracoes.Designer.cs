@@ -57,7 +57,6 @@ namespace robo.View
             this.dgvUsuarios = new System.Windows.Forms.DataGridView();
             this.panelBackup = new System.Windows.Forms.Panel();
             this.panelMenuBar = new System.Windows.Forms.Panel();
-            this.lblTitulo = new System.Windows.Forms.Label();
             this.btnMinimize = new System.Windows.Forms.Button();
             this.btnClose = new System.Windows.Forms.Button();
             this.panelSubMenu.SuspendLayout();
@@ -168,7 +167,7 @@ namespace robo.View
             dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle3.BackColor = System.Drawing.Color.White;
             dataGridViewCellStyle3.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle3.ForeColor = System.Drawing.Color.Black;
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.Control;
             dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
             dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
@@ -414,8 +413,7 @@ namespace robo.View
             // 
             this.panelMenuBar.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.panelMenuBar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(45)))));
-            this.panelMenuBar.Controls.Add(this.lblTitulo);
+            this.panelMenuBar.BackColor = System.Drawing.Color.White;
             this.panelMenuBar.Controls.Add(this.btnMinimize);
             this.panelMenuBar.Controls.Add(this.btnClose);
             this.panelMenuBar.ForeColor = System.Drawing.Color.White;
@@ -426,26 +424,13 @@ namespace robo.View
             this.panelMenuBar.TabIndex = 5;
             this.panelMenuBar.MouseDown += new System.Windows.Forms.MouseEventHandler(this.panelMenuBar_MouseDown);
             // 
-            // lblTitulo
-            // 
-            this.lblTitulo.AutoSize = true;
-            this.lblTitulo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(45)))));
-            this.lblTitulo.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.lblTitulo.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTitulo.ForeColor = System.Drawing.Color.White;
-            this.lblTitulo.Location = new System.Drawing.Point(12, 10);
-            this.lblTitulo.Name = "lblTitulo";
-            this.lblTitulo.Size = new System.Drawing.Size(86, 16);
-            this.lblTitulo.TabIndex = 11;
-            this.lblTitulo.Text = "Configurações";
-            // 
             // btnMinimize
             // 
             this.btnMinimize.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnMinimize.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnMinimize.FlatAppearance.BorderSize = 0;
             this.btnMinimize.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnMinimize.ForeColor = System.Drawing.Color.White;
+            this.btnMinimize.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(45)))));
             this.btnMinimize.Location = new System.Drawing.Point(715, -2);
             this.btnMinimize.Margin = new System.Windows.Forms.Padding(2);
             this.btnMinimize.Name = "btnMinimize";
@@ -461,7 +446,7 @@ namespace robo.View
             this.btnClose.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnClose.FlatAppearance.BorderSize = 0;
             this.btnClose.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnClose.ForeColor = System.Drawing.Color.White;
+            this.btnClose.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(45)))));
             this.btnClose.Location = new System.Drawing.Point(756, 0);
             this.btnClose.Margin = new System.Windows.Forms.Padding(2);
             this.btnClose.Name = "btnClose";
@@ -496,7 +481,6 @@ namespace robo.View
             this.panelUsuarios.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvUsuarios)).EndInit();
             this.panelMenuBar.ResumeLayout(false);
-            this.panelMenuBar.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -521,7 +505,6 @@ namespace robo.View
         private System.Windows.Forms.Panel panelBackup;
         private System.Windows.Forms.Button btLogins;
         private System.Windows.Forms.Panel panelMenuBar;
-        private System.Windows.Forms.Label lblTitulo;
         private System.Windows.Forms.Button btnMinimize;
         public System.Windows.Forms.Button btnClose;
     }
