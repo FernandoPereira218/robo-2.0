@@ -32,7 +32,7 @@ namespace robo.Control.Relatorios.SIGA
             {
                 ClickButtonsById(Driver, botaoId);
 
-                SelectElement select = new SelectElement(Driver.FindElement(By.Id("num_parcela")));
+                SelectElement select = BuscarSelectElement("num_parcela");
                 int numParcelas = select.Options.Count();
                 if (numParcelas <= 2)
                 {
@@ -243,7 +243,7 @@ namespace robo.Control.Relatorios.SIGA
 
         private void SelecionarNumeroDocumento()
         {
-            SelectElement nomeOrigem = new SelectElement(Driver.FindElement(By.Id("doc_id_origem")));
+            SelectElement nomeOrigem = BuscarSelectElement("doc_id_origem");
             if (nomeOrigem.Options.Count > 1)
             {
                 nomeOrigem.SelectByIndex(1);
