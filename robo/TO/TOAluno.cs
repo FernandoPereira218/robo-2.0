@@ -98,6 +98,7 @@ namespace Robo
         [Optional]
         public string SemestreAditar { get; set; }
         [Optional]
+        [Ignore]
         public string Curso { get; set; }
         [Optional]
         public string DuracaoRegular { get; set; }
@@ -136,7 +137,7 @@ namespace Robo
         [Optional]
         public string DataConclusao { get; set; }
         [Optional]
-        [Name("CURSO SIGA")]
+        [Name("Curso")]
         public string CursoSiga { get; set; }
         [Optional]
         [Name("VALOR DE REPASSE", "Valor de Repasse")]
@@ -229,7 +230,7 @@ namespace Robo
                 Map(x => x.DuracaoRegular).Name("Duração regular");
                 Map(x => x.TotalDeSemestresSuspensos).Name("Total de semestres suspensos");
                 Map(x => x.TotalDeSemestresDilatados).Name("Total de semestres dilatados");
-                Map(x => x.TotalDeSemestresConcluidos).Name("Total de semestres já concluidos e/ou aproveitadosnesta IES/curso");
+                Map(x => x.TotalDeSemestresConcluidos).Name("Total de semestres já concluidos e/ou aproveitados nesta IES/curso");
                 Map(x => x.SemestreSerCursadoPeloEstudante).Name("Semestre a ser cursado pelo estudante");
                 Map(x => x.TotalDeSemestresJaFinanciados).Name("Total de semestres já financiados");
                 Map(x => x.PercentualDeFinanciamentoSolicitado).Name("Percentual de financiamento solicitado");
@@ -247,6 +248,21 @@ namespace Robo
                 Map(x => x.ProUni).Name("ProUni");
                 Map(x => x.DataInclusao).Name("Data Inclusão");
                 Map(x => x.DataConclusao).Name("Data Conclusão");
+            }
+            else if (tipo == "SIGA")
+            {
+                Map(x => x.Cpf).Name("CPF");
+                Map(x => x.Nome).Name("Nome");
+                Map(x => x.Tipo).Name("Tipo");
+                Map(x => x.Conclusao).Name("Conclusao");
+                Map(x => x.HorarioConclusao).Name("HorarioConclusao");
+                Map(x => x.CursoSiga).Name("Curso");
+                Map(x => x.ParcelaSiga1).Name("PARCELA 1");
+                Map(x => x.ParcelaSiga2).Name("PARCELA 2");
+                Map(x => x.ParcelaSiga3).Name("PARCELA 3");
+                Map(x => x.ParcelaSiga4).Name("PARCELA 4");
+                Map(x => x.ParcelaSiga5).Name("PARCELA 5");
+                Map(x => x.ParcelaSiga6).Name("PARCELA 6");
             }
             else
             {
