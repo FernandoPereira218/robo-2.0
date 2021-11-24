@@ -52,21 +52,50 @@ namespace robo.Control.Relatorios.SIGA
 
         }
 
+        private SelectElement BuscarSelectElement(string elemento)
+        {
+            SelectElement select;
+            try
+            {
+                select = new SelectElement(Driver.FindElement(By.Id(elemento)));
+            }
+            catch (UnexpectedTagNameException)
+            {
+                WaitLoading(Driver);
+                select = new SelectElement(Driver.FindElement(By.Id(elemento)));
+            }
+            return select;
+        }
+
+        private bool ContemAglutinacao(out IWebElement opcaoComAglutinacao)
+        {
+            SelectElement select = BuscarSelectElement("num_parcela");
+            var opcoesSelect = select.Options;
+            foreach (IWebElement option in opcoesSelect)
+            {
+                if (option.Text.Contains("AGLUTINAÇÃO"))
+                {
+                    opcaoComAglutinacao = option;
+                    return true;
+                }
+            }
+            opcaoComAglutinacao = null;
+            return false;
+        }
+
         private void GerarTodasMensalidades(IWebDriver driver, TOAluno aluno, int numParcelas, string semestre)
         {
+            IWebElement opcaoComAglutinacao;
+            if (ContemAglutinacao(out opcaoComAglutinacao) == true)
+            {
+                Util.EditarConclusaoAluno(aluno, opcaoComAglutinacao.Text);
+                return;
+            }
             for (int i = 2; i < numParcelas; i++)
             {
                 WaitLoading(driver);
-                SelectElement select;
-                try
-                {
-                    select = new SelectElement(Driver.FindElement(By.Id("num_parcela")));
-                }
-                catch (UnexpectedTagNameException)
-                {
-                    WaitLoading(driver);
-                    select = new SelectElement(Driver.FindElement(By.Id("num_parcela")));
-                }
+
+                SelectElement select = BuscarSelectElement("num_parcela");
 
                 if (select.Options[opcaoParcela].Text.ToUpper().Contains("AGLUTINAÇÃO"))
                 {
@@ -86,7 +115,7 @@ namespace robo.Control.Relatorios.SIGA
             //Clica no semestre correto
             ClickDropDownExact(driver, "id", "peri_id", semestreSiga);
 
-            SelectElement select = new SelectElement(Driver.FindElement(By.Id("num_parcela")));
+            SelectElement select = BuscarSelectElement("num_parcela");
             string ParcelaSelecionada = select.Options[opcaoParcela].Text;
 
             //Clicar na parcela
