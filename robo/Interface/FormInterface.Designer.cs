@@ -48,10 +48,6 @@ namespace robo.View
             this.dgvAlunos = new System.Windows.Forms.DataGridView();
             this.ofdSelectExcel = new System.Windows.Forms.OpenFileDialog();
             this.panelCadastrarContent = new System.Windows.Forms.Panel();
-            this.panelMenuExecucao = new System.Windows.Forms.Panel();
-            this.btnVoltar = new System.Windows.Forms.Button();
-            this.btnPlanilha = new System.Windows.Forms.Button();
-            this.lblExecucao = new MetroFramework.Controls.MetroLabel();
             this.panelExecucao = new System.Windows.Forms.Panel();
             this.panel1 = new System.Windows.Forms.Panel();
             this.labelTipoFies = new MetroFramework.Controls.MetroLabel();
@@ -60,34 +56,38 @@ namespace robo.View
             this.panelSelecionarModoExecucao = new System.Windows.Forms.Panel();
             this.lblCadastroSelecione = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
+            this.panelMenuExecucao = new System.Windows.Forms.Panel();
+            this.btnVoltar = new System.Windows.Forms.Button();
+            this.btnPlanilha = new System.Windows.Forms.Button();
+            this.lblExecucao = new MetroFramework.Controls.MetroLabel();
             this.panelErroNenhumAluno = new System.Windows.Forms.Panel();
+            this.btnImportar = new System.Windows.Forms.Button();
             this.metroLabel2 = new MetroFramework.Controls.MetroLabel();
             this.metroLabel1 = new MetroFramework.Controls.MetroLabel();
             this.panelSubMenu = new System.Windows.Forms.Panel();
-            this.tooltip = new MetroFramework.Components.MetroToolTip();
-            this.panelHome = new System.Windows.Forms.Panel();
-            this.panel2 = new System.Windows.Forms.Panel();
-            this.lblDireitoReservados = new System.Windows.Forms.Label();
-            this.labelDescricaoHome = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
             this.btnLogout = new System.Windows.Forms.Button();
             this.btnHome = new System.Windows.Forms.Button();
             this.btnSiga = new System.Windows.Forms.Button();
             this.btnFiesLegado = new System.Windows.Forms.Button();
             this.btnFiesNovo = new System.Windows.Forms.Button();
             this.btnConfiguracoes = new System.Windows.Forms.Button();
+            this.tooltip = new MetroFramework.Components.MetroToolTip();
+            this.panelHome = new System.Windows.Forms.Panel();
+            this.panel2 = new System.Windows.Forms.Panel();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.btnImportar = new System.Windows.Forms.Button();
+            this.lblDireitoReservados = new System.Windows.Forms.Label();
+            this.labelDescricaoHome = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
             this.panelMenuBar.SuspendLayout();
             this.panelExcel.SuspendLayout();
             this.panellStatus.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvAlunos)).BeginInit();
             this.panelCadastrarContent.SuspendLayout();
-            this.panelMenuExecucao.SuspendLayout();
             this.panelExecucao.SuspendLayout();
             this.panel1.SuspendLayout();
             this.panelCadastro.SuspendLayout();
             this.panelSelecionarModoExecucao.SuspendLayout();
+            this.panelMenuExecucao.SuspendLayout();
             this.panelErroNenhumAluno.SuspendLayout();
             this.panelSubMenu.SuspendLayout();
             this.panelHome.SuspendLayout();
@@ -138,7 +138,7 @@ namespace robo.View
             this.lblUsuario.ForeColor = System.Drawing.Color.White;
             this.lblUsuario.Location = new System.Drawing.Point(1104, 16);
             this.lblUsuario.Name = "lblUsuario";
-            this.lblUsuario.Size = new System.Drawing.Size(42, 16);
+            this.lblUsuario.Size = new System.Drawing.Size(53, 19);
             this.lblUsuario.TabIndex = 12;
             this.lblUsuario.Text = "Admin";
             // 
@@ -151,7 +151,7 @@ namespace robo.View
             this.label6.ForeColor = System.Drawing.Color.White;
             this.label6.Location = new System.Drawing.Point(12, 13);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(103, 16);
+            this.label6.Size = new System.Drawing.Size(131, 19);
             this.label6.TabIndex = 11;
             this.label6.Text = "Anima Educação";
             // 
@@ -255,7 +255,7 @@ namespace robo.View
             this.lblStatusQuantidadeAlunos.Location = new System.Drawing.Point(9, 6);
             this.lblStatusQuantidadeAlunos.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblStatusQuantidadeAlunos.Name = "lblStatusQuantidadeAlunos";
-            this.lblStatusQuantidadeAlunos.Size = new System.Drawing.Size(47, 15);
+            this.lblStatusQuantidadeAlunos.Size = new System.Drawing.Size(56, 18);
             this.lblStatusQuantidadeAlunos.TabIndex = 67;
             this.lblStatusQuantidadeAlunos.Text = "Status";
             // 
@@ -332,74 +332,6 @@ namespace robo.View
             this.panelCadastrarContent.Name = "panelCadastrarContent";
             this.panelCadastrarContent.Size = new System.Drawing.Size(1207, 686);
             this.panelCadastrarContent.TabIndex = 3;
-            // 
-            // panelMenuExecucao
-            // 
-            this.panelMenuExecucao.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.panelMenuExecucao.BackColor = System.Drawing.SystemColors.Control;
-            this.panelMenuExecucao.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.panelMenuExecucao.Controls.Add(this.btnVoltar);
-            this.panelMenuExecucao.Controls.Add(this.btnPlanilha);
-            this.panelMenuExecucao.Controls.Add(this.lblExecucao);
-            this.panelMenuExecucao.ForeColor = System.Drawing.SystemColors.Control;
-            this.panelMenuExecucao.Location = new System.Drawing.Point(-1, -5);
-            this.panelMenuExecucao.Name = "panelMenuExecucao";
-            this.panelMenuExecucao.Size = new System.Drawing.Size(1206, 67);
-            this.panelMenuExecucao.TabIndex = 15;
-            // 
-            // btnVoltar
-            // 
-            this.btnVoltar.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.btnVoltar.BackColor = System.Drawing.Color.White;
-            this.btnVoltar.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnVoltar.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
-            this.btnVoltar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnVoltar.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnVoltar.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(45)))));
-            this.btnVoltar.Location = new System.Drawing.Point(240, 21);
-            this.btnVoltar.Name = "btnVoltar";
-            this.btnVoltar.Size = new System.Drawing.Size(96, 29);
-            this.btnVoltar.TabIndex = 65;
-            this.btnVoltar.Text = "< Voltar";
-            this.btnVoltar.UseVisualStyleBackColor = false;
-            this.btnVoltar.Visible = false;
-            this.btnVoltar.Click += new System.EventHandler(this.btnVoltar_Click);
-            // 
-            // btnPlanilha
-            // 
-            this.btnPlanilha.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnPlanilha.BackColor = System.Drawing.Color.White;
-            this.btnPlanilha.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnPlanilha.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
-            this.btnPlanilha.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnPlanilha.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnPlanilha.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(45)))));
-            this.btnPlanilha.Location = new System.Drawing.Point(1095, 21);
-            this.btnPlanilha.Name = "btnPlanilha";
-            this.btnPlanilha.Size = new System.Drawing.Size(96, 29);
-            this.btnPlanilha.TabIndex = 63;
-            this.btnPlanilha.Text = "Planilha";
-            this.btnPlanilha.UseVisualStyleBackColor = false;
-            this.btnPlanilha.Visible = false;
-            this.btnPlanilha.Click += new System.EventHandler(this.btnPlanilha_Click);
-            // 
-            // lblExecucao
-            // 
-            this.lblExecucao.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblExecucao.AutoSize = true;
-            this.lblExecucao.FontSize = MetroFramework.MetroLabelSize.Tall;
-            this.lblExecucao.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(45)))));
-            this.lblExecucao.Location = new System.Drawing.Point(15, 21);
-            this.lblExecucao.Name = "lblExecucao";
-            this.lblExecucao.Size = new System.Drawing.Size(117, 25);
-            this.lblExecucao.TabIndex = 64;
-            this.lblExecucao.Text = "Robo Anima";
-            this.lblExecucao.UseCustomBackColor = true;
-            this.lblExecucao.UseCustomForeColor = true;
-            this.lblExecucao.UseStyleColors = true;
             // 
             // panelExecucao
             // 
@@ -479,7 +411,7 @@ namespace robo.View
             this.lblCadastroSelecione.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblCadastroSelecione.Location = new System.Drawing.Point(166, 107);
             this.lblCadastroSelecione.Name = "lblCadastroSelecione";
-            this.lblCadastroSelecione.Size = new System.Drawing.Size(232, 19);
+            this.lblCadastroSelecione.Size = new System.Drawing.Size(294, 23);
             this.lblCadastroSelecione.TabIndex = 0;
             this.lblCadastroSelecione.Text = "Selecione o modo Execução";
             // 
@@ -490,9 +422,77 @@ namespace robo.View
             this.label2.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.Location = new System.Drawing.Point(82, 134);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(419, 17);
+            this.label2.Size = new System.Drawing.Size(542, 21);
             this.label2.TabIndex = 1;
             this.label2.Text = "Selecione o modo de execução e seus campos após selecionar";
+            // 
+            // panelMenuExecucao
+            // 
+            this.panelMenuExecucao.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.panelMenuExecucao.BackColor = System.Drawing.SystemColors.Control;
+            this.panelMenuExecucao.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.panelMenuExecucao.Controls.Add(this.btnVoltar);
+            this.panelMenuExecucao.Controls.Add(this.btnPlanilha);
+            this.panelMenuExecucao.Controls.Add(this.lblExecucao);
+            this.panelMenuExecucao.ForeColor = System.Drawing.SystemColors.Control;
+            this.panelMenuExecucao.Location = new System.Drawing.Point(-1, -5);
+            this.panelMenuExecucao.Name = "panelMenuExecucao";
+            this.panelMenuExecucao.Size = new System.Drawing.Size(1206, 67);
+            this.panelMenuExecucao.TabIndex = 15;
+            // 
+            // btnVoltar
+            // 
+            this.btnVoltar.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.btnVoltar.BackColor = System.Drawing.Color.White;
+            this.btnVoltar.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnVoltar.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
+            this.btnVoltar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnVoltar.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnVoltar.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(45)))));
+            this.btnVoltar.Location = new System.Drawing.Point(240, 21);
+            this.btnVoltar.Name = "btnVoltar";
+            this.btnVoltar.Size = new System.Drawing.Size(96, 29);
+            this.btnVoltar.TabIndex = 65;
+            this.btnVoltar.Text = "< Voltar";
+            this.btnVoltar.UseVisualStyleBackColor = false;
+            this.btnVoltar.Visible = false;
+            this.btnVoltar.Click += new System.EventHandler(this.btnVoltar_Click);
+            // 
+            // btnPlanilha
+            // 
+            this.btnPlanilha.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnPlanilha.BackColor = System.Drawing.Color.White;
+            this.btnPlanilha.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnPlanilha.FlatAppearance.BorderColor = System.Drawing.Color.Silver;
+            this.btnPlanilha.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnPlanilha.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnPlanilha.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(45)))));
+            this.btnPlanilha.Location = new System.Drawing.Point(1095, 21);
+            this.btnPlanilha.Name = "btnPlanilha";
+            this.btnPlanilha.Size = new System.Drawing.Size(96, 29);
+            this.btnPlanilha.TabIndex = 63;
+            this.btnPlanilha.Text = "Planilha";
+            this.btnPlanilha.UseVisualStyleBackColor = false;
+            this.btnPlanilha.Visible = false;
+            this.btnPlanilha.Click += new System.EventHandler(this.btnPlanilha_Click);
+            // 
+            // lblExecucao
+            // 
+            this.lblExecucao.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblExecucao.AutoSize = true;
+            this.lblExecucao.FontSize = MetroFramework.MetroLabelSize.Tall;
+            this.lblExecucao.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(45)))));
+            this.lblExecucao.Location = new System.Drawing.Point(15, 21);
+            this.lblExecucao.Name = "lblExecucao";
+            this.lblExecucao.Size = new System.Drawing.Size(112, 25);
+            this.lblExecucao.TabIndex = 64;
+            this.lblExecucao.Text = "Robo Anima";
+            this.lblExecucao.UseCustomBackColor = true;
+            this.lblExecucao.UseCustomForeColor = true;
+            this.lblExecucao.UseStyleColors = true;
             // 
             // panelErroNenhumAluno
             // 
@@ -505,13 +505,28 @@ namespace robo.View
             this.panelErroNenhumAluno.Size = new System.Drawing.Size(970, 667);
             this.panelErroNenhumAluno.TabIndex = 62;
             // 
+            // btnImportar
+            // 
+            this.btnImportar.BackColor = System.Drawing.Color.Green;
+            this.btnImportar.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnImportar.ForeColor = System.Drawing.SystemColors.Control;
+            this.btnImportar.Image = global::robo.Properties.Resources.excel_1_;
+            this.btnImportar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnImportar.Location = new System.Drawing.Point(533, 319);
+            this.btnImportar.Name = "btnImportar";
+            this.btnImportar.Size = new System.Drawing.Size(173, 48);
+            this.btnImportar.TabIndex = 38;
+            this.btnImportar.Text = "Importar";
+            this.btnImportar.UseVisualStyleBackColor = false;
+            this.btnImportar.Click += new System.EventHandler(this.btnImportar_Click);
+            // 
             // metroLabel2
             // 
             this.metroLabel2.AutoSize = true;
             this.metroLabel2.FontSize = MetroFramework.MetroLabelSize.Tall;
             this.metroLabel2.Location = new System.Drawing.Point(421, 282);
             this.metroLabel2.Name = "metroLabel2";
-            this.metroLabel2.Size = new System.Drawing.Size(419, 25);
+            this.metroLabel2.Size = new System.Drawing.Size(435, 25);
             this.metroLabel2.TabIndex = 6;
             this.metroLabel2.Text = "Importe uma Planilha para fazer a Execução desejada";
             // 
@@ -543,71 +558,6 @@ namespace robo.View
             this.panelSubMenu.Name = "panelSubMenu";
             this.panelSubMenu.Size = new System.Drawing.Size(83, 733);
             this.panelSubMenu.TabIndex = 38;
-            // 
-            // tooltip
-            // 
-            this.tooltip.Style = MetroFramework.MetroColorStyle.Blue;
-            this.tooltip.StyleManager = null;
-            this.tooltip.Theme = MetroFramework.MetroThemeStyle.Light;
-            // 
-            // panelHome
-            // 
-            this.panelHome.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.panelHome.Controls.Add(this.panel2);
-            this.panelHome.Controls.Add(this.lblDireitoReservados);
-            this.panelHome.Controls.Add(this.labelDescricaoHome);
-            this.panelHome.Controls.Add(this.label1);
-            this.panelHome.Location = new System.Drawing.Point(76, 40);
-            this.panelHome.Name = "panelHome";
-            this.panelHome.Size = new System.Drawing.Size(1204, 686);
-            this.panelHome.TabIndex = 0;
-            // 
-            // panel2
-            // 
-            this.panel2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(77)))), ((int)(((byte)(77)))), ((int)(((byte)(128)))));
-            this.panel2.Controls.Add(this.pictureBox1);
-            this.panel2.Location = new System.Drawing.Point(763, 0);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(441, 680);
-            this.panel2.TabIndex = 11;
-            // 
-            // lblDireitoReservados
-            // 
-            this.lblDireitoReservados.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblDireitoReservados.AutoSize = true;
-            this.lblDireitoReservados.BackColor = System.Drawing.SystemColors.Control;
-            this.lblDireitoReservados.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblDireitoReservados.Location = new System.Drawing.Point(129, 611);
-            this.lblDireitoReservados.Name = "lblDireitoReservados";
-            this.lblDireitoReservados.Size = new System.Drawing.Size(320, 17);
-            this.lblDireitoReservados.TabIndex = 3;
-            this.lblDireitoReservados.Text = "Todos os direitos reservados a Anima Educação.";
-            // 
-            // labelDescricaoHome
-            // 
-            this.labelDescricaoHome.AutoSize = true;
-            this.labelDescricaoHome.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelDescricaoHome.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(45)))));
-            this.labelDescricaoHome.Location = new System.Drawing.Point(47, 175);
-            this.labelDescricaoHome.Name = "labelDescricaoHome";
-            this.labelDescricaoHome.Size = new System.Drawing.Size(0, 17);
-            this.labelDescricaoHome.TabIndex = 2;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Century Gothic", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(77)))), ((int)(((byte)(77)))), ((int)(((byte)(128)))));
-            this.label1.Location = new System.Drawing.Point(44, 68);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(519, 39);
-            this.label1.TabIndex = 1;
-            this.label1.Text = "Seja bem vinda ao Robo Anima";
             // 
             // btnLogout
             // 
@@ -723,6 +673,37 @@ namespace robo.View
             this.btnConfiguracoes.UseVisualStyleBackColor = true;
             this.btnConfiguracoes.Click += new System.EventHandler(this.btnConfiguracoes_Click);
             // 
+            // tooltip
+            // 
+            this.tooltip.Style = MetroFramework.MetroColorStyle.Blue;
+            this.tooltip.StyleManager = null;
+            this.tooltip.Theme = MetroFramework.MetroThemeStyle.Light;
+            // 
+            // panelHome
+            // 
+            this.panelHome.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.panelHome.Controls.Add(this.panel2);
+            this.panelHome.Controls.Add(this.lblDireitoReservados);
+            this.panelHome.Controls.Add(this.labelDescricaoHome);
+            this.panelHome.Controls.Add(this.label1);
+            this.panelHome.Location = new System.Drawing.Point(76, 40);
+            this.panelHome.Name = "panelHome";
+            this.panelHome.Size = new System.Drawing.Size(1204, 686);
+            this.panelHome.TabIndex = 0;
+            // 
+            // panel2
+            // 
+            this.panel2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(77)))), ((int)(((byte)(77)))), ((int)(((byte)(128)))));
+            this.panel2.Controls.Add(this.pictureBox1);
+            this.panel2.Location = new System.Drawing.Point(763, 0);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(441, 680);
+            this.panel2.TabIndex = 11;
+            // 
             // pictureBox1
             // 
             this.pictureBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)));
@@ -734,20 +715,39 @@ namespace robo.View
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
             // 
-            // btnImportar
+            // lblDireitoReservados
             // 
-            this.btnImportar.BackColor = System.Drawing.Color.Green;
-            this.btnImportar.Font = new System.Drawing.Font("Century Gothic", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnImportar.ForeColor = System.Drawing.SystemColors.Control;
-            this.btnImportar.Image = global::robo.Properties.Resources.excel_1_;
-            this.btnImportar.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnImportar.Location = new System.Drawing.Point(533, 319);
-            this.btnImportar.Name = "btnImportar";
-            this.btnImportar.Size = new System.Drawing.Size(173, 48);
-            this.btnImportar.TabIndex = 38;
-            this.btnImportar.Text = "Importar";
-            this.btnImportar.UseVisualStyleBackColor = false;
-            this.btnImportar.Click += new System.EventHandler(this.btnImportar_Click);
+            this.lblDireitoReservados.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblDireitoReservados.AutoSize = true;
+            this.lblDireitoReservados.BackColor = System.Drawing.SystemColors.Control;
+            this.lblDireitoReservados.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblDireitoReservados.Location = new System.Drawing.Point(129, 611);
+            this.lblDireitoReservados.Name = "lblDireitoReservados";
+            this.lblDireitoReservados.Size = new System.Drawing.Size(416, 21);
+            this.lblDireitoReservados.TabIndex = 3;
+            this.lblDireitoReservados.Text = "Todos os direitos reservados a Anima Educação.";
+            // 
+            // labelDescricaoHome
+            // 
+            this.labelDescricaoHome.AutoSize = true;
+            this.labelDescricaoHome.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelDescricaoHome.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(45)))));
+            this.labelDescricaoHome.Location = new System.Drawing.Point(47, 175);
+            this.labelDescricaoHome.Name = "labelDescricaoHome";
+            this.labelDescricaoHome.Size = new System.Drawing.Size(0, 21);
+            this.labelDescricaoHome.TabIndex = 2;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Century Gothic", 22.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(77)))), ((int)(((byte)(77)))), ((int)(((byte)(128)))));
+            this.label1.Location = new System.Drawing.Point(5, 64);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(833, 45);
+            this.label1.TabIndex = 1;
+            this.label1.Text = "Seja bem vindo(a) ao Robo Financiamento";
             // 
             // FormInterface
             // 
@@ -773,13 +773,13 @@ namespace robo.View
             this.panellStatus.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvAlunos)).EndInit();
             this.panelCadastrarContent.ResumeLayout(false);
-            this.panelMenuExecucao.ResumeLayout(false);
-            this.panelMenuExecucao.PerformLayout();
             this.panelExecucao.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
             this.panelCadastro.ResumeLayout(false);
             this.panelSelecionarModoExecucao.ResumeLayout(false);
             this.panelSelecionarModoExecucao.PerformLayout();
+            this.panelMenuExecucao.ResumeLayout(false);
+            this.panelMenuExecucao.PerformLayout();
             this.panelErroNenhumAluno.ResumeLayout(false);
             this.panelErroNenhumAluno.PerformLayout();
             this.panelSubMenu.ResumeLayout(false);
