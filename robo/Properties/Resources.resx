@@ -133,8 +133,8 @@
   <data name="rotinas-de-departamento-pessoal1" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\rotinas-de-departamento-pessoal1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="LogoTipoAlunosBrilhantes1" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\LogoTipoAlunosBrilhantes1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="logotipoAnima" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\logotipoAnima.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="mec-logo-white" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\mec-logo-white.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -166,17 +166,11 @@
   <data name="tv" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\tv.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="admin" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\admin.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="silhueta-negra-de-casa-sem-porta" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\silhueta-negra-de-casa-sem-porta.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="LOGO" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\LOGO.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="insert-memory-card" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\insert-memory-card.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="user" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\user.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -186,6 +180,9 @@
   </data>
   <data name="rotinas-de-departamento-pessoal" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\rotinas-de-departamento-pessoal.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="excel" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\excel.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="4318.png_1200" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\4318.png_1200.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -199,8 +196,8 @@
   <data name="quadrado" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\quadrado.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="silhueta-negra-de-casa-sem-porta2" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\silhueta-negra-de-casa-sem-porta2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="LogoTipoAlunosBrilhantes1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\LogoTipoAlunosBrilhantes1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="anima_educacao_UniFG2" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\anima_educacao_UniFG1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -223,8 +220,8 @@
   <data name="logoAnima2" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\logoAnima2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="excel" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\excel.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="insert-memory-card" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\insert-memory-card.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="contorno-da-casa" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\contorno-da-casa.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -235,14 +232,20 @@
   <data name="square new" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\square new.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="logoAlunosBrilhantes" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\logoAlunosBrilhantes.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="LogoTipoAlunosBrilhantes" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\LogoTipoAlunosBrilhantes.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="logotipoAnima" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\logotipoAnima.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="admin" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\admin.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="quadrado(1)" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\quadrado(1).png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="silhueta-negra-de-casa-sem-porta2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\silhueta-negra-de-casa-sem-porta2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Sem Título-21" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Sem Título-21.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -262,7 +265,7 @@
   <data name="college-graduation" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\college-graduation.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="logoAlunosBrilhantes" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\logoAlunosBrilhantes.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="logoA" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\logoA.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>
