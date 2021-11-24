@@ -324,7 +324,7 @@ namespace robo.View
                 return;
             }
             FormConfiguracoes Config = new FormConfiguracoes();
-            Config.Show();
+            Config.ShowDialog();
         }
         private void btnHome_Click(object sender, EventArgs e)
         {
