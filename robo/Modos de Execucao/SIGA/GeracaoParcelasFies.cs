@@ -43,7 +43,10 @@ namespace robo.Control.Relatorios.SIGA
 
                 GerarTodasMensalidades(driver, aluno, numParcelas, semestre);
 
-                Util.EditarConclusaoAluno(aluno, "Processo finalizado.");
+                if (aluno.Conclusao == "Não Feito")
+                {
+                    Util.EditarConclusaoAluno(aluno, "Processo finalizado.");
+                }
                 Driver.Url = Driver.Url;
             }
 
@@ -65,6 +68,12 @@ namespace robo.Control.Relatorios.SIGA
                     select = new SelectElement(Driver.FindElement(By.Id("num_parcela")));
                 }
 
+                if (select.Options[opcaoParcela].Text.ToUpper().Contains("AGLUTINAÇÃO"))
+                {
+                    Util.EditarConclusaoAluno(aluno, select.Options[opcaoParcela].Text);
+                    return;
+                }
+
                 if (select.Options[opcaoParcela].Text.ToUpper().Contains("PARCELA"))
                 {
                     GerarMensalidade(driver, aluno, DateTime.Now, BuscarSemestreSiga(semestre));
@@ -72,7 +81,7 @@ namespace robo.Control.Relatorios.SIGA
             }
         }
 
-        private void GerarMensalidade(IWebDriver driver, TOAluno aluno, DateTime dataAtual , string semestreSiga)
+        private void GerarMensalidade(IWebDriver driver, TOAluno aluno, DateTime dataAtual, string semestreSiga)
         {
             //Clica no semestre correto
             ClickDropDownExact(driver, "id", "peri_id", semestreSiga);
