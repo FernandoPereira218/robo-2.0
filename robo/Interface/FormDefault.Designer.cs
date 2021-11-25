@@ -1,5 +1,5 @@
 ﻿
-namespace robo.View
+namespace robo.Interface
 {
     partial class FormDefault
     {

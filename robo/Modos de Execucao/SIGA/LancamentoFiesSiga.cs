@@ -1,13 +1,15 @@
 ﻿using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
-using Robo;
+using robo.Banco_de_Dados;
+using robo.TO;
+using robo.Utils;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace robo.Control.Relatorios.SIGA
+namespace robo.Modos_de_Execucao.SIGA
 {
     class LancamentoFiesSiga : UtilSiga
     {

@@ -1,6 +1,6 @@
 ﻿using OpenQA.Selenium;
-using robo.Control.Legado;
-using Robo;
+using robo.TO;
+using robo.Utils;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -10,7 +10,7 @@ using System.Text;
 using System.Threading.Tasks;
 using TikaOnDotNet.TextExtraction;
 
-namespace robo.Control.Relatorios.FIES_Legado
+namespace robo.Modos_de_Execucao.FIES_Legado
 {
     class ExtrairInformacoesDRM : UtilFiesLegado
     {

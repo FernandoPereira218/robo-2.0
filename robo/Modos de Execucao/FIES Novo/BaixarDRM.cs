@@ -1,10 +1,11 @@
 ﻿using OpenQA.Selenium;
-using Robo;
+using robo.TO;
+using robo.Utils;
 using System;
 using System.Diagnostics;
 using System.IO;
 
-namespace robo.Control.Relatorios.FIES_Novo
+namespace robo.Modos_de_Execucao.FIES_Novo
 {
     public class BaixarDRM : UtilFiesNovo
     {

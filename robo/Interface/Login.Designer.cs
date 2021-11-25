@@ -1,5 +1,5 @@
 ﻿
-namespace robo
+namespace robo.Interface
 {
     partial class Login
     {

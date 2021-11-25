@@ -1,11 +1,11 @@
-﻿using Robo;
+﻿using robo.TO;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace robo.Control.Implementacoes
+namespace robo.Contratos
 {
     public interface IContratos
     {

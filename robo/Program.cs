@@ -1,12 +1,13 @@
 ﻿using robo;
-using robo.View;
+using robo.Interface;
+using robo.TO;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace Robo
+namespace robo
 {
     static class Program
     {

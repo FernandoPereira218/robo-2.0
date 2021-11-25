@@ -1,13 +1,14 @@
 ﻿using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
-using Robo;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using robo.Utils;
 using System.Text;
 using System.Threading.Tasks;
+using robo.TO;
 
-namespace robo.Control.Relatorios.SIGA
+namespace robo.Modos_de_Execucao.SIGA
 {
     class GeracaoParcelasFies : UtilSiga
     {

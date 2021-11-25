@@ -1,4 +1,4 @@
-﻿namespace Robo
+﻿namespace robo.Interface
 {
     partial class UsuarioForm
     {
