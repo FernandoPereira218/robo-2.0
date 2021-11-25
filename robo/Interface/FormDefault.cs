@@ -114,7 +114,7 @@ namespace robo.Interface
 
         private void cbIES_SelectedIndexChanged(object sender, EventArgs e)
         {
-            cbCampus.DataSource = Dados.SelectLoginTOIES(cbIES.Text, "FIES LEGADO");
+            cbCampus.DataSource = Dados.SelectLoginTOIES(cbIES.Text);
         }
 
         private void btnIniciar_Click(object sender, EventArgs e)

@@ -119,6 +119,23 @@ namespace robo.Utils
             return driver;
         }
 
+        public static IWebDriver CriarBrowserVazio(bool firefox = true)
+        {
+
+            if (firefox == true)
+            {
+                var firefoxDriverService = FirefoxDriverService.CreateDefaultService(Environment.CurrentDirectory + @"\driver");
+                firefoxDriverService.HideCommandPromptWindow = true;
+                return new FirefoxDriver(firefoxDriverService);
+            }
+            else
+            {
+                var chromeDriverService = ChromeDriverService.CreateDefaultService(Environment.CurrentDirectory + @"\driver");
+                chromeDriverService.HideCommandPromptWindow = true;
+                return new ChromeDriver(chromeDriverService);
+            }
+        }
+
         /// <summary>
         /// Substitui \r por espacos vazios de todos os campos de strings
         /// </summary>
@@ -242,7 +259,7 @@ namespace robo.Utils
                         catch (IOException ex)
                         {
                             fileError = true;
-                            MessageBox.Show("Arquivo já existe, e está aberto em outro aplicativo" + ex.Message);
+                            MessageBox.Show("Arquivo já existe, e está aberto em outro aplicativo " + ex.Message);
                         }
                     }
                     if (!fileError)
@@ -473,5 +490,16 @@ namespace robo.Utils
             }
         }
 
+        public static void CriarBackupDB()
+        {
+            CriarDiretorioCasoNaoExista("backup");
+            DirectoryInfo directory = new DirectoryInfo("backup");
+            if (directory.GetFiles().Count() >= 5)
+            {
+                FileInfo myFile = directory.GetFiles().OrderByDescending(f => f.LastWriteTime).Last();
+                myFile.Delete();
+            }
+            File.Copy("data/bdbot.db", "backup/BACKUP_BDBOT " + DateTime.Now.ToString("dd_MM_yy HH-mm-ss") + ".db");
+        }
     }
 }
