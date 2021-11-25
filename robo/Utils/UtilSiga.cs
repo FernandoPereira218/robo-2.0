@@ -22,26 +22,19 @@ namespace robo.Utils
         /// <param name="aluno"></param>
         protected void FiltraAluno(IWebDriver Driver, TOAluno aluno)
         {
+            WaitLoading(Driver);
             try
             {
-                WaitLoading(Driver);
-                ClickAndWriteById(Driver, "pess_cpf", aluno.Cpf);
-                ClickButtonsById(Driver, "btn_filtrar");
-            }
-            catch (NoSuchElementException)  
-            {
-                WaitLoading(Driver);
-                ClickAndWriteById(Driver, "pess_cpf", aluno.Cpf);
-                ClickButtonsById(Driver, "btn_filtrar");
-            }
-            catch (ElementClickInterceptedException)
-            {
-                WaitLoading(Driver);
                 ClickAndWriteById(Driver, "pess_cpf", aluno.Cpf);
                 ClickButtonsById(Driver, "btn_filtrar");
             }
             catch (Exception e)
             {
+                if (e is NoSuchElementException || e is ElementClickInterceptedException)
+                {
+                    FiltraAluno(Driver, aluno);
+                    return;
+                }
                 throw e;
             }
         }
@@ -68,27 +61,12 @@ namespace robo.Utils
         /// <param name="url"></param>
         /// <param name="login"></param>
         /// <returns></returns>
-        public IWebDriver FazerLogin(string url, TOLogin login)
+        public void FazerLogin(IWebDriver Driver, string url, TOLogin login)
         {
-            IWebDriver Driver;
-
-            var firefoxDriverService = FirefoxDriverService.CreateDefaultService(Environment.CurrentDirectory + @"\driver");
-            firefoxDriverService.HideCommandPromptWindow = true;
-            Driver = new FirefoxDriver(firefoxDriverService);
-
             ((IJavaScriptExecutor)Driver).ExecuteScript("alert('" + url + "')");
-            DialogResult resultado = MessageBox.Show("Abra o site na mensagem de alerta do navegador e clique no captcha.\nApós isso, volte para esta mensagem e clique em 'Ok'.", "Clique no captcha!", MessageBoxButtons.OKCancel);
-            if (resultado == DialogResult.Cancel)
-            {
-                return null;
-            }
-
             ClickAndWriteByName(Driver, "login", login.Usuario);
             ClickAndWriteById(Driver, "senha_ls", login.Senha);
-
             ClickButtonsByXpath(Driver, "/html/body/table/tbody/tr/td/table/tbody/tr[6]/td/div/form/div/table/tbody/tr[2]/td/table/tbody/tr/td[2]/table/tbody/tr[6]/td/input");
-
-            return Driver;
         }
 
         /// <summary>

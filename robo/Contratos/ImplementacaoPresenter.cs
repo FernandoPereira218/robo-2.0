@@ -433,18 +433,24 @@ namespace robo.Contratos
             //listaLogins = Dados.SelectLoginPorIESePlataforma("", "SIGA", "", admin: false);
             listaLogins = Dados.SelectWhere<TOLogin>(x => x.Plataforma == "SIGA");
 
-            foreach (TOAluno aluno in listaAlunos)
-            {
-                Dados.TratarTextoReceitas(aluno);
-                Dados.TratarVirgulaReceitas(aluno);
-            }
+            //foreach (TOAluno aluno in listaAlunos)
+            //{
+            //    Dados.TratarTextoReceitas(aluno);
+            //    Dados.TratarVirgulaReceitas(aluno);
+            //}
             progresso = 0;
             contador = listaAlunos.Count;
 
             UtilSiga utilsiga = new UtilSiga();
-            Driver = utilsiga.FazerLogin("https://siga.uniritter.edu.br/financeiro/fichaFinanceira.php", listaLogins[0]);
+            IWebDriver Driver = Util.CriarBrowserVazio(firefox: true);
+            utilsiga.FazerLogin(Driver, "https://siga.uniritter.edu.br/financeiro/fichaFinanceira.php", listaLogins[0]);
+            DialogResult resultado = MessageBox.Show("Abra o site na mensagem de alerta do navegador e clique no captcha.\nApós isso, volte para esta mensagem e clique em 'Ok'.", "Clique no captcha!", MessageBoxButtons.OKCancel);
+            if (resultado == DialogResult.Cancel)
+            {
+                return;
+            }
             // Não caiu
-            if (Driver == null || Driver.PageSource.Contains("Você precisa realizar a validação \"Não sou um robô\".Tente novamente marcando esta opção!"))
+            if (Driver.PageSource.Contains("Você precisa realizar a validação \"Não sou um robô\".Tente novamente marcando esta opção!"))
             {
                 return;
             }
@@ -471,9 +477,16 @@ namespace robo.Contratos
             progresso = 0;
             contador = listaAlunos.Count;
             UtilSiga utilsiga = new UtilSiga();
-            Driver = utilsiga.FazerLogin("https://siga.uniritter.edu.br/financeiro/geracaoIndividualParcela.php", listaLogins[0]);
+            IWebDriver Driver = Util.CriarBrowserVazio(firefox: true);
+            utilsiga.FazerLogin(Driver, "https://siga.uniritter.edu.br/financeiro/geracaoIndividualParcela.php", listaLogins[0]);
 
-            if (Driver == null || Driver.PageSource.Contains("Você precisa realizar a validação \"Não sou um robô\"."))
+            DialogResult resultado = MessageBox.Show("Abra o site na mensagem de alerta do navegador e clique no captcha.\nApós isso, volte para esta mensagem e clique em 'Ok'.", "Clique no captcha!", MessageBoxButtons.OKCancel);
+            if (resultado == DialogResult.Cancel)
+            {
+                return;
+            }
+
+            if (Driver.PageSource.Contains("Você precisa realizar a validação \"Não sou um robô\"."))
             {
                 return;
             }

@@ -33,8 +33,6 @@ namespace robo.Interface
             versaoRobo = Program.login.Permissao;
             InitializeComponent();
 
-
-
             lblUsuario.Location = new Point(btnMinimize.Location.X - btnMinimize.Size.Width, lblUsuario.Height);
             lblUsuario.Text = Program.login.Usuario;
             if (Program.login.Usuario != "Admin")
@@ -298,9 +296,20 @@ namespace robo.Interface
         }
         private void btnSelectPath_Click(object sender, EventArgs e)
         {
-            if (!Dados.VerificaQtdAlunos())
+            if (Dados.VerificaQtdAlunos() > 0)
             {
-                return;
+                string mensagem = "Tem certeza que deseja excluir o banco de dados?" +
+                    "\n\nCertifique-se de já ter exportado antes para que nenhuma informação seja perdida!";
+
+                if (MessageBox.Show(mensagem, "Limpar Banco de Dados", MessageBoxButtons.OKCancel, MessageBoxIcon.Question) == DialogResult.OK)
+                {
+                    Util.CriarBackupDB();
+                    Dados.DeleteAllLite<TOAluno>();
+                }
+                else
+                {
+                    return;
+                }
             }
             ofdSelectExcel.Filter = "CSV (*.csv)|*.csv";
 
@@ -389,8 +398,8 @@ namespace robo.Interface
                 }
             }
         }
-       
-      
+
+
         private void FormInterface_Shown(object sender, EventArgs e)
         {
             btnHome.PerformClick();
