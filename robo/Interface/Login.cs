@@ -42,21 +42,7 @@ namespace robo.Interface
             Program.login = Dados.ValidateLogin(txtUsuario.Text, txtSenha.Text);
             if (Program.login != null)
             {
-                if (cbManterLogado.Checked == true)
-                {
-                    if (File.Exists(sessionFile) == false)
-                    {
-                        File.WriteAllText(sessionFile, Program.login.Usuario + "\n" + Program.login.Senha);
-                    }
-                }
-                else
-                {
-                    if (File.Exists(sessionFile) == true)
-                    {
-                        File.Delete(sessionFile);
-                    }
-                }
-
+                CriarArquivoDeSessao();
                 FormInterface formUsuarios = new FormInterface();
                 this.Hide();
                 formUsuarios.Show();
@@ -67,6 +53,25 @@ namespace robo.Interface
             }
 
         }
+
+        private void CriarArquivoDeSessao()
+        {
+            if (cbManterLogado.Checked == true)
+            {
+                if (File.Exists(sessionFile) == false)
+                {
+                    File.WriteAllText(sessionFile, Program.login.Usuario + "\n" + Program.login.Senha);
+                }
+            }
+            else
+            {
+                if (File.Exists(sessionFile) == true)
+                {
+                    File.Delete(sessionFile);
+                }
+            }
+        }
+
         private void Login_Shown(object sender, EventArgs e)
         {
             this.Hide();
@@ -88,8 +93,8 @@ namespace robo.Interface
         {
             if (e.KeyCode == Keys.Enter)
             {
-                if (txtSenha.Text != null
-                    && txtUsuario.Text != null)
+                if (txtSenha.Text != string.Empty
+                    && txtUsuario.Text != string.Empty)
                 {
                     btConfirma.PerformClick();
                 }

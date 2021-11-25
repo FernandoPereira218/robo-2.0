@@ -18,25 +18,18 @@ namespace robo.Interface
         private FormInterface formPrincipal;
         private string tipoFies;
         private string execucao;
-        private string excessaoCausada = string.Empty;
+        private string excessaoCausada;
         public FormDefault(FormInterface formAnterior)
         {
             this.formPrincipal = formAnterior;
             presenter = new ImplementacaoPresenter(this);
-
             Dados.VerificaSemestre();
             InitializeComponent();
-
             cbSemestre.DataSource = presenter.PreencherListaSemestre();
             cbSemestre.SelectedIndex = cbSemestre.Items.Count - 1;
             cbAno.DataSource = presenter.PreencherListaAno();
             cbAno.SelectedIndex = cbAno.Items.Count - 1;
             cbMes.SelectedIndex = Util.BuscarMesAtual() - 1;
-            panelCadastro.Visible = true;
-            lblStatus.Text = "Pronto";
-            PreencherListaIES();
-
-            tooltip.SetToolTip(btnHelp, "Clique uma vez para ajuda ou clique novamente para fechar");
         }
 
         private void PreencherListaIES()
@@ -354,16 +347,8 @@ namespace robo.Interface
             if (e.ProgressPercentage == 404)
             {
                 lblStatus.Text = "Ocorreu um erro não esperado no site. Por favor tente novamente em alguns instantes.";
-                btnImportar.Enabled = true;
-                btnIniciar.Enabled = true;
-                btnHelp.Enabled = true;
-                formPrincipal.flpModosDeExecucao.Enabled = true;
-                formPrincipal.panelSubMenu.Enabled = true;
-                formPrincipal.btnPlanilha.Enabled = true;
-                formPrincipal.btnClose.Enabled = true;
-
                 circularProgressBar1.Style = ProgressBarStyle.Continuous;
-                circularProgressBar1.Visible = false;
+                BloquearElementos(bloquear: true);
                 return;
             }
             if (execucao.Contains("EXPORTAR"))
@@ -378,14 +363,7 @@ namespace robo.Interface
 
             if (e.ProgressPercentage == 0)
             {
-                formPrincipal.flpModosDeExecucao.Enabled = false;
-                btnImportar.Enabled = false;
-                btnIniciar.Enabled = false;
-                circularProgressBar1.Visible = true;
-                btnHelp.Enabled = false;
-                formPrincipal.panelSubMenu.Enabled = false;
-                formPrincipal.btnPlanilha.Enabled = false;
-                formPrincipal.btnClose.Enabled = false;
+                BloquearElementos(bloquear: false);
                 circularProgressBar1.Text = "Abrindo site...";
                 lblStatus.Text = "Processando " + execucao;
             }
@@ -395,11 +373,23 @@ namespace robo.Interface
             }
         }
 
+        private void BloquearElementos(bool bloquear)
+        {
+            formPrincipal.flpModosDeExecucao.Enabled = bloquear;
+            btnImportar.Enabled = bloquear;
+            btnIniciar.Enabled = bloquear;
+            circularProgressBar1.Visible = !bloquear;
+            btnHelp.Enabled = bloquear;
+            formPrincipal.panelSubMenu.Enabled = bloquear;
+            formPrincipal.btnPlanilha.Enabled = bloquear;
+            formPrincipal.btnClose.Enabled = bloquear;
+        }
+
         private void backgroundWorker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
             if (excessaoCausada == string.Empty)
             {
-                MessageBox.Show("Processamentos concluídos com sucesso!", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information) ;
+                MessageBox.Show("Processamentos concluídos com sucesso!", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 lblStatus.Text = "Processamentos concluídos com sucesso!";
             }
             else
@@ -407,16 +397,8 @@ namespace robo.Interface
                 MessageBox.Show(excessaoCausada, "Erro", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 lblStatus.Text = excessaoCausada;
             }
-            btnImportar.Enabled = true;
-            btnIniciar.Enabled = true;
-            btnHelp.Enabled = true;
-            formPrincipal.flpModosDeExecucao.Enabled = true;
-            formPrincipal.panelSubMenu.Enabled = true;
-            formPrincipal.btnPlanilha.Enabled = true;
-            formPrincipal.btnClose.Enabled = true;
-
             circularProgressBar1.Style = ProgressBarStyle.Continuous;
-            circularProgressBar1.Visible = false;
+            BloquearElementos(bloquear: true);
         }
 
         private void btnHelp_Click(object sender, EventArgs e)

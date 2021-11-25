@@ -269,7 +269,7 @@ namespace robo.Banco_de_Dados
         /// <returns>Usuário que corresponde ao login e senha encontrados no arquivo</returns>
         public static TOUsuario ValidateSession(string user, string password)
         {
-            List<TOUsuario> temp = Dados.SelectWhere<TOUsuario>(x => x.Usuario == user && x.Senha == password);
+            List<TOUsuario> temp = SelectWhere<TOUsuario>(x => x.Usuario == user && x.Senha == password);
             if (temp.Count != 0)
             {
                 return temp[0];
