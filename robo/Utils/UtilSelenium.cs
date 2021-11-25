@@ -4,17 +4,16 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Robo;
 using System.IO;
 using OpenQA.Selenium.Firefox;
 using OpenQA.Selenium.Chrome;
 using System.Windows.Forms;
-using robo.Control.Update;
 using OpenQA.Selenium.Support.UI;
 using SeleniumExtras.WaitHelpers;
-using robo.View;
+using robo.Interface;
+using robo.Update;
 
-namespace robo
+namespace robo.Utils
 {
     /// <summary>
     /// Possui métodos comuns que podem ser utilizados durante a navegação em um site

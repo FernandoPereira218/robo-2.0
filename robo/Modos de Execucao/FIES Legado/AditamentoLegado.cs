@@ -1,7 +1,5 @@
 ﻿using AForge.Imaging.Filters;
 using OpenQA.Selenium;
-using robo.Control.Legado;
-using Robo;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -11,9 +9,12 @@ using System.Media;
 using System.Net.Http;
 using System.Text;
 using System.Threading;
+using robo.Utils;
 using System.Threading.Tasks;
+using robo.TO;
+using robo.Banco_de_Dados;
 
-namespace robo.Control
+namespace robo.Modos_de_Execucao.FIES_Legado
 {
     public class AditamentoLegado : UtilFiesLegado
     {

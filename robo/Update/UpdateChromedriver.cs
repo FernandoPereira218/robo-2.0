@@ -3,8 +3,9 @@ using System;
 using System.IO;
 using System.IO.Compression;
 using System.Linq;
+using robo.Utils;
 
-namespace robo.Control.Update
+namespace robo.Update
 {
     /// <summary>
     /// Métodos utilizados para buscar a versão atual do chromedriver
@@ -18,7 +19,7 @@ namespace robo.Control.Update
         /// </summary>
         public static void DownloadChromedriver()
         {
-            Driver = Robo.Util.StartBrowser("https://chromedriver.chromium.org/downloads", downloadFldr:true, headless:true);
+            Driver = Util.StartBrowser("https://chromedriver.chromium.org/downloads", downloadFldr:true, headless:true);
             var downloadLinks = Driver.FindElements(By.ClassName("XqQF9c"));
             IWebElement element = downloadLinks[1];
             string versao = element.Text;

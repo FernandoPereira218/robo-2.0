@@ -4,11 +4,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Robo;
 using OpenQA.Selenium.Support.UI;
-using robo.Control.Legado;
+using robo.Utils;
 
-namespace robo.Control.Relatorios.FIES_Legado
+namespace robo.Modos_de_Execucao.FIES_Legado
 {
     class ExportarExtratoMensalDeRepasse : UtilFiesLegado
     {

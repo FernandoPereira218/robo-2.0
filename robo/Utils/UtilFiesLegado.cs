@@ -1,12 +1,12 @@
 ﻿using OpenQA.Selenium;
-using Robo;
+using robo.TO;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace robo.Control.Legado
+namespace robo.Utils
 {
     /// <summary>
     /// Métodos comuns para serem utilizados no site do MEC

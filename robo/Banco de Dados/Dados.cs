@@ -1,8 +1,6 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using robo.pgm;
-using robo;
 using System.Windows.Forms;
 using LiteDB;
 using System.Linq.Expressions;
@@ -10,8 +8,10 @@ using System.IO;
 using System.Text;
 using CsvHelper;
 using System.Globalization;
+using robo.TO;
+using robo.Utils;
 
-namespace Robo
+namespace robo.Banco_de_Dados
 {
     /// <summary>
     /// Classe utilizada para operações envolvendo banco de dados

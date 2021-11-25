@@ -1,5 +1,6 @@
 ﻿using OpenQA.Selenium;
-using Robo;
+using robo.TO;
+using robo.Utils;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -7,7 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace robo.Control.Relatorios.FIES_Novo
+namespace robo.Modos_de_Execucao.FIES_Novo
 {
     class HistoricoReparcelamentoCoparticipacao : UtilFiesNovo
     {

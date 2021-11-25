@@ -7,14 +7,16 @@ using System.Text;
 using System.IO;
 using System.Windows.Forms;
 using System.Security.Cryptography;
-using robo.Control.Update;
 using CsvHelper;
 using System.Globalization;
-using robo.View;
+using robo.Banco_de_Dados;
 using System.Linq;
 using System.IO.Compression;
+using robo.TO;
+using robo.Interface;
+using robo.Update;
 
-namespace Robo
+namespace robo.Utils
 {
     /// <summary>
     /// Métodos comuns que podem ser utilizados no código como um todo

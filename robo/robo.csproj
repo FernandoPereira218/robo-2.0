@@ -277,8 +277,8 @@
     <Compile Include="Modos de Execucao\FIES Novo\ValidarReparcelamento.cs" />
     <Compile Include="Modos de Execucao\SIGA\GeracaoParcelasFies.cs" />
     <Compile Include="Modos de Execucao\SIGA\LancamentoFiesSiga.cs" />
-    <Compile Include="Util\UtilFiesNovo.cs" />
-    <Compile Include="Util\UtilFiesLegado.cs" />
+    <Compile Include="Utils\UtilFiesNovo.cs" />
+    <Compile Include="Utils\UtilFiesLegado.cs" />
     <Compile Include="Modos de Execucao\FIES Legado\BaixarDocumentos.cs" />
     <Compile Include="Modos de Execucao\FIES Legado\DRI.cs" />
     <Compile Include="Modos de Execucao\FIES Legado\ExportarRelatorios.cs" />
@@ -290,8 +290,8 @@
       <DependentUpon>Login.cs</DependentUpon>
     </Compile>
     <Compile Include="TO\TOMenus.cs" />
-    <Compile Include="Util\UtilSelenium.cs" />
-    <Compile Include="Util\UtilSiga.cs" />
+    <Compile Include="Utils\UtilSelenium.cs" />
+    <Compile Include="Utils\UtilSiga.cs" />
     <Compile Include="Interface\FormConfiguracoes.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -326,10 +326,10 @@
     <Compile Include="Program.cs" />
     <Compile Include="TO\TOLogin.cs" />
     <Compile Include="TO\TOSemestre.cs" />
-    <Compile Include="Util\Util.cs" />
+    <Compile Include="Utils\Util.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TO\TOAluno.cs" />
-    <Compile Include="Dados\Dados.cs" />
+    <Compile Include="Banco de Dados\Dados.cs" />
     <Compile Include="TO\TOUsuario.cs" />
     <None Include="Resources\logoA.png" />
     <None Include="Resources\logoAlunosBrilhantes.png" />

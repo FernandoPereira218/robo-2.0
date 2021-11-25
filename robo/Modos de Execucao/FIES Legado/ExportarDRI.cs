@@ -4,10 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using OpenQA.Selenium;
-using robo.Control.Legado;
-using Robo;
+using robo.Utils;
 
-namespace robo.Control.Relatorios.FIES_Legado
+namespace robo.Modos_de_Execucao.FIES_Legado
 {
     public class ExportarDRI : UtilFiesLegado
     {

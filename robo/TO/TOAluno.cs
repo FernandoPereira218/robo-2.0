@@ -2,7 +2,7 @@ using CsvHelper.Configuration;
 using CsvHelper.Configuration.Attributes;
 using System;
 
-namespace Robo
+namespace robo.TO
 {
     public class TOAluno
     {

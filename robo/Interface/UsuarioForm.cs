@@ -1,9 +1,12 @@
 ﻿using robo;
+using robo.TO;
 using System;
 using System.Drawing;
+using robo.Utils;
 using System.Windows.Forms;
+using robo.Banco_de_Dados;
 
-namespace Robo
+namespace robo.Interface
 {
     public partial class UsuarioForm : Form
     {

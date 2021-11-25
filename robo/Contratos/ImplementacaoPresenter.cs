@@ -1,23 +1,21 @@
 using OpenQA.Selenium;
 using OpenQA.Selenium.Firefox;
-using robo.Control.Aditamento;
-using robo.Control.Legado;
-using robo.Control.Relatorios;
-using robo.Control.Relatorios.FIES_Legado;
-using robo.Control.Relatorios.FIES_Novo;
-using robo.Control.Relatorios.SIGA;
-using robo.pgm;
-using robo.View;
-using Robo;
+using robo.Banco_de_Dados;
+using robo.Interface;
+using robo.TO;
+using robo.Utils;
 using System;
 using System.Collections.Generic;
+using robo.Modos_de_Execucao.FIES_Legado;
+using robo.Modos_de_Execucao.FIES_Novo;
+using robo.Modos_de_Execucao.SIGA;
 using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace robo.Control.Implementacoes
+namespace robo.Contratos
 {
     public class ImplementacaoPresenter : IContratos.IPresenter
     {

@@ -1,11 +1,12 @@
 ﻿using OpenQA.Selenium;
-using robo.Control.Legado;
-using robo.View;
-using Robo;
+using robo.Banco_de_Dados;
+using robo.Interface;
+using robo.TO;
+using robo.Utils;
 using System.IO;
 using System.Linq;
 
-namespace robo.Control.Relatorios
+namespace robo.Modos_de_Execucao.FIES_Legado
 {
     public class DRI : UtilFiesLegado
     {

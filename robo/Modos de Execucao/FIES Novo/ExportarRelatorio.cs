@@ -3,11 +3,10 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
-using Robo;
 using System.IO;
+using robo.Utils;
 
-namespace robo.Control.Relatorios.FIES_Novo
+namespace robo.Modos_de_Execucao.FIES_Novo
 {
     public class ExportarRelatorio : UtilFiesNovo
     {

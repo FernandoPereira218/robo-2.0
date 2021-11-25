@@ -1,13 +1,12 @@
 ﻿using OpenQA.Selenium;
-using robo.Control.Legado;
-using Robo;
+using robo.Utils;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace robo.Control.Relatorios
+namespace robo.Modos_de_Execucao.FIES_Legado
 {
     public class ExportarRelatorios : UtilFiesLegado
     {
