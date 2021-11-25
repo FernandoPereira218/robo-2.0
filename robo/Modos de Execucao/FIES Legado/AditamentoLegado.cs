@@ -46,7 +46,7 @@ namespace robo.Modos_de_Execucao.FIES_Legado
         private void RealizarAditamento(TOAluno aluno)
         {
             string mensagem = VerificarMensagem(Driver);
-            if (mensagem != string.Empty)
+            if (mensagem == string.Empty)
             {
                 //Mensagem que não aparece somente quando o aluno já foi aditado anteriomente
                 if (Driver.PageSource.Contains("igual ou superior a 75% no semestre"))
