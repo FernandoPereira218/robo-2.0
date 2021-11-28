@@ -32,9 +32,9 @@
             this.panelFormLogin = new System.Windows.Forms.Panel();
             this.txtID = new System.Windows.Forms.TextBox();
             this.labelID = new System.Windows.Forms.Label();
-            this.txtRegionalLogin = new System.Windows.Forms.TextBox();
+            this.cbRegionalLogin = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.txtPlataformaLogin = new System.Windows.Forms.TextBox();
+            this.cbPlataformaLogin = new System.Windows.Forms.ComboBox();
             this.lblPlataformaLogin = new System.Windows.Forms.Label();
             this.txtCampusLogin = new System.Windows.Forms.TextBox();
             this.lvlCampusLogin = new System.Windows.Forms.Label();
@@ -56,9 +56,9 @@
             this.panelFormLogin.BackColor = System.Drawing.Color.White;
             this.panelFormLogin.Controls.Add(this.txtID);
             this.panelFormLogin.Controls.Add(this.labelID);
-            this.panelFormLogin.Controls.Add(this.txtRegionalLogin);
+            this.panelFormLogin.Controls.Add(this.cbRegionalLogin);
             this.panelFormLogin.Controls.Add(this.label1);
-            this.panelFormLogin.Controls.Add(this.txtPlataformaLogin);
+            this.panelFormLogin.Controls.Add(this.cbPlataformaLogin);
             this.panelFormLogin.Controls.Add(this.lblPlataformaLogin);
             this.panelFormLogin.Controls.Add(this.txtCampusLogin);
             this.panelFormLogin.Controls.Add(this.lvlCampusLogin);
@@ -96,13 +96,12 @@
             // 
             // txtRegionalLogin
             // 
-            this.txtRegionalLogin.BackColor = System.Drawing.SystemColors.Control;
-            this.txtRegionalLogin.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtRegionalLogin.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtRegionalLogin.Location = new System.Drawing.Point(64, 181);
-            this.txtRegionalLogin.Name = "txtRegionalLogin";
-            this.txtRegionalLogin.Size = new System.Drawing.Size(177, 22);
-            this.txtRegionalLogin.TabIndex = 12;
+            this.cbRegionalLogin.BackColor = System.Drawing.SystemColors.Control;
+            this.cbRegionalLogin.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbRegionalLogin.Location = new System.Drawing.Point(64, 181);
+            this.cbRegionalLogin.Name = "txtRegionalLogin";
+            this.cbRegionalLogin.Size = new System.Drawing.Size(177, 22);
+            this.cbRegionalLogin.TabIndex = 12;
             // 
             // label1
             // 
@@ -117,13 +116,12 @@
             // 
             // txtPlataformaLogin
             // 
-            this.txtPlataformaLogin.BackColor = System.Drawing.SystemColors.Control;
-            this.txtPlataformaLogin.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtPlataformaLogin.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtPlataformaLogin.Location = new System.Drawing.Point(64, 152);
-            this.txtPlataformaLogin.Name = "txtPlataformaLogin";
-            this.txtPlataformaLogin.Size = new System.Drawing.Size(177, 22);
-            this.txtPlataformaLogin.TabIndex = 10;
+            this.cbPlataformaLogin.BackColor = System.Drawing.SystemColors.Control;
+            this.cbPlataformaLogin.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbPlataformaLogin.Location = new System.Drawing.Point(64, 152);
+            this.cbPlataformaLogin.Name = "txtPlataformaLogin";
+            this.cbPlataformaLogin.Size = new System.Drawing.Size(177, 22);
+            this.cbPlataformaLogin.TabIndex = 10;
             // 
             // lblPlataformaLogin
             // 
@@ -291,9 +289,9 @@
         private System.Windows.Forms.Label lvlCampusLogin;
         private System.Windows.Forms.TextBox txtFaculdadeLogin;
         private System.Windows.Forms.Label lblFaculdade;
-        private System.Windows.Forms.TextBox txtPlataformaLogin;
+        private System.Windows.Forms.ComboBox cbPlataformaLogin;
         private System.Windows.Forms.Label lblPlataformaLogin;
-        private System.Windows.Forms.TextBox txtRegionalLogin;
+        private System.Windows.Forms.ComboBox cbRegionalLogin;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox txtID;
         private System.Windows.Forms.Label labelID;

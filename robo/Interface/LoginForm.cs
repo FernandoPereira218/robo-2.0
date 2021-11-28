@@ -3,6 +3,7 @@ using robo.TO;
 using System;
 using System.Drawing;
 using System.Windows.Forms;
+using System.Collections.Generic;
 
 namespace robo.Interface
 {
@@ -12,37 +13,74 @@ namespace robo.Interface
         {
             InitializeComponent();
             this.Location = location;
+            InicializarCbPlataforma();
+            InicializarCbRegional();
             if (login != null)
             {
-                txtID.Text = login.Id.ToString();
-                txtUser.Text = login.Usuario;
-                txtSenhaLogin.Text = login.Senha;
-                txtFaculdadeLogin.Text = login.Faculdade;
-                txtCampusLogin.Text = login.Campus;
-                txtPlataformaLogin.Text = login.Plataforma;
-                txtRegionalLogin.Text = login.Regional;
-
-                this.btnOKLogin.Text = "Atualizar";
-                this.txtID.Enabled = false;
-                this.btnOKLogin.Click -= new EventHandler(this.btnOKLogin_Click);
-                this.btnOKLogin.Click += new EventHandler(this.btnAtualizarLogin_Click);
+                InicializarAtualizarLogin(login);
             }
             else
             {
-                txtUser.Text = string.Empty;
-                txtSenhaLogin.Text = string.Empty;
-                txtFaculdadeLogin.Text = string.Empty;
-                txtCampusLogin.Text = string.Empty;
-                txtPlataformaLogin.Text = string.Empty;
-                txtRegionalLogin.Text = string.Empty;
-
-                this.btnOKLogin.Text = "Aceitar";
-                this.txtUser.Enabled = true;
-                this.btnOKLogin.Click -= new EventHandler(this.btnAtualizarLogin_Click);
-                this.btnOKLogin.Click += new EventHandler(this.btnOKLogin_Click);
-                
-
+                InicializarCriarNovoLogin();
             }
+        }
+
+        private void InicializarCbPlataforma()
+        {
+            List<TOLogin> logins = Dados.SelectAll<TOLogin>();
+            this.cbPlataformaLogin.DataSource = PreencherLista(logins, nameof(TOLogin.Plataforma));
+        }
+
+        private void InicializarCbRegional()
+        {
+            if (Program.login.Usuario != "Admin")
+            {
+                this.cbRegionalLogin.Text = Program.login.Regional;
+                this.cbRegionalLogin.Enabled = false;
+            }
+            else
+            {
+                List<TOLogin> logins = Dados.SelectAll<TOLogin>();
+                this.cbRegionalLogin.DataSource = PreencherLista(logins, nameof(TOLogin.Regional));
+            }
+        }
+        private List<string> PreencherLista(List<TOLogin> logins, string nomePropriedade)
+        {
+            List<string> lista = new List<string>();
+            foreach (TOLogin login in logins)
+            {
+                string valorPropriedade = (string)login.GetType().GetProperty(nomePropriedade).GetValue(login);
+                if (lista.Contains(valorPropriedade) == false)
+                {
+                    lista.Add(valorPropriedade);
+                }
+            }
+            return lista;
+        }
+
+        private void InicializarCriarNovoLogin()
+        {
+            this.txtID.Text = Convert.ToString(Dados.Count<TOLogin>() + 1);
+            this.txtID.Enabled = false;
+            this.btnOKLogin.Text = "Aceitar";
+            this.btnOKLogin.Click -= btnAtualizarLogin_Click;
+            this.btnOKLogin.Click += btnInserirLogin_Click;
+        }
+
+        private void InicializarAtualizarLogin(TOLogin login)
+        {
+            txtID.Text = login.Id.ToString();
+            txtUser.Text = login.Usuario;
+            txtSenhaLogin.Text = login.Senha;
+            txtFaculdadeLogin.Text = login.Faculdade;
+            txtCampusLogin.Text = login.Campus;
+            cbPlataformaLogin.Text = login.Plataforma;
+            cbRegionalLogin.Text = login.Regional;
+
+            this.btnOKLogin.Text = "Atualizar";
+            this.txtID.Enabled = false;
+            this.btnOKLogin.Click -= btnInserirLogin_Click;
+            this.btnOKLogin.Click += btnAtualizarLogin_Click;
         }
 
         private void btnCancelLogin_Click(object sender, EventArgs e)
@@ -50,10 +88,10 @@ namespace robo.Interface
             this.Close();
         }
 
-        private void btnOKLogin_Click(object sender, EventArgs e)
+        private void btnInserirLogin_Click(object sender, EventArgs e)
         {
             try
-            {                
+            {
                 Dados.InsertDocumento<TOLogin>(LoginPreenchido());
                 MessageBox.Show("Login adicionado com sucesso.");
             }
@@ -86,15 +124,17 @@ namespace robo.Interface
 
         private TOLogin LoginPreenchido()
         {
-            TOLogin login = new TOLogin();
-            login.Id = Convert.ToInt32(txtID.Text);
-            login.Usuario = txtUser.Text;
-            login.Senha = txtSenhaLogin.Text;
-            login.Faculdade = txtFaculdadeLogin.Text;
-            login.Campus = txtCampusLogin.Text;
-            login.Plataforma = txtPlataformaLogin.Text;
-            login.Regional = txtRegionalLogin.Text;
-     
+            TOLogin login = new TOLogin()
+            {
+                Id = Convert.ToInt32(txtID.Text),
+                Usuario = txtUser.Text,
+                Senha = txtSenhaLogin.Text,
+                Faculdade = txtFaculdadeLogin.Text,
+                Campus = txtCampusLogin.Text,
+                Plataforma = cbPlataformaLogin.Text,
+                Regional = cbRegionalLogin.Text
+            };
+
             return login;
         }
     }

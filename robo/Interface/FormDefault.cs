@@ -30,6 +30,7 @@ namespace robo.Interface
             cbAno.DataSource = presenter.PreencherListaAno();
             cbAno.SelectedIndex = cbAno.Items.Count - 1;
             cbMes.SelectedIndex = Util.BuscarMesAtual() - 1;
+            PreencherListaIES();
         }
 
         private void PreencherListaIES()
