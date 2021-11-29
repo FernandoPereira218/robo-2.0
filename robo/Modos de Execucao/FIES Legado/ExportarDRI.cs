@@ -10,14 +10,11 @@ namespace robo.Modos_de_Execucao.FIES_Legado
 {
     public class ExportarDRI : UtilFiesLegado
     {
-        private IWebDriver Driver;
-        public void ExportarDRILegado(IWebDriver driver, string campus, string situacaoDRI)
+        public void ExportarDRILegado(string campus, string situacaoDRI)
         {
-            Driver = driver;
+            ClickDropDown( "id", "co_situacao_inscricao", situacaoDRI);
 
-            ClickDropDown(Driver, "id", "co_situacao_inscricao", situacaoDRI);
-
-            ClickButtonsById(Driver, "excel");
+            ClickButtonsById( "excel");
 
             Util.ExportarDocumento("DRI_" + situacaoDRI, campus);
         }

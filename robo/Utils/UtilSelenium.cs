@@ -21,16 +21,22 @@ namespace robo.Utils
     public class UtilSelenium
     {
         private WebDriverWait wait;
+        protected IWebDriver Driver;
+
+        public void SetDriver(IWebDriver Driver)
+        {
+            this.Driver = Driver;
+        }
 
         /// <summary>
         /// Espera até um elemento específico ser visível
         /// </summary>
         /// <param name="tipo">By.(Id, Xpath, Css)("elementoDesejado")</param>
         /// <param name="segundos">Tempo limite de espera em segundos</param>
-        protected void WaitElementIsVisible(IWebDriver driver, By tipo, int segundos = 60)
+        protected void WaitElementIsVisible(By tipo, int segundos = 60)
         {
             TimeSpan span = TimeSpan.FromSeconds(segundos);
-            wait = new WebDriverWait(driver, span);
+            wait = new WebDriverWait(Driver, span);
             wait.Until(ExpectedConditions.ElementIsVisible(tipo));
         }
         /// <summary>
@@ -38,23 +44,23 @@ namespace robo.Utils
         /// </summary>
         /// <param name="id">ID do TextBox</param>
         /// <param name="valor">Valor a ser escrito.</param>
-        protected void ClickAndWriteById(IWebDriver driver, string id, string valor)
+        protected void ClickAndWriteById(string id, string valor)
         {
-            IWebElement elementoAtual = driver.FindElement(By.Id(id));
+            IWebElement elementoAtual = Driver.FindElement(By.Id(id));
 
-            WaitLogoLoading(driver);
+            WaitLogoLoading();
 
             elementoAtual.Click();
             //var jse = (IJavaScriptExecutor)driver;
             //jse.ExecuteScript(string.Format("document.getElementById('{0}').click();", id));
 
-            WaitLogoLoading(driver);
+            WaitLogoLoading();
             elementoAtual.Clear();
             elementoAtual.SendKeys(valor);
             //jse.ExecuteScript(string.Format("document.getElementById('{0}').value = '{1}';", id, valor));
 
             //clica fora do ultimo campo para que não de problemas
-            ClearClickFiesVelho(driver);
+            ClearClickFiesVelho();
 
             Sleep();
         }
@@ -64,20 +70,20 @@ namespace robo.Utils
         /// </summary>
         /// <param name="name">Name do TextBox</param>
         /// <param name="valor">Valor a ser escrito.</param>
-        protected void ClickAndWriteByName(IWebDriver driver, string name, string valor)
+        protected void ClickAndWriteByName(string name, string valor)
         {
-            IWebElement elementoAtual = driver.FindElement(By.Name(name));
+            IWebElement elementoAtual = Driver.FindElement(By.Name(name));
 
-            WaitLogoLoading(driver);
+            WaitLogoLoading();
 
             elementoAtual.Click();
 
-            WaitLogoLoading(driver);
+            WaitLogoLoading();
 
             elementoAtual.SendKeys(valor);
 
             //clica fora do ultimo campo para que não de problemas
-            ClearClickFiesVelho(driver);
+            ClearClickFiesVelho();
 
             Sleep();
         }
@@ -86,10 +92,10 @@ namespace robo.Utils
         /// Clica pelo CSSSelector.
         /// </summary>
         /// <param css="css">Css do Elemento.</param>
-        protected void ClickButtonsByCss(IWebDriver driver, string css)
+        protected void ClickButtonsByCss(string css)
         {
-            WaitLogoLoading(driver);
-            driver.FindElement(By.CssSelector(css)).Click();
+            WaitLogoLoading();
+            Driver.FindElement(By.CssSelector(css)).Click();
 
         }
 
@@ -97,10 +103,9 @@ namespace robo.Utils
         /// Clica no elemento pelo ID.
         /// </summary>
         /// <param name="id">Id do elemento.</param>
-        protected void ClickButtonsById(IWebDriver driver, string id)
+        protected void ClickButtonsById(string id)
         {
-            //WaitLogoLoading(driver);
-            driver.FindElement(By.Id(id)).Click();
+            Driver.FindElement(By.Id(id)).Click();
 
             Sleep();
         }
@@ -109,10 +114,10 @@ namespace robo.Utils
         /// Clica no elemento pelo nome.
         /// </summary>
         /// <param name="name">Nome do elemento.</param>
-        protected void ClickButtonsByName(IWebDriver driver, string name)
+        protected void ClickButtonsByName(string name)
         {
-            WaitLogoLoading(driver);
-            driver.FindElement(By.Name(name)).Click();
+            WaitLogoLoading();
+            Driver.FindElement(By.Name(name)).Click();
 
             Sleep();
         }
@@ -121,10 +126,10 @@ namespace robo.Utils
         /// Clica no elemento por xpath.
         /// </summary>
         /// <param name="xPath">xpath do elemento.</param>
-        protected void ClickButtonsByXpath(IWebDriver driver, string xPath)
+        protected void ClickButtonsByXpath(string xPath)
         {
-            WaitLogoLoading(driver);
-            driver.FindElement(By.XPath(xPath)).Click();
+            WaitLogoLoading();
+            Driver.FindElement(By.XPath(xPath)).Click();
 
             Sleep();
         }
@@ -223,37 +228,28 @@ namespace robo.Utils
         }
 
         /// <summary>
-        /// Encerra a sessão atual do browser
-        /// </summary>
-        /// <param name="driver"></param>
-        protected void EndBrowser(IWebDriver driver)
-        {
-            driver.Quit();
-        }
-
-        /// <summary>
         /// Clica no elemento 'body' do site do MEC
         /// </summary>
-        /// <param name="driver"></param>
-        private void ClearClickFiesVelho(IWebDriver driver)
+        /// <param name="Driver"></param>
+        private void ClearClickFiesVelho()
         {
-            if (IsFormFillingFiesVelho(driver))
+            if (IsFormFillingFiesVelho())
             {
-                driver.FindElement(By.CssSelector("body")).Click();
+                Driver.FindElement(By.CssSelector("body")).Click();
             }
         }
 
         /// <summary>
         /// Clica em um elemento dropdown e seleciona o elemento desejado
         /// </summary>
-        /// <param name="driver"></param>
+        /// <param name="Driver"></param>
         /// <param name="metodo">id, xpath, name, classname</param>
         /// <param name="valorMetodo">valor do metodo selecionado</param>
         /// <param name="valorEscolha">texto que a opção deverá conter</param>
-        protected void ClickDropDown(IWebDriver driver, string metodo, string valorMetodo, string valorEscolha)
+        protected void ClickDropDown(string metodo, string valorMetodo, string valorEscolha)
         {
-            WaitLogoLoading(driver);
-            driver.FindElement(By.XPath("//select[@" + metodo + "='" + valorMetodo + "']/option[contains(.,'" + valorEscolha + "')]")).Click();
+            WaitLogoLoading();
+            Driver.FindElement(By.XPath("//select[@" + metodo + "='" + valorMetodo + "']/option[contains(.,'" + valorEscolha + "')]")).Click();
 
             Sleep();
         }
@@ -261,13 +257,13 @@ namespace robo.Utils
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="driver"></param>
+        /// <param name="Driver"></param>
         /// <param name="metodo">id, xpath, name, classname</param>
         /// <param name="valorMetodo">valor do metodo selecionado</param>
         /// <param name="valorEscolha">texto exato que a opção deverá conter</param>
-        protected void ClickDropDownExact(IWebDriver driver, string metodo, string valorMetodo, string valorEscolha)
+        protected void ClickDropDownExact(string metodo, string valorMetodo, string valorEscolha)
         {
-            driver.FindElement(By.XPath("//select[@" + metodo + "='" + valorMetodo + "']/option[@" + "value ='" + valorEscolha + "']")).Click();
+            Driver.FindElement(By.XPath("//select[@" + metodo + "='" + valorMetodo + "']/option[@" + "value ='" + valorEscolha + "']")).Click();
 
             Sleep();
         }
@@ -275,12 +271,12 @@ namespace robo.Utils
         /// <summary>
         /// Espera até a página de carregando do site do MEC desaparecer
         /// </summary>
-        /// <param name="driver"></param>
-        protected void WaitLogoLoading(IWebDriver driver)
+        /// <param name="Driver"></param>
+        protected void WaitLogoLoading()
         {
-            if (IsFormFillingFiesVelho(driver))
+            if (IsFormFillingFiesVelho())
             {
-                IWebElement logoLoading = driver.FindElement(By.ClassName("background-grey"));
+                IWebElement logoLoading = Driver.FindElement(By.ClassName("background-grey"));
                 int cont = int.MaxValue;
                 while (logoLoading.Displayed == true)//so vai sair do metodo quando parar de carregar
                 {
@@ -291,7 +287,7 @@ namespace robo.Utils
                     }
                 }
             }
-            else if (IsFormFillingFiesNovo(driver))
+            else if (IsFormFillingFiesNovo())
             {
                 //((IJavaScriptExecutor)driver).ExecuteScript("window.scrollTo(0, document.body.scrollHeight - 1)");
             }
@@ -300,25 +296,25 @@ namespace robo.Utils
         /// <summary>
         /// Checa se a página inicia com a URL de uma página de Aditamento
         /// </summary>
-        /// <param name="driver">webdriver</param>
+        /// <param name="Driver">webdriver</param>
         /// <returns>True se a página é a página de aditamento</returns>
-        protected Boolean IsFormFillingFiesVelho(IWebDriver driver)
+        protected Boolean IsFormFillingFiesVelho()
         {
             //string pagesource = driver.PageSource;
-            return driver.Url.StartsWith("http://sisfies.mec.gov.br/cpsa/aditamento/formulario/");
+            return Driver.Url.StartsWith("http://sisfies.mec.gov.br/cpsa/aditamento/formulario/");
 
         }
 
         /// <summary>
         /// Checa se esta na pagina de preencher o formulario
         /// </summary>
-        /// <param name="driver">webdriver</param>
+        /// <param name="Driver">webdriver</param>
         /// <returns></returns>
-        protected Boolean IsFormFillingFiesNovo(IWebDriver driver)
+        protected Boolean IsFormFillingFiesNovo()
         {
             //string pagesource = driver.PageSource;
-            return driver.Url.StartsWith("http://sifesweb.caixa.gov.br/fes-web/?session_state=") ||
-                   driver.Url.StartsWith("https://sifesweb.caixa.gov.br/fes-web/?session_state=");
+            return Driver.Url.StartsWith("http://sifesweb.caixa.gov.br/fes-web/?session_state=") ||
+                   Driver.Url.StartsWith("https://sifesweb.caixa.gov.br/fes-web/?session_state=");
 
         }
 
@@ -327,7 +323,7 @@ namespace robo.Utils
         /// </summary>
         /// <param name="motivo"></param>
         /// <param name="Driver"></param>
-        protected void getDriverDisposeAndDriverCloseWithThrow(Exception motivo, IWebDriver Driver)
+        protected void getDriverDisposeAndDriverCloseWithThrow(Exception motivo)
         {
             Driver.Close();
             Driver.Dispose();
@@ -339,7 +335,7 @@ namespace robo.Utils
         /// </summary>
         /// <param name="Driver"></param>
         /// <param name="button">ID do elemento desejado</param>
-        protected void ScrollToElementByID(IWebDriver Driver, string button)
+        protected void ScrollToElementByID(string button)
         {
             var element = Driver.FindElement(By.Id(button));
             ((IJavaScriptExecutor)Driver).ExecuteScript(string.Format("window.scrollTo({0}, {1})", element.Location.X, element.Location.Y - 150));
@@ -350,7 +346,7 @@ namespace robo.Utils
         /// </summary>
         /// <param name="Driver"></param>
         /// <param name="button">Xpath do elemento desejado</param>
-        protected void ScrollToElementByXpath(IWebDriver Driver, string button)
+        protected void ScrollToElementByXpath(string button)
         {
             var element = Driver.FindElement(By.XPath(button));
             ((IJavaScriptExecutor)Driver).ExecuteScript(string.Format("window.scrollTo({0}, {1})", element.Location.X, element.Location.Y - 100));
@@ -363,7 +359,7 @@ namespace robo.Utils
         /// <param name="tipo">id, classname ou name</param>
         /// <param name="identificador">elemento desejado</param>
         /// <returns>O elemento caso exista e null caso não exista</returns>
-        protected IWebElement VerificarElementoExiste(IWebDriver Driver, string tipo, string identificador)
+        protected IWebElement VerificarElementoExiste(string tipo, string identificador)
         {
             var executor = (IJavaScriptExecutor)Driver;
             switch (tipo.ToUpper())
@@ -385,7 +381,7 @@ namespace robo.Utils
         /// Espera até que a propriedade ReadyState da página seja igual a "complete"
         /// </summary>
         /// <param name="Driver"></param>
-        protected void WaitPageToLoad(IWebDriver Driver)
+        protected void WaitPageToLoad()
         {
             string result = (string)((IJavaScriptExecutor)Driver).ExecuteScript("return document.readyState");
             while (result != "complete")
@@ -408,7 +404,7 @@ namespace robo.Utils
         /// </summary>
         /// <param name="Driver"></param>
         /// <returns>True caso haja false caso não</returns>
-        protected bool isAlertPresent(IWebDriver Driver)
+        protected bool isAlertPresent()
         {
             try
             {
@@ -428,7 +424,7 @@ namespace robo.Utils
         /// <param name="elemento">Tag HTML do elemento buscado</param>
         /// <param name="atributte">Atributo do elemento buscado</param>
         /// <param name="value">Valor buscado</param>
-        protected void ClickElementByXPath(IWebDriver Driver, string elemento, string atributte, string value)
+        protected void ClickElementByXPath(string elemento, string atributte, string value)
         {
             Driver.FindElement(By.XPath("//" + elemento + "[@" + atributte + "='" + value + "']")).Click();
         }
@@ -441,7 +437,7 @@ namespace robo.Utils
         /// <param name="atributte">Atributo do elemento buscado</param>
         /// <param name="value">Valor buscado</param>
         /// <returns>Texto encontrado</returns>
-        protected string TakeTextByXPath(IWebDriver Driver, string elemento, string atributte, string value)
+        protected string TakeTextByXPath(string elemento, string atributte, string value)
         {
             return Driver.FindElement(By.XPath("//" + elemento + "[@" + atributte + "='" + value + "']")).Text;
         }
@@ -452,7 +448,7 @@ namespace robo.Utils
         /// <param name="tag">Tag HTML</param>
         /// <param name="texto">Texto que deve existir no elemento</param>
         /// <returns></returns>
-        protected IWebElement FindElementByXpathText(IWebDriver Driver, string tag, string texto)
+        protected IWebElement FindElementByXpathText(string tag, string texto)
         {
             return Driver.FindElement(By.XPath("//" + tag + "[contains(text(),'" + texto + "')]"));
         }

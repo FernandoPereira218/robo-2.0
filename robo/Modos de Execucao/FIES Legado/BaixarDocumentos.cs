@@ -1,4 +1,5 @@
 ﻿using OpenQA.Selenium;
+using robo.Contratos;
 using robo.TO;
 using robo.Utils;
 using System;
@@ -8,19 +9,25 @@ using System.Linq;
 
 namespace robo.Modos_de_Execucao.FIES_Legado
 {
-    public class BaixarDocumentos: UtilFiesLegado
+    public class BaixarDocumentos: UtilFiesLegado, IModosDeExecucao.IModoComAlunos
     {
-        private IWebDriver Driver;
+        private string semestre;
+        private string tipoRelatorio;
 
-        public void BaixarDocumentoFiesLegado(IWebDriver driver, TOAluno aluno, string semestre, string tipoRelatorio)
+        public BaixarDocumentos(string semestre, string tipoRelatorio)
         {
-            Driver = driver;
+            this.semestre = semestre;
+            this.tipoRelatorio = tipoRelatorio;
+        }
+
+        public void BaixarDocumentoFiesLegado(TOAluno aluno)
+        {
             ConsultarDocumentoAluno(aluno, semestre, tipoRelatorio);
             string situacaoAluno;
             if (Driver.PageSource.Contains("Lista de Aditamentos"))
             {
                 situacaoAluno = Driver.FindElement(By.XPath("/html/body/div[3]/div[4]/div[2]/div[2]/div[4]/table/tbody/tr/td[6]")).Text;
-                ClickButtonsByCss(Driver, "td > a > img");
+                ClickButtonsByCss( "td > a > img");
                 IWebElement botaoImprimir = BuscarBotaoImprimir(tipoRelatorio);
                 BaixarDocumentoAluno(aluno, semestre, tipoRelatorio, situacaoAluno, botaoImprimir);
             }
@@ -29,18 +36,18 @@ namespace robo.Modos_de_Execucao.FIES_Legado
         {
             if (botaoImprimir != null)
             {
-                WaitinLoading(Driver);
-                string msgErro = VerificarMensagem(Driver);
+                WaitinLoading();
+                string msgErro = VerificarMensagem();
                 if (msgErro == string.Empty)
                 {
                     BaixarDocumento(aluno, semestre, tipoRelatorio);
-                    ClickButtonsById(Driver, "voltar");
+                    ClickButtonsById( "voltar");
                 }
             }
             else
             {
-                ScrollToElementByID(Driver, "voltar");
-                ClickButtonsById(Driver, "voltar");
+                ScrollToElementByID( "voltar");
+                ClickButtonsById( "voltar");
                 Util.EditarConclusaoAluno(aluno, situacaoAluno);
             }
         }
@@ -50,13 +57,13 @@ namespace robo.Modos_de_Execucao.FIES_Legado
             string simplificado = string.Empty;
             if (tipoRelatorio == "DRM")
             {
-                ClickButtonsById(Driver, "imprimirDrm");
-                simplificado = FindElementByXpathText(Driver, "span", "Simplificado").Text;
+                ClickButtonsById( "imprimirDrm");
+                simplificado = FindElementByXpathText( "span", "Simplificado").Text;
                 simplificado = simplificado.Replace("Tipo de Aditamento: ", "");
             }
             else
             {
-                ClickButtonsById(Driver, "imprimir");
+                ClickButtonsById( "imprimir");
             }
             
             Util.BaixarDocumento(aluno.Nome + "_" + aluno.Cpf + "_" + semestre.Replace("/", "-") + "_" + tipoRelatorio, tipoRelatorio, simplificado);
@@ -68,23 +75,23 @@ namespace robo.Modos_de_Execucao.FIES_Legado
             IWebElement botaoImprimir;
             if (tipoRelatorio == "DRM")
             {
-                botaoImprimir = VerificarElementoExiste(Driver, "ID", "imprimirDrm");
+                botaoImprimir = VerificarElementoExiste( "ID", "imprimirDrm");
             }
             else
             {
-                botaoImprimir = VerificarElementoExiste(Driver, "ID", "imprimir");
+                botaoImprimir = VerificarElementoExiste( "ID", "imprimir");
             }
 
             return botaoImprimir;
         }
         private void ConsultarDocumentoAluno(TOAluno aluno, string semestre, string tipoRelatorio)
         {
-            SelecionarTipoRelatorio(Driver, tipoRelatorio);
-            WaitinLoading(Driver);
-            ClickAndWriteById(Driver, "cpf", aluno.Cpf);
-            ClickDropDown(Driver, "id", "coSemestreAditamento", semestre);
-            WaitinLoading(Driver);
-            ClickButtonsById(Driver, "consultar");
+            SelecionarTipoRelatorio( tipoRelatorio);
+            WaitinLoading();
+            ClickAndWriteById( "cpf", aluno.Cpf);
+            ClickDropDown( "id", "coSemestreAditamento", semestre);
+            WaitinLoading();
+            ClickButtonsById( "consultar");
         }
         private string BuscarNomeAluno()
         {
@@ -99,6 +106,21 @@ namespace robo.Modos_de_Execucao.FIES_Legado
             }
             nome = nome.Split(new string[] { "</span>" }, StringSplitOptions.None)[0];
             return nome;
+        }
+
+        public void ExecucaoComListaDeAlunos(TOAluno aluno)
+        {
+            BaixarDocumentoFiesLegado(aluno);
+        }
+
+        public void SelecionarMenu()
+        {
+            SelecionarMenuBaixarDocumentos();
+        }
+
+        public void SetWebDriver(IWebDriver Driver)
+        {
+            this.Driver = Driver;
         }
     }
 }

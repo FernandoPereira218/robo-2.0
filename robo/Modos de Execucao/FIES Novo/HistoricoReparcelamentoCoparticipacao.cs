@@ -5,35 +5,37 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using robo.Contratos;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace robo.Modos_de_Execucao.FIES_Novo
 {
-    class HistoricoReparcelamentoCoparticipacao : UtilFiesNovo
+    class HistoricoReparcelamentoCoparticipacao : UtilFiesNovo, IModosDeExecucao.IModoComAlunos
     {
-        IWebDriver Driver;
-        public void ExecutarHistoricoReparcelamentoCoparticipacao(IWebDriver driver, TOAluno aluno)
+
+        public HistoricoReparcelamentoCoparticipacao()
         {
-            Driver = driver;
+        }
+        public void ExecutarHistoricoReparcelamentoCoparticipacao(TOAluno aluno)
+        {
+            WaitForLoading();
+            ClickButtonsById( "btnLimpar");
+            WaitForLoading();
 
-            WaitForLoading(driver);
-            ClickButtonsById(driver, "btnLimpar");
-            WaitForLoading(driver);
+            ClickAndWriteById( "cpfEstudante", aluno.Cpf);
+            ClickButtonsById("btnConsultar");
+            WaitForLoading();
 
-            ClickAndWriteById(driver, "cpfEstudante", aluno.Cpf);
-            ClickButtonsById(Driver, "btnConsultar");
-            WaitForLoading(driver);
-
-            string erro = BuscarMensagemDeErro(Driver);
+            string erro = BuscarMensagemDeErro();
             if (erro != string.Empty)
             {
                 Util.EditarConclusaoAluno(aluno, "Erro na Busca: " + erro);
                 return;
             }
-            if (Driver.PageSource.Contains("Nenhuma informação disponível") == false)
+            if (this.Driver.PageSource.Contains("Nenhuma informação disponível") == false)
             {
-                string nome = Driver.FindElement(By.XPath("//*[@id=\"gridResult\"]/tbody/tr[1]/td[2]")).Text;
+                string nome = this.Driver.FindElement(By.XPath("//*[@id=\"gridResult\"]/tbody/tr[1]/td[2]")).Text;
                 ListaParaCSV(nome + "_Histórico_Coparticipação", "gridResult_length", "gridResult", true);
                 Util.EditarConclusaoAluno(aluno, "Histórico do Aluno Processado com Sucesso");
             }
@@ -44,7 +46,7 @@ namespace robo.Modos_de_Execucao.FIES_Novo
         }
         private void ListaParaCSV(string fileName, string idDropdown, string idTabela, bool status)
         {
-            ClickDropDown(Driver, "name", idDropdown, "100");
+            ClickDropDown( "name", idDropdown, "100");
             IWebElement elementoTabela = Driver.FindElement(By.Id(idTabela));
             List<IWebElement> cabecalhos = elementoTabela.FindElements(By.TagName("th")).ToList();
             List<IWebElement> dados = elementoTabela.FindElements(By.TagName("td")).ToList();
@@ -114,6 +116,21 @@ namespace robo.Modos_de_Execucao.FIES_Novo
                 }
 
             }
+        }
+
+        public void ExecucaoComListaDeAlunos(TOAluno aluno)
+        {
+            ExecutarHistoricoReparcelamentoCoparticipacao(aluno);
+        }
+
+        public void SelecionarMenu()
+        {
+            ClicarMenuHistoricoReparcelamentoCopartipacao();
+        }
+
+        public void SetWebDriver(IWebDriver Driver)
+        {
+            this.Driver = Driver;
         }
     }
 }

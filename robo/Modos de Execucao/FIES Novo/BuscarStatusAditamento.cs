@@ -1,4 +1,5 @@
 ﻿using OpenQA.Selenium;
+using robo.Contratos;
 using robo.TO;
 using robo.Utils;
 using System;
@@ -9,20 +10,21 @@ using System.Threading.Tasks;
 
 namespace robo.Modos_de_Execucao.FIES_Novo
 {
-    public class BuscarStatusAditamento : UtilFiesNovo
+    public class BuscarStatusAditamento : UtilFiesNovo, IModosDeExecucao.IModoComAlunos
     {
-        private IWebDriver Driver;
+        private string semestreAtual;
 
-        public void BuscarStatus(TOAluno aluno, string semestreAtual)
+        public BuscarStatusAditamento(string semestreAtual)
         {
-            ConsultarAluno(Driver, aluno);
-            if (aluno.Conclusao != "Não Feito")
-            {
-                return;
-            }
-            WaitForLoading(Driver);
+            this.semestreAtual = semestreAtual;
+        }
 
-            if (VerificarNenhumaInformacaoDisponivel(Driver) == true)
+        public void BuscarStatus(TOAluno aluno)
+        {
+            ConsultarAluno( aluno);
+            WaitForLoading();
+
+            if (VerificarNenhumaInformacaoDisponivel() == true)
             {
                 Util.EditarConclusaoAluno(aluno, "Nenhuma informação disponível");
                 return;
@@ -33,7 +35,7 @@ namespace robo.Modos_de_Execucao.FIES_Novo
                 IWebElement grid = Driver.FindElement(By.Id("gridResult"));
                 if (grid.Text.Contains(semestreAtual) == true)
                 {
-                    situacaoAluno = BuscarSituacaoAluno(Driver, semestreAtual);
+                    situacaoAluno = BuscarSituacaoAluno( semestreAtual);
                 }
                 else
                 {
@@ -43,9 +45,19 @@ namespace robo.Modos_de_Execucao.FIES_Novo
             }
         }
 
-        public void SetDriver(IWebDriver driver)
+        public void ExecucaoComListaDeAlunos(TOAluno aluno)
         {
-            Driver = driver;
+            BuscarStatus(aluno);
+        }
+
+        public void SelecionarMenu()
+        {
+            ClicarMenuAditamento();
+        }
+
+        public void SetWebDriver(IWebDriver Driver)
+        {
+            this.Driver = Driver;
         }
     }
 }

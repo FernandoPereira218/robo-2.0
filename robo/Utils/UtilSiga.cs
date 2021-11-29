@@ -20,19 +20,19 @@ namespace robo.Utils
         /// </summary>
         /// <param name="Driver"></param>
         /// <param name="aluno"></param>
-        protected void FiltraAluno(IWebDriver Driver, TOAluno aluno)
+        protected void FiltraAluno(TOAluno aluno)
         {
-            WaitLoading(Driver);
+            WaitLoading();
             try
             {
-                ClickAndWriteById(Driver, "pess_cpf", aluno.Cpf);
-                ClickButtonsById(Driver, "btn_filtrar");
+                ClickAndWriteById("pess_cpf", aluno.Cpf);
+                ClickButtonsById("btn_filtrar");
             }
             catch (Exception e)
             {
                 if (e is NoSuchElementException || e is ElementClickInterceptedException)
                 {
-                    FiltraAluno(Driver, aluno);
+                    FiltraAluno(aluno);
                     return;
                 }
                 throw e;
@@ -61,32 +61,31 @@ namespace robo.Utils
         /// <param name="url"></param>
         /// <param name="login"></param>
         /// <returns></returns>
-        public void FazerLogin(IWebDriver Driver, string url, TOLogin login)
+        public void FazerLogin(TOLogin login)
         {
-            ((IJavaScriptExecutor)Driver).ExecuteScript("alert('" + url + "')");
-            ClickAndWriteByName(Driver, "login", login.Usuario);
-            ClickAndWriteById(Driver, "senha_ls", login.Senha);
-            ClickButtonsByXpath(Driver, "/html/body/table/tbody/tr/td/table/tbody/tr[6]/td/div/form/div/table/tbody/tr[2]/td/table/tbody/tr/td[2]/table/tbody/tr[6]/td/input");
+            ClickAndWriteByName("login", login.Usuario);
+            ClickAndWriteById("senha_ls", login.Senha);
+            ClickButtonsByXpath("/html/body/table/tbody/tr/td/table/tbody/tr[6]/td/div/form/div/table/tbody/tr[2]/td/table/tbody/tr/td[2]/table/tbody/tr[6]/td/input");
         }
 
         /// <summary>
         /// Espera até o elemento "divCarregando" não estar mais presente na página
         /// </summary>
-        /// <param name="driver"></param>
-        protected void WaitLoading(IWebDriver driver)
+        /// <param name="Driver"></param>
+        protected void WaitLoading()
         {
             IWebElement carregando;
             try
             {
-                carregando = driver.FindElement(By.Id("divCarregando"));
+                carregando = Driver.FindElement(By.Id("divCarregando"));
             }
             catch (NoSuchElementException)
             {
-                while (driver.PageSource.Contains("divCarregando") == false)
+                while (Driver.PageSource.Contains("divCarregando") == false)
                 {
                     Sleep();
                 }
-                carregando = driver.FindElement(By.Id("divCarregando"));
+                carregando = Driver.FindElement(By.Id("divCarregando"));
 
             }
             while (carregando.Displayed == true)

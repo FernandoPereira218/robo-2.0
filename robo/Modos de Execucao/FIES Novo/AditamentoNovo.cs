@@ -7,63 +7,41 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using robo.Contratos;
+using robo.Excessoes;
 
 namespace robo.Modos_de_Execucao.FIES_Novo
 {
-    public class AditamentoNovo : UtilFiesNovo
+    public class AditamentoNovo : UtilFiesNovo, IModosDeExecucao.IModoComAlunos
     {
-        private IWebDriver Driver;
-        public void AditamentoFiesNovo(TOAluno aluno, string IES, string semestreAtual)
+        private string IES;
+        private string semestreAtual;
+        public AditamentoNovo(string IES, string semestreAtual)
         {
-            ConsultarAluno(Driver, aluno);
-            WaitForLoading(Driver);
-
-            if (VerificarNenhumaInformacaoDisponivel(Driver) == true)
-            {
-                Util.EditarConclusaoAluno(aluno, "Nenhuma informação disponível");
-                return;
-            }
-
+            this.IES = IES;
+            this.semestreAtual = semestreAtual;
+        }
+        public void AditamentoFiesNovo(TOAluno aluno)
+        {
+            ConsultarAluno( aluno);
+            WaitForLoading();
             if (Driver.PageSource.Contains("Não iniciado pela CPSA") == true)
             {
-                ScrollToElementByID(Driver, "btnAditarEstudante");
-                ClickButtonsById(Driver, "btnAditarEstudante");
-
+                ScrollToElementByID( "btnAditarEstudante");
+                ClickButtonsById( "btnAditarEstudante");
                 EsperarAjax();
-
-                WaitForLoading(Driver);
+                WaitForLoading();
                 VerificarAditamentoNaoDisponivel(aluno);
-                if (ConclusaoAlunoAlterada(aluno) == true)
-                {
-                    return;
-                }
-
                 VerificarEstudanteTransferidoNoSemestre();
                 VerificarAlertaAlunoTransferido(aluno);
-
                 PreencherReceitaAluno(aluno);
-                if (ConclusaoAlunoAlterada(aluno) == true)
-                {
-                    return;
-                }
-
-                WaitForLoading(Driver);
+                WaitForLoading();
                 string alertMessage = VerificarAlertaReceitaAluno(aluno, IES);
-
-                //Prouni
-                string possuiProuni = Driver.FindElement(By.Id("prouni")).Text;
-
-                PreencherQuestionamentoAluno(aluno, possuiProuni);
-                if (ConclusaoAlunoAlterada(aluno) == true)
-                {
-                    return;
-                }
-
+                PreencherQuestionamentoAluno(aluno);
                 BuscarValoresAditamento(aluno);
-
                 ConfirmarAditamento(aluno, alertMessage);
-                ScrollToElementByID(Driver, "btnVoltar");
-                ClickButtonsById(Driver, "btnVoltar");
+                ScrollToElementByID( "btnVoltar");
+                ClickButtonsById( "btnVoltar");
             }
             else
             {
@@ -80,11 +58,11 @@ namespace robo.Modos_de_Execucao.FIES_Novo
         {
             if (alertMessage == "")
             {
-                ScrollToElementByID(Driver, "btnConfirmar");
-                ClickButtonsById(Driver, "btnConfirmar");
-                WaitForLoading(Driver);
+                ScrollToElementByID( "btnConfirmar");
+                ClickButtonsById( "btnConfirmar");
+                WaitForLoading();
 
-                alertMessage = BuscarMensagemDeErro(Driver);
+                alertMessage = BuscarMensagemDeErro();
             }
 
             if (alertMessage != "")
@@ -104,8 +82,8 @@ namespace robo.Modos_de_Execucao.FIES_Novo
                 if (alerta.ToUpper().Contains("TRANSFERIDO NO SEMESTRE") == false)
                 {
                     Util.EditarConclusaoAluno(aluno, alerta);
-                    ScrollToElementByID(Driver, "btnVoltar");
-                    ClickButtonsById(Driver, "btnVoltar");
+                    ScrollToElementByID( "btnVoltar");
+                    ClickButtonsById( "btnVoltar");
                 }
             }
         }
@@ -115,19 +93,12 @@ namespace robo.Modos_de_Execucao.FIES_Novo
             if (erro != string.Empty)
             {
                 Util.EditarConclusaoAluno(aluno, erro);
-                ScrollToElementByID(Driver, "btnVoltar");
-                ClickButtonsById(Driver, "btnVoltar");
-                WaitForLoading(Driver);
-                ClicarMenuAditamento(Driver);
+                ScrollToElementByID( "btnVoltar");
+                ClickButtonsById( "btnVoltar");
+                WaitForLoading();
+                ClicarMenuAditamento();
+                throw new PararExecucaoException();
             }
-        }
-        private bool ConclusaoAlunoAlterada(TOAluno aluno)
-        {
-            if (aluno.Conclusao.ToUpper() != "NÃO FEITO")
-            {
-                return true;
-            }
-            return false;
         }
         private void MarcarSituacaoAtualAluno(TOAluno aluno, string semestreAtual)
         {
@@ -135,7 +106,7 @@ namespace robo.Modos_de_Execucao.FIES_Novo
             IWebElement grid = Driver.FindElement(By.Id("gridResult"));
             if (grid.Text.Contains(semestreAtual) == true)
             {
-                situacaoAluno = BuscarSituacaoAluno(Driver, semestreAtual);
+                situacaoAluno = BuscarSituacaoAluno( semestreAtual);
             }
             else
             {
@@ -144,9 +115,11 @@ namespace robo.Modos_de_Execucao.FIES_Novo
 
             Util.EditarConclusaoAluno(aluno, situacaoAluno);
         }
-        private void PreencherQuestionamentoAluno(TOAluno aluno, string possuiProuni)
+        private void PreencherQuestionamentoAluno(TOAluno aluno)
         {
-            ScrollToElementByID(Driver, "aproveitamento75S");
+            //Prouni
+            string possuiProuni = Driver.FindElement(By.Id("prouni")).Text;
+            ScrollToElementByID( "aproveitamento75S");
             if (aluno.AproveitamentoAtual.ToUpper().Contains("SUPERIOR A 75%") == true)
             {
                 AproveitamentoMaiorDe75(aluno, possuiProuni);
@@ -158,8 +131,9 @@ namespace robo.Modos_de_Execucao.FIES_Novo
             else
             {
                 Util.EditarConclusaoAluno(aluno, "Aproveitamento: " + aluno.AproveitamentoAtual);
-                ScrollToElementByID(Driver, "btnVoltar");
-                ClickButtonsById(Driver, "btnVoltar");
+                ScrollToElementByID( "btnVoltar");
+                ClickButtonsById( "btnVoltar");
+                throw new PararExecucaoException();
             }
         }
         private string VerificarAlertaReceitaAluno(TOAluno aluno, string IES)
@@ -192,40 +166,40 @@ namespace robo.Modos_de_Execucao.FIES_Novo
             {
                 if (aluno.Justificativa == string.Empty)
                 {
-                    ClickAndWriteById(Driver, "justificativaAcimaLimite", "Valores conforme o número de créditos financeiros matriculados no semestre");
+                    ClickAndWriteById( "justificativaAcimaLimite", "Valores conforme o número de créditos financeiros matriculados no semestre");
                 }
                 else
                 {
-                    ClickAndWriteById(Driver, "justificativaAcimaLimite", aluno.Justificativa);
+                    ClickAndWriteById( "justificativaAcimaLimite", aluno.Justificativa);
                 }
             }
             else
             {
-                ClickAndWriteById(Driver, "justificativaAcimaLimite", "Alteração na grade curricular em relação ao semestre anterior");
+                ClickAndWriteById( "justificativaAcimaLimite", "Alteração na grade curricular em relação ao semestre anterior");
             }
         }
         private void PreencherReceitaAluno(TOAluno aluno)
         {
             //Definição semestre atual
-            ScrollToElementByID(Driver, "qtSemestreACursar");
+            ScrollToElementByID( "qtSemestreACursar");
             int semestreASerCursado = Convert.ToInt32(Driver.FindElement(By.Id("totalSemestresFinanciados")).Text);
             ((IJavaScriptExecutor)Driver).ExecuteScript($@"document.getElementById(""qtSemestreACursar"").value = ""{semestreASerCursado + 1}"";");
 
             //Semestralidade Atual 
-            ScrollToElementByID(Driver, "semestralidadeAtualComDescGradeASerCursada");
-            ClickAndWriteById(Driver, "semestralidadeAtualComDescGradeASerCursada", aluno.ReceitaFies);
+            ScrollToElementByID( "semestralidadeAtualComDescGradeASerCursada");
+            ClickAndWriteById( "semestralidadeAtualComDescGradeASerCursada", aluno.ReceitaFies);
 
             //Click para atualizar a página
             Driver.FindElement(By.Id("semestralidadeAtualComDescGradeASerCursadaLabel")).Click();
-            WaitForLoading(Driver);
+            WaitForLoading();
 
             if (Driver.PageSource.Contains("inferior ao valor mínimo"))
             {
                 string alerta = VerificarAlertaAditamento();
                 Util.EditarConclusaoAluno(aluno, alerta);
-                ScrollToElementByID(Driver, "btnVoltar");
-                ClickButtonsById(Driver, "btnVoltar");
-                return;
+                ScrollToElementByID( "btnVoltar");
+                ClickButtonsById( "btnVoltar");
+                throw new PararExecucaoException();
             }
         }
         private void VerificarEstudanteTransferidoNoSemestre()
@@ -255,7 +229,7 @@ namespace robo.Modos_de_Execucao.FIES_Novo
             {
                 Driver.FindElement(By.Id("beneficioSimultaneoN")).Click();
             }
-            ScrollToElementByID(Driver, "duracaoCursoS");
+            ScrollToElementByID( "duracaoCursoS");
 
             Driver.FindElement(By.Id("duracaoCursoS")).Click();
             Driver.FindElement(By.Id("transferiuCursoN")).Click();
@@ -264,15 +238,15 @@ namespace robo.Modos_de_Execucao.FIES_Novo
             if (Driver.FindElement(By.Id("erroValidarTotSemestresN")).Displayed)
             {
                 //Houve erro do estudante e da CPSA ao registrar e validar, respectivamente, o total de semestres j� conclu�dos do curso: N�O 
-                ClickButtonsById(Driver, "erroValidarTotSemestresN");
+                ClickButtonsById( "erroValidarTotSemestresN");
             }
             if (aluno.DescontoLiberalidade.Equals("Sim") == true)
             {
-                ScrollToElementByID(Driver, "descontoLiberalidadeS");
+                ScrollToElementByID( "descontoLiberalidadeS");
                 Driver.FindElement(By.Id("descontoLiberalidadeS")).Click();
 
-                ScrollToElementByID(Driver, "motivoDesconto8");
-                ClickButtonsById(Driver, "motivoDesconto8");
+                ScrollToElementByID( "motivoDesconto8");
+                ClickButtonsById( "motivoDesconto8");
 
                 //Caixa de texto separada
                 var executor = (IJavaScriptExecutor)Driver;
@@ -295,21 +269,21 @@ namespace robo.Modos_de_Execucao.FIES_Novo
             {
                 MessageBox.Show("Avisar os guris que aconteceu pela 1º vez Excesso de reprovação.");
                 //O estudante teve aproveitamento acad�mico igual ou superior a 75% no semestre ? NAO 
-                ClickButtonsById(Driver, "aproveitamento75N");
+                ClickButtonsById( "aproveitamento75N");
                 aluno.Conclusao = "Rejeitou execesso de reprovação";
             }
             else
             {
                 //A CPSA irá liberar o aditamento nesta situação? SIM  
-                ScrollToElementByID(Driver, "aproveitamento75N");
-                ClickButtonsById(Driver, "aproveitamento75N");
+                ScrollToElementByID( "aproveitamento75N");
+                ClickButtonsById( "aproveitamento75N");
 
                 //Justificativa 
-                ScrollToElementByID(Driver, "justificativa");
-                ClickAndWriteById(Driver, "justificativa", aluno.HistoricoAproveitamento);
+                ScrollToElementByID( "justificativa");
+                ClickAndWriteById( "justificativa", aluno.HistoricoAproveitamento);
 
 
-                ClickButtonsById(Driver, "aproveitamentoInferior75S");
+                ClickButtonsById( "aproveitamentoInferior75S");
 
                 QuestionamentoPadrao(aluno, possuiProuni);
             }
@@ -323,13 +297,13 @@ namespace robo.Modos_de_Execucao.FIES_Novo
                 var errorMsg = Driver.FindElement(By.XPath("/html/body/div[1]/div"));
                 error = errorMsg.Text;
                 error = error.Replace("x\r\n", "");
-                ClickButtonsByXpath(Driver, "/html/body/div[1]/div/button");
+                ClickButtonsByXpath( "/html/body/div[1]/div/button");
                 var cpf = Driver.FindElement(By.Id("cpf"));
                 ((IJavaScriptExecutor)Driver).ExecuteScript(string.Format("window.scrollTo({0}, {1})", cpf.Location.X, cpf.Location.Y - 100));
 
                 if (error.Contains("Contrato possui parcela(s) vencida(s) e não paga(s).") == false)
                 {
-                    ClicarMenuAditamento(Driver);
+                    ClicarMenuAditamento();
                 }
             }
             return error;
@@ -355,9 +329,19 @@ namespace robo.Modos_de_Execucao.FIES_Novo
             return alertMessage;
 
         }
-        public void SetDriver(IWebDriver driver)
+        public void ExecucaoComListaDeAlunos(TOAluno aluno)
         {
-            Driver = driver;
+            AditamentoFiesNovo(aluno);
+        }
+
+        public void SelecionarMenu()
+        {
+            ClicarMenuAditamento();
+        }
+
+        public void SetWebDriver(IWebDriver Driver)
+        {
+            this.Driver = Driver;
         }
     }
 }

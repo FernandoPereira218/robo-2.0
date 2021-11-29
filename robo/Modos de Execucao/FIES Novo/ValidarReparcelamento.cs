@@ -11,12 +11,10 @@ namespace robo.Modos_de_Execucao.FIES_Novo
 {
     class ValidarReparcelamento : UtilFiesNovo
     {
-        private IWebDriver Driver;
         private WebDriverWait wait;
-        public void ExecutarValidarReparcelamento(IWebDriver driver)
+        public void ExecutarValidarReparcelamento()
         {
-            Driver = driver;
-            WaitForLoading(Driver);
+            WaitForLoading();
             EsperarElementoExiste(By.Id("divResultado"));
 
             IWebElement divResultado = Driver.FindElement(By.Id("divResultado"));

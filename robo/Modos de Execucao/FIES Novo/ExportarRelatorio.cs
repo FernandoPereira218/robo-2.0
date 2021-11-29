@@ -10,14 +10,12 @@ namespace robo.Modos_de_Execucao.FIES_Novo
 {
     public class ExportarRelatorio : UtilFiesNovo
     {
-        private IWebDriver Driver;
-        public void ExportarRelatorioFiesNovo(IWebDriver driver, string tipoRelatorio)
+        public void ExportarRelatorioFiesNovo(string tipoRelatorio)
         {
-            Driver = driver;
-            ClickButtonsById(Driver, "btnConsultar");
-            WaitForLoading(Driver);
+            ClickButtonsById( "btnConsultar");
+            WaitForLoading();
 
-            ClickDropDown(Driver, "name", "gridResult_length", "100");
+            ClickDropDown( "name", "gridResult_length", "100");
             string source = Driver.PageSource.Split(new string[] { "Mostrando" }, StringSplitOptions.None)[1];
             source = source.Split(new string[] { "registros" }, StringSplitOptions.None)[0];
             string quantidade = source.Split(new string[] { "de " }, StringSplitOptions.None)[1];

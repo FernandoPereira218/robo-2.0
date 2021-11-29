@@ -4,53 +4,62 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using robo.Utils;
+using robo.Contratos;
 using System.Text;
 using System.Threading.Tasks;
 using robo.TO;
+using robo.Excessoes;
 
 namespace robo.Modos_de_Execucao.SIGA
 {
-    class GeracaoParcelasFies : UtilSiga
+    class GeracaoParcelasFies : UtilSiga, IModosDeExecucao.IModoComAlunos
     {
-        private IWebDriver Driver;
         private int opcaoParcela = 2;
-        public void GeraParcelaFies(IWebDriver driver, TOAluno aluno, string semestre)
+        private string semestre;
+        public GeracaoParcelasFies(string semestre)
         {
-            Driver = driver;
-            WaitElementIsVisible(driver, By.Id("pess_cpf"));
-            FiltraAluno(driver, aluno);
+            this.semestre = semestre;
+        }
+        public void GeraParcelaFies(TOAluno aluno)
+        {
+            WaitElementIsVisible(By.Id("pess_cpf"));
+            FiltraAluno(aluno);
             string semestreCorreto = FormatarSemestreSiga(semestre);
             BuscarLinhaCorreta(aluno, out IWebElement tdParcelas, out string botaoId);
-            string parcelas = BuscarQuantidadeParcelas(semestreCorreto, tdParcelas);
+            VerificarQtdParcelas(aluno, semestreCorreto, tdParcelas);
 
-            if (parcelas == string.Empty)
+            if (this.Driver.PageSource.Contains("btn_editar") == true)
             {
-                Util.EditarConclusaoAluno(aluno, "Todas as parcelas geradas anteriormente.");
-                return;
-            }
-
-            if (Driver.PageSource.Contains("btn_editar") == true)
-            {
-                ClickButtonsById(Driver, botaoId);
+                ClickButtonsById(botaoId);
 
                 SelectElement select = BuscarSelectElement("num_parcela");
                 int numParcelas = select.Options.Count();
                 if (numParcelas <= 2)
                 {
                     Util.EditarConclusaoAluno(aluno, "Sem parcelas disponíveis!");
-                    Driver.Url = Driver.Url;
+                    this.Driver.Url = this.Driver.Url;
                     return;
                 }
 
-                GerarTodasMensalidades(driver, aluno, numParcelas, semestre);
+                GerarTodasMensalidades(aluno, numParcelas, semestre);
 
                 if (aluno.Conclusao == "Não Feito")
                 {
                     Util.EditarConclusaoAluno(aluno, "Processo finalizado.");
                 }
-                Driver.Url = Driver.Url;
+                this.Driver.Url = this.Driver.Url;
             }
 
+        }
+
+        private void VerificarQtdParcelas(TOAluno aluno, string semestreCorreto, IWebElement tdParcelas)
+        {
+            string parcelas = BuscarQuantidadeParcelas(semestreCorreto, tdParcelas);
+            if (parcelas == string.Empty)
+            {
+                Util.EditarConclusaoAluno(aluno, "Todas as parcelas geradas anteriormente.");
+                throw new PararExecucaoException();
+            }
         }
 
         private SelectElement BuscarSelectElement(string elemento)
@@ -62,7 +71,7 @@ namespace robo.Modos_de_Execucao.SIGA
             }
             catch (UnexpectedTagNameException)
             {
-                WaitLoading(Driver);
+                WaitLoading();
                 select = new SelectElement(Driver.FindElement(By.Id(elemento)));
             }
             return select;
@@ -84,7 +93,7 @@ namespace robo.Modos_de_Execucao.SIGA
             return false;
         }
 
-        private void GerarTodasMensalidades(IWebDriver driver, TOAluno aluno, int numParcelas, string semestre)
+        private void GerarTodasMensalidades(TOAluno aluno, int numParcelas, string semestre)
         {
             IWebElement opcaoComAglutinacao;
             if (ContemAglutinacao(out opcaoComAglutinacao) == true)
@@ -94,7 +103,7 @@ namespace robo.Modos_de_Execucao.SIGA
             }
             for (int i = 2; i < numParcelas; i++)
             {
-                WaitLoading(driver);
+                WaitLoading();
 
                 SelectElement select = BuscarSelectElement("num_parcela");
 
@@ -106,21 +115,21 @@ namespace robo.Modos_de_Execucao.SIGA
 
                 if (select.Options[opcaoParcela].Text.ToUpper().Contains("PARCELA"))
                 {
-                    GerarMensalidade(driver, aluno, DateTime.Now, BuscarSemestreSiga(semestre));
+                    GerarMensalidade(aluno, DateTime.Now, BuscarSemestreSiga(semestre));
                 }
             }
         }
 
-        private void GerarMensalidade(IWebDriver driver, TOAluno aluno, DateTime dataAtual, string semestreSiga)
+        private void GerarMensalidade(TOAluno aluno, DateTime dataAtual, string semestreSiga)
         {
             //Clica no semestre correto
-            ClickDropDownExact(driver, "id", "peri_id", semestreSiga);
+            ClickDropDownExact("id", "peri_id", semestreSiga);
 
             SelectElement select = BuscarSelectElement("num_parcela");
             string ParcelaSelecionada = select.Options[opcaoParcela].Text;
 
             //Clicar na parcela
-            ClickDropDown(driver, "id", "num_parcela", select.Options[opcaoParcela].Text);
+            ClickDropDown("id", "num_parcela", select.Options[opcaoParcela].Text);
 
             //Clicar em número do documento
             SelecionarNumeroDocumento();
@@ -128,15 +137,15 @@ namespace robo.Modos_de_Execucao.SIGA
             DateTime dataVencimento = BuscarDataVencimento(aluno, dataAtual, ParcelaSelecionada);
 
             //Escrever data vencimento
-            ClickAndWriteById(driver, "id_dt_vencimento", dataVencimento.ToString("dd/MM/yyyy"));
+            ClickAndWriteById("id_dt_vencimento", dataVencimento.ToString("dd/MM/yyyy"));
 
             //Gerar mensalidade
-            ClickElementByXPath(driver, "input", "value", "Gerar Mensalidade");
+            ClickElementByXPath("input", "value", "Gerar Mensalidade");
 
-            WaitElementIsVisible(driver, By.Id("msg_1"));
+            WaitElementIsVisible(By.Id("msg_1"));
 
-            string textoMensagem = ConfirmacaoGravacaoParcelaAjuste(driver);
-            VerificarErro(driver, aluno, ParcelaSelecionada, textoMensagem);
+            string textoMensagem = ConfirmacaoGravacaoParcelaAjuste(Driver);
+            VerificarErro(Driver, aluno, ParcelaSelecionada, textoMensagem);
         }
 
         private void VerificarErro(IWebDriver driver, TOAluno aluno, string ParcelaSelecionada, string textoMensagem)
@@ -205,7 +214,7 @@ namespace robo.Modos_de_Execucao.SIGA
 
             if (mensagem.Text.Contains("Esta parcela já foi faturada. Deseja gerar a parcela como um ajuste?"))
             {
-                ClickElementByXPath(driver, "input", "value", "Sim");
+                ClickElementByXPath("input", "value", "Sim");
             }
 
             return textoMensagem;
@@ -314,6 +323,21 @@ namespace robo.Modos_de_Execucao.SIGA
         {
             var executor = (IJavaScriptExecutor)driver;
             executor.ExecuteScript("var exdate = new Date(); exdate.setDate(exdate.getDate() + 365); document.cookie = encodeURIComponent(\"GUICHE\") + \"=\" + encodeURIComponent(\"GUICHE_GENERICO\") + \"; expires=\" + exdate.toUTCString() + \";path=/;\"");
+        }
+
+        public void ExecucaoComListaDeAlunos(TOAluno aluno)
+        {
+            GeraParcelaFies(aluno);
+        }
+
+        public void SelecionarMenu()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void SetWebDriver(IWebDriver Driver)
+        {
+            this.Driver = Driver;
         }
     }
 }

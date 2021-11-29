@@ -4,19 +4,24 @@ using robo.Utils;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using robo.Contratos;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace robo.Modos_de_Execucao.FIES_Novo
 {
-    public class ExtrairInformacoesDRMFiesNovo : UtilFiesNovo
+    public class ExtrairInformacoesDRMFiesNovo : UtilFiesNovo, IModosDeExecucao.IModoComAlunos
     {
-        private IWebDriver Driver;
+        private string semestre;
+        public ExtrairInformacoesDRMFiesNovo(string semestre)
+        {
+            this.semestre = semestre;
+        }
 
-        public void ExtrairInformacoesDRM(TOAluno aluno, string semestre)
+        public void ExtrairInformacoesDRM(TOAluno aluno)
         {
             string janelaInicial = Driver.CurrentWindowHandle;
-            BuscarEAbrirDRM(Driver, aluno, semestre);
+            BuscarEAbrirDRM( aluno, semestre);
             if (aluno.Conclusao != "Não Feito")
             {
                 Util.EditarConclusaoAluno(aluno, aluno.Conclusao);
@@ -32,7 +37,7 @@ namespace robo.Modos_de_Execucao.FIES_Novo
             Util.EditarConclusaoAluno(aluno, "DRM Baixado");
         }
 
-        public void SetDriver(IWebDriver driver)
+        public void SetWebDriver(IWebDriver driver)
         {
             Driver = driver;
         }
@@ -135,5 +140,19 @@ namespace robo.Modos_de_Execucao.FIES_Novo
             }
         }
 
+        public void ExecucaoComListaDeAlunos(TOAluno aluno)
+        {
+            ExtrairInformacoesDRM(aluno);
+        }
+
+        public void SelecionarMenu()
+        {
+            ClicarMenuAditamento();
+        }
+
+        public void SetDriver(IWebDriver Driver)
+        {
+            this.Driver = Driver;
+        }
     }
 }

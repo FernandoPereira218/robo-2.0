@@ -10,14 +10,12 @@ namespace robo.Modos_de_Execucao.FIES_Legado
 {
     public class ExportarRelatorios : UtilFiesLegado
     {
-        private IWebDriver Driver;
-        public void ExportarDocumentosFiesLegado(IWebDriver driver, string semestre, string tipoRelatorio, string campus)
+        public void ExportarDocumentosFiesLegado(string semestre, string tipoRelatorio, string campus)
         {
-            Driver = driver;
-            string selRelatorio = SelecionarTipoRelatorio(Driver, tipoRelatorio);
-            ClickDropDown(Driver, "id", "co_finalidade_aditamento", selRelatorio);
-            WaitinLoading(Driver);
-            ClickDropDown(Driver, "id", "coSemestreAditamento", semestre);
+            string selRelatorio = SelecionarTipoRelatorio( tipoRelatorio);
+            ClickDropDown("id", "co_finalidade_aditamento", selRelatorio);
+            WaitinLoading();
+            ClickDropDown( "id", "coSemestreAditamento", semestre);
 
             semestre = semestre.Replace('/', '-');
             Driver.FindElement(By.Name("export-excel")).Click();

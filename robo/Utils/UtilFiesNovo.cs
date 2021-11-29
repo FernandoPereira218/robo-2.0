@@ -1,4 +1,5 @@
 ﻿using OpenQA.Selenium;
+using robo.Excessoes;
 using robo.TO;
 using System;
 using System.Collections.Generic;
@@ -18,14 +19,14 @@ namespace robo.Utils
         /// </summary>
         /// <param name="Driver"></param>
         /// <param name="login"></param>
-        public void FazerLogin(IWebDriver Driver, TOLogin login)
+        public void FazerLogin(TOLogin login)
         {
-            ClickAndWriteById(Driver, "username", login.Usuario);
-            ClickButtonsById(Driver, "button-submit");
-            ClickAndWriteById(Driver, "password", login.Senha);
-            ClickButtonsByCss(Driver, "button:nth-child(1)");
+            ClickAndWriteById("username", login.Usuario);
+            ClickButtonsById("button-submit");
+            ClickAndWriteById("password", login.Senha);
+            ClickButtonsByCss("button:nth-child(1)");
 
-            WaitElementIsVisible(Driver, By.XPath("//p[text()='Quadro de Avisos']"));
+            WaitElementIsVisible(By.XPath("//p[text()='Quadro de Avisos']"));
         }
 
         /// <summary>
@@ -34,7 +35,7 @@ namespace robo.Utils
         /// <param name="Driver"></param>
         /// <param name="element"></param>
         /// <param name="exist">'true' para esperar até o elemento existir 'false' para esperar até que desapareça</param>
-        private void WaitPageLoading(IWebDriver Driver, string element, bool exist)
+        private void WaitPageLoading( string element, bool exist)
         {
             while (Driver.PageSource.Contains(element) == exist)
             {
@@ -46,10 +47,10 @@ namespace robo.Utils
         /// Espera até o ícone de "carregando" sumir da tela
         /// </summary>
         /// <param name="Driver"></param>
-        public void WaitForLoading(IWebDriver Driver)
+        public void WaitForLoading()
         {
-            WaitPageLoading(Driver, "modal-backdrop fade in", true);
-            WaitPageLoading(Driver, "modal-backdrop fade", true);
+            WaitPageLoading("modal-backdrop fade in", true);
+            WaitPageLoading("modal-backdrop fade", true);
         }
 
         /// <summary>
@@ -57,7 +58,7 @@ namespace robo.Utils
         /// </summary>
         /// <param name="Driver"></param>
         /// <param name="idMenu">ID do botão desejado</param>
-        private void ClicarBotaoMenuPaginaInicial(IWebDriver Driver, string idMenu)
+        private void ClicarBotaoMenuPaginaInicial(string idMenu)
         {
             if (!Driver.PageSource.Contains("código autenticador"))
             {
@@ -78,90 +79,90 @@ namespace robo.Utils
         /// Abre menu de consulta de alunos para aditamentos e DRM
         /// </summary>
         /// <param name="Driver"></param>
-        public void ClicarMenuAditamento(IWebDriver Driver)
+        public void ClicarMenuAditamento()
         {
-            ClicarBotaoMenuPaginaInicial(Driver, "btnAdmnstrcManutenccedilatildeoAditamentoRenovaccedilatildeo");
+            ClicarBotaoMenuPaginaInicial("btnAdmnstrcManutenccedilatildeoAditamentoRenovaccedilatildeo");
         }
 
         /// <summary>
         /// Abre menu histório de reparcelamento da coparticipação
         /// </summary>
         /// <param name="Driver"></param>
-        public void ClicarMenuHistoricoReparcelamentoCopartipacao(IWebDriver Driver)
+        public void ClicarMenuHistoricoReparcelamentoCopartipacao()
         {
-            ClicarBotaoMenuPaginaInicial(Driver, "btnAdmnstrcReparcelamentodaCoparticipaccedilatildeoHistoacutericodoReparcelamentodaCoparticipaccedilatildeo");
+            ClicarBotaoMenuPaginaInicial("btnAdmnstrcReparcelamentodaCoparticipaccedilatildeoHistoacutericodoReparcelamentodaCoparticipaccedilatildeo");
         }
 
         /// <summary>
         /// Abre menu de consulta de contrato
         /// </summary>
         /// <param name="Driver"></param>
-        public void ClicarMenuConsultaContrato(IWebDriver Driver)
+        public void ClicarMenuConsultaContrato()
         {
-            ClicarBotaoMenuPaginaInicial(Driver, "btnAdmnstrcProcessodeFinanciamentoConsultarContratoEstudante");
+            ClicarBotaoMenuPaginaInicial("btnAdmnstrcProcessodeFinanciamentoConsultarContratoEstudante");
         }
 
         /// <summary>
         /// Abre menu de validar reparcelamentos
         /// </summary>
         /// <param name="Driver"></param>
-        public void ClicarMenuValidarReparcelamento(IWebDriver Driver)
+        public void ClicarMenuValidarReparcelamento()
         {
-            ClicarBotaoMenuPaginaInicial(Driver, "btnAdmnstrcReparcelamentodaCoparticipaccedilatildeoValidarReparcelamentodaCoparticipaccedilatildeo");
+            ClicarBotaoMenuPaginaInicial("btnAdmnstrcReparcelamentodaCoparticipaccedilatildeoValidarReparcelamentodaCoparticipaccedilatildeo");
         }
 
         /// <summary>
         /// Abre menu de dilatação
         /// </summary>
         /// <param name="Driver"></param>
-        public void ClicarMenuDilatacao(IWebDriver Driver)
+        public void ClicarMenuDilatacao()
         {
-            ClicarBotaoMenuPaginaInicial(Driver, "btnAdmnstrcManutenccedilatildeoAprovarDilataccedilatildeo");
+            ClicarBotaoMenuPaginaInicial("btnAdmnstrcManutenccedilatildeoAprovarDilataccedilatildeo");
         }
 
         /// <summary>
         /// Abre menu de suspensão
         /// </summary>
         /// <param name="Driver"></param>
-        public void ClicarMenuSuspensao(IWebDriver Driver)
+        public void ClicarMenuSuspensao()
         {
-            ClicarBotaoMenuPaginaInicial(Driver, "btnAdmnstrcManutenccedilatildeoAprovarSuspensatildeo");
+            ClicarBotaoMenuPaginaInicial("btnAdmnstrcManutenccedilatildeoAprovarSuspensatildeo");
         }
 
         /// <summary>
         /// Abre menu de transferência
         /// </summary>
         /// <param name="Driver"></param>
-        public void ClicarMenuTransferencia(IWebDriver Driver)
+        public void ClicarMenuTransferencia()
         {
-            ClicarBotaoMenuPaginaInicial(Driver, "btnAdmnstrcManutenccedilatildeoAprovarTransferecircncia");
+            ClicarBotaoMenuPaginaInicial("btnAdmnstrcManutenccedilatildeoAprovarTransferecircncia");
         }
 
         /// <summary>
         /// Abre menu de inadimplência
         /// </summary>
         /// <param name="Driver"></param>
-        public void ClicarMenuInadimplencia(IWebDriver Driver)
+        public void ClicarMenuInadimplencia()
         {
-            ClicarBotaoMenuPaginaInicial(Driver, "btnAdmnstrcRelatoacuteriosAgenteFinanceiroInadimplecircnciaAgecircnciaEstudante");
+            ClicarBotaoMenuPaginaInicial("btnAdmnstrcRelatoacuteriosAgenteFinanceiroInadimplecircnciaAgecircnciaEstudante");
         }
 
         /// <summary>
         /// Abre menu de repasse
         /// </summary>
         /// <param name="Driver"></param>
-        public void ClicarMenuRepasse(IWebDriver Driver)
+        public void ClicarMenuRepasse()
         {
-            ClicarBotaoMenuPaginaInicial(Driver, "btnAdmnstrcRelatrioRelatriodeContrataoAnaltico");
+            ClicarBotaoMenuPaginaInicial("btnAdmnstrcRelatrioRelatriodeContrataoAnaltico");
         }
 
         /// <summary>
         /// Abre menu de coparticipação
         /// </summary>
         /// <param name="Driver"></param>
-        public void ClicarMenuCoparticipacao(IWebDriver Driver)
+        public void ClicarMenuCoparticipacao()
         {
-            ClicarBotaoMenuPaginaInicial(Driver, "btnAdmnstrcRelatriosNovoFIESRelatriodeRepasseAnaliacuteticoIES");
+            ClicarBotaoMenuPaginaInicial("btnAdmnstrcRelatriosNovoFIESRelatriodeRepasseAnaliacuteticoIES");
         }
 
         /// <summary>
@@ -169,18 +170,18 @@ namespace robo.Utils
         /// </summary>
         /// <param name="Driver"></param>
         /// <param name="aluno"></param>
-        public void ConsultarAluno(IWebDriver Driver, TOAluno aluno)
+        public void ConsultarAluno(TOAluno aluno)
         {
-            WaitForLoading(Driver);
-            WaitPageLoading(Driver, "input-medium cpf", false);
+            WaitForLoading();
+            WaitPageLoading("input-medium cpf", false);
 
             ((IJavaScriptExecutor)Driver).ExecuteScript("window.scrollTo(0, 0)");
 
-            ClickButtonsByCss(Driver, "body");
+            ClickButtonsByCss("body");
 
-            ClickButtonsById(Driver, "btnLimpar");
+            ClickButtonsById("btnLimpar");
 
-            ClickButtonsById(Driver, "cpf");
+            ClickButtonsById("cpf");
 
             var executor = (IJavaScriptExecutor)Driver;
             executor.ExecuteScript($@"document.getElementById(""cpf"").value = ""{aluno.Cpf}"";");
@@ -189,29 +190,32 @@ namespace robo.Utils
             {
                 System.Threading.Thread.Sleep(500);
             }
-            ClickButtonsByCss(Driver, "body");
-            string erro = BuscarMensagemDeErro(Driver);
+            ClickButtonsByCss("body");
+            string erro = BuscarMensagemDeErro();
             if (erro.Contains("CPF com Dígito Verificador inválido. Redigite-o!") == true)
             {
                 Util.EditarConclusaoAluno(aluno, erro);
-                return;
+                throw new PararExecucaoException();
             }
-            ClickButtonsById(Driver, "btnConsultar");
-            erro = BuscarMensagemDeErro(Driver);
+            ClickButtonsById("btnConsultar");
+            erro = BuscarMensagemDeErro();
             if (erro.Contains("Ocorreu um erro na consulta, tente novamente."))
             {
                 throw new Exception("O site da caixa parece estar instável. Tente novamente mais tarde.");
             }
-            WaitForLoading(Driver);
-
-            
+            WaitForLoading();
+            if (VerificarNenhumaInformacaoDisponivel() == true)
+            {
+                Util.EditarConclusaoAluno(aluno, "Nenhuma informação disponível");
+                throw new PararExecucaoException();
+            }
         }
 
         /// <summary>
         /// Procura mensagem de erro do topo da página
         /// </summary>
         /// <returns>A mensagem encontrada</returns>
-        protected string BuscarMensagemDeErro(IWebDriver Driver)
+        protected string BuscarMensagemDeErro()
         {
             if (Driver.PageSource.Contains("alert alert-error"))
             {
@@ -229,7 +233,7 @@ namespace robo.Utils
         /// </summary>
         /// <param name="Driver"></param>
         /// <param name="id">ID do botão</param>
-        public void ClickButtonByIdWithJavaScript(IWebDriver Driver, string id)
+        public void ClickButtonByIdWithJavaScript(string id)
         {
             IWebElement element = Driver.FindElement(By.XPath(string.Format("//*[@id=\"{0}\"]", id)));
             ((IJavaScriptExecutor)Driver).ExecuteScript("arguments[0].click();", element);
@@ -241,16 +245,16 @@ namespace robo.Utils
         /// <param name="Driver"></param>
         /// <param name="aluno"></param>
         /// <param name="semestreAtual">Semestre selecionado (semestre/ano)</param>
-        public void BuscarEAbrirDRM(IWebDriver Driver, TOAluno aluno, string semestreAtual)
+        public void BuscarEAbrirDRM( TOAluno aluno, string semestreAtual)
         {
-            ConsultarAluno(Driver, aluno);
-            if (VerificarNenhumaInformacaoDisponivel(Driver) == true)
+            ConsultarAluno(aluno);
+            if (VerificarNenhumaInformacaoDisponivel() == true)
             {
                 Util.EditarConclusaoAluno(aluno, "Nenhuma informação disponível");
                 return;
             }
 
-            IWebElement botaoImprimirTermo = BuscarBotaoSemestre(Driver, semestreAtual);
+            IWebElement botaoImprimirTermo = BuscarBotaoSemestre(semestreAtual);
 
             //Caso haja um botao com ano/semestre correto
             if (botaoImprimirTermo != null)
@@ -266,18 +270,18 @@ namespace robo.Utils
                 //Verificacao de erro ao clicar no botao
                 while (msgErro == true)
                 {
-                    ScrollToElementByID(Driver, botaoImprimirTermo.GetAttribute("id"));
+                    ScrollToElementByID(botaoImprimirTermo.GetAttribute("id"));
                     botaoImprimirTermo.Click();
 
                     System.Threading.Thread.Sleep(1000);
 
-                    ClickButtonsById(Driver, "btnConfirmar");
+                    ClickButtonsById("btnConfirmar");
 
                     msgErro = (bool)executor.ExecuteScript("return $('.alert.alert-error').is(':visible');");
                     if (msgErro == true)
                     {
-                        ClickButtonsById(Driver, "btnConsultar");
-                        WaitForLoading(Driver);
+                        ClickButtonsById("btnConsultar");
+                        WaitForLoading();
                     }
                 }
 
@@ -285,7 +289,7 @@ namespace robo.Utils
                 if (Driver.PageSource.Contains("MDLalerta_") == true)
                 {
                     aluno.Conclusao = Driver.FindElement(By.XPath("/html/body/div[7]/div[2]/p")).Text;
-                    ClickButtonsById(Driver, "btnConfirmar");
+                    ClickButtonsById("btnConfirmar");
                     return;
                 }
 
@@ -303,7 +307,7 @@ namespace robo.Utils
                 IWebElement grid = Driver.FindElement(By.Id("gridResult"));
                 if (grid.Text.Contains(semestreAtual) == true)
                 {
-                    situacaoAluno = BuscarSituacaoAluno(Driver, semestreAtual);
+                    situacaoAluno = BuscarSituacaoAluno(semestreAtual);
                 }
                 else
                 {
@@ -319,7 +323,7 @@ namespace robo.Utils
         /// </summary>
         /// <param name="Driver"></param>
         /// <returns>True se houver e false se não</returns>
-        public bool VerificarNenhumaInformacaoDisponivel(IWebDriver Driver)
+        public bool VerificarNenhumaInformacaoDisponivel()
         {
             if (Driver.PageSource.Contains("Nenhuma informação disponível") == true)
             {
@@ -334,7 +338,7 @@ namespace robo.Utils
         /// <param name="Driver"></param>
         /// <param name="semestreAtual">Semestre atual (semestre/ano)</param>
         /// <returns></returns>
-        private IWebElement BuscarBotaoSemestre(IWebDriver Driver, string semestreAtual)
+        private IWebElement BuscarBotaoSemestre(string semestreAtual)
         {
             string semestreFormatado = semestreAtual.Split('/')[0];
             string anoFormatado = semestreAtual.Split('/')[1];
@@ -362,7 +366,7 @@ namespace robo.Utils
         /// </summary>
         /// <param name="semestreAtual">Semestre atual (semestre/ano)</param>
         /// <returns>Conclusão encontrada</returns>
-        public string BuscarSituacaoAluno(IWebDriver Driver, string semestreAtual)
+        public string BuscarSituacaoAluno(string semestreAtual)
         {
             string situacaoAluno = string.Empty;
             situacaoAluno = Driver.PageSource.Split(new string[] { semestreAtual }, StringSplitOptions.None)[3];

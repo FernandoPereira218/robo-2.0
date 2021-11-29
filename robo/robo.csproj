@@ -258,6 +258,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Contratos\IModosDeExecucao.cs" />
     <Compile Include="Excessoes\PararExecucaoException.cs" />
     <Compile Include="Modos de Execucao\FIES Legado\AditamentoLegado.cs" />
     <Compile Include="Modos de Execucao\FIES Novo\AditamentoNovo.cs" />

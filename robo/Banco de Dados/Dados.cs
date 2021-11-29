@@ -74,13 +74,20 @@ namespace robo.Banco_de_Dados
         private static List<TOAluno> LerCSVAlunos(string directory)
         {
             List<TOAluno> alunos;
-            using (StreamReader sr = new StreamReader(directory, Encoding.UTF7))
+            try
             {
-                using (CsvReader csv = new CsvReader(sr, CultureInfo.CurrentCulture))
+                using (StreamReader sr = new StreamReader(directory, Encoding.UTF7))
                 {
-                    List<TOAluno> registros = csv.GetRecords<TOAluno>().ToList();
-                    alunos = registros;
+                    using (CsvReader csv = new CsvReader(sr, CultureInfo.CurrentCulture))
+                    {
+                        List<TOAluno> registros = csv.GetRecords<TOAluno>().ToList();
+                        alunos = registros;
+                    }
                 }
+            }
+            catch (IOException)
+            {
+                throw new Exception("O arquivo escolhido ainda está aberto. Por favor feche o arquivo antes de importar.");
             }
             return alunos;
         }
