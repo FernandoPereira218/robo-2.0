@@ -6,24 +6,24 @@ using System.Text;
 using System.Threading.Tasks;
 using OpenQA.Selenium.Support.UI;
 using robo.Utils;
+using robo.Contratos;
 
 namespace robo.Modos_de_Execucao.FIES_Novo
 {
     public class ExportarCoparticipacao : UtilFiesNovo
     {
-        private IWebDriver Driver;
-        public void ExportarRelatórioCoparticipacao(IWebDriver driver, string IES, string dataInicial, string dataFinal)
+
+        public void ExportarRelatorioCoparticipacao(string IES, string dataInicial, string dataFinal)
         {
-            Driver = driver;
-            WaitForLoading(driver);
+            WaitForLoading();
 
             SelecionarOpcaoMenu();
 
-            ClickAndWriteById(Driver, "dataInicio", dataInicial);
-            ClickAndWriteById(Driver, "dataFim", dataFinal);
-            ClickButtonsById(Driver, "btnExportarRelatorio");
-            WaitForLoading(Driver);
-            string erro = BuscarMensagemDeErro(Driver);
+            ClickAndWriteById( "dataInicio", dataInicial);
+            ClickAndWriteById( "dataFim", dataFinal);
+            ClickButtonsById( "btnExportarRelatorio");
+            WaitForLoading();
+            string erro = BuscarMensagemDeErro();
             if (erro == string.Empty)
             {
                 if (Driver.PageSource.Contains("Nenhuma informação disponível") == true)
@@ -50,7 +50,7 @@ namespace robo.Modos_de_Execucao.FIES_Novo
                     IWebElement dropDownIES = Driver.FindElement(By.Id("ies_chosen"));
                     dropDownIES.Click();
                     ((IJavaScriptExecutor)Driver).ExecuteScript("alert(\"Por favor selecione uma IES\")");
-                    while (isAlertPresent(Driver))
+                    while (isAlertPresent())
                     {
                         System.Threading.Thread.Sleep(100);
                     }

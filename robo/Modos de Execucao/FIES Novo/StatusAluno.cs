@@ -5,28 +5,34 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using robo.Contratos;
 using System.Threading.Tasks;
 
 namespace robo.Modos_de_Execucao.FIES_Novo
 {
-    class StatusAluno : UtilFiesNovo
+    class StatusAluno : UtilFiesNovo, IModosDeExecucao.IModoComAlunos
     {
-        private IWebDriver Driver;
-
-        public void BuscarStatusAluno(TOAluno aluno, string semestre)
+        private string semestre;
+        public StatusAluno(string semestre)
         {
+            this.semestre = semestre;
+        }
+
+        public void BuscarStatusAluno(TOAluno aluno)
+        {
+            WaitForLoading();
             while (Driver.PageSource.Contains("Consultar Contrato Estudante") == false)
             {
                 System.Threading.Thread.Sleep(100);
             }
             ((IJavaScriptExecutor)Driver).ExecuteScript($@"document.getElementById(""cpf"").value = ""{aluno.Cpf}"";");
-            ClickButtonsById(Driver, "btnConfirmar");
-            WaitForLoading(Driver);
-            ClickButtonsById(Driver, "lnkTipoProcesso");
-            WaitForLoading(Driver);
+            ClickButtonsById( "btnConfirmar");
+            WaitForLoading();
+            ClickButtonsById( "lnkTipoProcesso");
+            WaitForLoading();
 
-            ClickButtonByIdWithJavaScript(Driver, "tab-Aditamento");
-            WaitForLoading(Driver);
+            ClickButtonByIdWithJavaScript( "tab-Aditamento");
+            WaitForLoading();
 
             IWebElement elementoTabela = Driver.FindElement(By.Id("gridAditamento"));
             List<IWebElement> dados = elementoTabela.FindElements(By.TagName("td")).ToList();
@@ -65,12 +71,23 @@ namespace robo.Modos_de_Execucao.FIES_Novo
 
             var element = Driver.FindElement(By.Id("btn-voltar"));
             ((IJavaScriptExecutor)Driver).ExecuteScript(string.Format("window.scrollTo({0}, {1})", element.Location.X, element.Location.Y - 100));
-            ClickButtonsById(Driver, "btn-voltar");
-            WaitForLoading(Driver);
+            ClickButtonsById( "btn-voltar");
+            WaitForLoading();
         }
-        public void SetDriver(IWebDriver driver)
+
+        public void ExecucaoComListaDeAlunos(TOAluno aluno)
         {
-            Driver = driver;
+            BuscarStatusAluno(aluno);
+        }
+
+        public void SelecionarMenu()
+        {
+            ClicarMenuConsultaContrato();
+        }
+
+        public void SetWebDriver(IWebDriver Driver)
+        {
+            this.Driver = Driver;
         }
 
         private string CorrigirSemestreAlunoConsultaNovo(string semestre)

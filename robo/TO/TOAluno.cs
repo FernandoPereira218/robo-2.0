@@ -224,68 +224,88 @@ namespace robo.TO
         {
             if (tipo == "Informações")
             {
-                Map(x => x.Cpf).Name("CPF");
-                Map(x => x.SemestreAditar).Name("Semestre a Aditar");
-                Map(x => x.Curso).Name("Curso");
-                Map(x => x.DuracaoRegular).Name("Duração regular");
-                Map(x => x.TotalDeSemestresSuspensos).Name("Total de semestres suspensos");
-                Map(x => x.TotalDeSemestresDilatados).Name("Total de semestres dilatados");
-                Map(x => x.TotalDeSemestresConcluidos).Name("Total de semestres já concluidos e/ou aproveitados nesta IES/curso");
-                Map(x => x.SemestreSerCursadoPeloEstudante).Name("Semestre a ser cursado pelo estudante");
-                Map(x => x.TotalDeSemestresJaFinanciados).Name("Total de semestres já financiados");
-                Map(x => x.PercentualDeFinanciamentoSolicitado).Name("Percentual de financiamento solicitado");
-                Map(x => x.GradeAtualComDesconto).Name("Grade Atual Semestralidade (R$) com desconto");
-                Map(x => x.GradeAtualFinanciadoFIES).Name("Grade Atual Semestralidade (R$) Financiado FIES");
-                Map(x => x.GradeAtualCoparticipacao).Name("Grade Atual Semestralidade (R$) Coparticipação");
+                MapaInformacoes();
             }
             else if(tipo == "Status Aluno")
             {
-                Map(x => x.Cpf).Name("CPF");
-                Map(x => x.SemestreAno).Name("Semestre/Ano");
-                Map(x => x.Finalidade).Name("Finalidade");
-                Map(x => x.Situacao).Name("Situação");
-                Map(x => x.TipoAditamento).Name("Tipo");
-                Map(x => x.ProUni).Name("ProUni");
-                Map(x => x.DataInclusao).Name("Data Inclusão");
-                Map(x => x.DataConclusao).Name("Data Conclusão");
+                MapaStatusAluno();
             }
             else if (tipo == "SIGA")
             {
-                Map(x => x.Cpf).Name("CPF");
-                Map(x => x.Nome).Name("Nome");
-                Map(x => x.Tipo).Name("Tipo");
-                Map(x => x.Conclusao).Name("Conclusao");
-                Map(x => x.HorarioConclusao).Name("HorarioConclusao");
-                Map(x => x.CursoSiga).Name("Curso");
-                Map(x => x.ParcelaSiga1).Name("PARCELA 1");
-                Map(x => x.ParcelaSiga2).Name("PARCELA 2");
-                Map(x => x.ParcelaSiga3).Name("PARCELA 3");
-                Map(x => x.ParcelaSiga4).Name("PARCELA 4");
-                Map(x => x.ParcelaSiga5).Name("PARCELA 5");
-                Map(x => x.ParcelaSiga6).Name("PARCELA 6");
+                MapaSIGA();
             }
             else
             {
-                Map(x => x.Cpf).Name("CPF");
-                Map(x => x.Nome).Name("Nome");
-                Map(x => x.Tipo).Name("Tipo");
-                Map(x => x.Conclusao).Name("Conclusao");
-                Map(x => x.HorarioConclusao).Name("HorarioConclusao");
-                Map(x => x.Campus).Name("Campus");
-                Map(x => x.AproveitamentoAtual).Name("AproveitamentoAtual");
-                Map(x => x.HistoricoAproveitamento).Name("HistoricoAproveitamento");
-                Map(x => x.ReceitaBruta).Name("ReceitaBruta");
-                Map(x => x.ReceitaLiquida).Name("ReceitaLiquida");
-                Map(x => x.ReceitaFies).Name("ReceitaFies");
-                Map(x => x.CampusAditado).Name("CampusAditado");
-                Map(x => x.ValorAditado).Name("ValorAditado");
-                Map(x => x.ValorAditadoComDesconto).Name("ValorAditadoComDesconto");
-                Map(x => x.ValorAditadoFinanciamento).Name("ValorAditadoFinanciamento");
-                Map(x => x.ValorPagoRecursoEstudante).Name("ValorPagoRecursoEstudante");
-                Map(x => x.DescontoLiberalidade).Name("DescontoLiberalidade");
-                Map(x => x.Extraido).Name("Extraido");
-                Map(x => x.Justificativa).Name("Justificativa");
+                MapaPadrao();
             }
+        }
+
+        private void MapaPadrao()
+        {
+            Map(x => x.Cpf).Name(nameof(TOAluno.Cpf).ToUpper());
+            Map(x => x.Nome).Name(nameof(TOAluno.Nome));
+            Map(x => x.Tipo).Name(nameof(TOAluno.Tipo));
+            Map(x => x.Conclusao).Name(nameof(TOAluno.Conclusao));
+            Map(x => x.HorarioConclusao).Name(nameof(TOAluno.HorarioConclusao));
+            Map(x => x.Campus).Name(nameof(TOAluno.Campus));
+            Map(x => x.AproveitamentoAtual).Name(nameof(TOAluno.AproveitamentoAtual));
+            Map(x => x.HistoricoAproveitamento).Name(nameof(TOAluno.HistoricoAproveitamento));
+            Map(x => x.ReceitaBruta).Name(nameof(TOAluno.ReceitaBruta));
+            Map(x => x.ReceitaLiquida).Name(nameof(TOAluno.ReceitaLiquida));
+            Map(x => x.ReceitaFies).Name(nameof(TOAluno.ReceitaFies));
+            Map(x => x.CampusAditado).Name(nameof(TOAluno.CampusAditado));
+            Map(x => x.ValorAditado).Name(nameof(TOAluno.ValorAditado));
+            Map(x => x.ValorAditadoComDesconto).Name(nameof(TOAluno.ValorAditadoComDesconto));
+            Map(x => x.ValorAditadoFinanciamento).Name(nameof(TOAluno.ValorAditadoFinanciamento));
+            Map(x => x.ValorPagoRecursoEstudante).Name(nameof(TOAluno.ValorPagoRecursoEstudante));
+            Map(x => x.DescontoLiberalidade).Name(nameof(TOAluno.DescontoLiberalidade));
+            Map(x => x.Extraido).Name(nameof(TOAluno.Extraido));
+            Map(x => x.Justificativa).Name(nameof(TOAluno.Justificativa));
+        }
+
+        private void MapaSIGA()
+        {
+            Map(x => x.Cpf).Name("CPF");
+            Map(x => x.Nome).Name("Nome");
+            Map(x => x.Tipo).Name("Tipo");
+            Map(x => x.Conclusao).Name("Conclusao");
+            Map(x => x.HorarioConclusao).Name("HorarioConclusao");
+            Map(x => x.CursoSiga).Name("Curso");
+            Map(x => x.ParcelaSiga1).Name("PARCELA 1");
+            Map(x => x.ParcelaSiga2).Name("PARCELA 2");
+            Map(x => x.ParcelaSiga3).Name("PARCELA 3");
+            Map(x => x.ParcelaSiga4).Name("PARCELA 4");
+            Map(x => x.ParcelaSiga5).Name("PARCELA 5");
+            Map(x => x.ParcelaSiga6).Name("PARCELA 6");
+        }
+
+        private void MapaStatusAluno()
+        {
+            Map(x => x.Cpf).Name("CPF");
+            Map(x => x.SemestreAno).Name("Semestre/Ano");
+            Map(x => x.Finalidade).Name("Finalidade");
+            Map(x => x.Situacao).Name("Situação");
+            Map(x => x.TipoAditamento).Name("Tipo");
+            Map(x => x.ProUni).Name("ProUni");
+            Map(x => x.DataInclusao).Name("Data Inclusão");
+            Map(x => x.DataConclusao).Name("Data Conclusão");
+        }
+
+        private void MapaInformacoes()
+        {
+            Map(x => x.Cpf).Name("CPF");
+            Map(x => x.SemestreAditar).Name("Semestre a Aditar");
+            Map(x => x.Curso).Name("Curso");
+            Map(x => x.DuracaoRegular).Name("Duração regular");
+            Map(x => x.TotalDeSemestresSuspensos).Name("Total de semestres suspensos");
+            Map(x => x.TotalDeSemestresDilatados).Name("Total de semestres dilatados");
+            Map(x => x.TotalDeSemestresConcluidos).Name("Total de semestres já concluidos e/ou aproveitados nesta IES/curso");
+            Map(x => x.SemestreSerCursadoPeloEstudante).Name("Semestre a ser cursado pelo estudante");
+            Map(x => x.TotalDeSemestresJaFinanciados).Name("Total de semestres já financiados");
+            Map(x => x.PercentualDeFinanciamentoSolicitado).Name("Percentual de financiamento solicitado");
+            Map(x => x.GradeAtualComDesconto).Name("Grade Atual Semestralidade (R$) com desconto");
+            Map(x => x.GradeAtualFinanciadoFIES).Name("Grade Atual Semestralidade (R$) Financiado FIES");
+            Map(x => x.GradeAtualCoparticipacao).Name("Grade Atual Semestralidade (R$) Coparticipação");
         }
     }
 }

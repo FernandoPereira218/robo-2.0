@@ -318,7 +318,15 @@ namespace robo.Interface
                 if (ofdSelectExcel.FileName != "")
                 {
                     Cursor.Current = Cursors.WaitCursor;
-                    Dados.ImportaAlunos(ofdSelectExcel.FileName, labelTipoFies.Text);
+                    try
+                    {
+                        Dados.ImportaAlunos(ofdSelectExcel.FileName, labelTipoFies.Text);
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.Message);
+                        return;
+                    }
                     Cursor.Current = Cursors.Default;
                     SystemSounds.Beep.Play();
                     VerificarStatusAluno();

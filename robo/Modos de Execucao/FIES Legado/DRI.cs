@@ -1,5 +1,7 @@
 ﻿using OpenQA.Selenium;
 using robo.Banco_de_Dados;
+using robo.Contratos;
+using robo.Excessoes;
 using robo.Interface;
 using robo.TO;
 using robo.Utils;
@@ -8,12 +10,20 @@ using System.Linq;
 
 namespace robo.Modos_de_Execucao.FIES_Legado
 {
-    public class DRI : UtilFiesLegado
+    public class DRI : UtilFiesLegado, IModosDeExecucao.IModoComAlunos
     {
-        private IWebDriver Driver;
-        public void DRIFiesLegado(TOAluno aluno, TOLogin login, bool baixar, string situacaoDRI)
+        private bool baixar;
+        private string campus;
+        private string situacaoDRI;
+        public DRI(bool baixar, string situacaoDRI, string campus)
         {
-            ClickDropDown(Driver, "id", "co_situacao_inscricao", situacaoDRI);
+            this.baixar = baixar;
+            this.situacaoDRI = situacaoDRI;
+            this.campus = campus;
+        }
+        public void DRIFiesLegado(TOAluno aluno)
+        {
+            ClickDropDown( "id", "co_situacao_inscricao", situacaoDRI);
 
             if (!Dados.DRIExists(aluno.Cpf) || baixar == true)
             {
@@ -21,16 +31,11 @@ namespace robo.Modos_de_Execucao.FIES_Legado
 
                 if (Driver.PageSource.Contains("sorterdocuments"))
                 {
-                    ClickButtonsByCss(Driver, ".even:nth-child(1) img");
+                    ClickButtonsByCss( ".even:nth-child(1) img");
 
                     if (!Driver.PageSource.Contains("Voltar para a página principal"))
                     {
-                        string mensagem = VerificarMensagem(Driver);
-                        if (mensagem != "")
-                        {
-                            Util.EditarConclusaoAluno(aluno, mensagem);
-                            return;
-                        }
+                        VerificarMensagemDeErro(aluno);
 
                         if (Driver.PageSource.Contains("Imprimir DRI"))
                         {
@@ -40,11 +45,11 @@ namespace robo.Modos_de_Execucao.FIES_Legado
                             }
                             else
                             {
-                                SalvarDRIAluno(aluno, login.Campus);
+                                SalvarDRIAluno(aluno, campus);
                             }
 
                             Util.EditarConclusaoAluno(aluno, "DRI Baixada");
-                            ClickButtonsById(Driver, "voltar");
+                            ClickButtonsById( "voltar");
                         }
                     }
                 }
@@ -55,14 +60,24 @@ namespace robo.Modos_de_Execucao.FIES_Legado
             }
         }
 
+        private void VerificarMensagemDeErro(TOAluno aluno)
+        {
+            string mensagem = VerificarMensagem();
+            if (mensagem != "")
+            {
+                Util.EditarConclusaoAluno(aluno, mensagem);
+                throw new PararExecucaoException();
+            }
+        }
+
         private void ConsultarAluno(TOAluno aluno)
         {
-            WaitinLoading(Driver);
+            WaitinLoading();
 
-            ClickAndWriteById(Driver, "nu_cpf", aluno.Cpf);
-            ClickButtonsById(Driver, "consulta");
+            ClickAndWriteById( "nu_cpf", aluno.Cpf);
+            ClickButtonsById( "consulta");
 
-            WaitinLoading(Driver);
+            WaitinLoading();
         }
 
         private void BaixarDRI(TOAluno aluno)
@@ -70,8 +85,8 @@ namespace robo.Modos_de_Execucao.FIES_Legado
             IWebElement elementoNome = Driver.FindElement(By.XPath("/html/body/div[3]/div[4]/div[2]/div[2]/div[3]/div[1]/span[2]"));
             string nome = elementoNome.Text.Replace("Nome Completo: ", "");
             aluno.Nome = nome;
-            ScrollToElementByID(Driver, "imprimir_dri");
-            ClickButtonsById(Driver, "imprimir_dri");
+            ScrollToElementByID( "imprimir_dri");
+            ClickButtonsById( "imprimir_dri");
 
             Util.BaixarDocumento(aluno.Nome + "_" + aluno.Cpf + "_DRI", "DRI", "");
         }
@@ -90,9 +105,20 @@ namespace robo.Modos_de_Execucao.FIES_Legado
                 Dados.InsertDocumento<TODRI>(dri);
             }
         }
-        public void SetDriver(IWebDriver driver)
+
+        public void ExecucaoComListaDeAlunos(TOAluno aluno)
         {
-            Driver = driver;
+            DRIFiesLegado(aluno);
+        }
+
+        public void SelecionarMenu()
+        {
+            throw new System.NotImplementedException();
+        }
+
+        public void SetWebDriver(IWebDriver Driver)
+        {
+            this.Driver = Driver;
         }
     }
 }

@@ -11,18 +11,16 @@ namespace robo.Modos_de_Execucao.FIES_Novo
 {
     class ExportarInadimplencia : UtilFiesNovo
     {
-        private IWebDriver Driver;
-        public void Inadimplencia(IWebDriver driver, string mes, string ano)
+        public void Inadimplencia(string mes, string ano)
         {
-            Driver = driver;
-            ClickDropDown(Driver, "id", "selectMesMovimento", mes);
-            ClickDropDown(Driver, "id", "selectAnoMovimento", ano);
+            ClickDropDown( "id", "selectMesMovimento", mes);
+            ClickDropDown( "id", "selectAnoMovimento", ano);
 
-            ClickButtonsById(Driver, "btnConsultar");
-            WaitForLoading(Driver);
+            ClickButtonsById( "btnConsultar");
+            WaitForLoading();
 
-            ClickButtonsById(Driver, "btnExportar");
-            WaitForLoading(Driver);
+            ClickButtonsById( "btnExportar");
+            WaitForLoading();
 
             if (Driver.PageSource.Contains("Nenhuma informação disponível") == true)
             {
@@ -43,7 +41,7 @@ namespace robo.Modos_de_Execucao.FIES_Novo
                 {
                     break;
                 }
-                ClickDropDown(Driver, "id", "selectAnoMovimento", anoSelecionado.ToString());
+                ClickDropDown( "id", "selectAnoMovimento", anoSelecionado.ToString());
                 int contador = 12;
                 foreach (var mes in selectMes.Options)
                 {
@@ -52,10 +50,10 @@ namespace robo.Modos_de_Execucao.FIES_Novo
                         break;
                     }
                     string mesSelecionado = selectMes.Options[contador].Text;
-                    ClickDropDown(Driver, "id", "selectMesMovimento", mesSelecionado);
+                    ClickDropDown( "id", "selectMesMovimento", mesSelecionado);
 
-                    ClickButtonsById(Driver, "btnConsultar");
-                    WaitForLoading(Driver);
+                    ClickButtonsById( "btnConsultar");
+                    WaitForLoading();
 
                     if (Driver.PageSource.Contains("Nenhuma informação disponível") == true)
                     {
@@ -63,8 +61,8 @@ namespace robo.Modos_de_Execucao.FIES_Novo
                         continue;
                     }
 
-                    ClickButtonsById(Driver, "btnExportar");
-                    WaitForLoading(Driver);
+                    ClickButtonsById( "btnExportar");
+                    WaitForLoading();
 
                     Util.ExportarDocumento("Inadimplência", nomeArquivo: mesSelecionado + "_" + anoSelecionado + ".xls");
 

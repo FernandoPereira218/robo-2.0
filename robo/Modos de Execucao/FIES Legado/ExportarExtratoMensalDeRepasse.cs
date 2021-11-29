@@ -11,12 +11,10 @@ namespace robo.Modos_de_Execucao.FIES_Legado
 {
     class ExportarExtratoMensalDeRepasse : UtilFiesLegado
     {
-        private IWebDriver Driver;
-        public void ExtratoMensalDeRepasseLegado(IWebDriver driver, string campus, string ano, string mes)
+        public void ExtratoMensalDeRepasseLegado(string campus, string ano, string mes)
         {
-            Driver = driver;
-            ClickDropDown(Driver, "id", "nu_ano", ano);
-            ClickDropDown(Driver, "id", "nu_mes", mes);
+            ClickDropDown( "id", "nu_ano", ano);
+            ClickDropDown( "id", "nu_mes", mes);
             SelectElement select = new SelectElement(Driver.FindElement(By.Id("dt_repasse")));
             if (select.Options.Count > 2)
             {
@@ -37,7 +35,7 @@ namespace robo.Modos_de_Execucao.FIES_Legado
         private void EsperarSelecaoIES(SelectElement select)
         {
             ((IJavaScriptExecutor)Driver).ExecuteScript("alert(\"Por favor selecione uma data\")");
-            while (isAlertPresent(Driver))
+            while (isAlertPresent())
             {
                 System.Threading.Thread.Sleep(100);
             }

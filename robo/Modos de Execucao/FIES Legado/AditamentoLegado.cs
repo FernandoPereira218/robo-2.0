@@ -12,18 +12,22 @@ using System.Threading;
 using robo.Utils;
 using System.Threading.Tasks;
 using robo.TO;
+using robo.Contratos;
 using robo.Banco_de_Dados;
 
 namespace robo.Modos_de_Execucao.FIES_Legado
 {
-    public class AditamentoLegado : UtilFiesLegado
+    public class AditamentoLegado : UtilFiesLegado, IModosDeExecucao.IModoComAlunos
     {
-        static IWebDriver Driver;
-        public void AditamentoFiesLegado(IWebDriver driver, TOAluno aluno, string numSemestre)
+        private string numSemestre;
+        public AditamentoLegado(string numSemestre)
         {
-            Driver = driver;
+            this.numSemestre = numSemestre;
+        }
+        public void AditamentoFiesLegado(TOAluno aluno)
+        {
 
-            ClickButtonsByCss(Driver, "div:nth-child(3) > ul > .menu-button:nth-child(2) > a");
+            
             if (Dados.DRIExists(aluno.Cpf) == false)
             {
                 Util.EditarConclusaoAluno(aluno, "DRI não encontrada");
@@ -39,13 +43,13 @@ namespace robo.Modos_de_Execucao.FIES_Legado
                 return;
             }
 
-            WaitinLoading(Driver);
+            WaitinLoading();
 
             RealizarAditamento(aluno);
         }
         private void RealizarAditamento(TOAluno aluno)
         {
-            string mensagem = VerificarMensagem(Driver);
+            string mensagem = VerificarMensagem();
             if (mensagem == string.Empty)
             {
                 //Mensagem que não aparece somente quando o aluno já foi aditado anteriomente
@@ -66,7 +70,7 @@ namespace robo.Modos_de_Execucao.FIES_Legado
                 Util.EditarConclusaoAluno(aluno, mensagem);
             }
         }
-        private static void AcessarPaginaAditamento(TOAluno aluno, string numSemestre)
+        private void AcessarPaginaAditamento(TOAluno aluno, string numSemestre)
         {
             TODRI driAtual = Dados.GetDRI(aluno.Cpf);
             string url = string.Format("http://sisfies.mec.gov.br/cpsa/aditamento/formulario/co_inscricao/{0}/sem/{1}", driAtual.DRI, numSemestre);
@@ -74,7 +78,7 @@ namespace robo.Modos_de_Execucao.FIES_Legado
         }
         private void PreencherFormulario(TOAluno aluno)
         {
-            WaitinLoading(Driver);
+            WaitinLoading();
 
             PreencheReceitas(aluno);
             PreencherAproveitamentoAluno(aluno);
@@ -99,7 +103,7 @@ namespace robo.Modos_de_Execucao.FIES_Legado
             }
             ChecarSePossuiErros(possuiErros, aluno);
 
-            string mensagemAditamento = VerificarMensagem(Driver);
+            string mensagemAditamento = VerificarMensagem();
             if (mensagemAditamento != "")
             {
                 Util.EditarConclusaoAluno(aluno, mensagemAditamento);
@@ -107,7 +111,7 @@ namespace robo.Modos_de_Execucao.FIES_Legado
         }
         private void SalvarImagemCaptcha()
         {
-            ScrollToElementByID(Driver, "captcha-imagem");
+            ScrollToElementByID( "captcha-imagem");
             var element = Driver.FindElement(By.Id("captcha-imagem"));
             Screenshot scr = ((ITakesScreenshot)element).GetScreenshot();
             Util.CriarDiretorioCasoNaoExista("img");
@@ -125,23 +129,23 @@ namespace robo.Modos_de_Execucao.FIES_Legado
             }
             else
             {
-                ClickButtonsByCss(Driver, "#divAproveitamentoAcademico input:nth-of-type(1)");
+                ClickButtonsByCss( "#divAproveitamentoAcademico input:nth-of-type(1)");
                 CasoSemAproveitamento(aluno);
             }
         }
         private void PreencheReceitas(TOAluno aluno)
         {
             //Clica e Digita no Valor da Semestralidade SEM desconto – Grade Curricular Regular
-            ClickAndWriteById(Driver, "vl_semestre_sem_desconto", aluno.ReceitaBruta);
+            ClickAndWriteById( "vl_semestre_sem_desconto", aluno.ReceitaBruta);
 
             //Clica e Digita no Valor da Semestralidade COM desconto – Grade Curricular Regular
-            ClickAndWriteById(Driver, "vl_semestre_com_desconto", aluno.ReceitaLiquida);
+            ClickAndWriteById( "vl_semestre_com_desconto", aluno.ReceitaLiquida);
 
             //Clica e Digita no Valor da semestralidade para o FIES R$
-            ClickAndWriteById(Driver, "vl_semestralidade_para_fies", aluno.ReceitaFies);
+            ClickAndWriteById( "vl_semestralidade_para_fies", aluno.ReceitaFies);
 
             //Clica e Digita no Valor da Semestralidade ATUAL COM desconto - Grade Curricular a ser Cursada
-            ClickAndWriteById(Driver, "vl_semestre_atual", aluno.ReceitaFies);
+            ClickAndWriteById( "vl_semestre_atual", aluno.ReceitaFies);
 
             //Pegar Valor a ser financiado no semestre ATUAL com recursos do FIES - Valor drm financiamento
             aluno.ValorAditadoFinanciamento = Driver.FindElement(By.Id("vl_financiado_semestre")).Text;
@@ -152,24 +156,24 @@ namespace robo.Modos_de_Execucao.FIES_Legado
         private void CasoComAproveitamento(string justificativaAluno)
         {
             //O estudante teve aproveitamento acadêmico igual ou superior a 75% no semestre ? SIM
-            ClickButtonsByCss(Driver, "#divAproveitamentoAcademico input:nth-child(3)");
+            ClickButtonsByCss( "#divAproveitamentoAcademico input:nth-child(3)");
 
             //O estudante está regularmente matriculado? SIM
-            ClickButtonsByCss(Driver, "#divRegularidadeMatricula input:nth-child(3)");
+            ClickButtonsByCss( "#divRegularidadeMatricula input:nth-child(3)");
 
             //O estudante possui benefício simultâneo de FIES e de bolsa ProUni em local de oferta ou curso distinto? NAO
-            ClickButtonsByXpath(Driver, "(//input[@name=\'beneficio\'])[1]");
+            ClickButtonsByXpath( "(//input[@name=\'beneficio\'])[1]");
 
             //O prazo de duração regular do curso encontra-se vigente? SIM
-            ClickButtonsByCss(Driver, "#divPrazoCurso input:nth-child(3)");
+            ClickButtonsByCss( "#divPrazoCurso input:nth-child(3)");
 
             //O estudante transferiu de curso mais de uma vez nessa IES? NAO
-            ClickButtonsByCss(Driver, "#divMudancaCurso input:nth-child(2)");
+            ClickButtonsByCss( "#divMudancaCurso input:nth-child(2)");
 
             //Duração regular do curso MARCAR A CHECKBOX (SE APARECER)
             if (Driver.FindElement(By.Name("checkNaoAlteraCurso[]")).Displayed)
             {
-                ClickButtonsByName(Driver, "checkNaoAlteraCurso[]");
+                ClickButtonsByName( "checkNaoAlteraCurso[]");
             }
 
             //checa se existe e escreve a justificativa
@@ -180,7 +184,7 @@ namespace robo.Modos_de_Execucao.FIES_Legado
             {
                 if (!Driver.FindElement(By.Name("checkNaoAlteraCurso[]")).Selected)
                 {
-                    ClickButtonsByName(Driver, "checkNaoAlteraCurso[]");
+                    ClickButtonsByName( "checkNaoAlteraCurso[]");
                 }
             }
         }
@@ -193,11 +197,11 @@ namespace robo.Modos_de_Execucao.FIES_Legado
                 {
                     if (justificativaAluno == string.Empty)
                     {
-                        ClickAndWriteById(Driver, "ds_justificativa", "Alteração na grade curricular em relação ao semestre anterior");
+                        ClickAndWriteById( "ds_justificativa", "Alteração na grade curricular em relação ao semestre anterior");
                     }
                     else
                     {
-                        ClickAndWriteById(Driver, "ds_justificativa", justificativaAluno);
+                        ClickAndWriteById( "ds_justificativa", justificativaAluno);
                     }
                 }
             }
@@ -208,27 +212,27 @@ namespace robo.Modos_de_Execucao.FIES_Legado
             if (!Driver.FindElement(By.Id("divRejeicaoAutomatica")).Displayed)
             {
                 //A CPSA irá liberar o aditamento nesta situação? SIM
-                ClickButtonsByCss(Driver, "span:nth-child(4) > input:nth-child(2)");
+                ClickButtonsByCss( "span:nth-child(4) > input:nth-child(2)");
 
                 //Justificativa: ESCREVER "Nrº reconsideração" OU ALGO DO TIPO
-                ClickAndWriteByName(Driver, "justificativa", aluno.HistoricoAproveitamento);
+                ClickAndWriteByName( "justificativa", aluno.HistoricoAproveitamento);
 
                 //O estudante está regularmente matriculado? SIM
-                ClickButtonsByCss(Driver, "#divRegularidadeMatricula input:nth-child(3)");
+                ClickButtonsByCss( "#divRegularidadeMatricula input:nth-child(3)");
 
                 //O estudante possui benefício simultâneo de FIES e de bolsa ProUni em local de oferta ou curso distinto? NAO
-                ClickButtonsByXpath(Driver, "(//input[@name=\'beneficio\'])[1]");
+                ClickButtonsByXpath( "(//input[@name=\'beneficio\'])[1]");
 
                 //O prazo de duração regular do curso encontra-se vigente? SIM
-                ClickButtonsByCss(Driver, "#divPrazoCurso input:nth-child(3)");
+                ClickButtonsByCss( "#divPrazoCurso input:nth-child(3)");
 
                 //O estudante transferiu de curso mais de uma vez nessa IES? NAO
-                ClickButtonsByCss(Driver, "#divMudancaCurso input:nth-child(2)");
+                ClickButtonsByCss( "#divMudancaCurso input:nth-child(2)");
 
                 //Duração regular do curso MARCAR A CHECKBOX SE APARECER
                 if (Driver.FindElement(By.Name("checkNaoAlteraCurso[]")).Displayed)
                 {
-                    ClickButtonsByName(Driver, "checkNaoAlteraCurso[]");
+                    ClickButtonsByName( "checkNaoAlteraCurso[]");
                 }
 
                 //checa se existe e escreve a justificativa
@@ -239,7 +243,7 @@ namespace robo.Modos_de_Execucao.FIES_Legado
                 {
                     if (!Driver.FindElement(By.Name("checkNaoAlteraCurso[]")).Selected)
                     {
-                        ClickButtonsByName(Driver, "checkNaoAlteraCurso[]");
+                        ClickButtonsByName( "checkNaoAlteraCurso[]");
                     }
                 }
             }
@@ -279,7 +283,7 @@ namespace robo.Modos_de_Execucao.FIES_Legado
 
 
                 byte[] imageData = File.ReadAllBytes("img\\captchaLimpo.png");
-                form.Add(new ByteArrayContent(imageData, 0, imageData.Length), "image", "captchaLimpo.png");
+                form.Add(new ByteArrayContent(imageData, 0, imageData.Length), "image", "img\\captchaLimpo.png");
                 HttpResponseMessage response = await httpClient.PostAsync("https://api.ocr.space/Parse/Image", form);
 
                 string strContent = await response.Content.ReadAsStringAsync();
@@ -292,10 +296,10 @@ namespace robo.Modos_de_Execucao.FIES_Legado
                 resultado = resultado.Replace(")", "j");
                 resultado = resultado.ToLower();
 
-                ScrollToElementByID(Driver, "captcha");
-                ClickAndWriteById(Driver, "captcha", resultado);
-                ClickButtonsById(Driver, "validar");
-                ClickButtonsByXpath(Driver, "/html/body/div[8]/div[3]/div/button[2]/span");
+                ScrollToElementByID( "captcha");
+                ClickAndWriteById( "captcha", resultado);
+                ClickButtonsById( "validar");
+                ClickButtonsByXpath( "/html/body/div[8]/div[3]/div/button[2]/span");
             }
             catch (Exception exception)
             {
@@ -322,10 +326,25 @@ namespace robo.Modos_de_Execucao.FIES_Legado
                 }
                 else
                 {
-                    string erro = VerificarMensagem(Driver);
+                    string erro = VerificarMensagem();
                     Util.EditarConclusaoAluno(aluno, erro);
                 }
             }
+        }
+
+        public void ExecucaoComListaDeAlunos(TOAluno aluno)
+        {
+            AditamentoFiesLegado(aluno);
+        }
+
+        public void SelecionarMenu()
+        {
+            ClickButtonsByCss( "div:nth-child(3) > ul > .menu-button:nth-child(2) > a");
+        }
+
+        public void SetWebDriver(IWebDriver Driver)
+        {
+            this.Driver = Driver;
         }
     }
 }

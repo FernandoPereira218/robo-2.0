@@ -10,18 +10,16 @@ namespace robo.Modos_de_Execucao.FIES_Novo
 {
     public class ExportarRepasse : UtilFiesNovo
     {
-        private IWebDriver Driver;
-        public void ExportarRepasseFiesNovo(IWebDriver driver, string ano, string mes)
+        public void ExportarRepasseFiesNovo(string ano, string mes)
         {
-            Driver = driver;
-            ClickDropDown(Driver, "id", "selectMes", mes);
-            ClickDropDown(Driver, "id", "selectAno", ano);
+            ClickDropDown( "id", "selectMes", mes);
+            ClickDropDown( "id", "selectAno", ano);
 
-            ClickButtonsById(Driver, "btnConsultar");
-            WaitForLoading(Driver);
+            ClickButtonsById( "btnConsultar");
+            WaitForLoading();
 
-            ClickButtonsById(Driver, "btnExportar");
-            WaitForLoading(Driver);
+            ClickButtonsById( "btnExportar");
+            WaitForLoading();
 
             if (Driver.PageSource.Contains("Nenhuma informação disponível") == true)
             {
