@@ -24,18 +24,18 @@ namespace robo.Modos_de_Execucao.FIES_Novo
         public void AditamentoFiesNovo(TOAluno aluno)
         {
             ConsultarAluno( aluno);
-            WaitForLoading();
+            EsperarPaginaCarregando();
             if (Driver.PageSource.Contains("Não iniciado pela CPSA") == true)
             {
                 ScrollToElementByID( "btnAditarEstudante");
                 ClickButtonsById( "btnAditarEstudante");
                 EsperarAjax();
-                WaitForLoading();
+                EsperarPaginaCarregando();
                 VerificarAditamentoNaoDisponivel(aluno);
                 VerificarEstudanteTransferidoNoSemestre();
                 VerificarAlertaAlunoTransferido(aluno);
                 PreencherReceitaAluno(aluno);
-                WaitForLoading();
+                EsperarPaginaCarregando();
                 string alertMessage = VerificarAlertaReceitaAluno(aluno, IES);
                 PreencherQuestionamentoAluno(aluno);
                 BuscarValoresAditamento(aluno);
@@ -60,7 +60,7 @@ namespace robo.Modos_de_Execucao.FIES_Novo
             {
                 ScrollToElementByID( "btnConfirmar");
                 ClickButtonsById( "btnConfirmar");
-                WaitForLoading();
+                EsperarPaginaCarregando();
 
                 alertMessage = BuscarMensagemDeErro();
             }
@@ -95,7 +95,7 @@ namespace robo.Modos_de_Execucao.FIES_Novo
                 Util.EditarConclusaoAluno(aluno, erro);
                 ScrollToElementByID( "btnVoltar");
                 ClickButtonsById( "btnVoltar");
-                WaitForLoading();
+                EsperarPaginaCarregando();
                 ClicarMenuAditamento();
                 throw new PararExecucaoException();
             }
@@ -191,7 +191,7 @@ namespace robo.Modos_de_Execucao.FIES_Novo
 
             //Click para atualizar a página
             Driver.FindElement(By.Id("semestralidadeAtualComDescGradeASerCursadaLabel")).Click();
-            WaitForLoading();
+            EsperarPaginaCarregando();
 
             if (Driver.PageSource.Contains("inferior ao valor mínimo"))
             {

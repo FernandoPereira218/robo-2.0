@@ -29,14 +29,14 @@ namespace robo.Modos_de_Execucao.FIES_Novo
 
         public void ExportarRelatorioCoparticipacao()
         {
-            WaitForLoading();
+            EsperarPaginaCarregando();
 
             SelecionarOpcaoMenu();
 
             ClickAndWriteById( "dataInicio", dataInicial);
             ClickAndWriteById( "dataFim", dataFinal);
             ClickButtonsById( "btnExportarRelatorio");
-            WaitForLoading();
+            EsperarPaginaCarregando();
             string erro = BuscarMensagemDeErro();
             if (erro == string.Empty)
             {
@@ -57,7 +57,7 @@ namespace robo.Modos_de_Execucao.FIES_Novo
         public void SelecionarMenu()
         {
             ClicarMenuCoparticipacao();
-            WaitForLoading();
+            EsperarPaginaCarregando();
         }
 
         public void SetWebDriver(IWebDriver Driver)

@@ -71,7 +71,7 @@ namespace robo.Utils
         /// Espera até a tela de carregando do site não ser mais visível
         /// </summary>
         /// <param name="Driver"></param>
-        public void WaitinLoading()
+        public void EsperarLoading()
         {
             IWebElement Carregando = Driver.FindElement(By.ClassName("background-grey"));
             bool carr = Carregando.Displayed;

@@ -36,7 +36,7 @@ namespace robo.Modos_de_Execucao.FIES_Legado
         {
             if (botaoImprimir != null)
             {
-                WaitinLoading();
+                EsperarLoading();
                 string msgErro = VerificarMensagem();
                 if (msgErro == string.Empty)
                 {
@@ -87,10 +87,10 @@ namespace robo.Modos_de_Execucao.FIES_Legado
         private void ConsultarDocumentoAluno(TOAluno aluno, string semestre, string tipoRelatorio)
         {
             SelecionarTipoRelatorio( tipoRelatorio);
-            WaitinLoading();
+            EsperarLoading();
             ClickAndWriteById( "cpf", aluno.Cpf);
             ClickDropDown( "id", "coSemestreAditamento", semestre);
-            WaitinLoading();
+            EsperarLoading();
             ClickButtonsById( "consultar");
         }
         private string BuscarNomeAluno()

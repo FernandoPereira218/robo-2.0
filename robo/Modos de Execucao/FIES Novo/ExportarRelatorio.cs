@@ -19,7 +19,7 @@ namespace robo.Modos_de_Execucao.FIES_Novo
         public void ExportarRelatorioFiesNovo()
         {
             ClickButtonsById( "btnConsultar");
-            WaitForLoading();
+            EsperarPaginaCarregando();
 
             ClickDropDown( "name", "gridResult_length", "100");
             string source = Driver.PageSource.Split(new string[] { "Mostrando" }, StringSplitOptions.None)[1];
@@ -138,7 +138,7 @@ namespace robo.Modos_de_Execucao.FIES_Novo
                 default:
                     throw new Exception("Tipo de documento nao encontrado");
             }
-            WaitForLoading();
+            EsperarPaginaCarregando();
         }
 
         public void SetWebDriver(IWebDriver Driver)

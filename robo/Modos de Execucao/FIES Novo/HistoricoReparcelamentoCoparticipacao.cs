@@ -19,13 +19,13 @@ namespace robo.Modos_de_Execucao.FIES_Novo
         }
         public void ExecutarHistoricoReparcelamentoCoparticipacao(TOAluno aluno)
         {
-            WaitForLoading();
+            EsperarPaginaCarregando();
             ClickButtonsById( "btnLimpar");
-            WaitForLoading();
+            EsperarPaginaCarregando();
 
             ClickAndWriteById( "cpfEstudante", aluno.Cpf);
             ClickButtonsById("btnConsultar");
-            WaitForLoading();
+            EsperarPaginaCarregando();
 
             string erro = BuscarMensagemDeErro();
             if (erro != string.Empty)

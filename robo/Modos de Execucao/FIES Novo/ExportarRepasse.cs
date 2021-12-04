@@ -30,10 +30,10 @@ namespace robo.Modos_de_Execucao.FIES_Novo
             ClickDropDown( "id", "selectAno", ano);
 
             ClickButtonsById( "btnConsultar");
-            WaitForLoading();
+            EsperarPaginaCarregando();
 
             ClickButtonsById( "btnExportar");
-            WaitForLoading();
+            EsperarPaginaCarregando();
 
             if (Driver.PageSource.Contains("Nenhuma informação disponível") == true)
             {
@@ -45,7 +45,7 @@ namespace robo.Modos_de_Execucao.FIES_Novo
         public void SelecionarMenu()
         {
             ClicarMenuRepasse();
-            WaitForLoading();
+            EsperarPaginaCarregando();
         }
 
         public void SetWebDriver(IWebDriver Driver)

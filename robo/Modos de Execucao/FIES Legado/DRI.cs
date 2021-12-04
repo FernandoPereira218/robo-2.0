@@ -71,12 +71,12 @@ namespace robo.Modos_de_Execucao.FIES_Legado
 
         private void ConsultarAluno(TOAluno aluno)
         {
-            WaitinLoading();
+            EsperarLoading();
 
             ClickAndWriteById( "nu_cpf", aluno.Cpf);
             ClickButtonsById( "consulta");
 
-            WaitinLoading();
+            EsperarLoading();
         }
 
         private void BaixarDRI(TOAluno aluno)

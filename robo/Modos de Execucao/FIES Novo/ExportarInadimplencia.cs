@@ -39,10 +39,10 @@ namespace robo.Modos_de_Execucao.FIES_Novo
             ClickDropDown( "id", "selectAnoMovimento", ano);
 
             ClickButtonsById( "btnConsultar");
-            WaitForLoading();
+            EsperarPaginaCarregando();
 
             ClickButtonsById( "btnExportar");
-            WaitForLoading();
+            EsperarPaginaCarregando();
 
             if (Driver.PageSource.Contains("Nenhuma informação disponível") == true)
             {
@@ -74,7 +74,7 @@ namespace robo.Modos_de_Execucao.FIES_Novo
                     ClickDropDown( "id", "selectMesMovimento", mesSelecionado);
 
                     ClickButtonsById( "btnConsultar");
-                    WaitForLoading();
+                    EsperarPaginaCarregando();
 
                     if (Driver.PageSource.Contains("Nenhuma informação disponível") == true)
                     {
@@ -83,7 +83,7 @@ namespace robo.Modos_de_Execucao.FIES_Novo
                     }
 
                     ClickButtonsById( "btnExportar");
-                    WaitForLoading();
+                    EsperarPaginaCarregando();
 
                     Util.ExportarDocumento("Inadimplência", nomeArquivo: mesSelecionado + "_" + anoSelecionado + ".xls");
 
@@ -96,7 +96,7 @@ namespace robo.Modos_de_Execucao.FIES_Novo
         public void SelecionarMenu()
         {
             ClicarMenuInadimplencia();
-            WaitForLoading();
+            EsperarPaginaCarregando();
         }
 
         public void SetWebDriver(IWebDriver Driver)

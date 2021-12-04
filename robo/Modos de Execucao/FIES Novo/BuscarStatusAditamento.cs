@@ -22,7 +22,7 @@ namespace robo.Modos_de_Execucao.FIES_Novo
         public void BuscarStatus(TOAluno aluno)
         {
             ConsultarAluno( aluno);
-            WaitForLoading();
+            EsperarPaginaCarregando();
 
             if (VerificarNenhumaInformacaoDisponivel() == true)
             {
