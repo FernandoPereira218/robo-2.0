@@ -83,27 +83,21 @@ namespace robo.Contratos
         public void ExecutarBaixarDocumentoLegado(string faculdade, string tipoFies, string campus, string semestre, string tipoDocumento)
         {
             BuscarLoginsEAlunos(faculdade, FIES_LEGADO, campus, ref listaAlunos, ref listaLogins, admin: false, exportar: false);
-
-            semestre = semestre.Replace("1/", "1º/");
-            semestre = semestre.Replace("2/", "2º/");
+            semestre = FormatarSemestre(semestre);
             BaixarDocumentos baixarDocumentos = new BaixarDocumentos(semestre, tipoDocumento);
-
             RodarModoDeExecucaoComAlunosFIESLegado(listaLogins, baixarDocumentos);
         }
         public void ExecutarExportarRelatoriosLegado(string faculdade, string tipoFies, string campus, string semestre, string tipoRelatorio)
         {
             BuscarLoginsEAlunos(faculdade, FIES_LEGADO, campus, ref listaAlunos, ref listaLogins, admin: false, exportar: true);
-            semestre = semestre.Replace("1/", "1º/");
-            semestre = semestre.Replace("2/", "2º/");
-
+            semestre = FormatarSemestre(semestre);
             ExportarRelatorios exportarRelatorios = new ExportarRelatorios(semestre, tipoRelatorio, campus);
             RodarModoDeExecucaoSemAlunosFIESLegado(listaLogins, exportarRelatorios);
         }
         public void ExtrairInformacoesDRMLegado(string faculdade, string tipoFies, string campus, string semestre)
         {
             BuscarLoginsEAlunos(faculdade, FIES_LEGADO, campus, ref listaAlunos, ref listaLogins, admin: false, exportar: false);
-            semestre = semestre.Replace("1/", "1º/");
-            semestre = semestre.Replace("2/", "2º/");
+            semestre = FormatarSemestre(semestre);
             ExtrairInformacoesDRM extrairInformacoesDRM = new ExtrairInformacoesDRM(semestre);
             RodarModoDeExecucaoComAlunosFIESLegado(listaLogins, extrairInformacoesDRM);
         }
@@ -323,11 +317,6 @@ namespace robo.Contratos
                 fiesLegadoutil.FazerLogout();
             }
         }
-
-        private void AlterarCampus(IModosDeExecucao.IFiesLegado execucao, string campus)
-        {
-            execucao.TrocarCampus(campus);
-        }
         private void RodarModoDeExecucaoSemAlunosFIESNovo(TOLogin login, IModosDeExecucao.IModoSemAlunos modoDeExecucao, bool usarChrome)
         {
             UtilFiesNovo utilFiesNovo = new UtilFiesNovo();
@@ -338,6 +327,10 @@ namespace robo.Contratos
             utilFiesNovo.WaitForLoading();
             modoDeExecucao.SelecionarMenu();
             modoDeExecucao.Executar();
+        }
+        private void AlterarCampus(IModosDeExecucao.IFiesLegado execucao, string campus)
+        {
+            execucao.TrocarCampus(campus);
         }
         private void UpdateProgresso(ref float progresso, int listCount)
         {
@@ -359,6 +352,13 @@ namespace robo.Contratos
                 }
             }
             return null;
+        }
+        private string FormatarSemestre(string semestre)
+        {
+            semestre = semestre.Replace("1/", "1º/");
+            semestre = semestre.Replace("2/", "2º/");
+
+            return semestre;
         }
         private List<TOAluno> SelecionarAlunosPorPlataforma(string plataforma)
         {
