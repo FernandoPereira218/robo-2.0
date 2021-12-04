@@ -6,12 +6,34 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using robo.Contratos;
 
 namespace robo.Modos_de_Execucao.FIES_Novo
 {
-    class ExportarInadimplencia : UtilFiesNovo
+    class ExportarInadimplencia : UtilFiesNovo, IModosDeExecucao.IModoSemAlunos
     {
-        public void Inadimplencia(string mes, string ano)
+        string mes;
+        string ano;
+        bool todosMeses;
+        public ExportarInadimplencia(string mes, string ano, bool todosMeses)
+        {
+            this.mes = mes;
+            this.ano = ano;
+            this.todosMeses = todosMeses;
+        }
+        public void Executar()
+        {
+            if (todosMeses == true)
+            {
+                InadimplenciaTodosMeses();
+            }
+            else
+            {
+                Inadimplencia();
+            }
+        }
+
+        public void Inadimplencia()
         {
             ClickDropDown( "id", "selectMesMovimento", mes);
             ClickDropDown( "id", "selectAnoMovimento", ano);
@@ -29,9 +51,8 @@ namespace robo.Modos_de_Execucao.FIES_Novo
             Util.ExportarDocumento("Inadimplência", nomeArquivo: mes + "_" + ano + ".xls");
         }
 
-        public void Inadimplencia(IWebDriver driver)
+        public void InadimplenciaTodosMeses()
         {
-            Driver = driver;
             SelectElement selectMes = new SelectElement(Driver.FindElement(By.Id("selectMesMovimento")));
             SelectElement selectAno = new SelectElement(Driver.FindElement(By.Id("selectAnoMovimento")));
             int anoSelecionado = Convert.ToInt32(selectAno.Options[1].Text);
@@ -70,6 +91,17 @@ namespace robo.Modos_de_Execucao.FIES_Novo
                 }
                 anoSelecionado--;
             }
+        }
+
+        public void SelecionarMenu()
+        {
+            ClicarMenuInadimplencia();
+            WaitForLoading();
+        }
+
+        public void SetWebDriver(IWebDriver Driver)
+        {
+            this.Driver = Driver;
         }
     }
 }

@@ -1,4 +1,6 @@
 ﻿using OpenQA.Selenium;
+using robo.Contratos;
+using robo.TO;
 using robo.Utils;
 using System;
 using System.Collections.Generic;
@@ -8,9 +10,24 @@ using System.Threading.Tasks;
 
 namespace robo.Modos_de_Execucao.FIES_Legado
 {
-    public class ExportarRelatorios : UtilFiesLegado
+    public class ExportarRelatorios : UtilFiesLegado, IModosDeExecucao.IModoSemAlunos
     {
-        public void ExportarDocumentosFiesLegado(string semestre, string tipoRelatorio, string campus)
+        private string semestre;
+        private string tipoRelatorio;
+        private string campus;
+        public ExportarRelatorios(string semestre, string tipoRelatorio, string campus)
+        {
+            this.semestre = semestre;
+            this.tipoRelatorio = tipoRelatorio;
+            this.campus = campus;
+        }
+
+        public void Executar()
+        {
+            ExportarDocumentosFiesLegado();
+        }
+
+        public void ExportarDocumentosFiesLegado()
         {
             string selRelatorio = SelecionarTipoRelatorio( tipoRelatorio);
             ClickDropDown("id", "co_finalidade_aditamento", selRelatorio);
@@ -20,6 +37,16 @@ namespace robo.Modos_de_Execucao.FIES_Legado
             semestre = semestre.Replace('/', '-');
             Driver.FindElement(By.Name("export-excel")).Click();
             Util.ExportarDocumento(tipoRelatorio, campus, semestre);
+        }
+
+        public void SelecionarMenu()
+        {
+            SelecionarMenuBaixarDocumentos();
+        }
+
+        public void SetWebDriver(IWebDriver Driver)
+        {
+            this.Driver = Driver;
         }
     }
 }

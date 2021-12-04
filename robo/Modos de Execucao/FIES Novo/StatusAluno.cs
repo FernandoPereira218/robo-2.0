@@ -75,7 +75,7 @@ namespace robo.Modos_de_Execucao.FIES_Novo
             WaitForLoading();
         }
 
-        public void ExecucaoComListaDeAlunos(TOAluno aluno)
+        public void Executar(TOAluno aluno)
         {
             BuscarStatusAluno(aluno);
         }

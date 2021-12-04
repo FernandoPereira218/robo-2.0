@@ -140,7 +140,7 @@ namespace robo.Modos_de_Execucao.FIES_Novo
             }
         }
 
-        public void ExecucaoComListaDeAlunos(TOAluno aluno)
+        public void Executar(TOAluno aluno)
         {
             ExtrairInformacoesDRM(aluno);
         }

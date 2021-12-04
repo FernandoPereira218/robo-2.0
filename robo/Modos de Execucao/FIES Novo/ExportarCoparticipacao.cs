@@ -10,10 +10,24 @@ using robo.Contratos;
 
 namespace robo.Modos_de_Execucao.FIES_Novo
 {
-    public class ExportarCoparticipacao : UtilFiesNovo
+    public class ExportarCoparticipacao : UtilFiesNovo, IModosDeExecucao.IModoSemAlunos
     {
+        private string IES;
+        private string dataInicial;
+        private string dataFinal;
+        public ExportarCoparticipacao(string IES, string dataInicial, string dataFinal)
+        {
+            this.IES = IES;
+            this.dataInicial = dataInicial;
+            this.dataFinal = dataFinal;
+        }
 
-        public void ExportarRelatorioCoparticipacao(string IES, string dataInicial, string dataFinal)
+        public void Executar()
+        {
+            ExportarRelatorioCoparticipacao();
+        }
+
+        public void ExportarRelatorioCoparticipacao()
         {
             WaitForLoading();
 
@@ -38,6 +52,17 @@ namespace robo.Modos_de_Execucao.FIES_Novo
             {
                 throw new Exception(erro);
             }
+        }
+
+        public void SelecionarMenu()
+        {
+            ClicarMenuCoparticipacao();
+            WaitForLoading();
+        }
+
+        public void SetWebDriver(IWebDriver Driver)
+        {
+            this.Driver = Driver;
         }
 
         private void SelecionarOpcaoMenu()

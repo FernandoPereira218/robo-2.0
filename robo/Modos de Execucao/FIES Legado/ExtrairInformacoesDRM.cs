@@ -160,7 +160,7 @@ namespace robo.Modos_de_Execucao.FIES_Legado
             this.Driver = Driver;
         }
 
-        public void ExecucaoComListaDeAlunos(TOAluno aluno)
+        public void Executar(TOAluno aluno)
         {
             ExtrairDRM(aluno);
         }
