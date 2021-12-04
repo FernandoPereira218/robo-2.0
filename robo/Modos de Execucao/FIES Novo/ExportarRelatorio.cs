@@ -5,12 +5,18 @@ using System.Linq;
 using System.Text;
 using System.IO;
 using robo.Utils;
+using robo.Contratos;
 
 namespace robo.Modos_de_Execucao.FIES_Novo
 {
-    public class ExportarRelatorio : UtilFiesNovo
+    public class ExportarRelatorio : UtilFiesNovo, IModosDeExecucao.IModoSemAlunos
     {
-        public void ExportarRelatorioFiesNovo(string tipoRelatorio)
+        private string tipoRelatorio;
+        public ExportarRelatorio(string tipoRelatorio)
+        {
+            this.tipoRelatorio = tipoRelatorio;
+        }
+        public void ExportarRelatorioFiesNovo()
         {
             ClickButtonsById( "btnConsultar");
             WaitForLoading();
@@ -106,6 +112,38 @@ namespace robo.Modos_de_Execucao.FIES_Novo
                     sb.Append(" " + cabecalhos[i].Text + " " + ";");
                 }
             }
+        }
+
+        public void Executar()
+        {
+            ExportarRelatorioFiesNovo();
+        }
+
+        public void SelecionarMenu()
+        {
+            switch (tipoRelatorio)
+            {
+                case "DRM":
+                    ClicarMenuAditamento();
+                    break;
+                case "DRT":
+                    ClicarMenuTransferencia();
+                    break;
+                case "DRD":
+                    ClicarMenuDilatacao();
+                    break;
+                case "SUSPENSÃO":
+                    ClicarMenuSuspensao();
+                    break;
+                default:
+                    throw new Exception("Tipo de documento nao encontrado");
+            }
+            WaitForLoading();
+        }
+
+        public void SetWebDriver(IWebDriver Driver)
+        {
+            this.Driver = Driver;
         }
     }
 }

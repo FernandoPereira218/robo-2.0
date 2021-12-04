@@ -14,7 +14,7 @@ namespace robo.Contratos
             void ExecutarAbrirSite(string faculdade, string campus, string plataforma);
             List<string> PreencherListaSemestre();
             List<string> PreencherListaAno();
-            string BuscarNunSemestre(string semestreAno);
+            string BuscarNumSemestre(string semestreAno);
             List<string> PreencherListaExecucao();
             List<string> PreencherListaExecucaoPorPlataforma(string plataforma);
             void ExecutarAditamentoLegado(string semestreAtual, string faculdade, string tipoFies, string campus);

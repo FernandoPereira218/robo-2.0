@@ -329,7 +329,7 @@ namespace robo.Modos_de_Execucao.FIES_Novo
             return alertMessage;
 
         }
-        public void ExecucaoComListaDeAlunos(TOAluno aluno)
+        public void Executar(TOAluno aluno)
         {
             AditamentoFiesNovo(aluno);
         }

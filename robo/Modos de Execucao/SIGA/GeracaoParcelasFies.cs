@@ -325,7 +325,7 @@ namespace robo.Modos_de_Execucao.SIGA
             executor.ExecuteScript("var exdate = new Date(); exdate.setDate(exdate.getDate() + 365); document.cookie = encodeURIComponent(\"GUICHE\") + \"=\" + encodeURIComponent(\"GUICHE_GENERICO\") + \"; expires=\" + exdate.toUTCString() + \";path=/;\"");
         }
 
-        public void ExecucaoComListaDeAlunos(TOAluno aluno)
+        public void Executar(TOAluno aluno)
         {
             GeraParcelaFies(aluno);
         }

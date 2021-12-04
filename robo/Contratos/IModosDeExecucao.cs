@@ -12,15 +12,16 @@ namespace robo.Contratos
     {
         interface IModoComAlunos
         {
-            void ExecucaoComListaDeAlunos(TOAluno aluno);
+            void Executar(TOAluno aluno);
             void SelecionarMenu();
             void SetWebDriver(IWebDriver Driver);
         }
 
         interface IModoSemAlunos
         {
+            void Executar();
+            void SelecionarMenu();
+            void SetWebDriver(IWebDriver Driver);
         }
-
-
     }
 }

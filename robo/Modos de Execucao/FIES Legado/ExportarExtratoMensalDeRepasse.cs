@@ -6,12 +6,28 @@ using System.Text;
 using System.Threading.Tasks;
 using OpenQA.Selenium.Support.UI;
 using robo.Utils;
+using robo.Contratos;
 
 namespace robo.Modos_de_Execucao.FIES_Legado
 {
-    class ExportarExtratoMensalDeRepasse : UtilFiesLegado
+    class ExportarExtratoMensalDeRepasse : UtilFiesLegado, IModosDeExecucao.IModoSemAlunos
     {
-        public void ExtratoMensalDeRepasseLegado(string campus, string ano, string mes)
+        private string campus;
+        private string ano;
+        private string mes;
+        public ExportarExtratoMensalDeRepasse(string campus, string ano, string mes)
+        {
+            this.campus = campus;
+            this.ano = ano;
+            this.mes = mes;
+        }
+
+        public void Executar()
+        {
+            ExtratoMensalDeRepasseLegado();
+        }
+
+        public void ExtratoMensalDeRepasseLegado()
         {
             ClickDropDown( "id", "nu_ano", ano);
             ClickDropDown( "id", "nu_mes", mes);
@@ -30,6 +46,16 @@ namespace robo.Modos_de_Execucao.FIES_Legado
             }
             Driver.FindElement(By.Id("btn_excel")).Click();
             Util.ExportarDocumento("Extrato_Mensal_Repasse_", campus);
+        }
+
+        public void SelecionarMenu()
+        {
+            SelecionarMenuExtratoMensalDeRepasse();
+        }
+
+        public void SetWebDriver(IWebDriver Driver)
+        {
+            this.Driver = Driver;
         }
 
         private void EsperarSelecaoIES(SelectElement select)
