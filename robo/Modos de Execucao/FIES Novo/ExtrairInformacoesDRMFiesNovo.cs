@@ -132,7 +132,8 @@ namespace robo.Modos_de_Execucao.FIES_Novo
                 {
                     infs[i] = infs[i].Replace("\r", string.Empty);
                 }
-                Util.AcertaBarraR(aluno);
+                //Util.AcertaBarraR(aluno);
+                aluno.CorrigirBarraR();
             }
             catch (Exception e)
             {
