@@ -146,7 +146,8 @@ namespace robo.Modos_de_Execucao.FIES_Legado
                 aluno.GradeAtualCoparticipacao = depoisTitulo.Split(' ')[14];
                 //infs.Conclusao = "DRM Baixada";
 
-                Util.AcertaBarraR(aluno);
+                //Util.AcertaBarraR(aluno);
+                aluno.CorrigirBarraR();
 
             }
             catch (Exception e)

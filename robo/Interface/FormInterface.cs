@@ -94,7 +94,7 @@ namespace robo.Interface
             if (menu.Planilha == true)
             {
                 btnPlanilha.Visible = true;
-                formulario.setText(cont);
+                formulario.AtualizarTextoQtdAlunos(cont);
             }
             else
             {

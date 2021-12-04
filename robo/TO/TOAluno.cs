@@ -332,6 +332,25 @@ namespace robo.TO
 
             return valor;
         }
+
+        /// <summary>
+        /// Substitui \r por espacos vazios de todos os campos de strings
+        /// </summary>
+        /// <param name="this">Aluno que será atualizado</param>
+        public void CorrigirBarraR()
+        {
+            foreach (var propriedade in this.GetType().GetProperties())
+            {
+                if (propriedade.Name != "Id")
+                {
+                    if (propriedade.GetValue(this) != null)
+                    {
+                        this.GetType().GetProperty(propriedade.Name).SetValue(this, this.GetType().GetProperty(propriedade.Name).GetValue(this).ToString().Replace("\r", ""));
+                        this.GetType().GetProperty(propriedade.Name).SetValue(this, this.GetType().GetProperty(propriedade.Name).GetValue(this).ToString().Replace("\n", ""));
+                    }
+                }
+            }
+        }
     }
     public class TOAlunoMap : ClassMap<TOAluno>
     {

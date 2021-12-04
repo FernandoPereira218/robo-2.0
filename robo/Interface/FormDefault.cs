@@ -92,7 +92,7 @@ namespace robo.Interface
             btnHelp.Location = new Point(lblExecucao.Size.Width + 10, 6);
             wbHelp.Visible = false;
         }
-        public void setText(int cont)
+        public void AtualizarTextoQtdAlunos(int cont)
         {
             if (cont == 0)
             {
@@ -183,29 +183,17 @@ namespace robo.Interface
                             {
                                 presenter.ExecutarBaixarDocumentoLegado(IES, tipoFies, campus, semestre, "DRT");
                             }
-                            else
-                            {
-
-                            }
                             break;
                         case "BAIXAR DRD":
                             if (tipoFies.ToUpper() == "FIES LEGADO")
                             {
                                 presenter.ExecutarBaixarDocumentoLegado(IES, tipoFies, campus, semestre, "DRD");
                             }
-                            else
-                            {
-
-                            }
                             break;
                         case "SUSPENSÃO":
                             if (tipoFies.ToUpper() == "FIES LEGADO")
                             {
                                 presenter.ExecutarBaixarDocumentoLegado(IES, tipoFies, campus, semestre, "Suspensao");
-                            }
-                            else
-                            {
-
                             }
                             break;
                         case "EXPORTAR DRM":
@@ -322,7 +310,7 @@ namespace robo.Interface
         {
             formPrincipal.btnSelectPath.PerformClick();
             int countAlunos = Dados.Count<TOAluno>();
-            setText(countAlunos);
+            AtualizarTextoQtdAlunos(countAlunos);
         }
 
         private void txtCPF_KeyPress(object sender, KeyPressEventArgs e)
