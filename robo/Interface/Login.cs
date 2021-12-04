@@ -27,7 +27,7 @@ namespace robo.Interface
             if (File.Exists(sessionFile) == true)
             {
                 string[] temp = File.ReadAllText(sessionFile).Split('\n');
-                Program.login = Dados.ValidateSession(temp[0], temp[1]);
+                Program.login = Dados.ValidarSessao(temp[0], temp[1]);
                 if (Program.login != null)
                 {
                     FormInterface formSearch = new FormInterface();
@@ -39,7 +39,7 @@ namespace robo.Interface
 
         private void btConfirma_Click(object sender, EventArgs e)
         {
-            Program.login = Dados.ValidateLogin(txtUsuario.Text, txtSenha.Text);
+            Program.login = Dados.ValidarLogin(txtUsuario.Text, txtSenha.Text);
             if (Program.login != null)
             {
                 CriarArquivoDeSessao();

@@ -1,6 +1,7 @@
 using CsvHelper.Configuration;
 using CsvHelper.Configuration.Attributes;
 using System;
+using System.Globalization;
 
 namespace robo.TO
 {
@@ -216,8 +217,122 @@ namespace robo.TO
             this.ParcelaSiga5 = null;
             this.ParcelaSiga6 = null;
         }
-    }
 
+        public void TratarCpf()
+        {
+            this.Cpf = this.Cpf.Replace(".", "");
+            this.Cpf = this.Cpf.Replace("-", "");
+
+            while (this.Cpf.Length != 11)
+            {
+                this.Cpf = "0" + this.Cpf;
+            }
+        }
+        public void TratarTextoReceitas()
+        {
+            if (string.IsNullOrEmpty(this.ReceitaBruta) && string.IsNullOrEmpty(this.ReceitaLiquida) &&
+                string.IsNullOrEmpty(this.ReceitaFies) && string.IsNullOrEmpty(this.ValorDeRepasse))
+            {
+                return;
+            }
+
+            this.ReceitaBruta = ArredondarReceitas(this.ReceitaBruta);
+            this.ReceitaLiquida = ArredondarReceitas(this.ReceitaLiquida);
+            this.ReceitaFies = ArredondarReceitas(this.ReceitaFies);
+            this.ValorDeRepasse = ArredondarReceitas(this.ValorDeRepasse);
+        }
+
+        public void TratarVirgulaReceitas()
+        {
+            this.ReceitaBruta = FormatarReceitas(this.ReceitaBruta);
+            this.ReceitaLiquida = FormatarReceitas(this.ReceitaLiquida);
+            this.ReceitaFies = FormatarReceitas(this.ReceitaFies);
+            this.ValorAditado = FormatarReceitas(this.ValorAditado);
+
+            this.ValorDeRepasse = FormatarReceitas(this.ValorDeRepasse);
+        }
+        private string ArredondarReceitas(string receita)
+        {
+            if (!string.IsNullOrEmpty(receita))
+            {
+                receita = double.Parse(receita, NumberStyles.Currency).ToString();
+                return Math.Round(Convert.ToDouble(receita), 2).ToString();
+            }
+            return null;
+        }
+        public void TratarCampus()
+        {
+            switch (this.Campus)
+            {
+                case "ZS":
+                    this.Campus = "ZONA SUL";
+                    break;
+                case "Fapa_Fapa":
+                    this.Campus = "FAPA-FAPA";
+                    break;
+                case "GL":
+                    this.Campus = "GALERIA LUSA";
+                    break;
+                case "GV":
+                    this.Campus = "GENERAL VITORINO";
+                    break;
+                case "Andradas":
+                    this.Campus = "URUGUAI";
+                    break;
+                case "LF":
+                    this.Campus = "LUIS AFONSO";
+                    break;
+                case "LA":
+                    this.Campus = "LUIS AFONSO";
+                    break;
+                case "Fadergs_Fapa":
+                    this.Campus = "MANOEL ELIAS";
+                    break;
+                case "Salgado Fillho":
+                    this.Campus = "SALGADO FILHO";
+                    break;
+                default:
+                    if (this.Campus != null)
+                    {
+                        this.Campus = this.Campus.Trim();
+                        this.Campus = this.Campus.ToUpper();
+                    }
+                    break;
+            }
+        }
+        public void TratarTipoFies(string tipo)
+        {
+            if (string.IsNullOrEmpty(this.Tipo))
+            {
+                this.Tipo = tipo;
+                this.Tipo = this.Tipo.ToUpper().Trim();
+            }
+            else
+            {
+                if (this.Tipo.ToUpper().Contains("NOVO"))
+                {
+                    this.Tipo = "FIES NOVO";
+                }
+                else
+                {
+                    this.Tipo = "FIES LEGADO";
+                }
+            }
+        }
+
+        public string FormatarReceitas(string valor)
+        {
+            if (string.IsNullOrEmpty(valor))
+            {
+                return null;
+            }
+            double valorDouble = Convert.ToDouble(valor);
+            valorDouble = Math.Round(valorDouble, 2);
+            valor = valorDouble.ToString("0.00");
+
+            return valor;
+        }
+    }
     public class TOAlunoMap : ClassMap<TOAluno>
     {
         public TOAlunoMap(string tipo)

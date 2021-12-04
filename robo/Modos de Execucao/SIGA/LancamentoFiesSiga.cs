@@ -89,6 +89,7 @@ namespace robo.Modos_de_Execucao.SIGA
             double valorCompleto = Convert.ToDouble(aluno.ValorDeRepasse);
             string valorAluno = Math.Round(valorCompleto / 6, 2).ToString();
             valorAluno = Dados.FormatarReceitas(valorAluno);
+            aluno.FormatarReceitas(valorAluno);
             ClickAndWriteById("moeda", valorAluno);
 
             ScrollToElementByID("btnVinculaComplemento");

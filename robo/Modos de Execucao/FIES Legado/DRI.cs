@@ -25,7 +25,7 @@ namespace robo.Modos_de_Execucao.FIES_Legado
         {
             ClickDropDown( "id", "co_situacao_inscricao", situacaoDRI);
 
-            if (!Dados.DRIExists(aluno.Cpf) || baixar == true)
+            if (!Dados.VerificarDRI(aluno.Cpf) || baixar == true)
             {
                 ConsultarAluno(aluno);
 
