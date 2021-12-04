@@ -10,7 +10,7 @@ using robo.Contratos;
 
 namespace robo.Modos_de_Execucao.FIES_Legado
 {
-    class ExportarExtratoMensalDeRepasse : UtilFiesLegado, IModosDeExecucao.IModoSemAlunos
+    class ExportarExtratoMensalDeRepasse : UtilFiesLegado, IModosDeExecucao.IModoSemAlunos, IModosDeExecucao.IFiesLegado
     {
         private string campus;
         private string ano;
@@ -56,6 +56,11 @@ namespace robo.Modos_de_Execucao.FIES_Legado
         public void SetWebDriver(IWebDriver Driver)
         {
             this.Driver = Driver;
+        }
+
+        public void TrocarCampus(string campus)
+        {
+            this.campus = campus;
         }
 
         private void EsperarSelecaoIES(SelectElement select)

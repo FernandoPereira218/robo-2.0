@@ -23,5 +23,10 @@ namespace robo.Contratos
             void SelecionarMenu();
             void SetWebDriver(IWebDriver Driver);
         }
+
+        interface IFiesLegado
+        {
+            void TrocarCampus(string campus);
+        }
     }
 }
