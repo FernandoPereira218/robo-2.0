@@ -10,16 +10,15 @@ using System.Linq;
 
 namespace robo.Modos_de_Execucao.FIES_Legado
 {
-    public class DRI : UtilFiesLegado, IModosDeExecucao.IModoComAlunos
+    public class DRI : UtilFiesLegado, IModosDeExecucao.IModoComAlunos, IModosDeExecucao.IFiesLegado
     {
         private bool baixar;
         private string campus;
         private string situacaoDRI;
-        public DRI(bool baixar, string situacaoDRI, string campus)
+        public DRI(bool baixar, string situacaoDRI)
         {
             this.baixar = baixar;
             this.situacaoDRI = situacaoDRI;
-            this.campus = campus;
         }
         public void DRIFiesLegado(TOAluno aluno)
         {
@@ -113,12 +112,17 @@ namespace robo.Modos_de_Execucao.FIES_Legado
 
         public void SelecionarMenu()
         {
-            throw new System.NotImplementedException();
+            SelecionarMenuDRI();
         }
 
         public void SetWebDriver(IWebDriver Driver)
         {
             this.Driver = Driver;
+        }
+
+        public void TrocarCampus(string campus)
+        {
+            this.campus = campus;
         }
     }
 }

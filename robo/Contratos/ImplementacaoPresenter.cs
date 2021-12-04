@@ -77,22 +77,8 @@ namespace robo.Contratos
         public void ExecutarDRI(string faculdade, string tipoFies, string campus, string situacaoDRI, bool baixarDRI)
         {
             BuscarLoginsEAlunos(faculdade, FIES_LEGADO, campus, ref listaAlunos, ref listaLogins, admin: false, exportar: false);
-
-            Driver = Util.StartBrowser("http://sisfies.mec.gov.br/");
-            UtilFiesLegado fiesLegadoUtil = new UtilFiesLegado();
-            fiesLegadoUtil.SetDriver(Driver);
-            foreach (TOLogin login in listaLogins)
-            {
-                DRI dri = new DRI(baixarDRI, situacaoDRI, login.Campus);
-                dri.SetWebDriver(Driver);
-                fiesLegadoUtil.RealizarLoginSucesso(login);
-                fiesLegadoUtil.SelecionarMenuDRI();
-                ForeachDeAlunos(listaAlunos, dri);
-
-                fiesLegadoUtil.FazerLogout();
-            }
-
-
+            DRI dri = new DRI(baixarDRI, situacaoDRI);
+            RodarModoDeExecucaoComAlunosFIESLegado(listaLogins, dri);
         }
         public void ExecutarBaixarDocumentoLegado(string faculdade, string tipoFies, string campus, string semestre, string tipoDocumento)
         {
@@ -124,7 +110,6 @@ namespace robo.Contratos
         public void ExecutarExportarDRILegado(string faculdade, string tipoFies, string campus, string situacaoDRI)
         {
             BuscarLoginsEAlunos(faculdade, FIES_LEGADO, campus, ref listaAlunos, ref listaLogins, admin: false, exportar: true);
-
             ExportarDRI exportarDRI = new ExportarDRI(campus, situacaoDRI);
             RodarModoDeExecucaoSemAlunosFIESLegado(listaLogins, exportarDRI);
         }
@@ -162,13 +147,13 @@ namespace robo.Contratos
         {
             BuscarLoginsEAlunos(faculdade, FIES_NOVO, "", ref listaAlunos, ref listaLogins, admin: false, exportar: true);
             ExportarRelatorio exportarRelatorio = new ExportarRelatorio(tipoRelatorio);
-            RodarModoDeExecucaoSemAlunosFIESNovo(listaLogins[0], exportarRelatorio, usarChrome:false);
+            RodarModoDeExecucaoSemAlunosFIESNovo(listaLogins[0], exportarRelatorio, usarChrome: false);
         }
         public void ExportarInadimplencia(string faculdade, string mes, string ano, bool todosMeses)
         {
             BuscarLoginsEAlunos(faculdade, FIES_NOVO, "", ref listaAlunos, ref listaLogins, admin: true, exportar: true);
             ExportarInadimplencia exportarInadimplencia = new ExportarInadimplencia(mes, ano, todosMeses);
-            RodarModoDeExecucaoSemAlunosFIESNovo(listaLogins[0], exportarInadimplencia, usarChrome:true);
+            RodarModoDeExecucaoSemAlunosFIESNovo(listaLogins[0], exportarInadimplencia, usarChrome: true);
         }
         public void ExportarRepasseFiesNovo(string faculdade, string mes, string ano)
         {
@@ -291,17 +276,21 @@ namespace robo.Contratos
                 }
             }
         }
-        private void RodarModoDeExecucaoComAlunosFIESLegado(List<TOLogin> logins, IModosDeExecucao.IModoComAlunos modosDeExecucao)
+        private void RodarModoDeExecucaoComAlunosFIESLegado(List<TOLogin> logins, IModosDeExecucao.IModoComAlunos modoDeExecucao)
         {
             Driver = Util.StartBrowser("http://sisfies.mec.gov.br/");
             UtilFiesLegado fiesLegadoutil = new UtilFiesLegado();
             fiesLegadoutil.SetDriver(Driver);
-            modosDeExecucao.SetWebDriver(Driver);
+            modoDeExecucao.SetWebDriver(Driver);
             foreach (TOLogin login in logins)
             {
+                if (modoDeExecucao is IModosDeExecucao.IFiesLegado)
+                {
+                    AlterarCampus((IModosDeExecucao.IFiesLegado)modoDeExecucao, login.Campus);
+                }
                 fiesLegadoutil.RealizarLoginSucesso(login);
-                modosDeExecucao.SelecionarMenu();
-                ForeachDeAlunos(listaAlunos, modosDeExecucao);
+                modoDeExecucao.SelecionarMenu();
+                ForeachDeAlunos(listaAlunos, modoDeExecucao);
                 fiesLegadoutil.FazerLogout();
             }
         }
@@ -316,24 +305,33 @@ namespace robo.Contratos
             modoDeExecucao.SelecionarMenu();
             ForeachDeAlunos(alunos, modoDeExecucao);
         }
-        private void RodarModoDeExecucaoSemAlunosFIESLegado(List<TOLogin>logins, IModosDeExecucao.IModoSemAlunos modoDeExecucao)
+        private void RodarModoDeExecucaoSemAlunosFIESLegado(List<TOLogin> logins, IModosDeExecucao.IModoSemAlunos modoDeExecucao)
         {
-            Driver = Util.StartBrowser("http://sisfies.mec.gov.br/", downloadFldr:true);
+            Driver = Util.StartBrowser("http://sisfies.mec.gov.br/", downloadFldr: true);
             UtilFiesLegado fiesLegadoutil = new UtilFiesLegado();
             fiesLegadoutil.SetDriver(Driver);
             modoDeExecucao.SetWebDriver(Driver);
             foreach (TOLogin login in logins)
             {
+                if (modoDeExecucao is IModosDeExecucao.IFiesLegado)
+                {
+                    AlterarCampus((IModosDeExecucao.IFiesLegado)modoDeExecucao, login.Campus);
+                }
                 fiesLegadoutil.RealizarLoginSucesso(login);
                 modoDeExecucao.SelecionarMenu();
                 modoDeExecucao.Executar();
                 fiesLegadoutil.FazerLogout();
             }
         }
+
+        private void AlterarCampus(IModosDeExecucao.IFiesLegado execucao, string campus)
+        {
+            execucao.TrocarCampus(campus);
+        }
         private void RodarModoDeExecucaoSemAlunosFIESNovo(TOLogin login, IModosDeExecucao.IModoSemAlunos modoDeExecucao, bool usarChrome)
         {
             UtilFiesNovo utilFiesNovo = new UtilFiesNovo();
-            Driver = Util.StartBrowser("http://sifesweb.caixa.gov.br", downloadFldr:true, firefox: !usarChrome);
+            Driver = Util.StartBrowser("http://sifesweb.caixa.gov.br", downloadFldr: true, firefox: !usarChrome);
             utilFiesNovo.SetDriver(Driver);
             modoDeExecucao.SetWebDriver(Driver);
             utilFiesNovo.FazerLogin(login);

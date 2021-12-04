@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace robo.Modos_de_Execucao.FIES_Legado
 {
-    public class ExportarRelatorios : UtilFiesLegado, IModosDeExecucao.IModoSemAlunos
+    public class ExportarRelatorios : UtilFiesLegado, IModosDeExecucao.IModoSemAlunos, IModosDeExecucao.IFiesLegado
     {
         private string semestre;
         private string tipoRelatorio;
@@ -34,9 +34,9 @@ namespace robo.Modos_de_Execucao.FIES_Legado
             WaitinLoading();
             ClickDropDown( "id", "coSemestreAditamento", semestre);
 
-            semestre = semestre.Replace('/', '-');
+            string nomeSemestre = semestre.Replace('/', '-');
             Driver.FindElement(By.Name("export-excel")).Click();
-            Util.ExportarDocumento(tipoRelatorio, campus, semestre);
+            Util.ExportarDocumento(tipoRelatorio, campus, nomeSemestre);
         }
 
         public void SelecionarMenu()
@@ -47,6 +47,11 @@ namespace robo.Modos_de_Execucao.FIES_Legado
         public void SetWebDriver(IWebDriver Driver)
         {
             this.Driver = Driver;
+        }
+
+        public void TrocarCampus(string campus)
+        {
+            this.campus = campus;
         }
     }
 }

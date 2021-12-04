@@ -9,7 +9,7 @@ using robo.Contratos;
 
 namespace robo.Modos_de_Execucao.FIES_Legado
 {
-    public class ExportarDRI : UtilFiesLegado, IModosDeExecucao.IModoSemAlunos
+    public class ExportarDRI : UtilFiesLegado, IModosDeExecucao.IModoSemAlunos, IModosDeExecucao.IFiesLegado
     {
         private string campus;
         private string situacaoDRI;
@@ -41,6 +41,11 @@ namespace robo.Modos_de_Execucao.FIES_Legado
         public void SetWebDriver(IWebDriver Driver)
         {
             this.Driver = Driver;
+        }
+
+        public void TrocarCampus(string campus)
+        {
+            this.campus = campus;
         }
     }
 }
