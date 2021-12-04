@@ -20,34 +20,36 @@ namespace robo.Banco_de_Dados
     {
         private const string CAMINHO_BANCO = "Filename = data/bdbot.db; Password=AlunosBrilhantes;";
 
-
         //CSV
         /// <summary>
         /// Importa um arquivo CSV para o banco de dados
         /// </summary>
-        /// <param name="filePath">Caminho para o arquivo .csv</param>
+        /// <param name="caminhoArquivo">Caminho para o arquivo .csv</param>
         /// <param name="tipo">FIES Legado ou FIES Novo</param>
-        public static void ImportaAlunos(string filePath, string tipo)
+        public static void ImportaAlunos(string caminhoArquivo, string tipo)
         {
-            List<TOAluno> alunos = BuscarListaAlunos(filePath, tipo);
+            List<TOAluno> alunos = BuscarListaAlunos(caminhoArquivo, tipo);
             InsertListLite(alunos);
             VerificarCPFDuplicado(alunos);
         }
 
-
         /// <summary>
         /// Busca todos alunos na planilha Excel.
         /// </summary>
-        /// <param name="directory">Diretório da planilha excel.</param>
+        /// <param name="diretorio">Diretório da planilha excel.</param>
         /// <param name="tipo">FIES Legado ou FIES Novo</param>
         /// <returns>Lista de alunos.</returns>
-        public static List<TOAluno> BuscarListaAlunos(string directory, string tipo)
+        public static List<TOAluno> BuscarListaAlunos(string diretorio, string tipo)
         {
-            List<TOAluno> alunos = LerCSVAlunos(directory);
+            List<TOAluno> alunos = LerCSVAlunos(diretorio);
             RemoverLinhasVazias(alunos);
             TratarPropriedadesAlunos(tipo, alunos);
             return alunos;
         }
+
+        /// <summary>
+        /// Remove linhas que não possuem CPF do CSV
+        /// </summary>
         private static void RemoverLinhasVazias(List<TOAluno> alunos)
         {
             for (int i = alunos.Count() - 1; i >= 0; i--)
@@ -59,24 +61,30 @@ namespace robo.Banco_de_Dados
             }
         }
 
+        /// <summary>
+        /// Corrige propriedades dos alunos
+        /// </summary>
         private static void TratarPropriedadesAlunos(string tipo, List<TOAluno> alunos)
         {
             for (int i = alunos.Count() - 1; i >= 0; i--)
             {
-                TratarCpf(alunos[i]);
-                TratarTextoReceitas(alunos[i]);
-                TratarVirgulaReceitas(alunos[i]);
-                TratarCampusAluno(alunos[i]);
-                TratarTipoFiesAluno(tipo, alunos[i]);
+                alunos[i].TratarCpf();
+                alunos[i].TratarTextoReceitas();
+                alunos[i].TratarVirgulaReceitas();
+                alunos[i].TratarCampus();
+                alunos[i].TratarTipoFies(tipo);
             }
         }
 
-        private static List<TOAluno> LerCSVAlunos(string directory)
+        /// <summary>
+        /// Retorna lista de alunos de um arquivo CSV
+        /// </summary>
+        private static List<TOAluno> LerCSVAlunos(string caminhoArquivo)
         {
             List<TOAluno> alunos;
             try
             {
-                using (StreamReader sr = new StreamReader(directory, Encoding.UTF7))
+                using (StreamReader sr = new StreamReader(caminhoArquivo, Encoding.UTF7))
                 {
                     using (CsvReader csv = new CsvReader(sr, CultureInfo.CurrentCulture))
                     {
@@ -92,100 +100,7 @@ namespace robo.Banco_de_Dados
             return alunos;
         }
 
-
-
         //Tratamentos de valores
-        /// <summary>
-        /// Remove . e - e adiciona a quantidade de zeros necessária
-        /// </summary>
-        public static void TratarCpf(TOAluno aluno)
-        {
-            aluno.Cpf = aluno.Cpf.Replace(".", "");
-            aluno.Cpf = aluno.Cpf.Replace("-", "");
-
-            while (aluno.Cpf.Length != 11)
-            {
-                aluno.Cpf = "0" + aluno.Cpf;
-            }
-
-        }
-        /// <summary>
-        /// Arredonda para duas casas decimais e remove caracteres desnecessários
-        /// </summary>
-        public static void TratarVirgulaReceitas(TOAluno aluno)
-        {
-            aluno.ReceitaBruta = FormatarReceitas(aluno.ReceitaBruta);
-            aluno.ReceitaLiquida = FormatarReceitas(aluno.ReceitaLiquida);
-            aluno.ReceitaFies = FormatarReceitas(aluno.ReceitaFies);
-            aluno.ValorAditado = FormatarReceitas(aluno.ValorAditado);
-
-            aluno.ValorDeRepasse = FormatarReceitas(aluno.ValorDeRepasse);
-        }
-        /// <summary>
-        /// Corrige o campus vindo da planilha de acordo com alguns casos conhecidos
-        /// </summary>
-        public static void TratarCampusAluno(TOAluno aluno)
-        {
-            switch (aluno.Campus)
-            {
-                case "ZS":
-                    aluno.Campus = "ZONA SUL";
-                    break;
-                case "Fapa_Fapa":
-                    aluno.Campus = "FAPA-FAPA";
-                    break;
-                case "GL":
-                    aluno.Campus = "GALERIA LUSA";
-                    break;
-                case "GV":
-                    aluno.Campus = "GENERAL VITORINO";
-                    break;
-                case "Andradas":
-                    aluno.Campus = "URUGUAI";
-                    break;
-                case "LF":
-                    aluno.Campus = "LUIS AFONSO";
-                    break;
-                case "LA":
-                    aluno.Campus = "LUIS AFONSO";
-                    break;
-                case "Fadergs_Fapa":
-                    aluno.Campus = "MANOEL ELIAS";
-                    break;
-                case "Salgado Fillho":
-                    aluno.Campus = "SALGADO FILHO";
-                    break;
-                default:
-                    if (aluno.Campus != null)
-                    {
-                        aluno.Campus = aluno.Campus.Trim();
-                        aluno.Campus = aluno.Campus.ToUpper();
-                    }
-                    break;
-            }
-        }
-        /// <summary>
-        /// Corrige o tipo de FIES do aluno vindo da planilha para o formato utilizado
-        /// </summary>
-        private static void TratarTipoFiesAluno(string tipo, TOAluno aluno)
-        {
-            if (string.IsNullOrEmpty(aluno.Tipo))
-            {
-                aluno.Tipo = tipo;
-                aluno.Tipo = aluno.Tipo.ToUpper().Trim();
-            }
-            else
-            {
-                if (aluno.Tipo.ToUpper().Contains("NOVO"))
-                {
-                    aluno.Tipo = "FIES NOVO";
-                }
-                else
-                {
-                    aluno.Tipo = "FIES LEGADO";
-                }
-            }
-        }
         /// <summary>
         /// Formata a receita para a maneira aceita pelos sites
         /// </summary>
@@ -203,32 +118,6 @@ namespace robo.Banco_de_Dados
 
             return valor;
         }
-        /// <summary>
-        /// Remove os possíveis textos (R$) que possam vir da planilha importada
-        /// </summary>
-        public static void TratarTextoReceitas(TOAluno aluno)
-        {
-            if (string.IsNullOrEmpty(aluno.ReceitaBruta) && string.IsNullOrEmpty(aluno.ReceitaLiquida) &&
-                string.IsNullOrEmpty(aluno.ReceitaFies) && string.IsNullOrEmpty(aluno.ValorDeRepasse))
-            {
-                return;
-            }
-
-            aluno.ReceitaBruta = ArredondarReceitas(aluno.ReceitaBruta);
-            aluno.ReceitaLiquida = ArredondarReceitas(aluno.ReceitaLiquida);
-            aluno.ReceitaFies = ArredondarReceitas(aluno.ReceitaFies);
-            aluno.ValorDeRepasse = ArredondarReceitas(aluno.ValorDeRepasse);
-        }
-
-        private static string ArredondarReceitas(string receita)
-        {
-            if (!string.IsNullOrEmpty(receita))
-            {
-                receita = double.Parse(receita, NumberStyles.Currency).ToString();
-                return Math.Round(Convert.ToDouble(receita), 2).ToString();
-            }
-            return null;
-        }
 
         /// <summary>
         /// Verifica se o banco de dados possui algum CPF duplicado
@@ -245,6 +134,9 @@ namespace robo.Banco_de_Dados
             }
         }
 
+        /// <summary>
+        /// Marca todos os alunos duplicados no banco de dados
+        /// </summary>
         private static string MarcarConclusaoAlunosDuplicados(List<IGrouping<string, TOAluno>> duplicado, string mensagem)
         {
             foreach (var item in duplicado)
@@ -260,13 +152,13 @@ namespace robo.Banco_de_Dados
         /// Valida se o login digitado pelo usuário é válido
         /// </summary>
         /// <returns>Usuário que corresponde ao login e senha digitados</returns>
-        public static TOUsuario ValidateLogin(string user, string password)
+        public static TOUsuario ValidarLogin(string usuario, string senha)
         {
-            string hashedPassword = Util.GetMD5(password);
-            List<TOUsuario> temp = Dados.SelectWhere<TOUsuario>(x => x.Usuario == user && x.Senha == hashedPassword);
-            if (temp.Count != 0)
+            string senhaCriptografada = Util.GetMD5(senha);
+            List<TOUsuario> usuarios = SelectWhere<TOUsuario>(x => x.Usuario == usuario && x.Senha == senhaCriptografada);
+            if (usuarios.Count != 0)
             {
-                return temp[0];
+                return usuarios[0];
             }
             return null;
         }
@@ -274,12 +166,12 @@ namespace robo.Banco_de_Dados
         /// Verifica se o usuário e senha do arquivo session.dat é válido
         /// </summary>
         /// <returns>Usuário que corresponde ao login e senha encontrados no arquivo</returns>
-        public static TOUsuario ValidateSession(string user, string password)
+        public static TOUsuario ValidarSessao(string usuario, string senha)
         {
-            List<TOUsuario> temp = SelectWhere<TOUsuario>(x => x.Usuario == user && x.Senha == password);
-            if (temp.Count != 0)
+            List<TOUsuario> usuarios = SelectWhere<TOUsuario>(x => x.Usuario == usuario && x.Senha == senha);
+            if (usuarios.Count != 0)
             {
-                return temp[0];
+                return usuarios[0];
             }
             return null;
         }
@@ -297,14 +189,14 @@ namespace robo.Banco_de_Dados
         /// Verifica se existe uma DRI do CPF desejado no banco de dados
         /// </summary>
         /// <returns>true se for encontrada e false se não for</returns>
-        public static bool DRIExists(string cpf)
+        public static bool VerificarDRI(string cpf)
         {
-            List<TODRI> list = SelectWhere<TODRI>(x => x.Cpf == cpf);
-            if (list.Count == 1)
+            List<TODRI> lista = SelectWhere<TODRI>(x => x.Cpf == cpf);
+            if (lista.Count == 1)
             {
                 return true;
             }
-            else if (list.Count == 0)
+            else if (lista.Count == 0)
             {
                 return false;
             }
@@ -314,12 +206,12 @@ namespace robo.Banco_de_Dados
         /// Busca a DRI desejada no banco de dados
         /// </summary>
         /// <returns>A DRI correspondente ao CPF buscado</returns>
-        public static TODRI GetDRI(string cpf)
+        public static TODRI BuscarDRI(string cpf)
         {
-            List<TODRI> list = SelectWhere<TODRI>(x => x.Cpf == cpf);
-            if (list.Count == 1)
+            List<TODRI> lista = SelectWhere<TODRI>(x => x.Cpf == cpf);
+            if (lista.Count == 1)
             {
-                return list[0];
+                return lista[0];
             }
             throw new Exception("Existem dados repetidos na tabela das DRIs.");
 
@@ -342,14 +234,12 @@ namespace robo.Banco_de_Dados
         /// Verifica se a quantidade de alunos no banco de dados é maior que 0, se for pergunta se o banco de dados deve ser limpo
         /// </summary>
         /// <returns>True se for < 0 e false se for > 0</returns>
-
         public static int VerificaQtdAlunos()
         {
             return Count<TOAluno>();
         }
 
 
-        //LITE
         //Selects
 
         /// <summary>
@@ -397,14 +287,14 @@ namespace robo.Banco_de_Dados
         /// Select where genérico
         /// </summary>
         /// <typeparam name="T">Classe da coleção de dados desejada</typeparam>
-        /// <param name="expression">Expressão lambda com a consulta desejada, exemplo: x => x.nomeDaPropriedade == valorDaPropriedade</param>
+        /// <param name="expressao">Expressão lambda com a consulta desejada, exemplo: x => x.nomeDaPropriedade == valorDaPropriedade</param>
         /// <returns>Lista com os registros encontrados</returns>
-        public static List<T> SelectWhere<T>(Expression<Func<T, bool>> expression)
+        public static List<T> SelectWhere<T>(Expression<Func<T, bool>> expressao)
         {
             using (var db = new LiteDatabase(CAMINHO_BANCO))
             {
                 var colecao = db.GetCollection<T>();
-                return colecao.Query().Where(expression).ToList();
+                return colecao.Query().Where(expressao).ToList();
             }
         }
 
@@ -422,8 +312,6 @@ namespace robo.Banco_de_Dados
                 return colecao.Query().Where(x => x.Modalidade.Contains(plataforma) && x.Permissao.Contains(Program.login.Permissao)).OrderBy(x => x.Ordem).ToList();
             }
         }
-
-        //Remover parâmetro plataforma após finalização da interface
 
         /// <summary>
         /// Busca lista de campus existentes no banco de dados baseado na IES desejada
@@ -443,6 +331,7 @@ namespace robo.Banco_de_Dados
             return listCampus;
 
         }
+
         /// <summary>
         /// Busca logins de acordo com a IES e o tipo FIES selecionados
         /// </summary>
@@ -486,7 +375,6 @@ namespace robo.Banco_de_Dados
 
 
         //DELETE
-
         /// <summary>
         /// Delete de todos os documentos da coleção desejada
         /// </summary>
@@ -514,7 +402,6 @@ namespace robo.Banco_de_Dados
         }
 
         //UPDATES
-
         /// <summary>
         /// Update em um documento
         /// </summary>
@@ -539,7 +426,6 @@ namespace robo.Banco_de_Dados
                 colecao.UpdateMany(x => new TOAluno { Conclusao = "Duplicado" }, x => x.Cpf == Cpf);
             }
         }
-
         /// <summary>
         /// Atualiza todos as conclusões diferentes de Não Feito ou Duplicado para a conclusão desejada
         /// </summary>
@@ -554,7 +440,6 @@ namespace robo.Banco_de_Dados
         }
 
         //Insert
-
         /// <summary>
         /// Insert de uma lista de documentos no banco de dados
         /// </summary>
@@ -583,7 +468,6 @@ namespace robo.Banco_de_Dados
         }
 
         //Count
-
         /// <summary>
         /// Count de alguma coleção do banco de dados
         /// </summary>

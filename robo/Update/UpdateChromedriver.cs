@@ -20,9 +20,9 @@ namespace robo.Update
         public static void DownloadChromedriver()
         {
             Driver = Util.StartBrowser("https://chromedriver.chromium.org/downloads", downloadFldr:true, headless:true);
-            var downloadLinks = Driver.FindElements(By.ClassName("XqQF9c"));
-            IWebElement element = downloadLinks[1];
-            string versao = element.Text;
+            var linksDownload = Driver.FindElements(By.ClassName("XqQF9c"));
+            IWebElement elemento = linksDownload[1];
+            string versao = elemento.Text;
             versao = versao.Split(' ')[1];
             try
             {
@@ -31,35 +31,43 @@ namespace robo.Update
             catch (Exception e)
             {
                 DirectoryInfo directory = new DirectoryInfo("RelatorioExportacao");
-                FileInfo myFile = directory.GetFiles().OrderByDescending(f => f.LastWriteTime).First();
-
-                bool downloading = true;
-                while (myFile.Name.EndsWith(".zip") == false)
-                {
-                    System.Threading.Thread.Sleep(1000);
-                    myFile = directory.GetFiles().OrderByDescending(f => f.LastWriteTime).First();
-                    downloading = myFile.Name.EndsWith(".crdownload");
-                }
-                DirectoryInfo driverDir = new DirectoryInfo("driver");
-                foreach (var item in driverDir.GetFiles())
-                {
-                    if (item.Name.Contains("chromedriver") == true)
-                    {
-                        File.Delete(item.FullName);
-                    }
-                }
-                using (ZipArchive archive = new ZipArchive(File.OpenRead(myFile.FullName), ZipArchiveMode.Read))
-                {
-                    DirectoryInfo driverFile = new DirectoryInfo("driver");
-                    archive.ExtractToDirectory("driver");
-                }
-                foreach (var item in directory.GetFiles())
-                {
-                    File.Delete(item.FullName);
-                }
+                Util.EsperarDownload(directory);
+                ExcluirVersaoAnterior();
+                CopiarParaPastaDriver(directory);
+                DeletarDownload(directory);
 
                 Driver.Close();
                 Driver.Dispose();
+            }
+        }
+
+        private static void DeletarDownload(DirectoryInfo diretorio)
+        {
+            foreach (var item in diretorio.GetFiles())
+            {
+                File.Delete(item.FullName);
+            }
+        }
+
+        private static void CopiarParaPastaDriver(DirectoryInfo diretorio)
+        {
+            FileInfo aquivoDriver = diretorio.GetFiles().OrderByDescending(f => f.LastWriteTime).First();
+            using (ZipArchive za = new ZipArchive(File.OpenRead(aquivoDriver.FullName), ZipArchiveMode.Read))
+            {
+                DirectoryInfo pastaDriver = new DirectoryInfo("driver");
+                za.ExtractToDirectory("driver");
+            }
+        }
+
+        private static void ExcluirVersaoAnterior()
+        {
+            DirectoryInfo diretorioDriver = new DirectoryInfo("driver");
+            foreach (var item in diretorioDriver.GetFiles())
+            {
+                if (item.Name.Contains("chromedriver") == true)
+                {
+                    File.Delete(item.FullName);
+                }
             }
         }
     }

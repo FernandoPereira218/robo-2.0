@@ -28,7 +28,7 @@ namespace robo.Modos_de_Execucao.FIES_Legado
         {
 
             
-            if (Dados.DRIExists(aluno.Cpf) == false)
+            if (Dados.VerificarDRI(aluno.Cpf) == false)
             {
                 Util.EditarConclusaoAluno(aluno, "DRI não encontrada");
                 return;
@@ -72,7 +72,7 @@ namespace robo.Modos_de_Execucao.FIES_Legado
         }
         private void AcessarPaginaAditamento(TOAluno aluno, string numSemestre)
         {
-            TODRI driAtual = Dados.GetDRI(aluno.Cpf);
+            TODRI driAtual = Dados.BuscarDRI(aluno.Cpf);
             string url = string.Format("http://sisfies.mec.gov.br/cpsa/aditamento/formulario/co_inscricao/{0}/sem/{1}", driAtual.DRI, numSemestre);
             Driver.Url = url;
         }
