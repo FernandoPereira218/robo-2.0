@@ -31,7 +31,7 @@ namespace robo.Modos_de_Execucao.FIES_Legado
         {
             string selRelatorio = SelecionarTipoRelatorio( tipoRelatorio);
             ClickDropDown("id", "co_finalidade_aditamento", selRelatorio);
-            WaitinLoading();
+            EsperarLoading();
             ClickDropDown( "id", "coSemestreAditamento", semestre);
 
             string nomeSemestre = semestre.Replace('/', '-');

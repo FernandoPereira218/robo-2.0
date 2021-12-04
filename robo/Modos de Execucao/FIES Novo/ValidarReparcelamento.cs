@@ -15,7 +15,7 @@ namespace robo.Modos_de_Execucao.FIES_Novo
         private WebDriverWait wait;
         public void ExecutarValidarReparcelamento()
         {
-            WaitForLoading();
+            EsperarPaginaCarregando();
             EsperarElementoExiste(By.Id("divResultado"));
 
             IWebElement divResultado = Driver.FindElement(By.Id("divResultado"));
@@ -45,7 +45,7 @@ namespace robo.Modos_de_Execucao.FIES_Novo
         public void SelecionarMenu()
         {
             ClicarMenuValidarReparcelamento();
-            WaitForLoading();
+            EsperarPaginaCarregando();
         }
 
         public void SetWebDriver(IWebDriver Driver)

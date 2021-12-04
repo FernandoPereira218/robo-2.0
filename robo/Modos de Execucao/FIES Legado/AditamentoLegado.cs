@@ -45,7 +45,7 @@ namespace robo.Modos_de_Execucao.FIES_Legado
                 return;
             }
 
-            WaitinLoading();
+            EsperarLoading();
 
             RealizarAditamento(aluno);
         }
@@ -89,7 +89,7 @@ namespace robo.Modos_de_Execucao.FIES_Legado
         }
         private void PreencherFormulario(TOAluno aluno)
         {
-            WaitinLoading();
+            EsperarLoading();
 
             PreencheReceitas(aluno);
             PreencherAproveitamentoAluno(aluno);

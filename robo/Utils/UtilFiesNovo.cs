@@ -26,7 +26,7 @@ namespace robo.Utils
             ClickAndWriteById("password", login.Senha);
             ClickButtonsByCss("button:nth-child(1)");
 
-            WaitElementIsVisible(By.XPath("//p[text()='Quadro de Avisos']"));
+            EsperarElementoVisivel(By.XPath("//p[text()='Quadro de Avisos']"));
         }
 
         /// <summary>
@@ -35,7 +35,7 @@ namespace robo.Utils
         /// <param name="Driver"></param>
         /// <param name="element"></param>
         /// <param name="exist">'true' para esperar até o elemento existir 'false' para esperar até que desapareça</param>
-        private void WaitPageLoading( string element, bool exist)
+        private void EsperarCarregamento(string element, bool exist)
         {
             while (Driver.PageSource.Contains(element) == exist)
             {
@@ -47,10 +47,10 @@ namespace robo.Utils
         /// Espera até o ícone de "carregando" sumir da tela
         /// </summary>
         /// <param name="Driver"></param>
-        public void WaitForLoading()
+        public void EsperarPaginaCarregando()
         {
-            WaitPageLoading("modal-backdrop fade in", true);
-            WaitPageLoading("modal-backdrop fade", true);
+            EsperarCarregamento("modal-backdrop fade in", true);
+            EsperarCarregamento("modal-backdrop fade", true);
         }
 
         /// <summary>
@@ -172,8 +172,8 @@ namespace robo.Utils
         /// <param name="aluno"></param>
         public void ConsultarAluno(TOAluno aluno)
         {
-            WaitForLoading();
-            WaitPageLoading("input-medium cpf", false);
+            EsperarPaginaCarregando();
+            EsperarCarregamento("input-medium cpf", false);
 
             ((IJavaScriptExecutor)Driver).ExecuteScript("window.scrollTo(0, 0)");
 
@@ -203,7 +203,7 @@ namespace robo.Utils
             {
                 throw new Exception("O site da caixa parece estar instável. Tente novamente mais tarde.");
             }
-            WaitForLoading();
+            EsperarPaginaCarregando();
             if (VerificarNenhumaInformacaoDisponivel() == true)
             {
                 Util.EditarConclusaoAluno(aluno, "Nenhuma informação disponível");
@@ -245,7 +245,7 @@ namespace robo.Utils
         /// <param name="Driver"></param>
         /// <param name="aluno"></param>
         /// <param name="semestreAtual">Semestre selecionado (semestre/ano)</param>
-        public void BuscarEAbrirDRM( TOAluno aluno, string semestreAtual)
+        public void BuscarEAbrirDRM(TOAluno aluno, string semestreAtual)
         {
             ConsultarAluno(aluno);
             if (VerificarNenhumaInformacaoDisponivel() == true)
@@ -281,7 +281,7 @@ namespace robo.Utils
                     if (msgErro == true)
                     {
                         ClickButtonsById("btnConsultar");
-                        WaitForLoading();
+                        EsperarPaginaCarregando();
                     }
                 }
 

@@ -22,7 +22,7 @@ namespace robo.Modos_de_Execucao.SIGA
         }
         public void GeraParcelaFies(TOAluno aluno)
         {
-            WaitElementIsVisible(By.Id("pess_cpf"));
+            EsperarElementoVisivel(By.Id("pess_cpf"));
             FiltraAluno(aluno);
             string semestreCorreto = FormatarSemestreSiga(semestre);
             BuscarLinhaCorreta(aluno, out IWebElement tdParcelas, out string botaoId);
@@ -142,7 +142,7 @@ namespace robo.Modos_de_Execucao.SIGA
             //Gerar mensalidade
             ClickElementByXPath("input", "value", "Gerar Mensalidade");
 
-            WaitElementIsVisible(By.Id("msg_1"));
+            EsperarElementoVisivel(By.Id("msg_1"));
 
             string textoMensagem = ConfirmacaoGravacaoParcelaAjuste(Driver);
             VerificarErro(Driver, aluno, ParcelaSelecionada, textoMensagem);

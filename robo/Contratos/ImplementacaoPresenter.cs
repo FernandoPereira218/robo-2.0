@@ -295,7 +295,7 @@ namespace robo.Contratos
             utilFiesNovo.SetDriver(Driver);
             modoDeExecucao.SetWebDriver(Driver);
             utilFiesNovo.FazerLogin(listaLogins[0]);
-            utilFiesNovo.WaitForLoading();
+            utilFiesNovo.EsperarPaginaCarregando();
             modoDeExecucao.SelecionarMenu();
             ForeachDeAlunos(alunos, modoDeExecucao);
         }
@@ -324,7 +324,7 @@ namespace robo.Contratos
             utilFiesNovo.SetDriver(Driver);
             modoDeExecucao.SetWebDriver(Driver);
             utilFiesNovo.FazerLogin(login);
-            utilFiesNovo.WaitForLoading();
+            utilFiesNovo.EsperarPaginaCarregando();
             modoDeExecucao.SelecionarMenu();
             modoDeExecucao.Executar();
         }

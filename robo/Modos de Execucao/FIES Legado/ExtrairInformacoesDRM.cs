@@ -32,7 +32,7 @@ namespace robo.Modos_de_Execucao.FIES_Legado
                 botaoImprimir = VerificarElementoExiste( "ID", "imprimirDrm");
                 if (botaoImprimir != null)
                 {
-                    WaitinLoading();
+                    EsperarLoading();
 
                     string erro = VerificarMensagem();
                     if (erro == string.Empty)
@@ -57,7 +57,7 @@ namespace robo.Modos_de_Execucao.FIES_Legado
         private void ConsultarAluno(TOAluno aluno, string semestre)
         {
             ClickDropDown( "id", "co_finalidade_aditamento", "Aditamento de Renovação");
-            WaitinLoading();
+            EsperarLoading();
             ClickDropDown( "id", "coSemestreAditamento", semestre);
             ClickAndWriteById( "cpf", aluno.Cpf);
             ClickDropDown( "id", "coSemestreAditamento", semestre);

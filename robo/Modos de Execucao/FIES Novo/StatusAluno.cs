@@ -20,19 +20,19 @@ namespace robo.Modos_de_Execucao.FIES_Novo
 
         public void BuscarStatusAluno(TOAluno aluno)
         {
-            WaitForLoading();
+            EsperarPaginaCarregando();
             while (Driver.PageSource.Contains("Consultar Contrato Estudante") == false)
             {
                 System.Threading.Thread.Sleep(100);
             }
             ((IJavaScriptExecutor)Driver).ExecuteScript($@"document.getElementById(""cpf"").value = ""{aluno.Cpf}"";");
             ClickButtonsById( "btnConfirmar");
-            WaitForLoading();
+            EsperarPaginaCarregando();
             ClickButtonsById( "lnkTipoProcesso");
-            WaitForLoading();
+            EsperarPaginaCarregando();
 
             ClickButtonByIdWithJavaScript( "tab-Aditamento");
-            WaitForLoading();
+            EsperarPaginaCarregando();
 
             IWebElement elementoTabela = Driver.FindElement(By.Id("gridAditamento"));
             List<IWebElement> dados = elementoTabela.FindElements(By.TagName("td")).ToList();
@@ -72,7 +72,7 @@ namespace robo.Modos_de_Execucao.FIES_Novo
             var element = Driver.FindElement(By.Id("btn-voltar"));
             ((IJavaScriptExecutor)Driver).ExecuteScript(string.Format("window.scrollTo({0}, {1})", element.Location.X, element.Location.Y - 100));
             ClickButtonsById( "btn-voltar");
-            WaitForLoading();
+            EsperarPaginaCarregando();
         }
 
         public void Executar(TOAluno aluno)
