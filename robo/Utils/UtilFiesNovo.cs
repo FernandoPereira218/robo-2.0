@@ -21,10 +21,10 @@ namespace robo.Utils
         /// <param name="login"></param>
         public void FazerLogin(TOLogin login)
         {
-            ClickAndWriteById("username", login.Usuario);
-            ClickButtonsById("button-submit");
-            ClickAndWriteById("password", login.Senha);
-            ClickButtonsByCss("button:nth-child(1)");
+            ClicarEEscrever(By.Id("username"), login.Usuario);
+            ClicarElemento(By.Id("button-submit"));
+            ClicarEEscrever(By.Id("password"), login.Senha);
+            ClicarElemento(By.CssSelector("button:nth-child(1)"));
 
             EsperarElementoVisivel(By.XPath("//p[text()='Quadro de Avisos']"));
         }
@@ -177,11 +177,11 @@ namespace robo.Utils
 
             ((IJavaScriptExecutor)Driver).ExecuteScript("window.scrollTo(0, 0)");
 
-            ClickButtonsByCss("body");
+            ClicarElemento(By.CssSelector("body"));
 
-            ClickButtonsById("btnLimpar");
+            ClicarElemento(By.Id("btnLimpar"));
 
-            ClickButtonsById("cpf");
+            ClicarElemento(By.Id("cpf"));
 
             var executor = (IJavaScriptExecutor)Driver;
             executor.ExecuteScript($@"document.getElementById(""cpf"").value = ""{aluno.Cpf}"";");
@@ -190,14 +190,14 @@ namespace robo.Utils
             {
                 System.Threading.Thread.Sleep(500);
             }
-            ClickButtonsByCss("body");
+            ClicarElemento(By.CssSelector("body"));
             string erro = BuscarMensagemDeErro();
             if (erro.Contains("CPF com Dígito Verificador inválido. Redigite-o!") == true)
             {
                 Util.EditarConclusaoAluno(aluno, erro);
                 throw new PararExecucaoException();
             }
-            ClickButtonsById("btnConsultar");
+            ClicarElemento(By.Id("btnConsultar"));
             erro = BuscarMensagemDeErro();
             if (erro.Contains("Ocorreu um erro na consulta, tente novamente."))
             {
@@ -233,7 +233,7 @@ namespace robo.Utils
         /// </summary>
         /// <param name="Driver"></param>
         /// <param name="id">ID do botão</param>
-        public void ClickButtonByIdWithJavaScript(string id)
+        public void ClicarElementoPorIDJavaScript(string id)
         {
             IWebElement element = Driver.FindElement(By.XPath(string.Format("//*[@id=\"{0}\"]", id)));
             ((IJavaScriptExecutor)Driver).ExecuteScript("arguments[0].click();", element);
@@ -270,17 +270,17 @@ namespace robo.Utils
                 //Verificacao de erro ao clicar no botao
                 while (msgErro == true)
                 {
-                    ScrollToElementByID(botaoImprimirTermo.GetAttribute("id"));
+                    ScrollParaElemento(By.Id(botaoImprimirTermo.GetAttribute("id")));
                     botaoImprimirTermo.Click();
 
                     System.Threading.Thread.Sleep(1000);
 
-                    ClickButtonsById("btnConfirmar");
+                    ClicarElemento(By.Id("btnConfirmar"));
 
                     msgErro = (bool)executor.ExecuteScript("return $('.alert.alert-error').is(':visible');");
                     if (msgErro == true)
                     {
-                        ClickButtonsById("btnConsultar");
+                        ClicarElemento(By.Id("btnConsultar"));
                         EsperarPaginaCarregando();
                     }
                 }
@@ -289,7 +289,7 @@ namespace robo.Utils
                 if (Driver.PageSource.Contains("MDLalerta_") == true)
                 {
                     aluno.Conclusao = Driver.FindElement(By.XPath("/html/body/div[7]/div[2]/p")).Text;
-                    ClickButtonsById("btnConfirmar");
+                    ClicarElemento(By.Id("btnConfirmar"));
                     return;
                 }
 

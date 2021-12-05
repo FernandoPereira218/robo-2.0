@@ -27,13 +27,13 @@ namespace robo.Modos_de_Execucao.SIGA
 
             if (Driver.PageSource.Contains("btn_editar") == true)
             {
-                ClickButtonsById("btn_editar#0");
+                ClicarElemento(By.Id("btn_editar#0"));
 
-                ClickButtonsById("btnComplementos");
+                ClicarElemento(By.Id("btnComplementos"));
 
                 //Filtrar pelo semestre escolhido
                 string semestreSiga = BuscarSemestreSiga(semestreAno);
-                ClickDropDownExact("id", "peri_id", semestreSiga);
+                SelecionarOpcaoDropDownExato("id", "peri_id", semestreSiga);
                 string lancamentoPrimeiraLinha = BuscarLancamentoPrimeiraLinha();
 
                 if (lancamentoPrimeiraLinha != "FIES" && lancamentoPrimeiraLinha != "FIES CONTRATADO")
@@ -75,7 +75,7 @@ namespace robo.Modos_de_Execucao.SIGA
 
         private void AdicionarParcelas(TOAluno aluno)
         {
-            ClickButtonsByXpath("/html/body/table/tbody/tr/td/table/tbody/tr[6]/td/div/form/table[2]/tbody/tr[3]/td[10]/div/img[1]");
+            ClicarElemento(By.XPath("/html/body/table/tbody/tr/td/table/tbody/tr[6]/td/div/form/table[2]/tbody/tr[3]/td[10]/div/img[1]"));
 
             SelectElement select = new SelectElement(Driver.FindElement(By.Id("parcelas[]")));
             select.DeselectAll();
@@ -90,10 +90,9 @@ namespace robo.Modos_de_Execucao.SIGA
             string valorAluno = Math.Round(valorCompleto / 6, 2).ToString();
             valorAluno = Dados.FormatarReceitas(valorAluno);
             //aluno.FormatarReceitas(valorAluno);
-            ClickAndWriteById("moeda", valorAluno);
-
-            ScrollToElementByID("btnVinculaComplemento");
-            ClickButtonsById("btnVinculaComplemento");
+            ClicarEEscrever(By.Id("moeda"), valorAluno);
+            ScrollParaElemento(By.Id("btnVinculaComplemento"));
+            ClicarElemento(By.Id("btnVinculaComplemento"));
 
             IWebElement mensagemDoSistema = Driver.FindElement(By.Id("msg_1"));
             if (mensagemDoSistema.Text.ToUpper().Contains("CADASTRO EFETUADO COM SUCESSO"))
@@ -108,10 +107,10 @@ namespace robo.Modos_de_Execucao.SIGA
 
         private void AdicionarComplemento(TOAluno aluno, string tipoFies, string semestreSiga)
         {
-            ClickButtonsById("btnAdicionaComplemento");
+            ClicarElemento(By.Id("btnAdicionaComplemento"));
 
             //Sempre o mesmo
-            ClickDropDown("id", "nens_id", "GRADUAÇÃO");
+            SelecionarOpcaoDropDown("id", "nens_id", "GRADUAÇÃO");
 
             //Verificação se o curso está disponível no site
             SelectElement selectElement = new SelectElement(Driver.FindElement(By.Id("curs_id")));
@@ -122,32 +121,32 @@ namespace robo.Modos_de_Execucao.SIGA
                 return;
             }
             //Buscar da planilha do aluno
-            ClickDropDown("id", "curs_id", aluno.CursoSiga.ToUpper());
+            SelecionarOpcaoDropDown("id", "curs_id", aluno.CursoSiga.ToUpper());
 
             //Opção no combobox 19 -> FIES || 1133 -> FIES CONTRATADO
             if (tipoFies == "FIES")
             {
-                ClickDropDownExact("id", "lanc_id", "19");
+                SelecionarOpcaoDropDownExato("id", "lanc_id", "19");
             }
             else if (tipoFies == "FIES CONTRATADO")
             {
-                ClickDropDownExact("id", "lanc_id", "1133");
+                SelecionarOpcaoDropDownExato("id", "lanc_id", "1133");
             }
 
             //Sempre o mesmo
-            ClickDropDownExact("id", "tipo_valor", "moeda");
+            SelecionarOpcaoDropDownExato("id", "tipo_valor", "moeda");
 
             // Sempre o mesmo na observação
-            ClickAndWriteById("clmt_observacao", "Lançamento Automatizado");
+            ClicarEEscrever(By.Id("clmt_observacao"), "Lançamento Automatizado");
 
             //Arredondar valor para duas casas decimais
-            ClickAndWriteById("moeda", aluno.ValorDeRepasse);
+            ClicarEEscrever(By.Id("moeda"), aluno.ValorDeRepasse);
 
-            ScrollToElementByID("periodo[" + semestreSiga + "]");
+            ScrollParaElemento(By.Id("periodo[" + semestreSiga + "]"));
             //Criar id composto = ano+semestre+10 : 2021-2 -> 2021210
-            ClickButtonsById("periodo[" + semestreSiga + "]");
+            ClicarElemento(By.Id("periodo[" + semestreSiga + "]"));
 
-            ClickButtonsById("btnAdicionaComplemento");
+            ClicarElemento(By.Id("btnAdicionaComplemento"));
         }
 
         public void Executar(TOAluno aluno)

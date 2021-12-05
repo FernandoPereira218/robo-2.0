@@ -33,9 +33,9 @@ namespace robo.Modos_de_Execucao.FIES_Novo
 
             SelecionarOpcaoMenu();
 
-            ClickAndWriteById( "dataInicio", dataInicial);
-            ClickAndWriteById( "dataFim", dataFinal);
-            ClickButtonsById( "btnExportarRelatorio");
+            ClicarEEscrever(By.Id("dataInicio"), dataInicial);
+            ClicarEEscrever(By.Id("dataFim"), dataFinal);
+            ClicarElemento(By.Id("btnExportarRelatorio"));
             EsperarPaginaCarregando();
             string erro = BuscarMensagemDeErro();
             if (erro == string.Empty)
@@ -75,7 +75,7 @@ namespace robo.Modos_de_Execucao.FIES_Novo
                     IWebElement dropDownIES = Driver.FindElement(By.Id("ies_chosen"));
                     dropDownIES.Click();
                     ((IJavaScriptExecutor)Driver).ExecuteScript("alert(\"Por favor selecione uma IES\")");
-                    while (isAlertPresent())
+                    while (VerificarAlertaNavegador())
                     {
                         System.Threading.Thread.Sleep(100);
                     }

@@ -139,7 +139,7 @@ namespace robo.Interface
             {
                 Id = Convert.ToInt32(txtId.Text),
                 Usuario = txtUser.Text,
-                Senha = Util.GetMD5(txtSenhaUsuario.Text),
+                Senha = Util.CriptografarSenha(txtSenhaUsuario.Text),
                 Permissao = cbPermissoes.Text,
                 IES = cbIES.Text,
                 Regional = cbRegional.Text

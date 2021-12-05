@@ -25,8 +25,8 @@ namespace robo.Utils
             WaitLoading();
             try
             {
-                ClickAndWriteById("pess_cpf", aluno.Cpf);
-                ClickButtonsById("btn_filtrar");
+                ClicarEEscrever(By.Id("pess_cpf"), aluno.Cpf);
+                ClicarElemento(By.Id("btn_filtrar"));
             }
             catch (Exception e)
             {
@@ -63,9 +63,11 @@ namespace robo.Utils
         /// <returns></returns>
         public void FazerLogin(TOLogin login)
         {
-            ClickAndWriteByName("login", login.Usuario);
-            ClickAndWriteById("senha_ls", login.Senha);
-            ClickButtonsByXpath("/html/body/table/tbody/tr/td/table/tbody/tr[6]/td/div/form/div/table/tbody/tr[2]/td/table/tbody/tr/td[2]/table/tbody/tr[6]/td/input");
+            //ClickAndWriteByName("login", login.Usuario);
+            //ClickAndWriteById("senha_ls", login.Senha);
+            ClicarEEscrever(By.Name("login"), login.Usuario);
+            ClicarEEscrever(By.Id("senha_ls"), login.Senha);
+            ClicarElemento(By.XPath("/html/body/table/tbody/tr/td/table/tbody/tr[6]/td/div/form/div/table/tbody/tr[2]/td/table/tbody/tr/td[2]/table/tbody/tr[6]/td/input"));
         }
 
         /// <summary>

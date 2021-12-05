@@ -29,8 +29,8 @@ namespace robo.Modos_de_Execucao.FIES_Legado
 
         public void ExtratoMensalDeRepasseLegado()
         {
-            ClickDropDown( "id", "nu_ano", ano);
-            ClickDropDown( "id", "nu_mes", mes);
+            SelecionarOpcaoDropDown( "id", "nu_ano", ano);
+            SelecionarOpcaoDropDown( "id", "nu_mes", mes);
             SelectElement select = new SelectElement(Driver.FindElement(By.Id("dt_repasse")));
             if (select.Options.Count > 2)
             {
@@ -66,7 +66,7 @@ namespace robo.Modos_de_Execucao.FIES_Legado
         private void EsperarSelecaoIES(SelectElement select)
         {
             ((IJavaScriptExecutor)Driver).ExecuteScript("alert(\"Por favor selecione uma data\")");
-            while (isAlertPresent())
+            while (VerificarAlertaNavegador())
             {
                 System.Threading.Thread.Sleep(100);
             }

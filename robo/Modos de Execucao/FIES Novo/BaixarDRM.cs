@@ -59,7 +59,7 @@ namespace robo.Modos_de_Execucao.FIES_Novo
 
             //Criação das pastas necessárias
             Util.CriarDiretorioCasoNaoExista("html");
-            string downloadFolder = Util.GetDownloadsFolderPath();
+            string downloadFolder = Util.BuscarDiretorioDownloads();
             string diretorioDRM = downloadFolder + "\\" + nomePasta + "\\";
             Util.CriarDiretorioCasoNaoExista(diretorioDRM);
 

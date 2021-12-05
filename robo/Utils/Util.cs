@@ -33,80 +33,15 @@ namespace robo.Utils
         public static IWebDriver StartBrowser(string url, bool downloadFldr = false, bool firefox = true, bool headless = false)
         {
             IWebDriver driver;
-
-            string downloadFolder = "";
-            if (downloadFldr == true)
-            {
-                CriarDiretorioCasoNaoExista("RelatorioExportacao\\");
-                downloadFolder = Directory.GetCurrentDirectory() + "\\RelatorioExportacao\\";
-            }
-            else
-            {
-                //downloadFolder = GetDownloadsFolderPath();
-                CriarDiretorioCasoNaoExista("DocumentosBaixados\\");
-                downloadFolder = Directory.GetCurrentDirectory() + "\\DocumentosBaixados\\";
-            }
+            string downloadFolder = DefinirPastaDownloads(downloadFldr);
 
             if (firefox == true)
             {
-
-                //Firefox
-                var firefoxDriverService = FirefoxDriverService.CreateDefaultService(Environment.CurrentDirectory + @"\driver");
-                firefoxDriverService.HideCommandPromptWindow = true;
-
-                FirefoxOptions firefoxOptions = new FirefoxOptions();
-                firefoxOptions.AcceptInsecureCertificates = true;
-                if (FormInterface.versaoRobo != "operacoesFinanceiras" || headless == true)
-                {
-                    firefoxOptions.AddArgument("--headless");
-                }
-                var firefoxProfile = new FirefoxProfile();
-
-                //profile.SetPreference("browser.download.downloadDir", downloadFolder);
-                //profile.SetPreference("browser.download.defaultFolder", downloadFolder);
-                //profile.SetPreference("browser.helperApps.neverAsk.openFile", "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet");
-                //profile.SetPreference("browser.helperApps.neverAsk.saveToDisk", "application/pdf;text/plain;application/text;text/xml;application/xml");
-                firefoxProfile.SetPreference("browser.helperApps.neverAsk.saveToDisk", "text/plain,application/octet-stream,application/pdf,application/x-pdf,application/vnd.pdf,application/zip,text/csv,application/csv,application/vnd.ms-excel,text/comma-separat‌​ed-values,application/excel,text/x-server-parsed-html,application/vnd.ms-excel,application/msexcel");
-                firefoxProfile.SetPreference("browser.download.folderList", 2);
-                firefoxProfile.SetPreference("browser.download.dir", downloadFolder);
-                firefoxProfile.SetPreference("browser.helperApps.alwaysAsk.force", false);
-                firefoxProfile.SetPreference("browser.download.manager.useWindow", false);
-                firefoxProfile.SetPreference("browser.download.manager.focusWhenStarting", false);
-                firefoxProfile.SetPreference("browser.download.manager.showAlertOnComplete", false);
-                firefoxProfile.SetPreference("browser.download.manager.closeWhenDone", true);
-                firefoxProfile.SetPreference("security.tls.version.min", 1);
-                firefoxProfile.SetPreference("security.tls.version.max", 4);
-                firefoxProfile.SetPreference("dom.enable_window_print", false);
-                //firefoxProfile.SetPreference("print.tab_modal.enabled", true);
-                firefoxOptions.Profile = firefoxProfile;
-                driver = new FirefoxDriver(firefoxDriverService, firefoxOptions);
+                driver = CriarDriverFirefox(headless, downloadFolder);
             }
             else
             {
-                //Chrome
-                var chromeDriverService = ChromeDriverService.CreateDefaultService(Environment.CurrentDirectory + @"\driver");
-                chromeDriverService.HideCommandPromptWindow = true;
-                ChromeOptions chromeOptions = new ChromeOptions();
-                if (FormInterface.versaoRobo != "operacoesFinanceiras")
-                {
-                    chromeOptions.AddArgument("--headless");
-                }
-                chromeOptions.AddUserProfilePreference("download.default_directory", downloadFolder);
-                try
-                {
-
-                    driver = new ChromeDriver(chromeDriverService, chromeOptions);
-                }
-                catch
-                {
-                    MessageBox.Show("Versão do Google Chrome desatualizada. Clique em 'Ok' para atualizar e continuar o processo.");
-                    chromeDriverService.Dispose();
-
-                    UpdateChromedriver.DownloadChromedriver();
-                    chromeDriverService = ChromeDriverService.CreateDefaultService(Environment.CurrentDirectory + @"\driver");
-                    chromeDriverService.HideCommandPromptWindow = true;
-                    driver = new ChromeDriver(chromeDriverService, chromeOptions);
-                }
+                driver = CriarDriverChrome(downloadFolder);
             }
             driver.Manage().Window.Maximize();
             driver.Url = url;
@@ -117,6 +52,84 @@ namespace robo.Utils
             driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(1);
 
             return driver;
+        }
+
+        private static IWebDriver CriarDriverFirefox(bool headless, string downloadFolder)
+        {
+            IWebDriver driver;
+            //Firefox
+            var firefoxDriverService = FirefoxDriverService.CreateDefaultService(Environment.CurrentDirectory + @"\driver");
+            firefoxDriverService.HideCommandPromptWindow = true;
+
+            FirefoxOptions firefoxOptions = new FirefoxOptions();
+            firefoxOptions.AcceptInsecureCertificates = true;
+            if (FormInterface.versaoRobo != "operacoesFinanceiras" || headless == true)
+            {
+                firefoxOptions.AddArgument("--headless");
+            }
+            var firefoxProfile = new FirefoxProfile();
+
+            firefoxProfile.SetPreference("browser.helperApps.neverAsk.saveToDisk", "text/plain,application/octet-stream,application/pdf,application/x-pdf,application/vnd.pdf,application/zip,text/csv,application/csv,application/vnd.ms-excel,text/comma-separat‌​ed-values,application/excel,text/x-server-parsed-html,application/vnd.ms-excel,application/msexcel");
+            firefoxProfile.SetPreference("browser.download.folderList", 2);
+            firefoxProfile.SetPreference("browser.download.dir", downloadFolder);
+            firefoxProfile.SetPreference("browser.helperApps.alwaysAsk.force", false);
+            firefoxProfile.SetPreference("browser.download.manager.useWindow", false);
+            firefoxProfile.SetPreference("browser.download.manager.focusWhenStarting", false);
+            firefoxProfile.SetPreference("browser.download.manager.showAlertOnComplete", false);
+            firefoxProfile.SetPreference("browser.download.manager.closeWhenDone", true);
+            firefoxProfile.SetPreference("security.tls.version.min", 1);
+            firefoxProfile.SetPreference("security.tls.version.max", 4);
+            firefoxProfile.SetPreference("dom.enable_window_print", false);
+            firefoxOptions.Profile = firefoxProfile;
+            driver = new FirefoxDriver(firefoxDriverService, firefoxOptions);
+            return driver;
+        }
+
+        private static IWebDriver CriarDriverChrome(string downloadFolder)
+        {
+            IWebDriver driver;
+            //Chrome
+            var chromeDriverService = ChromeDriverService.CreateDefaultService(Environment.CurrentDirectory + @"\driver");
+            chromeDriverService.HideCommandPromptWindow = true;
+            ChromeOptions chromeOptions = new ChromeOptions();
+            if (FormInterface.versaoRobo != "operacoesFinanceiras")
+            {
+                chromeOptions.AddArgument("--headless");
+            }
+            chromeOptions.AddUserProfilePreference("download.default_directory", downloadFolder);
+            try
+            {
+                driver = new ChromeDriver(chromeDriverService, chromeOptions);
+            }
+            catch
+            {
+                MessageBox.Show("Versão do Google Chrome desatualizada. Clique em 'Ok' para atualizar e continuar o processo.");
+                chromeDriverService.Dispose();
+
+                UpdateChromedriver.DownloadChromedriver();
+                chromeDriverService = ChromeDriverService.CreateDefaultService(Environment.CurrentDirectory + @"\driver");
+                chromeDriverService.HideCommandPromptWindow = true;
+                driver = new ChromeDriver(chromeDriverService, chromeOptions);
+            }
+
+            return driver;
+        }
+
+        private static string DefinirPastaDownloads(bool downloadFldr)
+        {
+            string downloadFolder = "";
+            if (downloadFldr == true)
+            {
+                CriarDiretorioCasoNaoExista("RelatorioExportacao\\");
+                downloadFolder = Directory.GetCurrentDirectory() + "\\RelatorioExportacao\\";
+            }
+            else
+            {
+                CriarDiretorioCasoNaoExista("DocumentosBaixados\\");
+                downloadFolder = Directory.GetCurrentDirectory() + "\\DocumentosBaixados\\";
+            }
+
+            return downloadFolder;
         }
 
         public static IWebDriver CriarBrowserVazio(bool firefox = true)
@@ -133,25 +146,6 @@ namespace robo.Utils
                 var chromeDriverService = ChromeDriverService.CreateDefaultService(Environment.CurrentDirectory + @"\driver");
                 chromeDriverService.HideCommandPromptWindow = true;
                 return new ChromeDriver(chromeDriverService);
-            }
-        }
-
-        /// <summary>
-        /// Substitui \r por espacos vazios de todos os campos de strings
-        /// </summary>
-        /// <param name="infs">Aluno que será atualizado</param>
-        public static void AcertaBarraR(TOAluno infs)
-        {
-            foreach (var propriedade in infs.GetType().GetProperties())
-            {
-                if (propriedade.Name != "Id")
-                {
-                    if (propriedade.GetValue(infs) != null)
-                    {
-                        infs.GetType().GetProperty(propriedade.Name).SetValue(infs, infs.GetType().GetProperty(propriedade.Name).GetValue(infs).ToString().Replace("\r", ""));
-                        infs.GetType().GetProperty(propriedade.Name).SetValue(infs, infs.GetType().GetProperty(propriedade.Name).GetValue(infs).ToString().Replace("\n", ""));
-                    }
-                }
             }
         }
 
@@ -174,7 +168,7 @@ namespace robo.Utils
         /// Busca o diretório de download do usuário
         /// </summary>
         /// <returns>Caminho da pasta de download do usuário</returns>
-        public static string GetDownloadsFolderPath()
+        public static string BuscarDiretorioDownloads()
         {
             string userRoot = Environment.GetEnvironmentVariable("USERPROFILE");
             string downloadFolder = Path.Combine(userRoot, "Downloads");
@@ -215,24 +209,24 @@ namespace robo.Utils
         /// <summary>
         /// Retorna o MD5 de uma string
         /// </summary>
-        /// <param name="password">String que será convertida</param>
+        /// <param name="senha">String que será convertida</param>
         /// <returns></returns>
-        public static string GetMD5(string password)
+        public static string CriptografarSenha(string senha)
         {
-            MD5 md5password = MD5.Create();
+            MD5 md5 = MD5.Create();
             //Conversão a String para array de bytes, que é como a biblioteca trabalha.
-            byte[] data = md5password.ComputeHash(Encoding.UTF8.GetBytes(password));
+            byte[] senhaBytes = md5.ComputeHash(Encoding.UTF8.GetBytes(senha));
 
             //Criação de um stringBuilder para concatenar os dados
-            StringBuilder sBuilder = new StringBuilder();
+            StringBuilder sb = new StringBuilder();
 
             //Loop para formatar cada byte como uma String em hexadecimal
-            for (int i = 0; i < data.Length; i++)
+            for (int i = 0; i < senhaBytes.Length; i++)
             {
-                sBuilder.Append(data[i].ToString("x2"));
+                sb.Append(senhaBytes[i].ToString("x2"));
             }
 
-            return sBuilder.ToString();
+            return sb.ToString();
         }
 
         /// <summary>
@@ -399,7 +393,7 @@ namespace robo.Utils
         /// <param name="simplificado">Para DRM, se o arquivo é simplificado ou não</param>
         public static void BaixarDocumento(string nomeArquivo, string tipoDocumento, string simplificado)
         {
-            string caminhoDownloads = GetDownloadsFolderPath();
+            string caminhoDownloads = BuscarDiretorioDownloads();
             DirectoryInfo pastaDownloads = new DirectoryInfo(Directory.GetCurrentDirectory() + "\\DocumentosBaixados");
             EsperarDownload(pastaDownloads);
             FileInfo arquivoBaixado = pastaDownloads.GetFiles().OrderByDescending(f => f.LastWriteTime).First();
@@ -409,7 +403,7 @@ namespace robo.Utils
             {
                 if (tipoDocumento == "DRM")
                 {
-                    string diretorioDRM = GetDownloadsFolderPath() + "\\DRM FIES Legado";
+                    string diretorioDRM = BuscarDiretorioDownloads() + "\\DRM FIES Legado";
                     string diretorioSimplificado = diretorioDRM + "\\Simplificados";
                     string diretorioNaoSimplificado = diretorioDRM + "\\Nao-Simplificados";
                     CriarDiretorioCasoNaoExista(diretorioDRM, diretorioSimplificado, diretorioNaoSimplificado);
@@ -478,7 +472,7 @@ namespace robo.Utils
 
             foreach (var item in Directory.GetFiles("RelatorioExportacao\\"))
             {
-                string downloadFolder = GetDownloadsFolderPath();
+                string downloadFolder = BuscarDiretorioDownloads();
                 if (nomeArquivo == "")
                 {
                     nomeArquivo = DateTime.Now.ToString("dd-MM-yy") + campus + "_" + semestre + ".xls";

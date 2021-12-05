@@ -22,7 +22,7 @@ namespace robo.Modos_de_Execucao.FIES_Legado
         }
         public void DRIFiesLegado(TOAluno aluno)
         {
-            ClickDropDown( "id", "co_situacao_inscricao", situacaoDRI);
+            SelecionarOpcaoDropDown( "id", "co_situacao_inscricao", situacaoDRI);
 
             if (!Dados.VerificarDRI(aluno.Cpf) || baixar == true)
             {
@@ -30,7 +30,7 @@ namespace robo.Modos_de_Execucao.FIES_Legado
 
                 if (Driver.PageSource.Contains("sorterdocuments"))
                 {
-                    ClickButtonsByCss( ".even:nth-child(1) img");
+                    ClicarElemento(By.CssSelector(".even:nth-child(1) img"));
 
                     if (!Driver.PageSource.Contains("Voltar para a página principal"))
                     {
@@ -48,7 +48,7 @@ namespace robo.Modos_de_Execucao.FIES_Legado
                             }
 
                             Util.EditarConclusaoAluno(aluno, "DRI Baixada");
-                            ClickButtonsById( "voltar");
+                            ClicarElemento(By.Id("voltar"));
                         }
                     }
                 }
@@ -73,8 +73,8 @@ namespace robo.Modos_de_Execucao.FIES_Legado
         {
             EsperarLoading();
 
-            ClickAndWriteById( "nu_cpf", aluno.Cpf);
-            ClickButtonsById( "consulta");
+            ClicarEEscrever(By.Id("nu_cpf"), aluno.Cpf);
+            ClicarElemento(By.Id("consulta"));
 
             EsperarLoading();
         }
@@ -84,8 +84,8 @@ namespace robo.Modos_de_Execucao.FIES_Legado
             IWebElement elementoNome = Driver.FindElement(By.XPath("/html/body/div[3]/div[4]/div[2]/div[2]/div[3]/div[1]/span[2]"));
             string nome = elementoNome.Text.Replace("Nome Completo: ", "");
             aluno.Nome = nome;
-            ScrollToElementByID( "imprimir_dri");
-            ClickButtonsById( "imprimir_dri");
+            ScrollParaElemento(By.Id("imprimir_dri"));
+            ClicarElemento(By.Id("imprimir_dri"));
 
             Util.BaixarDocumento(aluno.Nome + "_" + aluno.Cpf + "_DRI", "DRI", "");
         }
