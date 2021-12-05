@@ -64,7 +64,7 @@ namespace robo.Modos_de_Execucao.SIGA
         private string BuscarLancamentoPrimeiraLinha()
         {
             string lancamentoPrimeiraLinha = "";
-            var elemento = VerificarElementoExiste("xpath", "/html/body/table/tbody/tr/td/table/tbody/tr[6]/td/div/form/table[2]/tbody/tr[3]/td[3]/span");
+            var elemento = VerificarElementoExiste(By.XPath("/html/body/table/tbody/tr/td/table/tbody/tr[6]/td/div/form/table[2]/tbody/tr[3]/td[3]/span"));
             if (elemento != null)
             {
                 lancamentoPrimeiraLinha = Driver.FindElement(By.XPath("/html/body/table/tbody/tr/td/table/tbody/tr[6]/td/div/form/table[2]/tbody/tr[3]/td[3]/span")).Text;
