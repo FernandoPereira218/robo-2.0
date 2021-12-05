@@ -99,28 +99,21 @@ namespace robo.Utils
         }
 
         /// <summary>
-        /// Verifica se o elemento existe na página
+        /// Verifica se um elemento HTML existe na página
         /// </summary>
-        /// <param name="Driver"></param>
-        /// <param name="tipo">id, classname ou name</param>
-        /// <param name="identificador">elemento desejado</param>
-        /// <returns>O elemento caso exista e null caso não exista</returns>
-        protected IWebElement VerificarElementoExiste(string tipo, string identificador)
+        /// <param name="by">Elemento desejado</param>
+        /// <returns>Elemento encontrado ou null se não existir</returns>
+        protected IWebElement VerificarElementoExiste(By by)
         {
-            var executor = (IJavaScriptExecutor)Driver;
-            switch (tipo.ToUpper())
+            try
             {
-                case "ID":
-                    return (IWebElement)executor.ExecuteScript($@"return document.getElementById(""{identificador}"");");
-                case "CLASSNAME":
-                    var element = (IWebElement)executor.ExecuteScript($@"return document.getElementsByClassName(""{identificador}"")[0];");
-                    return element;
-                case "NAME":
-                    return (IWebElement)executor.ExecuteScript($@"return document.getElementByName(""{identificador}"");");
-                default:
-                    return null;
+                IWebElement elemento = Driver.FindElement(by);
+                return elemento;
             }
-
+            catch (NoSuchElementException)
+            {
+                return null;
+            }
         }
 
         /// <summary>

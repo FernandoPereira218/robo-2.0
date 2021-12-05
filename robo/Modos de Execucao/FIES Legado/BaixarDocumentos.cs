@@ -75,11 +75,13 @@ namespace robo.Modos_de_Execucao.FIES_Legado
             IWebElement botaoImprimir;
             if (tipoRelatorio == "DRM")
             {
-                botaoImprimir = VerificarElementoExiste( "ID", "imprimirDrm");
+                //botaoImprimir = VerificarElementoExiste( "ID", "imprimirDrm");
+                botaoImprimir = VerificarElementoExiste(By.Id("imprimirDrm"));
             }
             else
             {
-                botaoImprimir = VerificarElementoExiste( "ID", "imprimir");
+                //botaoImprimir = VerificarElementoExiste( "ID", "imprimir");
+                botaoImprimir = VerificarElementoExiste(By.Id("imprimir"));
             }
 
             return botaoImprimir;
