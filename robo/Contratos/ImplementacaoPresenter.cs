@@ -174,9 +174,9 @@ namespace robo.Contratos
             }
             else
             {
+                Driver = Util.StartBrowser("http://sifesweb.caixa.gov.br");
                 UtilFiesNovo fiesNovoUtil = new UtilFiesNovo();
                 fiesNovoUtil.SetDriver(Driver);
-                Driver = Util.StartBrowser("http://sifesweb.caixa.gov.br");
                 fiesNovoUtil.FazerLogin(listaLogins[0]);
             }
         }

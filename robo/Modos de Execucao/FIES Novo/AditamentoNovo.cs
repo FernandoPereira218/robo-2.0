@@ -27,8 +27,8 @@ namespace robo.Modos_de_Execucao.FIES_Novo
             EsperarPaginaCarregando();
             if (Driver.PageSource.Contains("Não iniciado pela CPSA") == true)
             {
-                ScrollToElementByID( "btnAditarEstudante");
-                ClickButtonsById( "btnAditarEstudante");
+                ScrollParaElemento(By.Id("btnAditarEstudante"));
+                ClicarElemento(By.Id("btnAditarEstudante"));
                 EsperarAjax();
                 EsperarPaginaCarregando();
                 VerificarAditamentoNaoDisponivel(aluno);
@@ -40,8 +40,8 @@ namespace robo.Modos_de_Execucao.FIES_Novo
                 PreencherQuestionamentoAluno(aluno);
                 BuscarValoresAditamento(aluno);
                 ConfirmarAditamento(aluno, alertMessage);
-                ScrollToElementByID( "btnVoltar");
-                ClickButtonsById( "btnVoltar");
+                ScrollParaElemento(By.Id("btnVoltar"));
+                ClicarElemento(By.Id("btnVoltar"));
             }
             else
             {
@@ -58,8 +58,8 @@ namespace robo.Modos_de_Execucao.FIES_Novo
         {
             if (alertMessage == "")
             {
-                ScrollToElementByID( "btnConfirmar");
-                ClickButtonsById( "btnConfirmar");
+                ScrollParaElemento(By.Id("btnConfirmar"));
+                ClicarElemento(By.Id("btnConfirmar"));
                 EsperarPaginaCarregando();
 
                 alertMessage = BuscarMensagemDeErro();
@@ -82,8 +82,8 @@ namespace robo.Modos_de_Execucao.FIES_Novo
                 if (alerta.ToUpper().Contains("TRANSFERIDO NO SEMESTRE") == false)
                 {
                     Util.EditarConclusaoAluno(aluno, alerta);
-                    ScrollToElementByID( "btnVoltar");
-                    ClickButtonsById( "btnVoltar");
+                    ScrollParaElemento(By.Id("btnVoltar"));
+                    ClicarElemento(By.Id("btnVoltar"));
                 }
             }
         }
@@ -93,8 +93,8 @@ namespace robo.Modos_de_Execucao.FIES_Novo
             if (erro != string.Empty)
             {
                 Util.EditarConclusaoAluno(aluno, erro);
-                ScrollToElementByID( "btnVoltar");
-                ClickButtonsById( "btnVoltar");
+                ScrollParaElemento(By.Id("btnVoltar"));
+                ClicarElemento(By.Id("btnVoltar"));
                 EsperarPaginaCarregando();
                 ClicarMenuAditamento();
                 throw new PararExecucaoException();
@@ -119,7 +119,7 @@ namespace robo.Modos_de_Execucao.FIES_Novo
         {
             //Prouni
             string possuiProuni = Driver.FindElement(By.Id("prouni")).Text;
-            ScrollToElementByID( "aproveitamento75S");
+            ScrollParaElemento(By.Id("aproveitamento75S"));
             if (aluno.AproveitamentoAtual.ToUpper().Contains("SUPERIOR A 75%") == true)
             {
                 AproveitamentoMaiorDe75(aluno, possuiProuni);
@@ -131,8 +131,8 @@ namespace robo.Modos_de_Execucao.FIES_Novo
             else
             {
                 Util.EditarConclusaoAluno(aluno, "Aproveitamento: " + aluno.AproveitamentoAtual);
-                ScrollToElementByID( "btnVoltar");
-                ClickButtonsById( "btnVoltar");
+                ScrollParaElemento(By.Id("btnVoltar"));
+                ClicarElemento(By.Id("btnVoltar"));
                 throw new PararExecucaoException();
             }
         }
@@ -166,28 +166,28 @@ namespace robo.Modos_de_Execucao.FIES_Novo
             {
                 if (aluno.Justificativa == string.Empty)
                 {
-                    ClickAndWriteById( "justificativaAcimaLimite", "Valores conforme o número de créditos financeiros matriculados no semestre");
+                    ClicarEEscrever(By.Id("justificativaAcimaLimite"), "Valores conforme o número de créditos financeiros matriculados no semestre");
                 }
                 else
                 {
-                    ClickAndWriteById( "justificativaAcimaLimite", aluno.Justificativa);
+                    ClicarEEscrever(By.Id("justificativaAcimaLimite"), aluno.Justificativa);
                 }
             }
             else
             {
-                ClickAndWriteById( "justificativaAcimaLimite", "Alteração na grade curricular em relação ao semestre anterior");
+                ClicarEEscrever(By.Id("justificativaAcimaLimite"), "Alteração na grade curricular em relação ao semestre anterior");
             }
         }
         private void PreencherReceitaAluno(TOAluno aluno)
         {
             //Definição semestre atual
-            ScrollToElementByID( "qtSemestreACursar");
+            ScrollParaElemento(By.Id("qtSemestreACursar"));
             int semestreASerCursado = Convert.ToInt32(Driver.FindElement(By.Id("totalSemestresFinanciados")).Text);
             ((IJavaScriptExecutor)Driver).ExecuteScript($@"document.getElementById(""qtSemestreACursar"").value = ""{semestreASerCursado + 1}"";");
 
             //Semestralidade Atual 
-            ScrollToElementByID( "semestralidadeAtualComDescGradeASerCursada");
-            ClickAndWriteById( "semestralidadeAtualComDescGradeASerCursada", aluno.ReceitaFies);
+            ScrollParaElemento(By.Id("semestralidadeAtualComDescGradeASerCursada"));
+            ClicarEEscrever(By.Id("semestralidadeAtualComDescGradeASerCursada"), aluno.ReceitaFies);
 
             //Click para atualizar a página
             Driver.FindElement(By.Id("semestralidadeAtualComDescGradeASerCursadaLabel")).Click();
@@ -197,8 +197,8 @@ namespace robo.Modos_de_Execucao.FIES_Novo
             {
                 string alerta = VerificarAlertaAditamento();
                 Util.EditarConclusaoAluno(aluno, alerta);
-                ScrollToElementByID( "btnVoltar");
-                ClickButtonsById( "btnVoltar");
+                ScrollParaElemento(By.Id("btnVoltar"));
+                ClicarElemento(By.Id("btnVoltar"));
                 throw new PararExecucaoException();
             }
         }
@@ -229,7 +229,7 @@ namespace robo.Modos_de_Execucao.FIES_Novo
             {
                 Driver.FindElement(By.Id("beneficioSimultaneoN")).Click();
             }
-            ScrollToElementByID( "duracaoCursoS");
+            ScrollParaElemento(By.Id("duracaoCursoS"));
 
             Driver.FindElement(By.Id("duracaoCursoS")).Click();
             Driver.FindElement(By.Id("transferiuCursoN")).Click();
@@ -238,15 +238,15 @@ namespace robo.Modos_de_Execucao.FIES_Novo
             if (Driver.FindElement(By.Id("erroValidarTotSemestresN")).Displayed)
             {
                 //Houve erro do estudante e da CPSA ao registrar e validar, respectivamente, o total de semestres j� conclu�dos do curso: N�O 
-                ClickButtonsById( "erroValidarTotSemestresN");
+                ClicarElemento(By.Id("erroValidarTotSemestresN"));
             }
             if (aluno.DescontoLiberalidade.Equals("Sim") == true)
             {
-                ScrollToElementByID( "descontoLiberalidadeS");
+                ScrollParaElemento(By.Id("descontoLiberalidadeS"));
                 Driver.FindElement(By.Id("descontoLiberalidadeS")).Click();
 
-                ScrollToElementByID( "motivoDesconto8");
-                ClickButtonsById( "motivoDesconto8");
+                ScrollParaElemento(By.Id("motivoDesconto8"));
+                ClicarElemento(By.Id("motivoDesconto8"));
 
                 //Caixa de texto separada
                 var executor = (IJavaScriptExecutor)Driver;
@@ -269,21 +269,20 @@ namespace robo.Modos_de_Execucao.FIES_Novo
             {
                 MessageBox.Show("Avisar os guris que aconteceu pela 1º vez Excesso de reprovação.");
                 //O estudante teve aproveitamento acad�mico igual ou superior a 75% no semestre ? NAO 
-                ClickButtonsById( "aproveitamento75N");
+                ClicarElemento(By.Id("aproveitamento75N"));
                 aluno.Conclusao = "Rejeitou execesso de reprovação";
             }
             else
             {
                 //A CPSA irá liberar o aditamento nesta situação? SIM  
-                ScrollToElementByID( "aproveitamento75N");
-                ClickButtonsById( "aproveitamento75N");
-
+                ScrollParaElemento(By.Id("aproveitamento75N"));
+                ClicarElemento(By.Id("aproveitamento75N"));
                 //Justificativa 
-                ScrollToElementByID( "justificativa");
-                ClickAndWriteById( "justificativa", aluno.HistoricoAproveitamento);
+                ScrollParaElemento(By.Id("justificativa"));
+                ClicarEEscrever(By.Id("justificativa"), aluno.HistoricoAproveitamento);
 
 
-                ClickButtonsById( "aproveitamentoInferior75S");
+                ClicarElemento(By.Id("aproveitamentoInferior75S"));
 
                 QuestionamentoPadrao(aluno, possuiProuni);
             }
@@ -297,7 +296,7 @@ namespace robo.Modos_de_Execucao.FIES_Novo
                 var errorMsg = Driver.FindElement(By.XPath("/html/body/div[1]/div"));
                 error = errorMsg.Text;
                 error = error.Replace("x\r\n", "");
-                ClickButtonsByXpath( "/html/body/div[1]/div/button");
+                ClicarElemento(By.XPath("/html/body/div[1]/div/button"));
                 var cpf = Driver.FindElement(By.Id("cpf"));
                 ((IJavaScriptExecutor)Driver).ExecuteScript(string.Format("window.scrollTo({0}, {1})", cpf.Location.X, cpf.Location.Y - 100));
 

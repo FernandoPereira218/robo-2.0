@@ -30,9 +30,9 @@ namespace robo.Modos_de_Execucao.FIES_Legado
         public void ExportarDocumentosFiesLegado()
         {
             string selRelatorio = SelecionarTipoRelatorio( tipoRelatorio);
-            ClickDropDown("id", "co_finalidade_aditamento", selRelatorio);
+            SelecionarOpcaoDropDown("id", "co_finalidade_aditamento", selRelatorio);
             EsperarLoading();
-            ClickDropDown( "id", "coSemestreAditamento", semestre);
+            SelecionarOpcaoDropDown( "id", "coSemestreAditamento", semestre);
 
             string nomeSemestre = semestre.Replace('/', '-');
             Driver.FindElement(By.Name("export-excel")).Click();

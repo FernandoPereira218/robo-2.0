@@ -154,7 +154,7 @@ namespace robo.Banco_de_Dados
         /// <returns>Usuário que corresponde ao login e senha digitados</returns>
         public static TOUsuario ValidarLogin(string usuario, string senha)
         {
-            string senhaCriptografada = Util.GetMD5(senha);
+            string senhaCriptografada = Util.CriptografarSenha(senha);
             List<TOUsuario> usuarios = SelectWhere<TOUsuario>(x => x.Usuario == usuario && x.Senha == senhaCriptografada);
             if (usuarios.Count != 0)
             {

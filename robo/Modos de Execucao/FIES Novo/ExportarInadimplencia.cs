@@ -35,13 +35,13 @@ namespace robo.Modos_de_Execucao.FIES_Novo
 
         public void Inadimplencia()
         {
-            ClickDropDown( "id", "selectMesMovimento", mes);
-            ClickDropDown( "id", "selectAnoMovimento", ano);
+            SelecionarOpcaoDropDown( "id", "selectMesMovimento", mes);
+            SelecionarOpcaoDropDown( "id", "selectAnoMovimento", ano);
 
-            ClickButtonsById( "btnConsultar");
+            ClicarElemento(By.Id("btnConsultar"));
             EsperarPaginaCarregando();
 
-            ClickButtonsById( "btnExportar");
+            ClicarElemento(By.Id("btnExportar"));
             EsperarPaginaCarregando();
 
             if (Driver.PageSource.Contains("Nenhuma informação disponível") == true)
@@ -62,7 +62,7 @@ namespace robo.Modos_de_Execucao.FIES_Novo
                 {
                     break;
                 }
-                ClickDropDown( "id", "selectAnoMovimento", anoSelecionado.ToString());
+                SelecionarOpcaoDropDown( "id", "selectAnoMovimento", anoSelecionado.ToString());
                 int contador = 12;
                 foreach (var mes in selectMes.Options)
                 {
@@ -71,9 +71,9 @@ namespace robo.Modos_de_Execucao.FIES_Novo
                         break;
                     }
                     string mesSelecionado = selectMes.Options[contador].Text;
-                    ClickDropDown( "id", "selectMesMovimento", mesSelecionado);
+                    SelecionarOpcaoDropDown( "id", "selectMesMovimento", mesSelecionado);
 
-                    ClickButtonsById( "btnConsultar");
+                    ClicarElemento(By.Id("btnConsultar"));
                     EsperarPaginaCarregando();
 
                     if (Driver.PageSource.Contains("Nenhuma informação disponível") == true)
@@ -82,7 +82,7 @@ namespace robo.Modos_de_Execucao.FIES_Novo
                         continue;
                     }
 
-                    ClickButtonsById( "btnExportar");
+                    ClicarElemento(By.Id("btnExportar"));
                     EsperarPaginaCarregando();
 
                     Util.ExportarDocumento("Inadimplência", nomeArquivo: mesSelecionado + "_" + anoSelecionado + ".xls");

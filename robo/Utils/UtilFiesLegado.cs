@@ -25,17 +25,17 @@ namespace robo.Utils
             {
                 System.Threading.Thread.Sleep(500);
             }
-            ClickButtonsByCss("#link-instituicao img:nth-child(1)");
+            ClicarElemento(By.CssSelector("#link-instituicao img:nth-child(1)"));
 
-            ClickButtonsByCss("center:nth-child(10) td:nth-child(2) .guest-box:nth-child(1) span:nth-child(2)");
+            ClicarElemento(By.CssSelector("center:nth-child(10) td:nth-child(2) .guest-box:nth-child(1) span:nth-child(2)"));
             while (Driver.Url.Contains("InitAuthenticationByIdentifierAndPassword") == false)
             {
                 System.Threading.Thread.Sleep(100);
             }
-            ClickAndWriteById("id", login.Usuario);
-            ClickAndWriteById("pw", login.Senha);
+            ClicarEEscrever(By.Id("id"), login.Usuario);
+            ClicarEEscrever(By.Id("pw"), login.Senha);
 
-            ClickButtonsById("botoes");
+            ClicarElemento(By.Id("botoes"));
             if (!Driver.PageSource.Contains("A senha informada não confere. Número de tentativas restAes:"))//Ocorreu uma falha na execução da aplicação. A caixa de erro ao lado mostra o motivo da falha. Provavelmente alguma informação incorreta foi processada.
             {
                 SelecionarPerfilPresidencia();
@@ -64,7 +64,7 @@ namespace robo.Utils
                     break;
                 }
             }
-            WaitPageToLoad();
+            EsperarReadyState();
         }
 
         /// <summary>
@@ -89,7 +89,7 @@ namespace robo.Utils
         /// <param name="Driver"></param>
         public void FazerLogout()
         {
-            ClickButtonsByXpath("//a[contains(text(),'Sair')]");
+            ClicarElemento(By.XPath("//a[contains(text(),'Sair')]"));
         }
 
         /// <summary>
@@ -98,7 +98,7 @@ namespace robo.Utils
         /// <param name="Driver"></param>
         public void SelecionarMenuDRI()
         {
-            ClickButtonsByXpath("//a[contains(text(),'Validação pela CPSA Fies')]");
+            ClicarElemento(By.XPath("//a[contains(text(),'Validação pela CPSA Fies')]"));
         }
 
         /// <summary>
@@ -107,7 +107,7 @@ namespace robo.Utils
         /// <param name="Driver"></param>
         public void SelecionarMenuBaixarDocumentos()
         {
-            ClickButtonsByCss("div:nth-child(3) > ul > .menu-button:nth-child(3) > a");
+            ClicarElemento(By.CssSelector("div:nth-child(3) > ul > .menu-button:nth-child(3) > a"));
         }
         
         /// <summary>
@@ -116,7 +116,7 @@ namespace robo.Utils
         /// <param name="Driver"></param>
         public void SelecionarMenuExtratoMensalDeRepasse()
         {
-            ClickButtonsByXpath("/html/body/div[3]/div[4]/div[1]/div[4]/ul/li[1]/a");
+            ClicarElemento(By.XPath("/html/body/div[3]/div[4]/div[1]/div[4]/ul/li[1]/a"));
         }
 
         /// <summary>
@@ -145,16 +145,16 @@ namespace robo.Utils
             switch (tipoRelatorio)
             {
                 case "DRM":
-                    ClickDropDown("id", "co_finalidade_aditamento", "Aditamento de Renovação");
+                    SelecionarOpcaoDropDown("id", "co_finalidade_aditamento", "Aditamento de Renovação");
                     return "Aditamento de Renovação";
                 case "DRT":
-                    ClickDropDown("id", "co_finalidade_aditamento", "Aditamento de Transferência");
+                    SelecionarOpcaoDropDown("id", "co_finalidade_aditamento", "Aditamento de Transferência");
                     return "Aditamento de Transferência";
                 case "DRD":
-                    ClickDropDown("id", "co_finalidade_aditamento", "Aditamento de Dilatação");
+                    SelecionarOpcaoDropDown("id", "co_finalidade_aditamento", "Aditamento de Dilatação");
                     return "Aditamento de Dilatação";
                 case "SUSPENSÃO":
-                    ClickDropDown("id", "co_finalidade_aditamento", "Suspensão");
+                    SelecionarOpcaoDropDown("id", "co_finalidade_aditamento", "Suspensão");
                     return "Suspensão";
                 default:
                     return string.Empty;

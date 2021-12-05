@@ -26,13 +26,13 @@ namespace robo.Modos_de_Execucao.FIES_Novo
 
         public void ExportarRepasseFiesNovo()
         {
-            ClickDropDown( "id", "selectMes", mes);
-            ClickDropDown( "id", "selectAno", ano);
+            SelecionarOpcaoDropDown("id", "selectMes", mes);
+            SelecionarOpcaoDropDown("id", "selectAno", ano);
 
-            ClickButtonsById( "btnConsultar");
+            ClicarElemento(By.Id("btnConsultar"));
             EsperarPaginaCarregando();
 
-            ClickButtonsById( "btnExportar");
+            ClicarElemento(By.Id("btnExportar"));
             EsperarPaginaCarregando();
 
             if (Driver.PageSource.Contains("Nenhuma informação disponível") == true)

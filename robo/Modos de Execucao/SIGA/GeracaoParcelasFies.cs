@@ -30,7 +30,7 @@ namespace robo.Modos_de_Execucao.SIGA
 
             if (this.Driver.PageSource.Contains("btn_editar") == true)
             {
-                ClickButtonsById(botaoId);
+                ClicarElemento(By.Id(botaoId));
 
                 SelectElement select = BuscarSelectElement("num_parcela");
                 int numParcelas = select.Options.Count();
@@ -123,13 +123,13 @@ namespace robo.Modos_de_Execucao.SIGA
         private void GerarMensalidade(TOAluno aluno, DateTime dataAtual, string semestreSiga)
         {
             //Clica no semestre correto
-            ClickDropDownExact("id", "peri_id", semestreSiga);
+            SelecionarOpcaoDropDownExato("id", "peri_id", semestreSiga);
 
             SelectElement select = BuscarSelectElement("num_parcela");
             string ParcelaSelecionada = select.Options[opcaoParcela].Text;
 
             //Clicar na parcela
-            ClickDropDown("id", "num_parcela", select.Options[opcaoParcela].Text);
+            SelecionarOpcaoDropDown("id", "num_parcela", select.Options[opcaoParcela].Text);
 
             //Clicar em número do documento
             SelecionarNumeroDocumento();
@@ -137,10 +137,10 @@ namespace robo.Modos_de_Execucao.SIGA
             DateTime dataVencimento = BuscarDataVencimento(aluno, dataAtual, ParcelaSelecionada);
 
             //Escrever data vencimento
-            ClickAndWriteById("id_dt_vencimento", dataVencimento.ToString("dd/MM/yyyy"));
+            ClicarEEscrever(By.Id("id_dt_vencimento"), dataVencimento.ToString("dd/MM/yyyy"));
 
             //Gerar mensalidade
-            ClickElementByXPath("input", "value", "Gerar Mensalidade");
+            ClicarElementoComXpath("input", "value", "Gerar Mensalidade");
 
             EsperarElementoVisivel(By.Id("msg_1"));
 
@@ -214,7 +214,7 @@ namespace robo.Modos_de_Execucao.SIGA
 
             if (mensagem.Text.Contains("Esta parcela já foi faturada. Deseja gerar a parcela como um ajuste?"))
             {
-                ClickElementByXPath("input", "value", "Sim");
+                ClicarElementoComXpath("input", "value", "Sim");
             }
 
             return textoMensagem;

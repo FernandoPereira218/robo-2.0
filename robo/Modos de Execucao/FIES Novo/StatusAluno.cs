@@ -26,12 +26,12 @@ namespace robo.Modos_de_Execucao.FIES_Novo
                 System.Threading.Thread.Sleep(100);
             }
             ((IJavaScriptExecutor)Driver).ExecuteScript($@"document.getElementById(""cpf"").value = ""{aluno.Cpf}"";");
-            ClickButtonsById( "btnConfirmar");
+            ClicarElemento(By.Id("btnConfirmar"));
             EsperarPaginaCarregando();
-            ClickButtonsById( "lnkTipoProcesso");
+            ClicarElemento(By.Id("lnkTipoProcesso"));
             EsperarPaginaCarregando();
 
-            ClickButtonByIdWithJavaScript( "tab-Aditamento");
+            ClicarElementoPorIDJavaScript("tab-Aditamento");
             EsperarPaginaCarregando();
 
             IWebElement elementoTabela = Driver.FindElement(By.Id("gridAditamento"));
@@ -71,7 +71,7 @@ namespace robo.Modos_de_Execucao.FIES_Novo
 
             var element = Driver.FindElement(By.Id("btn-voltar"));
             ((IJavaScriptExecutor)Driver).ExecuteScript(string.Format("window.scrollTo({0}, {1})", element.Location.X, element.Location.Y - 100));
-            ClickButtonsById( "btn-voltar");
+            ClicarElemento(By.Id("voltar"));
             EsperarPaginaCarregando();
         }
 

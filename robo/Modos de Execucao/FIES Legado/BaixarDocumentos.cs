@@ -27,7 +27,7 @@ namespace robo.Modos_de_Execucao.FIES_Legado
             if (Driver.PageSource.Contains("Lista de Aditamentos"))
             {
                 situacaoAluno = Driver.FindElement(By.XPath("/html/body/div[3]/div[4]/div[2]/div[2]/div[4]/table/tbody/tr/td[6]")).Text;
-                ClickButtonsByCss( "td > a > img");
+                ClicarElemento(By.CssSelector("td > a > img"));
                 IWebElement botaoImprimir = BuscarBotaoImprimir(tipoRelatorio);
                 BaixarDocumentoAluno(aluno, semestre, tipoRelatorio, situacaoAluno, botaoImprimir);
             }
@@ -41,13 +41,13 @@ namespace robo.Modos_de_Execucao.FIES_Legado
                 if (msgErro == string.Empty)
                 {
                     BaixarDocumento(aluno, semestre, tipoRelatorio);
-                    ClickButtonsById( "voltar");
+                    ClicarElemento(By.Id("voltar"));
                 }
             }
             else
             {
-                ScrollToElementByID( "voltar");
-                ClickButtonsById( "voltar");
+                ScrollParaElemento(By.Id("voltar"));
+                ClicarElemento(By.Id("voltar"));
                 Util.EditarConclusaoAluno(aluno, situacaoAluno);
             }
         }
@@ -57,13 +57,13 @@ namespace robo.Modos_de_Execucao.FIES_Legado
             string simplificado = string.Empty;
             if (tipoRelatorio == "DRM")
             {
-                ClickButtonsById( "imprimirDrm");
-                simplificado = FindElementByXpathText( "span", "Simplificado").Text;
+                ClicarElemento(By.Id("imprimirDrm"));
+                simplificado = BuscarElementoPorTextoXpath( "span", "Simplificado").Text;
                 simplificado = simplificado.Replace("Tipo de Aditamento: ", "");
             }
             else
             {
-                ClickButtonsById( "imprimir");
+                ClicarElemento(By.Id("imprimir"));
             }
             
             Util.BaixarDocumento(aluno.Nome + "_" + aluno.Cpf + "_" + semestre.Replace("/", "-") + "_" + tipoRelatorio, tipoRelatorio, simplificado);
@@ -88,10 +88,10 @@ namespace robo.Modos_de_Execucao.FIES_Legado
         {
             SelecionarTipoRelatorio( tipoRelatorio);
             EsperarLoading();
-            ClickAndWriteById( "cpf", aluno.Cpf);
-            ClickDropDown( "id", "coSemestreAditamento", semestre);
+            ClicarEEscrever(By.Id("cpf"), aluno.Cpf);
+            SelecionarOpcaoDropDown("id", "coSemestreAditamento", semestre);
             EsperarLoading();
-            ClickButtonsById( "consultar");
+            ClicarElemento(By.Id("consultar"));
         }
         private string BuscarNomeAluno()
         {

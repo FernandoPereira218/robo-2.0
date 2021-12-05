@@ -27,9 +27,9 @@ namespace robo.Modos_de_Execucao.FIES_Legado
             if (Driver.PageSource.Contains("Lista de Aditamentos"))
             {
                 situacaoAluno = Driver.FindElement(By.XPath("/html/body/div[3]/div[4]/div[2]/div[2]/div[4]/table/tbody/tr/td[6]")).Text;
-                ClickButtonsByCss( "td > a > img");
+                ClicarElemento(By.CssSelector("td > a > img"));
                 IWebElement botaoImprimir;
-                botaoImprimir = VerificarElementoExiste( "ID", "imprimirDrm");
+                botaoImprimir = VerificarElementoExiste("ID", "imprimirDrm");
                 if (botaoImprimir != null)
                 {
                     EsperarLoading();
@@ -47,8 +47,8 @@ namespace robo.Modos_de_Execucao.FIES_Legado
                 }
                 else
                 {
-                    ScrollToElementByID( "voltar");
-                    ClickButtonsById( "voltar");
+                    ScrollParaElemento(By.Id("voltar"));
+                    ClicarElemento(By.Id("voltar"));
                     Util.EditarConclusaoAluno(aluno, situacaoAluno);
                 }
             }
@@ -56,17 +56,17 @@ namespace robo.Modos_de_Execucao.FIES_Legado
 
         private void ConsultarAluno(TOAluno aluno, string semestre)
         {
-            ClickDropDown( "id", "co_finalidade_aditamento", "Aditamento de Renovação");
+            SelecionarOpcaoDropDown("id", "co_finalidade_aditamento", "Aditamento de Renovação");
             EsperarLoading();
-            ClickDropDown( "id", "coSemestreAditamento", semestre);
-            ClickAndWriteById( "cpf", aluno.Cpf);
-            ClickDropDown( "id", "coSemestreAditamento", semestre);
-            ClickButtonsById( "consultar");
+            SelecionarOpcaoDropDown("id", "coSemestreAditamento", semestre);
+            ClicarEEscrever(By.Id("cpf"), aluno.Cpf);
+            SelecionarOpcaoDropDown("id", "coSemestreAditamento", semestre);
+            ClicarElemento(By.Id("consultar"));
         }
 
         private void BaixarDRM(ref TOAluno aluno)
         {
-            ClickButtonsById( "imprimirDrm");
+            ClicarElemento(By.Id("imprimirDrm"));
             string downloadFolder = Directory.GetCurrentDirectory() + "\\DocumentosBaixados\\";
             DirectoryInfo directory = new DirectoryInfo(downloadFolder);
             string sourcecode = Driver.PageSource;
@@ -85,7 +85,7 @@ namespace robo.Modos_de_Execucao.FIES_Legado
 
             File.Move(myFile.FullName, diretorioDRM + "\\DRM_ALUNO.zip");
 
-            ClickButtonsById( "voltar");
+            ClicarElemento(By.Id("voltar"));
 
             ZipFile.ExtractToDirectory(diretorioDRM + "\\DRM_ALUNO.zip", diretorioDRM);
             string[] arquivoZIP = Directory.GetFiles(diretorioDRM);
@@ -169,11 +169,6 @@ namespace robo.Modos_de_Execucao.FIES_Legado
         public void SelecionarMenu()
         {
             SelecionarMenuBaixarDocumentos();
-        }
-
-        public void SetDriver(IWebDriver Driver)
-        {
-            this.Driver = Driver;
         }
     }
 }

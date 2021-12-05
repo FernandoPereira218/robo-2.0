@@ -122,7 +122,7 @@ namespace robo.Modos_de_Execucao.FIES_Legado
         }
         private void SalvarImagemCaptcha()
         {
-            ScrollToElementByID("captcha-imagem");
+            ScrollParaElemento(By.Id("captcha"));
             var element = Driver.FindElement(By.Id("captcha-imagem"));
             Screenshot scr = ((ITakesScreenshot)element).GetScreenshot();
             Util.CriarDiretorioCasoNaoExista("img");
@@ -140,23 +140,27 @@ namespace robo.Modos_de_Execucao.FIES_Legado
             }
             else
             {
-                ClickButtonsByCss("#divAproveitamentoAcademico input:nth-of-type(1)");
+                ClicarElemento(By.CssSelector("#divAproveitamentoAcademico input:nth-of-type(1)"));
                 CasoSemAproveitamento(aluno);
             }
         }
         private void PreencheReceitas(TOAluno aluno)
         {
             //Clica e Digita no Valor da Semestralidade SEM desconto – Grade Curricular Regular
-            ClickAndWriteById("vl_semestre_sem_desconto", aluno.ReceitaBruta);
+            //ClickAndWriteById("vl_semestre_sem_desconto", aluno.ReceitaBruta);
+            ClicarEEscrever(By.Id("vl_semestre_sem_desconto"), aluno.ReceitaBruta);
 
             //Clica e Digita no Valor da Semestralidade COM desconto – Grade Curricular Regular
-            ClickAndWriteById("vl_semestre_com_desconto", aluno.ReceitaLiquida);
+            //ClickAndWriteById("vl_semestre_com_desconto", aluno.ReceitaLiquida);
+            ClicarEEscrever(By.Id("vl_semestre_com_desconto"), aluno.ReceitaLiquida);
 
             //Clica e Digita no Valor da semestralidade para o FIES R$
-            ClickAndWriteById("vl_semestralidade_para_fies", aluno.ReceitaFies);
+            //ClickAndWriteById("vl_semestralidade_para_fies", aluno.ReceitaFies);
+            ClicarEEscrever(By.Id("vl_semestralidade_para_fies"), aluno.ReceitaFies);
 
             //Clica e Digita no Valor da Semestralidade ATUAL COM desconto - Grade Curricular a ser Cursada
-            ClickAndWriteById("vl_semestre_atual", aluno.ReceitaFies);
+            //ClickAndWriteById("vl_semestre_atual", aluno.ReceitaFies);
+            ClicarEEscrever(By.Id("vl_semestre_atual"), aluno.ReceitaFies);
 
             //Pegar Valor a ser financiado no semestre ATUAL com recursos do FIES - Valor drm financiamento
             aluno.ValorAditadoFinanciamento = Driver.FindElement(By.Id("vl_financiado_semestre")).Text;
@@ -167,24 +171,24 @@ namespace robo.Modos_de_Execucao.FIES_Legado
         private void CasoComAproveitamento(string justificativaAluno)
         {
             //O estudante teve aproveitamento acadêmico igual ou superior a 75% no semestre ? SIM
-            ClickButtonsByCss("#divAproveitamentoAcademico input:nth-child(3)");
+            ClicarElemento(By.CssSelector("#divAproveitamentoAcademico input:nth-child(3)"));
 
             //O estudante está regularmente matriculado? SIM
-            ClickButtonsByCss("#divRegularidadeMatricula input:nth-child(3)");
+            ClicarElemento(By.CssSelector("#divRegularidadeMatricula input:nth-child(3)"));
 
             //O estudante possui benefício simultâneo de FIES e de bolsa ProUni em local de oferta ou curso distinto? NAO
-            ClickButtonsByXpath("(//input[@name=\'beneficio\'])[1]");
+            ClicarElemento(By.XPath("(//input[@name=\'beneficio\'])[1]"));
 
             //O prazo de duração regular do curso encontra-se vigente? SIM
-            ClickButtonsByCss("#divPrazoCurso input:nth-child(3)");
+            ClicarElemento(By.CssSelector("#divPrazoCurso input:nth-child(3)"));
 
             //O estudante transferiu de curso mais de uma vez nessa IES? NAO
-            ClickButtonsByCss("#divMudancaCurso input:nth-child(2)");
+            ClicarElemento(By.CssSelector("#divMudancaCurso input:nth-child(2)"));
 
             //Duração regular do curso MARCAR A CHECKBOX (SE APARECER)
             if (Driver.FindElement(By.Name("checkNaoAlteraCurso[]")).Displayed)
             {
-                ClickButtonsByName("checkNaoAlteraCurso[]");
+                ClicarElemento(By.Name("checkNaoAlteraCurso[]"));
             }
 
             //checa se existe e escreve a justificativa
@@ -195,7 +199,7 @@ namespace robo.Modos_de_Execucao.FIES_Legado
             {
                 if (!Driver.FindElement(By.Name("checkNaoAlteraCurso[]")).Selected)
                 {
-                    ClickButtonsByName("checkNaoAlteraCurso[]");
+                    ClicarElemento(By.Name("checkNaoAlteraCurso[]"));
                 }
             }
         }
@@ -208,11 +212,11 @@ namespace robo.Modos_de_Execucao.FIES_Legado
                 {
                     if (justificativaAluno == string.Empty)
                     {
-                        ClickAndWriteById("ds_justificativa", "Alteração na grade curricular em relação ao semestre anterior");
+                        ClicarEEscrever(By.Id("ds_justificativa"), "Alteração na grade curricular em relação ao semestre anterior");
                     }
                     else
                     {
-                        ClickAndWriteById("ds_justificativa", justificativaAluno);
+                        ClicarEEscrever(By.Id("ds_justificativa"), justificativaAluno);
                     }
                 }
             }
@@ -223,27 +227,27 @@ namespace robo.Modos_de_Execucao.FIES_Legado
             if (!Driver.FindElement(By.Id("divRejeicaoAutomatica")).Displayed)
             {
                 //A CPSA irá liberar o aditamento nesta situação? SIM
-                ClickButtonsByCss("span:nth-child(4) > input:nth-child(2)");
+                ClicarElemento(By.CssSelector("span:nth-child(4) > input:nth-child(2)"));
 
                 //Justificativa: ESCREVER "Nrº reconsideração" OU ALGO DO TIPO
-                ClickAndWriteByName("justificativa", aluno.HistoricoAproveitamento);
+                ClicarEEscrever(By.Name("justificativa"), aluno.HistoricoAproveitamento);
 
                 //O estudante está regularmente matriculado? SIM
-                ClickButtonsByCss("#divRegularidadeMatricula input:nth-child(3)");
+                ClicarElemento(By.CssSelector("#divRegularidadeMatricula input:nth-child(3)"));
 
                 //O estudante possui benefício simultâneo de FIES e de bolsa ProUni em local de oferta ou curso distinto? NAO
-                ClickButtonsByXpath("(//input[@name=\'beneficio\'])[1]");
+                ClicarElemento(By.XPath("(//input[@name=\'beneficio\'])[1]"));
 
                 //O prazo de duração regular do curso encontra-se vigente? SIM
-                ClickButtonsByCss("#divPrazoCurso input:nth-child(3)");
+                ClicarElemento(By.CssSelector("#divPrazoCurso input:nth-child(3)"));
 
                 //O estudante transferiu de curso mais de uma vez nessa IES? NAO
-                ClickButtonsByCss("#divMudancaCurso input:nth-child(2)");
+                ClicarElemento(By.CssSelector("#divMudancaCurso input:nth-child(2)"));
 
                 //Duração regular do curso MARCAR A CHECKBOX SE APARECER
                 if (Driver.FindElement(By.Name("checkNaoAlteraCurso[]")).Displayed)
                 {
-                    ClickButtonsByName("checkNaoAlteraCurso[]");
+                    ClicarElemento(By.Name("checkNaoAlteraCurso[]"));
                 }
 
                 //checa se existe e escreve a justificativa
@@ -254,7 +258,7 @@ namespace robo.Modos_de_Execucao.FIES_Legado
                 {
                     if (!Driver.FindElement(By.Name("checkNaoAlteraCurso[]")).Selected)
                     {
-                        ClickButtonsByName("checkNaoAlteraCurso[]");
+                        ClicarElemento(By.Name("checkNaoAlteraCurso[]"));
                     }
                 }
             }
@@ -307,10 +311,10 @@ namespace robo.Modos_de_Execucao.FIES_Legado
                 resultado = resultado.Replace(")", "j");
                 resultado = resultado.ToLower();
 
-                ScrollToElementByID("captcha");
-                ClickAndWriteById("captcha", resultado);
-                ClickButtonsById("validar");
-                ClickButtonsByXpath("/html/body/div[8]/div[3]/div/button[2]/span");
+                ScrollParaElemento(By.Id("captcha"));
+                ClicarEEscrever(By.Id("captcha"), resultado);
+                ClicarElemento(By.Id("validar"));
+                ClicarElemento(By.XPath("/html/body/div[8]/div[3]/div/button[2]/span"));
             }
             catch (Exception exception)
             {
@@ -350,7 +354,7 @@ namespace robo.Modos_de_Execucao.FIES_Legado
 
         public void SelecionarMenu()
         {
-            ClickButtonsByCss("div:nth-child(3) > ul > .menu-button:nth-child(2) > a");
+            ClicarElemento(By.CssSelector("div:nth-child(3) > ul > .menu-button:nth-child(2) > a"));
         }
 
         public void SetWebDriver(IWebDriver Driver)

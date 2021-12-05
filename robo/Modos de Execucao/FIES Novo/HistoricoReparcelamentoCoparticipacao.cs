@@ -20,11 +20,11 @@ namespace robo.Modos_de_Execucao.FIES_Novo
         public void ExecutarHistoricoReparcelamentoCoparticipacao(TOAluno aluno)
         {
             EsperarPaginaCarregando();
-            ClickButtonsById( "btnLimpar");
+            ClicarElemento(By.Id("btnLimpar"));
             EsperarPaginaCarregando();
 
-            ClickAndWriteById( "cpfEstudante", aluno.Cpf);
-            ClickButtonsById("btnConsultar");
+            ClicarEEscrever(By.Id("cpfEstudante"), aluno.Cpf);
+            ClicarElemento(By.Id("btnConsultar"));
             EsperarPaginaCarregando();
 
             string erro = BuscarMensagemDeErro();
@@ -46,14 +46,14 @@ namespace robo.Modos_de_Execucao.FIES_Novo
         }
         private void ListaParaCSV(string fileName, string idDropdown, string idTabela, bool status)
         {
-            ClickDropDown( "name", idDropdown, "100");
+            SelecionarOpcaoDropDown("name", idDropdown, "100");
             IWebElement elementoTabela = Driver.FindElement(By.Id(idTabela));
             List<IWebElement> cabecalhos = elementoTabela.FindElements(By.TagName("th")).ToList();
             List<IWebElement> dados = elementoTabela.FindElements(By.TagName("td")).ToList();
             string arquivo;
             if (status == true)
             {
-                var downloadFolder = Util.GetDownloadsFolderPath();
+                var downloadFolder = Util.BuscarDiretorioDownloads();
                 downloadFolder = downloadFolder + "\\Historico Reparcelamento Coparticipação";
                 Util.CriarDiretorioCasoNaoExista(downloadFolder);
                 arquivo = downloadFolder + "\\" + fileName + ".csv";

@@ -26,9 +26,9 @@ namespace robo.Modos_de_Execucao.FIES_Legado
 
         public void ExportarDRILegado()
         {
-            ClickDropDown( "id", "co_situacao_inscricao", situacaoDRI);
+            SelecionarOpcaoDropDown("id", "co_situacao_inscricao", situacaoDRI);
 
-            ClickButtonsById( "excel");
+            ClicarElemento(By.Id("excel"));
 
             Util.ExportarDocumento("DRI_" + situacaoDRI, campus);
         }
