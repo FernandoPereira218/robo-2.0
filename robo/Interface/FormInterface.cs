@@ -188,7 +188,14 @@ namespace robo.Interface
                 List<TOAluno> alunos = Dados.SelectAll<TOAluno>();
                 dgvAlunos.Visible = true;
                 dgvAlunos.DataSource = alunos;
+                
                 RemoverColunasVaziasDatagrid();
+                if (Program.versaoApresentacao == true)
+                {
+                    dgvAlunos.Columns["Nome"].Visible = false;
+                    dgvAlunos.Columns["Cpf"].Visible = false;
+                    dgvAlunos.Columns["Extraido"].Visible = false;
+                }
             }
         }
         private void RemoverColunasVaziasDatagrid()
