@@ -21,7 +21,7 @@ namespace robo.Modos_de_Execucao.FIES_Novo
 
         public void BuscarStatus(TOAluno aluno)
         {
-            ConsultarAluno( aluno);
+            ConsultarAluno(aluno);
             EsperarPaginaCarregando();
 
             if (VerificarNenhumaInformacaoDisponivel() == true)
@@ -35,7 +35,7 @@ namespace robo.Modos_de_Execucao.FIES_Novo
                 IWebElement grid = Driver.FindElement(By.Id("gridResult"));
                 if (grid.Text.Contains(semestreAtual) == true)
                 {
-                    situacaoAluno = BuscarSituacaoAluno( semestreAtual);
+                    situacaoAluno = BuscarSituacaoAluno(semestreAtual);
                 }
                 else
                 {

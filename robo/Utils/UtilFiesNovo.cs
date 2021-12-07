@@ -21,6 +21,11 @@ namespace robo.Utils
         /// <param name="login"></param>
         public void FazerLogin(TOLogin login)
         {
+            if (Program.versaoApresentacao == true)
+            {
+                var jsExecutor = (IJavaScriptExecutor)Driver;
+                jsExecutor.ExecuteScript("document.getElementById('username').setAttribute('type', 'password')");
+            }
             ClicarEEscrever(By.Id("username"), login.Usuario);
             ClicarElemento(By.Id("button-submit"));
             ClicarEEscrever(By.Id("password"), login.Senha);
@@ -181,6 +186,11 @@ namespace robo.Utils
 
             ClicarElemento(By.Id("btnLimpar"));
 
+            if (Program.versaoApresentacao == true)
+            {
+                var jsExecutor = (IJavaScriptExecutor)Driver;
+                jsExecutor.ExecuteScript("document.getElementById('cpf').setAttribute('type', 'password')");
+            }
             ClicarElemento(By.Id("cpf"));
 
             var executor = (IJavaScriptExecutor)Driver;
@@ -198,6 +208,11 @@ namespace robo.Utils
                 throw new PararExecucaoException();
             }
             ClicarElemento(By.Id("btnConsultar"));
+            if (Program.versaoApresentacao == true)
+            {
+                var jsExecutor = (IJavaScriptExecutor)Driver;
+                jsExecutor.ExecuteScript("document.getElementById('gridResult').setAttribute('style', 'color: rgba(0, 0, 0, 0)!important;')");
+            }
             erro = BuscarMensagemDeErro();
             if (erro.Contains("Ocorreu um erro na consulta, tente novamente."))
             {
@@ -209,6 +224,8 @@ namespace robo.Utils
                 Util.EditarConclusaoAluno(aluno, "Nenhuma informação disponível");
                 throw new PararExecucaoException();
             }
+
+            
         }
 
         /// <summary>
