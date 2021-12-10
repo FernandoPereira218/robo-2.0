@@ -57,7 +57,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>Resources\bot.ico</ApplicationIcon>
+    <ApplicationIcon>LOGO.ico</ApplicationIcon>
   </PropertyGroup>
   <PropertyGroup>
     <ManifestCertificateThumbprint>B3608198676A619928FCE9D4C4882690CDAF3233</ManifestCertificateThumbprint>
@@ -411,6 +411,7 @@
     <None Include="Resources\anima_educacao_UniFG.jpg" />
     <None Include="Resources\anima_educacao_UniFG.png" />
     <None Include="Resources\anima_educacao_UniFG1.png" />
+    <Content Include="LOGO.ico" />
     <Content Include="Resources\bot.ico" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
