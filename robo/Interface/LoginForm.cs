@@ -9,6 +9,7 @@ namespace robo.Interface
 {
     public partial class LoginForm : Form
     {
+        private string loginAdmin;
         public LoginForm(Point location, TOLogin login = null)
         {
             InitializeComponent();
@@ -61,6 +62,7 @@ namespace robo.Interface
         private void InicializarCriarNovoLogin()
         {
             this.txtID.Text = Convert.ToString(Dados.Count<TOLogin>() + 1);
+            loginAdmin = "Não";
             this.txtID.Enabled = false;
             this.btnOKLogin.Text = "Aceitar";
             this.btnOKLogin.Click -= btnAtualizarLogin_Click;
@@ -76,6 +78,7 @@ namespace robo.Interface
             txtCampusLogin.Text = login.Campus;
             cbPlataformaLogin.Text = login.Plataforma;
             cbRegionalLogin.Text = login.Regional;
+            loginAdmin = login.Admin;
 
             this.btnOKLogin.Text = "Atualizar";
             this.txtID.Enabled = false;
@@ -132,7 +135,8 @@ namespace robo.Interface
                 Faculdade = txtFaculdadeLogin.Text,
                 Campus = txtCampusLogin.Text,
                 Plataforma = cbPlataformaLogin.Text,
-                Regional = cbRegionalLogin.Text
+                Regional = cbRegionalLogin.Text,
+                Admin = loginAdmin
             };
 
             return login;
