@@ -32,9 +32,8 @@ namespace robo.Interface
         {
             versaoRobo = Program.login.Permissao;
             InitializeComponent();
-
-            lblUsuario.Location = new Point(btnMinimize.Location.X - btnMinimize.Size.Width, lblUsuario.Height);
             lblUsuario.Text = Program.login.Usuario;
+            lblUsuario.Location = new Point(btnMinimize.Location.X - lblUsuario.Width, lblUsuario.Height);
             if (Program.login.Usuario != "Admin")
             {
                 btnSiga.Visible = false;
@@ -413,12 +412,16 @@ namespace robo.Interface
                 }
             }
         }
+        private string retornarQualquerCoisa()
+        {
+            return "Eae emanuel";
+        }
 
 
         private void FormInterface_Shown(object sender, EventArgs e)
         {
             btnHome.PerformClick();
         }
-
+        
     }
 }
