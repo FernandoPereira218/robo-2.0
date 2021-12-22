@@ -16,7 +16,7 @@ namespace robo
         /// </summary>
         public static TOUsuario login;
         public static Login formLogin;
-        public static bool versaoApresentacao = true;
+        public static bool versaoApresentacao = false;
         [STAThread]
         static void Main()
         {
