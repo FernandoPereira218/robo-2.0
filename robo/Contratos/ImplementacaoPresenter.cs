@@ -180,7 +180,7 @@ namespace robo.Contratos
                 fiesNovoUtil.FazerLogin(listaLogins[0]);
             }
         }
-        public void ExecutarLancamentoFiesSiga(string semestre, string tipoFies)
+        public void ExecutarLancamentoFiesSiga(string semestre, string tipoFies, string tipoValor)
         {
             listaAlunos = Dados.SelectWhere<TOAluno>(x => x.Conclusao == "Não Feito");
             listaLogins = Dados.SelectWhere<TOLogin>(x => x.Plataforma == "SIGA");
@@ -206,7 +206,7 @@ namespace robo.Contratos
             {
                 System.Threading.Thread.Sleep(250);
             }
-            LancamentoFiesSiga lancamentoFiesSiga = new LancamentoFiesSiga(semestre, tipoFies);
+            LancamentoFiesSiga lancamentoFiesSiga = new LancamentoFiesSiga(semestre, tipoFies, tipoValor);
             lancamentoFiesSiga.SetWebDriver(Driver);
             ForeachDeAlunos(listaAlunos, lancamentoFiesSiga);
         }

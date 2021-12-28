@@ -138,6 +138,7 @@ namespace robo.Interface
             string dataInicio = dtpDataInicial.Text;
             string dataFim = dtpDataFinal.Text;
             string fiesSiga = cbFiesSiga.Text;
+            string tipoValor = cbTipoValor.Text;
             bool todosMeses = checkBoxTodosMeses.Checked;
             backgroundWorker.Dispose();
             GC.Collect();
@@ -271,7 +272,7 @@ namespace robo.Interface
                             presenter.ExportarCoparticipacaoFiesNovo(IES, dataInicio, dataFim);
                             break;
                         case "LANÇAMENTO FIES SIGA":
-                            presenter.ExecutarLancamentoFiesSiga(semestre, fiesSiga);
+                            presenter.ExecutarLancamentoFiesSiga(semestre, fiesSiga, tipoValor);
                             break;
                         case "GERAÇÃO PARCELAS FIES SIGA":
                             presenter.GeracaoParcelasFies(semestre);

@@ -83,6 +83,9 @@ namespace robo.Interface
             this.btnIniciar = new System.Windows.Forms.Button();
             this.backgroundWorker = new System.ComponentModel.BackgroundWorker();
             this.tooltip = new MetroFramework.Components.MetroToolTip();
+            this.panelTipoValor = new System.Windows.Forms.Panel();
+            this.metroLabel2 = new MetroFramework.Controls.MetroLabel();
+            this.cbTipoValor = new System.Windows.Forms.ComboBox();
             this.panelCadastro.SuspendLayout();
             this.panellStatus.SuspendLayout();
             this.flowLayoutPanel1.SuspendLayout();
@@ -98,6 +101,7 @@ namespace robo.Interface
             this.panelIESRepasse.SuspendLayout();
             this.panelFiesSiga.SuspendLayout();
             this.panelTodosMesesDisponiveis.SuspendLayout();
+            this.panelTipoValor.SuspendLayout();
             this.SuspendLayout();
             // 
             // panelCadastro
@@ -203,6 +207,7 @@ namespace robo.Interface
             this.flowLayoutPanel1.Controls.Add(this.panelIESRepasse);
             this.flowLayoutPanel1.Controls.Add(this.panelFiesSiga);
             this.flowLayoutPanel1.Controls.Add(this.panelTodosMesesDisponiveis);
+            this.flowLayoutPanel1.Controls.Add(this.panelTipoValor);
             this.flowLayoutPanel1.Location = new System.Drawing.Point(33, 12);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
             this.flowLayoutPanel1.Size = new System.Drawing.Size(605, 506);
@@ -724,9 +729,9 @@ namespace robo.Interface
             this.labelFiesSiga.Location = new System.Drawing.Point(13, 12);
             this.labelFiesSiga.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.labelFiesSiga.Name = "labelFiesSiga";
-            this.labelFiesSiga.Size = new System.Drawing.Size(65, 19);
+            this.labelFiesSiga.Size = new System.Drawing.Size(131, 19);
             this.labelFiesSiga.TabIndex = 60;
-            this.labelFiesSiga.Text = "FIES SIGA";
+            this.labelFiesSiga.Text = "LANÇAMENTO SIGA";
             // 
             // cbFiesSiga
             // 
@@ -734,8 +739,111 @@ namespace robo.Interface
             this.cbFiesSiga.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cbFiesSiga.FormattingEnabled = true;
             this.cbFiesSiga.Items.AddRange(new object[] {
-            "FIES",
-            "FIES CONTRATADO"});
+            "ABATIMENTO DE TROCA DE CURSO (+)",
+            "ABATIMENTO DO VALOR PAGO A MAIOR (-)",
+            "ABATIMENTO FACILITA (-)",
+            "ABATIMENTO PRÉ-MATRICULA - Prioridade 49 (-) (-)",
+            "ABATIMENTO PRÉ-MATRICULA - Prioridade 99 (-) (-)",
+            "ABATIMENTOS DE CREDITOS RECEBIDOS (-)",
+            "ACRÉSCIMO FACILITA (+)",
+            "AJUSTE DE MENSALIDADE - Prioridade 1 (-) (-)",
+            "AJUSTE DE MENSALIDADE - Prioridade 1 (+) (+)",
+            "AJUSTE DE MENSALIDADE - Prioridade 99 (-) (-)",
+            "AJUSTE DE MENSALIDADE - Prioridade 99 (+) (+)",
+            "BOLSA ACORDO RESCISÃO (-)",
+            "BOLSA CARÊNCIA (-)",
+            "BOLSA COMERCIAL (TODO CURSO) - CV (-)",
+            "BOLSA COMERCIAL (TODO CURSO) (-)",
+            "BOLSA COMERCIAL (VALIDADE 1 ANO) (-)",
+            "BOLSA DA CAPES (-)",
+            "BOLSA DESEMPENHO ACADÊMICO GRADUAÇÃO (-)",
+            "BOLSA DISCIPLINA ADICIONAL (-)",
+            "BOLSA FAPERGS (-)",
+            "BOLSA INGRESSANTE - CV (-)",
+            "BOLSA INGRESSANTE (-)",
+            "BOLSA MONITORIA DE ENSINO/EXTENSÃO (-)",
+            "BOLSA PROUNI (-)",
+            "BOLSA RETURNING (-)",
+            "BOLSA REVERSÃO - CAC (-)",
+            "BOLSA REVERSÃO - RETENÇÃO (-)",
+            "BOLSA UNIPOA (-)",
+            "CAMPANHA DE MARKETING (-)",
+            "CREDIES (-)",
+            "DEDUÇÃO JUDICIAL (-)",
+            "DESC. COLABORADOR PÓS/MEST/DOUT - CV (-)",
+            "DESC. EX-ALUNO INSTITUIÇÃO - CV (-)",
+            "DESC. GRUPO DE ALUNOS - CV (-)",
+            "DESCONTO CANCELAMENTO DE TURMA/TURNO (-)",
+            "DESCONTO COLABORADOR (-)",
+            "DESCONTO DE REMATRICULA (-)",
+            "DESCONTO DEPENDENTE DE COLABORADOR/ESTAGIÁRIO (-)",
+            "DESCONTO ESPECIAL (-)",
+            "DESCONTO EX-ALUNO INSTITUIÇÃO (-)",
+            "DESCONTO FINANCEIRO - CAC (49) (-)",
+            "DESCONTO FINANCEIRO - CAC (99) (-)",
+            "DESCONTO FINANCEIRO - RETENÇÃO (49) (-)",
+            "DESCONTO FINANCEIRO - RETENÇÃO (99) (-)",
+            "DESCONTO GRUPO DE EMPRESA CONVENIADA - CV (-)",
+            "DESCONTO INDICAÇÃO POR COLABORADOR - CV (-)",
+            "DESCONTO INGRESSANTE (Prior. 100) (-)",
+            "DESCONTO INGRESSANTE (PRIOR. 98) (-)",
+            "DESCONTO INGRESSANTE PÓS (-)",
+            "DESCONTO LEP (-)",
+            "DESCONTO PARCELA FIXA (-)",
+            "DESCONTO PÓS-GRADUAÇÃO/MEST/DOUT (-)",
+            "DESCONTO PROFESSOR REDE PÚBLICA/PRIVADA- CV (-)",
+            "DESCONTO PROMOCIONAL PÓS-CV (-)",
+            "DESCONTO QUERO BOLSA - CV (-)",
+            "DESCONTO QUERO BOLSA (-)",
+            "DESCONTO REGULAMENTO FIES (-)",
+            "DESCONTO RETURNING (-)",
+            "DESCONTO VAGAS REMANESCENTES (-)",
+            "DEVOLUÇÃO DE EXTENSÃO (-)",
+            "Devolução FIES (+)",
+            "EMPRESA CONVENIADA - CV (-)",
+            "EMPRESA CONVENIADA - CV (ESTORNO) (+)",
+            "EMPRESA CONVENIADA BATALHAO BM (-)",
+            "EMPRESA CONVENIADA (-)",
+            "EMPRESA CONVENIADA HOSPITAIS (-)",
+            "ESTORNO BOLSA CAPES (+)",
+            "ESTORNO BOLSA PROUNI (+)",
+            "ESTORNO BOLSA UNIPOA (+)",
+            "ESTORNO CREDIES (+)",
+            "ESTORNO DE BOLSA INDEVIDO (49) (-)",
+            "ESTORNO DE BOLSA INDEVIDO (99) (-)",
+            "ESTORNO DE DESCONTO INDEVIDO (49) (+)",
+            "ESTORNO DE DESCONTO INDEVIDO (99) (+)",
+            "ESTORNO DEDUÇÃO JUDICIAL (+)",
+            "ESTORNO FIES (+)",
+            "FIES (-)",
+            "FIES / SOB JUDICE (-)",
+            "FIES CONTRATADO (-)",
+            "FIES CONTRATADO / ADITADO A MAIOR (49) (-)",
+            "FIES CONTRATADO / ADITADO A MAIOR (99) (-)",
+            "Financiamento PIP (-)",
+            "Financiamento PIP (Estorno) (+)",
+            "Financiamento Uniritter (-)",
+            "Financiamento Uniritter (Estorno) (+)",
+            "INCENTIVO - EVENTOS - CV (-)",
+            "INCENTIVO - EVENTOS (-)",
+            "INCENTIVO CURSO (-)",
+            "INCENTIVO FAMILIA - CV (-)",
+            "INCENTIVO FAMILIA - CV (ESTORNO) (+)",
+            "INCENTIVO FAMILIA (-)",
+            "INCENTIVO REINGRESSO (-)",
+            "INCENTIVO ZONA SUL (-)",
+            "INCENTIVO ZONA SUL MAIS CRÉDITOS (-)",
+            "INTERCAMBIO - FORA DA REDE LAUREATE (-)",
+            "INTERCAMBIO REDE LAUREATE (-)",
+            "JUROS PRAVALER (-)",
+            "MULTA CONTRATUAL (+)",
+            "PROUNI/SOB JUDICE (-)",
+            "Quero Educação (-)",
+            "Quero Educação (Estorno) (+)",
+            "RESPONSÁVEL FINANCEIRO PJ (-)",
+            "REVERSÃO DE DEVOLUÇÃO (99) (+)",
+            "TAXAS PRAVALER (-)",
+            "VALOR PAGO A MAIOR (+)"});
             this.cbFiesSiga.Location = new System.Drawing.Point(15, 32);
             this.cbFiesSiga.Name = "cbFiesSiga";
             this.cbFiesSiga.Size = new System.Drawing.Size(528, 25);
@@ -810,6 +918,40 @@ namespace robo.Interface
             this.tooltip.StyleManager = null;
             this.tooltip.Theme = MetroFramework.MetroThemeStyle.Light;
             // 
+            // panelTipoValor
+            // 
+            this.panelTipoValor.Controls.Add(this.metroLabel2);
+            this.panelTipoValor.Controls.Add(this.cbTipoValor);
+            this.panelTipoValor.Location = new System.Drawing.Point(3, 960);
+            this.panelTipoValor.Name = "panelTipoValor";
+            this.panelTipoValor.Size = new System.Drawing.Size(573, 61);
+            this.panelTipoValor.TabIndex = 71;
+            this.panelTipoValor.Tag = "";
+            this.panelTipoValor.Visible = false;
+            // 
+            // metroLabel2
+            // 
+            this.metroLabel2.AutoSize = true;
+            this.metroLabel2.Location = new System.Drawing.Point(13, 12);
+            this.metroLabel2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.metroLabel2.Name = "metroLabel2";
+            this.metroLabel2.Size = new System.Drawing.Size(82, 19);
+            this.metroLabel2.TabIndex = 60;
+            this.metroLabel2.Text = "TIPO VALOR";
+            // 
+            // cbTipoValor
+            // 
+            this.cbTipoValor.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbTipoValor.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbTipoValor.FormattingEnabled = true;
+            this.cbTipoValor.Items.AddRange(new object[] {
+            "Percentual",
+            "Valor"});
+            this.cbTipoValor.Location = new System.Drawing.Point(15, 32);
+            this.cbTipoValor.Name = "cbTipoValor";
+            this.cbTipoValor.Size = new System.Drawing.Size(528, 25);
+            this.cbTipoValor.TabIndex = 59;
+            // 
             // FormDefault
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -846,6 +988,8 @@ namespace robo.Interface
             this.panelFiesSiga.PerformLayout();
             this.panelTodosMesesDisponiveis.ResumeLayout(false);
             this.panelTodosMesesDisponiveis.PerformLayout();
+            this.panelTipoValor.ResumeLayout(false);
+            this.panelTipoValor.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -906,5 +1050,8 @@ namespace robo.Interface
         private MetroFramework.Controls.MetroCheckBox checkBoxTodosMeses;
         private MetroFramework.Controls.MetroLabel labelTodosMeses;
         private System.Windows.Forms.Button btnHelp;
+        private System.Windows.Forms.Panel panelTipoValor;
+        private MetroFramework.Controls.MetroLabel metroLabel2;
+        private System.Windows.Forms.ComboBox cbTipoValor;
     }
 }

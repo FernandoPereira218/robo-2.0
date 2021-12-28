@@ -33,7 +33,7 @@ namespace robo.Contratos
             void ExportarInadimplencia(string faculdade, string mes, string ano, bool todosMeses);
             void ExportarRepasseFiesNovo(string faculdade, string mes, string ano);
             void ExportarCoparticipacaoFiesNovo(string faculdade, string dataInicial, string dataFinal);
-            void ExecutarLancamentoFiesSiga(string semestre, string tipoFies);
+            void ExecutarLancamentoFiesSiga(string semestre, string tipoFies, string tipoValor);
             void GeracaoParcelasFies(string semestre);
             void ExecutarHistoricoReparcelamentoCoparticipacao(string faculdade, string tipoFIES);
             void ValidarReparcelamento(string faculdade, string tipoFIES);

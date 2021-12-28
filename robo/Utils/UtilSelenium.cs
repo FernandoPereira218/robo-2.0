@@ -77,6 +77,25 @@ namespace robo.Utils
         }
 
         /// <summary>
+        /// Seleciona opção de dropdown com base no texto da opção
+        /// </summary>
+        /// <param name="by"></param>
+        /// <param name="texto"></param>
+        protected void SelecionarOpcaoDropDownPorTexto(By by, string texto)
+        {
+            try
+            {
+
+                SelectElement select = new SelectElement(Driver.FindElement(by));
+                select.SelectByText(texto);
+            }
+            catch (NoSuchElementException)
+            {
+                throw new Exception("Opção não disponível. Escolha uma opção válida.");
+            }
+        }
+
+        /// <summary>
         /// Clica na opção baseada em seu texto
         /// </summary>
         /// <param name="metodo">id, xpath, name, classname</param>

@@ -32,6 +32,11 @@ namespace robo.Modos_de_Execucao.SIGA
             {
                 ClicarElemento(By.Id(botaoId));
 
+                string semestreSiga = BuscarSemestreSiga(semestre);
+                SelecionarOpcaoDropDownExato("id", "peri_id", semestreSiga);
+
+                WaitLoading();
+
                 SelectElement select = BuscarSelectElement("num_parcela");
                 int numParcelas = select.Options.Count();
                 if (numParcelas <= 2)
@@ -283,6 +288,7 @@ namespace robo.Modos_de_Execucao.SIGA
         {
             string curso;
             var tdAtivos = Driver.FindElements(By.XPath("//span[text()='Ativo']/.."));
+
             if (tdAtivos.Count > 1)
             {
                 int ativoCorreto = 0;
@@ -300,6 +306,12 @@ namespace robo.Modos_de_Execucao.SIGA
                 var tdBotao = Driver.FindElements(By.XPath("//span[text()='Ativo']/following::input"))[ativoCorreto];
                 botaoId = tdBotao.GetAttribute("id");
 
+            }
+            else if (tdAtivos.Count == 0)
+            {
+                tdParcelas = Driver.FindElement(By.XPath("//span[text()='Formando']/preceding::span[1]"));
+                var tdBotao = Driver.FindElement(By.XPath("//span[text()='Formando']/following::input"));
+                botaoId = tdBotao.GetAttribute("id");
             }
             else
             {
