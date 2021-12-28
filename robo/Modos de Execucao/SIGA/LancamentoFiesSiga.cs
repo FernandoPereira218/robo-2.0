@@ -15,11 +15,13 @@ namespace robo.Modos_de_Execucao.SIGA
     class LancamentoFiesSiga : UtilSiga, IModosDeExecucao.IModoComAlunos
     {
         private string semestreAno;
-        private string tipoFies;
-        public LancamentoFiesSiga(string semestreAno, string tipoFies)
+        private string tipoLancamento;
+        private string tipoValor;
+        public LancamentoFiesSiga(string semestreAno, string tipoLancamento, string tipoValor)
         {
             this.semestreAno = semestreAno;
-            this.tipoFies = tipoFies;
+            this.tipoLancamento = tipoLancamento;
+            this.tipoValor = tipoValor;
         }
         public void ExecutarLancamentoFiesSiga(TOAluno aluno)
         {
@@ -36,9 +38,15 @@ namespace robo.Modos_de_Execucao.SIGA
                 SelecionarOpcaoDropDownExato("id", "peri_id", semestreSiga);
                 string lancamentoPrimeiraLinha = BuscarLancamentoPrimeiraLinha();
 
-                if (lancamentoPrimeiraLinha != "FIES" && lancamentoPrimeiraLinha != "FIES CONTRATADO")
+                //if (lancamentoPrimeiraLinha != "FIES" && lancamentoPrimeiraLinha != "FIES CONTRATADO")
+                //{
+                //    AdicionarComplemento(aluno, tipoLancamento, semestreSiga);
+                //}
+
+                string lancamentoFormatado = FormatarLancamento(tipoLancamento);
+                if (lancamentoPrimeiraLinha != lancamentoFormatado)
                 {
-                    AdicionarComplemento(aluno, tipoFies, semestreSiga);
+                    AdicionarComplemento(aluno, tipoLancamento, semestreSiga);
                 }
 
                 if (aluno.Conclusao != "Não Feito")
@@ -59,6 +67,14 @@ namespace robo.Modos_de_Execucao.SIGA
                 //Voltar para página de consulta de alunos
                 Driver.Url = Driver.Url;
             }
+        }
+
+        private string FormatarLancamento(string tipoLancamento)
+        {
+            tipoLancamento = tipoLancamento.Replace(" (-)", "");
+            tipoLancamento = tipoLancamento.Replace(" (+)", "");
+
+            return tipoLancamento;
         }
 
         private string BuscarLancamentoPrimeiraLinha()
@@ -105,7 +121,7 @@ namespace robo.Modos_de_Execucao.SIGA
             }
         }
 
-        private void AdicionarComplemento(TOAluno aluno, string tipoFies, string semestreSiga)
+        private void AdicionarComplemento(TOAluno aluno, string tipoLancamento, string semestreSiga)
         {
             ClicarElemento(By.Id("btnAdicionaComplemento"));
 
@@ -124,23 +140,26 @@ namespace robo.Modos_de_Execucao.SIGA
             SelecionarOpcaoDropDown("id", "curs_id", aluno.CursoSiga.ToUpper());
 
             //Opção no combobox 19 -> FIES || 1133 -> FIES CONTRATADO
-            if (tipoFies == "FIES")
-            {
-                SelecionarOpcaoDropDownExato("id", "lanc_id", "19");
-            }
-            else if (tipoFies == "FIES CONTRATADO")
-            {
-                SelecionarOpcaoDropDownExato("id", "lanc_id", "1133");
-            }
+            //SelecionarOpcaoDropDown("id", "lanc_id", tipoLancamento);
+            SelectElement selectLancamento = new SelectElement(Driver.FindElement(By.Id("lanc_id")));
+            selectLancamento.SelectByText(tipoLancamento);
 
             //Sempre o mesmo
-            SelecionarOpcaoDropDownExato("id", "tipo_valor", "moeda");
+            //SelecionarOpcaoDropDownExato("id", "tipo_valor", "moeda");
+            SelecionarOpcaoDropDownPorTexto(By.Id("tipo_valor"), tipoValor);
 
             // Sempre o mesmo na observação
             ClicarEEscrever(By.Id("clmt_observacao"), "Lançamento Automatizado");
 
             //Arredondar valor para duas casas decimais
-            ClicarEEscrever(By.Id("moeda"), aluno.ValorDeRepasse);
+            if (tipoValor == "Valor")
+            {
+                ClicarEEscrever(By.Id("moeda"), aluno.ValorDeRepasse);
+            }
+            else
+            {
+                throw new Exception("Ainda não feito");
+            }
 
             ScrollParaElemento(By.Id("periodo[" + semestreSiga + "]"));
             //Criar id composto = ano+semestre+10 : 2021-2 -> 2021210
