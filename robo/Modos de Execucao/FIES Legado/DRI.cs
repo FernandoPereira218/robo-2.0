@@ -22,16 +22,23 @@ namespace robo.Modos_de_Execucao.FIES_Legado
         }
         public void DRIFiesLegado(TOAluno aluno)
         {
+            Driver.Url = "http://sisfies.mec.gov.br//inscricao/principal/";
             SelecionarOpcaoDropDown( "id", "co_situacao_inscricao", situacaoDRI);
 
             if (!Dados.VerificarDRI(aluno.Cpf) || baixar == true)
             {
                 ConsultarAluno(aluno);
-
+                while (!Driver.Url.Contains("?page"))
+                {
+                    Sleep();
+                }
                 if (Driver.PageSource.Contains("sorterdocuments"))
                 {
-                    ClicarElemento(By.CssSelector(".even:nth-child(1) img"));
-
+                    ClicarElemento(By.CssSelector(".even:nth-child(1) img"));    
+                    while(VerificarMensagem() == string.Empty && !Driver.PageSource.Contains("Inscrição do Aluno no FIES"))
+                    {
+                        Sleep();
+                    }
                     if (!Driver.PageSource.Contains("Voltar para a página principal"))
                     {
                         VerificarMensagemDeErro(aluno);

@@ -45,11 +45,12 @@ namespace robo.Utils
             }
             driver.Manage().Window.Maximize();
             driver.Url = url;
-            if (headless == true)
-            {
-                driver.Manage().Timeouts().PageLoad = TimeSpan.FromSeconds(5);
-            }
-            driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(1);
+            //driver.Manage().Timeouts().PageLoad = TimeSpan.FromSeconds(500);
+            //if (headless == true)
+            //{
+                
+            //}
+            driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(500);
 
             return driver;
         }
