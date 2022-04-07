@@ -83,7 +83,7 @@ namespace robo.TO
 
         /// <summary>Se aluno possui desconto de liberalidade ou não</summary>
         [Optional]
-        [Name("DESCONTO LIBERALIDADE")]
+        [Name("DESCONTO LIBERALIDADE", "Desconto Liberalidade")]
         public string DescontoLiberalidade { get; set; }
 
         /// <summary>Se documento do aluno foi baixado ou não</summary>
@@ -91,7 +91,7 @@ namespace robo.TO
         public string Extraido { get; set; }
 
         /// <summary>Justificativa para concluir aditamento.</summary>
-        [Name("JUSTIFICATIVA")]
+        [Name("JUSTIFICATIVA", "Justificativa")]
         [Optional]
         public string Justificativa { get; set; }
 

@@ -227,6 +227,9 @@ namespace robo.Banco_de_Dados
             {
                 TOSemestre semestre = new TOSemestre();
                 semestre.Semestre = verificarSemestre;
+
+                var ultimoSemestre = SelectAll<TOSemestre>();
+                semestre.numSemestre = (Convert.ToInt32(ultimoSemestre[ultimoSemestre.Count - 1].numSemestre) + 1).ToString();
                 InsertDocumento<TOSemestre>(semestre);
             }
         }
