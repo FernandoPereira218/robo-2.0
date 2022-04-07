@@ -35,7 +35,7 @@ namespace robo.Modos_de_Execucao.FIES_Legado
                 if (Driver.PageSource.Contains("sorterdocuments"))
                 {
                     ClicarElemento(By.CssSelector(".even:nth-child(1) img"));    
-                    while(VerificarMensagem() == string.Empty && !Driver.PageSource.Contains("Inscrição do Aluno no FIES"))
+                    while(VerificarMensagem() == string.Empty && !Driver.PageSource.Contains("Imprimir DRI"))
                     {
                         Sleep();
                     }
