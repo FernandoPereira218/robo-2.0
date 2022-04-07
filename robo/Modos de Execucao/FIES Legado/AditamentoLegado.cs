@@ -149,19 +149,22 @@ namespace robo.Modos_de_Execucao.FIES_Legado
             //Clica e Digita no Valor da Semestralidade SEM desconto – Grade Curricular Regular
             //ClickAndWriteById("vl_semestre_sem_desconto", aluno.ReceitaBruta);
             ClicarEEscrever(By.Id("vl_semestre_sem_desconto"), aluno.ReceitaBruta);
-
+            EsperarLoading();
             //Clica e Digita no Valor da Semestralidade COM desconto – Grade Curricular Regular
             //ClickAndWriteById("vl_semestre_com_desconto", aluno.ReceitaLiquida);
             ClicarEEscrever(By.Id("vl_semestre_com_desconto"), aluno.ReceitaLiquida);
-
+            EsperarLoading();
             //Clica e Digita no Valor da semestralidade para o FIES R$
             //ClickAndWriteById("vl_semestralidade_para_fies", aluno.ReceitaFies);
             ClicarEEscrever(By.Id("vl_semestralidade_para_fies"), aluno.ReceitaFies);
-
+            EsperarLoading();
             //Clica e Digita no Valor da Semestralidade ATUAL COM desconto - Grade Curricular a ser Cursada
             //ClickAndWriteById("vl_semestre_atual", aluno.ReceitaFies);
             ClicarEEscrever(By.Id("vl_semestre_atual"), aluno.ReceitaFies);
+            EsperarLoading();
 
+            Driver.FindElement(By.Id("vl_financiado_semestre")).Click();
+            EsperarLoading();
             //Pegar Valor a ser financiado no semestre ATUAL com recursos do FIES - Valor drm financiamento
             aluno.ValorAditadoFinanciamento = Driver.FindElement(By.Id("vl_financiado_semestre")).Text;
 
