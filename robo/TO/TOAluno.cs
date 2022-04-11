@@ -166,7 +166,7 @@ namespace robo.TO
             this.Cpf = null;
             this.Campus = null;
             this.Nome = null;
-            this.HistoricoAproveitamento = null; 
+            this.HistoricoAproveitamento = null;
             this.ReceitaBruta = null;
             this.ReceitaLiquida = null;
             this.ReceitaFies = null;
@@ -255,7 +255,9 @@ namespace robo.TO
         {
             if (!string.IsNullOrEmpty(receita))
             {
-                receita = double.Parse(receita, NumberStyles.Currency).ToString();
+                receita = receita.Trim();
+                receita = double.Parse(receita, NumberStyles.Currency | NumberStyles.AllowThousands).ToString();
+
                 return Math.Round(Convert.ToDouble(receita), 2).ToString();
             }
             return null;
@@ -326,6 +328,7 @@ namespace robo.TO
             {
                 return null;
             }
+
             double valorDouble = Convert.ToDouble(valor);
             valorDouble = Math.Round(valorDouble, 2);
             valor = valorDouble.ToString("0.00");
@@ -360,7 +363,7 @@ namespace robo.TO
             {
                 MapaInformacoes();
             }
-            else if(tipo == "Status Aluno")
+            else if (tipo == "Status Aluno")
             {
                 MapaStatusAluno();
             }
