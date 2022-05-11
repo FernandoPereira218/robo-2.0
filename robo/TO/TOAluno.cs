@@ -156,6 +156,9 @@ namespace robo.TO
         [Optional]
         public string ParcelaSiga6 { get; set; }
 
+        [Optional]
+        public string Temporario { get; set; }
+
 
 
         /// <summary>

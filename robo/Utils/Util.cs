@@ -44,6 +44,7 @@ namespace robo.Utils
                 driver = CriarDriverChrome(downloadFolder);
             }
             driver.Manage().Window.Maximize();
+            driver.Manage().Cookies.DeleteAllCookies();
             driver.Url = url;
             //driver.Manage().Timeouts().PageLoad = TimeSpan.FromSeconds(500);
             //if (headless == true)
@@ -51,6 +52,7 @@ namespace robo.Utils
                 
             //}
             driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(500);
+            
 
             return driver;
         }
@@ -441,6 +443,11 @@ namespace robo.Utils
         public static void EsperarDownload(DirectoryInfo pastaDownloads)
         {
             while (pastaDownloads.GetFiles().Count() == 0)
+            {
+                System.Threading.Thread.Sleep(100);
+            }
+
+            while (pastaDownloads.GetFiles().Last().Name.EndsWith("zip") == false)
             {
                 System.Threading.Thread.Sleep(100);
             }

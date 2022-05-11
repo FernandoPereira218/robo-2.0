@@ -381,6 +381,7 @@ namespace robo.Interface
             {
                 MessageBox.Show("Processamentos concluídos com sucesso!", "Sucesso", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 lblStatus.Text = "Processamentos concluídos com sucesso!";
+                Dados.UpdateTemporarioAluno();
             }
             else
             {

@@ -258,7 +258,10 @@ namespace robo.Contratos
             {
                 try
                 {
-                    modosDeExecucao.Executar(aluno);
+                    if (string.IsNullOrEmpty(aluno.Temporario))
+                    {
+                        modosDeExecucao.Executar(aluno);
+                    }
                 }
                 catch (PararExecucaoException)
                 {

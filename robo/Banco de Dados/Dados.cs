@@ -442,6 +442,19 @@ namespace robo.Banco_de_Dados
             }
         }
 
+        /// <summary>
+        /// Atualiza todos as conclusões diferentes de Não Feito ou Duplicado para a conclusão desejada
+        /// </summary>
+        /// <param name="conclusao">Conclusão desejada</param>
+        public static void UpdateTemporarioAluno()
+        {
+            using (var db = new LiteDatabase(CAMINHO_BANCO))
+            {
+                var colecao = db.GetCollection<TOAluno>();
+                colecao.UpdateMany(x => new TOAluno { Temporario = string.Empty }, x => x.Temporario != "Feito");
+            }
+        }
+
         //Insert
         /// <summary>
         /// Insert de uma lista de documentos no banco de dados

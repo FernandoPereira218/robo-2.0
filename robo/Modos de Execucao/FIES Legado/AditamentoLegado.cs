@@ -165,6 +165,11 @@ namespace robo.Modos_de_Execucao.FIES_Legado
 
             Driver.FindElement(By.Id("vl_financiado_semestre")).Click();
             EsperarLoading();
+
+            while (Driver.FindElement(By.Id("vl_financiado_semestre")).Text.Equals("0,00"))
+            {
+                Sleep();
+            }
             //Pegar Valor a ser financiado no semestre ATUAL com recursos do FIES - Valor drm financiamento
             aluno.ValorAditadoFinanciamento = Driver.FindElement(By.Id("vl_financiado_semestre")).Text;
 

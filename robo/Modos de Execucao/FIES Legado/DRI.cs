@@ -47,6 +47,8 @@ namespace robo.Modos_de_Execucao.FIES_Legado
                         {
                             if (baixar == true)
                             {
+                                EsperarLoading();
+                                System.Threading.Thread.Sleep(1000);
                                 BaixarDRI(aluno);
                             }
                             else
@@ -58,6 +60,10 @@ namespace robo.Modos_de_Execucao.FIES_Legado
                             ClicarElemento(By.Id("voltar"));
                         }
                     }
+                }
+                else
+                {
+
                 }
             }
             else

@@ -52,6 +52,8 @@ namespace robo.Modos_de_Execucao.FIES_Legado
                     Util.EditarConclusaoAluno(aluno, situacaoAluno);
                 }
             }
+            aluno.Temporario = "Feito";
+            Util.EditarConclusaoAluno(aluno, aluno.Conclusao);
         }
 
         private void ConsultarAluno(TOAluno aluno, string semestre)

@@ -23,7 +23,7 @@ namespace robo.Modos_de_Execucao.FIES_Novo
         }
         public void AditamentoFiesNovo(TOAluno aluno)
         {
-            ConsultarAluno( aluno);
+            ConsultarAluno(aluno);
             EsperarPaginaCarregando();
             if (Driver.PageSource.Contains("Não iniciado pela CPSA") == true)
             {
