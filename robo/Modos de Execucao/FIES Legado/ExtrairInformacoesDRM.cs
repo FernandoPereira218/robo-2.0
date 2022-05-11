@@ -72,6 +72,10 @@ namespace robo.Modos_de_Execucao.FIES_Legado
             string downloadFolder = Directory.GetCurrentDirectory() + "\\DocumentosBaixados\\";
             DirectoryInfo directory = new DirectoryInfo(downloadFolder);
             string sourcecode = Driver.PageSource;
+            while (directory.GetFiles().Count() == 0)
+            {
+                System.Threading.Thread.Sleep(1000);
+            }
             FileInfo myFile = directory.GetFiles().OrderByDescending(f => f.LastWriteTime).First();
             bool downloading = true;
             while (myFile.Name.EndsWith(".zip") == false)
