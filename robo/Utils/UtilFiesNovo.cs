@@ -221,8 +221,10 @@ namespace robo.Utils
             EsperarPaginaCarregando();
             if (VerificarNenhumaInformacaoDisponivel() == true)
             {
-                Util.EditarConclusaoAluno(aluno, "Nenhuma informação disponível");
-                throw new PararExecucaoException();
+                //Util.EditarConclusaoAluno(aluno, "Nenhuma informação disponível");
+               aluno.Temporario = "Feito";
+               Util.EditarConclusaoAluno(aluno, aluno.Conclusao);
+               throw new PararExecucaoException();
             }
 
             
@@ -267,7 +269,8 @@ namespace robo.Utils
             ConsultarAluno(aluno);
             if (VerificarNenhumaInformacaoDisponivel() == true)
             {
-                Util.EditarConclusaoAluno(aluno, "Nenhuma informação disponível");
+                aluno.Temporario = "Feito";
+                Util.EditarConclusaoAluno(aluno, aluno.Conclusao);
                 return;
             }
 
@@ -328,10 +331,11 @@ namespace robo.Utils
                 }
                 else
                 {
-                    situacaoAluno = "Semestre não encontrado.";
+                    situacaoAluno = "Não Feito";
                 }
 
                 aluno.Conclusao = situacaoAluno;
+                aluno.Temporario = "Feito";
             }
         }
 
@@ -363,16 +367,22 @@ namespace robo.Utils
             //Busca o botao que representa o ano/semestre correto
             if (Driver.PageSource.Contains(semestreAtual) == true)
             {
-                var botoes = Driver.FindElements(By.Id("btnImprimirTermo"));
-
-                foreach (var botao in botoes)
+                if (Driver.PageSource.Contains("btnImprimirTermo"))
                 {
-                    string dataAno = botao.GetAttribute("data-ano");
-                    string dataSemestre = botao.GetAttribute("data-semestre");
-                    if (dataAno == anoFormatado && dataSemestre == semestreFormatado)
+                    var botoes = Driver.FindElements(By.Id("btnImprimirTermo"));
+                    foreach (var botao in botoes)
                     {
-                        return botao;
+                        string dataAno = botao.GetAttribute("data-ano");
+                        string dataSemestre = botao.GetAttribute("data-semestre");
+                        if (dataAno == anoFormatado && dataSemestre == semestreFormatado)
+                        {
+                            return botao;
+                        }
                     }
+                }
+                else
+                {
+                    return null;
                 }
             }
             return null;
