@@ -451,7 +451,7 @@ namespace robo.Banco_de_Dados
             using (var db = new LiteDatabase(CAMINHO_BANCO))
             {
                 var colecao = db.GetCollection<TOAluno>();
-                colecao.UpdateMany(x => new TOAluno { Temporario = string.Empty }, x => x.Temporario != "Feito");
+                colecao.UpdateMany(x => new TOAluno { Temporario = string.Empty }, x => x.Temporario == "Feito");
             }
         }
 
