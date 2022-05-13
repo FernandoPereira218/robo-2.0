@@ -21,20 +21,23 @@ namespace robo.Modos_de_Execucao.FIES_Novo
         public void ExtrairInformacoesDRM(TOAluno aluno)
         {
             string janelaInicial = Driver.CurrentWindowHandle;
-            BuscarEAbrirDRM( aluno, semestre);
-            if (aluno.Conclusao != "Não Feito")
+            BuscarEAbrirDRM(aluno, semestre);
+
+            if (aluno.Conclusao != "Não Feito" || string.IsNullOrEmpty(aluno.Temporario) == false)
             {
                 Util.EditarConclusaoAluno(aluno, aluno.Conclusao);
                 return;
             }
 
+
             string informacao = SalvarTextoPagina();
             Driver.Close();
             Driver.SwitchTo().Window(janelaInicial);
-
             ProcessarInfsFiesNovo(informacao, aluno);
 
+            aluno.Temporario = "Feito";
             Util.EditarConclusaoAluno(aluno, "DRM Baixado");
+            
         }
 
         public void SetWebDriver(IWebDriver driver)
