@@ -29,7 +29,14 @@ namespace robo.Modos_de_Execucao.FIES_Legado
                 situacaoAluno = Driver.FindElement(By.XPath("/html/body/div[3]/div[4]/div[2]/div[2]/div[4]/table/tbody/tr/td[6]")).Text;
                 ClicarElemento(By.CssSelector("td > a > img"));
                 IWebElement botaoImprimir;
-                botaoImprimir = VerificarElementoExiste(By.Id("imprimirDrm"));
+                if (Driver.PageSource.Contains("imprimirDrm"))
+                {
+                    botaoImprimir = VerificarElementoExiste(By.Id("imprimirDrm"));
+                }
+                else
+                {
+                    botaoImprimir = null;
+                }
                 if (botaoImprimir != null)
                 {
                     EsperarLoading();
