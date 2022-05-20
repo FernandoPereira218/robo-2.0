@@ -221,9 +221,9 @@ namespace robo.Utils
             EsperarPaginaCarregando();
             if (VerificarNenhumaInformacaoDisponivel() == true)
             {
-                //Util.EditarConclusaoAluno(aluno, "Nenhuma informação disponível");
+               Util.EditarConclusaoAluno(aluno, "Nenhuma informação disponível");
                aluno.Temporario = "Feito";
-               Util.EditarConclusaoAluno(aluno, aluno.Conclusao);
+               //Util.EditarConclusaoAluno(aluno, aluno.Conclusao);
                throw new PararExecucaoException();
             }
 
