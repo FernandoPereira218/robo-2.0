@@ -29,7 +29,7 @@ namespace robo.Utils
             ClicarEEscrever(By.Id("username"), login.Usuario);
             ClicarElemento(By.Id("button-submit"));
             ClicarEEscrever(By.Id("password"), login.Senha);
-            ClicarElemento(By.CssSelector("button:nth-child(1)"));
+            ClicarElemento(By.Id("button-submit"));
 
             EsperarElementoVisivel(By.XPath("//p[text()='Quadro de Avisos']"));
         }
