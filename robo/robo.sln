@@ -1,11 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.30406.217
+# Visual Studio Version 17
+VisualStudioVersion = 17.2.32616.157
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "robo", "robo.csproj", "{1BFD4CBE-ABAD-49A8-8158-2DF88E7DFDA8}"
 EndProject
-Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "SetupProject", "..\SetupProject\SetupProject.vdproj", "{EA5958AE-96C6-4A0D-BD37-C3A6D8180CBB}"
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "RoboFinanciamentoSetup", "..\RoboFinanciamentoSetup\RoboFinanciamentoSetup.vdproj", "{D2C910D6-B712-4A2D-BE5F-22EB974C55D3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,8 +17,8 @@ Global
 		{1BFD4CBE-ABAD-49A8-8158-2DF88E7DFDA8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1BFD4CBE-ABAD-49A8-8158-2DF88E7DFDA8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1BFD4CBE-ABAD-49A8-8158-2DF88E7DFDA8}.Release|Any CPU.Build.0 = Release|Any CPU
-		{EA5958AE-96C6-4A0D-BD37-C3A6D8180CBB}.Debug|Any CPU.ActiveCfg = Release
-		{EA5958AE-96C6-4A0D-BD37-C3A6D8180CBB}.Release|Any CPU.ActiveCfg = Release
+		{D2C910D6-B712-4A2D-BE5F-22EB974C55D3}.Debug|Any CPU.ActiveCfg = Debug
+		{D2C910D6-B712-4A2D-BE5F-22EB974C55D3}.Release|Any CPU.ActiveCfg = Release
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
